@@ -137,20 +137,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  flutter_reorderable_list:
-    dependency: transitive
-    description:
-      name: flutter_reorderable_list
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   flutter_survey_js:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1-dev.3"
+    version: "0.0.1-dev.4"
   flutter_svg:
     dependency: transitive
     description:
@@ -245,6 +238,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  implicitly_animated_reorderable_list:
+    dependency: transitive
+    description:
+      name: implicitly_animated_reorderable_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
   intl:
     dependency: transitive
     description:

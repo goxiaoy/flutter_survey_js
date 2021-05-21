@@ -1,6 +1,6 @@
 name: flutter_survey_js
 description: Parse and display survey js
-version: 0.0.1-dev.3
+version: 0.0.1-dev.4
 homepage: https://github.com/Goxiaoy/flutter_survey_js
 
 environment:
@@ -20,7 +20,7 @@ dependencies:
   reactive_segmented_control: ^0.1.0
   reactive_advanced_switch: ^0.0.1
   reactive_image_picker: ^0.2.1
-  flutter_reorderable_list: ^1.0.0
+  implicitly_animated_reorderable_list: ^0.4.0
   flutter_colorpicker: ^0.4.0
   signature: ^4.1.1
   logging: ^1.0.1

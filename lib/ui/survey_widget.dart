@@ -276,6 +276,7 @@ class SurveyProvider extends InheritedWidget {
   @override
   bool updateShouldNotify(covariant SurveyProvider oldWidget) => true;
 }
+
 extension SurveyFormExtension on s.Survey {
   List<s.ElementBase> getElements() {
     return questions ??

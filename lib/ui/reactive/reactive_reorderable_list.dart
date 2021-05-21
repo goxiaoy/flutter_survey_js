@@ -1,26 +1,16 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart' hide ReorderableList;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide ReorderableList;
-import 'package:flutter_reorderable_list/flutter_reorderable_list.dart';
+import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
+import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
-enum DraggingMode {
-  iOS,
-  Android,
-}
-
-class ItemData<T> {
-  ItemData(this.data) : this.key = ObjectKey(data);
-
-  final T data;
-  // Each item in reorderable list needs stable and unique key
-  final Key key;
-}
 
 typedef ItemBuilder<T> = Widget Function(T data);
 
-class ReactiveReorderableList<ModelDataType, ViewDataType>
+class ReactiveReorderableList<ModelDataType, ViewDataType extends Object>
     extends ReactiveFormField<List<ModelDataType>, List<ViewDataType>> {
-  final DraggingMode draggingMode;
   final ItemBuilder<ViewDataType> itemBuilder;
 
   ReactiveReorderableList({
@@ -32,7 +22,6 @@ class ReactiveReorderableList<ModelDataType, ViewDataType>
         valueAccessor,
     ShowErrorsFunction? showErrors,
     required this.itemBuilder,
-    this.draggingMode = DraggingMode.iOS,
   }) : super(
             key: key,
             formControl: formControl,
@@ -43,138 +32,59 @@ class ReactiveReorderableList<ModelDataType, ViewDataType>
             builder:
                 (ReactiveFormFieldState<List<ModelDataType>, List<ViewDataType>>
                     field) {
-              final _items = (field.value ?? [])
-                  .map((e) => ItemData<ViewDataType>(e))
-                  .toList();
-              int _indexOfKey(Key key) {
-                return _items.indexWhere((d) => d.key == key);
-              }
+              return ImplicitlyAnimatedReorderableList<ViewDataType>(
+                items: field.value ?? [],
+                areItemsTheSame: (oldItem, newItem) => oldItem == newItem,
+                onReorderFinished: (item, from, to, newItems) {
+                  // Remember to update the underlying data when the list has been
+                  // reordered.
+                  field.didChange(newItems);
+                },
+                itemBuilder: (context, itemAnimation, item, index) {
+                  // Each item must be wrapped in a Reorderable widget.
+                  return Reorderable(
+                    // Each item must have an unique key.
+                    key: ValueKey(item),
+                    // The animation of the Reorderable builder can be used to
+                    // change to appearance of the item between dragged and normal
+                    // state. For example to add elevation when the item is being dragged.
+                    // This is not to be confused with the animation of the itemBuilder.
+                    // Implicit animations (like AnimatedContainer) are sadly not yet supported.
+                    builder: (context, dragAnimation, inDrag) {
+                      final t = dragAnimation.value;
+                      final elevation = lerpDouble(0, 8, t);
+                      final color = Color.lerp(
+                          Colors.white, Colors.white.withOpacity(0.8), t);
 
-              bool _reorderCallback(Key item, Key newPosition) {
-                int draggingIndex = _indexOfKey(item);
-                int newPositionIndex = _indexOfKey(newPosition);
-
-                // Uncomment to allow only even target reorder possition
-                // if (newPositionIndex % 2 == 1)
-                //   return false;
-                final draggedItem = (field.value ?? [])[draggingIndex];
-                //copy list
-                final newList = List<ViewDataType>.from((field.value ?? []));
-                newList.removeAt(draggingIndex);
-                newList..insert(newPositionIndex, draggedItem);
-                field.didChange(newList);
-                return true;
-              }
-
-              return ReorderableList(
-                onReorder: _reorderCallback,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _items.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Item(
-                      data: _items[index],
-                      // first and last attributes affect border drawn during dragging
-                      isFirst: index == 0,
-                      isLast: index == _items.length - 1,
-                      draggingMode: draggingMode,
-                      itemBuilder: itemBuilder,
-                    );
-                  },
-                ),
+                      return SizeFadeTransition(
+                        sizeFraction: 0.7,
+                        curve: Curves.easeInOut,
+                        animation: itemAnimation,
+                        child: Material(
+                          color: color,
+                          elevation: elevation!,
+                          type: MaterialType.transparency,
+                          child: ListTile(
+                            title: itemBuilder(item),
+                            // The child of a Handle can initialize a drag/reorder.
+                            // This could for example be an Icon or the whole item itself. You can
+                            // use the delay parameter to specify the duration for how long a pointer
+                            // must press the child, until it can be dragged.
+                            leading: Handle(
+                              delay: const Duration(milliseconds: 100),
+                              child: Icon(
+                                Icons.list,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                // If you want to use headers or footers, you should set shrinkWrap to true
+                shrinkWrap: true,
               );
             });
-}
-
-class Item<T> extends StatelessWidget {
-  Item({
-    required this.data,
-    required this.isFirst,
-    required this.isLast,
-    required this.draggingMode,
-    required this.itemBuilder,
-  });
-
-  final ItemData<T> data;
-  final bool isFirst;
-  final bool isLast;
-  final DraggingMode draggingMode;
-  final ItemBuilder<T> itemBuilder;
-
-  Widget _buildChild(BuildContext context, ReorderableItemState state) {
-    BoxDecoration decoration;
-
-    if (state == ReorderableItemState.dragProxy ||
-        state == ReorderableItemState.dragProxyFinished) {
-      // slightly transparent background white dragging (just like on iOS)
-      decoration = BoxDecoration(color: Color(0xD0FFFFFF));
-    } else {
-      bool placeholder = state == ReorderableItemState.placeholder;
-      decoration = BoxDecoration(
-          border: Border(
-              top: isFirst && !placeholder
-                  ? Divider.createBorderSide(context) //
-                  : BorderSide.none,
-              bottom: isLast && placeholder
-                  ? BorderSide.none //
-                  : Divider.createBorderSide(context)),
-          color: placeholder ? null : Colors.white);
-    }
-
-    // For iOS dragging mode, there will be drag handle on the right that triggers
-    // reordering; For android mode it will be just an empty container
-    Widget dragHandle = draggingMode == DraggingMode.iOS
-        ? ReorderableListener(
-            child: Container(
-              padding: EdgeInsets.only(right: 18.0, left: 18.0),
-              color: Color(0x08000000),
-              child: Center(
-                child: Icon(Icons.reorder, color: Color(0xFF888888)),
-              ),
-            ),
-          )
-        : Container();
-
-    Widget content = Container(
-      decoration: decoration,
-      child: SafeArea(
-          top: false,
-          bottom: false,
-          child: Opacity(
-            // hide content for placeholder
-            opacity: state == ReorderableItemState.placeholder ? 0.0 : 1.0,
-            child: IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Expanded(
-                      child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 14.0, horizontal: 14.0),
-                    child: itemBuilder(data.data),
-                  )),
-                  // Triggers the reordering
-                  dragHandle,
-                ],
-              ),
-            ),
-          )),
-    );
-
-    // For android dragging mode, wrap the entire content in DelayedReorderableListener
-    if (draggingMode == DraggingMode.Android) {
-      content = DelayedReorderableListener(
-        child: content,
-      );
-    }
-
-    return content;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ReorderableItem(
-        key: data.key, //
-        childBuilder: _buildChild);
-  }
 }
