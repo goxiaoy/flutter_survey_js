@@ -1,13 +1,19 @@
 import 'dart:convert';
 import 'dart:core';
 
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: DevicePreview.locale(context), // Add the locale here
+      builder: DevicePreview.appBuilder, // Add the builder here
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -81,26 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    const survey = {
-      "questions": [
-        {
-          "type": "rating",
-          "name": "satisfaction",
-          "title": "How satisfied are you with the Product?",
-          "mininumRateDescription": "Not Satisfied",
-          "maximumRateDescription": "Completely satisfied"
-        }
-      ]
-    };
-    s.SurveyWidget(
-      survey: s.Survey.fromJson(survey),
-      onChange: (v) {
-        print(v);
-      },
-      onSubmit: (v) {
-        print(v);
-      },
-    )
     return Scaffold(
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
