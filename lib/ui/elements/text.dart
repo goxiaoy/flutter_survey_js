@@ -86,8 +86,10 @@ final SurveyFormControlBuilder textControlBuilder = (s.ElementBase element) {
         validators: [...questionToValidators(e), Validators.email]);
   }
   if (e.inputType == 'number') {
-    return FormControl<num>(
-        validators: [...questionToValidators(e), Validators.number]);
+    return FormControl<num>(validators: [
+      ...questionToValidators(e),
+      NullableNumberValidator().validate
+    ]);
   }
   return null;
 };
