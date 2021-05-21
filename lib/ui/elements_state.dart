@@ -19,8 +19,17 @@ class ElementStatus {
   //
   final bool isEnabled;
   //element index
-  final int? index;
+  final int? indexAll;
 
-  const ElementStatus(
-      {this.isVisible = true, this.isEnabled = true, this.index});
+  final int? pageIndex;
+
+  final int? indexInPage;
+
+  const ElementStatus({
+    this.isVisible = true,
+    this.isEnabled = true,
+    this.indexAll,
+    this.pageIndex,
+    this.indexInPage,
+  });
 }

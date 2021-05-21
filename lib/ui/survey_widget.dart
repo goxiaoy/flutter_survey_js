@@ -51,12 +51,10 @@ class SurveyWidgetState extends State<SurveyWidget> {
     rebuildForm();
   }
 
-  void toPage(int newPage) {
+  Future<void> toPage(int newPage) async {
     final p = min(pageCount - 1, max(0, newPage));
-    setState(() {
-      pageController.animateToPage(p,
-          duration: Duration(milliseconds: 100), curve: Curves.easeIn);
-    });
+    await pageController.animateToPage(p,
+        duration: Duration(milliseconds: 100), curve: Curves.easeIn);
   }
 
   @override
@@ -146,7 +144,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     int index = 0;
     for (final kv in _controlsMap.entries) {
       var visible = true;
-      status[kv.key] = ElementStatus(index: index);
+      status[kv.key] = ElementStatus(indexAll: index);
       if (visible) {
         index++;
       }
@@ -278,7 +276,6 @@ class SurveyProvider extends InheritedWidget {
   @override
   bool updateShouldNotify(covariant SurveyProvider oldWidget) => true;
 }
-
 extension SurveyFormExtension on s.Survey {
   List<s.ElementBase> getElements() {
     return questions ??

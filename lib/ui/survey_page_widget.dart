@@ -55,11 +55,22 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
         });
       }
     });
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      toIndex(widget.initIndex);
+    });
   }
 
   void toIndex(int index) {
     final p = min(maxIndex - 1, max(0, index));
     itemScrollController.jumpTo(index: p);
+  }
+
+  @override
+  void didUpdateWidget(covariant SurveyPageWidget oldWidget) {
+    if (oldWidget.initIndex != widget.initIndex) {
+      toIndex(widget.initIndex);
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
