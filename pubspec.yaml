@@ -1,7 +1,6 @@
 name: flutter_survey_js
 description: Parse and display survey js
-version: 0.0.1
-author: Goxy, Charles
+version: 0.0.1-dev.1
 homepage: https://github.com/Goxiaoy/flutter_survey_js
 
 environment:
@@ -21,10 +20,13 @@ dependencies:
   reactive_segmented_control: ^0.1.0
   reactive_advanced_switch: ^0.0.1
   reactive_image_picker: ^0.2.1
-  reactive_signature: ^0.1.1
   flutter_reorderable_list: ^1.0.0
   flutter_colorpicker: ^0.4.0
+  signature: ^4.1.1
   logging: ^1.0.1
+  intl: ^0.17.0
+  json_annotation: ^4.0.1
+
 
 dev_dependencies:
   flutter_test:
@@ -37,7 +39,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -48,7 +49,6 @@ flutter:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # To add custom fonts to your package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

@@ -122,7 +122,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.1-dev.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -319,13 +319,6 @@ packages:
     dependency: transitive
     description:
       name: reactive_segmented_control
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1"
-  reactive_signature:
-    dependency: transitive
-    description:
-      name: reactive_signature
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"

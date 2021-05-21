@@ -339,7 +339,7 @@ packages:
     source: hosted
     version: "2.1.0"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -360,7 +360,7 @@ packages:
     source: hosted
     version: "0.6.3"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
@@ -506,13 +506,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
-  reactive_signature:
-    dependency: "direct main"
-    description:
-      name: reactive_signature
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1"
   scrollable_positioned_list:
     dependency: "direct main"
     description:
@@ -535,7 +528,7 @@ packages:
     source: hosted
     version: "1.0.1"
   signature:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: signature
       url: "https://pub.dartlang.org"
