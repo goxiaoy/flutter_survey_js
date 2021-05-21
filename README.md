@@ -4,6 +4,8 @@ Flutter package for parsing and display [surveyjs](https://surveyjs.io/) widgets
 
 All these widgets and highly depend on [reactive_forms](https://pub.dev/packages/reactive_forms)
 
+Live preview [https://goxiaoy.github.io/flutter_survey_js/](https://goxiaoy.github.io/flutter_survey_js/)
+
 # IMPORTANT_NOTE
 # This package has not fully tested, use at your own risk
 
@@ -41,17 +43,29 @@ Supported validator:
 ## Getting Started
 
 ```dart
-  const json = {
-    "questions": [
-      {
-        "type": "rating",
-        "name": "satisfaction",
-        "title": "How satisfied are you with the Product?",
-        "mininumRateDescription": "Not Satisfied",
-        "maximumRateDescription": "Completely satisfied"
-      }
-    ]
-  };
+import 'package:flutter_survey_js/survey.dart' as s;
+...
+const survey = {
+  "questions": [
+    {
+      "type": "rating",
+      "name": "satisfaction",
+      "title": "How satisfied are you with the Product?",
+      "mininumRateDescription": "Not Satisfied",
+      "maximumRateDescription": "Completely satisfied"
+    }
+  ]
+};
+...
+s.SurveyWidget(
+  survey: s.Survey.fromJson(survey),
+  onChange: (v) {
+    print(v);
+  },
+  onSubmit: (v) {
+    print(v);
+  },
+)
 
 
 ```

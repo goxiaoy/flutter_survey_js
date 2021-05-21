@@ -81,6 +81,26 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    const survey = {
+      "questions": [
+        {
+          "type": "rating",
+          "name": "satisfaction",
+          "title": "How satisfied are you with the Product?",
+          "mininumRateDescription": "Not Satisfied",
+          "maximumRateDescription": "Completely satisfied"
+        }
+      ]
+    };
+    s.SurveyWidget(
+      survey: s.Survey.fromJson(survey),
+      onChange: (v) {
+        print(v);
+      },
+      onSubmit: (v) {
+        print(v);
+      },
+    )
     return Scaffold(
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
