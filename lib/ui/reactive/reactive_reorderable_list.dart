@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart' hide ReorderableList;
 import 'package:reactive_forms/reactive_forms.dart';
 
-// import 'package:animated_list_plus/animated_list_plus.dart';
 import 'package:implicitly_animated_reorderable_list_2/implicitly_animated_reorderable_list_2.dart';
 import 'package:implicitly_animated_reorderable_list_2/transitions.dart';
 
