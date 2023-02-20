@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_survey_js/utils.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ReactiveColorPicker extends ReactiveFormField<String, Color> {
