@@ -1,11 +1,11 @@
 name: flutter_survey_js
 description: Parse and display survey js
-version: 0.0.1-dev.4
+version: 0.0.1-dev.5
 homepage: https://github.com/Goxiaoy/flutter_survey_js
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=3.7.0"
 
 dependencies:
   flutter:
@@ -68,5 +68,6 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
+  uses-material-design: true
 flutter_intl:
   enabled: true
