@@ -55,7 +55,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
         });
       }
     });
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       toIndex(widget.initIndex);
     });
   }
@@ -94,7 +94,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
               ),
         body: GestureDetector(
           onTap: () {
-            WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
+            WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
           },
           child: Container(
             color: Colors.white,

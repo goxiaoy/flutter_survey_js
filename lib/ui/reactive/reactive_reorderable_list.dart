@@ -1,11 +1,10 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart' hide ReorderableList;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide ReorderableList;
-import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
-import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
+import 'package:implicitly_animated_reorderable_list_2/implicitly_animated_reorderable_list_2.dart';
+import 'package:implicitly_animated_reorderable_list_2/transitions.dart';
 
 typedef ItemBuilder<T> = Widget Function(T data);
 
