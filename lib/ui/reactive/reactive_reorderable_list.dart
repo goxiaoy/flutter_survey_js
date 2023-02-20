@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart' hide ReorderableList;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide ReorderableList;
-import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
-import 'package:implicitly_animated_reorderable_list/transitions.dart';
+// import 'package:animated_list_plus/implicitly_animated_reorderable_list.dart';
+// import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+
+import 'package:animated_list_plus/animated_list_plus.dart';
 
 typedef ItemBuilder<T> = Widget Function(T data);
 
@@ -56,26 +58,21 @@ class ReactiveReorderableList<ModelDataType, ViewDataType extends Object>
                       final color = Color.lerp(
                           Colors.white, Colors.white.withOpacity(0.8), t);
 
-                      return SizeFadeTransition(
-                        sizeFraction: 0.7,
-                        curve: Curves.easeInOut,
-                        animation: itemAnimation,
-                        child: Material(
-                          color: color,
-                          elevation: elevation!,
-                          type: MaterialType.transparency,
-                          child: ListTile(
-                            title: itemBuilder(item),
-                            // The child of a Handle can initialize a drag/reorder.
-                            // This could for example be an Icon or the whole item itself. You can
-                            // use the delay parameter to specify the duration for how long a pointer
-                            // must press the child, until it can be dragged.
-                            leading: Handle(
-                              delay: const Duration(milliseconds: 100),
-                              child: Icon(
-                                Icons.list,
-                                color: Colors.grey,
-                              ),
+                      return Material(
+                        color: color,
+                        elevation: elevation!,
+                        type: MaterialType.transparency,
+                        child: ListTile(
+                          title: itemBuilder(item),
+                          // The child of a Handle can initialize a drag/reorder.
+                          // This could for example be an Icon or the whole item itself. You can
+                          // use the delay parameter to specify the duration for how long a pointer
+                          // must press the child, until it can be dragged.
+                          leading: Handle(
+                            delay: const Duration(milliseconds: 100),
+                            child: Icon(
+                              Icons.list,
+                              color: Colors.grey,
                             ),
                           ),
                         ),
