@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -189,11 +190,13 @@ class _ReactiveTextFieldState
 class StringUnit8ListAccessor extends ControlValueAccessor<String, Uint8List> {
   @override
   Uint8List? modelToViewValue(String? modelValue) {
-    return modelValue == null ? null : Uint8List.fromList(modelValue.codeUnits);
+    return modelValue == null
+        ? null
+        : const Base64Decoder().convert(modelValue);
   }
 
   @override
   String? viewToModelValue(Uint8List? viewValue) {
-    return viewValue == null ? null : String.fromCharCodes(viewValue);
+    return viewValue == null ? null : const Base64Encoder().convert(viewValue);
   }
 }
