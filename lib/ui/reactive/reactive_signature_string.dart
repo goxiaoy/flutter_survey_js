@@ -194,7 +194,7 @@ class StringUnit8ListAccessor extends ControlValueAccessor<String, Uint8List> {
     return (modelValue == null ||
             !modelValue.startsWith('data:image/png;base64,'))
         ? null
-        : const Base64Decoder().convert(modelValue);
+        : const Base64Decoder().convert(modelValue.substring(22));
   }
 
   @override
