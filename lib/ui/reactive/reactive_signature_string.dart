@@ -190,13 +190,17 @@ class _ReactiveTextFieldState
 class StringUnit8ListAccessor extends ControlValueAccessor<String, Uint8List> {
   @override
   Uint8List? modelToViewValue(String? modelValue) {
-    return modelValue == null
+    // although other encodings might exist, data:image/png;base64 should work 99% of the time
+    return (modelValue == null ||
+            !modelValue.startsWith('data:image/png;base64,'))
         ? null
         : const Base64Decoder().convert(modelValue);
   }
 
   @override
   String? viewToModelValue(Uint8List? viewValue) {
-    return viewValue == null ? null : const Base64Encoder().convert(viewValue);
+    return viewValue == null
+        ? null
+        : 'data:image/png;base64,' + const Base64Encoder().convert(viewValue);
   }
 }
