@@ -1,5 +1,7 @@
 import 'package:flutter_survey_js/model/survey.dart';
+import 'package:flutter_survey_js/ui/elements/text.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
   // 单一的测试
@@ -97,5 +99,33 @@ void main() {
   };
   test("Serialize Deserialize Survey", () {
     final s = Survey.fromJson(json);
+  });
+
+  group("textControlBuilder", () {
+    test(
+        "returns validator when inputType is null, validators is null, but isRequired is true",
+        () {
+      final Object? formControl = textControlBuilder(
+        Text()
+          ..inputType = null
+          ..validators = null
+          ..isRequired = true,
+      );
+      expect(formControl is FormControl, isTrue);
+      expect((formControl as FormControl).validators.isNotEmpty, isTrue);
+    });
+
+    test(
+        "does not return validator when inputType is null, validators is null, and isRequired is false",
+        () {
+      final Object? formControl = textControlBuilder(
+        Text()
+          ..inputType = null
+          ..validators = null
+          ..isRequired = false,
+      );
+      expect(formControl is FormControl, isTrue);
+      expect((formControl as FormControl).validators.isEmpty, isTrue);
+    });
   });
 }
