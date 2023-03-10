@@ -18,15 +18,19 @@ class SurveyWidget extends StatefulWidget {
   final FutureOr<void> Function(dynamic data)? onSubmit;
   final ValueSetter<Map<String, Object?>?>? onChange;
   final bool showQuestionsInOnePage;
+  final SurveyController? controller;
+  final bool hideSubmitButton;
 
-  const SurveyWidget(
-      {Key? key,
-      required this.survey,
-      this.answer,
-      this.onSubmit,
-      this.onChange,
-      this.showQuestionsInOnePage = false})
-      : super(key: key);
+  const SurveyWidget({
+    Key? key,
+    required this.survey,
+    this.answer,
+    this.onSubmit,
+    this.onChange,
+    this.showQuestionsInOnePage = false,
+    this.controller,
+    this.hideSubmitButton = false,
+  }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
 }
@@ -48,6 +52,11 @@ class SurveyWidgetState extends State<SurveyWidget> {
   @override
   void initState() {
     super.initState();
+    if (widget.controller != null) {
+      widget.controller?.addListener(() {
+        submit();
+      });
+    }
     rebuildForm();
   }
 
@@ -186,12 +195,21 @@ class SurveyWidgetState extends State<SurveyWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   if (_currentPage != 0) previousButton(),
-                  nextButton()
+                  if (!(_currentPage == pageCount - 1 &&
+                      widget.hideSubmitButton))
+                    nextButton()
                 ],
               )
             ],
           ),
         ));
+  }
+
+  void submit() {
+    formGroup.markAllAsTouched();
+    if (formGroup.valid) {
+      widget.onSubmit?.call(formGroup.value);
+    }
   }
 
   void dispose() {
@@ -224,10 +242,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
         if (!finished) {
           toPage(_currentPage + 1);
         } else {
-          formGroup.markAllAsTouched();
-          if (formGroup.valid) {
-            widget.onSubmit?.call(formGroup.value);
-          }
+          submit();
         }
       },
     );
@@ -284,5 +299,11 @@ extension SurveyFormExtension on s.Survey {
             [],
             (previousValue, element) =>
                 previousValue..addAll(element.elements ?? []));
+  }
+}
+
+class SurveyController extends ChangeNotifier {
+  void submit() {
+    notifyListeners();
   }
 }
