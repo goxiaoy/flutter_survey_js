@@ -91,5 +91,5 @@ final SurveyFormControlBuilder textControlBuilder = (s.ElementBase element) {
       NullableNumberValidator().validate
     ]);
   }
-  return null;
+  return FormControl<String>(validators: questionToValidators(e));
 };
