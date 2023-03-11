@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -189,11 +190,17 @@ class _ReactiveTextFieldState
 class StringUnit8ListAccessor extends ControlValueAccessor<String, Uint8List> {
   @override
   Uint8List? modelToViewValue(String? modelValue) {
-    return modelValue == null ? null : Uint8List.fromList(modelValue.codeUnits);
+    // although other encodings might exist, data:image/png;base64 should work 99% of the time
+    return (modelValue == null ||
+            !modelValue.startsWith('data:image/png;base64,'))
+        ? null
+        : const Base64Decoder().convert(modelValue.substring(22));
   }
 
   @override
   String? viewToModelValue(Uint8List? viewValue) {
-    return viewValue == null ? null : String.fromCharCodes(viewValue);
+    return viewValue == null
+        ? null
+        : 'data:image/png;base64,' + const Base64Encoder().convert(viewValue);
   }
 }
