@@ -139,9 +139,7 @@ class _MyHomePageWithController extends State<MyHomePageWithController> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
-                    surveyController.submit();
-                  },
+                  onPressed: surveyController.submit,
                   child: Text(
                     'Submit',
                   ),
