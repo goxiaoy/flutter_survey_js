@@ -6,87 +6,84 @@ part of 'survey.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Survey _$SurveyFromJson(Map<String, dynamic> json) {
-  return Survey()
-    ..locale = json['locale'] as String?
-    ..title = json['title'] as String?
-    ..description = json['description'] as String?
-    ..logo = json['logo'] as String?
-    ..logoWidth = json['logoWidth'] as String?
-    ..logoFit = json['logoFit'] as String?
-    ..logoPosition = json['logoPosition'] as String?
-    ..focusFirstQuestionAutomatic = json['focusFirstQuestionAutomatic'] as bool?
-    ..focusOnFirstError = json['focusOnFirstError'] as bool?
-    ..completedHtml = json['completedHtml'] as String?
-    ..completedBeforeHtml = json['completedBeforeHtml'] as String?
-    ..completedHtmlOnCondition =
-        (json['completedHtmlOnCondition'] as List<dynamic>?)
-            ?.map((e) => HtmlConditionItem.fromJson(e as Map<String, dynamic>))
-            .toList()
-    ..loadingHtml = json['loadingHtml'] as String?
-    ..pages = (json['pages'] as List<dynamic>?)
-        ?.map((e) => Page.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..questions = (json['questions'] as List<dynamic>?)
-        ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..triggers = (json['triggers'] as List<dynamic>?)
-        ?.map((e) => SurveyTrigger.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..calculatedValues = (json['calculatedValues'] as List<dynamic>?)
-        ?.map((e) => CalculatedValue.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..surveyId = json['surveyId'] as String?
-    ..surveyPostId = json['surveyPostId'] as String?
-    ..surveyShowDataSaving = json['surveyShowDataSaving'] as bool?
-    ..cookieName = json['cookieName'] as String?
-    ..sendResultOnPageNext = json['sendResultOnPageNext'] as bool?
-    ..showNavigationButtons = json['showNavigationButtons'] as String?
-    ..showPrevButton = json['showPrevButton'] as bool?
-    ..showTitle = json['showTitle'] as bool?
-    ..showPageTitles = json['showPageTitles'] as bool?
-    ..showCompletedPage = json['showCompletedPage'] as bool?
-    ..navigateToUrl = json['navigateToUrl'] as String?
-    ..navigateToUrlOnCondition =
-        (json['navigateToUrlOnCondition'] as List<dynamic>?)
-            ?.map((e) => UrlConditionItem.fromJson(e as Map<String, dynamic>))
-            .toList()
-    ..questionsOrder = json['questionsOrder'] as String?
-    ..showPageNumbers = json['showPageNumbers'] as bool?
-    ..showQuestionNumbers = json['showQuestionNumbers'] as String?
-    ..questionTitleLocation = json['questionTitleLocation'] as String?
-    ..questionDescriptionLocation =
-        json['questionDescriptionLocation'] as String?
-    ..questionErrorLocation = json['questionErrorLocation'] as String?
-    ..showProgressBar = json['showProgressBar'] as String?
-    ..progressBarType = json['progressBarType'] as String?
-    ..mode = json['mode'] as String?
-    ..storeOthersAsComment = json['storeOthersAsComment'] as bool?
-    ..maxTextLength = json['maxTextLength'] as num?
-    ..maxOthersLength = json['maxOthersLength'] as num?
-    ..goNextPageAutomatic = json['goNextPageAutomatic'] as bool?
-    ..clearInvisibleValues = json['clearInvisibleValues'] as String?
-    ..checkErrorsMode = json['checkErrorsMode'] as String?
-    ..textUpdateMode = json['textUpdateMode'] as String?
-    ..startSurveyText = json['startSurveyText'] as String?
-    ..pagePrevText = json['pagePrevText'] as String?
-    ..pageNextText = json['pageNextText'] as String?
-    ..completeText = json['completeText'] as String?
-    ..previewText = json['previewText'] as String?
-    ..editText = json['editText'] as String?
-    ..requiredText = json['requiredText'] as String?
-    ..questionStartIndex = json['questionStartIndex'] as String?
-    ..questionTitlePattern = json['questionTitlePattern'] as String?
-    ..questionTitleTemplate = json['questionTitleTemplate'] as String?
-    ..firstPageIsStarted = json['firstPageIsStarted'] as bool?
-    ..isSinglePage = json['isSinglePage'] as bool?
-    ..questionsOnPageMode = json['questionsOnPageMode'] as String?
-    ..showPreviewBeforeComplete = json['showPreviewBeforeComplete'] as String?
-    ..maxTimeToFinish = json['maxTimeToFinish'] as int?
-    ..maxTimeToFinishPage = json['maxTimeToFinishPage'] as int?
-    ..showTimerPanel = json['showTimerPanel'] as String?
-    ..showTimerPanelMode = json['showTimerPanelMode'] as String?;
-}
+Survey _$SurveyFromJson(Map<String, dynamic> json) => Survey()
+  ..locale = json['locale'] as String?
+  ..title = json['title'] as String?
+  ..description = json['description'] as String?
+  ..logo = json['logo'] as String?
+  ..logoWidth = json['logoWidth'] as String?
+  ..logoFit = json['logoFit'] as String?
+  ..logoPosition = json['logoPosition'] as String?
+  ..focusFirstQuestionAutomatic = json['focusFirstQuestionAutomatic'] as bool?
+  ..focusOnFirstError = json['focusOnFirstError'] as bool?
+  ..completedHtml = json['completedHtml'] as String?
+  ..completedBeforeHtml = json['completedBeforeHtml'] as String?
+  ..completedHtmlOnCondition =
+      (json['completedHtmlOnCondition'] as List<dynamic>?)
+          ?.map((e) => HtmlConditionItem.fromJson(e as Map<String, dynamic>))
+          .toList()
+  ..loadingHtml = json['loadingHtml'] as String?
+  ..pages = (json['pages'] as List<dynamic>?)
+      ?.map((e) => Page.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..questions = (json['questions'] as List<dynamic>?)
+      ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..triggers = (json['triggers'] as List<dynamic>?)
+      ?.map((e) => SurveyTrigger.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..calculatedValues = (json['calculatedValues'] as List<dynamic>?)
+      ?.map((e) => CalculatedValue.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..surveyId = json['surveyId'] as String?
+  ..surveyPostId = json['surveyPostId'] as String?
+  ..surveyShowDataSaving = json['surveyShowDataSaving'] as bool?
+  ..cookieName = json['cookieName'] as String?
+  ..sendResultOnPageNext = json['sendResultOnPageNext'] as bool?
+  ..showNavigationButtons = json['showNavigationButtons'] as String?
+  ..showPrevButton = json['showPrevButton'] as bool?
+  ..showTitle = json['showTitle'] as bool?
+  ..showPageTitles = json['showPageTitles'] as bool?
+  ..showCompletedPage = json['showCompletedPage'] as bool?
+  ..navigateToUrl = json['navigateToUrl'] as String?
+  ..navigateToUrlOnCondition =
+      (json['navigateToUrlOnCondition'] as List<dynamic>?)
+          ?.map((e) => UrlConditionItem.fromJson(e as Map<String, dynamic>))
+          .toList()
+  ..questionsOrder = json['questionsOrder'] as String?
+  ..showPageNumbers = json['showPageNumbers'] as bool?
+  ..showQuestionNumbers = Survey._boolToString(json['showQuestionNumbers'])
+  ..questionTitleLocation = json['questionTitleLocation'] as String?
+  ..questionDescriptionLocation = json['questionDescriptionLocation'] as String?
+  ..questionErrorLocation = json['questionErrorLocation'] as String?
+  ..showProgressBar = json['showProgressBar'] as String?
+  ..progressBarType = json['progressBarType'] as String?
+  ..mode = json['mode'] as String?
+  ..storeOthersAsComment = json['storeOthersAsComment'] as bool?
+  ..maxTextLength = json['maxTextLength'] as num?
+  ..maxOthersLength = json['maxOthersLength'] as num?
+  ..goNextPageAutomatic = json['goNextPageAutomatic'] as bool?
+  ..clearInvisibleValues = json['clearInvisibleValues'] as String?
+  ..checkErrorsMode = json['checkErrorsMode'] as String?
+  ..textUpdateMode = json['textUpdateMode'] as String?
+  ..startSurveyText = json['startSurveyText'] as String?
+  ..pagePrevText = json['pagePrevText'] as String?
+  ..pageNextText = json['pageNextText'] as String?
+  ..completeText = json['completeText'] as String?
+  ..previewText = json['previewText'] as String?
+  ..editText = json['editText'] as String?
+  ..requiredText = json['requiredText'] as String?
+  ..questionStartIndex = json['questionStartIndex'] as String?
+  ..questionTitlePattern = json['questionTitlePattern'] as String?
+  ..questionTitleTemplate = json['questionTitleTemplate'] as String?
+  ..firstPageIsStarted = json['firstPageIsStarted'] as bool?
+  ..isSinglePage = json['isSinglePage'] as bool?
+  ..questionsOnPageMode = json['questionsOnPageMode'] as String?
+  ..showPreviewBeforeComplete = json['showPreviewBeforeComplete'] as String?
+  ..maxTimeToFinish = json['maxTimeToFinish'] as int?
+  ..maxTimeToFinishPage = json['maxTimeToFinishPage'] as int?
+  ..showTimerPanel = json['showTimerPanel'] as String?
+  ..showTimerPanelMode = json['showTimerPanelMode'] as String?;
 
 Map<String, dynamic> _$SurveyToJson(Survey instance) {
   final val = <String, dynamic>{};
