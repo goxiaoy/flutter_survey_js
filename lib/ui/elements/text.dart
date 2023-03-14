@@ -18,12 +18,15 @@ final SurveyElementBuilder textBuilder =
     style: Theme.of(context).textTheme.bodyText2,
   );
 
+  final datePickerTextStyle = Theme.of(context).textTheme.bodyText2;
+
   if (e.inputType == 'date') {
     widget = ReactiveDateTimePicker(
       locale: Localizations.localeOf(context),
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.date,
       decoration: InputDecoration(hintText: hintText),
+      style: datePickerTextStyle,
     );
   }
   if (e.inputType == 'color') {
@@ -42,6 +45,7 @@ final SurveyElementBuilder textBuilder =
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.dateTime,
       decoration: InputDecoration(hintText: hintText),
+      style: datePickerTextStyle,
     );
   }
   if (e.inputType == 'datetime-local') {
@@ -58,6 +62,7 @@ final SurveyElementBuilder textBuilder =
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.dateTime,
       decoration: InputDecoration(hintText: hintText),
+      style: datePickerTextStyle,
     );
   }
   if (e.inputType == 'month') {
