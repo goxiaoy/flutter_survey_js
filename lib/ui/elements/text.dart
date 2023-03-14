@@ -15,6 +15,7 @@ final SurveyElementBuilder textBuilder =
   Widget widget = ReactiveTextField(
     formControlName: element.name!,
     decoration: InputDecoration(hintText: hintText),
+    style: Theme.of(context).textTheme.bodyText2,
   );
 
   if (e.inputType == 'date') {
@@ -32,6 +33,7 @@ final SurveyElementBuilder textBuilder =
     widget = ReactiveTextField(
       formControlName: element.name!,
       decoration: InputDecoration(hintText: hintText),
+      style: Theme.of(context).textTheme.bodyText2,
     );
   }
   if (e.inputType == 'datetime') {
@@ -66,6 +68,7 @@ final SurveyElementBuilder textBuilder =
       obscureText: true,
       formControlName: element.name!,
       decoration: InputDecoration(hintText: hintText),
+      style: Theme.of(context).textTheme.bodyText2,
     );
   }
   if (e.inputType == 'range') {}
@@ -74,6 +77,7 @@ final SurveyElementBuilder textBuilder =
       keyboardType: TextInputType.phone,
       formControlName: element.name!,
       decoration: InputDecoration(hintText: hintText),
+      style: Theme.of(context).textTheme.bodyText2,
     );
   }
   if (e.inputType == 'time') {}
@@ -85,6 +89,7 @@ final SurveyElementBuilder textBuilder =
       formControlName: element.name!,
       valueAccessor: NumStringValueAccessor(),
       decoration: InputDecoration(hintText: hintText),
+      style: Theme.of(context).textTheme.bodyText2,
     );
   }
   return widget.wrapQuestionTitle(element, hasTitle: hasTitle);
