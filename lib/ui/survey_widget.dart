@@ -54,7 +54,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     super.initState();
     if (widget.controller != null) {
       widget.controller?.addListener(() {
-        submit();
+        _submit();
       });
     }
     rebuildForm();
@@ -205,7 +205,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
         ));
   }
 
-  void submit() {
+  void _submit() {
     formGroup.markAllAsTouched();
     if (formGroup.valid) {
       widget.onSubmit?.call(formGroup.value);
@@ -242,7 +242,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
         if (!finished) {
           toPage(_currentPage + 1);
         } else {
-          submit();
+          _submit();
         }
       },
     );

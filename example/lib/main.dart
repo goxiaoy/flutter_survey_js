@@ -2,10 +2,14 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:example/components/with_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:json_editor/json_editor.dart';
+
+import 'components/simple.dart';
 
 void main() {
   runApp(
@@ -21,8 +25,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: DevicePreview.locale(context), // Add the locale here
-      builder: DevicePreview.appBuilder, // Add the builder here
+      locale: DevicePreview.locale(context),
+      // Add the locale here
+      builder: DevicePreview.appBuilder,
+      // Add the builder here
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -68,68 +74,75 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  s.Survey? survey;
+  String survey = "";
 
   @override
   void initState() {
     super.initState();
     rootBundle.loadString('assets/example1.json').then((value) {
-      final j = json.decode(value);
       setState(() {
-        survey = s.Survey.fromJson(j);
+        survey = value;
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text('Survey complete json test'),
-        ),
-        body: survey == null
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : s.SurveyWidget(
-                survey: survey!,
-                onChange: (v) {
-                  print(v);
-                },
-                onSubmit: (v) {
-                  print(v);
-                  showModalBottomSheet<void>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 400,
-                        child: Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                      child: SingleChildScrollView(
-                                          child: Text(v.toString())))),
-                              ElevatedButton(
-                                child: const Text('Close'),
-                                onPressed: () => Navigator.pop(context),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
+    return SafeArea(
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text('Survey complete json test'),
+            ),
+            body: Column(children: [
+              Wrap(
+                direction: Axis.horizontal,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Simple(
+                                  survey: toSurvey(survey),
+                                )),
+                      )
                     },
-                  );
+                    child: Text(
+                      'Simple',
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => WithController(
+                                  survey: toSurvey(survey),
+                                )),
+                      )
+                    },
+                    child: Text(
+                      'WithController',
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                  child: JsonEditor.string(
+                jsonString: survey,
+                onValueChanged: (value) {
+                  if (value.toString() != survey) {
+                    setState(() {
+                      survey = value.toString();
+                    });
+                  }
                 },
-              ));
+              ))
+            ])));
   }
+}
+
+toSurvey(String value) {
+  final j = json.decode(value);
+  return s.Survey.fromJson(j);
 }
