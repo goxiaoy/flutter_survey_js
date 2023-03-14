@@ -1,0 +1,16 @@
+{
+  "name": "schema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gen": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "survey-core": "latest"
+  },
+  "type": "module"
+}
