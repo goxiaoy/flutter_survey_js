@@ -15,9 +15,7 @@ class PanelTitle extends StatelessWidget {
       child: Container(
         child: ListTile(
           title: Text(panel.title ?? panel.name ?? ''),
-          subtitle: panel.description != null
-              ? Expanded(child: Text(panel.description!))
-              : null,
+          subtitle: panel.description != null ? Text(panel.description!) : null,
         ),
       ),
     );
