@@ -1,44 +1,100 @@
 part of 'survey.dart';
 
-final surveyElementMap =
-    <String, ElementBase Function(Map<String, dynamic> json)>{
-  // MatrixDropdownBase.$type: (d) => MatrixDropdownBase.fromJson(d),
-  MatrixDropdown.$type: (d) => MatrixDropdown.fromJson(d),
-  MatrixDynamic.$type: (d) => MatrixDynamic.fromJson(d),
-  Matrix.$type: (d) => Matrix.fromJson(d),
-  Expression.$type: (d) => Expression.fromJson(d),
-  CheckBox.$type: (d) => CheckBox.fromJson(d),
-  Ranking.$type: (d) => Ranking.fromJson(d),
-  RadioGroup.$type: (d) => RadioGroup.fromJson(d),
-  ImagePicker.$type: (d) => ImagePicker.fromJson(d),
-  ButtonGroup.$type: (d) => ButtonGroup.fromJson(d),
-  Dropdown.$type: (d) => Dropdown.fromJson(d),
-  Text.$type: (d) => Text.fromJson(d),
-  MultipleText.$type: (d) => MultipleText.fromJson(d),
-  NonValue.$type: (d) => NonValue.fromJson(d),
-  Html.$type: (d) => Html.fromJson(d),
-  Image.$type: (d) => Image.fromJson(d),
-  Empty.$type: (d) => Empty.fromJson(d),
-  Comment.$type: (d) => Comment.fromJson(d),
-  File.$type: (d) => File.fromJson(d),
-  Rating.$type: (d) => Rating.fromJson(d),
-  Boolean.$type: (d) => Boolean.fromJson(d),
-  SignaturePad.$type: (d) => SignaturePad.fromJson(d),
-  PanelDynamic.$type: (d) => PanelDynamic.fromJson(d),
-  Panel.$type: (d) => Panel.fromJson(d),
-};
-
 abstract class ElementBase {
   String? get type;
+
   String? get name;
+
   ElementBase();
+
   factory ElementBase.fromJson(Map<String, dynamic> json) {
     final type = json['type'] as String?;
-    final f = surveyElementMap[type];
-    if (f != null) {
-      return f(json);
+    if (type != null) {
+      return _getElementBase(type, json);
     }
     throw UnsupportedError('ElementBase');
   }
+
   Map<String, dynamic> toJson();
+
+  static ElementBase _getElementBase(String? type, Map<String, dynamic> d) {
+    switch (type) {
+      case MatrixDropdown.$type:
+        return MatrixDropdown.fromJson(d);
+      case MatrixDynamic.$type:
+        return MatrixDynamic.fromJson(d);
+      case Matrix.$type:
+        return Matrix.fromJson(d);
+      case Expression.$type:
+        return Expression.fromJson(d);
+      case CheckBox.$type:
+        return CheckBox.fromJson(d);
+      case Ranking.$type:
+        return Ranking.fromJson(d);
+      case RadioGroup.$type:
+        return RadioGroup.fromJson(d);
+      case ImagePicker.$type:
+        return ImagePicker.fromJson(d);
+      case ButtonGroup.$type:
+        return ButtonGroup.fromJson(d);
+      case Dropdown.$type:
+        return Dropdown.fromJson(d);
+      case Text.$type:
+        return Text.fromJson(d);
+      case MultipleText.$type:
+        return MultipleText.fromJson(d);
+      case NonValue.$type:
+        return NonValue.fromJson(d);
+      case Html.$type:
+        return Html.fromJson(d);
+      case Image.$type:
+        return Image.fromJson(d);
+      case Empty.$type:
+        return Empty.fromJson(d);
+      case Comment.$type:
+        return Comment.fromJson(d);
+      case File.$type:
+        return File.fromJson(d);
+      case Rating.$type:
+        return Rating.fromJson(d);
+      case Boolean.$type:
+        return Boolean.fromJson(d);
+      case SignaturePad.$type:
+        return SignaturePad.fromJson(d);
+      case PanelDynamic.$type:
+        return PanelDynamic.fromJson(d);
+      case Panel.$type:
+        return Panel.fromJson(d);
+      default:
+        return UnsupportedElement.fromJson(d);
+    }
+  }
+}
+
+class UnsupportedElement extends ElementBase {
+  UnsupportedElement({
+    required this.type,
+    required this.name,
+    required this.title,
+  });
+
+  final String? type;
+  final String? name;
+  final String? title;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'type': type,
+      'title': title,
+    };
+  }
+
+  factory UnsupportedElement.fromJson(Map<String, dynamic> json) =>
+      UnsupportedElement(
+        type: json['type'],
+        name: json['name'],
+        title: json['title'],
+      );
 }
