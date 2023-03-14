@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js/ui/survey_styles_configuration.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -20,6 +21,7 @@ class SurveyWidget extends StatefulWidget {
   final bool showQuestionsInOnePage;
   final SurveyController? controller;
   final bool hideSubmitButton;
+  final SurveyStylesConfiguration surveyStylesConfiguration;
 
   const SurveyWidget({
     Key? key,
@@ -30,6 +32,7 @@ class SurveyWidget extends StatefulWidget {
     this.showQuestionsInOnePage = false,
     this.controller,
     this.hideSubmitButton = false,
+    this.surveyStylesConfiguration = const SurveyStylesConfiguration(),
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
@@ -70,7 +73,8 @@ class SurveyWidgetState extends State<SurveyWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (widget.survey.title != null)
+        if (widget.survey.title != null &&
+            widget.surveyStylesConfiguration.showSurveyTitle)
           Container(
             child: ListTile(
               title: Text(widget.survey.title!),
@@ -160,6 +164,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
     final elementsState = ElementsState(status);
     return SurveyProvider(
+        surveyStylesConfiguration: widget.surveyStylesConfiguration,
         survey: widget.survey,
         formGroup: formGroup,
         elementsState: elementsState,
@@ -277,11 +282,13 @@ class SurveyProvider extends InheritedWidget {
   final s.Survey survey;
   final FormGroup formGroup;
   final ElementsState elementsState;
+  final SurveyStylesConfiguration surveyStylesConfiguration;
   SurveyProvider({
     required this.elementsState,
     required this.child,
     required this.survey,
     required this.formGroup,
+    required this.surveyStylesConfiguration,
   }) : super(child: child);
 
   static SurveyProvider of(BuildContext context) {
