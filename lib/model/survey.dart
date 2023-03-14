@@ -51,6 +51,7 @@ class Survey {
   String? questionsOrder;
   bool? showPageNumbers;
   // "on","onPage",    "off"
+  @JsonKey(fromJson: _boolToString)
   String? showQuestionNumbers;
   // "top",     "bottom",       "left"
   String? questionTitleLocation;
@@ -99,6 +100,13 @@ class Survey {
   Survey();
   factory Survey.fromJson(Map<String, dynamic> json) => _$SurveyFromJson(json);
   Map<String, dynamic> toJson() => _$SurveyToJson(this);
+
+  static String? _boolToString(dynamic inputValue) {
+    if (inputValue is bool) {
+      return inputValue ? 'on' : 'off';
+    }
+    return inputValue;
+  }
 }
 
 @JsonSerializable(includeIfNull: false)
