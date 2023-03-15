@@ -20,6 +20,11 @@ class SurveyWidget extends StatefulWidget {
   final bool showQuestionsInOnePage;
   final SurveyController? controller;
   final bool hideSubmitButton;
+  final Widget Function(BuildContext context, s.Survey survey)?
+      surveyTitleBuilder;
+  final Widget Function(BuildContext context, int pageCount, int currentPage)?
+      stepperBuilder;
+  final Widget Function(BuildContext context, s.Page page)? pageBuilder;
 
   const SurveyWidget({
     Key? key,
@@ -30,6 +35,9 @@ class SurveyWidget extends StatefulWidget {
     this.showQuestionsInOnePage = false,
     this.controller,
     this.hideSubmitButton = false,
+    this.surveyTitleBuilder,
+    this.stepperBuilder,
+    this.pageBuilder,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
@@ -67,11 +75,13 @@ class SurveyWidgetState extends State<SurveyWidget> {
     return Column(
       children: [
         if (widget.survey.title != null)
-          Container(
-            child: ListTile(
-              title: Text(widget.survey.title!),
-            ),
-          ),
+          widget.surveyTitleBuilder != null
+              ? widget.surveyTitleBuilder!(context, widget.survey)
+              : Container(
+                  child: ListTile(
+                    title: Text(widget.survey.title!),
+                  ),
+                ),
         Expanded(
             child: ReactiveForm(
           formGroup: this.formGroup,
@@ -164,21 +174,23 @@ class SurveyWidgetState extends State<SurveyWidget> {
           child: Column(
             children: [
               if (pageCount > 1)
-                DotStepper(
-                  // direction: Axis.vertical,
-                  dotCount: pageCount,
-                  dotRadius: 12,
-                  activeStep: _currentPage,
-                  shape: Shape.circle,
-                  spacing: 10,
-                  indicator: Indicator.shift,
-                  onDotTapped: (tappedDotIndex) async {
-                    toPage(tappedDotIndex);
-                  },
-                  indicatorDecoration: IndicatorDecoration(
-                      color: Theme.of(context).primaryColor,
-                      strokeColor: Theme.of(context).primaryColor),
-                ),
+                widget.stepperBuilder != null
+                    ? widget.stepperBuilder!(context, pageCount, _currentPage)
+                    : DotStepper(
+                        // direction: Axis.vertical,
+                        dotCount: pageCount,
+                        dotRadius: 12,
+                        activeStep: _currentPage,
+                        shape: Shape.circle,
+                        spacing: 10,
+                        indicator: Indicator.shift,
+                        onDotTapped: (tappedDotIndex) async {
+                          toPage(tappedDotIndex);
+                        },
+                        indicatorDecoration: IndicatorDecoration(
+                            color: Theme.of(context).primaryColor,
+                            strokeColor: Theme.of(context).primaryColor),
+                      ),
 
               /// Jump buttons.
               Expanded(
@@ -221,10 +233,12 @@ class SurveyWidgetState extends State<SurveyWidget> {
       itemBuilder: (BuildContext context, int index) {
         final currentPage = pages[index];
         //build elements
-        return SurveyPageWidget(
-          page: currentPage,
-          key: ObjectKey(currentPage),
-        );
+        return widget.pageBuilder != null
+            ? widget.pageBuilder!(context, currentPage)
+            : SurveyPageWidget(
+                page: currentPage,
+                key: ObjectKey(currentPage),
+              );
       },
     );
   }
