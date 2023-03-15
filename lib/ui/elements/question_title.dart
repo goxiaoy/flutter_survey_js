@@ -38,12 +38,22 @@ class QuestionTitle extends StatelessWidget {
       listTitle.add(Builder(builder: (context) {
         final survey = SurveyProvider.of(context);
         final status = survey.elementsState.get(q);
-        if (status != null && status.indexAll != null) {
-          return Text(
-            '${status.indexAll! + 1}.',
-            style: titleTextStyle(),
-          );
+        if (status != null) {
+          if (survey.survey.showQuestionNumbers == "on" &&
+              status.indexAll != null) {
+            return Text(
+              '${status.indexAll! + 1}.',
+              style: titleTextStyle(),
+            );
+          } else if (survey.survey.showQuestionNumbers == "onPage" &&
+              status.indexInPage != null) {
+            return Text(
+              '${status.indexInPage! + 1}.',
+              style: titleTextStyle(),
+            );
+          }
         }
+
         return Container();
       }));
 
