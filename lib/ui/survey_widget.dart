@@ -52,11 +52,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.controller != null) {
-      widget.controller?.addListener(() {
-        _submit();
-      });
-    }
+    widget.controller?._bind(this);
     rebuildForm();
   }
 
@@ -214,6 +210,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
 
   void dispose() {
     _listener?.cancel();
+    widget.controller?._detach();
     super.dispose();
   }
 
@@ -239,11 +236,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
       child:
           Text(finished ? S.of(context).submitSurvey : S.of(context).nextPage),
       onPressed: () {
-        if (!finished) {
-          toPage(_currentPage + 1);
-        } else {
-          _submit();
-        }
+        nextPageOrSubmit();
       },
     );
   }
@@ -269,6 +262,17 @@ class SurveyWidgetState extends State<SurveyWidget> {
       _reCalculatePages();
     }
     super.didUpdateWidget(oldWidget);
+  }
+
+  // nextPageOrSubmit return true if submit or return false for next page
+  bool nextPageOrSubmit() {
+    final bool finished = _currentPage == pageCount - 1;
+    if (!finished) {
+      toPage(_currentPage + 1);
+    } else {
+      _submit();
+    }
+    return finished;
   }
 }
 
@@ -302,8 +306,48 @@ extension SurveyFormExtension on s.Survey {
   }
 }
 
-class SurveyController extends ChangeNotifier {
+// SurveyController use to control SurveyWidget behavior
+class SurveyController {
+  SurveyWidgetState? _widgetState;
+
+  int get currentPage {
+    assert(_widgetState != null, "SurveyWidget not initialized");
+    return _widgetState!._currentPage;
+  }
+
+  int get pageCount {
+    assert(_widgetState != null, "SurveyWidget not initialized");
+    return _widgetState!.pageCount;
+  }
+
+  void _bind(SurveyWidgetState state) {
+    assert(_widgetState == null,
+        "Don't use one SurveyController to multiple SurveyWidget");
+    _widgetState = state;
+  }
+
+  void _detach() {
+    _widgetState = null;
+  }
+
   void submit() {
-    notifyListeners();
+    assert(_widgetState != null, "SurveyWidget not initialized");
+    _widgetState?._submit();
+  }
+
+  // nextPageOrSubmit return true if submit or return false for next page
+  bool nextPageOrSubmit() {
+    assert(_widgetState != null, "SurveyWidget not initialized");
+    return _widgetState!.nextPageOrSubmit();
+  }
+
+  void prePage() {
+    assert(_widgetState != null, "SurveyWidget not initialized");
+    toPage(currentPage - 1);
+  }
+
+  void toPage(int newPage) {
+    assert(_widgetState != null, "SurveyWidget not initialized");
+    _widgetState!.toPage(newPage);
   }
 }
