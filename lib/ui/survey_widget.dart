@@ -25,6 +25,7 @@ class SurveyWidget extends StatefulWidget {
   final Widget Function(BuildContext context, int pageCount, int currentPage)?
       stepperBuilder;
   final Widget Function(BuildContext context, s.Page page)? pageBuilder;
+  final EdgeInsets? padding;
 
   const SurveyWidget({
     Key? key,
@@ -38,6 +39,7 @@ class SurveyWidget extends StatefulWidget {
     this.surveyTitleBuilder,
     this.stepperBuilder,
     this.pageBuilder,
+    this.padding,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
@@ -170,7 +172,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
         formGroup: formGroup,
         elementsState: elementsState,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: widget.padding ?? const EdgeInsets.all(8.0),
           child: Column(
             children: [
               if (pageCount > 1)
