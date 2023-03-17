@@ -4,17 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/model/survey.dart' as s;
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'elements/survey_element_factory.dart';
 import 'panel_title.dart';
 
 class SurveyPageWidget extends StatefulWidget {
   final s.Page page;
   final int initIndex;
+  final IndexedWidgetBuilder itemBuilder;
+  final IndexedWidgetBuilder? separatorBuilder;
 
   const SurveyPageWidget({
     Key? key,
     required this.page,
     this.initIndex = 0,
+    required this.itemBuilder,
+    required this.separatorBuilder,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SurveyPageWidgetState();
@@ -123,25 +126,8 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
                     itemCount: maxIndex,
                     itemScrollController: itemScrollController,
                     itemPositionsListener: itemPositionsListener,
-                    itemBuilder: (context, index) {
-                      if (index < widget.page.elements!.length && index >= 0) {
-                        return SurveyElementFactory()
-                            .resolve(context, widget.page.elements![index]);
-                      } else {
-                        return Container(
-                          width: double.infinity,
-                          // child: Image.asset(
-                          //   'assets/images/decision.jpg',
-                          //   fit: BoxFit.fill,
-                          // ),
-                        );
-                      }
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SurveyElementFactory()
-                          .separatorBuilder
-                          .call(context);
-                    },
+                    itemBuilder: widget.itemBuilder,
+                    separatorBuilder: widget.separatorBuilder,
                   ),
                 ),
                 SizedBox(

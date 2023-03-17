@@ -3,6 +3,7 @@
   "pages": [
     {
       "name": "page1",
+      "title": "asdfasdfasdf",
       "elements": [
         {
           "type": "text",

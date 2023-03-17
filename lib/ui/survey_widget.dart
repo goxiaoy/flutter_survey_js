@@ -4,13 +4,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js/ui/panel_title.dart';
+import 'package:flutter_survey_js/ui/survey_page_widget.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import 'elements/survey_element_factory.dart';
 import 'elements_state.dart';
 import 'form_control.dart';
-import 'survey_page_widget.dart';
 
 class SurveyWidget extends StatefulWidget {
   final s.Survey survey;
@@ -25,6 +27,7 @@ class SurveyWidget extends StatefulWidget {
   final Widget Function(BuildContext context, int pageCount, int currentPage)?
       stepperBuilder;
   final Widget Function(BuildContext context, s.Page page)? pageBuilder;
+  final bool isScrollable;
 
   const SurveyWidget({
     Key? key,
@@ -38,6 +41,7 @@ class SurveyWidget extends StatefulWidget {
     this.surveyTitleBuilder,
     this.stepperBuilder,
     this.pageBuilder,
+    this.isScrollable = true,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
@@ -148,6 +152,16 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
   }
 
+  late final Row nextPrevButtonsRow = Row(
+    mainAxisSize: MainAxisSize.max,
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      if (_currentPage != 0) previousButton(),
+      if (!(_currentPage == pageCount - 1 && widget.hideSubmitButton))
+        nextButton()
+    ],
+  );
+
   Widget rebuildPages() {
     //TODO recalculate page count and visible
     pageCount = widget.survey.questions == null
@@ -166,51 +180,42 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
     final elementsState = ElementsState(status);
     return SurveyProvider(
-        survey: widget.survey,
-        formGroup: formGroup,
-        elementsState: elementsState,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              if (pageCount > 1)
-                widget.stepperBuilder != null
-                    ? widget.stepperBuilder!(context, pageCount, _currentPage)
-                    : DotStepper(
-                        // direction: Axis.vertical,
-                        dotCount: pageCount,
-                        dotRadius: 12,
-                        activeStep: _currentPage,
-                        shape: Shape.circle,
-                        spacing: 10,
-                        indicator: Indicator.shift,
-                        onDotTapped: (tappedDotIndex) async {
-                          toPage(tappedDotIndex);
-                        },
-                        indicatorDecoration: IndicatorDecoration(
-                            color: Theme.of(context).primaryColor,
-                            strokeColor: Theme.of(context).primaryColor),
-                      ),
+      survey: widget.survey,
+      formGroup: formGroup,
+      elementsState: elementsState,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            if (pageCount > 1)
+              widget.stepperBuilder != null
+                  ? widget.stepperBuilder!(context, pageCount, _currentPage)
+                  : DotStepper(
+                      // direction: Axis.vertical,
+                      dotCount: pageCount,
+                      dotRadius: 12,
+                      activeStep: _currentPage,
+                      shape: Shape.circle,
+                      spacing: 10,
+                      indicator: Indicator.shift,
+                      onDotTapped: (tappedDotIndex) async {
+                        toPage(tappedDotIndex);
+                      },
+                      indicatorDecoration: IndicatorDecoration(
+                          color: Theme.of(context).primaryColor,
+                          strokeColor: Theme.of(context).primaryColor),
+                    ),
 
-              /// Jump buttons.
-              Expanded(
-                child: buildPages(),
-              ),
+            /// Jump buttons.
+            Expanded(
+              child: buildPages(),
+            ),
 
-              // Next and Previous buttons.
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  if (_currentPage != 0) previousButton(),
-                  if (!(_currentPage == pageCount - 1 &&
-                      widget.hideSubmitButton))
-                    nextButton()
-                ],
-              )
-            ],
-          ),
-        ));
+            if (widget.isScrollable) nextPrevButtonsRow
+          ],
+        ),
+      ),
+    );
   }
 
   void _submit() {
@@ -228,6 +233,26 @@ class SurveyWidgetState extends State<SurveyWidget> {
   }
 
   Widget buildPages() {
+    IndexedWidgetBuilder itemBuilder(s.Page page) {
+      return (context, index) {
+        if (index < page.elements!.length && index >= 0) {
+          return SurveyElementFactory().resolve(context, page.elements![index]);
+        } else {
+          return Container(
+            width: double.infinity,
+            // child: Image.asset(
+            //   'assets/images/decision.jpg',
+            //   fit: BoxFit.fill,
+            // ),
+          );
+        }
+      };
+    }
+
+    final IndexedWidgetBuilder separatorBuilder =
+        (BuildContext context, int index) {
+      return SurveyElementFactory().separatorBuilder.call(context);
+    };
     return PageView.builder(
       controller: pageController,
       physics: NeverScrollableScrollPhysics(),
@@ -236,10 +261,36 @@ class SurveyWidgetState extends State<SurveyWidget> {
         //build elements
         return widget.pageBuilder != null
             ? widget.pageBuilder!(context, currentPage)
-            : SurveyPageWidget(
-                page: currentPage,
-                key: ObjectKey(currentPage),
-              );
+            : widget.isScrollable
+                ? SurveyPageWidget(
+                    page: currentPage,
+                    key: ObjectKey(currentPage),
+                    itemBuilder: itemBuilder(currentPage),
+                    separatorBuilder: separatorBuilder,
+                  )
+                : Column(
+                    children: [
+                      if (currentPage.title != null ||
+                          currentPage.description != null)
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: PanelTitle(
+                            panel: currentPage,
+                            onTimeout: () {
+                              setState(() {});
+                            },
+                          ),
+                        ),
+                      ListView.separated(
+                        itemBuilder: itemBuilder(currentPage),
+                        separatorBuilder: separatorBuilder,
+                        itemCount: currentPage.elements?.length ?? 0,
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                      ),
+                      nextPrevButtonsRow
+                    ],
+                  );
       },
     );
   }
