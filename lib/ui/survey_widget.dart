@@ -152,15 +152,15 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
   }
 
-  late final Row nextPrevButtonsRow = Row(
-    mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      if (_currentPage != 0) previousButton(),
-      if (!(_currentPage == pageCount - 1 && widget.hideSubmitButton))
-        nextButton()
-    ],
-  );
+  Row nextPrevButtonsRow() => Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          if (_currentPage != 0) previousButton(),
+          if (!(_currentPage == pageCount - 1 && widget.hideSubmitButton))
+            nextButton()
+        ],
+      );
 
   Widget rebuildPages() {
     //TODO recalculate page count and visible
@@ -211,7 +211,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
               child: buildPages(),
             ),
 
-            if (widget.isScrollable) nextPrevButtonsRow
+            if (widget.isScrollable) nextPrevButtonsRow()
           ],
         ),
       ),
@@ -288,7 +288,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                       ),
-                      nextPrevButtonsRow
+                      nextPrevButtonsRow()
                     ],
                   );
       },
