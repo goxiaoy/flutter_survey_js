@@ -4,7 +4,6 @@ import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/panel_title.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
-import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -23,7 +22,8 @@ import 'text.dart';
 
 typedef SurveyElementBuilder = Widget
     Function(BuildContext context, s.ElementBase element, {bool hasTitle});
-typedef SurveyFormControlBuilder = Object? Function(s.ElementBase element);
+typedef SurveyFormControlBuilder = Object? Function(s.ElementBase element,
+    {List<ValidatorFunction> validators});
 
 class SurveyElementFactory {
   final logger = Logger('SurveyElementFactory');
@@ -37,17 +37,20 @@ class SurveyElementFactory {
     register<s.Matrix>(matrixBuilder);
     register<s.MatrixDropdown>(matrixDropdownBuilder);
     register<s.MatrixDynamic>(matrixDynamicBuilder);
-    register<s.CheckBox>(checkBoxBuilder, control: (element) => fb.array([]));
+    register<s.CheckBox>(checkBoxBuilder,
+        control: (element, {validators = const []}) =>
+            fb.array([], validators));
     register<s.Ranking>(rankingBuilder,
-        control: (element) => FormControl<List<dynamic>>());
+        control: (element, {validators = const []}) =>
+            FormControl<List<dynamic>>(validators: validators));
     register<s.RadioGroup>(radioGroupBuilder);
     register<s.Boolean>(
         //TODO ReactiveSwitch is not safe
         (context, element, {bool hasTitle = true}) => ReactiveSwitch(
               formControlName: element.name!,
             ).wrapQuestionTitle(element, hasTitle: hasTitle),
-        control: (element) => FormControl<bool>(
-            validators: questionToValidators(element as s.Boolean)));
+        control: (element, {validators = const []}) =>
+            FormControl<bool>(validators: validators));
 
     register<s.Rating>(ratingBuilder);
 
@@ -82,7 +85,9 @@ class SurveyElementFactory {
               : constraints.maxHeight,
         );
       }).wrapQuestionTitle(element, hasTitle: hasTitle);
-    }, control: (_) => FormControl<String>());
+    },
+        control: (_, {validators = const []}) =>
+            FormControl<String>(validators: validators));
     register<s.Image>((context, element, {bool hasTitle = true}) {
       return urlToImage((element as s.Image).imageLink)
           .wrapQuestionTitle(element, hasTitle: hasTitle);
@@ -121,9 +126,6 @@ class SurveyElementFactory {
             ],
           ));
     });
-    // register<s.CheckBox>((element) => ReactiveCheckbox(
-    //       formControlName: element.name!,
-    //     ));
 
     unsupported = (context, element, {bool hasTitle = true}) => Container(
           child: Text('Unsupported ${element.name ?? ""}'),

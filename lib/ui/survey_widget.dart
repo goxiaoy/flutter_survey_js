@@ -214,9 +214,10 @@ class SurveyWidgetState extends State<SurveyWidget> {
   }
 
   void _submit() {
-    formGroup.markAllAsTouched();
     if (formGroup.valid) {
       widget.onSubmit?.call(formGroup.value);
+    } else {
+      formGroup.markAllAsTouched();
     }
   }
 

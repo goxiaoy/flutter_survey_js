@@ -8,7 +8,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 typedef ItemBuilder<T> = Widget Function(T data);
 
 class ReactiveReorderableList<ModelDataType, ViewDataType extends Object>
-    extends ReactiveFormField<List<ModelDataType>, List<ViewDataType>> {
+    extends ReactiveFocusableFormField<List<ModelDataType>,
+        List<ViewDataType>> {
   final ItemBuilder<ViewDataType> itemBuilder;
 
   ReactiveReorderableList({

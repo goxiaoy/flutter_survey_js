@@ -18,7 +18,8 @@ typedef Widget SignatureBuilder(
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveSignatureString extends ReactiveFormField<String, Uint8List> {
+class ReactiveSignatureString
+    extends ReactiveFocusableFormField<String, Uint8List> {
   /// Creates a [ReactiveSignature] that contains a [TextField].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.

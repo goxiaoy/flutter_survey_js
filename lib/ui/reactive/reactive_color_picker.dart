@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class ReactiveColorPicker extends ReactiveFormField<String, Color> {
+class ReactiveColorPicker extends ReactiveFocusableFormField<String, Color> {
   ReactiveColorPicker({
     Key? key,
     String? formControlName,

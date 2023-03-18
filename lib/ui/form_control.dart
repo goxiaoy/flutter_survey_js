@@ -4,6 +4,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 import 'validators.dart';
 
+// elementsToFormGroup mapping question json elements to FormGroup
 FormGroup elementsToFormGroup(List<s.ElementBase> elements,
     {Map<s.ElementBase, Object>? controlsMap,
     List<ValidatorFunction> validators = const [],
@@ -22,6 +23,7 @@ FormGroup elementsToFormGroup(List<s.ElementBase> elements,
 }
 
 extension ElementExtension on s.ElementBase {
+  // toFormObject convert question json element to FromControl
   Object toFormObject({Map<s.ElementBase, Object>? controlsMap}) {
     final formFunc = () {
       if (this is s.Panel) {
@@ -39,14 +41,14 @@ extension ElementExtension on s.ElementBase {
       if (this is s.Matrix) {
         final m = this as s.Matrix;
         return fb.group(Map.fromEntries((m.rows ?? []).map((e) =>
-            MapEntry(e.value.toString(), FormControl<dynamic>(value: null)))));
+            MapEntry(e.value.toString(), FormControl<Object>(value: null)))));
       }
       if (this is s.MatrixDropdown) {
         final m = this as s.MatrixDropdown;
         return fb.group(Map.fromEntries((m.rows ?? []).map((e) => MapEntry(
             e.value.toString(),
             fb.group(Map.fromEntries((m.columns ?? []).map((e) =>
-                MapEntry(e.name!, FormControl<dynamic>(value: null)))))))));
+                MapEntry(e.name!, FormControl<Object>(value: null)))))))));
       }
       final validators = <ValidatorFunction>[];
       if (this is s.Question) {
@@ -54,7 +56,8 @@ extension ElementExtension on s.ElementBase {
       }
       final c = SurveyElementFactory().resolveFormControl(this);
 
-      final res = c?.call(this) ?? FormControl(validators: validators);
+      final res = c?.call(this, validators: validators) ??
+          FormControl<Object>(validators: validators);
       return res;
     };
 

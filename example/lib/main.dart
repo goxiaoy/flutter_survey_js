@@ -76,14 +76,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
 
+  late Future<String> assetLoader;
+
   @override
   void initState() {
+    assetLoader = rootBundle
+        .loadString('assets/example1.json')
+        .then((value) => survey = value);
     super.initState();
-    rootBundle.loadString('assets/example1.json').then((value) {
-      setState(() {
-        survey = value;
-      });
-    });
   }
 
   @override
@@ -93,52 +93,60 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
               title: Text('Survey complete json test'),
             ),
-            body: Column(children: [
-              Wrap(
-                direction: Axis.horizontal,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Simple(
-                                  survey: toSurvey(survey),
-                                )),
-                      )
-                    },
-                    child: Text(
-                      'Simple',
-                    ),
+            body: FutureBuilder(
+              future: this.assetLoader,
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                }
+                return Column(children: [
+                  Wrap(
+                    direction: Axis.horizontal,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Simple(
+                                      survey: toSurvey(survey),
+                                    )),
+                          )
+                        },
+                        child: Text(
+                          'Simple',
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WithController(
+                                      survey: toSurvey(survey),
+                                    )),
+                          )
+                        },
+                        child: Text(
+                          'WithController',
+                        ),
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => WithController(
-                                  survey: toSurvey(survey),
-                                )),
-                      )
+                  Expanded(
+                      child: JsonEditor.string(
+                    jsonString: survey,
+                    onValueChanged: (value) {
+                      if (value.toString() != survey && mounted) {
+                        setState(() {
+                          survey = value.toString();
+                        });
+                      }
                     },
-                    child: Text(
-                      'WithController',
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                  child: JsonEditor.string(
-                jsonString: survey,
-                onValueChanged: (value) {
-                  if (value.toString() != survey) {
-                    setState(() {
-                      survey = value.toString();
-                    });
-                  }
-                },
-              ))
-            ])));
+                  ))
+                ]);
+              },
+            )));
   }
 }
 

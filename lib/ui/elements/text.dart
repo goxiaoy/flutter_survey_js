@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/model/survey.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_color_picker.dart';
-import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -71,25 +70,23 @@ final SurveyElementBuilder textBuilder =
   return widget.wrapQuestionTitle(element, hasTitle: hasTitle);
 };
 
-final SurveyFormControlBuilder textControlBuilder = (s.ElementBase element) {
+final SurveyFormControlBuilder textControlBuilder =
+    (s.ElementBase element, {validators = const []}) {
   final e = element as s.Text;
   if (e.inputType == 'date' ||
       e.inputType == 'datetime' ||
       e.inputType == 'datetime-local') {
-    return FormControl<DateTime>(validators: questionToValidators(e));
+    return FormControl<DateTime>(validators: validators);
   }
   if (e.inputType == 'color') {
-    return FormControl<String>(validators: questionToValidators(e));
+    return FormControl<String>(validators: validators);
   }
   if (e.inputType == 'email') {
-    return FormControl<String>(
-        validators: [...questionToValidators(e), Validators.email]);
+    return FormControl<String>(validators: [...validators, Validators.email]);
   }
   if (e.inputType == 'number') {
-    return FormControl<num>(validators: [
-      ...questionToValidators(e),
-      NullableNumberValidator().validate
-    ]);
+    return FormControl<num>(
+        validators: [...validators, NullableNumberValidator().validate]);
   }
-  return FormControl<String>(validators: questionToValidators(e));
+  return FormControl<String>(validators: validators);
 };

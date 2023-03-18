@@ -28,6 +28,7 @@ dependencies:
   json_annotation: ^4.6.0
   platform: ^3.1.0
   file: ^6.1.4
+  group_button: ^5.2.2
 
 
 dev_dependencies:

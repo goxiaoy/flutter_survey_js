@@ -1,36 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
-import 'package:reactive_forms/reactive_forms.dart';
+import 'package:flutter_survey_js/ui/reactive/reactive_group_button.dart';
+import 'package:group_button/group_button.dart';
 
 import 'question_title.dart';
 import 'survey_element_factory.dart';
 
 final SurveyElementBuilder radioGroupBuilder =
     (context, element, {bool hasTitle = true}) {
-  return RadioGroupElement(
+  final e = element as s.RadioGroup;
+  return ReactiveGroupButton(
+    options: GroupButtonOptions(spacing: 0, runSpacing: 0),
+    isRadio: true,
     formControlName: element.name!,
-    element: element as s.RadioGroup,
+    buttons: (e.choices ?? []),
   ).wrapQuestionTitle(element, hasTitle: hasTitle);
 };
-
-class RadioGroupElement extends StatelessWidget {
-  final String formControlName;
-  final s.RadioGroup element;
-  const RadioGroupElement(
-      {Key? key, required this.formControlName, required this.element})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    final list = <Widget>[];
-    (element.choices ?? []).forEach((choice) {
-      list.add(ReactiveRadioListTile(
-        formControlName: element.name!,
-        value: choice.value,
-        title: Text(choice.text ?? choice.value?.toString() ?? ''),
-      ));
-    });
-    return Column(
-      children: list,
-    );
-  }
-}

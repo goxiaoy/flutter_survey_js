@@ -62,7 +62,9 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
 
   void toIndex(int index) {
     final p = min(maxIndex - 1, max(0, index));
-    itemScrollController.jumpTo(index: p);
+    if (itemScrollController.isAttached) {
+      itemScrollController.jumpTo(index: p);
+    }
   }
 
   @override

@@ -31,7 +31,7 @@ class CheckBoxElement extends StatelessWidget {
               title: Text(element.text ?? element.value?.toString() ?? ''),
               onChanged: (v) {
                 if (v == true) {
-                  formArray.add(FormControl(value: element.value));
+                  formArray.add(FormControl<Object>(value: element.value));
                 } else {
                   final rs = formArray.controls
                       .where((c) => c.value == element.value)
