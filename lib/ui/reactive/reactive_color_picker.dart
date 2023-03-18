@@ -7,7 +7,7 @@ class ReactiveColorPicker extends ReactiveFormField<String, Color> {
     Key? key,
     String? formControlName,
     FormControl<String>? formControl,
-    ValidationMessagesFunction<String>? validationMessages,
+    Map<String, ValidationMessageFunction>? validationMessages,
     ShowErrorsFunction? showErrors,
   }) : super(
             key: key,

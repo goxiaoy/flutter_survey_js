@@ -162,70 +162,67 @@ Map<String, dynamic> _$SurveyToJson(Survey instance) {
   return val;
 }
 
-ChoicesRestful _$ChoicesRestfulFromJson(Map<String, dynamic> json) {
-  return ChoicesRestful();
-}
+ChoicesRestful _$ChoicesRestfulFromJson(Map<String, dynamic> json) =>
+    ChoicesRestful();
 
 Map<String, dynamic> _$ChoicesRestfulToJson(ChoicesRestful instance) =>
     <String, dynamic>{};
 
-CheckBox _$CheckBoxFromJson(Map<String, dynamic> json) {
-  return CheckBox()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..choicesFromQuestion = json['choicesFromQuestion'] as String?
-    ..choices = ItemValue.fromListJson(json['choices'] as List?)
-    ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
-    ..choicesOrder = json['choicesOrder'] as String?
-    ..choicesByUrl = json['choicesByUrl'] == null
-        ? null
-        : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
-    ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
-    ..choicesVisibleIf = json['choicesVisibleIf'] as String?
-    ..choicesEnableIf = json['choicesEnableIf'] as String?
-    ..hasOther = json['hasOther'] as bool?
-    ..hasNone = json['hasNone'] as bool?
-    ..otherPlaceHolder = json['otherPlaceHolder'] as String?
-    ..noneText = json['noneText'] as String?
-    ..otherText = json['otherText'] as String?
-    ..otherErrorText = json['otherErrorText'] as String?
-    ..storeOthersAsComment = json['storeOthersAsComment'] as String?
-    ..colCount = json['colCount'] as int?
-    ..type = json['type'] as String?
-    ..hasSelectAll = json['hasSelectAll'] as bool?
-    ..maxSelectedChoices = json['maxSelectedChoices'] as int?
-    ..selectAllText = json['selectAllText'] as String?;
-}
+CheckBox _$CheckBoxFromJson(Map<String, dynamic> json) => CheckBox()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..choicesFromQuestion = json['choicesFromQuestion'] as String?
+  ..choices = ItemValue.fromListJson(json['choices'] as List?)
+  ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
+  ..choicesOrder = json['choicesOrder'] as String?
+  ..choicesByUrl = json['choicesByUrl'] == null
+      ? null
+      : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
+  ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
+  ..choicesVisibleIf = json['choicesVisibleIf'] as String?
+  ..choicesEnableIf = json['choicesEnableIf'] as String?
+  ..hasOther = json['hasOther'] as bool?
+  ..hasNone = json['hasNone'] as bool?
+  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..noneText = json['noneText'] as String?
+  ..otherText = json['otherText'] as String?
+  ..otherErrorText = json['otherErrorText'] as String?
+  ..storeOthersAsComment = json['storeOthersAsComment'] as String?
+  ..colCount = json['colCount'] as int?
+  ..type = json['type'] as String?
+  ..hasSelectAll = json['hasSelectAll'] as bool?
+  ..maxSelectedChoices = json['maxSelectedChoices'] as int?
+  ..selectAllText = json['selectAllText'] as String?;
 
 Map<String, dynamic> _$CheckBoxToJson(CheckBox instance) {
   final val = <String, dynamic>{};
@@ -289,63 +286,61 @@ Map<String, dynamic> _$CheckBoxToJson(CheckBox instance) {
   return val;
 }
 
-Ranking _$RankingFromJson(Map<String, dynamic> json) {
-  return Ranking()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..choicesFromQuestion = json['choicesFromQuestion'] as String?
-    ..choices = ItemValue.fromListJson(json['choices'] as List?)
-    ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
-    ..choicesOrder = json['choicesOrder'] as String?
-    ..choicesByUrl = json['choicesByUrl'] == null
-        ? null
-        : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
-    ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
-    ..choicesVisibleIf = json['choicesVisibleIf'] as String?
-    ..choicesEnableIf = json['choicesEnableIf'] as String?
-    ..hasOther = json['hasOther'] as bool?
-    ..hasNone = json['hasNone'] as bool?
-    ..otherPlaceHolder = json['otherPlaceHolder'] as String?
-    ..hasSelectAll = json['hasSelectAll'] as bool?
-    ..maxSelectedChoices = json['maxSelectedChoices'] as int?
-    ..type = json['type'] as String?
-    ..otherText = json['otherText'] as String?
-    ..otherErrorText = json['otherErrorText'] as String?
-    ..storeOthersAsComment = json['storeOthersAsComment'] as String?
-    ..noneText = json['noneText'] as String?
-    ..selectAllText = json['selectAllText'] as String?
-    ..colCount = json['colCount'] as int?;
-}
+Ranking _$RankingFromJson(Map<String, dynamic> json) => Ranking()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..choicesFromQuestion = json['choicesFromQuestion'] as String?
+  ..choices = ItemValue.fromListJson(json['choices'] as List?)
+  ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
+  ..choicesOrder = json['choicesOrder'] as String?
+  ..choicesByUrl = json['choicesByUrl'] == null
+      ? null
+      : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
+  ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
+  ..choicesVisibleIf = json['choicesVisibleIf'] as String?
+  ..choicesEnableIf = json['choicesEnableIf'] as String?
+  ..hasOther = json['hasOther'] as bool?
+  ..hasNone = json['hasNone'] as bool?
+  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..hasSelectAll = json['hasSelectAll'] as bool?
+  ..maxSelectedChoices = json['maxSelectedChoices'] as int?
+  ..type = json['type'] as String?
+  ..otherText = json['otherText'] as String?
+  ..otherErrorText = json['otherErrorText'] as String?
+  ..storeOthersAsComment = json['storeOthersAsComment'] as String?
+  ..noneText = json['noneText'] as String?
+  ..selectAllText = json['selectAllText'] as String?
+  ..colCount = json['colCount'] as int?;
 
 Map<String, dynamic> _$RankingToJson(Ranking instance) {
   final val = <String, dynamic>{};
@@ -409,61 +404,59 @@ Map<String, dynamic> _$RankingToJson(Ranking instance) {
   return val;
 }
 
-RadioGroup _$RadioGroupFromJson(Map<String, dynamic> json) {
-  return RadioGroup()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..choicesFromQuestion = json['choicesFromQuestion'] as String?
-    ..choices = ItemValue.fromListJson(json['choices'] as List?)
-    ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
-    ..choicesOrder = json['choicesOrder'] as String?
-    ..choicesByUrl = json['choicesByUrl'] == null
-        ? null
-        : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
-    ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
-    ..choicesVisibleIf = json['choicesVisibleIf'] as String?
-    ..choicesEnableIf = json['choicesEnableIf'] as String?
-    ..hasOther = json['hasOther'] as bool?
-    ..hasNone = json['hasNone'] as bool?
-    ..otherPlaceHolder = json['otherPlaceHolder'] as String?
-    ..noneText = json['noneText'] as String?
-    ..otherText = json['otherText'] as String?
-    ..otherErrorText = json['otherErrorText'] as String?
-    ..storeOthersAsComment = json['storeOthersAsComment'] as String?
-    ..colCount = json['colCount'] as int?
-    ..type = json['type'] as String?
-    ..showClearButton = json['showClearButton'] as bool?;
-}
+RadioGroup _$RadioGroupFromJson(Map<String, dynamic> json) => RadioGroup()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..choicesFromQuestion = json['choicesFromQuestion'] as String?
+  ..choices = ItemValue.fromListJson(json['choices'] as List?)
+  ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
+  ..choicesOrder = json['choicesOrder'] as String?
+  ..choicesByUrl = json['choicesByUrl'] == null
+      ? null
+      : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
+  ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
+  ..choicesVisibleIf = json['choicesVisibleIf'] as String?
+  ..choicesEnableIf = json['choicesEnableIf'] as String?
+  ..hasOther = json['hasOther'] as bool?
+  ..hasNone = json['hasNone'] as bool?
+  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..noneText = json['noneText'] as String?
+  ..otherText = json['otherText'] as String?
+  ..otherErrorText = json['otherErrorText'] as String?
+  ..storeOthersAsComment = json['storeOthersAsComment'] as String?
+  ..colCount = json['colCount'] as int?
+  ..type = json['type'] as String?
+  ..showClearButton = json['showClearButton'] as bool?;
 
 Map<String, dynamic> _$RadioGroupToJson(RadioGroup instance) {
   final val = <String, dynamic>{};
@@ -525,67 +518,65 @@ Map<String, dynamic> _$RadioGroupToJson(RadioGroup instance) {
   return val;
 }
 
-ImagePicker _$ImagePickerFromJson(Map<String, dynamic> json) {
-  return ImagePicker()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..choicesFromQuestion = json['choicesFromQuestion'] as String?
-    ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
-    ..choicesOrder = json['choicesOrder'] as String?
-    ..choicesByUrl = json['choicesByUrl'] == null
-        ? null
-        : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
-    ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
-    ..choicesVisibleIf = json['choicesVisibleIf'] as String?
-    ..choicesEnableIf = json['choicesEnableIf'] as String?
-    ..hasOther = json['hasOther'] as bool?
-    ..hasNone = json['hasNone'] as bool?
-    ..otherPlaceHolder = json['otherPlaceHolder'] as String?
-    ..type = json['type'] as String?
-    ..otherText = json['otherText'] as String?
-    ..noneText = json['noneText'] as String?
-    ..optionsCaption = json['optionsCaption'] as String?
-    ..otherErrorText = json['otherErrorText'] as String?
-    ..storeOthersAsComment = json['storeOthersAsComment'] as String?
-    ..contentMode = json['contentMode'] as String?
-    ..imageFit = json['imageFit'] as String?
-    ..imageHeight = json['imageHeight'] as int?
-    ..imageWidth = json['imageWidth'] as int?
-    ..showLabel = json['showLabel'] as bool?
-    ..colCount = json['colCount'] as int?
-    ..multiSelect = json['multiSelect'] as bool?
-    ..choices = ImageItemValue.fromListJson(json['choices'] as List?);
-}
+ImagePicker _$ImagePickerFromJson(Map<String, dynamic> json) => ImagePicker()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..choicesFromQuestion = json['choicesFromQuestion'] as String?
+  ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
+  ..choicesOrder = json['choicesOrder'] as String?
+  ..choicesByUrl = json['choicesByUrl'] == null
+      ? null
+      : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
+  ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
+  ..choicesVisibleIf = json['choicesVisibleIf'] as String?
+  ..choicesEnableIf = json['choicesEnableIf'] as String?
+  ..hasOther = json['hasOther'] as bool?
+  ..hasNone = json['hasNone'] as bool?
+  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..type = json['type'] as String?
+  ..otherText = json['otherText'] as String?
+  ..noneText = json['noneText'] as String?
+  ..optionsCaption = json['optionsCaption'] as String?
+  ..otherErrorText = json['otherErrorText'] as String?
+  ..storeOthersAsComment = json['storeOthersAsComment'] as String?
+  ..contentMode = json['contentMode'] as String?
+  ..imageFit = json['imageFit'] as String?
+  ..imageHeight = json['imageHeight'] as int?
+  ..imageWidth = json['imageWidth'] as int?
+  ..showLabel = json['showLabel'] as bool?
+  ..colCount = json['colCount'] as int?
+  ..multiSelect = json['multiSelect'] as bool?
+  ..choices = ImageItemValue.fromListJson(json['choices'] as List?);
 
 Map<String, dynamic> _$ImagePickerToJson(ImagePicker instance) {
   final val = <String, dynamic>{};
@@ -653,65 +644,63 @@ Map<String, dynamic> _$ImagePickerToJson(ImagePicker instance) {
   return val;
 }
 
-Dropdown _$DropdownFromJson(Map<String, dynamic> json) {
-  return Dropdown()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..choicesFromQuestion = json['choicesFromQuestion'] as String?
-    ..choices = ItemValue.fromListJson(json['choices'] as List?)
-    ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
-    ..choicesOrder = json['choicesOrder'] as String?
-    ..choicesByUrl = json['choicesByUrl'] == null
-        ? null
-        : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
-    ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
-    ..choicesVisibleIf = json['choicesVisibleIf'] as String?
-    ..choicesEnableIf = json['choicesEnableIf'] as String?
-    ..hasOther = json['hasOther'] as bool?
-    ..hasNone = json['hasNone'] as bool?
-    ..otherPlaceHolder = json['otherPlaceHolder'] as String?
-    ..noneText = json['noneText'] as String?
-    ..otherText = json['otherText'] as String?
-    ..otherErrorText = json['otherErrorText'] as String?
-    ..storeOthersAsComment = json['storeOthersAsComment'] as String?
-    ..type = json['type'] as String?
-    ..optionsCaption = json['optionsCaption'] as String?
-    ..showOptionsCaption = json['showOptionsCaption'] as bool?
-    ..choicesMin = json['choicesMin'] as num?
-    ..choicesMax = json['choicesMax'] as num?
-    ..choicesStep = json['choicesStep'] as num?
-    ..autoComplete = json['autoComplete'] as String?;
-}
+Dropdown _$DropdownFromJson(Map<String, dynamic> json) => Dropdown()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..choicesFromQuestion = json['choicesFromQuestion'] as String?
+  ..choices = ItemValue.fromListJson(json['choices'] as List?)
+  ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
+  ..choicesOrder = json['choicesOrder'] as String?
+  ..choicesByUrl = json['choicesByUrl'] == null
+      ? null
+      : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
+  ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
+  ..choicesVisibleIf = json['choicesVisibleIf'] as String?
+  ..choicesEnableIf = json['choicesEnableIf'] as String?
+  ..hasOther = json['hasOther'] as bool?
+  ..hasNone = json['hasNone'] as bool?
+  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..noneText = json['noneText'] as String?
+  ..otherText = json['otherText'] as String?
+  ..otherErrorText = json['otherErrorText'] as String?
+  ..storeOthersAsComment = json['storeOthersAsComment'] as String?
+  ..type = json['type'] as String?
+  ..optionsCaption = json['optionsCaption'] as String?
+  ..showOptionsCaption = json['showOptionsCaption'] as bool?
+  ..choicesMin = json['choicesMin'] as num?
+  ..choicesMax = json['choicesMax'] as num?
+  ..choicesStep = json['choicesStep'] as num?
+  ..autoComplete = json['autoComplete'] as String?;
 
 Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   final val = <String, dynamic>{};
@@ -777,55 +766,53 @@ Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   return val;
 }
 
-Text _$TextFromJson(Map<String, dynamic> json) {
-  return Text()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..inputType = json['inputType'] as String?
-    ..size = json['size'] as int?
-    ..textUpdateMode = json['textUpdateMode'] as String?
-    ..autoComplete = json['autoComplete'] as String?
-    ..min = json['min'] as String?
-    ..max = json['max'] as String?
-    ..minValueExpression = json['minValueExpression'] as String?
-    ..maxValueExpression = json['maxValueExpression'] as String?
-    ..minErrorText = json['minErrorText'] as String?
-    ..maxErrorText = json['maxErrorText'] as String?
-    ..step = json['step'] as int?
-    ..maxLength = json['maxLength'] as int?
-    ..placeHolder = json['placeHolder'] as String?
-    ..dataList =
-        (json['dataList'] as List<dynamic>?)?.map((e) => e as String).toList();
-}
+Text _$TextFromJson(Map<String, dynamic> json) => Text()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..inputType = json['inputType'] as String?
+  ..size = json['size'] as int?
+  ..textUpdateMode = json['textUpdateMode'] as String?
+  ..autoComplete = json['autoComplete'] as String?
+  ..min = json['min'] as String?
+  ..max = json['max'] as String?
+  ..minValueExpression = json['minValueExpression'] as String?
+  ..maxValueExpression = json['maxValueExpression'] as String?
+  ..minErrorText = json['minErrorText'] as String?
+  ..maxErrorText = json['maxErrorText'] as String?
+  ..step = json['step'] as int?
+  ..maxLength = json['maxLength'] as int?
+  ..placeHolder = json['placeHolder'] as String?
+  ..dataList =
+      (json['dataList'] as List<dynamic>?)?.map((e) => e as String).toList();
 
 Map<String, dynamic> _$TextToJson(Text instance) {
   final val = <String, dynamic>{};
@@ -882,45 +869,43 @@ Map<String, dynamic> _$TextToJson(Text instance) {
   return val;
 }
 
-MultipleText _$MultipleTextFromJson(Map<String, dynamic> json) {
-  return MultipleText()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..items = (json['items'] as List<dynamic>?)
-        ?.map((e) => MultipleTextItem.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..itemSize = json['itemSize'] as int?
-    ..colCount = json['colCount'] as int?;
-}
+MultipleText _$MultipleTextFromJson(Map<String, dynamic> json) => MultipleText()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..items = (json['items'] as List<dynamic>?)
+      ?.map((e) => MultipleTextItem.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..itemSize = json['itemSize'] as int?
+  ..colCount = json['colCount'] as int?;
 
 Map<String, dynamic> _$MultipleTextToJson(MultipleText instance) {
   final val = <String, dynamic>{};
@@ -966,20 +951,19 @@ Map<String, dynamic> _$MultipleTextToJson(MultipleText instance) {
   return val;
 }
 
-MultipleTextItem _$MultipleTextItemFromJson(Map<String, dynamic> json) {
-  return MultipleTextItem()
-    ..name = json['name'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..placeHolder = json['placeHolder'] as String?
-    ..inputType = json['inputType'] as String?
-    ..title = json['title'] as String?
-    ..maxLength = json['maxLength'] as int?
-    ..size = json['size'] as int?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList();
-}
+MultipleTextItem _$MultipleTextItemFromJson(Map<String, dynamic> json) =>
+    MultipleTextItem()
+      ..name = json['name'] as String?
+      ..isRequired = json['isRequired'] as bool?
+      ..placeHolder = json['placeHolder'] as String?
+      ..inputType = json['inputType'] as String?
+      ..title = json['title'] as String?
+      ..maxLength = json['maxLength'] as int?
+      ..size = json['size'] as int?
+      ..requiredErrorText = json['requiredErrorText'] as String?
+      ..validators = (json['validators'] as List<dynamic>?)
+          ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$MultipleTextItemToJson(MultipleTextItem instance) {
   final val = <String, dynamic>{};
@@ -1002,40 +986,38 @@ Map<String, dynamic> _$MultipleTextItemToJson(MultipleTextItem instance) {
   return val;
 }
 
-NonValue _$NonValueFromJson(Map<String, dynamic> json) {
-  return NonValue()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..title = json['title'] as String?
-    ..description = json['description'] as String?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..requiredIf = json['requiredIf'] as String?
-    ..titleLocation = json['titleLocation'] as String?;
-}
+NonValue _$NonValueFromJson(Map<String, dynamic> json) => NonValue()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..title = json['title'] as String?
+  ..description = json['description'] as String?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..requiredIf = json['requiredIf'] as String?
+  ..titleLocation = json['titleLocation'] as String?;
 
 Map<String, dynamic> _$NonValueToJson(NonValue instance) {
   final val = <String, dynamic>{};
@@ -1078,41 +1060,39 @@ Map<String, dynamic> _$NonValueToJson(NonValue instance) {
   return val;
 }
 
-Html _$HtmlFromJson(Map<String, dynamic> json) {
-  return Html()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..title = json['title'] as String?
-    ..description = json['description'] as String?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..requiredIf = json['requiredIf'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..type = json['type'] as String?
-    ..html = json['html'] as String?;
-}
+Html _$HtmlFromJson(Map<String, dynamic> json) => Html()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..title = json['title'] as String?
+  ..description = json['description'] as String?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..requiredIf = json['requiredIf'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..type = json['type'] as String?
+  ..html = json['html'] as String?;
 
 Map<String, dynamic> _$HtmlToJson(Html instance) {
   final val = <String, dynamic>{};
@@ -1156,46 +1136,44 @@ Map<String, dynamic> _$HtmlToJson(Html instance) {
   return val;
 }
 
-Image _$ImageFromJson(Map<String, dynamic> json) {
-  return Image()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..title = json['title'] as String?
-    ..description = json['description'] as String?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..requiredIf = json['requiredIf'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..type = json['type'] as String?
-    ..imageLink = json['imageLink'] as String?
-    ..text = json['text'] as String?
-    ..contentMode = json['contentMode'] as String?
-    ..imageFit = json['imageFit'] as String?
-    ..imageHeight = json['imageHeight'] as int?
-    ..imageWidth = json['imageWidth'] as int?;
-}
+Image _$ImageFromJson(Map<String, dynamic> json) => Image()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..title = json['title'] as String?
+  ..description = json['description'] as String?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..requiredIf = json['requiredIf'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..type = json['type'] as String?
+  ..imageLink = json['imageLink'] as String?
+  ..text = json['text'] as String?
+  ..contentMode = json['contentMode'] as String?
+  ..imageFit = json['imageFit'] as String?
+  ..imageHeight = json['imageHeight'] as int?
+  ..imageWidth = json['imageWidth'] as int?;
 
 Map<String, dynamic> _$ImageToJson(Image instance) {
   final val = <String, dynamic>{};
@@ -1244,40 +1222,38 @@ Map<String, dynamic> _$ImageToJson(Image instance) {
   return val;
 }
 
-Empty _$EmptyFromJson(Map<String, dynamic> json) {
-  return Empty()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?;
-}
+Empty _$EmptyFromJson(Map<String, dynamic> json) => Empty()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?;
 
 Map<String, dynamic> _$EmptyToJson(Empty instance) {
   final val = <String, dynamic>{};
@@ -1320,45 +1296,43 @@ Map<String, dynamic> _$EmptyToJson(Empty instance) {
   return val;
 }
 
-Comment _$CommentFromJson(Map<String, dynamic> json) {
-  return Comment()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..maxLength = json['maxLength'] as int?
-    ..cols = json['cols'] as int?
-    ..rows = json['rows'] as int?
-    ..placeHolder = json['placeHolder'] as String?
-    ..textUpdateMode = json['textUpdateMode'] as String?;
-}
+Comment _$CommentFromJson(Map<String, dynamic> json) => Comment()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..maxLength = json['maxLength'] as int?
+  ..cols = json['cols'] as int?
+  ..rows = json['rows'] as int?
+  ..placeHolder = json['placeHolder'] as String?
+  ..textUpdateMode = json['textUpdateMode'] as String?;
 
 Map<String, dynamic> _$CommentToJson(Comment instance) {
   final val = <String, dynamic>{};
@@ -1406,52 +1380,50 @@ Map<String, dynamic> _$CommentToJson(Comment instance) {
   return val;
 }
 
-File _$FileFromJson(Map<String, dynamic> json) {
-  return File()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..showPreview = json['showPreview'] as bool?
-    ..allowMultiple = json['allowMultiple'] as bool?
-    ..allowImagesPreview = json['allowImagesPreview'] as bool?
-    ..imageHeight = json['imageHeight'] as int?
-    ..imageWidth = json['imageWidth'] as int?
-    ..acceptedTypes = json['acceptedTypes'] as String?
-    ..storeDataAsText = json['storeDataAsText'] as bool?
-    ..waitForUpload = json['waitForUpload'] as bool?
-    ..maxSize = json['maxSize'] as int?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..needConfirmRemoveFile = json['needConfirmRemoveFile'] as bool?;
-}
+File _$FileFromJson(Map<String, dynamic> json) => File()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..showPreview = json['showPreview'] as bool?
+  ..allowMultiple = json['allowMultiple'] as bool?
+  ..allowImagesPreview = json['allowImagesPreview'] as bool?
+  ..imageHeight = json['imageHeight'] as int?
+  ..imageWidth = json['imageWidth'] as int?
+  ..acceptedTypes = json['acceptedTypes'] as String?
+  ..storeDataAsText = json['storeDataAsText'] as bool?
+  ..waitForUpload = json['waitForUpload'] as bool?
+  ..maxSize = json['maxSize'] as int?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..needConfirmRemoveFile = json['needConfirmRemoveFile'] as bool?;
 
 Map<String, dynamic> _$FileToJson(File instance) {
   final val = <String, dynamic>{};
@@ -1506,50 +1478,48 @@ Map<String, dynamic> _$FileToJson(File instance) {
   return val;
 }
 
-Rating _$RatingFromJson(Map<String, dynamic> json) {
-  return Rating()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..rateValues = (json['rateValues'] as List<dynamic>?)
-        ?.map((e) => ItemValue.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..rateMin = json['rateMin'] as int?
-    ..rateMax = json['rateMax'] as int?
-    ..rateStep = json['rateStep'] as int?
-    ..minRateDescription = json['minRateDescription'] as String?
-    ..maxRateDescription = json['maxRateDescription'] as String?;
-}
+Rating _$RatingFromJson(Map<String, dynamic> json) => Rating()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..rateValues = (json['rateValues'] as List<dynamic>?)
+      ?.map((e) => ItemValue.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..rateMin = json['rateMin'] as int?
+  ..rateMax = json['rateMax'] as int?
+  ..rateStep = json['rateStep'] as int?
+  ..minRateDescription = json['minRateDescription'] as String?
+  ..maxRateDescription = json['maxRateDescription'] as String?;
 
 Map<String, dynamic> _$RatingToJson(Rating instance) {
   final val = <String, dynamic>{};
@@ -1600,46 +1570,44 @@ Map<String, dynamic> _$RatingToJson(Rating instance) {
   return val;
 }
 
-Boolean _$BooleanFromJson(Map<String, dynamic> json) {
-  return Boolean()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..type = json['type'] as String?
-    ..label = json['label'] as String?
-    ..labelTrue = json['labelTrue'] as String?
-    ..labelFalse = json['labelFalse'] as String?
-    ..showTitle = json['showTitle'] as bool?
-    ..valueTrue = json['valueTrue'] as String?
-    ..valueFalse = json['valueFalse'] as String?
-    ..renderAs = json['renderAs'] as String?;
-}
+Boolean _$BooleanFromJson(Map<String, dynamic> json) => Boolean()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..type = json['type'] as String?
+  ..label = json['label'] as String?
+  ..labelTrue = json['labelTrue'] as String?
+  ..labelFalse = json['labelFalse'] as String?
+  ..showTitle = json['showTitle'] as bool?
+  ..valueTrue = json['valueTrue'] as String?
+  ..valueFalse = json['valueFalse'] as String?
+  ..renderAs = json['renderAs'] as String?;
 
 Map<String, dynamic> _$BooleanToJson(Boolean instance) {
   final val = <String, dynamic>{};
@@ -1688,45 +1656,43 @@ Map<String, dynamic> _$BooleanToJson(Boolean instance) {
   return val;
 }
 
-SignaturePad _$SignaturePadFromJson(Map<String, dynamic> json) {
-  return SignaturePad()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..height = json['height'] as int?
-    ..allowClear = json['allowClear'] as bool?
-    ..penColor = json['penColor'] as String?
-    ..backgroundColor = json['backgroundColor'] as String?
-    ..dataFormat = json['dataFormat'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?;
-}
+SignaturePad _$SignaturePadFromJson(Map<String, dynamic> json) => SignaturePad()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..height = json['height'] as int?
+  ..allowClear = json['allowClear'] as bool?
+  ..penColor = json['penColor'] as String?
+  ..backgroundColor = json['backgroundColor'] as String?
+  ..dataFormat = json['dataFormat'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?;
 
 Map<String, dynamic> _$SignaturePadToJson(SignaturePad instance) {
   final val = <String, dynamic>{};
@@ -1774,12 +1740,11 @@ Map<String, dynamic> _$SignaturePadToJson(SignaturePad instance) {
   return val;
 }
 
-CalculatedValue _$CalculatedValueFromJson(Map<String, dynamic> json) {
-  return CalculatedValue()
-    ..name = json['name'] as String?
-    ..expression = json['expression'] as String?
-    ..includeIntoResult = json['includeIntoResult'] as bool?;
-}
+CalculatedValue _$CalculatedValueFromJson(Map<String, dynamic> json) =>
+    CalculatedValue()
+      ..name = json['name'] as String?
+      ..expression = json['expression'] as String?
+      ..includeIntoResult = json['includeIntoResult'] as bool?;
 
 Map<String, dynamic> _$CalculatedValueToJson(CalculatedValue instance) {
   final val = <String, dynamic>{};
@@ -1796,60 +1761,58 @@ Map<String, dynamic> _$CalculatedValueToJson(CalculatedValue instance) {
   return val;
 }
 
-ButtonGroup _$ButtonGroupFromJson(Map<String, dynamic> json) {
-  return ButtonGroup()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..hasComment = json['hasComment'] as String?
-    ..commentText = json['commentText'] as String?
-    ..choicesFromQuestion = json['choicesFromQuestion'] as String?
-    ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
-    ..choicesOrder = json['choicesOrder'] as String?
-    ..choicesByUrl = json['choicesByUrl'] == null
-        ? null
-        : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
-    ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
-    ..choicesVisibleIf = json['choicesVisibleIf'] as String?
-    ..choicesEnableIf = json['choicesEnableIf'] as String?
-    ..hasOther = json['hasOther'] as bool?
-    ..hasNone = json['hasNone'] as bool?
-    ..otherPlaceHolder = json['otherPlaceHolder'] as String?
-    ..noneText = json['noneText'] as String?
-    ..otherText = json['otherText'] as String?
-    ..otherErrorText = json['otherErrorText'] as String?
-    ..storeOthersAsComment = json['storeOthersAsComment'] as String?
-    ..colCount = json['colCount'] as int?
-    ..type = json['type'] as String?
-    ..choices = ButtonGroupItemValue.fromListJson(json['choices'] as List?);
-}
+ButtonGroup _$ButtonGroupFromJson(Map<String, dynamic> json) => ButtonGroup()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..hasComment = json['hasComment'] as String?
+  ..commentText = json['commentText'] as String?
+  ..choicesFromQuestion = json['choicesFromQuestion'] as String?
+  ..choicesFromQuestionMode = json['choicesFromQuestionMode'] as String?
+  ..choicesOrder = json['choicesOrder'] as String?
+  ..choicesByUrl = json['choicesByUrl'] == null
+      ? null
+      : ChoicesRestful.fromJson(json['choicesByUrl'] as Map<String, dynamic>)
+  ..hideIfChoicesEmpty = json['hideIfChoicesEmpty'] as bool?
+  ..choicesVisibleIf = json['choicesVisibleIf'] as String?
+  ..choicesEnableIf = json['choicesEnableIf'] as String?
+  ..hasOther = json['hasOther'] as bool?
+  ..hasNone = json['hasNone'] as bool?
+  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..noneText = json['noneText'] as String?
+  ..otherText = json['otherText'] as String?
+  ..otherErrorText = json['otherErrorText'] as String?
+  ..storeOthersAsComment = json['storeOthersAsComment'] as String?
+  ..colCount = json['colCount'] as int?
+  ..type = json['type'] as String?
+  ..choices = ButtonGroupItemValue.fromListJson(json['choices'] as List?);
 
 Map<String, dynamic> _$ButtonGroupToJson(ButtonGroup instance) {
   final val = <String, dynamic>{};
@@ -1910,13 +1873,11 @@ Map<String, dynamic> _$ButtonGroupToJson(ButtonGroup instance) {
   return val;
 }
 
-ItemValue _$ItemValueFromJson(Map<String, dynamic> json) {
-  return ItemValue()
-    ..value = json['value']
-    ..text = json['text'] as String?
-    ..visibleIf = json['visibleIf'] as String?
-    ..enableIf = json['enableIf'] as String?;
-}
+ItemValue _$ItemValueFromJson(Map<String, dynamic> json) => ItemValue()
+  ..value = json['value']
+  ..text = json['text'] as String?
+  ..visibleIf = json['visibleIf'] as String?
+  ..enableIf = json['enableIf'] as String?;
 
 Map<String, dynamic> _$ItemValueToJson(ItemValue instance) {
   final val = <String, dynamic>{};
@@ -1934,14 +1895,13 @@ Map<String, dynamic> _$ItemValueToJson(ItemValue instance) {
   return val;
 }
 
-ImageItemValue _$ImageItemValueFromJson(Map<String, dynamic> json) {
-  return ImageItemValue()
-    ..value = json['value']
-    ..text = json['text'] as String?
-    ..visibleIf = json['visibleIf'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..imageLink = json['imageLink'] as String?;
-}
+ImageItemValue _$ImageItemValueFromJson(Map<String, dynamic> json) =>
+    ImageItemValue()
+      ..value = json['value']
+      ..text = json['text'] as String?
+      ..visibleIf = json['visibleIf'] as String?
+      ..enableIf = json['enableIf'] as String?
+      ..imageLink = json['imageLink'] as String?;
 
 Map<String, dynamic> _$ImageItemValueToJson(ImageItemValue instance) {
   final val = <String, dynamic>{};
@@ -1960,16 +1920,16 @@ Map<String, dynamic> _$ImageItemValueToJson(ImageItemValue instance) {
   return val;
 }
 
-ButtonGroupItemValue _$ButtonGroupItemValueFromJson(Map<String, dynamic> json) {
-  return ButtonGroupItemValue()
-    ..value = json['value']
-    ..text = json['text'] as String?
-    ..visibleIf = json['visibleIf'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..showCaption = json['showCaption'] as bool?
-    ..iconName = json['iconName'] as String?
-    ..iconSize = json['iconSize'] as int?;
-}
+ButtonGroupItemValue _$ButtonGroupItemValueFromJson(
+        Map<String, dynamic> json) =>
+    ButtonGroupItemValue()
+      ..value = json['value']
+      ..text = json['text'] as String?
+      ..visibleIf = json['visibleIf'] as String?
+      ..enableIf = json['enableIf'] as String?
+      ..showCaption = json['showCaption'] as bool?
+      ..iconName = json['iconName'] as String?
+      ..iconSize = json['iconSize'] as int?;
 
 Map<String, dynamic> _$ButtonGroupItemValueToJson(
     ButtonGroupItemValue instance) {
@@ -1991,47 +1951,45 @@ Map<String, dynamic> _$ButtonGroupItemValueToJson(
   return val;
 }
 
-Expression _$ExpressionFromJson(Map<String, dynamic> json) {
-  return Expression()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..expression = json['expression'] as String?
-    ..format = json['format'] as String?
-    ..displayStyle = json['displayStyle'] as String?
-    ..currency = json['currency'] as String?
-    ..maximumFractionDigits = json['maximumFractionDigits'] as int?
-    ..minimumFractionDigits = json['minimumFractionDigits'] as int?
-    ..useGrouping = json['useGrouping'] as bool?
-    ..enableIf = json['enableIf'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..requiredIf = json['requiredIf'] as String?;
-}
+Expression _$ExpressionFromJson(Map<String, dynamic> json) => Expression()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..expression = json['expression'] as String?
+  ..format = json['format'] as String?
+  ..displayStyle = json['displayStyle'] as String?
+  ..currency = json['currency'] as String?
+  ..maximumFractionDigits = json['maximumFractionDigits'] as int?
+  ..minimumFractionDigits = json['minimumFractionDigits'] as int?
+  ..useGrouping = json['useGrouping'] as bool?
+  ..enableIf = json['enableIf'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..requiredIf = json['requiredIf'] as String?;
 
 Map<String, dynamic> _$ExpressionToJson(Expression instance) {
   final val = <String, dynamic>{};
@@ -2081,9 +2039,8 @@ Map<String, dynamic> _$ExpressionToJson(Expression instance) {
   return val;
 }
 
-ExpressionItem _$ExpressionItemFromJson(Map<String, dynamic> json) {
-  return ExpressionItem()..expression = json['expression'] as String?;
-}
+ExpressionItem _$ExpressionItemFromJson(Map<String, dynamic> json) =>
+    ExpressionItem()..expression = json['expression'] as String?;
 
 Map<String, dynamic> _$ExpressionItemToJson(ExpressionItem instance) {
   final val = <String, dynamic>{};
@@ -2098,11 +2055,10 @@ Map<String, dynamic> _$ExpressionItemToJson(ExpressionItem instance) {
   return val;
 }
 
-UrlConditionItem _$UrlConditionItemFromJson(Map<String, dynamic> json) {
-  return UrlConditionItem()
-    ..expression = json['expression'] as String?
-    ..url = json['url'] as String?;
-}
+UrlConditionItem _$UrlConditionItemFromJson(Map<String, dynamic> json) =>
+    UrlConditionItem()
+      ..expression = json['expression'] as String?
+      ..url = json['url'] as String?;
 
 Map<String, dynamic> _$UrlConditionItemToJson(UrlConditionItem instance) {
   final val = <String, dynamic>{};
@@ -2118,11 +2074,10 @@ Map<String, dynamic> _$UrlConditionItemToJson(UrlConditionItem instance) {
   return val;
 }
 
-HtmlConditionItem _$HtmlConditionItemFromJson(Map<String, dynamic> json) {
-  return HtmlConditionItem()
-    ..expression = json['expression'] as String?
-    ..html = json['html'] as String?;
-}
+HtmlConditionItem _$HtmlConditionItemFromJson(Map<String, dynamic> json) =>
+    HtmlConditionItem()
+      ..expression = json['expression'] as String?
+      ..html = json['html'] as String?;
 
 Map<String, dynamic> _$HtmlConditionItemToJson(HtmlConditionItem instance) {
   final val = <String, dynamic>{};
@@ -2138,60 +2093,59 @@ Map<String, dynamic> _$HtmlConditionItemToJson(HtmlConditionItem instance) {
   return val;
 }
 
-MatrixDropdown _$MatrixDropdownFromJson(Map<String, dynamic> json) {
-  return MatrixDropdown()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..columnsVisibleIf = json['columnsVisibleIf'] as String?
-    ..showHeader = json['showHeader'] as bool?
-    ..allowRowsDragAndDrop = json['allowRowsDragAndDrop'] as String?
-    ..columns = (json['columns'] as List<dynamic>?)
-        ?.map((e) => MatrixDropdownColumn.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..columnLayout = json['columnLayout'] as String?
-    ..detailElements = json['detailElements'] as String?
-    ..detailPanelMode = json['detailPanelMode'] as String?
-    ..horizontalScroll = json['horizontalScroll'] as bool?
-    ..optionsCaption = json['optionsCaption'] as String?
-    ..choices = ItemValue.fromListJson(json['choices'] as List?)
-    ..keyDuplicationError = json['keyDuplicationError'] as String?
-    ..cellType = json['cellType'] as String?
-    ..columnColCount = json['columnColCount'] as int?
-    ..columnMinWidth = json['columnMinWidth'] as String?
-    ..type = json['type'] as String?
-    ..rows = ItemValue.fromListJson(json['rows'] as List?)
-    ..rowsVisibleIf = json['rowsVisibleIf'] as String?
-    ..rowTitleWidth = json['rowTitleWidth'] as String?
-    ..totalText = json['totalText'] as String?;
-}
+MatrixDropdown _$MatrixDropdownFromJson(Map<String, dynamic> json) =>
+    MatrixDropdown()
+      ..state = json['state'] as String?
+      ..name = json['name'] as String?
+      ..visible = json['visible'] as bool?
+      ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+      ..visibleIf = json['visibleIf'] as String?
+      ..width = json['width'] as String?
+      ..minWidth = json['minWidth'] as String?
+      ..maxWidth = json['maxWidth'] as String?
+      ..startWithNewLine = json['startWithNewLine'] as bool?
+      ..indent = json['indent'] as int?
+      ..page = json['page'] as String?
+      ..title = json['title'] as String?
+      ..titleLocation = json['titleLocation'] as String?
+      ..description = json['description'] as String?
+      ..descriptionLocation = json['descriptionLocation'] as String?
+      ..hideNumber = json['hideNumber'] as bool?
+      ..valueName = json['valueName'] as String?
+      ..enableIf = json['enableIf'] as String?
+      ..defaultValue = json['defaultValue']
+      ..defaultValueExpression = json['defaultValueExpression'] as String?
+      ..correctAnswer = json['correctAnswer'] as String?
+      ..isRequired = json['isRequired'] as bool?
+      ..requiredIf = json['requiredIf'] as String?
+      ..requiredErrorText = json['requiredErrorText'] as String?
+      ..readOnly = json['readOnly'] as bool?
+      ..validators = (json['validators'] as List<dynamic>?)
+          ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..bindings = json['bindings'] as String?
+      ..renderAs = json['renderAs'] as String?
+      ..columnsVisibleIf = json['columnsVisibleIf'] as String?
+      ..showHeader = json['showHeader'] as bool?
+      ..allowRowsDragAndDrop = json['allowRowsDragAndDrop'] as String?
+      ..columns = (json['columns'] as List<dynamic>?)
+          ?.map((e) => MatrixDropdownColumn.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..columnLayout = json['columnLayout'] as String?
+      ..detailElements = json['detailElements'] as String?
+      ..detailPanelMode = json['detailPanelMode'] as String?
+      ..horizontalScroll = json['horizontalScroll'] as bool?
+      ..optionsCaption = json['optionsCaption'] as String?
+      ..choices = ItemValue.fromListJson(json['choices'] as List?)
+      ..keyDuplicationError = json['keyDuplicationError'] as String?
+      ..cellType = json['cellType'] as String?
+      ..columnColCount = json['columnColCount'] as int?
+      ..columnMinWidth = json['columnMinWidth'] as String?
+      ..type = json['type'] as String?
+      ..rows = ItemValue.fromListJson(json['rows'] as List?)
+      ..rowsVisibleIf = json['rowsVisibleIf'] as String?
+      ..rowTitleWidth = json['rowTitleWidth'] as String?
+      ..totalText = json['totalText'] as String?;
 
 Map<String, dynamic> _$MatrixDropdownToJson(MatrixDropdown instance) {
   final val = <String, dynamic>{};
@@ -2252,72 +2206,71 @@ Map<String, dynamic> _$MatrixDropdownToJson(MatrixDropdown instance) {
   return val;
 }
 
-MatrixDynamic _$MatrixDynamicFromJson(Map<String, dynamic> json) {
-  return MatrixDynamic()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..columnsVisibleIf = json['columnsVisibleIf'] as String?
-    ..showHeader = json['showHeader'] as bool?
-    ..allowRowsDragAndDrop = json['allowRowsDragAndDrop'] as String?
-    ..columns = (json['columns'] as List<dynamic>?)
-        ?.map((e) => MatrixDropdownColumn.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..columnLayout = json['columnLayout'] as String?
-    ..detailElements = json['detailElements'] as String?
-    ..detailPanelMode = json['detailPanelMode'] as String?
-    ..horizontalScroll = json['horizontalScroll'] as bool?
-    ..optionsCaption = json['optionsCaption'] as String?
-    ..choices = ItemValue.fromListJson(json['choices'] as List?)
-    ..keyDuplicationError = json['keyDuplicationError'] as String?
-    ..cellType = json['cellType'] as String?
-    ..columnColCount = json['columnColCount'] as int?
-    ..columnMinWidth = json['columnMinWidth'] as String?
-    ..type = json['type'] as String?
-    ..rowsVisibleIf = json['rowsVisibleIf'] as String?
-    ..allowAddRows = json['allowAddRows'] as bool?
-    ..allowRemoveRows = json['allowRemoveRows'] as bool?
-    ..rowCount = json['rowCount'] as int?
-    ..minRowCount = json['minRowCount'] as int?
-    ..maxRowCount = json['maxRowCount'] as int?
-    ..keyName = json['keyName'] as String?
-    ..defaultRowValue = json['defaultRowValue']
-    ..defaultValueFromLastRow = json['defaultValueFromLastRow'] as bool?
-    ..confirmDelete = json['confirmDelete'] as bool?
-    ..confirmDeleteText = json['confirmDeleteText'] as String?
-    ..addRowLocation = json['addRowLocation'] as String?
-    ..addRowText = json['addRowText'] as String?
-    ..removeRowText = json['removeRowText'] as String?
-    ..hideColumnsIfEmpty = json['hideColumnsIfEmpty'] as bool?
-    ..emptyRowsText = json['emptyRowsText'] as String?;
-}
+MatrixDynamic _$MatrixDynamicFromJson(Map<String, dynamic> json) =>
+    MatrixDynamic()
+      ..state = json['state'] as String?
+      ..name = json['name'] as String?
+      ..visible = json['visible'] as bool?
+      ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+      ..visibleIf = json['visibleIf'] as String?
+      ..width = json['width'] as String?
+      ..minWidth = json['minWidth'] as String?
+      ..maxWidth = json['maxWidth'] as String?
+      ..startWithNewLine = json['startWithNewLine'] as bool?
+      ..indent = json['indent'] as int?
+      ..page = json['page'] as String?
+      ..title = json['title'] as String?
+      ..titleLocation = json['titleLocation'] as String?
+      ..description = json['description'] as String?
+      ..descriptionLocation = json['descriptionLocation'] as String?
+      ..hideNumber = json['hideNumber'] as bool?
+      ..valueName = json['valueName'] as String?
+      ..enableIf = json['enableIf'] as String?
+      ..defaultValue = json['defaultValue']
+      ..defaultValueExpression = json['defaultValueExpression'] as String?
+      ..correctAnswer = json['correctAnswer'] as String?
+      ..isRequired = json['isRequired'] as bool?
+      ..requiredIf = json['requiredIf'] as String?
+      ..requiredErrorText = json['requiredErrorText'] as String?
+      ..readOnly = json['readOnly'] as bool?
+      ..validators = (json['validators'] as List<dynamic>?)
+          ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..bindings = json['bindings'] as String?
+      ..renderAs = json['renderAs'] as String?
+      ..columnsVisibleIf = json['columnsVisibleIf'] as String?
+      ..showHeader = json['showHeader'] as bool?
+      ..allowRowsDragAndDrop = json['allowRowsDragAndDrop'] as String?
+      ..columns = (json['columns'] as List<dynamic>?)
+          ?.map((e) => MatrixDropdownColumn.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..columnLayout = json['columnLayout'] as String?
+      ..detailElements = json['detailElements'] as String?
+      ..detailPanelMode = json['detailPanelMode'] as String?
+      ..horizontalScroll = json['horizontalScroll'] as bool?
+      ..optionsCaption = json['optionsCaption'] as String?
+      ..choices = ItemValue.fromListJson(json['choices'] as List?)
+      ..keyDuplicationError = json['keyDuplicationError'] as String?
+      ..cellType = json['cellType'] as String?
+      ..columnColCount = json['columnColCount'] as int?
+      ..columnMinWidth = json['columnMinWidth'] as String?
+      ..type = json['type'] as String?
+      ..rowsVisibleIf = json['rowsVisibleIf'] as String?
+      ..allowAddRows = json['allowAddRows'] as bool?
+      ..allowRemoveRows = json['allowRemoveRows'] as bool?
+      ..rowCount = json['rowCount'] as int?
+      ..minRowCount = json['minRowCount'] as int?
+      ..maxRowCount = json['maxRowCount'] as int?
+      ..keyName = json['keyName'] as String?
+      ..defaultRowValue = json['defaultRowValue']
+      ..defaultValueFromLastRow = json['defaultValueFromLastRow'] as bool?
+      ..confirmDelete = json['confirmDelete'] as bool?
+      ..confirmDeleteText = json['confirmDeleteText'] as String?
+      ..addRowLocation = json['addRowLocation'] as String?
+      ..addRowText = json['addRowText'] as String?
+      ..removeRowText = json['removeRowText'] as String?
+      ..hideColumnsIfEmpty = json['hideColumnsIfEmpty'] as bool?
+      ..emptyRowsText = json['emptyRowsText'] as String?;
 
 Map<String, dynamic> _$MatrixDynamicToJson(MatrixDynamic instance) {
   final val = <String, dynamic>{};
@@ -2390,52 +2343,50 @@ Map<String, dynamic> _$MatrixDynamicToJson(MatrixDynamic instance) {
   return val;
 }
 
-Matrix _$MatrixFromJson(Map<String, dynamic> json) {
-  return Matrix()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..columnsVisibleIf = json['columnsVisibleIf'] as String?
-    ..rowsVisibleIf = json['rowsVisibleIf'] as String?
-    ..showHeader = json['showHeader'] as bool?
-    ..allowRowsDragAndDrop = json['allowRowsDragAndDrop'] as String?
-    ..type = json['type'] as String?
-    ..columns = ItemValue.fromListJson(json['columns'] as List?)
-    ..rows = ItemValue.fromListJson(json['rows'] as List?)
-    ..cells = (json['cells'] as Map<String, dynamic>?)?.map(
-      (k, e) => MapEntry(k, Map<String, String>.from(e as Map)),
-    )
-    ..rowsOrder = json['rowsOrder'] as String?
-    ..isAllRowRequired = json['isAllRowRequired'] as bool?
-    ..hideIfRowsEmpty = json['hideIfRowsEmpty'] as bool?;
-}
+Matrix _$MatrixFromJson(Map<String, dynamic> json) => Matrix()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..columnsVisibleIf = json['columnsVisibleIf'] as String?
+  ..rowsVisibleIf = json['rowsVisibleIf'] as String?
+  ..showHeader = json['showHeader'] as bool?
+  ..allowRowsDragAndDrop = json['allowRowsDragAndDrop'] as String?
+  ..type = json['type'] as String?
+  ..columns = ItemValue.fromListJson(json['columns'] as List?)
+  ..rows = ItemValue.fromListJson(json['rows'] as List?)
+  ..cells = (json['cells'] as Map<String, dynamic>?)?.map(
+    (k, e) => MapEntry(k, Map<String, String>.from(e as Map)),
+  )
+  ..rowsOrder = json['rowsOrder'] as String?
+  ..isAllRowRequired = json['isAllRowRequired'] as bool?
+  ..hideIfRowsEmpty = json['hideIfRowsEmpty'] as bool?;
 
 Map<String, dynamic> _$MatrixToJson(Matrix instance) {
   final val = <String, dynamic>{};
@@ -2488,34 +2439,34 @@ Map<String, dynamic> _$MatrixToJson(Matrix instance) {
   return val;
 }
 
-MatrixDropdownColumn _$MatrixDropdownColumnFromJson(Map<String, dynamic> json) {
-  return MatrixDropdownColumn()
-    ..name = json['name'] as String?
-    ..title = json['title'] as String?
-    ..cellType = json['cellType'] as String?
-    ..colCount = json['colCount'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..isUnique = json['isUnique'] as bool?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..minWidth = json['minWidth'] as String?
-    ..width = json['width'] as String?
-    ..visibleIf = json['visibleIf'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..requiredIf = json['requiredIf'] as String?
-    ..showInMultipleColumns = json['showInMultipleColumns'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..totalType = json['totalType'] as String?
-    ..totalExpression = json['totalExpression'] as String?
-    ..totalFormat = json['totalFormat'] as String?
-    ..totalDisplayStyle = json['totalDisplayStyle'] as String?
-    ..totalCurrency = json['totalCurrency'] as String?
-    ..totalMaximumFractionDigits = json['totalMaximumFractionDigits'] as num?
-    ..totalMinimumFractionDigits = json['totalMinimumFractionDigits'] as num?
-    ..renderAs = json['renderAs'] as String?;
-}
+MatrixDropdownColumn _$MatrixDropdownColumnFromJson(
+        Map<String, dynamic> json) =>
+    MatrixDropdownColumn()
+      ..name = json['name'] as String?
+      ..title = json['title'] as String?
+      ..cellType = json['cellType'] as String?
+      ..colCount = json['colCount'] as String?
+      ..isRequired = json['isRequired'] as bool?
+      ..isUnique = json['isUnique'] as bool?
+      ..requiredErrorText = json['requiredErrorText'] as String?
+      ..readOnly = json['readOnly'] as bool?
+      ..minWidth = json['minWidth'] as String?
+      ..width = json['width'] as String?
+      ..visibleIf = json['visibleIf'] as String?
+      ..enableIf = json['enableIf'] as String?
+      ..requiredIf = json['requiredIf'] as String?
+      ..showInMultipleColumns = json['showInMultipleColumns'] as bool?
+      ..validators = (json['validators'] as List<dynamic>?)
+          ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..totalType = json['totalType'] as String?
+      ..totalExpression = json['totalExpression'] as String?
+      ..totalFormat = json['totalFormat'] as String?
+      ..totalDisplayStyle = json['totalDisplayStyle'] as String?
+      ..totalCurrency = json['totalCurrency'] as String?
+      ..totalMaximumFractionDigits = json['totalMaximumFractionDigits'] as num?
+      ..totalMinimumFractionDigits = json['totalMinimumFractionDigits'] as num?
+      ..renderAs = json['renderAs'] as String?;
 
 Map<String, dynamic> _$MatrixDropdownColumnToJson(
     MatrixDropdownColumn instance) {
@@ -2555,27 +2506,24 @@ Map<String, dynamic> _$MatrixDropdownColumnToJson(
   return val;
 }
 
-Page _$PageFromJson(Map<String, dynamic> json) {
-  return Page()
-    ..name = json['name'] as String?
-    ..elements = (json['elements'] as List<dynamic>?)
-        ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..visible = json['visible'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..requiredIf = json['requiredIf'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..questionTitleLocation = json['questionTitleLocation'] as String?
-    ..title = json['title'] as String?
-    ..description = json['description'] as String?
-    ..navigationButtonsVisibility =
-        json['navigationButtonsVisibility'] as String?
-    ..questionsOrder = json['questionsOrder'] as String?
-    ..maxTimeToFinish = json['maxTimeToFinish'] as int?
-    ..navigationTitle = json['navigationTitle'] as String?
-    ..navigationDescription = json['navigationDescription'] as String?;
-}
+Page _$PageFromJson(Map<String, dynamic> json) => Page()
+  ..name = json['name'] as String?
+  ..elements = (json['elements'] as List<dynamic>?)
+      ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..visible = json['visible'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..requiredIf = json['requiredIf'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..questionTitleLocation = json['questionTitleLocation'] as String?
+  ..title = json['title'] as String?
+  ..description = json['description'] as String?
+  ..navigationButtonsVisibility = json['navigationButtonsVisibility'] as String?
+  ..questionsOrder = json['questionsOrder'] as String?
+  ..maxTimeToFinish = json['maxTimeToFinish'] as int?
+  ..navigationTitle = json['navigationTitle'] as String?
+  ..navigationDescription = json['navigationDescription'] as String?;
 
 Map<String, dynamic> _$PageToJson(Page instance) {
   final val = <String, dynamic>{};
@@ -2605,32 +2553,30 @@ Map<String, dynamic> _$PageToJson(Page instance) {
   return val;
 }
 
-Panel _$PanelFromJson(Map<String, dynamic> json) {
-  return Panel()
-    ..name = json['name'] as String?
-    ..elements = (json['elements'] as List<dynamic>?)
-        ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..visible = json['visible'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..requiredIf = json['requiredIf'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..questionTitleLocation = json['questionTitleLocation'] as String?
-    ..title = json['title'] as String?
-    ..description = json['description'] as String?
-    ..state = json['state'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..width = json['width'] as String?
-    ..innerIndent = json['innerIndent'] as int?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..showNumber = json['showNumber'] as bool?
-    ..showQuestionNumbers = json['showQuestionNumbers'] as String?
-    ..questionStartIndex = json['questionStartIndex'] as String?;
-}
+Panel _$PanelFromJson(Map<String, dynamic> json) => Panel()
+  ..name = json['name'] as String?
+  ..elements = (json['elements'] as List<dynamic>?)
+      ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..visible = json['visible'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..requiredIf = json['requiredIf'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..questionTitleLocation = json['questionTitleLocation'] as String?
+  ..title = json['title'] as String?
+  ..description = json['description'] as String?
+  ..state = json['state'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..width = json['width'] as String?
+  ..innerIndent = json['innerIndent'] as int?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..showNumber = json['showNumber'] as bool?
+  ..showQuestionNumbers = json['showQuestionNumbers'] as String?
+  ..questionStartIndex = json['questionStartIndex'] as String?;
 
 Map<String, dynamic> _$PanelToJson(Panel instance) {
   final val = <String, dynamic>{};
@@ -2665,66 +2611,64 @@ Map<String, dynamic> _$PanelToJson(Panel instance) {
   return val;
 }
 
-PanelDynamic _$PanelDynamicFromJson(Map<String, dynamic> json) {
-  return PanelDynamic()
-    ..state = json['state'] as String?
-    ..name = json['name'] as String?
-    ..visible = json['visible'] as bool?
-    ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
-    ..visibleIf = json['visibleIf'] as String?
-    ..width = json['width'] as String?
-    ..minWidth = json['minWidth'] as String?
-    ..maxWidth = json['maxWidth'] as String?
-    ..startWithNewLine = json['startWithNewLine'] as bool?
-    ..indent = json['indent'] as int?
-    ..page = json['page'] as String?
-    ..title = json['title'] as String?
-    ..titleLocation = json['titleLocation'] as String?
-    ..description = json['description'] as String?
-    ..descriptionLocation = json['descriptionLocation'] as String?
-    ..hideNumber = json['hideNumber'] as bool?
-    ..valueName = json['valueName'] as String?
-    ..enableIf = json['enableIf'] as String?
-    ..defaultValue = json['defaultValue']
-    ..defaultValueExpression = json['defaultValueExpression'] as String?
-    ..correctAnswer = json['correctAnswer'] as String?
-    ..isRequired = json['isRequired'] as bool?
-    ..requiredIf = json['requiredIf'] as String?
-    ..requiredErrorText = json['requiredErrorText'] as String?
-    ..readOnly = json['readOnly'] as bool?
-    ..validators = (json['validators'] as List<dynamic>?)
-        ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..bindings = json['bindings'] as String?
-    ..renderAs = json['renderAs'] as String?
-    ..type = json['type'] as String?
-    ..templateElements = (json['templateElements'] as List<dynamic>?)
-        ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
-        .toList()
-    ..templateTitle = json['templateTitle'] as String?
-    ..templateDescription = json['templateDescription'] as String?
-    ..allowAddPanel = json['allowAddPanel'] as bool?
-    ..allowRemovePanel = json['allowRemovePanel'] as bool?
-    ..panelCount = json['panelCount'] as int?
-    ..minPanelCount = json['minPanelCount'] as int?
-    ..maxPanelCount = json['maxPanelCount'] as int?
-    ..defaultPanelValue = json['defaultPanelValue']
-    ..defaultValueFromLastPanel = json['defaultValueFromLastPanel'] as bool?
-    ..panelsState = json['panelsState'] as String?
-    ..keyName = json['keyName'] as String?
-    ..keyDuplicationError = json['keyDuplicationError'] as String?
-    ..confirmDelete = json['confirmDelete'] as bool?
-    ..confirmDeleteText = json['confirmDeleteText'] as String?
-    ..panelAddText = json['panelAddText'] as String?
-    ..panelRemoveText = json['panelRemoveText'] as String?
-    ..panelPrevText = json['panelPrevText'] as String?
-    ..panelNextText = json['panelNextText'] as String?
-    ..showQuestionNumbers = json['showQuestionNumbers'] as String?
-    ..showRangeInProgress = json['showRangeInProgress'] as bool?
-    ..renderMode = json['renderMode'] as String?
-    ..templateTitleLocation = json['templateTitleLocation'] as String?
-    ..panelRemoveButtonLocation = json['panelRemoveButtonLocation'] as String?;
-}
+PanelDynamic _$PanelDynamicFromJson(Map<String, dynamic> json) => PanelDynamic()
+  ..state = json['state'] as String?
+  ..name = json['name'] as String?
+  ..visible = json['visible'] as bool?
+  ..useDisplayValuesInTitle = json['useDisplayValuesInTitle'] as bool?
+  ..visibleIf = json['visibleIf'] as String?
+  ..width = json['width'] as String?
+  ..minWidth = json['minWidth'] as String?
+  ..maxWidth = json['maxWidth'] as String?
+  ..startWithNewLine = json['startWithNewLine'] as bool?
+  ..indent = json['indent'] as int?
+  ..page = json['page'] as String?
+  ..title = json['title'] as String?
+  ..titleLocation = json['titleLocation'] as String?
+  ..description = json['description'] as String?
+  ..descriptionLocation = json['descriptionLocation'] as String?
+  ..hideNumber = json['hideNumber'] as bool?
+  ..valueName = json['valueName'] as String?
+  ..enableIf = json['enableIf'] as String?
+  ..defaultValue = json['defaultValue']
+  ..defaultValueExpression = json['defaultValueExpression'] as String?
+  ..correctAnswer = json['correctAnswer'] as String?
+  ..isRequired = json['isRequired'] as bool?
+  ..requiredIf = json['requiredIf'] as String?
+  ..requiredErrorText = json['requiredErrorText'] as String?
+  ..readOnly = json['readOnly'] as bool?
+  ..validators = (json['validators'] as List<dynamic>?)
+      ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..bindings = json['bindings'] as String?
+  ..renderAs = json['renderAs'] as String?
+  ..type = json['type'] as String?
+  ..templateElements = (json['templateElements'] as List<dynamic>?)
+      ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
+      .toList()
+  ..templateTitle = json['templateTitle'] as String?
+  ..templateDescription = json['templateDescription'] as String?
+  ..allowAddPanel = json['allowAddPanel'] as bool?
+  ..allowRemovePanel = json['allowRemovePanel'] as bool?
+  ..panelCount = json['panelCount'] as int?
+  ..minPanelCount = json['minPanelCount'] as int?
+  ..maxPanelCount = json['maxPanelCount'] as int?
+  ..defaultPanelValue = json['defaultPanelValue']
+  ..defaultValueFromLastPanel = json['defaultValueFromLastPanel'] as bool?
+  ..panelsState = json['panelsState'] as String?
+  ..keyName = json['keyName'] as String?
+  ..keyDuplicationError = json['keyDuplicationError'] as String?
+  ..confirmDelete = json['confirmDelete'] as bool?
+  ..confirmDeleteText = json['confirmDeleteText'] as String?
+  ..panelAddText = json['panelAddText'] as String?
+  ..panelRemoveText = json['panelRemoveText'] as String?
+  ..panelPrevText = json['panelPrevText'] as String?
+  ..panelNextText = json['panelNextText'] as String?
+  ..showQuestionNumbers = json['showQuestionNumbers'] as String?
+  ..showRangeInProgress = json['showRangeInProgress'] as bool?
+  ..renderMode = json['renderMode'] as String?
+  ..templateTitleLocation = json['templateTitleLocation'] as String?
+  ..panelRemoveButtonLocation = json['panelRemoveButtonLocation'] as String?;
 
 Map<String, dynamic> _$PanelDynamicToJson(PanelDynamic instance) {
   final val = <String, dynamic>{};
@@ -2791,16 +2735,16 @@ Map<String, dynamic> _$PanelDynamicToJson(PanelDynamic instance) {
   return val;
 }
 
-VisibleTrigger _$VisibleTriggerFromJson(Map<String, dynamic> json) {
-  return VisibleTrigger()
-    ..operator = json['operator'] as String?
-    ..value = json['value'] as String?
-    ..expression = json['expression'] as String?
-    ..name = json['name'] as String?
-    ..pages = json['pages'] as String?
-    ..questions =
-        (json['questions'] as List<dynamic>?)?.map((e) => e as String).toList();
-}
+VisibleTrigger _$VisibleTriggerFromJson(Map<String, dynamic> json) =>
+    VisibleTrigger()
+      ..operator = json['operator'] as String?
+      ..value = json['value'] as String?
+      ..expression = json['expression'] as String?
+      ..name = json['name'] as String?
+      ..pages = json['pages'] as String?
+      ..questions = (json['questions'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList();
 
 Map<String, dynamic> _$VisibleTriggerToJson(VisibleTrigger instance) {
   final val = <String, dynamic>{};
@@ -2820,13 +2764,12 @@ Map<String, dynamic> _$VisibleTriggerToJson(VisibleTrigger instance) {
   return val;
 }
 
-CompleteTrigger _$CompleteTriggerFromJson(Map<String, dynamic> json) {
-  return CompleteTrigger()
-    ..operator = json['operator'] as String?
-    ..value = json['value'] as String?
-    ..expression = json['expression'] as String?
-    ..name = json['name'] as String?;
-}
+CompleteTrigger _$CompleteTriggerFromJson(Map<String, dynamic> json) =>
+    CompleteTrigger()
+      ..operator = json['operator'] as String?
+      ..value = json['value'] as String?
+      ..expression = json['expression'] as String?
+      ..name = json['name'] as String?;
 
 Map<String, dynamic> _$CompleteTriggerToJson(CompleteTrigger instance) {
   final val = <String, dynamic>{};
@@ -2844,16 +2787,15 @@ Map<String, dynamic> _$CompleteTriggerToJson(CompleteTrigger instance) {
   return val;
 }
 
-SetvalueTrigger _$SetvalueTriggerFromJson(Map<String, dynamic> json) {
-  return SetvalueTrigger()
-    ..operator = json['operator'] as String?
-    ..value = json['value'] as String?
-    ..expression = json['expression'] as String?
-    ..name = json['name'] as String?
-    ..setToName = json['setToName'] as String?
-    ..setValue = json['setValue'] as String?
-    ..isVariable = json['isVariable'] as bool?;
-}
+SetvalueTrigger _$SetvalueTriggerFromJson(Map<String, dynamic> json) =>
+    SetvalueTrigger()
+      ..operator = json['operator'] as String?
+      ..value = json['value'] as String?
+      ..expression = json['expression'] as String?
+      ..name = json['name'] as String?
+      ..setToName = json['setToName'] as String?
+      ..setValue = json['setValue'] as String?
+      ..isVariable = json['isVariable'] as bool?;
 
 Map<String, dynamic> _$SetvalueTriggerToJson(SetvalueTrigger instance) {
   final val = <String, dynamic>{};
@@ -2874,15 +2816,14 @@ Map<String, dynamic> _$SetvalueTriggerToJson(SetvalueTrigger instance) {
   return val;
 }
 
-CopyValueTrigger _$CopyValueTriggerFromJson(Map<String, dynamic> json) {
-  return CopyValueTrigger()
-    ..operator = json['operator'] as String?
-    ..value = json['value'] as String?
-    ..expression = json['expression'] as String?
-    ..name = json['name'] as String?
-    ..setToName = json['setToName'] as String?
-    ..fromName = json['fromName'] as String?;
-}
+CopyValueTrigger _$CopyValueTriggerFromJson(Map<String, dynamic> json) =>
+    CopyValueTrigger()
+      ..operator = json['operator'] as String?
+      ..value = json['value'] as String?
+      ..expression = json['expression'] as String?
+      ..name = json['name'] as String?
+      ..setToName = json['setToName'] as String?
+      ..fromName = json['fromName'] as String?;
 
 Map<String, dynamic> _$CopyValueTriggerToJson(CopyValueTrigger instance) {
   final val = <String, dynamic>{};
@@ -2902,14 +2843,12 @@ Map<String, dynamic> _$CopyValueTriggerToJson(CopyValueTrigger instance) {
   return val;
 }
 
-SkipTrigger _$SkipTriggerFromJson(Map<String, dynamic> json) {
-  return SkipTrigger()
-    ..operator = json['operator'] as String?
-    ..value = json['value'] as String?
-    ..expression = json['expression'] as String?
-    ..name = json['name'] as String?
-    ..gotoName = json['gotoName'] as String?;
-}
+SkipTrigger _$SkipTriggerFromJson(Map<String, dynamic> json) => SkipTrigger()
+  ..operator = json['operator'] as String?
+  ..value = json['value'] as String?
+  ..expression = json['expression'] as String?
+  ..name = json['name'] as String?
+  ..gotoName = json['gotoName'] as String?;
 
 Map<String, dynamic> _$SkipTriggerToJson(SkipTrigger instance) {
   final val = <String, dynamic>{};
@@ -2928,15 +2867,15 @@ Map<String, dynamic> _$SkipTriggerToJson(SkipTrigger instance) {
   return val;
 }
 
-RunExpressionTrigger _$RunExpressionTriggerFromJson(Map<String, dynamic> json) {
-  return RunExpressionTrigger()
-    ..operator = json['operator'] as String?
-    ..value = json['value'] as String?
-    ..expression = json['expression'] as String?
-    ..name = json['name'] as String?
-    ..setToName = json['setToName'] as String?
-    ..runExpression = json['runExpression'] as String?;
-}
+RunExpressionTrigger _$RunExpressionTriggerFromJson(
+        Map<String, dynamic> json) =>
+    RunExpressionTrigger()
+      ..operator = json['operator'] as String?
+      ..value = json['value'] as String?
+      ..expression = json['expression'] as String?
+      ..name = json['name'] as String?
+      ..setToName = json['setToName'] as String?
+      ..runExpression = json['runExpression'] as String?;
 
 Map<String, dynamic> _$RunExpressionTriggerToJson(
     RunExpressionTrigger instance) {
@@ -2957,12 +2896,11 @@ Map<String, dynamic> _$RunExpressionTriggerToJson(
   return val;
 }
 
-NumericValidator _$NumericValidatorFromJson(Map<String, dynamic> json) {
-  return NumericValidator()
-    ..type = json['type'] as String?
-    ..minValue = json['minValue'] as num?
-    ..maxValue = json['maxValue'] as num?;
-}
+NumericValidator _$NumericValidatorFromJson(Map<String, dynamic> json) =>
+    NumericValidator()
+      ..type = json['type'] as String?
+      ..minValue = json['minValue'] as num?
+      ..maxValue = json['maxValue'] as num?;
 
 Map<String, dynamic> _$NumericValidatorToJson(NumericValidator instance) {
   final val = <String, dynamic>{};
@@ -2979,13 +2917,12 @@ Map<String, dynamic> _$NumericValidatorToJson(NumericValidator instance) {
   return val;
 }
 
-TextValidator _$TextValidatorFromJson(Map<String, dynamic> json) {
-  return TextValidator()
-    ..type = json['type'] as String?
-    ..minLength = json['minLength'] as int?
-    ..maxLength = json['maxLength'] as int?
-    ..allowDigits = json['allowDigits'] as bool?;
-}
+TextValidator _$TextValidatorFromJson(Map<String, dynamic> json) =>
+    TextValidator()
+      ..type = json['type'] as String?
+      ..minLength = json['minLength'] as int?
+      ..maxLength = json['maxLength'] as int?
+      ..allowDigits = json['allowDigits'] as bool?;
 
 Map<String, dynamic> _$TextValidatorToJson(TextValidator instance) {
   final val = <String, dynamic>{};
@@ -3003,12 +2940,12 @@ Map<String, dynamic> _$TextValidatorToJson(TextValidator instance) {
   return val;
 }
 
-AnswerCountValidator _$AnswerCountValidatorFromJson(Map<String, dynamic> json) {
-  return AnswerCountValidator()
-    ..type = json['type'] as String?
-    ..minCount = json['minCount'] as int?
-    ..maxCount = json['maxCount'] as int?;
-}
+AnswerCountValidator _$AnswerCountValidatorFromJson(
+        Map<String, dynamic> json) =>
+    AnswerCountValidator()
+      ..type = json['type'] as String?
+      ..minCount = json['minCount'] as int?
+      ..maxCount = json['maxCount'] as int?;
 
 Map<String, dynamic> _$AnswerCountValidatorToJson(
     AnswerCountValidator instance) {
@@ -3026,11 +2963,10 @@ Map<String, dynamic> _$AnswerCountValidatorToJson(
   return val;
 }
 
-RegexValidator _$RegexValidatorFromJson(Map<String, dynamic> json) {
-  return RegexValidator()
-    ..type = json['type'] as String?
-    ..regex = json['regex'] as String?;
-}
+RegexValidator _$RegexValidatorFromJson(Map<String, dynamic> json) =>
+    RegexValidator()
+      ..type = json['type'] as String?
+      ..regex = json['regex'] as String?;
 
 Map<String, dynamic> _$RegexValidatorToJson(RegexValidator instance) {
   final val = <String, dynamic>{};
@@ -3046,9 +2982,8 @@ Map<String, dynamic> _$RegexValidatorToJson(RegexValidator instance) {
   return val;
 }
 
-EmailValidator _$EmailValidatorFromJson(Map<String, dynamic> json) {
-  return EmailValidator()..type = json['type'] as String?;
-}
+EmailValidator _$EmailValidatorFromJson(Map<String, dynamic> json) =>
+    EmailValidator()..type = json['type'] as String?;
 
 Map<String, dynamic> _$EmailValidatorToJson(EmailValidator instance) {
   final val = <String, dynamic>{};
@@ -3063,11 +2998,10 @@ Map<String, dynamic> _$EmailValidatorToJson(EmailValidator instance) {
   return val;
 }
 
-ExpressionValidator _$ExpressionValidatorFromJson(Map<String, dynamic> json) {
-  return ExpressionValidator()
-    ..type = json['type'] as String?
-    ..expression = json['expression'] as String?;
-}
+ExpressionValidator _$ExpressionValidatorFromJson(Map<String, dynamic> json) =>
+    ExpressionValidator()
+      ..type = json['type'] as String?
+      ..expression = json['expression'] as String?;
 
 Map<String, dynamic> _$ExpressionValidatorToJson(ExpressionValidator instance) {
   final val = <String, dynamic>{};
