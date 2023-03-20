@@ -18,6 +18,7 @@ jobs:
           cd example
           flutter config --enable-web
           flutter pub get
+      - run: flutter test
       - run: |
           cd example
           flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
