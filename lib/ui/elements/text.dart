@@ -71,7 +71,7 @@ final SurveyElementBuilder textBuilder =
 };
 
 final SurveyFormControlBuilder textControlBuilder =
-    (s.ElementBase element, {validators = const []}) {
+    (s.ElementBase element, {validators = const <ValidatorFunction>[]}) {
   final e = element as s.Text;
   if (e.inputType == 'date' ||
       e.inputType == 'datetime' ||
