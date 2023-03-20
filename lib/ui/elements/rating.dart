@@ -10,14 +10,14 @@ final SurveyElementBuilder ratingBuilder =
     (context, element, {bool hasTitle = true}) {
   final e = element as s.Rating;
   FormGroup buildForm() =>
-      fb.group({element.name!: FormControl<int>(value: e.rateMin ?? 1)});
+      fb.group({element.name!: FormControl<int>(value: e.defaultValue)});
 
   final textStyle = Theme.of(context)
       .textTheme
       .bodyText2
       ?.copyWith(color: Theme.of(context).primaryColor);
 
-  Map<int, Widget> getChildren({required int selectedValue}) {
+  Map<int, Widget> getChildren({required int? selectedValue}) {
     final children = <int, Widget>{};
     if (e.rateValues != null && e.rateValues!.length > 0) {
       for (final v in e.rateValues!) {
@@ -27,7 +27,7 @@ final SurveyElementBuilder ratingBuilder =
         );
       }
     } else {
-      //use max, min,step
+      //use max, min, step
       final maxValue = e.rateMax ?? 5;
       final min = e.rateMin ?? 1;
       final step = e.rateStep ?? 1;
@@ -48,12 +48,12 @@ final SurveyElementBuilder ratingBuilder =
   return ReactiveFormBuilder(
     form: buildForm,
     builder: (context, formGroup, child) {
-      return ReactiveValueListenableBuilder(
-        formControl: formGroup.control(element.name!),
+      return ReactiveValueListenableBuilder<int?>(
+        formControlName: element.name!,
         builder: (context, control, child) {
           return ReactiveSegmentedControl<int, int>(
             formControlName: element.name!,
-            children: getChildren(selectedValue: control.value as int),
+            children: getChildren(selectedValue: control.value as int?),
           ).wrapQuestionTitle(element, hasTitle: hasTitle);
         },
       );
