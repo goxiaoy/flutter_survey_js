@@ -9,8 +9,6 @@ import 'survey_element_factory.dart';
 final SurveyElementBuilder ratingBuilder =
     (context, element, {bool hasTitle = true}) {
   final e = element as s.Rating;
-  FormGroup buildForm() =>
-      fb.group({element.name!: FormControl<int>(value: e.defaultValue)});
 
   final textStyle = Theme.of(context)
       .textTheme
@@ -45,18 +43,13 @@ final SurveyElementBuilder ratingBuilder =
     return children;
   }
 
-  return ReactiveFormBuilder(
-    form: buildForm,
-    builder: (context, formGroup, child) {
-      return ReactiveValueListenableBuilder<int?>(
+  return ReactiveValueListenableBuilder<int?>(
+    formControlName: element.name!,
+    builder: (context, control, child) {
+      return ReactiveSegmentedControl<int, int>(
         formControlName: element.name!,
-        builder: (context, control, child) {
-          return ReactiveSegmentedControl<int, int>(
-            formControlName: element.name!,
-            children: getChildren(selectedValue: control.value as int?),
-          ).wrapQuestionTitle(element, hasTitle: hasTitle);
-        },
-      );
+        children: getChildren(selectedValue: control.value),
+      ).wrapQuestionTitle(element, hasTitle: hasTitle);
     },
   );
 };

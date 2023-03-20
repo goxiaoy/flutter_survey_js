@@ -115,8 +115,6 @@ class SurveyWidgetState extends State<SurveyWidget> {
     this.formGroup = elementsToFormGroup(widget.survey.getElements(),
         controlsMap: _controlsMap);
 
-    formGroup.value = widget.answer;
-
     _reCalculatePages();
 
     _listener = this.formGroup.valueChanges.listen((event) {
