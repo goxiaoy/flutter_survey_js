@@ -3,7 +3,7 @@
   "pages": [
     {
       "name": "page1",
-      "title": "asdfasdfasdf",
+      "title": "My Survey",
       "elements": [
         {
           "type": "text",
@@ -161,101 +161,6 @@
             "item1",
             "item2"
           ]
-        }
-      ]
-    },
-    {
-      "name": "page2",
-      "elements": [
-        {
-          "type": "text",
-          "name": "name",
-          "state": "expanded",
-          "title": "Please enter your name:"
-        },
-        {
-          "type": "text",
-          "name": "price",
-          "title": "Please enter price",
-          "inputType": "number"
-        },
-        {
-          "type": "text",
-          "name": "birthdate",
-          "title": "Your birthdate:",
-          "inputType": "date"
-        },
-        {
-          "type": "text",
-          "name": "color",
-          "title": "Your favorite color:",
-          "inputType": "color"
-        },
-        {
-          "type": "text",
-          "name": "email",
-          "title": "Your e-mail:",
-          "isRequired": true,
-          "validators": [
-            {
-              "type": "email"
-            }
-          ],
-          "inputType": "email"
-        },
-        {
-          "type": "text",
-          "name": "datetime",
-          "title": "Your lunch time:",
-          "inputType": "datetime"
-        },
-        {
-          "type": "text",
-          "name": "datetime-local",
-          "title": "Your supper time:",
-          "inputType": "datetime-local"
-        },
-        {
-          "type": "text",
-          "name": "month",
-          "title": "Your favorite month:",
-          "inputType": "month"
-        },
-        {
-          "type": "text",
-          "name": "password",
-          "title": "Please enter password:",
-          "inputType": "password"
-        },
-        {
-          "type": "text",
-          "name": "range",
-          "title": "Please set price range:",
-          "inputType": "range"
-        },
-        {
-          "type": "text",
-          "name": "tel",
-          "title": "Enter your phone number",
-          "inputType": "tel"
-        },
-        {
-          "type": "text",
-          "name": "time",
-          "title": "When do you watch TV?",
-          "inputType": "time"
-        },
-        {
-          "type": "text",
-          "name": "url",
-          "title": "Add link to your site please",
-          "inputType": "url"
-        },
-        {
-          "type": "text",
-          "name": "week",
-          "title": "Mark any week which you want",
-          "inputType": "week"
         }
       ]
     }

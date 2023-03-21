@@ -3,6 +3,7 @@ import 'dart:core';
 
 import 'package:device_preview/device_preview.dart';
 import 'package:example/components/with_controller.dart';
+import 'package:example/components/with_custom_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -74,79 +75,107 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String survey = "";
+  String multiPageSurvey = "";
+  String singlePageSurvey = "";
 
   late Future<String> assetLoader;
 
   @override
   void initState() {
-    assetLoader = rootBundle
-        .loadString('assets/example1.json')
-        .then((value) => survey = value);
+    assetLoader = rootBundle.loadString('assets/multi_page.json').then((value) {
+      multiPageSurvey = value;
+      return rootBundle
+          .loadString('assets/single_page.json')
+          .then((value) => singlePageSurvey = value);
+    });
     super.initState();
+    rootBundle.loadString('assets/example1.json').then((value) {
+      setState(() {
+        multiPageSurvey = value;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('Survey complete json test'),
-            ),
-            body: FutureBuilder(
-              future: this.assetLoader,
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                if (!snapshot.hasData) {
-                  return CircularProgressIndicator();
-                }
-                return Column(children: [
-                  Wrap(
-                    direction: Axis.horizontal,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Simple(
-                                      survey: toSurvey(survey),
-                                    )),
-                          )
-                        },
-                        child: Text(
-                          'Simple',
-                        ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Survey complete json test'),
+        ),
+        body: FutureBuilder(
+          future: this.assetLoader,
+          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+            return Column(
+              children: [
+                Wrap(
+                  direction: Axis.horizontal,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Simple(
+                                    survey: toSurvey(multiPageSurvey),
+                                  )),
+                        )
+                      },
+                      child: Text(
+                        'Simple',
                       ),
-                      ElevatedButton(
-                        onPressed: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WithController(
-                                      survey: toSurvey(survey),
-                                    )),
-                          )
-                        },
-                        child: Text(
-                          'WithController',
-                        ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WithController(
+                                    survey: toSurvey(multiPageSurvey),
+                                  )),
+                        )
+                      },
+                      child: Text(
+                        'WithController',
                       ),
-                    ],
-                  ),
-                  Expanded(
-                      child: JsonEditor.string(
-                    jsonString: survey,
+                    ),
+                    ElevatedButton(
+                      onPressed: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WithCustomScrollView(
+                                    survey: toSurvey(singlePageSurvey),
+                                  )),
+                        )
+                      },
+                      child: Text(
+                        'WithCustomScrollView',
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: JsonEditor.string(
+                    jsonString: multiPageSurvey,
                     onValueChanged: (value) {
-                      if (value.toString() != survey && mounted) {
+                      if (value.toString() != multiPageSurvey && mounted) {
                         setState(() {
-                          survey = value.toString();
+                          multiPageSurvey = value.toString();
                         });
                       }
                     },
-                  ))
-                ]);
-              },
-            )));
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 }
 
