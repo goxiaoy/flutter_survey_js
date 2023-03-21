@@ -57,7 +57,9 @@ extension ElementExtension on s.ElementBase {
       final c = SurveyElementFactory().resolveFormControl(this);
 
       final res = c?.call(this, validators: validators) ??
-          FormControl<Object>(validators: validators);
+          FormControl<Object>(
+            validators: validators,
+          );
       return res;
     };
 

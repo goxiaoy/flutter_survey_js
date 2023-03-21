@@ -52,7 +52,9 @@ class SurveyElementFactory {
         control: (element, {validators = const []}) =>
             FormControl<bool>(validators: validators));
 
-    register<s.Rating>(ratingBuilder);
+    register<s.Rating>(ratingBuilder,
+        control: (element, {validators = const []}) => FormControl<int>(
+            validators: validators, value: (element as s.Rating).defaultValue));
 
     register<s.Comment>(
         (context, element, {bool hasTitle = true}) => ReactiveTextField(
