@@ -42,4 +42,63 @@ main() {
       });
     });
   });
+
+  testWidgets('Does not use a PageView when there is only one page',
+      (widgetTester) async {
+    await widgetTester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: [
+          s.MultiAppLocalizationsDelegate(),
+        ],
+        home: Material(
+          child: SurveyWidget(
+            survey: TestData.survey(
+              pages: [
+                TestData.page(elements: [
+                  s.Text()..name = 'some name',
+                ]),
+              ],
+            )..questions = null,
+          ),
+        ),
+      ),
+    );
+    await widgetTester.pump();
+    await widgetTester.idle();
+
+    expect(find.byType(PageView), findsNothing);
+  });
+
+  testWidgets('Does use a PageView when there are multiple pages',
+      (widgetTester) async {
+    await widgetTester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: [
+          s.MultiAppLocalizationsDelegate(),
+        ],
+        home: Material(
+          child: SurveyWidget(
+            survey: TestData.survey(
+              pages: [
+                TestData.page(
+                  elements: [
+                    s.Text()..name = 'some name',
+                  ],
+                ),
+                TestData.page(
+                  elements: [
+                    s.Text()..name = 'some name',
+                  ],
+                ),
+              ],
+            )..questions = null,
+          ),
+        ),
+      ),
+    );
+    await widgetTester.pump();
+    await widgetTester.idle();
+
+    expect(find.byType(PageView), findsOneWidget);
+  });
 }
