@@ -20,8 +20,8 @@ const RESOURCES = {
 "assets/packages/im_stepper/assets/me.jpg": "487511e754834bdf2e6771376d59707e",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/NOTICES": "4aa885b5600c9464b61951483069ec0c",
-"index.html": "090bd5b4894d8b60c84a7b1d404b12f5",
-"/": "090bd5b4894d8b60c84a7b1d404b12f5",
+"index.html": "3ffd32dea773b18dd19b716da0147e32",
+"/": "3ffd32dea773b18dd19b716da0147e32",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
 };
