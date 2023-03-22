@@ -51,8 +51,12 @@ class MatrixElement extends StatelessWidget {
               children: [
                 //Row name
                 TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Text(row.text ?? "")),
+                  verticalAlignment: TableCellVerticalAlignment.middle,
+                  child: Text(
+                    row.text ?? '',
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
                 ...(matrix.columns ?? []).map((column) {
                   // matrix use the same row control
                   return TableCell(
@@ -85,7 +89,10 @@ class _MatrixTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Text(column.text ?? column.value?.toString() ?? "",
-        softWrap: true, style: Theme.of(context).textTheme.subtitle1);
+    return new Text(
+      column.text ?? column.value?.toString() ?? "",
+      softWrap: true,
+      style: Theme.of(context).textTheme.bodyText2,
+    );
   }
 }
