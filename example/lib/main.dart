@@ -76,13 +76,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
 
-  late Future<String> assetLoader;
+  late Future<List<Null>> assetLoader;
+  Map<String, String> _surveyMap = {};
 
   @override
   void initState() {
-    assetLoader = rootBundle
-        .loadString('assets/example1.json')
-        .then((value) => survey = value);
+    assetLoader = Future.wait([
+      rootBundle.loadString('assets/complex.json').then((value) {
+        _surveyMap["Complex"] = JsonElement.format(value);
+        //set default as multi page
+        setState(() {
+          survey = value;
+        });
+      }),
+      rootBundle.loadString('assets/single_page.json').then((value) {
+        _surveyMap["Single Page"] = JsonElement.format(value);
+        //set default as multi page
+        setState(() {
+          survey = value;
+        });
+      }),
+    ]);
     super.initState();
   }
 
@@ -95,7 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: FutureBuilder(
               future: this.assetLoader,
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+              builder:
+                  (BuildContext context, AsyncSnapshot<List<Null>> snapshot) {
                 if (!snapshot.hasData) {
                   return CircularProgressIndicator();
                 }
@@ -132,6 +147,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ],
+                  ),
+                  Divider(),
+                  Wrap(
+                    direction: Axis.horizontal,
+                    children: _surveyMap.entries.map((p) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            survey = p.value;
+                          });
+                        },
+                        child: Text(
+                          p.key,
+                        ),
+                      );
+                    }).toList(),
                   ),
                   Expanded(
                       child: JsonEditor.string(
