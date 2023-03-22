@@ -24,7 +24,7 @@ dependencies:
   reactive_image_picker: ^0.12.0
   implicitly_animated_reorderable_list_2: ^0.5.0
   flutter_colorpicker: ^1.0.3
-  signature: ^5.3.2
+  signature: ^4.1.1
   logging: ^1.0.1
   intl: ^0.17.0
   json_annotation: ^4.6.0
