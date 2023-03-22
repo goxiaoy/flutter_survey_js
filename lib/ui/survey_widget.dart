@@ -101,6 +101,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
             currentPage: currentPage,
             initialPage: initialPage,
             showQuestionsInOnePage: widget.showQuestionsInOnePage,
+            controller: widget.controller,
             child: Builder(
                 builder: (context) =>
                     (widget.builder ?? defaultBuilder)(context)),
@@ -175,6 +176,7 @@ class SurveyProvider extends InheritedWidget {
   final int currentPage;
   final int initialPage;
   final bool showQuestionsInOnePage;
+  final SurveyController? controller;
 
   SurveyProvider({
     required this.elementsState,
@@ -184,6 +186,7 @@ class SurveyProvider extends InheritedWidget {
     required this.currentPage,
     required this.initialPage,
     this.showQuestionsInOnePage = false,
+    this.controller,
   }) : super(child: child);
 
   static SurveyProvider of(BuildContext context) {
