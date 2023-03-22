@@ -100,6 +100,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
             elementsState: elementsState,
             currentPage: currentPage,
             initialPage: initialPage,
+            showQuestionsInOnePage: widget.showQuestionsInOnePage,
             child: Builder(
                 builder: (context) =>
                     (widget.builder ?? defaultBuilder)(context)),
@@ -132,7 +133,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
   }
 
-  void _submit() {
+  void submit() {
     if (formGroup.valid) {
       widget.onSubmit?.call(formGroup.value);
     } else {
@@ -160,7 +161,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     if (!finished) {
       toPage(_currentPage + 1);
     } else {
-      _submit();
+      submit();
     }
     return finished;
   }
@@ -173,6 +174,7 @@ class SurveyProvider extends InheritedWidget {
   final ElementsState elementsState;
   final int currentPage;
   final int initialPage;
+  final bool showQuestionsInOnePage;
 
   SurveyProvider({
     required this.elementsState,
@@ -181,6 +183,7 @@ class SurveyProvider extends InheritedWidget {
     required this.formGroup,
     required this.currentPage,
     required this.initialPage,
+    this.showQuestionsInOnePage = false,
   }) : super(child: child);
 
   static SurveyProvider of(BuildContext context) {
@@ -227,7 +230,7 @@ class SurveyController {
 
   void submit() {
     assert(_widgetState != null, "SurveyWidget not initialized");
-    _widgetState?._submit();
+    _widgetState?.submit();
   }
 
   // nextPageOrSubmit return true if submit or return false for next page

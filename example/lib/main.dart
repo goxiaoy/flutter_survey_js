@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:device_preview/device_preview.dart';
-import 'package:example/components/with_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:json_editor/json_editor.dart';
 
+import 'components/custom_layout.dart';
 import 'components/simple.dart';
 
 void main() {
@@ -124,13 +124,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => WithController(
+                                builder: (context) => CustomLayoutPage(
                                       survey: toSurvey(survey),
                                     )),
                           )
                         },
                         child: Text(
-                          'WithController',
+                          'Customize',
                         ),
                       ),
                     ],
