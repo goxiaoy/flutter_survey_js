@@ -55,7 +55,6 @@ class WithController extends StatelessWidget {
                               },
                             );
                           },
-                          hideSubmitButton: true,
                           controller: surveyController,
                         ),
                       ),

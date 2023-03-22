@@ -2,15 +2,19 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/model/survey.dart' as s;
-import 'package:flutter_survey_js/ui/survey_page_widget.dart';
-import 'package:im_stepper/stepper.dart';
+import 'package:flutter_survey_js/survey.dart';
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'elements_state.dart';
 import 'form_control.dart';
+
+final defaultBuilder = (BuildContext context) {
+  return SurveyLayout();
+};
+
+typedef SurveyBuilder = Widget Function(BuildContext context);
 
 class SurveyWidget extends StatefulWidget {
   final s.Survey survey;
@@ -19,13 +23,7 @@ class SurveyWidget extends StatefulWidget {
   final ValueSetter<Map<String, Object?>?>? onChange;
   final bool showQuestionsInOnePage;
   final SurveyController? controller;
-  final bool hideSubmitButton;
-  final Widget Function(BuildContext context, s.Survey survey)?
-      surveyTitleBuilder;
-  final Widget Function(BuildContext context, int pageCount, int currentPage)?
-      stepperBuilder;
-  final Widget Function(BuildContext context, s.Page page)? pageBuilder;
-  final EdgeInsets? padding;
+  final SurveyBuilder? builder;
 
   const SurveyWidget({
     Key? key,
@@ -33,13 +31,9 @@ class SurveyWidget extends StatefulWidget {
     this.answer,
     this.onSubmit,
     this.onChange,
-    this.showQuestionsInOnePage = false,
     this.controller,
-    this.hideSubmitButton = false,
-    this.surveyTitleBuilder,
-    this.stepperBuilder,
-    this.pageBuilder,
-    this.padding,
+    this.builder,
+    this.showQuestionsInOnePage = false,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
@@ -49,122 +43,40 @@ class SurveyWidgetState extends State<SurveyWidget> {
   final Logger logger = Logger('SurveyWidgetState');
   late FormGroup formGroup;
   late Map<s.ElementBase, Object> _controlsMap;
-  late PageController? pageController;
 
   late int pageCount;
-
-  late List<s.Page> pages;
 
   StreamSubscription<Map<String, Object?>?>? _listener;
 
   int _currentPage = 0;
 
+  // TODO calculate initial page
+  int initialPage = 0;
+
+  int get currentPage => _currentPage;
+
   @override
   void initState() {
     super.initState();
     widget.controller?._bind(this);
-    _setPageCount();
     rebuildForm();
   }
 
-  void _setPageCount() {
-    pageCount = widget.survey.questions == null
-        ? (widget.survey.pages ?? []).length
-        : 1;
+  static SurveyWidgetState of(BuildContext context) {
+    return context.findAncestorStateOfType<SurveyWidgetState>()!;
   }
 
-  Future<void> toPage(int newPage) async {
-    final p = min(pageCount - 1, max(0, newPage));
-    await pageController?.animateToPage(p,
-        duration: Duration(milliseconds: 100), curve: Curves.easeIn);
+  void toPage(int newPage) {
+    final p = max(0, min(pageCount - 1, newPage));
+    setState(() {
+      _currentPage = p;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (widget.survey.title != null)
-          widget.surveyTitleBuilder != null
-              ? widget.surveyTitleBuilder!(context, widget.survey)
-              : Container(
-                  child: ListTile(
-                    title: Text(widget.survey.title!),
-                  ),
-                ),
-        Expanded(
-            child: ReactiveForm(
-          formGroup: this.formGroup,
-          child: StreamBuilder(
-            stream: this.formGroup.valueChanges,
-            builder: (BuildContext context,
-                AsyncSnapshot<Map<String, Object?>?> snapshot) {
-              return rebuildPages();
-            },
-          ),
-        ))
-      ],
-    );
-  }
-
-  void rebuildForm() {
-    logger.info("Rebuild form");
-    _listener?.cancel();
-    //clear
-    _controlsMap = {};
-    _currentPage = 0;
-    if (pageCount > 1) {
-      pageController = PageController(
-        initialPage: _currentPage,
-        keepPage: true,
-      );
-      pageController!.addListener(() {
-        setState(() {
-          _currentPage = pageController!.page!.toInt();
-        });
-      });
-    }
-
-    this.formGroup = elementsToFormGroup(widget.survey.getElements(),
-        controlsMap: _controlsMap);
-
-    formGroup.patchValue(widget.answer, updateParent: true);
-
-    _reCalculatePages();
-
-    _listener = this.formGroup.valueChanges.listen((event) {
-      logger.info('Value changed $event');
-      widget.onChange?.call(event);
-    });
-  }
-
-  void _reCalculatePages() {
-    if (widget.survey.questions != null) {
-      pages = [
-        s.Page()
-          ..elements = widget.survey.questions
-          ..description = widget.survey.description
-      ];
-    } else {
-      if (!widget.showQuestionsInOnePage) {
-        pages = widget.survey.pages ?? [];
-      } else {
-        pages = [
-          s.Page()
-            ..elements = (widget.survey.pages ?? [])
-                .map<List<s.ElementBase>>(
-                    (e) => e.elements ?? <s.ElementBase>[])
-                .fold(<s.ElementBase>[],
-                    (previousValue, element) => previousValue!..addAll(element))
-        ];
-      }
-    }
-  }
-
-  Widget rebuildPages() {
     //TODO recalculate page count and visible
-    _setPageCount();
     //TODO calculate status
-
     Map<s.ElementBase, ElementStatus> status = {};
     int index = 0;
     for (final kv in _controlsMap.entries) {
@@ -175,52 +87,49 @@ class SurveyWidgetState extends State<SurveyWidget> {
       }
     }
     final elementsState = ElementsState(status);
-    return SurveyProvider(
-        survey: widget.survey,
-        formGroup: formGroup,
-        elementsState: elementsState,
-        child: Padding(
-          padding: widget.padding ?? const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              if (pageCount > 1)
-                widget.stepperBuilder != null
-                    ? widget.stepperBuilder!(context, pageCount, _currentPage)
-                    : DotStepper(
-                        // direction: Axis.vertical,
-                        dotCount: pageCount,
-                        dotRadius: 12,
-                        activeStep: _currentPage,
-                        shape: Shape.circle,
-                        spacing: 10,
-                        indicator: Indicator.shift,
-                        onDotTapped: (tappedDotIndex) async {
-                          toPage(tappedDotIndex);
-                        },
-                        indicatorDecoration: IndicatorDecoration(
-                            color: Theme.of(context).primaryColor,
-                            strokeColor: Theme.of(context).primaryColor),
-                      ),
 
-              /// Jump buttons.
-              Expanded(
-                child: buildPages(),
-              ),
+    return ReactiveForm(
+      formGroup: this.formGroup,
+      child: StreamBuilder(
+        stream: this.formGroup.valueChanges,
+        builder: (BuildContext context,
+            AsyncSnapshot<Map<String, Object?>?> snapshot) {
+          return SurveyProvider(
+            survey: widget.survey,
+            formGroup: formGroup,
+            elementsState: elementsState,
+            currentPage: currentPage,
+            initialPage: initialPage,
+            child: Builder(
+                builder: (context) =>
+                    (widget.builder ?? defaultBuilder)(context)),
+          );
+        },
+      ),
+    );
+  }
 
-              // Next and Previous buttons.
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  if (_currentPage != 0) previousButton(),
-                  if (!(_currentPage == pageCount - 1 &&
-                      widget.hideSubmitButton))
-                    nextButton()
-                ],
-              )
-            ],
-          ),
-        ));
+  void rebuildForm() {
+    logger.info("Rebuild form");
+    _listener?.cancel();
+    //clear
+    _controlsMap = {};
+    _currentPage = 0;
+
+    this.formGroup = elementsToFormGroup(widget.survey.getElements(),
+        controlsMap: _controlsMap);
+
+    formGroup.patchValue(widget.answer, updateParent: true);
+
+    _listener = this.formGroup.valueChanges.listen((event) {
+      logger.fine('Value changed $event');
+      widget.onChange?.call(event);
+    });
+
+    pageCount = widget.survey.getPageCount();
+    if (widget.showQuestionsInOnePage) {
+      pageCount = 1;
+    }
   }
 
   void _submit() {
@@ -237,65 +146,17 @@ class SurveyWidgetState extends State<SurveyWidget> {
     super.dispose();
   }
 
-  Widget buildPages() {
-    Widget itemBuilder(BuildContext context, int index) {
-      final currentPage = pages[index];
-      //build elements
-      return widget.pageBuilder != null
-          ? widget.pageBuilder!(context, currentPage)
-          : SurveyPageWidget(
-              page: currentPage,
-              key: ObjectKey(currentPage),
-            );
-    }
-
-    return pageCount < 2
-        ? itemBuilder(context, 0)
-        : PageView.builder(
-            controller: pageController,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: itemBuilder,
-          );
-  }
-
-  /// Returns the next button widget.
-  Widget nextButton() {
-    final bool finished = _currentPage == pageCount - 1;
-    return ElevatedButton(
-      child:
-          Text(finished ? S.of(context).submitSurvey : S.of(context).nextPage),
-      onPressed: () {
-        nextPageOrSubmit();
-      },
-    );
-  }
-
-  /// Returns the previous button widget.
-  Widget previousButton() {
-    return ElevatedButton(
-      child: Text(S.of(context).previousPage),
-      onPressed: () {
-        setState(() {
-          toPage(_currentPage - 1);
-        });
-      },
-    );
-  }
-
   @override
   void didUpdateWidget(covariant SurveyWidget oldWidget) {
     if (oldWidget.survey != widget.survey) {
       rebuildForm();
-    }
-    if (oldWidget.showQuestionsInOnePage != widget.showQuestionsInOnePage) {
-      _reCalculatePages();
     }
     super.didUpdateWidget(oldWidget);
   }
 
   // nextPageOrSubmit return true if submit or return false for next page
   bool nextPageOrSubmit() {
-    final bool finished = _currentPage == pageCount - 1;
+    final bool finished = _currentPage >= pageCount - 1;
     if (!finished) {
       toPage(_currentPage + 1);
     } else {
@@ -310,11 +171,16 @@ class SurveyProvider extends InheritedWidget {
   final s.Survey survey;
   final FormGroup formGroup;
   final ElementsState elementsState;
+  final int currentPage;
+  final int initialPage;
+
   SurveyProvider({
     required this.elementsState,
     required this.child,
     required this.survey,
     required this.formGroup,
+    required this.currentPage,
+    required this.initialPage,
   }) : super(child: child);
 
   static SurveyProvider of(BuildContext context) {
@@ -378,5 +244,11 @@ class SurveyController {
   void toPage(int newPage) {
     assert(_widgetState != null, "SurveyWidget not initialized");
     _widgetState!.toPage(newPage);
+  }
+}
+
+extension SurveyExtension on s.Survey {
+  int getPageCount() {
+    return this.questions == null ? (this.pages ?? []).length : 1;
   }
 }
