@@ -65,6 +65,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
+  String selectedJson = "";
 
   late Future<List<Null>> assetLoader;
   Map<String, String> _surveyMap = {};
@@ -81,7 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       }),
       rootBundle.loadString('assets/single_page.json').then((value) {
-        _surveyMap["Single Page"] = JsonElement.format(value);
+        _surveyMap["Survey with Single Page"] = JsonElement.format(value);
+      }),
+      rootBundle.loadString('assets/page_without_survey.json').then((value) {
+        _surveyMap["Page without Survey"] = JsonElement.format(value);
       }),
     ]);
     super.initState();

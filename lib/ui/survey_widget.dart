@@ -25,7 +25,7 @@ class SurveyWidget extends StatefulWidget {
   final SurveyController? controller;
   final SurveyBuilder? builder;
 
-  const SurveyWidget({
+  SurveyWidget({
     Key? key,
     required this.survey,
     this.answer,
@@ -35,6 +35,27 @@ class SurveyWidget extends StatefulWidget {
     this.builder,
     this.showQuestionsInOnePage = false,
   }) : super(key: key);
+
+  factory SurveyWidget.fromPage({
+    required s.Page page,
+    Map<String, Object?>? answer,
+    FutureOr<void> Function(dynamic data)? onSubmit,
+    ValueSetter<Map<String, Object?>?>? onChange,
+    SurveyController? controller,
+    SurveyBuilder? builder,
+    bool showQuestionsInOnePage = false,
+  }) {
+    return SurveyWidget(
+      survey: s.Survey()..pages = [page],
+      answer: answer,
+      onSubmit: onSubmit,
+      onChange: onChange,
+      controller: controller,
+      builder: builder,
+      showQuestionsInOnePage: showQuestionsInOnePage,
+    );
+  }
+
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
 }
