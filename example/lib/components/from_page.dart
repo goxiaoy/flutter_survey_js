@@ -8,17 +8,18 @@ class FromPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s.Survey? survey = page == null ? null : s.Survey.fromPage(page!);
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text('Survey test'),
+              title: survey?.title != null ? Text(survey!.title!) : null,
             ),
-            body: page == null
+            body: survey == null
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
                 : s.SurveyWidget(
-                    survey: s.Survey.fromPage(page!),
+                    survey: survey,
                     onChange: (v) {
                       print(v);
                     },

@@ -99,7 +99,14 @@ class Survey {
   String? showTimerPanelMode;
   Survey();
   factory Survey.fromJson(Map<String, dynamic> json) => _$SurveyFromJson(json);
-  factory Survey.fromPage(Page page) => Survey()..pages = [page];
+  factory Survey.fromPage(Page page) {
+    return Survey()
+      ..questions = page.elements
+      ..description = page.description
+      ..maxTimeToFinish = page.maxTimeToFinish
+      ..questionsOrder = page.questionsOrder
+      ..title = page.title;
+  }
   Map<String, dynamic> toJson() => _$SurveyToJson(this);
 
   static String? _boolToString(dynamic inputValue) {
