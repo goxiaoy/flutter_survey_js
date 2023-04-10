@@ -1,0 +1,18 @@
+{
+  "title": "Page without Survey",
+  "elements": [
+    {
+      "type": "radiogroup",
+      "name": "question1",
+      "title": "What's your t-shirt size",
+      "choices": [
+        "Small",
+        "Medium",
+        "Large",
+        "X Large",
+        "XX Large",
+        "XXX Large"
+      ]
+    }
+  ]
+}
