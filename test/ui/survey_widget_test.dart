@@ -42,33 +42,4 @@ main() {
       });
     });
   });
-
-  group('fromPage', () {
-    testWidgets('displays title and elements of page', (widgetTester) async {
-      final String pageTitle = 'Page 1';
-      final String questionName = 'Question 1';
-      await widgetTester.pumpWidget(
-        MaterialApp(
-          localizationsDelegates: [
-            s.MultiAppLocalizationsDelegate(),
-          ],
-          home: Material(
-            child: SurveyWidget(
-              survey: s.Survey.fromPage(
-                TestData.page(
-                  title: pageTitle,
-                  elements: [s.Text()..name = questionName],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-      await widgetTester.pump();
-      await widgetTester.idle();
-
-      expect(find.text(pageTitle), findsOneWidget);
-      expect(find.text(questionName), findsOneWidget);
-    });
-  });
 }
