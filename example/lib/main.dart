@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:example/components/from_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -65,23 +66,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String survey = "";
+  String jsonString = "";
+  String selectedJson = "";
 
   late Future<List<Null>> assetLoader;
-  Map<String, String> _surveyMap = {};
+  Map<String, String> _jsonStringMap = {};
 
   @override
   void initState() {
     assetLoader = Future.wait([
       rootBundle.loadString('assets/complex.json').then((value) {
-        _surveyMap["Complex"] = JsonElement.format(value);
+        _jsonStringMap["Complex"] = JsonElement.format(value);
         //set default as multi page
         setState(() {
-          survey = value;
+          jsonString = value;
         });
       }),
       rootBundle.loadString('assets/single_page.json').then((value) {
-        _surveyMap["Single Page"] = JsonElement.format(value);
+        _jsonStringMap["Survey with Single Page"] = JsonElement.format(value);
+      }),
+      rootBundle.loadString('assets/page_without_survey.json').then((value) {
+        _jsonStringMap["Page without Survey"] = JsonElement.format(value);
       }),
     ]);
     super.initState();
@@ -106,31 +111,51 @@ class _MyHomePageState extends State<MyHomePage> {
                     direction: Axis.horizontal,
                     children: [
                       ElevatedButton(
-                        onPressed: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Simple(
-                                      survey: toSurvey(survey),
-                                    )),
-                          )
-                        },
+                        onPressed: selectedJson == 'Page without Survey'
+                            ? null
+                            : () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Simple(
+                                              survey: toSurvey(jsonString),
+                                            )),
+                                  )
+                                },
                         child: Text(
                           'Simple',
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CustomLayoutPage(
-                                      survey: toSurvey(survey),
-                                    )),
-                          )
-                        },
+                        onPressed: selectedJson == 'Page without Survey'
+                            ? null
+                            : () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CustomLayoutPage(
+                                              survey: toSurvey(jsonString),
+                                            )),
+                                  )
+                                },
                         child: Text(
                           'Customize',
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: selectedJson != 'Page without Survey'
+                            ? null
+                            : () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => FromPage(
+                                              page: toPage(jsonString),
+                                            )),
+                                  )
+                                },
+                        child: Text(
+                          'Page without Survey',
                         ),
                       ),
                     ],
@@ -138,11 +163,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   Divider(),
                   Wrap(
                     direction: Axis.horizontal,
-                    children: _surveyMap.entries.map((p) {
+                    children: _jsonStringMap.entries.map((p) {
                       return ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            survey = p.value;
+                            selectedJson = p.key;
+                            jsonString = p.value;
                           });
                         },
                         child: Text(
@@ -153,11 +179,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Expanded(
                       child: JsonEditor.string(
-                    jsonString: survey,
+                    jsonString: jsonString,
                     onValueChanged: (value) {
-                      if (value.toString() != survey && mounted) {
+                      if (value.toString() != jsonString && mounted) {
                         setState(() {
-                          survey = value.toString();
+                          jsonString = value.toString();
                         });
                       }
                     },
@@ -171,4 +197,9 @@ class _MyHomePageState extends State<MyHomePage> {
 toSurvey(String value) {
   final j = json.decode(value);
   return s.Survey.fromJson(j);
+}
+
+toPage(String value) {
+  final j = json.decode(value);
+  return s.Page.fromJson(j);
 }
