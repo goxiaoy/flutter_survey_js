@@ -176,8 +176,3 @@ extension TestJsonTypeExtension on TestJsonType {
     }
   }
 }
-
-toPage(String value) {
-  final j = json.decode(value);
-  return s.Page.fromJson(j);
-}
