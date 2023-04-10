@@ -65,7 +65,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
-  String selectedJson = "";
 
   late Future<List<Null>> assetLoader;
   Map<String, String> _surveyMap = {};
@@ -152,9 +151,24 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         )));
   }
+
+  toSurvey(String value) {
+    final j = json.decode(value);
+    return s.Survey.fromJson(j);
+  }
 }
 
-toSurvey(String value) {
-  final j = json.decode(value);
-  return s.Survey.fromJson(j);
+enum TestJsonType { simple, complex, pageOnly }
+
+extension TestJsonTypeExtension on TestJsonType {
+  String get buttonName {
+    switch (this) {
+      case TestJsonType.complex:
+        return 'Complex';
+      case TestJsonType.simple:
+        return 'Survey with Single Page';
+      case TestJsonType.pageOnly:
+        return 'Page without Survey';
+    }
+  }
 }

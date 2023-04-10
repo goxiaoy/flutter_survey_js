@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 
 class FromPage extends StatelessWidget {
-  final s.Page? page;
+  final s.Survey? survey;
 
-  const FromPage({Key? key, this.page}) : super(key: key);
+  const FromPage({Key? key, this.survey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final s.Survey? survey = page == null ? null : s.Survey.fromPage(page!);
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
@@ -19,7 +18,7 @@ class FromPage extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : s.SurveyWidget(
-                    survey: survey,
+                    survey: survey!,
                     onChange: (v) {
                       print(v);
                     },
