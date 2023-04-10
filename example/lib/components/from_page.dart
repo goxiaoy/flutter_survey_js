@@ -17,8 +17,8 @@ class FromPage extends StatelessWidget {
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
-                : s.SurveyWidget.fromPage(
-                    page: page!,
+                : s.SurveyWidget(
+                    survey: s.Survey.fromPage(page!),
                     onChange: (v) {
                       print(v);
                     },
