@@ -65,7 +65,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
-
   late Future<List> assetLoader;
   Map<TestJsonType, String> _surveyMap = {};
 
@@ -176,4 +175,9 @@ extension TestJsonTypeExtension on TestJsonType {
         return 'assets/page_without_survey.json';
     }
   }
+}
+
+toPage(String value) {
+  final j = json.decode(value);
+  return s.Page.fromJson(j);
 }
