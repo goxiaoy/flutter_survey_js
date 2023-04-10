@@ -98,8 +98,13 @@ class Survey {
   //     "all",       "page",     "survey"
   String? showTimerPanelMode;
   Survey();
-  factory Survey.fromJson(Map<String, dynamic> json) => _$SurveyFromJson(json);
-  factory Survey.fromPage(Page page) {
+  factory Survey.fromJson(Map<String, dynamic> json) {
+    if (json['pages'] == null) {
+      return surveyFromPage(Page.fromJson(json));
+    }
+    return _$SurveyFromJson(json);
+  }
+  static surveyFromPage(Page page) {
     return Survey()
       ..questions = page.elements
       ..description = page.description
