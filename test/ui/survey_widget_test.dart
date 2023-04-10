@@ -53,10 +53,12 @@ main() {
             s.MultiAppLocalizationsDelegate(),
           ],
           home: Material(
-            child: SurveyWidget.fromPage(
-              page: TestData.page(
-                title: pageTitle,
-                elements: [s.Text()..name = questionName],
+            child: SurveyWidget(
+              survey: s.Survey.fromPage(
+                TestData.page(
+                  title: pageTitle,
+                  elements: [s.Text()..name = questionName],
+                ),
               ),
             ),
           ),
