@@ -14,8 +14,8 @@ final SurveyElementBuilder textBuilder =
   final String? hintText = e.placeholder;
   Widget widget = ReactiveTextField(
     formControlName: element.name!,
-    decoration: InputDecoration(hintText: hintText),
     style: Theme.of(context).textTheme.bodyText2,
+    decoration: InputDecoration(hintText: hintText),
   );
 
   final datePickerTextStyle = Theme.of(context).textTheme.bodyText2;
@@ -25,8 +25,8 @@ final SurveyElementBuilder textBuilder =
       locale: Localizations.localeOf(context),
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.date,
-      decoration: InputDecoration(hintText: hintText),
       style: datePickerTextStyle,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'color') {
@@ -35,8 +35,8 @@ final SurveyElementBuilder textBuilder =
   if (e.inputType == 'email') {
     widget = ReactiveTextField(
       formControlName: element.name!,
-      decoration: InputDecoration(hintText: hintText),
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'datetime') {
@@ -44,8 +44,8 @@ final SurveyElementBuilder textBuilder =
       locale: Localizations.localeOf(context),
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.dateTime,
-      decoration: InputDecoration(hintText: hintText),
       style: datePickerTextStyle,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'datetime-local') {
@@ -61,8 +61,8 @@ final SurveyElementBuilder textBuilder =
       locale: Localizations.localeOf(context),
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.dateTime,
-      decoration: InputDecoration(hintText: hintText),
       style: datePickerTextStyle,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'month') {
@@ -72,8 +72,8 @@ final SurveyElementBuilder textBuilder =
     widget = ReactiveTextField(
       obscureText: true,
       formControlName: element.name!,
-      decoration: InputDecoration(hintText: hintText),
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'range') {}
@@ -81,8 +81,8 @@ final SurveyElementBuilder textBuilder =
     widget = ReactiveTextField(
       keyboardType: TextInputType.phone,
       formControlName: element.name!,
-      decoration: InputDecoration(hintText: hintText),
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'time') {}
@@ -93,8 +93,8 @@ final SurveyElementBuilder textBuilder =
       keyboardType: TextInputType.number,
       formControlName: element.name!,
       valueAccessor: NumStringValueAccessor(),
-      decoration: InputDecoration(hintText: hintText),
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   return widget.wrapQuestionTitle(element, hasTitle: hasTitle);
