@@ -81,7 +81,8 @@ void main() {
     test('maps page description to survey description', () {
       final String description = 'This is my survey';
       final actual =
-          Survey.fromPage(TestData.page(description: description)).description;
+          Survey.surveyFromPage(TestData.page(description: description))
+              .description;
       final expected = description;
       expect(actual, expected);
     });
@@ -92,7 +93,7 @@ void main() {
         TestData.elementBase(name: 'element 2'),
       ];
       final actual =
-          Survey.fromPage(TestData.page(elements: elements)).questions;
+          Survey.surveyFromPage(TestData.page(elements: elements)).questions;
       final expected = elements;
       expect(actual, expected);
     });
@@ -100,7 +101,7 @@ void main() {
     test('maps page maxTimeToFinish to survey maxTimeToFinish', () {
       final int maxTimeToFinish = 60;
       final actual =
-          Survey.fromPage(TestData.page(maxTimeToFinish: maxTimeToFinish))
+          Survey.surveyFromPage(TestData.page(maxTimeToFinish: maxTimeToFinish))
               .maxTimeToFinish;
       final expected = maxTimeToFinish;
       expect(actual, expected);
@@ -109,7 +110,7 @@ void main() {
     test('maps page questionsOrder to survey questionsOrder', () {
       final String questionsOrder = 'random';
       final actual =
-          Survey.fromPage(TestData.page(questionsOrder: questionsOrder))
+          Survey.surveyFromPage(TestData.page(questionsOrder: questionsOrder))
               .questionsOrder;
       final expected = questionsOrder;
       expect(actual, expected);
@@ -117,7 +118,7 @@ void main() {
 
     test('maps page title to survey title', () {
       final String title = 'My survey';
-      final actual = Survey.fromPage(TestData.page(title: title)).title;
+      final actual = Survey.surveyFromPage(TestData.page(title: title)).title;
       final expected = title;
       expect(actual, expected);
     });
