@@ -84,7 +84,6 @@ class TestData {
             completedHtmlOnCondition ?? [htmlConditionItem()]
         ..loadingHtml = loadingHtml ?? 'some loading html'
         ..pages = pages ?? [page()]
-        ..questions = questions ?? [elementBase()]
         ..triggers = triggers ?? [surveyTrigger()]
         ..calculatedValues = calculatedValues ?? [calculatedValue()]
         ..surveyId = surveyId ?? 'some survey id'

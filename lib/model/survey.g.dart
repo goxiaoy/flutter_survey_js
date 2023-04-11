@@ -26,9 +26,6 @@ Survey _$SurveyFromJson(Map<String, dynamic> json) => Survey()
   ..pages = (json['pages'] as List<dynamic>?)
       ?.map((e) => Page.fromJson(e as Map<String, dynamic>))
       .toList()
-  ..questions = (json['questions'] as List<dynamic>?)
-      ?.map((e) => ElementBase.fromJson(e as Map<String, dynamic>))
-      .toList()
   ..triggers = (json['triggers'] as List<dynamic>?)
       ?.map((e) => SurveyTrigger.fromJson(e as Map<String, dynamic>))
       .toList()
@@ -109,7 +106,6 @@ Map<String, dynamic> _$SurveyToJson(Survey instance) {
   writeNotNull('completedHtmlOnCondition', instance.completedHtmlOnCondition);
   writeNotNull('loadingHtml', instance.loadingHtml);
   writeNotNull('pages', instance.pages);
-  writeNotNull('questions', instance.questions);
   writeNotNull('triggers', instance.triggers);
   writeNotNull('calculatedValues', instance.calculatedValues);
   writeNotNull('surveyId', instance.surveyId);

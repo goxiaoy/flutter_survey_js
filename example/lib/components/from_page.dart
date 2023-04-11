@@ -8,6 +8,7 @@ class FromPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return Scaffold(
       appBar: AppBar(
         title: survey?.title != null ? Text(survey!.title!) : null,
@@ -51,5 +52,48 @@ class FromPage extends StatelessWidget {
               ),
       ),
     );
+=======
+    return SafeArea(
+        child: Scaffold(
+            appBar: AppBar(
+              title: survey?.title != null ? Text(survey!.title!) : null,
+            ),
+            body: survey == null
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : s.SurveyWidget(
+                    survey: survey!,
+                    onChange: (v) {
+                      print(v);
+                    },
+                    onSubmit: (v) {
+                      print(v);
+                      showModalBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            height: 400,
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Expanded(
+                                      child: Container(
+                                          child: SingleChildScrollView(
+                                              child: Text(v.toString())))),
+                                  ElevatedButton(
+                                    child: const Text('Close'),
+                                    onPressed: () => Navigator.pop(context),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  )));
+>>>>>>> Issue34
   }
 }
