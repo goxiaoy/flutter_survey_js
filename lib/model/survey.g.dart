@@ -810,7 +810,7 @@ Text _$TextFromJson(Map<String, dynamic> json) => Text()
   ..maxErrorText = json['maxErrorText'] as String?
   ..step = json['step'] as int?
   ..maxLength = json['maxLength'] as int?
-  ..placeHolder = json['placeHolder'] as String?
+  ..placeholder = json['placeholder'] as String?
   ..dataList =
       (json['dataList'] as List<dynamic>?)?.map((e) => e as String).toList();
 
@@ -864,7 +864,7 @@ Map<String, dynamic> _$TextToJson(Text instance) {
   writeNotNull('maxErrorText', instance.maxErrorText);
   writeNotNull('step', instance.step);
   writeNotNull('maxLength', instance.maxLength);
-  writeNotNull('placeHolder', instance.placeHolder);
+  writeNotNull('placeholder', instance.placeholder);
   writeNotNull('dataList', instance.dataList);
   return val;
 }
@@ -955,7 +955,6 @@ MultipleTextItem _$MultipleTextItemFromJson(Map<String, dynamic> json) =>
     MultipleTextItem()
       ..name = json['name'] as String?
       ..isRequired = json['isRequired'] as bool?
-      ..placeHolder = json['placeHolder'] as String?
       ..inputType = json['inputType'] as String?
       ..title = json['title'] as String?
       ..maxLength = json['maxLength'] as int?
@@ -976,7 +975,6 @@ Map<String, dynamic> _$MultipleTextItemToJson(MultipleTextItem instance) {
 
   writeNotNull('name', instance.name);
   writeNotNull('isRequired', instance.isRequired);
-  writeNotNull('placeHolder', instance.placeHolder);
   writeNotNull('inputType', instance.inputType);
   writeNotNull('title', instance.title);
   writeNotNull('maxLength', instance.maxLength);
@@ -1331,7 +1329,7 @@ Comment _$CommentFromJson(Map<String, dynamic> json) => Comment()
   ..maxLength = json['maxLength'] as int?
   ..cols = json['cols'] as int?
   ..rows = json['rows'] as int?
-  ..placeHolder = json['placeHolder'] as String?
+  ..placeholder = json['placeholder'] as String?
   ..textUpdateMode = json['textUpdateMode'] as String?;
 
 Map<String, dynamic> _$CommentToJson(Comment instance) {
@@ -1375,7 +1373,7 @@ Map<String, dynamic> _$CommentToJson(Comment instance) {
   writeNotNull('maxLength', instance.maxLength);
   writeNotNull('cols', instance.cols);
   writeNotNull('rows', instance.rows);
-  writeNotNull('placeHolder', instance.placeHolder);
+  writeNotNull('placeholder', instance.placeholder);
   writeNotNull('textUpdateMode', instance.textUpdateMode);
   return val;
 }

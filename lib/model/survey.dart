@@ -238,7 +238,7 @@ class Text extends Question {
   String? maxErrorText;
   int? step;
   int? maxLength;
-  String? placeHolder;
+  String? placeholder;
   List<String>? dataList;
   Text();
   factory Text.fromJson(Map<String, dynamic> json) => _$TextFromJson(json);
@@ -262,7 +262,6 @@ class MultipleText extends Question {
 class MultipleTextItem {
   String? name;
   bool? isRequired;
-  String? placeHolder;
   //   "color",
   // "date",
   // "datetime",
@@ -354,7 +353,7 @@ class Comment extends Question {
   int? maxLength;
   int? cols;
   int? rows;
-  String? placeHolder;
+  String? placeholder;
   //   "default",
   // "onBlur",
   // "onTyping"

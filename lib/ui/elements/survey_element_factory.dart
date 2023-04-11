@@ -67,6 +67,7 @@ class SurveyElementFactory {
                 filled: true,
                 contentPadding:
                     EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+                hintText: (element as s.Comment).placeholder,
               ),
             ).wrapQuestionTitle(element, hasTitle: hasTitle));
 
