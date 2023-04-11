@@ -17,7 +17,6 @@ class TestData {
     List<HtmlConditionItem>? completedHtmlOnCondition,
     String? loadingHtml,
     List<Page>? pages,
-    List<ElementBase>? questions,
     List<SurveyTrigger>? triggers,
     List<CalculatedValue>? calculatedValues,
     String? surveyId,
@@ -84,7 +83,6 @@ class TestData {
             completedHtmlOnCondition ?? [htmlConditionItem()]
         ..loadingHtml = loadingHtml ?? 'some loading html'
         ..pages = pages ?? [page()]
-        ..questions = questions ?? [elementBase()]
         ..triggers = triggers ?? [surveyTrigger()]
         ..calculatedValues = calculatedValues ?? [calculatedValue()]
         ..surveyId = surveyId ?? 'some survey id'

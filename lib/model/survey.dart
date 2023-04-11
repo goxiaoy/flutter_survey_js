@@ -28,7 +28,6 @@ class Survey {
   List<HtmlConditionItem>? completedHtmlOnCondition;
   String? loadingHtml;
   List<Page>? pages;
-  List<ElementBase>? questions;
   List<SurveyTrigger>? triggers;
   List<CalculatedValue>? calculatedValues;
   String? surveyId;
@@ -106,7 +105,7 @@ class Survey {
   }
   static surveyFromPage(Page page) {
     return Survey()
-      ..questions = page.elements
+      ..pages = [Page()..elements = page.elements]
       ..description = page.description
       ..maxTimeToFinish = page.maxTimeToFinish
       ..questionsOrder = page.questionsOrder
