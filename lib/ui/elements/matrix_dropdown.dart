@@ -30,23 +30,23 @@ class MatrixDropdownElement extends StatelessWidget {
       formControlName: formControlName,
       child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-        List<TableRow> _list = <TableRow>[];
+        List<TableRow> list = <TableRow>[];
 
         /// Add title bar
-        _list.add(TableRow(
-            decoration: BoxDecoration(
+        list.add(TableRow(
+            decoration: const BoxDecoration(
               color: Colors.grey,
             ),
             children: [
-              TableCell(child: Text('')),
+              const TableCell(child: Text('')),
               ...((matrix.columns ?? []).map((e) => TableCell(
                     child: MatrixDropdownTitle(e),
                   )))
             ]));
         (matrix.rows ?? []).asMap().forEach((i, row) {
-          _list.add(TableRow(
+          list.add(TableRow(
               decoration: i % 2 != 0
-                  ? BoxDecoration(
+                  ? const BoxDecoration(
                       color: Colors.grey,
                     )
                   : null,
@@ -86,7 +86,7 @@ class MatrixDropdownElement extends StatelessWidget {
             width: 1.0,
           ),
           // columnWidths: map,
-          children: _list,
+          children: list,
         );
       }),
     );

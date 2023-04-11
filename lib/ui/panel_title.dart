@@ -4,7 +4,7 @@ import 'package:flutter_survey_js/model/survey.dart' as s;
 class PanelTitle extends StatelessWidget {
   final s.PanelBase panel;
   final VoidCallback? onTimeout;
-  const PanelTitle({required this.panel, this.onTimeout});
+  const PanelTitle({Key? key, required this.panel, this.onTimeout}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

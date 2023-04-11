@@ -11,7 +11,7 @@ import 'elements_state.dart';
 import 'form_control.dart';
 
 final defaultBuilder = (BuildContext context) {
-  return SurveyLayout();
+  return const SurveyLayout();
 };
 
 typedef SurveyBuilder = Widget Function(BuildContext context);
@@ -89,9 +89,9 @@ class SurveyWidgetState extends State<SurveyWidget> {
     final elementsState = ElementsState(status);
 
     return ReactiveForm(
-      formGroup: this.formGroup,
+      formGroup: formGroup,
       child: StreamBuilder(
-        stream: this.formGroup.valueChanges,
+        stream: formGroup.valueChanges,
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, Object?>?> snapshot) {
           return SurveyProvider(
@@ -117,12 +117,12 @@ class SurveyWidgetState extends State<SurveyWidget> {
     _controlsMap = {};
     _currentPage = 0;
 
-    this.formGroup = elementsToFormGroup(widget.survey.getElements(),
+    formGroup = elementsToFormGroup(widget.survey.getElements(),
         controlsMap: _controlsMap);
 
     formGroup.updateValue(widget.answer);
 
-    _listener = this.formGroup.valueChanges.listen((event) {
+    _listener = formGroup.valueChanges.listen((event) {
       logger.fine('Value changed $event');
       widget.onChange?.call(event);
     });
@@ -141,6 +141,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
   }
 
+  @override
   void dispose() {
     _listener?.cancel();
     widget.controller?._detach();
@@ -168,6 +169,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
 }
 
 class SurveyProvider extends InheritedWidget {
+  @override
   final Widget child;
   final s.Survey survey;
   final FormGroup formGroup;
@@ -176,7 +178,7 @@ class SurveyProvider extends InheritedWidget {
   final int initialPage;
   final bool showQuestionsInOnePage;
 
-  SurveyProvider({
+  const SurveyProvider({Key? key, 
     required this.elementsState,
     required this.child,
     required this.survey,
@@ -184,7 +186,7 @@ class SurveyProvider extends InheritedWidget {
     required this.currentPage,
     required this.initialPage,
     this.showQuestionsInOnePage = false,
-  }) : super(child: child);
+  }) : super(key: key, child: child);
 
   static SurveyProvider of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<SurveyProvider>()!;
@@ -252,6 +254,6 @@ class SurveyController {
 
 extension SurveyExtension on s.Survey {
   int getPageCount() {
-    return this.questions == null ? (this.pages ?? []).length : 1;
+    return questions == null ? (pages ?? []).length : 1;
   }
 }

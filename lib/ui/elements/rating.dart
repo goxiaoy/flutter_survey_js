@@ -12,12 +12,12 @@ final SurveyElementBuilder ratingBuilder =
 
   final textStyle = Theme.of(context)
       .textTheme
-      .bodyText2
+      .bodyMedium
       ?.copyWith(color: Theme.of(context).primaryColor);
 
   Map<int, Widget> getChildren({required int? selectedValue}) {
     final children = <int, Widget>{};
-    if (e.rateValues != null && e.rateValues!.length > 0) {
+    if (e.rateValues != null && e.rateValues!.isNotEmpty) {
       for (final v in e.rateValues!) {
         children[v.value] = Text(
           v.text ?? v.value?.toString() ?? '',

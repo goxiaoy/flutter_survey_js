@@ -18,7 +18,7 @@ class Helpers {
   }
 
   static SimpleValue getSimpleValue(dynamic val) {
-    var res = new SimpleValue()
+    var res = SimpleValue()
       ..isSimple = false
       ..value = val;
     if (val == null) {
@@ -94,8 +94,9 @@ class Helpers {
     if (!(x.runtimeType == Object) && !(y.runtimeType == Object)) return x == y;
     if (!(x.runtimeType == Object) || !(y.runtimeType == Object)) return false;
     if (x["equals"]) return x.equals(y);
-    if ((x.runtimeType == List) && (y.runtimeType == List))
+    if ((x.runtimeType == List) && (y.runtimeType == List)) {
       return Helpers.isArraysEqual(x, y, ignoreOrder);
+    }
     for (var p in x) {
       if (!x.hasOwnProperty(p)) continue;
       if (!y.hasOwnProperty(p)) return false;

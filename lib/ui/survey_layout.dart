@@ -7,12 +7,13 @@ import 'package:im_stepper/stepper.dart';
 import 'package:logging/logging.dart';
 
 final defaultSurveyTitleBuilder = (BuildContext context, s.Survey survey) {
-  if (survey.title != null)
+  if (survey.title != null) {
     return Container(
       child: ListTile(
         title: Text(survey.title!),
       ),
     );
+  }
   return Container();
 };
 
@@ -180,7 +181,7 @@ class SurveyLayoutState extends State<SurveyLayout> {
 
     return PageView.builder(
       controller: pageController,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: itemBuilder,
       // itemCount: pages.length,
     );

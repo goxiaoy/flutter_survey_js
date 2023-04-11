@@ -12,7 +12,7 @@ main() {
             "Which countries have you visited within the last three years?",
         "description": "Please select all that apply.",
       });
-      final Type expected = UnsupportedElement;
+      const Type expected = UnsupportedElement;
       expect(actual.runtimeType, expected);
     });
   });

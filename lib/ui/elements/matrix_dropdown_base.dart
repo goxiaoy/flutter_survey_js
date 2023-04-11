@@ -12,12 +12,12 @@ mixin MatrixDropdownMixin {
 class MatrixDropdownTitle extends StatelessWidget {
   final s.MatrixDropdownColumn column;
 
-  MatrixDropdownTitle(this.column);
+  const MatrixDropdownTitle(this.column, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new Text(column.title ?? column.name?.toString() ?? "",
-        softWrap: true, style: Theme.of(context).textTheme.subtitle1);
+    return Text(column.title ?? column.name?.toString() ?? "",
+        softWrap: true, style: Theme.of(context).textTheme.titleMedium);
   }
 }
 

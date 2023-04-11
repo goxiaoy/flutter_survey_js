@@ -11,42 +11,40 @@ class ConditionNode {
     if (value == "&" || value == "&&") value = "and";
     if (value == "|" || value == "||") value = "or";
     if (value != "and" && value != "or") return;
-    this._connectiveValue = value;
+    _connectiveValue = value;
   }
 
-  get isEmpty => this.children!.length == 0;
+  get isEmpty => children!.isEmpty;
 
   void clear() {
-    this.children = [];
-    this.connective = "and";
+    children = [];
+    connective = "and";
   }
 
   List<String> getVariables() {
     var vars = <String>[];
-    this.fillVariables(vars);
+    fillVariables(vars);
     return vars;
   }
 
   void fillVariables(List<String> vars) {
-    for (var i = 0; i < this.children!.length; i++) {
-      this.children![i].fillVariables(vars);
+    for (var i = 0; i < children!.length; i++) {
+      children![i].fillVariables(vars);
     }
   }
 
   @override
   String toString() {
-    if (this.isEmpty) return "";
+    if (isEmpty) return "";
     var res = "";
-    for (var i = 0; i < this.children!.length; i++) {
-      var child = this.children![i];
+    for (var i = 0; i < children!.length; i++) {
+      var child = children![i];
       var nodeText = child.toString();
-      if (this.children != null && this.children!.length > 0) {
-        nodeText = "(" + nodeText + ")";
+      if (children != null && children!.isNotEmpty) {
+        nodeText = "($nodeText)";
       }
-      if (nodeText != null) {
-        if (res != null) res += " " + this.connective + " ";
-        res += nodeText;
-      }
+ res += " ${connective} ";
+      res += nodeText;
     }
     return res;
   }

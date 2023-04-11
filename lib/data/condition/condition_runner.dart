@@ -7,28 +7,28 @@ import 'process.dart';
 // Port from survey js
 class ConditionRunner {
   String? _expressionValue;
-  final ConditionNode _root = new ConditionNode();
+  final ConditionNode _root = ConditionNode();
 
   ConditionRunner(String? expressionValue) {
     expression = expressionValue;
   }
 
-  String? get expression => this._expressionValue;
+  String? get expression => _expressionValue;
 
   set expression(String? value) {
-    if (this.expression != value) {
-      this._expressionValue = value;
-      new ConditionsParser().parse(this._expressionValue, this._root);
+    if (expression != value) {
+      _expressionValue = value;
+      ConditionsParser().parse(_expressionValue, _root);
     }
   }
 
   List<String> getVariables() {
-    return this._root != null ? this._root.getVariables() : [];
+    return _root != null ? _root.getVariables() : [];
   }
 
   bool run({Map<String, dynamic>? values, Map<String, dynamic>? properties}) {
-    var condition = new ConditionOperand(this._root);
-    var processValue = new ProcessValue();
+    var condition = ConditionOperand(_root);
+    var processValue = ProcessValue();
     processValue.values = values;
     processValue.properties = properties;
     return condition.getValue(processValue);
@@ -43,27 +43,27 @@ class ExpressionRunner {
 
   ExpressionRunner(String? expression) {
     this.expression = expression;
-    this._processValue = new ProcessValue();
+    _processValue = ProcessValue();
   }
 
-  String? get expression => this._expressionValue;
+  String? get expression => _expressionValue;
 
   set expression(String? value) {
-    if (this.expression == value) return;
-    this._expressionValue = value;
-    this._operand =
-        new ConditionsParser().parseExpression(this._expressionValue);
+    if (expression == value) return;
+    _expressionValue = value;
+    _operand =
+        ConditionsParser().parseExpression(_expressionValue);
   }
 
   bool canRun() {
-    return this._operand != null;
+    return _operand != null;
   }
 
   dynamic run(
       {Map<String, dynamic>? values, Map<String, dynamic>? properties}) {
-    if (this._operand == null) return null;
-    this._processValue!.values = values;
-    this._processValue!.properties = properties;
-    return this._operand!.getValue(this._processValue);
+    if (_operand == null) return null;
+    _processValue!.values = values;
+    _processValue!.properties = properties;
+    return _operand!.getValue(_processValue);
   }
 }

@@ -120,6 +120,7 @@ class ChoicesRestful {
 @JsonSerializable(includeIfNull: false)
 class CheckBox extends CheckBoxBase {
   static const $type = "checkbox";
+  @override
   String? get type => $type;
   bool? hasSelectAll;
   int? maxSelectedChoices;
@@ -127,50 +128,66 @@ class CheckBox extends CheckBoxBase {
   CheckBox();
   factory CheckBox.fromJson(Map<String, dynamic> json) =>
       _$CheckBoxFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$CheckBoxToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Ranking extends CheckBox {
   static const $type = "ranking";
+  @override
   String? get type => $type;
   // String? hasOther;
+  @override
   String? otherText;
+  @override
   String? otherErrorText;
+  @override
   String? storeOthersAsComment;
   // String? hasNone;
+  @override
   String? noneText;
   // String? hasSelectAll;
+  @override
   String? selectAllText;
+  @override
   int? colCount;
   // String? maxSelectedChoices;
   Ranking();
   factory Ranking.fromJson(Map<String, dynamic> json) =>
       _$RankingFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$RankingToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class RadioGroup extends CheckBoxBase {
   static const $type = "radiogroup";
+  @override
   String? get type => $type;
   bool? showClearButton;
   RadioGroup();
   factory RadioGroup.fromJson(Map<String, dynamic> json) =>
       _$RadioGroupFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$RadioGroupToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class ImagePicker extends CheckBoxBase<ImageItemValue> {
   static const $type = "imagepicker";
+  @override
   String? get type => $type;
   // String? hasOther;
+  @override
   String? otherText;
   // String? hasNone;
+  @override
   String? noneText;
   String? optionsCaption;
+  @override
   String? otherErrorText;
+  @override
   String? storeOthersAsComment;
   // "image", "video"
   String? contentMode;
@@ -179,19 +196,23 @@ class ImagePicker extends CheckBoxBase<ImageItemValue> {
   int? imageHeight;
   int? imageWidth;
   bool? showLabel;
+  @override
   int? colCount;
   bool? multiSelect;
+  @override
   @JsonKey(fromJson: ImageItemValue.fromListJson)
   List<ImageItemValue>? choices;
   ImagePicker();
   factory ImagePicker.fromJson(Map<String, dynamic> json) =>
       _$ImagePickerFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$ImagePickerToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Dropdown extends SelectBase {
   static const $type = "dropdown";
+  @override
   String? get type => $type;
   String? optionsCaption;
   bool? showOptionsCaption;
@@ -202,12 +223,14 @@ class Dropdown extends SelectBase {
   Dropdown();
   factory Dropdown.fromJson(Map<String, dynamic> json) =>
       _$DropdownFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$DropdownToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Text extends Question {
   static const $type = "text";
+  @override
   String? get type => $type;
   //   "color",
   // "date",
@@ -242,12 +265,14 @@ class Text extends Question {
   List<String>? dataList;
   Text();
   factory Text.fromJson(Map<String, dynamic> json) => _$TextFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$TextToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class MultipleText extends Question {
   static const $type = "multipletext";
+  @override
   String? get type => $type;
   List<MultipleTextItem>? items;
   int? itemSize;
@@ -255,6 +280,7 @@ class MultipleText extends Question {
   MultipleText();
   factory MultipleText.fromJson(Map<String, dynamic> json) =>
       _$MultipleTextFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$MultipleTextToJson(this);
 }
 
@@ -292,38 +318,52 @@ class MultipleTextItem {
 @JsonSerializable(includeIfNull: false)
 class NonValue extends Question {
   static const $type = "nonvalue";
+  @override
   String? get type => $type;
+  @override
   String? title;
+  @override
   String? description;
+  @override
   String? valueName;
+  @override
   String? enableIf;
+  @override
   String? correctAnswer;
+  @override
   bool? isRequired;
+  @override
   String? requiredErrorText;
   // String? readOnly;
+  @override
   String? requiredIf;
   // String? validators;
+  @override
   String? titleLocation;
   // String? useDisplayValuesInTitle;
   NonValue();
   factory NonValue.fromJson(Map<String, dynamic> json) =>
       _$NonValueFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$NonValueToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Html extends NonValue {
   static const $type = "html";
+  @override
   String? get type => $type;
   String? html;
   Html();
   factory Html.fromJson(Map<String, dynamic> json) => _$HtmlFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$HtmlToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Image extends NonValue {
   static const $type = "image";
+  @override
   String? get type => $type;
   String? imageLink;
   String? text;
@@ -335,21 +375,25 @@ class Image extends NonValue {
   int? imageWidth;
   Image();
   factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$ImageToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Empty extends Question {
   static const $type = "empty";
+  @override
   String? get type => $type;
   Empty();
   factory Empty.fromJson(Map<String, dynamic> json) => _$EmptyFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$EmptyToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Comment extends Question {
   static const $type = "comment";
+  @override
   String? get type => $type;
   int? maxLength;
   int? cols;
@@ -362,12 +406,14 @@ class Comment extends Question {
   Comment();
   factory Comment.fromJson(Map<String, dynamic> json) =>
       _$CommentFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$CommentToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class File extends Question {
   static const $type = "file";
+  @override
   String? get type => $type;
   String? hasComment;
   String? commentText;
@@ -380,17 +426,20 @@ class File extends Question {
   bool? storeDataAsText;
   bool? waitForUpload;
   int? maxSize;
+  @override
   String? correctAnswer;
   // String? validators;
   bool? needConfirmRemoveFile;
   File();
   factory File.fromJson(Map<String, dynamic> json) => _$FileFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$FileToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Rating extends Question {
   static const $type = "rating";
+  @override
   String? get type => $type;
   String? hasComment;
   String? commentText;
@@ -402,12 +451,14 @@ class Rating extends Question {
   String? maxRateDescription;
   Rating();
   factory Rating.fromJson(Map<String, dynamic> json) => _$RatingFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$RatingToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Boolean extends Question {
   static const $type = "boolean";
+  @override
   String? get type => $type;
   String? label;
   String? labelTrue;
@@ -415,16 +466,19 @@ class Boolean extends Question {
   bool? showTitle;
   String? valueTrue;
   String? valueFalse;
+  @override
   String? renderAs;
   Boolean();
   factory Boolean.fromJson(Map<String, dynamic> json) =>
       _$BooleanFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$BooleanToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class SignaturePad extends Question {
   static const $type = "signaturepad";
+  @override
   String? get type => $type;
   // int? width;
   int? height;
@@ -444,10 +498,12 @@ class SignaturePad extends Question {
   //   "text": "SVG"
   // }
   String? dataFormat;
+  @override
   String? correctAnswer;
   SignaturePad();
   factory SignaturePad.fromJson(Map<String, dynamic> json) =>
       _$SignaturePadFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$SignaturePadToJson(this);
 }
 
@@ -465,12 +521,15 @@ class CalculatedValue {
 @JsonSerializable(includeIfNull: false)
 class ButtonGroup extends CheckBoxBase<ButtonGroupItemValue> {
   static const $type = "buttongroup";
+  @override
   String? get type => $type;
+  @override
   @JsonKey(fromJson: ButtonGroupItemValue.fromListJson)
   List<ButtonGroupItemValue>? choices;
   ButtonGroup();
   factory ButtonGroup.fromJson(Map<String, dynamic> json) =>
       _$ButtonGroupFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$ButtonGroupToJson(this);
 }
 
@@ -514,6 +573,7 @@ class ImageItemValue extends ItemValue {
   ImageItemValue();
   factory ImageItemValue.fromJson(Map<String, dynamic> json) =>
       _$ImageItemValueFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$ImageItemValueToJson(this);
 
   factory ImageItemValue.single(dynamic data) {
@@ -547,6 +607,7 @@ class ButtonGroupItemValue extends ItemValue {
   ButtonGroupItemValue();
   factory ButtonGroupItemValue.fromJson(Map<String, dynamic> json) =>
       _$ButtonGroupItemValueFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$ButtonGroupItemValueToJson(this);
 
   factory ButtonGroupItemValue.single(dynamic data) {

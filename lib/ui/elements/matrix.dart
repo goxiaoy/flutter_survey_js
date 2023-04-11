@@ -28,23 +28,23 @@ class MatrixElement extends StatelessWidget {
       formControlName: formControlName,
       child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-        List<TableRow> _list = <TableRow>[];
+        List<TableRow> list = <TableRow>[];
 
         /// Add title bar
-        _list.add(TableRow(
-            decoration: BoxDecoration(
+        list.add(TableRow(
+            decoration: const BoxDecoration(
               color: Colors.grey,
             ),
             children: [
-              TableCell(child: Text('')),
+              const TableCell(child: Text('')),
               ...((matrix.columns ?? []).map((e) => TableCell(
                     child: _MatrixTitle(e),
                   )))
             ]));
         (matrix.rows ?? []).asMap().forEach((i, row) {
-          _list.add(TableRow(
+          list.add(TableRow(
               decoration: i % 2 != 0
-                  ? BoxDecoration(
+                  ? const BoxDecoration(
                       color: Colors.grey,
                     )
                   : null,
@@ -70,7 +70,7 @@ class MatrixElement extends StatelessWidget {
             width: 1.0,
           ),
           // columnWidths: map,
-          children: _list,
+          children: list,
         );
       }),
     );
@@ -81,11 +81,11 @@ class MatrixElement extends StatelessWidget {
 class _MatrixTitle extends StatelessWidget {
   final s.ItemValue column;
 
-  _MatrixTitle(this.column);
+  const _MatrixTitle(this.column);
 
   @override
   Widget build(BuildContext context) {
-    return new Text(column.text ?? column.value?.toString() ?? "",
-        softWrap: true, style: Theme.of(context).textTheme.subtitle1);
+    return Text(column.text ?? column.value?.toString() ?? "",
+        softWrap: true, style: Theme.of(context).textTheme.titleMedium);
   }
 }

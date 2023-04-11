@@ -4,6 +4,7 @@ part of 'survey.dart';
 class Page extends PanelBase {
   static const $type = "page";
 
+  @override
   String? get type => $type;
   //   "inherit",
   // "show",
@@ -18,10 +19,12 @@ class Page extends PanelBase {
   String? navigationDescription;
   Page();
   factory Page.fromJson(Map<String, dynamic> json) => _$PageFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$PageToJson(this);
 }
 
 abstract class PanelBase extends ElementBase {
+  @override
   String? name;
   List<ElementBase>? elements;
   bool? visible;

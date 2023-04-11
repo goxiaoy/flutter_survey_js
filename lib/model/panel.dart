@@ -4,6 +4,7 @@ part of 'survey.dart';
 class Panel extends PanelBase {
   static const $type = "panel";
 
+  @override
   String? get type => $type;
 
   //   "default",
@@ -25,6 +26,7 @@ class Panel extends PanelBase {
   String? questionStartIndex;
   Panel();
   factory Panel.fromJson(Map<String, dynamic> json) => _$PanelFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$PanelToJson(this);
 }
 
@@ -32,6 +34,7 @@ class Panel extends PanelBase {
 class PanelDynamic extends Question {
   static const $type = "paneldynamic";
 
+  @override
   String? get type => $type;
   List<ElementBase>? templateElements;
   String? templateTitle;
@@ -77,5 +80,6 @@ class PanelDynamic extends Question {
   PanelDynamic();
   factory PanelDynamic.fromJson(Map<String, dynamic> json) =>
       _$PanelDynamicFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$PanelDynamicToJson(this);
 }
