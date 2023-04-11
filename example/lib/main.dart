@@ -68,28 +68,21 @@ class _MyHomePageState extends State<MyHomePage> {
   String jsonString = "";
   TestJsonType selectedJson = TestJsonType.complex;
 
-  late Future<List<Null>> assetLoader;
+  late Future<List> assetLoader;
   Map<TestJsonType, String> _jsonStringMap = {};
 
   @override
   void initState() {
-    assetLoader = Future.wait([
-      rootBundle.loadString('assets/complex.json').then((value) {
-        _jsonStringMap[TestJsonType.complex] = JsonElement.format(value);
-        //set default as multi page
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          setState(() {
-            jsonString = value;
-          });
-        });
-      }),
-      rootBundle.loadString('assets/single_page.json').then((value) {
-        _jsonStringMap[TestJsonType.simple] = JsonElement.format(value);
-      }),
-      rootBundle.loadString('assets/page_without_survey.json').then((value) {
-        _jsonStringMap[TestJsonType.pageOnly] = JsonElement.format(value);
-      }),
-    ]);
+    assetLoader = Future.wait(
+      TestJsonType.values.map((e) => rootBundle
+          .loadString(e.fileLocation)
+          .then((value) => _jsonStringMap[e] = JsonElement.format(value))),
+    ).then((value) {
+      setState(() {
+        jsonString = value.first;
+      });
+      return value;
+    });
     super.initState();
   }
 
@@ -102,8 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             body: FutureBuilder(
               future: this.assetLoader,
-              builder:
-                  (BuildContext context, AsyncSnapshot<List<Null>> snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
                 if (!snapshot.hasData) {
                   return CircularProgressIndicator();
                 }
@@ -117,7 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Simple(
-                                      survey: toSurvey(jsonString),
+                                      survey: s.Survey.fromJson(
+                                          json.decode(jsonString)),
                                     )),
                           )
                         },
@@ -131,12 +124,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => CustomLayoutPage(
-                                      survey: toSurvey(jsonString),
+                                      survey: s.Survey.fromJson(
+                                          json.decode(jsonString)),
                                     )),
                           )
                         },
                         child: Text(
-                          'Customize',
+                          'Custom Layout',
                         ),
                       ),
                     ],
@@ -146,6 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     direction: Axis.horizontal,
                     children: _jsonStringMap.entries.map((p) {
                       return ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.green),
+                        ),
                         onPressed: () {
                           setState(() {
                             selectedJson = p.key;
@@ -175,11 +173,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-toSurvey(String value) {
-  final j = json.decode(value);
-  return s.Survey.fromJson(j);
-}
-
 enum TestJsonType { simple, complex, pageOnly }
 
 extension TestJsonTypeExtension on TestJsonType {
@@ -191,6 +184,17 @@ extension TestJsonTypeExtension on TestJsonType {
         return 'Survey with Single Page';
       case TestJsonType.pageOnly:
         return 'Page without Survey';
+    }
+  }
+
+  String get fileLocation {
+    switch (this) {
+      case TestJsonType.simple:
+        return 'assets/single_page.json';
+      case TestJsonType.complex:
+        return 'assets/complex.json';
+      case TestJsonType.pageOnly:
+        return 'assets/page_without_survey.json';
     }
   }
 }
