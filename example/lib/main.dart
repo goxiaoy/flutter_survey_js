@@ -2,15 +2,13 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:device_preview/device_preview.dart';
-import 'package:example/components/from_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:json_editor/json_editor.dart';
 
-import 'components/custom_layout.dart';
-import 'components/simple.dart';
+import 'answer.dart';
 
 void main() {
   runApp(
@@ -66,27 +64,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String jsonString = "";
-  String selectedJson = "";
+  String survey = "";
 
   late Future<List<Null>> assetLoader;
-  Map<String, String> _jsonStringMap = {};
+  Map<String, String> _surveyMap = {};
 
   @override
   void initState() {
     assetLoader = Future.wait([
       rootBundle.loadString('assets/complex.json').then((value) {
-        _jsonStringMap["Complex"] = JsonElement.format(value);
+        value = JsonElement.format(value);
+        _surveyMap["Complex"] = value;
         //set default as multi page
         setState(() {
-          jsonString = value;
+          survey = value;
         });
       }),
       rootBundle.loadString('assets/single_page.json').then((value) {
-        _jsonStringMap["Survey with Single Page"] = JsonElement.format(value);
+        _surveyMap["Survey with Single Page"] = JsonElement.format(value);
       }),
       rootBundle.loadString('assets/page_without_survey.json').then((value) {
-        _jsonStringMap["Page without Survey"] = JsonElement.format(value);
+        _surveyMap["Page without Survey"] = JsonElement.format(value);
       }),
     ]);
     super.initState();
@@ -94,103 +92,64 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('Survey complete json test'),
-            ),
-            body: FutureBuilder(
-              future: this.assetLoader,
-              builder:
-                  (BuildContext context, AsyncSnapshot<List<Null>> snapshot) {
-                if (!snapshot.hasData) {
-                  return CircularProgressIndicator();
-                }
-                return Column(children: [
-                  Wrap(
-                    direction: Axis.horizontal,
-                    children: [
-                      ElevatedButton(
-                        onPressed: selectedJson == 'Page without Survey'
-                            ? null
-                            : () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Simple(
-                                              survey: toSurvey(jsonString),
-                                            )),
-                                  )
-                                },
-                        child: Text(
-                          'Simple',
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: selectedJson == 'Page without Survey'
-                            ? null
-                            : () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CustomLayoutPage(
-                                              survey: toSurvey(jsonString),
-                                            )),
-                                  )
-                                },
-                        child: Text(
-                          'Customize',
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: selectedJson != 'Page without Survey'
-                            ? null
-                            : () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => FromPage(
-                                              page: toPage(jsonString),
-                                            )),
-                                  )
-                                },
-                        child: Text(
-                          'Page without Survey',
-                        ),
-                      ),
-                    ],
-                  ),
-                  Divider(),
-                  Wrap(
-                    direction: Axis.horizontal,
-                    children: _jsonStringMap.entries.map((p) {
-                      return ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedJson = p.key;
-                            jsonString = p.value;
-                          });
-                        },
-                        child: Text(
-                          p.key,
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                  Expanded(
-                      child: JsonEditor.string(
-                    jsonString: jsonString,
-                    onValueChanged: (value) {
-                      if (value.toString() != jsonString && mounted) {
-                        setState(() {
-                          jsonString = value.toString();
-                        });
-                      }
-                    },
-                  ))
-                ]);
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Survey json test'),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AnswerPage(
+                            survey: toSurvey(survey),
+                          )),
+                );
               },
-            )));
+              child: Text("Next Step"),
+            )
+          ],
+        ),
+        body: SafeArea(
+            child: FutureBuilder(
+          future: this.assetLoader,
+          builder: (BuildContext context, AsyncSnapshot<List<Null>> snapshot) {
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+            return Column(children: [
+              Text("Choose or edit survey"),
+              Wrap(
+                direction: Axis.horizontal,
+                children: _surveyMap.entries.map((p) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        survey = p.value;
+                      });
+                    },
+                    child: Text(
+                      p.key,
+                    ),
+                  );
+                }).toList(),
+              ),
+              Expanded(
+                  child: JsonEditor.string(
+                jsonString: survey,
+                onValueChanged: (value) {
+                  if (value.toString() !=
+                          JsonElement.fromString(survey).toString() &&
+                      mounted) {
+                    setState(() {
+                      survey = value.toString();
+                    });
+                  }
+                },
+              ))
+            ]);
+          },
+        )));
   }
 }
 

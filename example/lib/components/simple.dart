@@ -3,8 +3,8 @@ import 'package:flutter_survey_js/survey.dart' as s;
 
 class Simple extends StatelessWidget {
   final s.Survey? survey;
-
-  Simple({Key? key, this.survey}) : super(key: key);
+  final Map<String, Object?>? answer;
+  Simple({Key? key, this.survey, this.answer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,7 @@ class Simple extends StatelessWidget {
                   )
                 : s.SurveyWidget(
                     survey: survey!,
+                    answer: answer,
                     onChange: (v) {
                       print(v);
                     },

@@ -6,8 +6,10 @@ import 'package:logging/logging.dart';
 
 class CustomLayoutPage extends StatelessWidget {
   final s.Survey? survey;
+  final Map<String, Object?>? answer;
 
-  const CustomLayoutPage({Key? key, this.survey}) : super(key: key);
+  const CustomLayoutPage({Key? key, this.survey, this.answer})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class CustomLayoutPage extends StatelessWidget {
                 : s.SurveyWidget(
                     showQuestionsInOnePage: true,
                     survey: survey!,
+                    answer: answer,
                     onChange: (v) {
                       print(v);
                     },
