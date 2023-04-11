@@ -13,50 +13,52 @@ class CustomLayoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('Survey Customize:' + (survey?.title ?? '')),
-            ),
-            body: survey == null
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : s.SurveyWidget(
-                    showQuestionsInOnePage: true,
-                    survey: survey!,
-                    answer: answer,
-                    onChange: (v) {
-                      print(v);
-                    },
-                    builder: (context) => CustomLayout(),
-                    onSubmit: (v) {
-                      print(v);
-                      showModalBottomSheet<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Container(
-                            height: 400,
-                            child: Center(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Expanded(
-                                      child: Container(
-                                          child: SingleChildScrollView(
-                                              child: Text(v.toString())))),
-                                  ElevatedButton(
-                                    child: const Text('Close'),
-                                    onPressed: () => Navigator.pop(context),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Survey Customize:' + (survey?.title ?? '')),
+      ),
+      body: SafeArea(
+        child: survey == null
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : s.SurveyWidget(
+                showQuestionsInOnePage: true,
+                survey: survey!,
+                answer: answer,
+                onChange: (v) {
+                  print(v);
+                },
+                builder: (context) => CustomLayout(),
+                onSubmit: (v) {
+                  print(v);
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 400,
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                  child: Container(
+                                      child: SingleChildScrollView(
+                                          child: Text(v.toString())))),
+                              ElevatedButton(
+                                child: const Text('Close'),
+                                onPressed: () => Navigator.pop(context),
+                              )
+                            ],
+                          ),
+                        ),
                       );
                     },
-                  )));
+                  );
+                },
+              ),
+      ),
+    );
   }
 }
 
