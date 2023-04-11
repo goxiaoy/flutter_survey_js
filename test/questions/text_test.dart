@@ -104,8 +104,16 @@ void main() {
     final placeholder = 'Enter some text here...';
     final s = Survey.fromJson(
       {
-        "questions": [
-          {"name": "name", "type": "text", "placeholder": "$placeholder"},
+        "pages": [
+          {
+            "elements": [
+              {
+                "name": "name",
+                "type": "text",
+                "placeholder": "$placeholder",
+              },
+            ],
+          },
         ],
       },
     );
