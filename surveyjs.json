@@ -2605,10 +2605,10 @@
                             ]
                         },
                         "imageHeight": {
-                            "type": "number"
+                            "type": "string"
                         },
                         "imageWidth": {
-                            "type": "number"
+                            "type": "string"
                         }
                     }
                 }
@@ -3017,7 +3017,16 @@
                                 "list",
                                 "progressTop",
                                 "progressBottom",
-                                "progressTopBottom"
+                                "progressTopBottom",
+                                "tab"
+                            ]
+                        },
+                        "tabAlign": {
+                            "type": "string",
+                            "enum": [
+                                "center",
+                                "left",
+                                "right"
                             ]
                         },
                         "templateTitleLocation": {
