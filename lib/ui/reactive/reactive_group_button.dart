@@ -99,8 +99,8 @@ class _ReactiveGroupButtonState<T>
     _controller = (currentWidget._controller != null)
         ? currentWidget._controller!
         : GroupButtonController();
-    final index =
-        currentWidget._buttons.indexWhere((element) => element == initialValue);
+    final index = currentWidget._buttons
+        .indexWhere((element) => element.value == initialValue);
     if (index != -1) {
       _controller.selectIndex(index);
     }

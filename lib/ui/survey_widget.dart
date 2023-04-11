@@ -120,7 +120,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     this.formGroup = elementsToFormGroup(widget.survey.getElements(),
         controlsMap: _controlsMap);
 
-    formGroup.patchValue(widget.answer, updateParent: true);
+    formGroup.updateValue(widget.answer);
 
     _listener = this.formGroup.valueChanges.listen((event) {
       logger.fine('Value changed $event');
