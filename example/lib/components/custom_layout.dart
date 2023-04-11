@@ -13,6 +13,7 @@ class CustomLayoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final survey = this.survey;
     return Scaffold(
       appBar: AppBar(
         title: Text('Survey Customize:' + (survey?.title ?? '')),
@@ -24,7 +25,7 @@ class CustomLayoutPage extends StatelessWidget {
               )
             : s.SurveyWidget(
                 showQuestionsInOnePage: true,
-                survey: survey!,
+                survey: survey,
                 answer: answer,
                 onChange: (v) {
                   print(v);
@@ -81,13 +82,11 @@ class CustomLayoutState extends State<CustomLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = _reCalculatePages(
-        SurveyProvider.of(context).showQuestionsInOnePage, survey);
-    assert(pages.length == 1);
-    IndexedWidgetBuilder itemBuilder(s.Page page) {
+    final elements = _consolidateQuestions(survey);
+    IndexedWidgetBuilder itemBuilder(List<s.ElementBase> elements) {
       return (context, index) {
-        if (index < page.elements!.length && index >= 0) {
-          return SurveyElementFactory().resolve(context, page.elements![index]);
+        if (index < elements.length && index >= 0) {
+          return SurveyElementFactory().resolve(context, elements[index]);
         } else {
           return Container(
             width: double.infinity,
@@ -107,9 +106,9 @@ class CustomLayoutState extends State<CustomLayout> {
           Flexible(
             fit: FlexFit.loose,
             child: ListView.separated(
-              itemBuilder: itemBuilder(pages[0]),
+              itemBuilder: itemBuilder(elements),
               separatorBuilder: separatorBuilder,
-              itemCount: pages[0].elements?.length ?? 0,
+              itemCount: elements.length,
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
             ),
@@ -128,15 +127,11 @@ class CustomLayoutState extends State<CustomLayout> {
     );
   }
 
-  List<s.Page> _reCalculatePages(bool showQuestionsInOnePage, s.Survey survey) {
-    var pages = <s.Page>[];
-    pages = [
-      s.Page()
-        ..elements = (survey.pages ?? [])
+  List<s.ElementBase> _consolidateQuestions(s.Survey survey) {
+    return survey.questions ??
+        (survey.pages ?? [])
             .map<List<s.ElementBase>>((e) => e.elements ?? <s.ElementBase>[])
             .fold(<s.ElementBase>[],
-                (previousValue, element) => previousValue!..addAll(element))
-    ];
-    return pages;
+                (previousValue, element) => previousValue..addAll(element));
   }
 }

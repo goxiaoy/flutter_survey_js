@@ -66,27 +66,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
 
-  late Future<List<Null>> assetLoader;
-  Map<String, String> _surveyMap = {};
+  late Future<List> assetLoader;
+  Map<TestJsonType, String> _surveyMap = {};
 
   @override
   void initState() {
-    assetLoader = Future.wait([
-      rootBundle.loadString('assets/complex.json').then((value) {
-        value = JsonElement.format(value);
-        _surveyMap["Complex"] = value;
-        //set default as multi page
-        setState(() {
-          survey = value;
-        });
-      }),
-      rootBundle.loadString('assets/single_page.json').then((value) {
-        _surveyMap["Survey with Single Page"] = JsonElement.format(value);
-      }),
-      rootBundle.loadString('assets/page_without_survey.json').then((value) {
-        _surveyMap["Page without Survey"] = JsonElement.format(value);
-      }),
-    ]);
+    assetLoader = Future.wait(
+      TestJsonType.values.map((e) => rootBundle
+          .loadString(e.fileLocation)
+          .then((value) => _surveyMap[e] = JsonElement.format(value))),
+    ).then((value) {
+      setState(() {
+        survey = value.first;
+      });
+      return value;
+    });
     super.initState();
   }
 
@@ -113,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: SafeArea(
             child: FutureBuilder(
           future: this.assetLoader,
-          builder: (BuildContext context, AsyncSnapshot<List<Null>> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             if (!snapshot.hasData) {
               return CircularProgressIndicator();
             }
@@ -129,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     },
                     child: Text(
-                      p.key,
+                      p.key.buttonName,
                     ),
                   );
                 }).toList(),
@@ -169,6 +163,17 @@ extension TestJsonTypeExtension on TestJsonType {
         return 'Survey with Single Page';
       case TestJsonType.pageOnly:
         return 'Page without Survey';
+    }
+  }
+
+  String get fileLocation {
+    switch (this) {
+      case TestJsonType.simple:
+        return 'assets/single_page.json';
+      case TestJsonType.complex:
+        return 'assets/complex.json';
+      case TestJsonType.pageOnly:
+        return 'assets/page_without_survey.json';
     }
   }
 }
