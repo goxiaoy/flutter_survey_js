@@ -13,7 +13,7 @@ final SurveyElementBuilder multipleTextBuilder =
   return ReactiveNestedForm(
       formControlName: e.name,
       child: ListView.separated(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         shrinkWrap: true,
         itemCount: texts.length,
         itemBuilder: (BuildContext context, int index) {

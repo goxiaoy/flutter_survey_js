@@ -11,7 +11,7 @@ import 'elements_state.dart';
 import 'form_control.dart';
 
 final defaultBuilder = (BuildContext context) {
-  return SurveyLayout();
+  return const SurveyLayout();
 };
 
 typedef SurveyBuilder = Widget Function(BuildContext context);
@@ -144,6 +144,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
   }
 
+  @override
   void dispose() {
     _listener?.cancel();
     widget.controller?._detach();
@@ -171,6 +172,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
 }
 
 class SurveyProvider extends InheritedWidget {
+  @override
   final Widget child;
   final s.Survey survey;
   final FormGroup formGroup;
@@ -179,7 +181,8 @@ class SurveyProvider extends InheritedWidget {
   final int initialPage;
   final bool showQuestionsInOnePage;
 
-  SurveyProvider({
+  const SurveyProvider({
+    Key? key,
     required this.elementsState,
     required this.child,
     required this.survey,
@@ -187,7 +190,7 @@ class SurveyProvider extends InheritedWidget {
     required this.currentPage,
     required this.initialPage,
     this.showQuestionsInOnePage = false,
-  }) : super(child: child);
+  }) : super(key: key, child: child);
 
   static SurveyProvider of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<SurveyProvider>()!;

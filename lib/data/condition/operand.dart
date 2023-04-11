@@ -152,7 +152,7 @@ class ExpressionOperand extends Operand {
   @override
   String toString() {
     var res = left != null ? left.toString() : "";
-    res += " " + operator! + " ";
+    res += " ${operator!} ";
     if (right != null) res += right.toString();
     return res;
   }
@@ -191,7 +191,9 @@ class ConditionOperand extends Operand {
   }
 
   bool? _runNodeCondition(dynamic value) {
-    if (value.runtimeType.toString() == 'ConditionNode') return _runNode(value);
+    if (value.runtimeType.toString() == 'ConditionNode') {
+      return _runNode(value);
+    }
     if (value.runtimeType.toString() == 'Condition') {
       return _runCondition(value);
     }

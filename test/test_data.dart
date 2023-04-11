@@ -212,7 +212,9 @@ class TestData {
 }
 
 class TestElementBase extends ElementBase {
+  @override
   String? type;
+  @override
   String? name;
 
   @override
@@ -225,9 +227,13 @@ class TestElementBase extends ElementBase {
 }
 
 class TestSurveyTrigger extends SurveyTrigger {
+  @override
   String? operator;
+  @override
   String? value;
+  @override
   String? expression;
+  @override
   String? name;
 
   @override

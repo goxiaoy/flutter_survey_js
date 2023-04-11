@@ -25,7 +25,7 @@ FormGroup elementsToFormGroup(List<s.ElementBase> elements,
 extension ElementExtension on s.ElementBase {
   // toFormObject convert question json element to FromControl
   Object toFormObject({Map<s.ElementBase, Object>? controlsMap}) {
-    final formFunc = () {
+    formFunc() {
       if (this is s.Panel) {
         final p = this as s.Panel;
         return elementsToFormGroup(p.elements ?? [],
@@ -61,7 +61,7 @@ extension ElementExtension on s.ElementBase {
             validators: validators,
           );
       return res;
-    };
+    }
 
     final obj = formFunc();
     if (controlsMap != null) {

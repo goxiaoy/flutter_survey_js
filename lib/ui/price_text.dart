@@ -6,23 +6,23 @@ class PriceText extends StatelessWidget {
   final Color color;
   final Color freeColor;
 
-  PriceText({
+  const PriceText({Key? key, 
     this.price = 0.0,
     this.currency = '￥',
     this.color = Colors.green,
     this.freeColor = const Color(0xfff96b4b),
-  })  : assert(currency != null),
-        assert(price != null);
+  })  : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     final list = <Widget>[];
-    if (currency != null && price != null && price > 0.00) {
+    if (price > 0.00) {
       list.add(Text(currency, style: TextStyle(color: color)));
       list.add(Text(
         price.toStringAsFixed(2),
         style: TextStyle(color: color),
       ));
-    } else
+    } else {
       list.add(Text(
         'Free',
         style: TextStyle(
@@ -31,6 +31,7 @@ class PriceText extends StatelessWidget {
             fontWeight: FontWeight.w600,
             fontSize: 14.0),
       ));
+    }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,

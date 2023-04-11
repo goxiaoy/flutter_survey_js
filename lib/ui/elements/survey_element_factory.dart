@@ -58,7 +58,7 @@ class SurveyElementFactory {
 
     register<s.Comment>((context, element, {bool hasTitle = true}) =>
         ReactiveTextField(
-          style: Theme.of(context).textTheme.bodyText2,
+          style: Theme.of(context).textTheme.bodyMedium,
           formControlName: element.name!,
           decoration: InputDecoration(
             fillColor: Colors.white,
@@ -108,7 +108,7 @@ class SurveyElementFactory {
                     value: e.value,
                     child: Text(
                       e.text ?? e.value?.toString() ?? '',
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 )
@@ -140,7 +140,7 @@ class SurveyElementFactory {
     unsupported = (context, element, {bool hasTitle = true}) => Container(
           child: Text(
             'Unsupported ${element.name ?? ""}',
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ).wrapQuestionTitle(element, hasTitle: hasTitle);
   }
@@ -148,12 +148,12 @@ class SurveyElementFactory {
   SurveyElementBuilder? unsupported;
 
   WidgetBuilder separatorBuilder = (_) => Wrap(
-        children: [
-          const SizedBox(
+        children: const [
+          SizedBox(
             height: 5,
           ),
-          const Divider(),
-          const SizedBox(
+          Divider(),
+          SizedBox(
             height: 5,
           ),
         ],

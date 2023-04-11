@@ -26,10 +26,10 @@ class PanelDynamicElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final createNew = () {
+    createNew() {
       //create new formGroup
       return elementsToFormGroup((element.templateElements ?? []).toList());
-    };
+    }
     return ReactiveNestedGroupArray(
         createNew: createNew,
         formArrayName: formControlName,

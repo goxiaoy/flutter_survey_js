@@ -7,7 +7,7 @@ void main() {
   group('JsonSerializable', () {
     group('showQuestionNumbers', () {
       test('parses as "on" string when json value is `true` boolean', () {
-        final String expected = 'on';
+        const String expected = 'on';
         final Survey survey = Survey.fromJson(
           {
             "title": "Software developer survey.",
@@ -30,7 +30,7 @@ void main() {
       });
 
       test('parses as "off" string when json value is `false` boolean', () {
-        final String expected = 'off';
+        const String expected = 'off';
         final Survey survey = Survey.fromJson(
           {
             "title": "Software developer survey.",
@@ -53,7 +53,7 @@ void main() {
       });
 
       test('does not modify string json values', () {
-        final String expected = 'some_showQuestionNumbers_value';
+        const String expected = 'some_showQuestionNumbers_value';
         final Survey survey = Survey.fromJson(
           {
             "title": "Software developer survey.",

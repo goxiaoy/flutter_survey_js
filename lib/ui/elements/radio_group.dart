@@ -9,7 +9,7 @@ final SurveyElementBuilder radioGroupBuilder =
     (context, element, {bool hasTitle = true}) {
   final e = element as s.RadioGroup;
   return ReactiveGroupButton(
-    options: GroupButtonOptions(spacing: 0, runSpacing: 0),
+    options: const GroupButtonOptions(spacing: 0, runSpacing: 0),
     isRadio: true,
     formControlName: element.name!,
     buttons: (e.choices ?? []),

@@ -69,8 +69,8 @@ class ReactiveReorderableList<ModelDataType, ViewDataType extends Object>
                             // This could for example be an Icon or the whole item itself. You can
                             // use the delay parameter to specify the duration for how long a pointer
                             // must press the child, until it can be dragged.
-                            leading: Handle(
-                              delay: const Duration(milliseconds: 100),
+                            leading: const Handle(
+                              delay: Duration(milliseconds: 100),
                               child: Icon(
                                 Icons.list,
                                 color: Colors.grey,

@@ -51,6 +51,7 @@ class ExpressionRunner {
   set expression(String? value) {
     if (expression == value) return;
     _expressionValue = value;
+
     _operand = ConditionsParser().parseExpression(_expressionValue);
   }
 
