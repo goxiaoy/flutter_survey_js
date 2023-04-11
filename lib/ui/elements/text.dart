@@ -11,9 +11,11 @@ import 'survey_element_factory.dart';
 final SurveyElementBuilder textBuilder =
     (context, element, {bool hasTitle = true}) {
   final e = element as s.Text;
+  final String? hintText = e.placeholder;
   Widget widget = ReactiveTextField(
     formControlName: element.name!,
     style: Theme.of(context).textTheme.bodyText2,
+    decoration: InputDecoration(hintText: hintText),
   );
 
   final datePickerTextStyle = Theme.of(context).textTheme.bodyText2;
@@ -24,6 +26,7 @@ final SurveyElementBuilder textBuilder =
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.date,
       style: datePickerTextStyle,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'color') {
@@ -33,6 +36,7 @@ final SurveyElementBuilder textBuilder =
     widget = ReactiveTextField(
       formControlName: element.name!,
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'datetime') {
@@ -41,6 +45,7 @@ final SurveyElementBuilder textBuilder =
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.dateTime,
       style: datePickerTextStyle,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'datetime-local') {
@@ -49,6 +54,7 @@ final SurveyElementBuilder textBuilder =
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.dateTime,
       style: datePickerTextStyle,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'month') {
@@ -59,6 +65,7 @@ final SurveyElementBuilder textBuilder =
       obscureText: true,
       formControlName: element.name!,
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'range') {}
@@ -67,6 +74,7 @@ final SurveyElementBuilder textBuilder =
       keyboardType: TextInputType.phone,
       formControlName: element.name!,
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   if (e.inputType == 'time') {}
@@ -78,6 +86,7 @@ final SurveyElementBuilder textBuilder =
       formControlName: element.name!,
       valueAccessor: NumStringValueAccessor(),
       style: Theme.of(context).textTheme.bodyText2,
+      decoration: InputDecoration(hintText: hintText),
     );
   }
   return widget.wrapQuestionTitle(element, hasTitle: hasTitle);
