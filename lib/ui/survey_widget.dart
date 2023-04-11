@@ -90,9 +90,9 @@ class SurveyWidgetState extends State<SurveyWidget> {
     final elementsState = ElementsState(status);
 
     return ReactiveForm(
-      formGroup: this.formGroup,
+      formGroup: formGroup,
       child: StreamBuilder(
-        stream: this.formGroup.valueChanges,
+        stream: formGroup.valueChanges,
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, Object?>?> snapshot) {
           return SurveyProvider(
@@ -118,12 +118,12 @@ class SurveyWidgetState extends State<SurveyWidget> {
     _controlsMap = {};
     _currentPage = 0;
 
-    this.formGroup = elementsToFormGroup(widget.survey.getElements(),
+    formGroup = elementsToFormGroup(widget.survey.getElements(),
         controlsMap: _controlsMap);
 
     formGroup.updateValue(widget.answer);
 
-    _listener = this.formGroup.valueChanges.listen((event) {
+    _listener = formGroup.valueChanges.listen((event) {
       logger.fine('Value changed $event');
       widget.onChange?.call(event);
     });
@@ -253,6 +253,6 @@ class SurveyController {
 
 extension SurveyExtension on s.Survey {
   int getPageCount() {
-    return this.questions == null ? (this.pages ?? []).length : 1;
+    return questions == null ? (pages ?? []).length : 1;
   }
 }

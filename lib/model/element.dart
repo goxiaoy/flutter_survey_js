@@ -78,7 +78,9 @@ class UnsupportedElement extends ElementBase {
     required this.title,
   });
 
+  @override
   final String? type;
+  @override
   final String? name;
   final String? title;
 

@@ -56,21 +56,21 @@ class SurveyElementFactory {
         control: (element, {validators = const []}) => FormControl<int>(
             validators: validators, value: (element as s.Rating).defaultValue));
 
-    register<s.Comment>(
-        (context, element, {bool hasTitle = true}) => ReactiveTextField(
-              style: Theme.of(context).textTheme.bodyText2,
-              formControlName: element.name!,
-              decoration: new InputDecoration(
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    borderSide: BorderSide(color: Colors.blue)),
-                filled: true,
-                contentPadding:
-                    EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
-                hintText: (element as s.Comment).placeholder,
-              ),
-            ).wrapQuestionTitle(element, hasTitle: hasTitle));
+    register<s.Comment>((context, element, {bool hasTitle = true}) =>
+        ReactiveTextField(
+          style: Theme.of(context).textTheme.bodyText2,
+          formControlName: element.name!,
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderSide: BorderSide(color: Colors.blue)),
+            filled: true,
+            contentPadding:
+                const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+            hintText: (element as s.Comment).placeholder,
+          ),
+        ).wrapQuestionTitle(element, hasTitle: hasTitle));
 
     register<s.Text>(textBuilder, control: textControlBuilder);
     register<s.MultipleText>(multipleTextBuilder,
@@ -125,7 +125,7 @@ class SurveyElementFactory {
               PanelTitle(panel: element as s.PanelBase),
               ListView.separated(
                   shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return resolve(
                         context, (element as s.Panel).elements![index]);
@@ -149,18 +149,18 @@ class SurveyElementFactory {
 
   WidgetBuilder separatorBuilder = (_) => Wrap(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          Divider(),
-          SizedBox(
+          const Divider(),
+          const SizedBox(
             height: 5,
           ),
         ],
       );
 
-  Map<Type, SurveyElementBuilder> _map = <Type, SurveyElementBuilder>{};
-  Map<Type, SurveyFormControlBuilder> _formControlMap =
+  final Map<Type, SurveyElementBuilder> _map = <Type, SurveyElementBuilder>{};
+  final Map<Type, SurveyFormControlBuilder> _formControlMap =
       <Type, SurveyFormControlBuilder>{};
 
   void register<T>(SurveyElementBuilder builder,
