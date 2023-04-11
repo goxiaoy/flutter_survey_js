@@ -87,13 +87,15 @@ void main() {
       expect(actual, expected);
     });
 
-    test('maps page elements to survey questions', () {
+    test('maps page elements to survey.page.elements', () {
       final List<ElementBase> elements = [
         TestData.elementBase(name: 'element 1'),
         TestData.elementBase(name: 'element 2'),
       ];
-      final actual =
-          Survey.surveyFromPage(TestData.page(elements: elements)).questions;
+      final actual = Survey.surveyFromPage(TestData.page(elements: elements))
+          .pages
+          .first
+          .elements;
       final expected = elements;
       expect(actual, expected);
     });

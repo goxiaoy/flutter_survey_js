@@ -37,11 +37,17 @@ void main() {
             ],
             home: Material(
               child: SurveyWidget(
-                survey: TestData.survey(questions: [
-                  Rating()
-                    ..defaultValue = defaultValue
-                    ..name = elementName
-                ]),
+                survey: TestData.survey(
+                  pages: [
+                    TestData.page(
+                      elements: [
+                        Rating()
+                          ..defaultValue = defaultValue
+                          ..name = elementName,
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -65,8 +71,15 @@ void main() {
             ],
             home: Material(
               child: SurveyWidget(
-                survey:
-                    TestData.survey(questions: [Rating()..name = elementName]),
+                survey: TestData.survey(
+                  pages: [
+                    TestData.page(
+                      elements: [
+                        Rating()..name = elementName,
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
