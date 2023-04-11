@@ -1,8 +1,9 @@
-import 'nodes.dart';
-import 'condition.dart';
-import 'process.dart';
-import 'helper.dart';
 import 'dart:math';
+
+import 'condition.dart';
+import 'helper.dart';
+import 'nodes.dart';
+import 'process.dart';
 
 class Operand {
   final dynamic originalValue;
@@ -27,7 +28,9 @@ class Operand {
     }
 
     if (originalValue.runtimeType == int ||
-        originalValue.runtimeType == double) return originalValue;
+        originalValue.runtimeType == double) {
+      return originalValue;
+    }
 
     if (originalValue.runtimeType == String) {
       String? strValue = originalValue;
@@ -64,7 +67,7 @@ class Operand {
     var val = originalValue;
     if (val != null &&
         (!Helpers.isNumeric(val) && !Helpers.isBooleanValue(val))) {
-      val = "${"'" + val}'";
+      val = "'$val'";
     }
     return val;
   }
@@ -101,7 +104,6 @@ class Operand {
     return false;
   }
   */
-
 }
 
 class ExpressionOperand extends Operand {
@@ -150,7 +152,9 @@ class ExpressionOperand extends Operand {
   @override
   String toString() {
     var res = left != null ? left.toString() : "";
+
     res += " ${operator!} ";
+
     if (right != null) res += right.toString();
     return res;
   }
@@ -160,13 +164,10 @@ class ConditionOperand extends Operand {
   ConditionNode root;
   ProcessValue? _processValue;
 
-  ConditionOperand(ConditionNode root)
-      : root = root,
-        super(null);
+  ConditionOperand(this.root) : super(null);
 
   @override
   dynamic getValue(ProcessValue? processValue) {
-    if (root == null) return false;
     _processValue = processValue;
     return _runNode(root);
   }
@@ -178,7 +179,7 @@ class ConditionOperand extends Operand {
 
   @override
   String toString() {
-    return root != null ? root.toString() : "";
+    return root.toString();
   }
 
   bool _runNode(ConditionNode node) {
@@ -195,6 +196,7 @@ class ConditionOperand extends Operand {
     if (value.runtimeType.toString() == 'ConditionNode') {
       return _runNode(value);
     }
+
     if (value.runtimeType.toString() == 'Condition') {
       return _runCondition(value);
     }

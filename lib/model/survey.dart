@@ -121,6 +121,7 @@ class Survey {
       ..questionsOrder = page.questionsOrder
       ..title = page.title;
   }
+
   Map<String, dynamic> toJson() => _$SurveyToJson(this);
 
   static String? _boolToString(dynamic inputValue) {

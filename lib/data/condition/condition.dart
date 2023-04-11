@@ -106,7 +106,7 @@ class Condition {
   }
 
   static bool isNoRightOperation(String op) {
-    return op == "empty" || op == "notempty";
+    return op == 'empty' || op == 'notempty';
   }
 
   Operand? get left => _leftValue;

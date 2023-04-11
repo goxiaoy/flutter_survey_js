@@ -168,11 +168,9 @@ class ConditionsParser {
     if (_at > _length || _ch != "(") return 0;
     _at++;
     _pushExpression();
-    var res = _readConditions();
 
     if (_at < _length) {
       _skip();
-      res = _ch == ")";
       _at++;
       _popExpression(isNot);
       return 1;
@@ -182,8 +180,8 @@ class ConditionsParser {
 
   Operand? _readExpressionOperand(bool isRightCondition) {
     _log.fine('_readExpressionOperand');
-    ExpressionOperand? expr =
-        _readExpressionOperandCore(0, isRightCondition);
+
+    ExpressionOperand? expr = _readExpressionOperandCore(0, isRightCondition);
     if (expr == null) return null;
     if (expr.right == null) return expr.left;
     return expr;
@@ -192,8 +190,8 @@ class ConditionsParser {
   ExpressionOperand? _readExpressionOperandCore(
       int brackets /* = 0*/, bool isRightCondition /* = false*/) {
     _log.fine('_readExpressionOperandCore');
-    var expressions =
-        _readExpressionOperandsCore(brackets, isRightCondition);
+
+    var expressions = _readExpressionOperandsCore(brackets, isRightCondition);
     return _makeExpressionOperandCore(expressions);
   }
 
@@ -425,7 +423,6 @@ class ConditionsParser {
       _at++;
     }
     var paramStr = _text!.substring(startIndex, _at);
-    if (paramStr == null) return null;
     var parser = ConditionsParser();
     var node = ConditionNode();
     if (parser.parse(paramStr, node)) {
@@ -503,8 +500,7 @@ class ConditionsParser {
   }
 
   void _pushExpression() {
-    //print('_pushExpression');
-    var node;
+    ConditionNode? node;
     _expressionNodes.add(node);
     _node = node;
   }
