@@ -43,5 +43,6 @@ s.Text toText(s.MultipleTextItem multipleTextItem) {
     ..title = multipleTextItem.title
     ..maxLength = multipleTextItem.maxLength
     ..size = multipleTextItem.size
-    ..requiredErrorText = multipleTextItem.requiredErrorText;
+    ..requiredErrorText = multipleTextItem.requiredErrorText
+    ..placeholder = multipleTextItem.placeholder;
 }

@@ -322,6 +322,7 @@ class MultipleTextItem {
   int? size;
   String? requiredErrorText;
   List<SurveyValidator>? validators;
+  String? placeholder;
   MultipleTextItem();
   factory MultipleTextItem.fromJson(Map<String, dynamic> json) =>
       _$MultipleTextItemFromJson(json);

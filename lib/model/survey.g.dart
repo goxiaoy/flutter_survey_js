@@ -960,7 +960,8 @@ MultipleTextItem _$MultipleTextItemFromJson(Map<String, dynamic> json) =>
       ..requiredErrorText = json['requiredErrorText'] as String?
       ..validators = (json['validators'] as List<dynamic>?)
           ?.map((e) => SurveyValidator.fromJson(e as Map<String, dynamic>))
-          .toList();
+          .toList()
+      ..placeholder = json['placeholder'] as String?;
 
 Map<String, dynamic> _$MultipleTextItemToJson(MultipleTextItem instance) {
   final val = <String, dynamic>{};
@@ -979,6 +980,7 @@ Map<String, dynamic> _$MultipleTextItemToJson(MultipleTextItem instance) {
   writeNotNull('size', instance.size);
   writeNotNull('requiredErrorText', instance.requiredErrorText);
   writeNotNull('validators', instance.validators);
+  writeNotNull('placeholder', instance.placeholder);
   return val;
 }
 
