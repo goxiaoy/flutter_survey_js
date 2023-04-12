@@ -2135,6 +2135,8 @@ MatrixDropdown _$MatrixDropdownFromJson(Map<String, dynamic> json) =>
       ..horizontalScroll = json['horizontalScroll'] as bool?
       ..optionsCaption = json['optionsCaption'] as String?
       ..choices = ItemValue.fromListJson(json['choices'] as List?)
+      ..showOtherItem = json['showOtherItem'] as bool?
+      ..showNoneItem = json['showNoneItem'] as bool?
       ..keyDuplicationError = json['keyDuplicationError'] as String?
       ..cellType = json['cellType'] as String?
       ..columnColCount = json['columnColCount'] as int?
@@ -2192,6 +2194,8 @@ Map<String, dynamic> _$MatrixDropdownToJson(MatrixDropdown instance) {
   writeNotNull('horizontalScroll', instance.horizontalScroll);
   writeNotNull('optionsCaption', instance.optionsCaption);
   writeNotNull('choices', instance.choices);
+  writeNotNull('showOtherItem', instance.showOtherItem);
+  writeNotNull('showNoneItem', instance.showNoneItem);
   writeNotNull('keyDuplicationError', instance.keyDuplicationError);
   writeNotNull('cellType', instance.cellType);
   writeNotNull('columnColCount', instance.columnColCount);
@@ -2248,6 +2252,8 @@ MatrixDynamic _$MatrixDynamicFromJson(Map<String, dynamic> json) =>
       ..horizontalScroll = json['horizontalScroll'] as bool?
       ..optionsCaption = json['optionsCaption'] as String?
       ..choices = ItemValue.fromListJson(json['choices'] as List?)
+      ..showOtherItem = json['showOtherItem'] as bool?
+      ..showNoneItem = json['showNoneItem'] as bool?
       ..keyDuplicationError = json['keyDuplicationError'] as String?
       ..cellType = json['cellType'] as String?
       ..columnColCount = json['columnColCount'] as int?
@@ -2317,6 +2323,8 @@ Map<String, dynamic> _$MatrixDynamicToJson(MatrixDynamic instance) {
   writeNotNull('horizontalScroll', instance.horizontalScroll);
   writeNotNull('optionsCaption', instance.optionsCaption);
   writeNotNull('choices', instance.choices);
+  writeNotNull('showOtherItem', instance.showOtherItem);
+  writeNotNull('showNoneItem', instance.showNoneItem);
   writeNotNull('keyDuplicationError', instance.keyDuplicationError);
   writeNotNull('cellType', instance.cellType);
   writeNotNull('columnColCount', instance.columnColCount);
