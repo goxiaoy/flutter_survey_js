@@ -11,29 +11,30 @@ class QuestionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final description = () {
+    description() {
       if (q.description != null && q.description!.isNotEmpty) {
         return Container(
-          padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
-          child: new Text(q.description!,
+          padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+          child: Text(q.description!,
               style: TextStyle(
                   fontFamily: 'SF-UI-Text',
                   color: Theme.of(context).disabledColor //Color(0xff8b9aa9)
                   )),
         );
-      } else
+      } else {
         return Container();
-    };
-    final titleTextStyle = () {
+      }
+    }
+    titleTextStyle() {
       return TextStyle(
           fontSize: 16.0,
           fontFamily: 'SF-UI-Text',
           fontWeight: FontWeight.w900,
           color: Theme.of(context).disabledColor //Color(0xff242833)
           );
-    };
+    }
 
-    final title = () {
+    title() {
       List<Widget> listTitle = <Widget>[];
       listTitle.add(Builder(builder: (context) {
         final survey = SurveyProvider.of(context);
@@ -66,7 +67,7 @@ class QuestionTitle extends StatelessWidget {
 
       listTitle.add(Expanded(
           child: Text(
-        '${q.title ?? q.name ?? ""}',
+        q.title ?? q.name ?? "",
         style: titleTextStyle(),
       )));
 
@@ -81,7 +82,7 @@ class QuestionTitle extends StatelessWidget {
           description(),
         ],
       );
-    };
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +90,7 @@ class QuestionTitle extends StatelessWidget {
     );
   }
 
-  TextStyle get requiredTextStyle => TextStyle(
+  TextStyle get requiredTextStyle => const TextStyle(
       fontSize: 16.0,
       fontFamily: 'SF-UI-Text',
       fontWeight: FontWeight.w900,

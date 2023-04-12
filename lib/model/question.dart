@@ -1,9 +1,11 @@
 part of 'survey.dart';
 
 abstract class Question extends ElementBase {
+  @override
   String? type;
   // "default",       "collapsed",         "expanded"
   String? state;
+  @override
   String? name;
   bool? visible;
   bool? useDisplayValuesInTitle;

@@ -39,7 +39,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
       final v = itemPositionsListener.itemPositions.value
           .where((element) => element.index == 0)
           .toList();
-      if (v.length > 0) {
+      if (v.isNotEmpty) {
         if (v.first.itemLeadingEdge < 0) {
           setState(() {
             _showBackToTopButton = true;
@@ -80,7 +80,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
     return Scaffold(
         floatingActionButton: _showBackToTopButton == false
             ? null
-            : Container(
+            : SizedBox(
                 height: 45.0,
                 width: 45.0,
                 child: FittedBox(
@@ -88,7 +88,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
                     onPressed: () {
                       itemScrollController.jumpTo(index: 0);
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_upward,
                     ),
                   ),
@@ -103,7 +103,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 8.0,
                 ),
                 if (widget.page.title != null ||
@@ -119,7 +119,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
                   ),
                 Expanded(
                   child: ScrollablePositionedList.separated(
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     itemCount: maxIndex,
                     itemScrollController: itemScrollController,
                     itemPositionsListener: itemPositionsListener,
@@ -144,7 +144,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 45,
                 ) //: Container()
               ],

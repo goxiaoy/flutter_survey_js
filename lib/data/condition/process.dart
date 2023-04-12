@@ -19,10 +19,7 @@ class ProcessValue {
 
   @override
   String toString() {
-    return 'values:' +
-        values.toString() +
-        ' properties:' +
-        properties.toString();
+    return 'values:$values properties:$properties';
   }
 
   static String getFirstName(String text) {
@@ -37,14 +34,14 @@ class ProcessValue {
   }
 
   bool? hasValue({String? text, Map? values}) {
-    if (values == null) values = this.values;
-    var res = this._getValueCore(text, values);
+    values ??= this.values;
+    var res = _getValueCore(text, values);
     return res.hasValue;
   }
 
   void setValue(dynamic obj, String? text, dynamic value) {
     if (text == null) return;
-    var nonNestedObj = this._getNonNestedObject(obj, text);
+    var nonNestedObj = _getNonNestedObject(obj, text);
     if (nonNestedObj == null) return;
     obj = nonNestedObj.value;
     text = nonNestedObj.text;
@@ -55,8 +52,8 @@ class ProcessValue {
 
   dynamic getValue({String? text, Map? values}) {
     assert(text != null && text.isNotEmpty);
-    if (values == null) values = this.values;
-    var res = this._getValueCore(text, values);
+    values ??= this.values;
+    var res = _getValueCore(text, values);
     return res.value;
   }
 
@@ -73,10 +70,10 @@ class ProcessValue {
       res.value = 0;
       res.hasValue = true;
     }
-    var nonNestedObj = this._getNonNestedObject(curValue, text!);
+    var nonNestedObj = _getNonNestedObject(curValue, text!);
     if (nonNestedObj == null) return res;
     res.value = nonNestedObj.text != null
-        ? this._getObjectValue(nonNestedObj.value, nonNestedObj.text)
+        ? _getObjectValue(nonNestedObj.value, nonNestedObj.text)
         : nonNestedObj.value;
     res.hasValue = !Helpers.isValueEmpty(res.value);
     return res;
@@ -87,16 +84,16 @@ class ProcessValue {
       var isArray = text[0] == "[";
       if (!isArray) {
         var curName = ProcessValue.getFirstName(text);
-        obj = this._getObjectValue(obj, curName);
+        obj = _getObjectValue(obj, curName);
         if (obj == null) return null;
         text = text.substring(curName.length);
       } else {
-        var objInArray = this._getObjInArray(obj, text);
+        var objInArray = _getObjInArray(obj, text);
         if (!objInArray) return null;
         obj = objInArray.value;
         text = objInArray.text;
       }
-      if (text != null && text[0] == ".") {
+      if (text[0] == ".") {
         text = text.substring(1);
       }
     }
@@ -113,7 +110,7 @@ class ProcessValue {
       index++;
     }
     text = index < text.length ? text.substring(index + 1) : "";
-    index = this._getIntValue(str);
+    index = _getIntValue(str);
     if (index < 0 || index >= curValue.length) return null;
     return ValueText()
       ..value = curValue[index]

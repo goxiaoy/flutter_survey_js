@@ -3,24 +3,29 @@ part of 'survey.dart';
 @JsonSerializable(includeIfNull: false)
 class MatrixDropdown extends MatrixDropdownBase {
   static const $type = "matrixdropdown";
+  @override
   String? get type => $type;
 
   @JsonKey(fromJson: ItemValue.fromListJson)
   List<ItemValue>? rows;
+  @override
   String? rowsVisibleIf;
   String? rowTitleWidth;
   String? totalText;
   MatrixDropdown();
   factory MatrixDropdown.fromJson(Map<String, dynamic> json) =>
       _$MatrixDropdownFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$MatrixDropdownToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class MatrixDynamic extends MatrixDropdownBase {
   static const $type = "matrixdynamic";
+  @override
   String? get type => $type;
 
+  @override
   String? rowsVisibleIf;
   bool? allowAddRows;
   bool? allowRemoveRows;
@@ -45,12 +50,14 @@ class MatrixDynamic extends MatrixDropdownBase {
   MatrixDynamic();
   factory MatrixDynamic.fromJson(Map<String, dynamic> json) =>
       _$MatrixDynamicFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$MatrixDynamicToJson(this);
 }
 
 @JsonSerializable(includeIfNull: false)
 class Matrix extends MatrixBase {
   static const $type = "matrix";
+  @override
   String? get type => $type;
   @JsonKey(fromJson: ItemValue.fromListJson)
   List<ItemValue>? columns;
@@ -65,11 +72,13 @@ class Matrix extends MatrixBase {
 
   Matrix();
   factory Matrix.fromJson(Map<String, dynamic> json) => _$MatrixFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$MatrixToJson(this);
 }
 
 abstract class MatrixDropdownBase extends MatrixBase {
   static const $type = "matrixrropdownbase";
+  @override
   String? get type => $type;
   List<MatrixDropdownColumn>? columns;
   //     "horizontal",   "vertical"
@@ -92,6 +101,7 @@ abstract class MatrixDropdownBase extends MatrixBase {
 
   MatrixDropdownBase();
 
+  @override
   Map<String, dynamic> toJson();
 }
 

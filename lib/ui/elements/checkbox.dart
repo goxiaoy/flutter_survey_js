@@ -25,7 +25,7 @@ class CheckBoxElement extends StatelessWidget {
         formArrayName: formControlName,
         builder: (context, formArray, child) {
           final list = <Widget>[];
-          (element.choices ?? []).forEach((element) {
+          for (var element in (element.choices ?? [])) {
             list.add(CheckboxListTile(
               value: formArray.controls.any((c) => c.value == element.value),
               title: Text(element.text ?? element.value?.toString() ?? ''),
@@ -36,15 +36,15 @@ class CheckBoxElement extends StatelessWidget {
                   final rs = formArray.controls
                       .where((c) => c.value == element.value)
                       .toList();
-                  if (rs.length > 0) {
-                    rs.forEach((r) {
+                  if (rs.isNotEmpty) {
+                    for (var r in rs) {
                       formArray.remove(r);
-                    });
+                    }
                   }
                 }
               },
             ));
-          });
+          }
           return Column(
             children: list,
           );

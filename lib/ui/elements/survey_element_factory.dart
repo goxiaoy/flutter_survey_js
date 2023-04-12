@@ -59,7 +59,7 @@ class SurveyElementFactory {
     register<s.Comment>(
         (context, element, {bool hasTitle = true}) => ReactiveTextField(
               formControlName: element.name!,
-              decoration: new InputDecoration(
+              decoration: const InputDecoration(
                 fillColor: Colors.white,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -117,7 +117,7 @@ class SurveyElementFactory {
               PanelTitle(panel: element as s.PanelBase),
               ListView.separated(
                   shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return resolve(
                         context, (element as s.Panel).elements![index]);
@@ -137,7 +137,7 @@ class SurveyElementFactory {
   SurveyElementBuilder? unsupported;
 
   WidgetBuilder separatorBuilder = (_) => Wrap(
-        children: [
+        children: const [
           SizedBox(
             height: 5,
           ),
@@ -148,8 +148,8 @@ class SurveyElementFactory {
         ],
       );
 
-  Map<Type, SurveyElementBuilder> _map = <Type, SurveyElementBuilder>{};
-  Map<Type, SurveyFormControlBuilder> _formControlMap =
+  final Map<Type, SurveyElementBuilder> _map = <Type, SurveyElementBuilder>{};
+  final Map<Type, SurveyFormControlBuilder> _formControlMap =
       <Type, SurveyFormControlBuilder>{};
 
   void register<T>(SurveyElementBuilder builder,

@@ -5,8 +5,8 @@ import 'package:flutter_survey_js/model/survey.dart' as s;
 class ElementsState {
   final Map<s.ElementBase, ElementStatus> _statusMap;
 
-  ElementsState(Map<s.ElementBase, ElementStatus> status)
-      : this._statusMap = status;
+  const ElementsState(Map<s.ElementBase, ElementStatus> status)
+      : _statusMap = status;
 
   ElementStatus? get(s.ElementBase element) {
     return _statusMap[element];

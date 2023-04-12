@@ -28,11 +28,11 @@ void main() {
     testWidgets(
       'reflects non-null default values',
       (widgetTester) async {
-        final int defaultValue = 3;
-        final String elementName = 'some rating';
+        const int defaultValue = 3;
+        const String elementName = 'some rating';
         await widgetTester.pumpWidget(
           MaterialApp(
-            localizationsDelegates: [
+            localizationsDelegates: const [
               s.MultiAppLocalizationsDelegate(),
             ],
             home: Material(
@@ -57,10 +57,10 @@ void main() {
     testWidgets(
       'reflects null default values',
       (widgetTester) async {
-        final String elementName = 'some rating';
+        const String elementName = 'some rating';
         await widgetTester.pumpWidget(
           MaterialApp(
-            localizationsDelegates: [
+            localizationsDelegates: const [
               s.MultiAppLocalizationsDelegate(),
             ],
             home: Material(

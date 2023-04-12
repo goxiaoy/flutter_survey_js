@@ -68,8 +68,8 @@ class ConditionWidget extends StatelessWidget {
         }
         if (visibleIf != null) {
           w = Visibility(
-            child: w,
             visible: ConditionRunner(visibleIf).run(values: snapshot.data),
+            child: w,
           );
         }
         return w;

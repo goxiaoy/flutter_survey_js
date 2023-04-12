@@ -53,10 +53,10 @@ class Condition {
           right.runtimeType.toString() == 'List<double>') {
         rightArray = right;
       } else {
-        rightArray = []..add(right);
+        rightArray = [right];
       }
       bool found = false;
-      if (rightArray != null && rightArray.length > 0) {
+      if (rightArray.isNotEmpty) {
         for (int i = 0; i < rightArray.length; i++) {
           for (int j = 0; j < leftArray!.length; j++) {
             if (leftArray[j] == rightArray[i]) {
@@ -109,56 +109,57 @@ class Condition {
     return op == "empty" || op == "notempty";
   }
 
-  Operand? get left => this._leftValue;
+  Operand? get left => _leftValue;
 
-  set left(Operand? val) => this._leftValue = val;
+  set left(Operand? val) => _leftValue = val;
 
-  Operand? get right => this._rightValue;
+  Operand? get right => _rightValue;
 
-  set right(Operand? val) => this._rightValue = val;
+  set right(Operand? val) => _rightValue = val;
 
-  String get operator => this._opValue;
+  String get operator => _opValue;
 
   set operator(String value) {
     if (value.isEmpty) return;
     value = value.toLowerCase();
     if (Condition.operators[value] == null) return;
-    this._opValue = value;
+    _opValue = value;
   }
 
   bool? perform({dynamic left, dynamic right, ProcessValue? processValue}) {
-    if (left == null) left = this.left;
-    if (right == null) right = this.right;
-    return this.performExplicit(left, right, processValue);
+    left ??= this.left;
+    right ??= this.right;
+    return performExplicit(left, right, processValue);
   }
 
   bool? performExplicit(
       dynamic left, dynamic right, ProcessValue? processValue) {
-    var leftValue = left != null ? left.getValue(processValue) : null;
-    if (right == null && (leftValue == true || leftValue == false))
+    var leftValue = left?.getValue(processValue);
+    if (right == null && (leftValue == true || leftValue == false)) {
       return leftValue;
-    var rightValue = right != null ? right.getValue(processValue) : null;
+    }
+    var rightValue = right?.getValue(processValue);
     //print('performExplicit:' + leftValue.toString() + '  ' + rightValue.toString());
-    return Condition.operators[this.operator](leftValue, rightValue);
+    return Condition.operators[operator](leftValue, rightValue);
   }
 
   void fillVariables(List<String> vars) {
-    if (this.left != null) this.left!.fillVariables(vars);
-    if (this.right != null) this.right!.fillVariables(vars);
+    if (left != null) left!.fillVariables(vars);
+    if (right != null) right!.fillVariables(vars);
   }
 
   @override
   String toString() {
-    if (this.right == null || this.operator == null) return "";
+    if (this.right == null) return "";
     var left = this.left.toString();
-    var res = left + " " + this._operationToString();
-    if (Condition.isNoRightOperation(this.operator)) return res;
+    var res = "$left ${_operationToString()}";
+    if (Condition.isNoRightOperation(operator)) return res;
     var right = this.right.toString();
-    return res + " " + right;
+    return "$res $right";
   }
 
   String _operationToString() {
-    var op = this.operator;
+    var op = operator;
     if (op == "equal") return "=";
     if (op == "notequal") return "!=";
     if (op == "greater") return ">";

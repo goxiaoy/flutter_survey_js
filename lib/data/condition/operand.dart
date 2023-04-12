@@ -10,33 +10,33 @@ class Operand {
 
   //@override
   dynamic getValue(ProcessValue? processValue) {
-    if (this.originalValue == null) return null;
+    if (originalValue == null) return null;
 
-    if (this.originalValue.runtimeType.toString() == 'List<dynamic>' ||
-        this.originalValue.runtimeType.toString() == 'List<int>' ||
-        this.originalValue.runtimeType.toString() == 'List<double>' ||
-        this.originalValue.runtimeType.toString() == 'List<String>') {
+    if (originalValue.runtimeType.toString() == 'List<dynamic>' ||
+        originalValue.runtimeType.toString() == 'List<int>' ||
+        originalValue.runtimeType.toString() == 'List<double>' ||
+        originalValue.runtimeType.toString() == 'List<String>') {
       List res = [];
-      List list = this.originalValue;
+      List list = originalValue;
       for (int i = 0; i < list.length; i++) {
-        Operand val = new Operand(list[i]);
+        Operand val = Operand(list[i]);
         res.add(val.getValue(processValue));
       }
 
       return res;
     }
 
-    if (this.originalValue.runtimeType == int ||
-        this.originalValue.runtimeType == double) return this.originalValue;
+    if (originalValue.runtimeType == int ||
+        originalValue.runtimeType == double) return originalValue;
 
-    if (this.originalValue.runtimeType == String) {
-      String? strValue = this.originalValue;
+    if (originalValue.runtimeType == String) {
+      String? strValue = originalValue;
       var res = Helpers.getSimpleValue(strValue);
       if (res.isSimple) return res.value;
 
-      var val = this._removeQuotesAndEscapes(strValue!);
+      var val = _removeQuotesAndEscapes(strValue!);
       if (processValue != null) {
-        String? name = this.getValueName(val);
+        String? name = getValueName(val);
         if (name != null) {
           if (!processValue.hasValue(text: name)!) return null;
           var value = processValue.getValue(text: name);
@@ -49,11 +49,11 @@ class Operand {
   }
 
   bool get isBoolean {
-    return Helpers.isBooleanValue(this.originalValue);
+    return Helpers.isBooleanValue(originalValue);
   }
 
   void fillVariables(List<String> vars) {
-    var name = this.getValueName(this.originalValue);
+    var name = getValueName(originalValue);
     if (name != null) {
       vars.add(name);
     }
@@ -61,29 +61,31 @@ class Operand {
 
   @override
   String toString() {
-    var val = this.originalValue;
+    var val = originalValue;
     if (val != null &&
-        (!Helpers.isNumeric(val) && !Helpers.isBooleanValue(val)))
-      val = "'" + val + "'";
-    return val;
-  }
-
-  String _removeQuotesAndEscapes(String val) {
-    if (val.length > 0 && (val[0] == "'" || val[0] == '"'))
-      val = val.substring(1);
-    var len = val.length;
-    if (len > 0 && (val[len - 1] == "'" || val[len - 1] == '"'))
-      val = val.substring(0, len - 1);
-    if (val != null) {
-      val = val.replaceAll("\\'", "'");
-      val = val.replaceAll('\\"', '"');
+        (!Helpers.isNumeric(val) && !Helpers.isBooleanValue(val))) {
+      val = "${"'" + val}'";
     }
     return val;
   }
 
+  String _removeQuotesAndEscapes(String val) {
+    if (val.isNotEmpty && (val[0] == "'" || val[0] == '"')) {
+      val = val.substring(1);
+    }
+    var len = val.length;
+    if (len > 0 && (val[len - 1] == "'" || val[len - 1] == '"')) {
+      val = val.substring(0, len - 1);
+    }
+    val = val.replaceAll("\\'", "'");
+    val = val.replaceAll('\\"', '"');
+    return val;
+  }
+
   String? getValueName(String val) {
-    if (val.length < 3 || val[0] != "{" || val[val.length - 1] != "}")
+    if (val.length < 3 || val[0] != "{" || val[val.length - 1] != "}") {
       return null;
+    }
     return val.substring(1, val.length - 1);
   }
 
@@ -110,29 +112,29 @@ class ExpressionOperand extends Operand {
 
   @override
   dynamic getValue(ProcessValue? processValue) {
-    if (this.left == null) return null;
-    if (this.right == null) return this.left!.getValue(processValue);
-    var l = this.left!.getValue(processValue);
-    var r = this.right!.getValue(processValue);
+    if (left == null) return null;
+    if (right == null) return left!.getValue(processValue);
+    var l = left!.getValue(processValue);
+    var r = right!.getValue(processValue);
     if (Helpers.isValueEmpty(l)) l = 0;
     if (Helpers.isValueEmpty(r)) r = 0;
-    if (this.operator == "+") {
+    if (operator == "+") {
       return l + r;
     }
-    if (this.operator == "-") {
+    if (operator == "-") {
       return l - r;
     }
-    if (this.operator == "*") {
+    if (operator == "*") {
       return l * r;
     }
-    if (this.operator == "^") {
+    if (operator == "^") {
       return pow(l, r);
     }
-    if (this.operator == "/") {
+    if (operator == "/") {
       if (r == null || (r < 0.001 && r > -0.001)) return null;
       return l / r;
     }
-    if (this.operator == "%") {
+    if (operator == "%") {
       if (r == null || (r < 0.001 && r > -0.001)) return null;
       return l % r;
     }
@@ -141,15 +143,15 @@ class ExpressionOperand extends Operand {
 
   @override
   dynamic fillVariables(List<String> vars) {
-    if (this.left != null) this.left!.fillVariables(vars);
-    if (this.right != null) this.right!.fillVariables(vars);
+    if (left != null) left!.fillVariables(vars);
+    if (right != null) right!.fillVariables(vars);
   }
 
   @override
   String toString() {
-    var res = this.left != null ? this.left.toString() : "";
-    res += " " + this.operator! + " ";
-    if (this.right != null) res += this.right.toString();
+    var res = left != null ? left.toString() : "";
+    res += " ${operator!} ";
+    if (right != null) res += right.toString();
     return res;
   }
 }
@@ -164,27 +166,25 @@ class ConditionOperand extends Operand {
 
   @override
   dynamic getValue(ProcessValue? processValue) {
-    if (this.root == null) return false;
-    this._processValue = processValue;
-    return this._runNode(this.root);
+    if (root == null) return false;
+    _processValue = processValue;
+    return _runNode(root);
   }
 
   @override
   void fillVariables(List<String> vars) {
-    if (this.root != null) {
-      this.root.fillVariables(vars);
-    }
+    root.fillVariables(vars);
   }
 
   @override
   String toString() {
-    return this.root != null ? this.root.toString() : "";
+    return root != null ? root.toString() : "";
   }
 
   bool _runNode(ConditionNode node) {
     var onFirstFail = node.connective == "and";
     for (var i = 0; i < node.children!.length; i++) {
-      var res = this._runNodeCondition(node.children![i])!;
+      var res = _runNodeCondition(node.children![i])!;
       if (!res && onFirstFail) return node.isNot;
       if (res && !onFirstFail) return !node.isNot;
     }
@@ -192,10 +192,12 @@ class ConditionOperand extends Operand {
   }
 
   bool? _runNodeCondition(dynamic value) {
-    if (value.runtimeType.toString() == 'ConditionNode')
-      return this._runNode(value);
-    if (value.runtimeType.toString() == 'Condition')
-      return this._runCondition(value);
+    if (value.runtimeType.toString() == 'ConditionNode') {
+      return _runNode(value);
+    }
+    if (value.runtimeType.toString() == 'Condition') {
+      return _runCondition(value);
+    }
     assert(false);
     return false;
   }
@@ -204,7 +206,7 @@ class ConditionOperand extends Operand {
     //print('_runCondition:' + condition.toString());
     //print('_processValue:' + this._processValue.toString());
     bool? result = condition.performExplicit(
-        condition.left, condition.right, this._processValue);
+        condition.left, condition.right, _processValue);
     // print('_runCondition result:' + result.toString());
     return result;
   }
@@ -217,8 +219,8 @@ class FunctionOperand extends Operand {
   @override
   dynamic getValue(ProcessValue? processValue) {
     var paramValues = [];
-    for (var i = 0; i < this.parameters.length; i++) {
-      paramValues.add(this.parameters[i].getValue(processValue));
+    for (var i = 0; i < parameters.length; i++) {
+      paramValues.add(parameters[i].getValue(processValue));
     }
 
     /// TODO: implementation
@@ -232,17 +234,19 @@ class FunctionOperand extends Operand {
     return null;
   }
 
+  @override
   void fillVariables(List<String> vars) {
-    for (var i = 0; i < this.parameters.length; i++) {
-      this.parameters[i].fillVariables(vars);
+    for (var i = 0; i < parameters.length; i++) {
+      parameters[i].fillVariables(vars);
     }
   }
 
+  @override
   String toString() {
-    var res = this.originalValue + "(";
-    for (var i = 0; i < this.parameters.length; i++) {
+    var res = originalValue + "(";
+    for (var i = 0; i < parameters.length; i++) {
       if (i > 0) res += ", ";
-      res += this.parameters[i].toString();
+      res += parameters[i].toString();
     }
     return res;
   }

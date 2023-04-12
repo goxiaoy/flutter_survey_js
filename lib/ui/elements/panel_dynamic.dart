@@ -26,10 +26,10 @@ class PanelDynamicElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final createNew = () {
+    createNew() {
       //create new formGroup
       return elementsToFormGroup((element.templateElements ?? []).toList());
-    };
+    }
     return ReactiveNestedGroupArray(
         createNew: createNew,
         formArrayName: formControlName,
@@ -40,7 +40,7 @@ class PanelDynamicElement extends StatelessWidget {
               child: ReactiveNestedForm(
                   formGroup: form,
                   child: ListView.separated(
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: element.templateElements?.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
