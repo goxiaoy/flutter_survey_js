@@ -56,20 +56,20 @@ class SurveyElementFactory {
         control: (element, {validators = const []}) => FormControl<int>(
             validators: validators, value: (element as s.Rating).defaultValue));
 
-    register<s.Comment>(
-        (context, element, {bool hasTitle = true}) => ReactiveTextField(
-              formControlName: element.name!,
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    borderSide: BorderSide(color: Colors.blue)),
-                filled: true,
-                contentPadding:
-                    EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
-                hintText: (element as s.Comment).placeholder,
-              ),
-            ).wrapQuestionTitle(element, hasTitle: hasTitle));
+    register<s.Comment>((context, element, {bool hasTitle = true}) =>
+        ReactiveTextField(
+          formControlName: element.name!,
+          decoration: InputDecoration(
+            fillColor: Colors.white,
+            border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderSide: BorderSide(color: Colors.blue)),
+            filled: true,
+            contentPadding:
+                const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+            hintText: (element as s.Comment).placeholder,
+          ),
+        ).wrapQuestionTitle(element, hasTitle: hasTitle));
 
     register<s.Text>(textBuilder, control: textControlBuilder);
     register<s.MultipleText>(multipleTextBuilder,
