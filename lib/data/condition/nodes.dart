@@ -43,7 +43,7 @@ class ConditionNode {
       if (children != null && children!.isNotEmpty) {
         nodeText = "($nodeText)";
       }
- res += " ${connective} ";
+ res += " $connective ";
       res += nodeText;
     }
     return res;
