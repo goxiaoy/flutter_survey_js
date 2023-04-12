@@ -120,7 +120,9 @@ class SurveyWidgetState extends State<SurveyWidget> {
     formGroup = elementsToFormGroup(widget.survey.getElements(),
         controlsMap: _controlsMap);
 
-    formGroup.updateValue(widget.answer);
+    if (widget.answer != null) {
+      formGroup.updateValue(widget.answer);
+    }
 
     _listener = formGroup.valueChanges.listen((event) {
       logger.fine('Value changed $event');
