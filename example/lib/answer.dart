@@ -20,60 +20,62 @@ class AnswerPageState extends State<AnswerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('Input your answer'),
-            ),
-            body: Column(children: [
-              Text("Choose layout to continue"),
-              Wrap(
-                direction: Axis.horizontal,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Simple(
-                                  survey: widget.survey,
-                                  answer: toAnswer(answer.toString()),
-                                )),
-                      )
-                    },
-                    child: Text(
-                      'Simple',
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CustomLayoutPage(
-                                  survey: widget.survey,
-                                  answer: toAnswer(answer.toString()),
-                                )),
-                      )
-                    },
-                    child: Text(
-                      'Customize',
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                  child: JsonEditor.element(
-                element: answer,
-                onValueChanged: (value) {
-                  if (value.toString() != answer.toString() && mounted) {
-                    setState(() {
-                      answer = value;
-                    });
-                  }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Input your answer'),
+      ),
+      body: SafeArea(
+        child: Column(children: [
+          Text("Choose layout to continue"),
+          Wrap(
+            direction: Axis.horizontal,
+            children: [
+              ElevatedButton(
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Simple(
+                              survey: widget.survey,
+                              answer: toAnswer(answer.toString()),
+                            )),
+                  )
                 },
-              ))
-            ])));
+                child: Text(
+                  'Simple',
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CustomLayoutPage(
+                              survey: widget.survey,
+                              answer: toAnswer(answer.toString()),
+                            )),
+                  )
+                },
+                child: Text(
+                  'Customize',
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+              child: JsonEditor.element(
+            element: answer,
+            onValueChanged: (value) {
+              if (value.toString() != answer.toString() && mounted) {
+                setState(() {
+                  answer = value;
+                });
+              }
+            },
+          ))
+        ]),
+      ),
+    );
   }
 }
 

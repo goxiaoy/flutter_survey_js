@@ -8,12 +8,12 @@ class Simple extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('Survey test'),
-            ),
-            body: survey == null
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Survey test'),
+        ),
+        body: SafeArea(
+            child: survey == null
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
