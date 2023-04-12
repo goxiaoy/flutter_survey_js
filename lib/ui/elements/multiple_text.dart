@@ -40,7 +40,6 @@ s.Text toText(s.MultipleTextItem multipleTextItem) {
     ..isRequired = multipleTextItem.isRequired
     ..validators = multipleTextItem.validators
     ..inputType = multipleTextItem.inputType
-    ..placeHolder = multipleTextItem.placeHolder
     ..title = multipleTextItem.title
     ..maxLength = multipleTextItem.maxLength
     ..size = multipleTextItem.size
