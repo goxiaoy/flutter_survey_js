@@ -696,7 +696,8 @@ Dropdown _$DropdownFromJson(Map<String, dynamic> json) => Dropdown()
   ..choicesMin = json['choicesMin'] as num?
   ..choicesMax = json['choicesMax'] as num?
   ..choicesStep = json['choicesStep'] as num?
-  ..autoComplete = json['autoComplete'] as String?;
+  ..autoComplete = json['autoComplete'] as String?
+  ..placeholder = json['placeholder'] as String?;
 
 Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   final val = <String, dynamic>{};
@@ -759,6 +760,7 @@ Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   writeNotNull('choicesMax', instance.choicesMax);
   writeNotNull('choicesStep', instance.choicesStep);
   writeNotNull('autoComplete', instance.autoComplete);
+  writeNotNull('placeholder', instance.placeholder);
   return val;
 }
 
