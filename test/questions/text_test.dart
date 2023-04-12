@@ -101,7 +101,7 @@ void main() {
   });
 
   testWidgets('displays placeholder', (WidgetTester tester) async {
-    final placeholder = 'Enter some text here...';
+    const placeholder = 'Enter some text here...';
     final s = Survey.fromJson(
       {
         "pages": [
@@ -119,7 +119,7 @@ void main() {
     );
     await tester.pumpWidget(
       MaterialApp(
-        localizationsDelegates: [
+        localizationsDelegates: const [
           MultiAppLocalizationsDelegate(),
         ],
         home: Material(
