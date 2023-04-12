@@ -220,6 +220,7 @@ class Dropdown extends SelectBase {
   num? choicesMax;
   num? choicesStep;
   String? autoComplete;
+  String? placeholder;
   Dropdown();
   factory Dropdown.fromJson(Map<String, dynamic> json) =>
       _$DropdownFromJson(json);

@@ -101,6 +101,7 @@ class SurveyElementFactory {
       final e = (element as s.Dropdown);
       return ReactiveDropdownField(
         formControlName: element.name!,
+        hint: element.placeholder == null ? null : Text(element.placeholder!),
         items: e.choices
                 ?.map((e) => DropdownMenuItem(
                     value: e.value,
