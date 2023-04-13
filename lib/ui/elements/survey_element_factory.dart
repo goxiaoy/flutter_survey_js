@@ -127,15 +127,39 @@ class SurveyElementFactory {
       final placeholderString = S.of(context).placeholder;
 
       return ReactiveDropdownField(
-        formControlName: element.name!,
-        hint: Text(element.placeholder ?? placeholderString),
-        items: e.choices
-                ?.map((e) => DropdownMenuItem(
-                    value: e.value,
-                    child: Text(e.text ?? e.value?.toString() ?? "")))
-                .toList(growable: false) ??
-            [],
-      ).wrapQuestionTitle(element, hasTitle: hasTitle);
+          formControlName: element.name!,
+          hint: Text(element.placeholder ?? placeholderString),
+          onChanged: (control) {
+            print(control.value == 'other');
+          },
+          items: <DropdownMenuItem<Object>>[
+            ...e.choices
+                    ?.map(
+                      (e) => DropdownMenuItem(
+                        value: e.value,
+                        child: Text(
+                          e.text ?? e.value?.toString() ?? '',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                    )
+                    .toList(growable: false) ??
+                [],
+            if (e.showNoneItem == true)
+              DropdownMenuItem(
+                  value: 'none',
+                  child: Text(
+                    'None',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  )),
+            if (e.showOtherItem == true)
+              DropdownMenuItem(
+                  value: 'other',
+                  child: Text(
+                    'Other (describe)',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  )),
+          ]).wrapQuestionTitle(element, hasTitle: hasTitle);
     });
     register<s.PanelDynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {

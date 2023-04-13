@@ -90,8 +90,6 @@ abstract class MatrixDropdownBase extends MatrixBase {
   String? optionsCaption;
   @JsonKey(fromJson: ItemValue.fromListJson)
   List<ItemValue>? choices;
-  bool? showOtherItem;
-  bool? showNoneItem;
   String? keyDuplicationError;
   //"dropdown","checkbox","radiogroup","text","comment","boolean","expression",  "rating"
   String? cellType;
