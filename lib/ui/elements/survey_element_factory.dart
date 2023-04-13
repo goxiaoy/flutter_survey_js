@@ -81,9 +81,9 @@ class SurveyElementFactory {
 
     register<s.Comment>((context, element, {bool hasTitle = true}) =>
         ReactiveTextField(
-          style: Theme.of(context).textTheme.bodyText2,
           keyboardType: TextInputType.multiline,
           maxLines: null,
+          style: Theme.of(context).textTheme.bodyMedium,
           formControlName: element.name!,
           decoration: InputDecoration(
             fillColor: Colors.white,
