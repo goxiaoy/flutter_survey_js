@@ -25,11 +25,15 @@ void main() {
   testWidgets('displays title if present in json', (WidgetTester tester) async {
     final s = Survey.fromJson(
       {
-        "questions": [
+        "pages": [
           {
-            "type": "boolean",
-            "name": "bool",
-            "title": titleText,
+            "elements": [
+              {
+                "type": "boolean",
+                "name": "bool",
+                "title": titleText,
+              },
+            ],
           },
         ],
       },
@@ -54,11 +58,15 @@ void main() {
       (WidgetTester tester) async {
     final s = Survey.fromJson(
       {
-        "questions": [
+        "pages": [
           {
-            "type": "boolean",
-            "name": "bool",
-            "labelFalse": labelFalseText,
+            "elements": [
+              {
+                "type": "boolean",
+                "name": "bool",
+                "labelFalse": labelFalseText,
+              },
+            ],
           },
         ],
       },
@@ -85,11 +93,15 @@ void main() {
     String labelTrueText = "true text";
     final s = Survey.fromJson(
       {
-        "questions": [
+        "pages": [
           {
-            "type": "boolean",
-            "name": "bool",
-            "labelTrue": labelTrueText,
+            "elements": [
+              {
+                "type": "boolean",
+                "name": "bool",
+                "labelTrue": labelTrueText,
+              },
+            ],
           },
         ],
       },
@@ -116,12 +128,16 @@ void main() {
     String labelTrueText = "true text";
     final s = Survey.fromJson(
       {
-        "questions": [
+        "pages": [
           {
-            "type": "boolean",
-            "name": "bool",
-            "labelTrue": labelTrueText,
-            "labelFalse": labelFalseText
+            "elements": [
+              {
+                "type": "boolean",
+                "name": "bool",
+                "labelTrue": labelTrueText,
+                "labelFalse": labelFalseText
+              },
+            ],
           },
         ],
       },
