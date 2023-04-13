@@ -34,39 +34,77 @@ void main() {
     final s = Survey.fromJson(json);
   });
 
-  testWidgets('displays placeholder', (WidgetTester tester) async {
-    const placeholder = 'Select...';
-    final s = Survey.fromJson(
-      {
-        "title": "Single Page Survey",
-        "pages": [
-          {
-            "name": "page1",
-            "elements": [
-              {
-                "type": "dropdown",
-                "name": "question1",
-                "choices": ["Item 1", "Item 2", "Item 3"],
-                "placeholder": placeholder
-              }
-            ]
-          }
-        ]
-      },
-    );
-    await tester.pumpWidget(
-      MaterialApp(
-        localizationsDelegates: const [
-          MultiAppLocalizationsDelegate(),
-        ],
-        home: Material(
-          child: SurveyWidget(survey: s),
+  group('placeholder', () {
+    testWidgets('displays placeholder', (WidgetTester tester) async {
+      const placeholder = 'Select...';
+      final s = Survey.fromJson(
+        {
+          "title": "Single Page Survey",
+          "pages": [
+            {
+              "name": "page1",
+              "elements": [
+                {
+                  "type": "dropdown",
+                  "name": "question1",
+                  "choices": ["Item 1", "Item 2", "Item 3"],
+                  "placeholder": placeholder
+                }
+              ]
+            }
+          ]
+        },
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
         ),
-      ),
-    );
-    await tester.pump();
-    await tester.idle();
+      );
+      await tester.pump();
+      await tester.idle();
 
-    expect(find.text(placeholder), findsOneWidget);
+      expect(find.text(placeholder), findsOneWidget);
+    });
+
+    testWidgets(
+        'displays "Select..." if `"placeholder"` is not specified in the JSON',
+        (WidgetTester tester) async {
+      final s = Survey.fromJson(
+        {
+          "title": "Single Page Survey",
+          "pages": [
+            {
+              "name": "page1",
+              "elements": [
+                {
+                  "type": "dropdown",
+                  "name": "question1",
+                  "choices": ["Item 1", "Item 2", "Item 3"]
+                }
+              ]
+            }
+          ]
+        },
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await tester.pump();
+      await tester.idle();
+
+      expect(find.text('Select...'), findsOneWidget);
+    });
   });
 }
