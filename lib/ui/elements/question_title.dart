@@ -83,10 +83,18 @@ class QuestionTitle extends StatelessWidget {
         ],
       );
     }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [title(), if (child != null) child!],
+      children: [
+        title(),
+        if (child != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: child!,
+          )
+      ],
     );
   }
 
