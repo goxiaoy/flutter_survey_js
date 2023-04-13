@@ -220,6 +220,7 @@ class Dropdown extends SelectBase {
   num? choicesMax;
   num? choicesStep;
   String? autoComplete;
+  String? placeholder;
   Dropdown();
   factory Dropdown.fromJson(Map<String, dynamic> json) =>
       _$DropdownFromJson(json);
@@ -308,6 +309,7 @@ class MultipleTextItem {
   int? size;
   String? requiredErrorText;
   List<SurveyValidator>? validators;
+  String? placeholder;
   MultipleTextItem();
   factory MultipleTextItem.fromJson(Map<String, dynamic> json) =>
       _$MultipleTextItemFromJson(json);
