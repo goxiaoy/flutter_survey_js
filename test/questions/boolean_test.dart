@@ -6,7 +6,6 @@ void main() {
   // 单一的测试
   const labelFalseText = "false text";
   const labelTrueText = "true text";
-
   const titleText = "Please answer the question";
   const json = {
     "questions": [

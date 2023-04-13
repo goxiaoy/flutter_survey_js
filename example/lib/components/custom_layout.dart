@@ -13,6 +13,7 @@ class CustomLayoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final survey = this.survey;
     return Scaffold(
       appBar: AppBar(
         title: Text('Survey Customize:' + (survey?.title ?? '')),
@@ -24,7 +25,7 @@ class CustomLayoutPage extends StatelessWidget {
               )
             : s.SurveyWidget(
                 showQuestionsInOnePage: true,
-                survey: survey!,
+                survey: survey,
                 answer: answer,
                 onChange: (v) {
                   print(v);
