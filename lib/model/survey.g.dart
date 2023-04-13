@@ -697,7 +697,9 @@ Dropdown _$DropdownFromJson(Map<String, dynamic> json) => Dropdown()
   ..choicesMax = json['choicesMax'] as num?
   ..choicesStep = json['choicesStep'] as num?
   ..autoComplete = json['autoComplete'] as String?
-  ..placeholder = json['placeholder'] as String?;
+  ..placeholder = json['placeholder'] as String?
+  ..showOtherItem = json['showOtherItem'] as bool?
+  ..showNoneItem = json['showNoneItem'] as bool?;
 
 Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   final val = <String, dynamic>{};
@@ -761,6 +763,8 @@ Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   writeNotNull('choicesStep', instance.choicesStep);
   writeNotNull('autoComplete', instance.autoComplete);
   writeNotNull('placeholder', instance.placeholder);
+  writeNotNull('showOtherItem', instance.showOtherItem);
+  writeNotNull('showNoneItem', instance.showNoneItem);
   return val;
 }
 
@@ -2135,8 +2139,6 @@ MatrixDropdown _$MatrixDropdownFromJson(Map<String, dynamic> json) =>
       ..horizontalScroll = json['horizontalScroll'] as bool?
       ..optionsCaption = json['optionsCaption'] as String?
       ..choices = ItemValue.fromListJson(json['choices'] as List?)
-      ..showOtherItem = json['showOtherItem'] as bool?
-      ..showNoneItem = json['showNoneItem'] as bool?
       ..keyDuplicationError = json['keyDuplicationError'] as String?
       ..cellType = json['cellType'] as String?
       ..columnColCount = json['columnColCount'] as int?
@@ -2194,8 +2196,6 @@ Map<String, dynamic> _$MatrixDropdownToJson(MatrixDropdown instance) {
   writeNotNull('horizontalScroll', instance.horizontalScroll);
   writeNotNull('optionsCaption', instance.optionsCaption);
   writeNotNull('choices', instance.choices);
-  writeNotNull('showOtherItem', instance.showOtherItem);
-  writeNotNull('showNoneItem', instance.showNoneItem);
   writeNotNull('keyDuplicationError', instance.keyDuplicationError);
   writeNotNull('cellType', instance.cellType);
   writeNotNull('columnColCount', instance.columnColCount);
@@ -2252,8 +2252,6 @@ MatrixDynamic _$MatrixDynamicFromJson(Map<String, dynamic> json) =>
       ..horizontalScroll = json['horizontalScroll'] as bool?
       ..optionsCaption = json['optionsCaption'] as String?
       ..choices = ItemValue.fromListJson(json['choices'] as List?)
-      ..showOtherItem = json['showOtherItem'] as bool?
-      ..showNoneItem = json['showNoneItem'] as bool?
       ..keyDuplicationError = json['keyDuplicationError'] as String?
       ..cellType = json['cellType'] as String?
       ..columnColCount = json['columnColCount'] as int?
@@ -2323,8 +2321,6 @@ Map<String, dynamic> _$MatrixDynamicToJson(MatrixDynamic instance) {
   writeNotNull('horizontalScroll', instance.horizontalScroll);
   writeNotNull('optionsCaption', instance.optionsCaption);
   writeNotNull('choices', instance.choices);
-  writeNotNull('showOtherItem', instance.showOtherItem);
-  writeNotNull('showNoneItem', instance.showNoneItem);
   writeNotNull('keyDuplicationError', instance.keyDuplicationError);
   writeNotNull('cellType', instance.cellType);
   writeNotNull('columnColCount', instance.columnColCount);
