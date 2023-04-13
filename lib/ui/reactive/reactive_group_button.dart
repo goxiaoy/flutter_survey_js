@@ -56,6 +56,8 @@ class ReactiveGroupButton extends ReactiveFocusableFormField<dynamic, dynamic> {
                         title: Text(title),
                         groupValue: state._controller.selectedIndex,
                         value: index,
+                        contentPadding:
+                            const EdgeInsets.only(left: 8.0, right: 16.0),
                         onChanged: (_) {
                           if (!selected) {
                             state._controller.selectIndex(index);
