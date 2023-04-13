@@ -99,9 +99,11 @@ class SurveyElementFactory {
 
     register<s.Dropdown>((context, element, {bool hasTitle = true}) {
       final e = (element as s.Dropdown);
+      final placeholderString = "Select...";
+
       return ReactiveDropdownField(
         formControlName: element.name!,
-        hint: element.placeholder == null ? null : Text(element.placeholder!),
+        hint: Text(element.placeholder ?? placeholderString),
         items: e.choices
                 ?.map((e) => DropdownMenuItem(
                     value: e.value,
