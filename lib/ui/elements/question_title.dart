@@ -11,22 +11,28 @@ class QuestionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    description() {
+    Widget description() {
       if (q.description != null && q.description!.isNotEmpty) {
         return Container(
           padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
           child: Text(q.description!,
-              style: TextStyle(
-                  fontFamily: 'SF-UI-Text',
-                  color: Theme.of(context).disabledColor //Color(0xff8b9aa9)
-                  )),
+              style: Theme.of(context).textTheme.bodyMedium),
         );
       } else {
         return Container();
       }
     }
 
-    final textStyle = Theme.of(context).textTheme.bodyText1;
+    TextStyle? titleTextStyle() {
+      return Theme.of(context).textTheme.headlineMedium;
+    }
+
+    TextStyle? requiredTextStyle() {
+      return Theme.of(context)
+          .textTheme
+          .bodyMedium
+          ?.copyWith(color: Theme.of(context).colorScheme.error);
+    }
 
     title() {
       List<Widget> listTitle = <Widget>[];
@@ -38,13 +44,13 @@ class QuestionTitle extends StatelessWidget {
               status.indexAll != null) {
             return Text(
               '${status.indexAll! + 1}.',
-              style: textStyle,
+              style: titleTextStyle(),
             );
           } else if (survey.survey.showQuestionNumbers == "onPage" &&
               status.indexInPage != null) {
             return Text(
               '${status.indexInPage! + 1}.',
-              style: textStyle,
+              style: titleTextStyle(),
             );
           }
         }
@@ -55,14 +61,14 @@ class QuestionTitle extends StatelessWidget {
       if (q.isRequired == true) {
         listTitle.add(Text(
           '* ',
-          style: requiredTextStyle,
+          style: requiredTextStyle(),
         ));
       }
 
       listTitle.add(Expanded(
           child: Text(
         q.title ?? q.name ?? "",
-        style: textStyle,
+        style: titleTextStyle(),
       )));
 
       return Column(
@@ -91,12 +97,6 @@ class QuestionTitle extends StatelessWidget {
       ],
     );
   }
-
-  TextStyle get requiredTextStyle => const TextStyle(
-      fontSize: 16.0,
-      fontFamily: 'SF-UI-Text',
-      fontWeight: FontWeight.w900,
-      color: Colors.red);
 }
 
 extension QuestionTitleExtension on Widget {
