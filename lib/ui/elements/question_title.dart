@@ -24,7 +24,7 @@ class QuestionTitle extends StatelessWidget {
     }
 
     TextStyle? titleTextStyle() {
-      return Theme.of(context).textTheme.headlineMedium;
+      return Theme.of(context).textTheme.labelLarge;
     }
 
     TextStyle? requiredTextStyle() {
