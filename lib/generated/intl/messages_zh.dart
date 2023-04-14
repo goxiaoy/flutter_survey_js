@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -23,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("添加"),
         "nextPage": MessageLookupByLibrary.simpleMessage("下一页"),
+        "placeholder": MessageLookupByLibrary.simpleMessage("请选择..."),
         "previousPage": MessageLookupByLibrary.simpleMessage("上一页"),
         "remove": MessageLookupByLibrary.simpleMessage("删除"),
         "submitSurvey": MessageLookupByLibrary.simpleMessage("提交")
