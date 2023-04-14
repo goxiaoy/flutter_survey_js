@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/model/survey.dart';
 import 'package:flutter_survey_js/multi_localization_delegate.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
@@ -71,40 +73,60 @@ void main() {
       expect(find.text(placeholder), findsOneWidget);
     });
 
-    testWidgets(
-        'displays "Select..." if `"placeholder"` is not specified in the JSON',
-        (WidgetTester tester) async {
-      final s = Survey.fromJson(
-        {
-          "title": "Single Page Survey",
-          "pages": [
-            {
-              "name": "page1",
-              "elements": [
-                {
-                  "type": "dropdown",
-                  "name": "question1",
-                  "choices": ["Item 1", "Item 2", "Item 3"]
-                }
-              ]
-            }
-          ]
-        },
-      );
-      await tester.pumpWidget(
-        MaterialApp(
-          localizationsDelegates: const [
-            MultiAppLocalizationsDelegate(),
-          ],
-          home: Material(
-            child: SurveyWidget(survey: s),
-          ),
-        ),
-      );
-      await tester.pump();
-      await tester.idle();
+    const AppLocalizationDelegate appLocalizationDelegate =
+        AppLocalizationDelegate();
+    final locales = appLocalizationDelegate.supportedLocales;
 
-      expect(find.text('Select...'), findsOneWidget);
-    });
+    for (var locale in locales) {
+      testWidgets(
+          'displays localized default text if `"placeholder"` is not specified in the JSON',
+          (WidgetTester tester) async {
+        final s = Survey.fromJson(
+          {
+            "title": "Single Page Survey",
+            "pages": [
+              {
+                "name": "page1",
+                "elements": [
+                  {
+                    "type": "dropdown",
+                    "name": "question1",
+                    "choices": ["Item 1", "Item 2", "Item 3"]
+                  }
+                ]
+              }
+            ]
+          },
+        );
+        await tester.pumpWidget(
+          MaterialApp(
+            localizationsDelegates: const [
+              appLocalizationDelegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            home: Localizations(
+              delegates: const [
+                appLocalizationDelegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              locale: locale,
+              child: Material(
+                child: SurveyWidget(survey: s),
+              ),
+            ),
+          ),
+        );
+        await tester.pump();
+        await tester.idle();
+        final placeholderText =
+            (await appLocalizationDelegate.load(locale)).placeholder;
+
+        expect(find.text(placeholderText), findsOneWidget);
+      });
+    }
   });
 }
