@@ -7,9 +7,9 @@ const RESOURCES = {
 "canvaskit/profiling/canvaskit.js": "c21852696bc1cc82e8894d851c01921a",
 "canvaskit/profiling/canvaskit.wasm": "371bc4e204443b0d5e774d64a046eb99",
 "canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
-"index.html": "8aac0d27163352f6d5583958cf3d2124",
-"/": "8aac0d27163352f6d5583958cf3d2124",
-"main.dart.js": "178df71aa76d63ce4c2185e731528b12",
+"index.html": "99ac3c72e52b8c62ec982612db8fa82d",
+"/": "99ac3c72e52b8c62ec982612db8fa82d",
+"main.dart.js": "f4215ae6c611b846db67ab680cd487d6",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
@@ -22,7 +22,7 @@ const RESOURCES = {
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/NOTICES": "4aa885b5600c9464b61951483069ec0c",
 "assets/AssetManifest.json": "5ab7079794584410fde18943d86488d6",
-"assets/assets/complex.json": "20f484546d5b5c0d7388ee416073e706",
+"assets/assets/complex.json": "ed2a56a6a741cd652c53cc1c6f6a5cb6",
 "assets/assets/single_page.json": "43c85e0b3fd7fd37697defefeb9a173b"
 };
 

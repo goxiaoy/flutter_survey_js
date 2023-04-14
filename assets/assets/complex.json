@@ -52,7 +52,9 @@
         },
         {
           "type": "boolean",
-          "name": "boolean_question"
+          "name": "boolean_question",
+          "labelTrue": "true label text",
+          "labelFalse": "flase label text"
         },
         {
           "type": "image",
