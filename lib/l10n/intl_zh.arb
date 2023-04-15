@@ -3,5 +3,6 @@
   "previousPage": "上一页",
   "submitSurvey": "提交",
   "add": "添加",
-  "remove": "删除"
+  "remove": "删除",
+  "placeholder": "请选择..."
 }

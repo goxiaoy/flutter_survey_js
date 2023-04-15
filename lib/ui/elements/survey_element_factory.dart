@@ -8,6 +8,7 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
+import '../../generated/l10n.dart';
 import 'checkbox.dart';
 import 'image.dart';
 import 'matrix.dart';
@@ -123,9 +124,11 @@ class SurveyElementFactory {
 
     register<s.Dropdown>((context, element, {bool hasTitle = true}) {
       final e = (element as s.Dropdown);
+      final placeholderString = S.of(context).placeholder;
+
       return ReactiveDropdownField(
         formControlName: element.name!,
-        hint: element.placeholder == null ? null : Text(element.placeholder!),
+        hint: Text(element.placeholder ?? placeholderString),
         items: e.choices
                 ?.map((e) => DropdownMenuItem(
                     value: e.value,

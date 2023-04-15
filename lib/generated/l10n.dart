@@ -99,6 +99,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Select...`
+  String get placeholder {
+    return Intl.message(
+      'Select...',
+      name: 'placeholder',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
