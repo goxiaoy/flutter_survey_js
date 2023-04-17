@@ -109,11 +109,11 @@ class Survey {
     }
 
     if (json['pages'] == null) {
-      return surveyFromPage(Page.fromJson(json));
+      return Survey.fromPage(Page.fromJson(json));
     }
     return _$SurveyFromJson(json);
   }
-  static surveyFromPage(Page page) {
+  factory Survey.fromPage(Page page) {
     return Survey()
       ..pages = [Page()..elements = page.elements]
       ..description = page.description
