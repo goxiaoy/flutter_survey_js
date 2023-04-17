@@ -98,6 +98,16 @@ class Survey {
   String? showTimerPanelMode;
   Survey();
   factory Survey.fromJson(Map<String, dynamic> json) {
+    final List<Map<String, dynamic>>? elementsOrQuestionsJson =
+        (json['elements'] as List?)?.cast<Map<String, dynamic>>() ??
+            (json['questions'] as List?)?.cast<Map<String, dynamic>>();
+
+    if (elementsOrQuestionsJson != null) {
+      Survey survey = _$SurveyFromJson(json);
+      survey.pages = [Page.fromElementsJson(elementsOrQuestionsJson)];
+      return survey;
+    }
+
     if (json['pages'] == null) {
       return surveyFromPage(Page.fromJson(json));
     }

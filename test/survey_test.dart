@@ -74,6 +74,66 @@ void main() {
         final String? actual = survey.showQuestionNumbers;
         expect(actual, expected);
       });
+
+      test('prioritizes elements over pages.elements', () {
+        const pageElementTitle = 'we should not see this';
+        const elementsElementTitle = 'we should see this';
+        final Survey survey = Survey.fromJson(
+          {
+            "title": "Single Page Survey",
+            "pages": [
+              {
+                "name": "page1",
+                "elements": [
+                  {
+                    "type": "checkbox",
+                    "name": pageElementTitle,
+                    "choices": ["Item 1", "Item 2", "Item 3"]
+                  }
+                ]
+              }
+            ],
+            "elements": [
+              {
+                "type": "checkbox",
+                "name": elementsElementTitle,
+                "choices": ["Item 1", "Item 2", "Item 3"]
+              }
+            ]
+          },
+        );
+        expect(survey.pages!.first.elements!.first.name, elementsElementTitle);
+      });
+
+      test('prioritizes questions over pages.elements', () {
+        const pageElementTitle = 'we should not see this';
+        const questionsElementTitle = 'we should see this';
+        final Survey survey = Survey.fromJson(
+          {
+            "title": "Single Page Survey",
+            "pages": [
+              {
+                "name": "page1",
+                "elements": [
+                  {
+                    "type": "checkbox",
+                    "name": pageElementTitle,
+                    "choices": ["Item 1", "Item 2", "Item 3"]
+                  }
+                ]
+              }
+            ],
+            "questions": [
+              {
+                "type": "checkbox",
+                "name": questionsElementTitle,
+                "choices": ["Item 1", "Item 2", "Item 3"]
+              }
+            ]
+          },
+        );
+        expect(survey.pages!.first.elements!.first.name, questionsElementTitle);
+      });
     });
   });
 

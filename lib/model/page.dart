@@ -19,6 +19,11 @@ class Page extends PanelBase {
   String? navigationDescription;
   Page();
   factory Page.fromJson(Map<String, dynamic> json) => _$PageFromJson(json);
+  factory Page.fromElementsJson(List<Map<String, dynamic>> elementsJson) =>
+      Page()
+        ..elements = elementsJson
+            .map((elementJson) => ElementBase.fromJson(elementJson))
+            .toList();
   @override
   Map<String, dynamic> toJson() => _$PageToJson(this);
 }

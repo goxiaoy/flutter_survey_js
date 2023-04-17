@@ -151,7 +151,7 @@ class TestData {
         ..html = html ?? 'some html';
   static ElementBase elementBase({String? type, String? name}) =>
       TestElementBase()
-        ..type = type ?? 'some type'
+        ..type = type ?? 'text'
         ..name = name ?? 'some name';
   static Page page(
           {String? name,
