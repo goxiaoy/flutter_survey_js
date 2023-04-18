@@ -20,6 +20,7 @@ class SurveyWidget extends StatefulWidget {
   final s.Survey survey;
   final Map<String, Object?>? answer;
   final FutureOr<void> Function(dynamic data)? onSubmit;
+  final FutureOr<void> Function(dynamic data)? onErrors;
   final ValueSetter<Map<String, Object?>?>? onChange;
   final bool showQuestionsInOnePage;
   final SurveyController? controller;
@@ -30,11 +31,32 @@ class SurveyWidget extends StatefulWidget {
     required this.survey,
     this.answer,
     this.onSubmit,
+    this.onErrors,
     this.onChange,
     this.controller,
     this.builder,
     this.showQuestionsInOnePage = false,
   }) : super(key: key);
+
+  factory SurveyWidget.fromPage({
+    required s.Page page,
+    Map<String, Object?>? answer,
+    FutureOr<void> Function(dynamic data)? onSubmit,
+    ValueSetter<Map<String, Object?>?>? onChange,
+    SurveyController? controller,
+    SurveyBuilder? builder,
+    bool showQuestionsInOnePage = false,
+  }) {
+    return SurveyWidget(
+      survey: s.Survey()..pages = [page],
+      answer: answer,
+      onSubmit: onSubmit,
+      onChange: onChange,
+      controller: controller,
+      builder: builder,
+      showQuestionsInOnePage: showQuestionsInOnePage,
+    );
+  }
 
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
@@ -140,6 +162,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     if (formGroup.valid) {
       widget.onSubmit?.call(formGroup.value);
     } else {
+      widget.onErrors?.call(formGroup.errors);
       formGroup.markAllAsTouched();
     }
   }

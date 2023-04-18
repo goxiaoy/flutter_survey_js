@@ -65,7 +65,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
-
   late Future<List> assetLoader;
   Map<TestJsonType, String> _surveyMap = {};
 

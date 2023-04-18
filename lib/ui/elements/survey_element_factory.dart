@@ -122,11 +122,11 @@ class SurveyElementFactory {
           .wrapQuestionTitle(element, hasTitle: hasTitle);
     });
     // register<s.ImagePicker>(imagePickerBuilder);
-
     register<s.Dropdown>(dropdownBuilder,
         control: (element, {validators = const []}) => FormControl<String>(
             validators: validators,
             value: (element as s.Dropdown).defaultValue));
+
     register<s.PanelDynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {
       return ReactiveNestedForm(

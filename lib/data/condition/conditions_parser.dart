@@ -180,6 +180,7 @@ class ConditionsParser {
 
   Operand? _readExpressionOperand(bool isRightCondition) {
     _log.fine('_readExpressionOperand');
+
     ExpressionOperand? expr = _readExpressionOperandCore(0, isRightCondition);
     if (expr == null) return null;
     if (expr.right == null) return expr.left;
@@ -189,6 +190,7 @@ class ConditionsParser {
   ExpressionOperand? _readExpressionOperandCore(
       int brackets /* = 0*/, bool isRightCondition /* = false*/) {
     _log.fine('_readExpressionOperandCore');
+
     var expressions = _readExpressionOperandsCore(brackets, isRightCondition);
     return _makeExpressionOperandCore(expressions);
   }
@@ -498,7 +500,6 @@ class ConditionsParser {
   }
 
   void _pushExpression() {
-    //print('_pushExpression');
     ConditionNode? node;
     _expressionNodes.add(node);
     _node = node;

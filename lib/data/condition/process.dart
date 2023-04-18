@@ -93,6 +93,7 @@ class ProcessValue {
         obj = objInArray.value;
         text = objInArray.text;
       }
+
       if (text.isNotEmpty && text[0] == ".") {
         text = text.substring(1);
       }
