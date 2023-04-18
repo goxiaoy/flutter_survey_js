@@ -28,7 +28,11 @@
           "name": "dropdown_question",
           "choices": [
             "item1"
-          ]
+          ],
+          "showOtherItem": true,
+          "showNoneItem": true,
+          "otherText": "Other (Feedback)",
+          "noneText": "Nothing"
         },
         {
           "type": "comment",

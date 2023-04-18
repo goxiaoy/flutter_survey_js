@@ -4,5 +4,7 @@
   "submitSurvey": "Submit",
   "add": "Add",
   "remove": "Remove",
-  "placeholder": "Select..."
+  "placeholder": "Select...",
+  "otherItemText": "Other (describe)",
+  "noneItemText": "None"
 }
