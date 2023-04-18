@@ -16,7 +16,7 @@ abstract class SelectBase<T extends ItemValue> extends Question {
   String? choicesEnableIf;
   bool? hasOther;
   bool? hasNone;
-  String? otherPlaceHolder;
+  String? otherPlaceholder;
   String? noneText;
   String? otherText;
   String? otherErrorText;

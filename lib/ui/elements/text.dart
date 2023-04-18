@@ -53,14 +53,6 @@ final SurveyElementBuilder textBuilder =
       locale: Localizations.localeOf(context),
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.dateTime,
-      decoration: InputDecoration(hintText: hintText),
-    );
-  }
-  if (e.inputType == 'datetime-local') {
-    widget = ReactiveDateTimePicker(
-      locale: Localizations.localeOf(context),
-      formControlName: element.name!,
-      type: ReactiveDatePickerFieldType.dateTime,
       style: datePickerTextStyle,
       decoration: InputDecoration(hintText: hintText),
     );

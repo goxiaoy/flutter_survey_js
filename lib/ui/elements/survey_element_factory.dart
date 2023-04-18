@@ -8,8 +8,8 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../generated/l10n.dart';
 import 'checkbox.dart';
+import 'dropdown.dart';
 import 'image.dart';
 import 'matrix.dart';
 import 'matrix_dynamic.dart';
@@ -122,28 +122,11 @@ class SurveyElementFactory {
           .wrapQuestionTitle(element, hasTitle: hasTitle);
     });
     // register<s.ImagePicker>(imagePickerBuilder);
+    register<s.Dropdown>(dropdownBuilder,
+        control: (element, {validators = const []}) => FormControl<String>(
+            validators: validators,
+            value: (element as s.Dropdown).defaultValue));
 
-    register<s.Dropdown>((context, element, {bool hasTitle = true}) {
-      final e = (element as s.Dropdown);
-      final placeholderString = S.of(context).placeholder;
-
-      return ReactiveDropdownField(
-        formControlName: element.name!,
-        hint: Text(element.placeholder ?? placeholderString),
-        items: e.choices
-                ?.map(
-                  (e) => DropdownMenuItem(
-                    value: e.value,
-                    child: Text(
-                      e.text ?? e.value?.toString() ?? '',
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                  ),
-                )
-                .toList(growable: false) ??
-            [],
-      ).wrapQuestionTitle(element, hasTitle: hasTitle);
-    });
     register<s.PanelDynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {
       return ReactiveNestedForm(
@@ -168,7 +151,7 @@ class SurveyElementFactory {
     unsupported = (context, element, {bool hasTitle = true}) => Container(
           child: Text(
             'Unsupported ${element.name ?? ""}',
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ).wrapQuestionTitle(element, hasTitle: hasTitle);
   }
