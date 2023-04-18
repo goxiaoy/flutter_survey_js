@@ -60,6 +60,7 @@ class _DropdownWidgetWithOtherOptionState
             value: 'other',
             child: Text(
               e.otherText ?? S.of(context).otherItemText,
+              key: const Key('other-dropdown-menu-item'),
               style: Theme.of(context).textTheme.bodyMedium,
             )),
     ];
