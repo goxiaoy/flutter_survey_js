@@ -35,10 +35,10 @@ class _DropdownWidgetWithOtherOptionState
   Widget build(BuildContext context) {
     var e = widget.dropdown;
 
-    final dropdownItems = <DropdownMenuItem<String>>[
+    final dropdownItems = <DropdownMenuItem<dynamic>>[
       ...e.choices
               ?.map(
-                (e) => DropdownMenuItem<String>(
+                (e) => DropdownMenuItem(
                   value: e.value,
                   child: Text(
                     e.text ?? e.value?.toString() ?? '',
@@ -81,7 +81,7 @@ class _DropdownWidgetWithOtherOptionState
             },
           ),
         if (!showOtherTextField)
-          ReactiveDropdownField(
+          ReactiveDropdownField<dynamic>(
               formControlName: e.name!,
               hint: Text(e.placeholder ?? S.of(context).placeholder),
               onChanged: (control) {
@@ -132,8 +132,8 @@ class _NonReactiveDropdownField extends StatelessWidget {
     required this.dropdown,
   }) : super(key: key);
   final String formControlName;
-  final List<DropdownMenuItem<String>>? items;
-  final ReactiveFormFieldCallback<String>? onChanged;
+  final List<DropdownMenuItem<dynamic>>? items;
+  final ReactiveFormFieldCallback<dynamic>? onChanged;
   final s.Dropdown dropdown;
 
   @override
@@ -145,7 +145,7 @@ class _NonReactiveDropdownField extends StatelessWidget {
     return InputDecorator(
       decoration: effectiveDecoration,
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<dynamic>(
           value: 'other',
           items: items,
           alignment: AlignmentDirectional.centerStart,
