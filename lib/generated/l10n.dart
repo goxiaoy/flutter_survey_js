@@ -109,6 +109,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Other (describe)`
+  String get otherItemText {
+    return Intl.message(
+      'Other (describe)',
+      name: 'otherItemText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `None`
+  String get noneItemText {
+    return Intl.message(
+      'None',
+      name: 'noneItemText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

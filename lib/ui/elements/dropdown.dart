@@ -52,14 +52,14 @@ class _DropdownWidgetWithOtherOptionState
         DropdownMenuItem(
             value: 'none',
             child: Text(
-              'None',
+              e.noneText ?? S.of(context).noneItemText,
               style: Theme.of(context).textTheme.bodyMedium,
             )),
       if (e.showOtherItem == true)
         DropdownMenuItem(
             value: 'other',
             child: Text(
-              'Other (describe)',
+              e.otherText ?? S.of(context).otherItemText,
               style: Theme.of(context).textTheme.bodyMedium,
             )),
     ];
@@ -142,37 +142,12 @@ class _NonReactiveDropdownField extends StatelessWidget {
     );
 
     return InputDecorator(
-      decoration: effectiveDecoration.copyWith(
-          // errorText: field.errorText,
-          // enabled: !isDisabled,
-          ),
-      // isEmpty: effectiveValue == null,
+      decoration: effectiveDecoration,
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: 'other',
           items: items,
-          // selectedItemBuilder: selectedItemBuilder,
-          // hint: hint,
-          // disabledHint: effectiveDisabledHint,
-          // elevation: elevation,
-          // style: style,
-          // icon: icon,
-          // iconDisabledColor: iconDisabledColor,
-          // iconEnabledColor: iconEnabledColor,
-          // iconSize: iconSize,
-          // isDense: isDense,
-          // isExpanded: isExpanded,
-          // itemHeight: itemHeight,
-          // focusNode: field.focusNode,
-          // dropdownColor: dropdownColor,
-          // focusColor: focusColor,
-          // underline: underline,
-          // autofocus: true,
-          // menuMaxHeight: menuMaxHeight,
-          // enableFeedback: enableFeedback,
           alignment: AlignmentDirectional.centerStart,
-          // borderRadius: borderRadius,
-          // onTap: onTap != null ? () => onTap(field.control) : null,
           onChanged: (value) {
             final FormControl<String> formControlValue =
                 ((ReactiveForm.of(context, listen: false)
