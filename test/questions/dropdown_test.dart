@@ -174,6 +174,55 @@ void main() {
     expect(find.byType(ReactiveTextField), findsOneWidget);
   });
 
+  testWidgets("maps otherPlaceholder to ReactiveTextField's hintText",
+      (WidgetTester tester) async {
+    const otherText = "Special Request";
+    const otherPlaceholder = "Write something here!";
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          appLocalizationDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Material(
+          child: SurveyWidget(
+              survey: Survey.fromJson(const {
+            "questions": [
+              {
+                "type": "dropdown",
+                "name": "What t-shirt size do you want?",
+                "isRequired": true,
+                "choices": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL",
+                ],
+                "showOtherItem": true,
+                "otherText": otherText,
+                "otherPlaceholder": otherPlaceholder,
+              }
+            ]
+          })),
+        ),
+      ),
+    );
+
+    await tester.tap(find.byType(ReactiveDropdownField));
+    await tester.pump();
+    await tester.idle();
+
+    await tester.tap(find.text(otherText).last);
+    await tester.pump();
+    await tester.idle();
+
+    expect(find.byType(ReactiveTextField), findsOneWidget);
+    expect(find.text(otherPlaceholder), findsOneWidget);
+  });
+
   testWidgets('maps noneText to DropdownMenuItem', (WidgetTester tester) async {
     const noneText = "I do not want a t-shirt";
 
