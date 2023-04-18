@@ -24,7 +24,7 @@ main() {
                   pages: [
                     TestData.page(
                       elements: [
-                        s.Text(),
+                        s.Text()..name = "Some text element",
                       ],
                     ),
                   ],

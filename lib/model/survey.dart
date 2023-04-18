@@ -28,7 +28,6 @@ class Survey {
   List<HtmlConditionItem>? completedHtmlOnCondition;
   String? loadingHtml;
   List<Page>? pages;
-  List<ElementBase>? questions;
   List<SurveyTrigger>? triggers;
   List<CalculatedValue>? calculatedValues;
   String? surveyId;
@@ -98,7 +97,30 @@ class Survey {
   //     "all",       "page",     "survey"
   String? showTimerPanelMode;
   Survey();
-  factory Survey.fromJson(Map<String, dynamic> json) => _$SurveyFromJson(json);
+  factory Survey.fromJson(Map<String, dynamic> json) {
+    final List<Map<String, dynamic>>? elementsOrQuestionsJson =
+        (json['elements'] as List?)?.cast<Map<String, dynamic>>() ??
+            (json['questions'] as List?)?.cast<Map<String, dynamic>>();
+
+    if (elementsOrQuestionsJson != null) {
+      Survey survey = _$SurveyFromJson(json);
+      survey.pages = [Page.fromElementsJson(elementsOrQuestionsJson)];
+      return survey;
+    }
+
+    if (json['pages'] == null) {
+      return Survey.fromPage(Page.fromJson(json));
+    }
+    return _$SurveyFromJson(json);
+  }
+  factory Survey.fromPage(Page page) {
+    return Survey()
+      ..pages = [Page()..elements = page.elements]
+      ..description = page.description
+      ..maxTimeToFinish = page.maxTimeToFinish
+      ..questionsOrder = page.questionsOrder
+      ..title = page.title;
+  }
   Map<String, dynamic> toJson() => _$SurveyToJson(this);
 
   static String? _boolToString(dynamic inputValue) {
