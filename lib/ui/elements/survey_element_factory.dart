@@ -8,8 +8,8 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import '../../generated/l10n.dart';
 import 'checkbox.dart';
+import 'dropdown.dart';
 import 'image.dart';
 import 'matrix.dart';
 import 'matrix_dynamic.dart';
@@ -122,13 +122,10 @@ class SurveyElementFactory {
     });
     // register<s.ImagePicker>(imagePickerBuilder);
 
-    register<s.Dropdown>((context, element, {bool hasTitle = true}) {
-      final e = (element as s.Dropdown);
-
-      return DropdownWidgetWithOtherOption(
-        dropdown: e,
-      );
-    });
+    register<s.Dropdown>(dropdownBuilder,
+        control: (element, {validators = const []}) => FormControl<String>(
+            validators: validators,
+            value: (element as s.Dropdown).defaultValue));
     register<s.PanelDynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {
       return ReactiveNestedForm(
@@ -198,95 +195,5 @@ class SurveyElementFactory {
   SurveyFormControlBuilder? resolveFormControl(s.ElementBase element) {
     final t = element.runtimeType;
     return _formControlMap[t];
-  }
-}
-
-class DropdownWidgetWithOtherOption extends StatefulWidget {
-  const DropdownWidgetWithOtherOption({
-    Key? key,
-    required this.dropdown,
-  }) : super(key: key);
-
-  final s.Dropdown dropdown;
-
-  @override
-  State<DropdownWidgetWithOtherOption> createState() =>
-      _DropdownWidgetWithOtherOptionState();
-}
-
-class _DropdownWidgetWithOtherOptionState
-    extends State<DropdownWidgetWithOtherOption> {
-  bool showOtherTextField = false;
-  var textEditingController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    var e = widget.dropdown;
-
-    return Column(
-      children: [
-        ReactiveDropdownField(
-            formControlName: e.name!,
-            hint: Text(e.placeholder ?? S.of(context).placeholder),
-            onChanged: (control) {
-              setState(() {
-                if (control.value == 'other') {
-                  textEditingController.text = '';
-                  showOtherTextField = true;
-                  return;
-                }
-                List<String> choices =
-                    (e.choices ?? []).map((e) => e.value as String).toList();
-                if (e.showNoneItem == true) {
-                  choices.add('none');
-                }
-                showOtherTextField = !choices.contains(control.value);
-              });
-            },
-            items: <DropdownMenuItem<Object>>[
-              ...e.choices
-                      ?.map(
-                        (e) => DropdownMenuItem(
-                          value: e.value,
-                          child: Text(
-                            e.text ?? e.value?.toString() ?? '',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ),
-                      )
-                      .toList(growable: false) ??
-                  [],
-              if (e.showNoneItem == true)
-                DropdownMenuItem(
-                    value: 'none',
-                    child: Text(
-                      'None',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    )),
-              if (e.showOtherItem == true)
-                DropdownMenuItem(
-                    value: 'other',
-                    child: Text(
-                      'Other (describe)',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    )),
-            ]),
-        if (showOtherTextField)
-          ReactiveTextField(
-            formControlName: e.name!,
-            controller: textEditingController,
-            decoration: InputDecoration(
-              fillColor: Colors.white,
-              border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  borderSide: BorderSide(color: Colors.blue)),
-              filled: true,
-              contentPadding:
-                  const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
-              hintText: (e).otherPlaceHolder ?? "Enter an 'other' option",
-            ),
-          ),
-      ],
-    ).wrapQuestionTitle(e, hasTitle: true);
   }
 }
