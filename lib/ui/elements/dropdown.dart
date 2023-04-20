@@ -124,7 +124,7 @@ class _DropdownWidgetWithOtherOptionState
 }
 
 class _NonReactiveDropdownField extends StatelessWidget {
-  _NonReactiveDropdownField({
+  const _NonReactiveDropdownField({
     Key? key,
     this.items,
     this.onChanged,
@@ -148,6 +148,11 @@ class _NonReactiveDropdownField extends StatelessWidget {
         child: DropdownButton<dynamic>(
           value: 'other',
           items: items,
+          elevation: 8,
+          iconSize: 24.0,
+          isDense: true,
+          isExpanded: false,
+          autofocus: false,
           alignment: AlignmentDirectional.centerStart,
           onChanged: (value) {
             final FormControl<String> formControlValue =
