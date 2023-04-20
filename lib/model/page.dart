@@ -26,15 +26,6 @@ class Page extends PanelBase {
             .toList();
   @override
   Map<String, dynamic> toJson() => _$PageToJson(this);
-
-  @override
-  List<Object?> get props => [
-        navigationButtonsVisibility,
-        questionsOrder,
-        maxTimeToFinish,
-        navigationTitle,
-        navigationDescription,
-      ];
 }
 
 abstract class PanelBase extends ElementBase {
@@ -51,19 +42,4 @@ abstract class PanelBase extends ElementBase {
   //
   String? title;
   String? description;
-
-  @override
-  List<Object?> get props => [
-        ...super.props,
-        name,
-        elements,
-        visible,
-        visibleIf,
-        enableIf,
-        requiredIf,
-        readOnly,
-        questionTitleLocation,
-        title,
-        description,
-      ];
 }
