@@ -263,4 +263,98 @@ void main() {
 
     expect(find.text(noneText), findsWidgets);
   });
+
+  testWidgets(
+      'displays "otherText" and existing answer when existing answer is not a choice and showOtherItem is true',
+      (WidgetTester tester) async {
+    const otherText = "Other size";
+    const questionName = "What t-shirt size do you want?";
+    const existingAnswer = "XS";
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          appLocalizationDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Material(
+          child: SurveyWidget(
+              answer: const {questionName: existingAnswer},
+              survey: Survey.fromJson(const {
+                "questions": [
+                  {
+                    "type": "dropdown",
+                    "name": questionName,
+                    "isRequired": true,
+                    "choices": [
+                      "S",
+                      "M",
+                      "L",
+                      "XL",
+                    ],
+                    "showOtherItem": true,
+                    "otherText": otherText,
+                  }
+                ]
+              })),
+        ),
+      ),
+    );
+
+    await tester.pump();
+    await tester.idle();
+
+    expect(find.text(otherText), findsOneWidget);
+    expect(find.byType(ReactiveTextField), findsOneWidget);
+    expect(find.text(existingAnswer), findsOneWidget);
+  });
+
+  testWidgets(
+      'displays existing answer when existing answer is a choice and showOtherText is true',
+      (WidgetTester tester) async {
+    const otherText = "Other size";
+    const questionName = "What t-shirt size do you want?";
+    const existingAnswer = "M";
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          appLocalizationDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Material(
+          child: SurveyWidget(
+              answer: const {questionName: existingAnswer},
+              survey: Survey.fromJson(const {
+                "questions": [
+                  {
+                    "type": "dropdown",
+                    "name": questionName,
+                    "isRequired": true,
+                    "choices": [
+                      "S",
+                      existingAnswer,
+                      "L",
+                      "XL",
+                    ],
+                    "showOtherItem": true,
+                    "otherText": otherText,
+                  }
+                ]
+              })),
+        ),
+      ),
+    );
+
+    await tester.pump();
+    await tester.idle();
+
+    expect(find.text(otherText), findsOneWidget);
+    expect(find.byType(ReactiveTextField), findsNothing);
+    expect(find.text(existingAnswer), findsOneWidget);
+  });
 }

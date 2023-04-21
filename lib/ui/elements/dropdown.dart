@@ -28,7 +28,20 @@ class _DropdownWidgetWithOtherOption<T> extends StatefulWidget {
 
 class _DropdownWidgetWithOtherOptionState
     extends State<_DropdownWidgetWithOtherOption> {
-  bool showOtherTextField = false;
+  late bool showOtherTextField = () {
+    final controlValue =
+        ((ReactiveForm.of(context, listen: false) as FormControlCollection)
+                .control(widget.dropdown.name!))
+            .value;
+    if (controlValue == null) {
+      return false;
+    }
+    return !(widget.dropdown.choices
+            ?.map((e) => e.text)
+            .contains(controlValue) ??
+        true);
+  }();
+
   var textEditingController = TextEditingController();
 
   @override
@@ -104,6 +117,8 @@ class _DropdownWidgetWithOtherOptionState
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: ReactiveTextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
               formControlName: e.name!,
               controller: textEditingController,
               decoration: InputDecoration(
