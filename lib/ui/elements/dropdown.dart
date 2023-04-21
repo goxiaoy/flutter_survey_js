@@ -117,6 +117,8 @@ class _DropdownWidgetWithOtherOptionState
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: ReactiveTextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
               formControlName: e.name!,
               controller: textEditingController,
               decoration: InputDecoration(
