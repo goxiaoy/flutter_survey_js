@@ -9,11 +9,18 @@ final surveyTriggerMap =
   RunExpressionTrigger.$type: (d) => RunExpressionTrigger.fromJson(d),
 };
 
-abstract class Trigger {
+abstract class Trigger extends Equatable {
   String? operator;
   String? value;
   String? expression;
   Trigger();
+
+  @override
+  List<Object?> get props => [
+        operator,
+        value,
+        expression,
+      ];
 }
 
 abstract class SurveyTrigger extends Trigger {
@@ -29,6 +36,12 @@ abstract class SurveyTrigger extends Trigger {
     throw UnsupportedError('SurveyTrigger');
   }
   Map<String, dynamic> toJson();
+
+  @override
+  List<Object?> get props => [
+        ...super.props,
+        name,
+      ];
 }
 
 @JsonSerializable(includeIfNull: false)
@@ -44,6 +57,13 @@ class VisibleTrigger extends SurveyTrigger {
       _$VisibleTriggerFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$VisibleTriggerToJson(this);
+
+  @override
+  List<Object?> get props => [
+        ...super.props,
+        pages,
+        questions,
+      ];
 }
 
 @JsonSerializable(includeIfNull: false)
@@ -72,6 +92,14 @@ class SetvalueTrigger extends SurveyTrigger {
       _$SetvalueTriggerFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$SetvalueTriggerToJson(this);
+
+  @override
+  List<Object?> get props => [
+        ...super.props,
+        setToName,
+        setValue,
+        isVariable,
+      ];
 }
 
 @JsonSerializable(includeIfNull: false)
@@ -86,6 +114,13 @@ class CopyValueTrigger extends SurveyTrigger {
       _$CopyValueTriggerFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$CopyValueTriggerToJson(this);
+
+  @override
+  List<Object?> get props => [
+        ...super.props,
+        setToName,
+        fromName,
+      ];
 }
 
 @JsonSerializable(includeIfNull: false)
@@ -99,6 +134,12 @@ class SkipTrigger extends SurveyTrigger {
       _$SkipTriggerFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$SkipTriggerToJson(this);
+
+  @override
+  List<Object?> get props => [
+        ...super.props,
+        gotoName,
+      ];
 }
 
 @JsonSerializable(includeIfNull: false)
@@ -114,4 +155,11 @@ class RunExpressionTrigger extends SurveyTrigger {
       _$RunExpressionTriggerFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$RunExpressionTriggerToJson(this);
+
+  @override
+  List<Object?> get props => [
+        ...super.props,
+        setToName,
+        runExpression,
+      ];
 }

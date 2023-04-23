@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'element.dart';
@@ -13,7 +14,7 @@ part 'trigger.dart';
 part 'validator.dart';
 
 @JsonSerializable(includeIfNull: false)
-class Survey {
+class Survey extends Equatable {
   String? locale;
   String? title;
   String? description;
@@ -129,6 +130,72 @@ class Survey {
     }
     return inputValue;
   }
+
+  @override
+  List<Object?> get props => [
+        locale,
+        title,
+        description,
+        logo,
+        logoWidth,
+        logoFit,
+        logoPosition,
+        focusFirstQuestionAutomatic,
+        focusOnFirstError,
+        completedHtml,
+        completedBeforeHtml,
+        completedHtmlOnCondition,
+        loadingHtml,
+        pages,
+        triggers,
+        calculatedValues,
+        surveyId,
+        surveyPostId,
+        surveyShowDataSaving,
+        cookieName,
+        sendResultOnPageNext,
+        showNavigationButtons,
+        showPrevButton,
+        showTitle,
+        showPageTitles,
+        showCompletedPage,
+        navigateToUrl,
+        navigateToUrlOnCondition,
+        questionsOrder,
+        showPageNumbers,
+        showQuestionNumbers,
+        questionTitleLocation,
+        questionDescriptionLocation,
+        questionErrorLocation,
+        showProgressBar,
+        progressBarType,
+        mode,
+        storeOthersAsComment,
+        maxTextLength,
+        maxOthersLength,
+        goNextPageAutomatic,
+        clearInvisibleValues,
+        checkErrorsMode,
+        textUpdateMode,
+        startSurveyText,
+        pagePrevText,
+        pageNextText,
+        completeText,
+        previewText,
+        editText,
+        requiredText,
+        questionStartIndex,
+        questionTitlePattern,
+        questionTitleTemplate,
+        firstPageIsStarted,
+        isSinglePage,
+        questionsOnPageMode,
+        showPreviewBeforeComplete,
+        maxTimeToFinish,
+        maxTimeToFinishPage,
+        showTimerPanel,
+        showTimerPanelMode,
+      ];
 }
 
 @JsonSerializable(includeIfNull: false)
@@ -531,7 +598,7 @@ class SignaturePad extends Question {
 }
 
 @JsonSerializable(includeIfNull: false)
-class CalculatedValue {
+class CalculatedValue extends Equatable {
   String? name;
   String? expression;
   bool? includeIntoResult;
@@ -539,6 +606,13 @@ class CalculatedValue {
   factory CalculatedValue.fromJson(Map<String, dynamic> json) =>
       _$CalculatedValueFromJson(json);
   Map<String, dynamic> toJson() => _$CalculatedValueToJson(this);
+
+  @override
+  List<Object?> get props => [
+        name,
+        expression,
+        includeIntoResult,
+      ];
 }
 
 @JsonSerializable(includeIfNull: false)

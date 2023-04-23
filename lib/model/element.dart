@@ -1,6 +1,6 @@
 part of 'survey.dart';
 
-abstract class ElementBase {
+abstract class ElementBase extends Equatable {
   String? get type;
 
   String? get name;
@@ -69,6 +69,12 @@ abstract class ElementBase {
         return UnsupportedElement.fromJson(d);
     }
   }
+
+  @override
+  List<Object?> get props => [
+        type,
+        name,
+      ];
 }
 
 class UnsupportedElement extends ElementBase {
@@ -99,4 +105,10 @@ class UnsupportedElement extends ElementBase {
         name: json['name'],
         title: json['title'],
       );
+
+  @override
+  List<Object?> get props => [
+        ...super.props,
+        title,
+      ];
 }
