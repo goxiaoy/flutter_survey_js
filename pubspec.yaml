@@ -32,7 +32,8 @@ dependencies:
   file: ^6.1.4
   group_button: ^5.2.2
   equatable: ^2.0.5
-
+  surveyjs_model:
+    path: ./schema/surveyjs_model
 
 dev_dependencies:
   flutter_test:

@@ -82,6 +82,9 @@ schema["definitions"]["paneldynamic"]["allOf"][1]["properties"][
   };
 }
 
+//TODO remove to fix dart code generation enum duplication temporarily
+delete schema["definitions"]["matrixdropdowncolumn"]["properties"]["colCount"];
+
 const { definitions, type, properties, ...rest } = schema;
 //generate openapi docs
 let openapi = {
@@ -140,6 +143,9 @@ let openapi = {
       elementBase: {
         type: "object",
         properties: {
+          type: {
+            type: "string",
+          },
           name: {
             type: "string",
           },
@@ -149,14 +155,115 @@ let openapi = {
   },
 };
 
+const allEnumDefinitions = {};
+const getEnumName = (accessPath) => {
+  return accessPath
+    .filter((p) => p !== "allOf" && p != "1" && p !== "properties")
+    .reduce((a, b) => {
+      if (a === "") {
+        return b;
+      }
+      return a + b.charAt(0).toUpperCase() + b.slice(1);
+    }, "");
+};
+
+//fix bug for openapigenerator enum hanlding
+const findAndReplaceAllEnums = (target, accessPath) => {
+  _.forIn(target, (value, key, object) => {
+    if (key === "enum") {
+      const { type, enum: e } = object;
+      const name = getEnumName(accessPath);
+      delete object["enum"];
+      delete object["type"];
+      object["$ref"] = "#/components/schemas/" + name;
+      allEnumDefinitions[name] = {
+        type,
+        enum: e,
+      };
+      if (
+        Array.isArray(e) &&
+        e.findIndex((p) => (_.get(p, "text") ?? p) === "name") >= 0
+      ) {
+        allEnumDefinitions[name]["x-enum-values"] = e.map((p) => {
+          return {
+            numericValue: _.get(p, "value") ?? p,
+            identifier: _.get(p, "text") ?? (p == "name" ? "namee" : p),
+            description: _.get(p, "text") ?? (p == "name" ? "namee" : p),
+          };
+        });
+      }
+    }
+    if (_.isObject(value)) {
+      findAndReplaceAllEnums(value, [...accessPath, key]);
+    }
+  });
+};
+findAndReplaceAllEnums(openapi["components"]["schemas"], []);
+openapi["components"]["schemas"] = {
+  ...openapi["components"]["schemas"],
+  ...allEnumDefinitions,
+};
+
 const fix = (target) =>
   _.forIn(target, (value, key, object) => {
+    //fix some shit property
+    if (key === "useDisplayValuesInDynamicTexts") {
+      object["useDisplayValuesInDynamicTexts"]["type"] = "boolean";
+    }
+    if (key === "separateSpecialChoices") {
+      object["separateSpecialChoices"]["type"] = "boolean";
+    }
+    if (key === "validators") {
+      object["validators"] = { $ref: "#/components/schemas/surveyvalidator" };
+    }
+    if (key === "clearIfInvisible") {
+      object["clearIfInvisible"] = {
+        $ref: "#/components/schemas/questionClearIfInvisible",
+      };
+    }
+    if (key === "titleLocation") {
+      object["titleLocation"] = {
+        $ref: "#/components/schemas/questionTitleLocation",
+      };
+    }
+    if (key === "storeOthersAsComment") {
+      object["storeOthersAsComment"] = {
+        type: "boolean",
+      };
+    }
+    if (key === "showOtherItem") {
+      object["showOtherItem"] = {
+        type: "boolean",
+      };
+    }
+    if (key === "showSelectAllItem") {
+      object["showSelectAllItem"] = {
+        type: "boolean",
+      };
+    }
+    if (key === "showNoneItem") {
+      object["showNoneItem"] = {
+        type: "boolean",
+      };
+    }
+    if (key === "maxSelectedChoices") {
+      object["maxSelectedChoices"] = {
+        type: "number",
+      };
+    }
+
+    if (key === "colCount") {
+      object["colCount"] = {
+        $ref: "#/components/schemas/checkboxbaseColCount",
+      };
+    }
     //fix ref
     if (
       key === "$ref" &&
       _.startsWith(value, "#") &&
       !_.startsWith(value, "#/")
     ) {
+      //fix ChoicesRestful
       let v = _.replace(value, "ChoicesRestful", "choicesRestful");
       v = _.replace(v, "#", "#/components/schemas/");
       _.set(object, key, v);
@@ -181,7 +288,12 @@ const fix = (target) =>
     }
   });
 fix(openapi);
-
+delete openapi["components"]["schemas"]["imagepicker"]["allOf"][1][
+  "properties"
+]["choices"];
+delete openapi["components"]["schemas"]["buttongroup"]["allOf"][1][
+  "properties"
+]["choices"];
 fs.writeFile("surveyjs.yaml", YAML.stringify(openapi), function (err) {
   if (err) {
     return console.log(err);

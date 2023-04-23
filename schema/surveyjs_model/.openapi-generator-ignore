@@ -22,4 +22,12 @@ doc/
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 test/
-api
+lib/src/api/
+lib/src/auth/
+lib/src/api_util.dart
+lib/src/api.dart
+
+README.md
+
+lib/surveyjs_model.dart
+pubspec.yaml
