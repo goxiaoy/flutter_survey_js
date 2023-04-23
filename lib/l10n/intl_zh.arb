@@ -4,5 +4,7 @@
   "submitSurvey": "提交",
   "add": "添加",
   "remove": "删除",
-  "placeholder": "请选择..."
+  "placeholder": "请选择...",
+  "otherItemText": "填写其他答案",
+  "noneItemText": "无"
 }

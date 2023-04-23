@@ -29,7 +29,9 @@
           "name": "dropdown_question",
           "choices": [
             "item1"
-          ]
+          ],
+          "showOtherItem": true,
+          "showNoneItem": true
         },
         {
           "type": "comment",

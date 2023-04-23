@@ -209,7 +209,7 @@ CheckBox _$CheckBoxFromJson(Map<String, dynamic> json) => CheckBox()
   ..choicesEnableIf = json['choicesEnableIf'] as String?
   ..hasOther = json['hasOther'] as bool?
   ..hasNone = json['hasNone'] as bool?
-  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..otherPlaceholder = json['otherPlaceholder'] as String?
   ..noneText = json['noneText'] as String?
   ..otherText = json['otherText'] as String?
   ..otherErrorText = json['otherErrorText'] as String?
@@ -269,7 +269,7 @@ Map<String, dynamic> _$CheckBoxToJson(CheckBox instance) {
   writeNotNull('choicesEnableIf', instance.choicesEnableIf);
   writeNotNull('hasOther', instance.hasOther);
   writeNotNull('hasNone', instance.hasNone);
-  writeNotNull('otherPlaceHolder', instance.otherPlaceHolder);
+  writeNotNull('otherPlaceholder', instance.otherPlaceholder);
   writeNotNull('noneText', instance.noneText);
   writeNotNull('otherText', instance.otherText);
   writeNotNull('otherErrorText', instance.otherErrorText);
@@ -327,7 +327,7 @@ Ranking _$RankingFromJson(Map<String, dynamic> json) => Ranking()
   ..choicesEnableIf = json['choicesEnableIf'] as String?
   ..hasOther = json['hasOther'] as bool?
   ..hasNone = json['hasNone'] as bool?
-  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..otherPlaceholder = json['otherPlaceholder'] as String?
   ..hasSelectAll = json['hasSelectAll'] as bool?
   ..maxSelectedChoices = json['maxSelectedChoices'] as int?
   ..type = json['type'] as String?
@@ -387,7 +387,7 @@ Map<String, dynamic> _$RankingToJson(Ranking instance) {
   writeNotNull('choicesEnableIf', instance.choicesEnableIf);
   writeNotNull('hasOther', instance.hasOther);
   writeNotNull('hasNone', instance.hasNone);
-  writeNotNull('otherPlaceHolder', instance.otherPlaceHolder);
+  writeNotNull('otherPlaceholder', instance.otherPlaceholder);
   writeNotNull('hasSelectAll', instance.hasSelectAll);
   writeNotNull('maxSelectedChoices', instance.maxSelectedChoices);
   writeNotNull('type', instance.type);
@@ -445,7 +445,7 @@ RadioGroup _$RadioGroupFromJson(Map<String, dynamic> json) => RadioGroup()
   ..choicesEnableIf = json['choicesEnableIf'] as String?
   ..hasOther = json['hasOther'] as bool?
   ..hasNone = json['hasNone'] as bool?
-  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..otherPlaceholder = json['otherPlaceholder'] as String?
   ..noneText = json['noneText'] as String?
   ..otherText = json['otherText'] as String?
   ..otherErrorText = json['otherErrorText'] as String?
@@ -503,7 +503,7 @@ Map<String, dynamic> _$RadioGroupToJson(RadioGroup instance) {
   writeNotNull('choicesEnableIf', instance.choicesEnableIf);
   writeNotNull('hasOther', instance.hasOther);
   writeNotNull('hasNone', instance.hasNone);
-  writeNotNull('otherPlaceHolder', instance.otherPlaceHolder);
+  writeNotNull('otherPlaceholder', instance.otherPlaceholder);
   writeNotNull('noneText', instance.noneText);
   writeNotNull('otherText', instance.otherText);
   writeNotNull('otherErrorText', instance.otherErrorText);
@@ -558,7 +558,7 @@ ImagePicker _$ImagePickerFromJson(Map<String, dynamic> json) => ImagePicker()
   ..choicesEnableIf = json['choicesEnableIf'] as String?
   ..hasOther = json['hasOther'] as bool?
   ..hasNone = json['hasNone'] as bool?
-  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..otherPlaceholder = json['otherPlaceholder'] as String?
   ..type = json['type'] as String?
   ..otherText = json['otherText'] as String?
   ..noneText = json['noneText'] as String?
@@ -622,7 +622,7 @@ Map<String, dynamic> _$ImagePickerToJson(ImagePicker instance) {
   writeNotNull('choicesEnableIf', instance.choicesEnableIf);
   writeNotNull('hasOther', instance.hasOther);
   writeNotNull('hasNone', instance.hasNone);
-  writeNotNull('otherPlaceHolder', instance.otherPlaceHolder);
+  writeNotNull('otherPlaceholder', instance.otherPlaceholder);
   writeNotNull('type', instance.type);
   writeNotNull('otherText', instance.otherText);
   writeNotNull('noneText', instance.noneText);
@@ -685,7 +685,7 @@ Dropdown _$DropdownFromJson(Map<String, dynamic> json) => Dropdown()
   ..choicesEnableIf = json['choicesEnableIf'] as String?
   ..hasOther = json['hasOther'] as bool?
   ..hasNone = json['hasNone'] as bool?
-  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..otherPlaceholder = json['otherPlaceholder'] as String?
   ..noneText = json['noneText'] as String?
   ..otherText = json['otherText'] as String?
   ..otherErrorText = json['otherErrorText'] as String?
@@ -697,7 +697,9 @@ Dropdown _$DropdownFromJson(Map<String, dynamic> json) => Dropdown()
   ..choicesMax = json['choicesMax'] as num?
   ..choicesStep = json['choicesStep'] as num?
   ..autoComplete = json['autoComplete'] as String?
-  ..placeholder = json['placeholder'] as String?;
+  ..placeholder = json['placeholder'] as String?
+  ..showOtherItem = json['showOtherItem'] as bool?
+  ..showNoneItem = json['showNoneItem'] as bool?;
 
 Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   final val = <String, dynamic>{};
@@ -748,7 +750,7 @@ Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   writeNotNull('choicesEnableIf', instance.choicesEnableIf);
   writeNotNull('hasOther', instance.hasOther);
   writeNotNull('hasNone', instance.hasNone);
-  writeNotNull('otherPlaceHolder', instance.otherPlaceHolder);
+  writeNotNull('otherPlaceholder', instance.otherPlaceholder);
   writeNotNull('noneText', instance.noneText);
   writeNotNull('otherText', instance.otherText);
   writeNotNull('otherErrorText', instance.otherErrorText);
@@ -761,6 +763,8 @@ Map<String, dynamic> _$DropdownToJson(Dropdown instance) {
   writeNotNull('choicesStep', instance.choicesStep);
   writeNotNull('autoComplete', instance.autoComplete);
   writeNotNull('placeholder', instance.placeholder);
+  writeNotNull('showOtherItem', instance.showOtherItem);
+  writeNotNull('showNoneItem', instance.showNoneItem);
   return val;
 }
 
@@ -1803,7 +1807,7 @@ ButtonGroup _$ButtonGroupFromJson(Map<String, dynamic> json) => ButtonGroup()
   ..choicesEnableIf = json['choicesEnableIf'] as String?
   ..hasOther = json['hasOther'] as bool?
   ..hasNone = json['hasNone'] as bool?
-  ..otherPlaceHolder = json['otherPlaceHolder'] as String?
+  ..otherPlaceholder = json['otherPlaceholder'] as String?
   ..noneText = json['noneText'] as String?
   ..otherText = json['otherText'] as String?
   ..otherErrorText = json['otherErrorText'] as String?
@@ -1860,7 +1864,7 @@ Map<String, dynamic> _$ButtonGroupToJson(ButtonGroup instance) {
   writeNotNull('choicesEnableIf', instance.choicesEnableIf);
   writeNotNull('hasOther', instance.hasOther);
   writeNotNull('hasNone', instance.hasNone);
-  writeNotNull('otherPlaceHolder', instance.otherPlaceHolder);
+  writeNotNull('otherPlaceholder', instance.otherPlaceholder);
   writeNotNull('noneText', instance.noneText);
   writeNotNull('otherText', instance.otherText);
   writeNotNull('otherErrorText', instance.otherErrorText);
