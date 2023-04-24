@@ -8,14 +8,15 @@ import 'package:flutter_survey_js_model/src/model/setvaluetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/completetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/copyvaluetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/skiptrigger.dart';
+import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 import 'package:flutter_survey_js_model/src/model/visibletrigger.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/any_of.dart';
 
-part 'survey_triggers.g.dart';
+part 'survey_triggers_inner.g.dart';
 
-/// SurveyTriggers
+/// SurveyTriggersInner
 ///
 /// Properties:
 /// * [operator_] 
@@ -32,31 +33,31 @@ part 'survey_triggers.g.dart';
 /// * [gotoName] 
 /// * [runExpression] 
 @BuiltValue()
-abstract class SurveyTriggers implements Built<SurveyTriggers, SurveyTriggersBuilder> {
-  /// Any Of [Completetrigger], [Copyvaluetrigger], [Runexpressiontrigger], [Setvaluetrigger], [Skiptrigger], [Visibletrigger]
+abstract class SurveyTriggersInner implements Built<SurveyTriggersInner, SurveyTriggersInnerBuilder> {
+  /// Any Of [Completetrigger], [Copyvaluetrigger], [Runexpressiontrigger], [Setvaluetrigger], [Skiptrigger], [Surveytrigger], [Visibletrigger]
   AnyOf get anyOf;
 
-  SurveyTriggers._();
+  SurveyTriggersInner._();
 
-  factory SurveyTriggers([void updates(SurveyTriggersBuilder b)]) = _$SurveyTriggers;
+  factory SurveyTriggersInner([void updates(SurveyTriggersInnerBuilder b)]) = _$SurveyTriggersInner;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SurveyTriggersBuilder b) => b;
+  static void _defaults(SurveyTriggersInnerBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<SurveyTriggers> get serializer => _$SurveyTriggersSerializer();
+  static Serializer<SurveyTriggersInner> get serializer => _$SurveyTriggersInnerSerializer();
 }
 
-class _$SurveyTriggersSerializer implements PrimitiveSerializer<SurveyTriggers> {
+class _$SurveyTriggersInnerSerializer implements PrimitiveSerializer<SurveyTriggersInner> {
   @override
-  final Iterable<Type> types = const [SurveyTriggers, _$SurveyTriggers];
+  final Iterable<Type> types = const [SurveyTriggersInner, _$SurveyTriggersInner];
 
   @override
-  final String wireName = r'SurveyTriggers';
+  final String wireName = r'SurveyTriggersInner';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    SurveyTriggers object, {
+    SurveyTriggersInner object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
   }
@@ -64,7 +65,7 @@ class _$SurveyTriggersSerializer implements PrimitiveSerializer<SurveyTriggers> 
   @override
   Object serialize(
     Serializers serializers,
-    SurveyTriggers object, {
+    SurveyTriggersInner object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     final anyOf = object.anyOf;
@@ -72,14 +73,14 @@ class _$SurveyTriggersSerializer implements PrimitiveSerializer<SurveyTriggers> 
   }
 
   @override
-  SurveyTriggers deserialize(
+  SurveyTriggersInner deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = SurveyTriggersBuilder();
+    final result = SurveyTriggersInnerBuilder();
     Object? anyOfDataSrc;
-    final targetType = const FullType(AnyOf, [FullType(Visibletrigger), FullType(Completetrigger), FullType(Setvaluetrigger), FullType(Copyvaluetrigger), FullType(Skiptrigger), FullType(Runexpressiontrigger), ]);
+    final targetType = const FullType(AnyOf, [FullType(Visibletrigger), FullType(Completetrigger), FullType(Setvaluetrigger), FullType(Copyvaluetrigger), FullType(Skiptrigger), FullType(Runexpressiontrigger), FullType(Surveytrigger), ]);
     anyOfDataSrc = serialized;
     result.anyOf = serializers.deserialize(anyOfDataSrc, specifiedType: targetType) as AnyOf;
     return result.build();

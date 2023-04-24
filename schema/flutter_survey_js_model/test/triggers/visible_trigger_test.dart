@@ -1,5 +1,5 @@
-import 'package:flutter_survey_js/model/survey.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart';
+import 'package:test/test.dart';
 
 void main() {
   // 单一的测试
@@ -192,6 +192,12 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = Survey.fromJson(json);
+    final s =
+        standardSerializers.deserializeWith<Survey>(Survey.serializer, json);
+    final serialized = standardSerializers.serializeWith(Survey.serializer, s);
+    expect(
+        standardSerializers.deserializeWith<Survey>(
+            Survey.serializer, serialized),
+        s);
   });
 }

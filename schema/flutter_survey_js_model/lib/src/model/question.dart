@@ -10,8 +10,8 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
+import 'package:flutter_survey_js_model/src/model/elementbase.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
-import 'package:flutter_survey_js_model/src/model/element_base.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -54,7 +54,7 @@ part 'question.g.dart';
 /// * [commentText] 
 /// * [commentPlaceholder] 
 @BuiltValue(instantiable: false)
-abstract class Question implements ElementBase, QuestionAllOf {
+abstract class Question implements Elementbase, QuestionAllOf {
   @BuiltValueSerializer(custom: true)
   static Serializer<Question> get serializer => _$QuestionSerializer();
 }

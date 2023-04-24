@@ -30,6 +30,7 @@ part 'page.g.dart';
 /// * [title] 
 /// * [description] 
 /// * [questionsOrder] 
+/// * [questions] 
 /// * [navigationButtonsVisibility] 
 /// * [maxTimeToFinish] 
 /// * [navigationTitle] 
@@ -101,6 +102,13 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
         specifiedType: const FullType(String),
       );
     }
+    if (object.questions != null) {
+      yield r'questions';
+      yield serializers.serialize(
+        object.questions,
+        specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+      );
+    }
     if (object.description != null) {
       yield r'description';
       yield serializers.serialize(
@@ -115,17 +123,17 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -236,6 +244,13 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
           ) as String;
           result.requiredIf = valueDes;
           break;
+        case r'questions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+          ) as BuiltList<SurveyQuestionsInner>;
+          result.questions.replace(valueDes);
+          break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
@@ -250,19 +265,19 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
           ) as bool;
           result.readOnly = valueDes;
           break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.type = valueDes;
-          break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.title = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'questionsOrder':
           final valueDes = serializers.deserialize(

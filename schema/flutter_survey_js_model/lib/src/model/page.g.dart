@@ -39,6 +39,8 @@ class _$Page extends Page {
   final PanelbaseQuestionTitleLocation? questionTitleLocation;
   @override
   final PanelbaseQuestionsOrder? questionsOrder;
+  @override
+  final BuiltList<SurveyQuestionsInner>? questions;
 
   factory _$Page([void Function(PageBuilder)? updates]) =>
       (new PageBuilder()..update(updates))._build();
@@ -59,7 +61,8 @@ class _$Page extends Page {
       this.requiredIf,
       this.readOnly,
       this.questionTitleLocation,
-      this.questionsOrder})
+      this.questionsOrder,
+      this.questions})
       : super._();
 
   @override
@@ -88,7 +91,8 @@ class _$Page extends Page {
         requiredIf == other.requiredIf &&
         readOnly == other.readOnly &&
         questionTitleLocation == other.questionTitleLocation &&
-        questionsOrder == other.questionsOrder;
+        questionsOrder == other.questionsOrder &&
+        questions == other.questions;
   }
 
   @override
@@ -110,6 +114,7 @@ class _$Page extends Page {
     _$hash = $jc(_$hash, readOnly.hashCode);
     _$hash = $jc(_$hash, questionTitleLocation.hashCode);
     _$hash = $jc(_$hash, questionsOrder.hashCode);
+    _$hash = $jc(_$hash, questions.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -132,7 +137,8 @@ class _$Page extends Page {
           ..add('requiredIf', requiredIf)
           ..add('readOnly', readOnly)
           ..add('questionTitleLocation', questionTitleLocation)
-          ..add('questionsOrder', questionsOrder))
+          ..add('questionsOrder', questionsOrder)
+          ..add('questions', questions))
         .toString();
   }
 }
@@ -220,6 +226,12 @@ class PageBuilder
   set questionsOrder(covariant PanelbaseQuestionsOrder? questionsOrder) =>
       _$this._questionsOrder = questionsOrder;
 
+  ListBuilder<SurveyQuestionsInner>? _questions;
+  ListBuilder<SurveyQuestionsInner> get questions =>
+      _$this._questions ??= new ListBuilder<SurveyQuestionsInner>();
+  set questions(covariant ListBuilder<SurveyQuestionsInner>? questions) =>
+      _$this._questions = questions;
+
   PageBuilder() {
     Page._defaults(this);
   }
@@ -243,6 +255,7 @@ class PageBuilder
       _readOnly = $v.readOnly;
       _questionTitleLocation = $v.questionTitleLocation;
       _questionsOrder = $v.questionsOrder;
+      _questions = $v.questions?.toBuilder();
       _$v = null;
     }
     return this;
@@ -283,12 +296,16 @@ class PageBuilder
               requiredIf: requiredIf,
               readOnly: readOnly,
               questionTitleLocation: questionTitleLocation,
-              questionsOrder: questionsOrder);
+              questionsOrder: questionsOrder,
+              questions: _questions?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'elements';
         _elements?.build();
+
+        _$failedField = 'questions';
+        _questions?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Page', _$failedField, e.toString());

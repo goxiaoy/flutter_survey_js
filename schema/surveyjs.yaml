@@ -82,14 +82,18 @@ components:
               - $ref: "#/components/schemas/signaturepad"
               - $ref: "#/components/schemas/paneldynamic"
               - $ref: "#/components/schemas/panel"
+              - $ref: "#/components/schemas/elementbase"
         triggers:
-          anyOf:
-            - $ref: "#/components/schemas/visibletrigger"
-            - $ref: "#/components/schemas/completetrigger"
-            - $ref: "#/components/schemas/setvaluetrigger"
-            - $ref: "#/components/schemas/copyvaluetrigger"
-            - $ref: "#/components/schemas/skiptrigger"
-            - $ref: "#/components/schemas/runexpressiontrigger"
+          type: array
+          items:
+            anyOf:
+              - $ref: "#/components/schemas/visibletrigger"
+              - $ref: "#/components/schemas/completetrigger"
+              - $ref: "#/components/schemas/setvaluetrigger"
+              - $ref: "#/components/schemas/copyvaluetrigger"
+              - $ref: "#/components/schemas/skiptrigger"
+              - $ref: "#/components/schemas/runexpressiontrigger"
+              - $ref: "#/components/schemas/surveytrigger"
         calculatedValues:
           type: array
           items:
@@ -221,7 +225,7 @@ components:
     panelbase:
       type: object
       allOf:
-        - $ref: "#/components/schemas/elementBase"
+        - $ref: "#/components/schemas/elementbase"
         - properties:
             name:
               type: string
@@ -246,10 +250,13 @@ components:
               type: string
             questionsOrder:
               $ref: "#/components/schemas/panelbaseQuestionsOrder"
+            questions:
+              type: array
+              items: *a1
     question:
       type: object
       allOf:
-        - $ref: "#/components/schemas/elementBase"
+        - $ref: "#/components/schemas/elementbase"
         - properties:
             name:
               type: string
@@ -313,6 +320,7 @@ components:
                   - $ref: "#/components/schemas/regexvalidator"
                   - $ref: "#/components/schemas/emailvalidator"
                   - $ref: "#/components/schemas/expressionvalidator"
+                  - $ref: "#/components/schemas/surveyvalidator"
             bindings:
               type: string
             renderAs:
@@ -1319,7 +1327,7 @@ components:
           type: string
         path:
           type: string
-    elementBase:
+    elementbase:
       type: object
       properties:
         type:

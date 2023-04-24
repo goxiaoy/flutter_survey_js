@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/expressionvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/numericvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/textvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/answercountvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/regexvalidator.dart';
@@ -31,7 +32,7 @@ part 'question_all_of_validators_inner.g.dart';
 /// * [expression] 
 @BuiltValue()
 abstract class QuestionAllOfValidatorsInner implements Built<QuestionAllOfValidatorsInner, QuestionAllOfValidatorsInnerBuilder> {
-  /// Any Of [Answercountvalidator], [Emailvalidator], [Expressionvalidator], [Numericvalidator], [Regexvalidator], [Textvalidator]
+  /// Any Of [Answercountvalidator], [Emailvalidator], [Expressionvalidator], [Numericvalidator], [Regexvalidator], [Surveyvalidator], [Textvalidator]
   AnyOf get anyOf;
 
   QuestionAllOfValidatorsInner._();
@@ -77,7 +78,7 @@ class _$QuestionAllOfValidatorsInnerSerializer implements PrimitiveSerializer<Qu
   }) {
     final result = QuestionAllOfValidatorsInnerBuilder();
     Object? anyOfDataSrc;
-    final targetType = const FullType(AnyOf, [FullType(Numericvalidator), FullType(Textvalidator), FullType(Answercountvalidator), FullType(Regexvalidator), FullType(Emailvalidator), FullType(Expressionvalidator), ]);
+    final targetType = const FullType(AnyOf, [FullType(Numericvalidator), FullType(Textvalidator), FullType(Answercountvalidator), FullType(Regexvalidator), FullType(Emailvalidator), FullType(Expressionvalidator), FullType(Surveyvalidator), ]);
     anyOfDataSrc = serialized;
     result.anyOf = serializers.deserialize(anyOfDataSrc, specifiedType: targetType) as AnyOf;
     return result.build();

@@ -7,8 +7,8 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
+import 'package:flutter_survey_js_model/src/model/elementbase.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_questions_order.dart';
-import 'package:flutter_survey_js_model/src/model/element_base.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -29,8 +29,9 @@ part 'panelbase.g.dart';
 /// * [title] 
 /// * [description] 
 /// * [questionsOrder] 
+/// * [questions] 
 @BuiltValue(instantiable: false)
-abstract class Panelbase implements ElementBase, PanelbaseAllOf {
+abstract class Panelbase implements Elementbase, PanelbaseAllOf {
   @BuiltValueSerializer(custom: true)
   static Serializer<Panelbase> get serializer => _$PanelbaseSerializer();
 }
@@ -68,6 +69,13 @@ class _$PanelbaseSerializer implements PrimitiveSerializer<Panelbase> {
         specifiedType: const FullType(String),
       );
     }
+    if (object.questions != null) {
+      yield r'questions';
+      yield serializers.serialize(
+        object.questions,
+        specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+      );
+    }
     if (object.description != null) {
       yield r'description';
       yield serializers.serialize(
@@ -82,17 +90,17 @@ class _$PanelbaseSerializer implements PrimitiveSerializer<Panelbase> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -215,6 +223,13 @@ class _$$PanelbaseSerializer implements PrimitiveSerializer<$Panelbase> {
           ) as String;
           result.requiredIf = valueDes;
           break;
+        case r'questions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+          ) as BuiltList<SurveyQuestionsInner>;
+          result.questions.replace(valueDes);
+          break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
@@ -229,19 +244,19 @@ class _$$PanelbaseSerializer implements PrimitiveSerializer<$Panelbase> {
           ) as bool;
           result.readOnly = valueDes;
           break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.type = valueDes;
-          break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.title = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'questionsOrder':
           final valueDes = serializers.deserialize(

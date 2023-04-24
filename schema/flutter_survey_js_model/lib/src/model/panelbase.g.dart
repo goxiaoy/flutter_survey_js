@@ -7,7 +7,7 @@ part of 'panelbase.dart';
 // **************************************************************************
 
 abstract class PanelbaseBuilder
-    implements ElementBaseBuilder, PanelbaseAllOfBuilder {
+    implements ElementbaseBuilder, PanelbaseAllOfBuilder {
   void replace(covariant Panelbase other);
   void update(void Function(PanelbaseBuilder) updates);
   String? get type;
@@ -46,6 +46,9 @@ abstract class PanelbaseBuilder
 
   PanelbaseQuestionsOrder? get questionsOrder;
   set questionsOrder(covariant PanelbaseQuestionsOrder? questionsOrder);
+
+  ListBuilder<SurveyQuestionsInner> get questions;
+  set questions(covariant ListBuilder<SurveyQuestionsInner>? questions);
 }
 
 class _$$Panelbase extends $Panelbase {
@@ -73,6 +76,8 @@ class _$$Panelbase extends $Panelbase {
   final String? description;
   @override
   final PanelbaseQuestionsOrder? questionsOrder;
+  @override
+  final BuiltList<SurveyQuestionsInner>? questions;
 
   factory _$$Panelbase([void Function($PanelbaseBuilder)? updates]) =>
       (new $PanelbaseBuilder()..update(updates))._build();
@@ -89,7 +94,8 @@ class _$$Panelbase extends $Panelbase {
       this.questionTitleLocation,
       this.title,
       this.description,
-      this.questionsOrder})
+      this.questionsOrder,
+      this.questions})
       : super._();
 
   @override
@@ -114,7 +120,8 @@ class _$$Panelbase extends $Panelbase {
         questionTitleLocation == other.questionTitleLocation &&
         title == other.title &&
         description == other.description &&
-        questionsOrder == other.questionsOrder;
+        questionsOrder == other.questionsOrder &&
+        questions == other.questions;
   }
 
   @override
@@ -132,6 +139,7 @@ class _$$Panelbase extends $Panelbase {
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, questionsOrder.hashCode);
+    _$hash = $jc(_$hash, questions.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -150,7 +158,8 @@ class _$$Panelbase extends $Panelbase {
           ..add('questionTitleLocation', questionTitleLocation)
           ..add('title', title)
           ..add('description', description)
-          ..add('questionsOrder', questionsOrder))
+          ..add('questionsOrder', questionsOrder)
+          ..add('questions', questions))
         .toString();
   }
 }
@@ -215,6 +224,12 @@ class $PanelbaseBuilder
   set questionsOrder(covariant PanelbaseQuestionsOrder? questionsOrder) =>
       _$this._questionsOrder = questionsOrder;
 
+  ListBuilder<SurveyQuestionsInner>? _questions;
+  ListBuilder<SurveyQuestionsInner> get questions =>
+      _$this._questions ??= new ListBuilder<SurveyQuestionsInner>();
+  set questions(covariant ListBuilder<SurveyQuestionsInner>? questions) =>
+      _$this._questions = questions;
+
   $PanelbaseBuilder() {
     $Panelbase._defaults(this);
   }
@@ -234,6 +249,7 @@ class $PanelbaseBuilder
       _title = $v.title;
       _description = $v.description;
       _questionsOrder = $v.questionsOrder;
+      _questions = $v.questions?.toBuilder();
       _$v = null;
     }
     return this;
@@ -269,12 +285,16 @@ class $PanelbaseBuilder
               questionTitleLocation: questionTitleLocation,
               title: title,
               description: description,
-              questionsOrder: questionsOrder);
+              questionsOrder: questionsOrder,
+              questions: _questions?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'elements';
         _elements?.build();
+
+        _$failedField = 'questions';
+        _questions?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'$Panelbase', _$failedField, e.toString());

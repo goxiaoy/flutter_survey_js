@@ -42,6 +42,9 @@ abstract class PanelbaseAllOfBuilder {
 
   PanelbaseQuestionsOrder? get questionsOrder;
   set questionsOrder(PanelbaseQuestionsOrder? questionsOrder);
+
+  ListBuilder<SurveyQuestionsInner> get questions;
+  set questions(ListBuilder<SurveyQuestionsInner>? questions);
 }
 
 class _$$PanelbaseAllOf extends $PanelbaseAllOf {
@@ -67,6 +70,8 @@ class _$$PanelbaseAllOf extends $PanelbaseAllOf {
   final String? description;
   @override
   final PanelbaseQuestionsOrder? questionsOrder;
+  @override
+  final BuiltList<SurveyQuestionsInner>? questions;
 
   factory _$$PanelbaseAllOf([void Function($PanelbaseAllOfBuilder)? updates]) =>
       (new $PanelbaseAllOfBuilder()..update(updates))._build();
@@ -82,7 +87,8 @@ class _$$PanelbaseAllOf extends $PanelbaseAllOf {
       this.questionTitleLocation,
       this.title,
       this.description,
-      this.questionsOrder})
+      this.questionsOrder,
+      this.questions})
       : super._();
 
   @override
@@ -107,7 +113,8 @@ class _$$PanelbaseAllOf extends $PanelbaseAllOf {
         questionTitleLocation == other.questionTitleLocation &&
         title == other.title &&
         description == other.description &&
-        questionsOrder == other.questionsOrder;
+        questionsOrder == other.questionsOrder &&
+        questions == other.questions;
   }
 
   @override
@@ -124,6 +131,7 @@ class _$$PanelbaseAllOf extends $PanelbaseAllOf {
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, questionsOrder.hashCode);
+    _$hash = $jc(_$hash, questions.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -141,7 +149,8 @@ class _$$PanelbaseAllOf extends $PanelbaseAllOf {
           ..add('questionTitleLocation', questionTitleLocation)
           ..add('title', title)
           ..add('description', description)
-          ..add('questionsOrder', questionsOrder))
+          ..add('questionsOrder', questionsOrder)
+          ..add('questions', questions))
         .toString();
   }
 }
@@ -204,6 +213,12 @@ class $PanelbaseAllOfBuilder
   set questionsOrder(covariant PanelbaseQuestionsOrder? questionsOrder) =>
       _$this._questionsOrder = questionsOrder;
 
+  ListBuilder<SurveyQuestionsInner>? _questions;
+  ListBuilder<SurveyQuestionsInner> get questions =>
+      _$this._questions ??= new ListBuilder<SurveyQuestionsInner>();
+  set questions(covariant ListBuilder<SurveyQuestionsInner>? questions) =>
+      _$this._questions = questions;
+
   $PanelbaseAllOfBuilder() {
     $PanelbaseAllOf._defaults(this);
   }
@@ -222,6 +237,7 @@ class $PanelbaseAllOfBuilder
       _title = $v.title;
       _description = $v.description;
       _questionsOrder = $v.questionsOrder;
+      _questions = $v.questions?.toBuilder();
       _$v = null;
     }
     return this;
@@ -256,12 +272,16 @@ class $PanelbaseAllOfBuilder
               questionTitleLocation: questionTitleLocation,
               title: title,
               description: description,
-              questionsOrder: questionsOrder);
+              questionsOrder: questionsOrder,
+              questions: _questions?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'elements';
         _elements?.build();
+
+        _$failedField = 'questions';
+        _questions?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'$PanelbaseAllOf', _$failedField, e.toString());

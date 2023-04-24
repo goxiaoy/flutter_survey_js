@@ -40,7 +40,7 @@ class _$Survey extends Survey {
   @override
   final BuiltList<SurveyQuestionsInner>? questions;
   @override
-  final SurveyTriggers? triggers;
+  final BuiltList<SurveyTriggersInner>? triggers;
   @override
   final BuiltList<Calculatedvalue>? calculatedValues;
   @override
@@ -550,10 +550,11 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set questions(ListBuilder<SurveyQuestionsInner>? questions) =>
       _$this._questions = questions;
 
-  SurveyTriggersBuilder? _triggers;
-  SurveyTriggersBuilder get triggers =>
-      _$this._triggers ??= new SurveyTriggersBuilder();
-  set triggers(SurveyTriggersBuilder? triggers) => _$this._triggers = triggers;
+  ListBuilder<SurveyTriggersInner>? _triggers;
+  ListBuilder<SurveyTriggersInner> get triggers =>
+      _$this._triggers ??= new ListBuilder<SurveyTriggersInner>();
+  set triggers(ListBuilder<SurveyTriggersInner>? triggers) =>
+      _$this._triggers = triggers;
 
   ListBuilder<Calculatedvalue>? _calculatedValues;
   ListBuilder<Calculatedvalue> get calculatedValues =>

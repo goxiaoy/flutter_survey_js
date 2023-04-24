@@ -33,6 +33,7 @@ part 'panel.g.dart';
 /// * [title] 
 /// * [description] 
 /// * [questionsOrder] 
+/// * [questions] 
 /// * [state] 
 /// * [isRequired] 
 /// * [requiredErrorText] 
@@ -79,6 +80,13 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         specifiedType: const FullType(PanelIndent),
       );
     }
+    if (object.questions != null) {
+      yield r'questions';
+      yield serializers.serialize(
+        object.questions,
+        specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+      );
+    }
     if (object.description != null) {
       yield r'description';
       yield serializers.serialize(
@@ -86,17 +94,17 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -284,6 +292,13 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
           ) as PanelIndent;
           result.indent = valueDes;
           break;
+        case r'questions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+          ) as BuiltList<SurveyQuestionsInner>;
+          result.questions.replace(valueDes);
+          break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
@@ -291,19 +306,19 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
           ) as String;
           result.description = valueDes;
           break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.type = valueDes;
-          break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.title = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'innerIndent':
           final valueDes = serializers.deserialize(

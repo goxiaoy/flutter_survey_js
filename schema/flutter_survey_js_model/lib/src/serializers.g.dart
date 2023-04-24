@@ -18,7 +18,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add($CommentAllOf.serializer)
       ..add($CopyvaluetriggerAllOf.serializer)
       ..add($DropdownAllOf.serializer)
-      ..add($ElementBase.serializer)
+      ..add($Elementbase.serializer)
       ..add($ExpressionAllOf.serializer)
       ..add($Expressionitem.serializer)
       ..add($ExpressionvalidatorAllOf.serializer)
@@ -178,7 +178,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SurveyShowTimerPanelMode.serializer)
       ..add(SurveyTextUpdateMode.serializer)
       ..add(SurveyTocLocation.serializer)
-      ..add(SurveyTriggers.serializer)
+      ..add(SurveyTriggersInner.serializer)
       ..add(SurveyWidthMode.serializer)
       ..add(Tagbox.serializer)
       ..add(Text.serializer)
@@ -198,6 +198,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(SurveyQuestionsInner)]),
           () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyTriggersInner)]),
+          () => new ListBuilder<SurveyTriggersInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Calculatedvalue)]),
           () => new ListBuilder<Calculatedvalue>())
@@ -492,24 +496,40 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<SurveyQuestionsInner>())
       ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(SurveyQuestionsInner)]),
-          () => new ListBuilder<SurveyQuestionsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SurveyQuestionsInner)]),
-          () => new ListBuilder<SurveyQuestionsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SurveyQuestionsInner)]),
-          () => new ListBuilder<SurveyQuestionsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SurveyQuestionsInner)]),
-          () => new ListBuilder<SurveyQuestionsInner>())
-      ..addBuilderFactory(
-          const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>()))
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -26,6 +26,7 @@ part 'panelbase_all_of.g.dart';
 /// * [title] 
 /// * [description] 
 /// * [questionsOrder] 
+/// * [questions] 
 @BuiltValue(instantiable: false)
 abstract class PanelbaseAllOf  {
   @BuiltValueField(wireName: r'name')
@@ -62,6 +63,9 @@ abstract class PanelbaseAllOf  {
   @BuiltValueField(wireName: r'questionsOrder')
   PanelbaseQuestionsOrder? get questionsOrder;
   // enum questionsOrderEnum {  default,  initial,  random,  };
+
+  @BuiltValueField(wireName: r'questions')
+  BuiltList<SurveyQuestionsInner>? get questions;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<PanelbaseAllOf> get serializer => _$PanelbaseAllOfSerializer();
@@ -154,6 +158,13 @@ class _$PanelbaseAllOfSerializer implements PrimitiveSerializer<PanelbaseAllOf> 
       yield serializers.serialize(
         object.questionsOrder,
         specifiedType: const FullType(PanelbaseQuestionsOrder),
+      );
+    }
+    if (object.questions != null) {
+      yield r'questions';
+      yield serializers.serialize(
+        object.questions,
+        specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
       );
     }
   }
@@ -295,6 +306,13 @@ class _$$PanelbaseAllOfSerializer implements PrimitiveSerializer<$PanelbaseAllOf
             specifiedType: const FullType(PanelbaseQuestionsOrder),
           ) as PanelbaseQuestionsOrder;
           result.questionsOrder = valueDes;
+          break;
+        case r'questions':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+          ) as BuiltList<SurveyQuestionsInner>;
+          result.questions.replace(valueDes);
           break;
         default:
           unhandled.add(key);

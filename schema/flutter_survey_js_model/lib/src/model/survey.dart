@@ -16,6 +16,7 @@ import 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/calculatedvalue.dart';
 import 'package:flutter_survey_js_model/src/model/survey_mode.dart';
+import 'package:flutter_survey_js_model/src/model/survey_triggers_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_error_location.dart';
@@ -24,7 +25,6 @@ import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
 import 'package:flutter_survey_js_model/src/model/urlconditionitem.dart';
 import 'package:flutter_survey_js_model/src/model/htmlconditionitem.dart';
-import 'package:flutter_survey_js_model/src/model/survey_triggers.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/survey_check_errors_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.dart';
@@ -165,7 +165,7 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   BuiltList<SurveyQuestionsInner>? get questions;
 
   @BuiltValueField(wireName: r'triggers')
-  SurveyTriggers? get triggers;
+  BuiltList<SurveyTriggersInner>? get triggers;
 
   @BuiltValueField(wireName: r'calculatedValues')
   BuiltList<Calculatedvalue>? get calculatedValues;
@@ -488,7 +488,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'triggers';
       yield serializers.serialize(
         object.triggers,
-        specifiedType: const FullType(SurveyTriggers),
+        specifiedType: const FullType(BuiltList, [FullType(SurveyTriggersInner)]),
       );
     }
     if (object.calculatedValues != null) {
@@ -1014,8 +1014,8 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'triggers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyTriggers),
-          ) as SurveyTriggers;
+            specifiedType: const FullType(BuiltList, [FullType(SurveyTriggersInner)]),
+          ) as BuiltList<SurveyTriggersInner>;
           result.triggers.replace(valueDes);
           break;
         case r'calculatedValues':

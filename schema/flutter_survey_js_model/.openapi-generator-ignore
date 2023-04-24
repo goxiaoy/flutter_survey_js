@@ -28,5 +28,6 @@ lib/src/api_util.dart
 lib/src/api.dart
 
 README.md
-
+lib/src/model/survey_questions_inner.dart
+lib/src/flutter_survey_js_model.dart
 pubspec.yaml

@@ -9,6 +9,7 @@ import 'package:flutter_survey_js_model/src/model/buttongroup.dart';
 import 'package:flutter_survey_js_model/src/model/checkbox.dart';
 import 'package:flutter_survey_js_model/src/model/comment.dart';
 import 'package:flutter_survey_js_model/src/model/dropdown.dart';
+import 'package:flutter_survey_js_model/src/model/elementbase.dart';
 import 'package:flutter_survey_js_model/src/model/empty.dart';
 import 'package:flutter_survey_js_model/src/model/expression.dart';
 import 'package:flutter_survey_js_model/src/model/file.dart';
@@ -239,13 +240,14 @@ part 'survey_questions_inner.g.dart';
 /// * [elements]
 /// * [questionTitleLocation]
 /// * [questionsOrder]
+/// * [questions]
 /// * [innerIndent]
 /// * [showNumber]
 /// * [questionStartIndex]
 @BuiltValue()
 abstract class SurveyQuestionsInner
     implements Built<SurveyQuestionsInner, SurveyQuestionsInnerBuilder> {
-  /// Any Of [Boolean], [Buttongroup], [Checkbox], [Comment], [Dropdown], [Empty], [Expression], [File], [Html], [Image], [Imagepicker], [Matrix], [Matrixdropdown], [Matrixdropdownbase], [Matrixdynamic], [Multipletext], [Nonvalue], [Panel], [Paneldynamic], [Radiogroup], [Ranking], [Rating], [Signaturepad], [Tagbox], [Text], [Textbase]
+  /// Any Of [Boolean], [Buttongroup], [Checkbox], [Comment], [Dropdown], [Elementbase], [Empty], [Expression], [File], [Html], [Image], [Imagepicker], [Matrix], [Matrixdropdown], [Matrixdropdownbase], [Matrixdynamic], [Multipletext], [Nonvalue], [Panel], [Paneldynamic], [Radiogroup], [Ranking], [Rating], [Signaturepad], [Tagbox], [Text], [Textbase]
   AnyOf get anyOf;
 
   SurveyQuestionsInner._();
@@ -321,10 +323,11 @@ class _$SurveyQuestionsInnerSerializer
       FullType(Empty),
       FullType(File),
       FullType(Rating),
-      FullType(bool),
+      FullType(Boolean),
       FullType(Signaturepad),
       FullType(Paneldynamic),
       FullType(Panel),
+      FullType(Elementbase),
     ]);
     anyOfDataSrc = serialized;
     result.anyOf = serializers.deserialize(anyOfDataSrc,

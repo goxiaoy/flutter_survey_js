@@ -7,7 +7,7 @@ part of 'question.dart';
 // **************************************************************************
 
 abstract class QuestionBuilder
-    implements ElementBaseBuilder, QuestionAllOfBuilder {
+    implements ElementbaseBuilder, QuestionAllOfBuilder {
   void replace(covariant Question other);
   void update(void Function(QuestionBuilder) updates);
   String? get type;

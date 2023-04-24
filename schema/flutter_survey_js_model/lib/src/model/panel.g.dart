@@ -59,6 +59,8 @@ class _$Panel extends Panel {
   final String? description;
   @override
   final PanelbaseQuestionsOrder? questionsOrder;
+  @override
+  final BuiltList<SurveyQuestionsInner>? questions;
 
   factory _$Panel([void Function(PanelBuilder)? updates]) =>
       (new PanelBuilder()..update(updates))._build();
@@ -89,7 +91,8 @@ class _$Panel extends Panel {
       this.questionTitleLocation,
       this.title,
       this.description,
-      this.questionsOrder})
+      this.questionsOrder,
+      this.questions})
       : super._();
 
   @override
@@ -128,7 +131,8 @@ class _$Panel extends Panel {
         questionTitleLocation == other.questionTitleLocation &&
         title == other.title &&
         description == other.description &&
-        questionsOrder == other.questionsOrder;
+        questionsOrder == other.questionsOrder &&
+        questions == other.questions;
   }
 
   @override
@@ -160,6 +164,7 @@ class _$Panel extends Panel {
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, questionsOrder.hashCode);
+    _$hash = $jc(_$hash, questions.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -192,7 +197,8 @@ class _$Panel extends Panel {
           ..add('questionTitleLocation', questionTitleLocation)
           ..add('title', title)
           ..add('description', description)
-          ..add('questionsOrder', questionsOrder))
+          ..add('questionsOrder', questionsOrder)
+          ..add('questions', questions))
         .toString();
   }
 }
@@ -325,6 +331,12 @@ class PanelBuilder
   set questionsOrder(covariant PanelbaseQuestionsOrder? questionsOrder) =>
       _$this._questionsOrder = questionsOrder;
 
+  ListBuilder<SurveyQuestionsInner>? _questions;
+  ListBuilder<SurveyQuestionsInner> get questions =>
+      _$this._questions ??= new ListBuilder<SurveyQuestionsInner>();
+  set questions(covariant ListBuilder<SurveyQuestionsInner>? questions) =>
+      _$this._questions = questions;
+
   PanelBuilder() {
     Panel._defaults(this);
   }
@@ -358,6 +370,7 @@ class PanelBuilder
       _title = $v.title;
       _description = $v.description;
       _questionsOrder = $v.questionsOrder;
+      _questions = $v.questions?.toBuilder();
       _$v = null;
     }
     return this;
@@ -408,12 +421,16 @@ class PanelBuilder
               questionTitleLocation: questionTitleLocation,
               title: title,
               description: description,
-              questionsOrder: questionsOrder);
+              questionsOrder: questionsOrder,
+              questions: _questions?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'elements';
         _elements?.build();
+
+        _$failedField = 'questions';
+        _questions?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Panel', _$failedField, e.toString());

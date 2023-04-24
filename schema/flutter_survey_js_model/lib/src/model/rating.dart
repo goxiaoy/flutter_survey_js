@@ -149,13 +149,6 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.rateDisplayMode != null) {
       yield r'rateDisplayMode';
       yield serializers.serialize(
@@ -168,6 +161,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield serializers.serialize(
         object.rateMin,
         specifiedType: const FullType(num),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
       );
     }
     if (object.title != null) {
@@ -359,17 +359,17 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.maxRateDescription != null) {
       yield r'maxRateDescription';
       yield serializers.serialize(
         object.maxRateDescription,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
         specifiedType: const FullType(String),
       );
     }
@@ -480,13 +480,6 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
           ) as String;
           result.description = valueDes;
           break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.type = valueDes;
-          break;
         case r'rateDisplayMode':
           final valueDes = serializers.deserialize(
             value,
@@ -500,6 +493,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
             specifiedType: const FullType(num),
           ) as num;
           result.rateMin = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'title':
           final valueDes = serializers.deserialize(
@@ -690,19 +690,19 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
           ) as String;
           result.requiredErrorText = valueDes;
           break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
         case r'maxRateDescription':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.maxRateDescription = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
           break;
         case r'visibleIf':
           final valueDes = serializers.deserialize(

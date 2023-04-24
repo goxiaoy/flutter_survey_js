@@ -66,18 +66,25 @@ const allElements = {
     { $ref: "#/components/schemas/signaturepad" },
     { $ref: "#/components/schemas/paneldynamic" },
     { $ref: "#/components/schemas/panel" },
+    //unsupported fallback
+    { $ref: "#/components/schemas/elementbase" },
   ],
 };
 
 const allTriggers = {
-  anyOf: [
-    { $ref: "#/components/schemas/visibletrigger" },
-    { $ref: "#/components/schemas/completetrigger" },
-    { $ref: "#/components/schemas/setvaluetrigger" },
-    { $ref: "#/components/schemas/copyvaluetrigger" },
-    { $ref: "#/components/schemas/skiptrigger" },
-    { $ref: "#/components/schemas/runexpressiontrigger" },
-  ],
+  type: "array",
+  items: {
+    anyOf: [
+      { $ref: "#/components/schemas/visibletrigger" },
+      { $ref: "#/components/schemas/completetrigger" },
+      { $ref: "#/components/schemas/setvaluetrigger" },
+      { $ref: "#/components/schemas/copyvaluetrigger" },
+      { $ref: "#/components/schemas/skiptrigger" },
+      { $ref: "#/components/schemas/runexpressiontrigger" },
+      //unsupported fallback
+      { $ref: "#/components/schemas/surveytrigger" },
+    ],
+  },
 };
 const allValidators = {
   type: "array",
@@ -89,6 +96,8 @@ const allValidators = {
       { $ref: "#/components/schemas/regexvalidator" },
       { $ref: "#/components/schemas/emailvalidator" },
       { $ref: "#/components/schemas/expressionvalidator" },
+      //unsupported fallback
+      { $ref: "#/components/schemas/surveyvalidator" },
     ],
   },
 };
@@ -119,14 +128,14 @@ schema["definitions"]["paneldynamic"]["allOf"][1]["properties"][
   const { properties, ...rest } = schema["definitions"]["question"];
   schema["definitions"]["question"] = {
     ...rest,
-    allOf: [{ $ref: "#elementBase" }, { properties }],
+    allOf: [{ $ref: "#elementbase" }, { properties }],
   };
 }
 {
   const { properties, ...rest } = schema["definitions"]["panelbase"];
   schema["definitions"]["panelbase"] = {
     ...rest,
-    allOf: [{ $ref: "#elementBase" }, { properties }],
+    allOf: [{ $ref: "#elementbase" }, { properties }],
   };
 }
 
@@ -188,7 +197,7 @@ let openapi = {
           },
         },
       },
-      elementBase: {
+      elementbase: {
         type: "object",
         properties: {
           type: {
@@ -353,6 +362,12 @@ openapi["components"]["schemas"]["trigger"]["properties"]["type"] = {
 };
 openapi["components"]["schemas"]["surveyvalidator"]["properties"]["type"] = {
   type: "string",
+};
+openapi["components"]["schemas"]["panelbase"]["allOf"][1]["properties"][
+  "questions"
+] = {
+  type: "array",
+  items: allElements,
 };
 fs.writeFile("surveyjs.yaml", YAML.stringify(openapi), function (err) {
   if (err) {

@@ -38,7 +38,7 @@ import 'package:flutter_survey_js_model/src/model/copyvaluetrigger_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/dropdown.dart';
 import 'package:flutter_survey_js_model/src/model/dropdown_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/dropdown_autocomplete.dart';
-import 'package:flutter_survey_js_model/src/model/element_base.dart';
+import 'package:flutter_survey_js_model/src/model/elementbase.dart';
 import 'package:flutter_survey_js_model/src/model/emailvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/empty.dart';
 import 'package:flutter_survey_js_model/src/model/expression.dart';
@@ -175,7 +175,7 @@ import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_toc_location.dart';
-import 'package:flutter_survey_js_model/src/model/survey_triggers.dart';
+import 'package:flutter_survey_js_model/src/model/survey_triggers_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_width_mode.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger_all_of.dart';
@@ -223,7 +223,7 @@ part 'serializers.g.dart';
   Dropdown,
   DropdownAllOf,$DropdownAllOf,
   DropdownAutocomplete,
-  ElementBase,$ElementBase,
+  Elementbase,$Elementbase,
   Emailvalidator,
   Empty,
   Expression,
@@ -360,7 +360,7 @@ part 'serializers.g.dart';
   SurveyShowTimerPanelMode,
   SurveyTextUpdateMode,
   SurveyTocLocation,
-  SurveyTriggers,
+  SurveyTriggersInner,
   SurveyWidthMode,
   Surveytrigger,$Surveytrigger,
   SurveytriggerAllOf,$SurveytriggerAllOf,
@@ -393,7 +393,7 @@ Serializers serializers = (_$serializers.toBuilder()
       ..add(CommentAllOf.serializer)
       ..add(CopyvaluetriggerAllOf.serializer)
       ..add(DropdownAllOf.serializer)
-      ..add(ElementBase.serializer)
+      ..add(Elementbase.serializer)
       ..add(ExpressionAllOf.serializer)
       ..add(Expressionitem.serializer)
       ..add(ExpressionvalidatorAllOf.serializer)
