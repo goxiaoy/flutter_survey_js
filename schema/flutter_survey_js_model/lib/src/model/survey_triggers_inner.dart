@@ -6,6 +6,7 @@
 import 'package:flutter_survey_js_model/src/model/runexpressiontrigger.dart';
 import 'package:flutter_survey_js_model/src/model/setvaluetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/completetrigger.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/copyvaluetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/skiptrigger.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';

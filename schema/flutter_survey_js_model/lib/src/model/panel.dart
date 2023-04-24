@@ -175,14 +175,14 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.visible != null) {
       yield r'visible';
       yield serializers.serialize(
         object.visible,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.requiredIf != null) {
@@ -386,15 +386,15 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.isRequired = valueDes;
           break;
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.visible = valueDes;
           break;
         case r'requiredIf':

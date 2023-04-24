@@ -55,7 +55,7 @@ abstract class NonvalueAllOf  {
   // enum clearIfInvisibleEnum {  default,  none,  onComplete,  onHidden,  };
 
   @BuiltValueField(wireName: r'isRequired')
-  String? get isRequired;
+  bool? get isRequired;
 
   @BuiltValueField(wireName: r'requiredErrorText')
   String? get requiredErrorText;
@@ -148,7 +148,7 @@ class _$NonvalueAllOfSerializer implements PrimitiveSerializer<NonvalueAllOf> {
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.requiredErrorText != null) {
@@ -315,8 +315,8 @@ class _$$NonvalueAllOfSerializer implements PrimitiveSerializer<$NonvalueAllOf> 
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.isRequired = valueDes;
           break;
         case r'requiredErrorText':

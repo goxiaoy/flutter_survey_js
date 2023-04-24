@@ -59,7 +59,7 @@ class _$PanelbaseSerializer implements PrimitiveSerializer<Panelbase> {
       yield r'visible';
       yield serializers.serialize(
         object.visible,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.requiredIf != null) {
@@ -212,8 +212,8 @@ class _$$PanelbaseSerializer implements PrimitiveSerializer<$Panelbase> {
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.visible = valueDes;
           break;
         case r'requiredIf':

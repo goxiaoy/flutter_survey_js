@@ -208,6 +208,7 @@ let openapi = {
           },
         },
       },
+      anyvalue: {},
     },
   },
 };
@@ -298,8 +299,18 @@ const fix = (target) =>
         type: "boolean",
       };
     }
+    if (key === "isRequired") {
+      object["isRequired"] = {
+        type: "boolean",
+      };
+    }
     if (key === "showNoneItem") {
       object["showNoneItem"] = {
+        type: "boolean",
+      };
+    }
+    if (key === "visible") {
+      object["visible"] = {
         type: "boolean",
       };
     }
@@ -316,6 +327,7 @@ const fix = (target) =>
             { $ref: "#/components/schemas/itemvalue" },
             { $ref: "#/components/schemas/imageitemvalue" },
             { $ref: "#/components/schemas/buttongroupitemvalue" },
+            { $ref: "#/components/schemas/anyvalue" },
           ],
         },
       };
@@ -368,6 +380,14 @@ openapi["components"]["schemas"]["panelbase"]["allOf"][1]["properties"][
 ] = {
   type: "array",
   items: allElements,
+};
+openapi["components"]["schemas"]["visibletrigger"]["allOf"][1]["properties"][
+  "questions"
+] = {
+  type: "array",
+  items: {
+    type: "string",
+  },
 };
 fs.writeFile("surveyjs.yaml", YAML.stringify(openapi), function (err) {
   if (err) {

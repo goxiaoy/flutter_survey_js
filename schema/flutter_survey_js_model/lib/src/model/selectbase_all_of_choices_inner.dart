@@ -6,6 +6,7 @@
 import 'package:flutter_survey_js_model/src/model/buttongroupitemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/imageitemvalue.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/any_of.dart';
@@ -25,7 +26,7 @@ part 'selectbase_all_of_choices_inner.g.dart';
 /// * [iconSize] 
 @BuiltValue()
 abstract class SelectbaseAllOfChoicesInner implements Built<SelectbaseAllOfChoicesInner, SelectbaseAllOfChoicesInnerBuilder> {
-  /// Any Of [Buttongroupitemvalue], [Imageitemvalue], [Itemvalue]
+  /// Any Of [Buttongroupitemvalue], [Imageitemvalue], [Itemvalue], [JsonObject]
   AnyOf get anyOf;
 
   SelectbaseAllOfChoicesInner._();
@@ -71,7 +72,7 @@ class _$SelectbaseAllOfChoicesInnerSerializer implements PrimitiveSerializer<Sel
   }) {
     final result = SelectbaseAllOfChoicesInnerBuilder();
     Object? anyOfDataSrc;
-    final targetType = const FullType(AnyOf, [FullType(Itemvalue), FullType(Imageitemvalue), FullType(Buttongroupitemvalue), ]);
+    final targetType = const FullType(AnyOf, [FullType(Itemvalue), FullType(Imageitemvalue), FullType(Buttongroupitemvalue), FullType.nullable(JsonObject), ]);
     anyOfDataSrc = serialized;
     result.anyOf = serializers.deserialize(anyOfDataSrc, specifiedType: targetType) as AnyOf;
     return result.build();

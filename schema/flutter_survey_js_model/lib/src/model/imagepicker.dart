@@ -257,14 +257,14 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.visible != null) {
       yield r'visible';
       yield serializers.serialize(
         object.visible,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -706,15 +706,15 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.isRequired = valueDes;
           break;
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.visible = valueDes;
           break;
         case r'defaultValueExpression':

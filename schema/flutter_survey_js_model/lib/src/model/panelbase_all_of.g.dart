@@ -15,8 +15,8 @@ abstract class PanelbaseAllOfBuilder {
   ListBuilder<SurveyQuestionsInner> get elements;
   set elements(ListBuilder<SurveyQuestionsInner>? elements);
 
-  String? get visible;
-  set visible(String? visible);
+  bool? get visible;
+  set visible(bool? visible);
 
   String? get visibleIf;
   set visibleIf(String? visibleIf);
@@ -53,7 +53,7 @@ class _$$PanelbaseAllOf extends $PanelbaseAllOf {
   @override
   final BuiltList<SurveyQuestionsInner>? elements;
   @override
-  final String? visible;
+  final bool? visible;
   @override
   final String? visibleIf;
   @override
@@ -171,9 +171,9 @@ class $PanelbaseAllOfBuilder
   set elements(covariant ListBuilder<SurveyQuestionsInner>? elements) =>
       _$this._elements = elements;
 
-  String? _visible;
-  String? get visible => _$this._visible;
-  set visible(covariant String? visible) => _$this._visible = visible;
+  bool? _visible;
+  bool? get visible => _$this._visible;
+  set visible(covariant bool? visible) => _$this._visible = visible;
 
   String? _visibleIf;
   String? get visibleIf => _$this._visibleIf;

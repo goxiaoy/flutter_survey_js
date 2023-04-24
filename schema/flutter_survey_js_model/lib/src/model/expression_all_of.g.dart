@@ -33,8 +33,8 @@ abstract class ExpressionAllOfBuilder {
   String? get enableIf;
   set enableIf(String? enableIf);
 
-  String? get isRequired;
-  set isRequired(String? isRequired);
+  bool? get isRequired;
+  set isRequired(bool? isRequired);
 
   String? get readOnly;
   set readOnly(String? readOnly);
@@ -73,7 +73,7 @@ class _$$ExpressionAllOf extends $ExpressionAllOf {
   @override
   final String? enableIf;
   @override
-  final String? isRequired;
+  final bool? isRequired;
   @override
   final String? readOnly;
   @override
@@ -226,10 +226,9 @@ class $ExpressionAllOfBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _isRequired;
-  String? get isRequired => _$this._isRequired;
-  set isRequired(covariant String? isRequired) =>
-      _$this._isRequired = isRequired;
+  bool? _isRequired;
+  bool? get isRequired => _$this._isRequired;
+  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
 
   String? _readOnly;
   String? get readOnly => _$this._readOnly;

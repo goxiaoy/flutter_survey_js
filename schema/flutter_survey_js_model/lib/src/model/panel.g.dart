@@ -10,7 +10,7 @@ class _$Panel extends Panel {
   @override
   final PanelState? state;
   @override
-  final String? isRequired;
+  final bool? isRequired;
   @override
   final String? requiredErrorText;
   @override
@@ -42,7 +42,7 @@ class _$Panel extends Panel {
   @override
   final BuiltList<SurveyQuestionsInner>? elements;
   @override
-  final String? visible;
+  final bool? visible;
   @override
   final String? visibleIf;
   @override
@@ -214,10 +214,9 @@ class PanelBuilder
   PanelState? get state => _$this._state;
   set state(covariant PanelState? state) => _$this._state = state;
 
-  String? _isRequired;
-  String? get isRequired => _$this._isRequired;
-  set isRequired(covariant String? isRequired) =>
-      _$this._isRequired = isRequired;
+  bool? _isRequired;
+  bool? get isRequired => _$this._isRequired;
+  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
 
   String? _requiredErrorText;
   String? get requiredErrorText => _$this._requiredErrorText;
@@ -289,9 +288,9 @@ class PanelBuilder
   set elements(covariant ListBuilder<SurveyQuestionsInner>? elements) =>
       _$this._elements = elements;
 
-  String? _visible;
-  String? get visible => _$this._visible;
-  set visible(covariant String? visible) => _$this._visible = visible;
+  bool? _visible;
+  bool? get visible => _$this._visible;
+  set visible(covariant bool? visible) => _$this._visible = visible;
 
   String? _visibleIf;
   String? get visibleIf => _$this._visibleIf;

@@ -1,6 +1,5 @@
 .gitignore
 analysis_options.yaml
-lib/flutter_survey_js_model.dart
 lib/src/date_serializer.dart
 lib/src/model/answercountvalidator.dart
 lib/src/model/answercountvalidator_all_of.dart
@@ -152,7 +151,6 @@ lib/src/model/survey_progress_bar_type.dart
 lib/src/model/survey_question_description_location.dart
 lib/src/model/survey_question_error_location.dart
 lib/src/model/survey_question_title_location.dart
-lib/src/model/survey_questions_inner.dart
 lib/src/model/survey_questions_on_page_mode.dart
 lib/src/model/survey_questions_order.dart
 lib/src/model/survey_show_navigation_buttons.dart

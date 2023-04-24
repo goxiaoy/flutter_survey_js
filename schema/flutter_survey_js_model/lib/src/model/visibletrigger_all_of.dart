@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,7 +20,7 @@ abstract class VisibletriggerAllOf  {
   String? get pages;
 
   @BuiltValueField(wireName: r'questions')
-  String? get questions;
+  BuiltList<String>? get questions;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<VisibletriggerAllOf> get serializer => _$VisibletriggerAllOfSerializer();
@@ -48,7 +49,7 @@ class _$VisibletriggerAllOfSerializer implements PrimitiveSerializer<Visibletrig
       yield r'questions';
       yield serializers.serialize(
         object.questions,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
   }
@@ -124,9 +125,9 @@ class _$$VisibletriggerAllOfSerializer implements PrimitiveSerializer<$Visibletr
         case r'questions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.questions = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.questions.replace(valueDes);
           break;
         default:
           unhandled.add(key);

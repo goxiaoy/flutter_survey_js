@@ -244,7 +244,7 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.alternateRows != null) {
@@ -258,7 +258,7 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'visible';
       yield serializers.serialize(
         object.visible,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -644,8 +644,8 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.isRequired = valueDes;
           break;
         case r'alternateRows':
@@ -658,8 +658,8 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.visible = valueDes;
           break;
         case r'defaultValueExpression':

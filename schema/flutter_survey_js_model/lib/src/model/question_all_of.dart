@@ -60,7 +60,7 @@ abstract class QuestionAllOf  {
   // enum stateEnum {  default,  collapsed,  expanded,  };
 
   @BuiltValueField(wireName: r'visible')
-  String? get visible;
+  bool? get visible;
 
   @BuiltValueField(wireName: r'useDisplayValuesInDynamicTexts')
   bool? get useDisplayValuesInDynamicTexts;
@@ -124,7 +124,7 @@ abstract class QuestionAllOf  {
   // enum clearIfInvisibleEnum {  default,  none,  onComplete,  onHidden,  };
 
   @BuiltValueField(wireName: r'isRequired')
-  String? get isRequired;
+  bool? get isRequired;
 
   @BuiltValueField(wireName: r'requiredIf')
   String? get requiredIf;
@@ -187,7 +187,7 @@ class _$QuestionAllOfSerializer implements PrimitiveSerializer<QuestionAllOf> {
       yield r'visible';
       yield serializers.serialize(
         object.visible,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.useDisplayValuesInDynamicTexts != null) {
@@ -327,7 +327,7 @@ class _$QuestionAllOfSerializer implements PrimitiveSerializer<QuestionAllOf> {
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.requiredIf != null) {
@@ -473,8 +473,8 @@ class _$$QuestionAllOfSerializer implements PrimitiveSerializer<$QuestionAllOf> 
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.visible = valueDes;
           break;
         case r'useDisplayValuesInDynamicTexts':
@@ -613,8 +613,8 @@ class _$$QuestionAllOfSerializer implements PrimitiveSerializer<$QuestionAllOf> 
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.isRequired = valueDes;
           break;
         case r'requiredIf':

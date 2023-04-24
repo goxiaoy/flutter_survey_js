@@ -12,15 +12,15 @@ abstract class VisibletriggerAllOfBuilder {
   String? get pages;
   set pages(String? pages);
 
-  String? get questions;
-  set questions(String? questions);
+  ListBuilder<String> get questions;
+  set questions(ListBuilder<String>? questions);
 }
 
 class _$$VisibletriggerAllOf extends $VisibletriggerAllOf {
   @override
   final String? pages;
   @override
-  final String? questions;
+  final BuiltList<String>? questions;
 
   factory _$$VisibletriggerAllOf(
           [void Function($VisibletriggerAllOfBuilder)? updates]) =>
@@ -73,9 +73,11 @@ class $VisibletriggerAllOfBuilder
   String? get pages => _$this._pages;
   set pages(covariant String? pages) => _$this._pages = pages;
 
-  String? _questions;
-  String? get questions => _$this._questions;
-  set questions(covariant String? questions) => _$this._questions = questions;
+  ListBuilder<String>? _questions;
+  ListBuilder<String> get questions =>
+      _$this._questions ??= new ListBuilder<String>();
+  set questions(covariant ListBuilder<String>? questions) =>
+      _$this._questions = questions;
 
   $VisibletriggerAllOfBuilder() {
     $VisibletriggerAllOf._defaults(this);
@@ -85,7 +87,7 @@ class $VisibletriggerAllOfBuilder
     final $v = _$v;
     if ($v != null) {
       _pages = $v.pages;
-      _questions = $v.questions;
+      _questions = $v.questions?.toBuilder();
       _$v = null;
     }
     return this;
@@ -106,8 +108,22 @@ class $VisibletriggerAllOfBuilder
   $VisibletriggerAllOf build() => _build();
 
   _$$VisibletriggerAllOf _build() {
-    final _$result =
-        _$v ?? new _$$VisibletriggerAllOf._(pages: pages, questions: questions);
+    _$$VisibletriggerAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$VisibletriggerAllOf._(
+              pages: pages, questions: _questions?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'questions';
+        _questions?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$VisibletriggerAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

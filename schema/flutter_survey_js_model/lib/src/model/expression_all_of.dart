@@ -57,7 +57,7 @@ abstract class ExpressionAllOf  {
   String? get enableIf;
 
   @BuiltValueField(wireName: r'isRequired')
-  String? get isRequired;
+  bool? get isRequired;
 
   @BuiltValueField(wireName: r'readOnly')
   String? get readOnly;
@@ -153,7 +153,7 @@ class _$ExpressionAllOfSerializer implements PrimitiveSerializer<ExpressionAllOf
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.readOnly != null) {
@@ -320,8 +320,8 @@ class _$$ExpressionAllOfSerializer implements PrimitiveSerializer<$ExpressionAll
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.isRequired = valueDes;
           break;
         case r'readOnly':

@@ -12,8 +12,8 @@ abstract class PanelAllOfBuilder {
   PanelState? get state;
   set state(PanelState? state);
 
-  String? get isRequired;
-  set isRequired(String? isRequired);
+  bool? get isRequired;
+  set isRequired(bool? isRequired);
 
   String? get requiredErrorText;
   set requiredErrorText(String? requiredErrorText);
@@ -56,7 +56,7 @@ class _$$PanelAllOf extends $PanelAllOf {
   @override
   final PanelState? state;
   @override
-  final String? isRequired;
+  final bool? isRequired;
   @override
   final String? requiredErrorText;
   @override
@@ -179,10 +179,9 @@ class $PanelAllOfBuilder
   PanelState? get state => _$this._state;
   set state(covariant PanelState? state) => _$this._state = state;
 
-  String? _isRequired;
-  String? get isRequired => _$this._isRequired;
-  set isRequired(covariant String? isRequired) =>
-      _$this._isRequired = isRequired;
+  bool? _isRequired;
+  bool? get isRequired => _$this._isRequired;
+  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
 
   String? _requiredErrorText;
   String? get requiredErrorText => _$this._requiredErrorText;

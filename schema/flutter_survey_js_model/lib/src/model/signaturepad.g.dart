@@ -14,7 +14,7 @@ class _$Signaturepad extends Signaturepad {
   @override
   final QuestionState? state;
   @override
-  final String? visible;
+  final bool? visible;
   @override
   final bool? useDisplayValuesInDynamicTexts;
   @override
@@ -54,7 +54,7 @@ class _$Signaturepad extends Signaturepad {
   @override
   final QuestionClearIfInvisible? clearIfInvisible;
   @override
-  final String? isRequired;
+  final bool? isRequired;
   @override
   final String? requiredIf;
   @override
@@ -302,9 +302,9 @@ class SignaturepadBuilder
   QuestionState? get state => _$this._state;
   set state(covariant QuestionState? state) => _$this._state = state;
 
-  String? _visible;
-  String? get visible => _$this._visible;
-  set visible(covariant String? visible) => _$this._visible = visible;
+  bool? _visible;
+  bool? get visible => _$this._visible;
+  set visible(covariant bool? visible) => _$this._visible = visible;
 
   bool? _useDisplayValuesInDynamicTexts;
   bool? get useDisplayValuesInDynamicTexts =>
@@ -395,10 +395,9 @@ class SignaturepadBuilder
   set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible) =>
       _$this._clearIfInvisible = clearIfInvisible;
 
-  String? _isRequired;
-  String? get isRequired => _$this._isRequired;
-  set isRequired(covariant String? isRequired) =>
-      _$this._isRequired = isRequired;
+  bool? _isRequired;
+  bool? get isRequired => _$this._isRequired;
+  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
 
   String? _requiredIf;
   String? get requiredIf => _$this._requiredIf;

@@ -20,7 +20,7 @@ class _$Visibletrigger extends Visibletrigger {
   @override
   final String? pages;
   @override
-  final String? questions;
+  final BuiltList<String>? questions;
 
   factory _$Visibletrigger([void Function(VisibletriggerBuilder)? updates]) =>
       (new VisibletriggerBuilder()..update(updates))._build();
@@ -116,9 +116,11 @@ class VisibletriggerBuilder
   String? get pages => _$this._pages;
   set pages(covariant String? pages) => _$this._pages = pages;
 
-  String? _questions;
-  String? get questions => _$this._questions;
-  set questions(covariant String? questions) => _$this._questions = questions;
+  ListBuilder<String>? _questions;
+  ListBuilder<String> get questions =>
+      _$this._questions ??= new ListBuilder<String>();
+  set questions(covariant ListBuilder<String>? questions) =>
+      _$this._questions = questions;
 
   VisibletriggerBuilder() {
     Visibletrigger._defaults(this);
@@ -133,7 +135,7 @@ class VisibletriggerBuilder
       _expression = $v.expression;
       _type = $v.type;
       _pages = $v.pages;
-      _questions = $v.questions;
+      _questions = $v.questions?.toBuilder();
       _$v = null;
     }
     return this;
@@ -155,15 +157,28 @@ class VisibletriggerBuilder
   Visibletrigger build() => _build();
 
   _$Visibletrigger _build() {
-    final _$result = _$v ??
-        new _$Visibletrigger._(
-            name: name,
-            operator_: operator_,
-            value: value,
-            expression: expression,
-            type: type,
-            pages: pages,
-            questions: questions);
+    _$Visibletrigger _$result;
+    try {
+      _$result = _$v ??
+          new _$Visibletrigger._(
+              name: name,
+              operator_: operator_,
+              value: value,
+              expression: expression,
+              type: type,
+              pages: pages,
+              questions: _questions?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'questions';
+        _questions?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Visibletrigger', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

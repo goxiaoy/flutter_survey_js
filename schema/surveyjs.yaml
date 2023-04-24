@@ -233,7 +233,7 @@ components:
               type: array
               items: *a1
             visible:
-              type: string
+              type: boolean
             visibleIf:
               type: string
             enableIf:
@@ -263,7 +263,7 @@ components:
             state:
               $ref: "#/components/schemas/questionState"
             visible:
-              type: string
+              type: boolean
             useDisplayValuesInDynamicTexts:
               type: boolean
             visibleIf:
@@ -303,7 +303,7 @@ components:
             clearIfInvisible:
               $ref: "#/components/schemas/questionClearIfInvisible"
             isRequired:
-              type: string
+              type: boolean
             requiredIf:
               type: string
             requiredErrorText:
@@ -402,6 +402,7 @@ components:
                   - $ref: "#/components/schemas/itemvalue"
                   - $ref: "#/components/schemas/imageitemvalue"
                   - $ref: "#/components/schemas/buttongroupitemvalue"
+                  - $ref: "#/components/schemas/anyvalue"
             choicesFromQuestionMode:
               $ref: "#/components/schemas/selectbaseChoicesFromQuestionMode"
             choicesOrder:
@@ -578,6 +579,7 @@ components:
                   - $ref: "#/components/schemas/itemvalue"
                   - $ref: "#/components/schemas/imageitemvalue"
                   - $ref: "#/components/schemas/buttongroupitemvalue"
+                  - $ref: "#/components/schemas/anyvalue"
     imageitemvalue:
       type: object
       allOf:
@@ -597,6 +599,7 @@ components:
                   - $ref: "#/components/schemas/itemvalue"
                   - $ref: "#/components/schemas/imageitemvalue"
                   - $ref: "#/components/schemas/buttongroupitemvalue"
+                  - $ref: "#/components/schemas/anyvalue"
     buttongroupitemvalue:
       type: object
       allOf:
@@ -680,6 +683,7 @@ components:
                   - $ref: "#/components/schemas/itemvalue"
                   - $ref: "#/components/schemas/imageitemvalue"
                   - $ref: "#/components/schemas/buttongroupitemvalue"
+                  - $ref: "#/components/schemas/anyvalue"
             placeholder:
               type: string
             keyDuplicationError:
@@ -843,7 +847,7 @@ components:
             enableIf:
               type: string
             isRequired:
-              type: string
+              type: boolean
             readOnly:
               type: string
             requiredErrorText:
@@ -968,7 +972,7 @@ components:
             clearIfInvisible:
               $ref: "#/components/schemas/questionClearIfInvisible"
             isRequired:
-              type: string
+              type: boolean
             requiredErrorText:
               type: string
             readOnly:
@@ -1188,7 +1192,7 @@ components:
             state:
               $ref: "#/components/schemas/panelState"
             isRequired:
-              type: string
+              type: boolean
             requiredErrorText:
               type: string
             startWithNewLine:
@@ -1256,7 +1260,9 @@ components:
             pages:
               type: string
             questions:
-              type: string
+              type: array
+              items:
+                type: string
     completetrigger:
       type: object
       allOf:
@@ -1334,6 +1340,7 @@ components:
           type: string
         name:
           type: string
+    anyvalue: {}
     surveyLocale:
       type: string
       enum:

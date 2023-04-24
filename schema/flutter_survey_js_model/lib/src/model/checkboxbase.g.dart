@@ -22,8 +22,8 @@ abstract class CheckboxbaseBuilder
   QuestionState? get state;
   set state(covariant QuestionState? state);
 
-  String? get visible;
-  set visible(covariant String? visible);
+  bool? get visible;
+  set visible(covariant bool? visible);
 
   bool? get useDisplayValuesInDynamicTexts;
   set useDisplayValuesInDynamicTexts(
@@ -84,8 +84,8 @@ abstract class CheckboxbaseBuilder
   QuestionClearIfInvisible? get clearIfInvisible;
   set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible);
 
-  String? get isRequired;
-  set isRequired(covariant String? isRequired);
+  bool? get isRequired;
+  set isRequired(covariant bool? isRequired);
 
   String? get requiredIf;
   set requiredIf(covariant String? requiredIf);
@@ -175,7 +175,7 @@ class _$$Checkboxbase extends $Checkboxbase {
   @override
   final QuestionState? state;
   @override
-  final String? visible;
+  final bool? visible;
   @override
   final bool? useDisplayValuesInDynamicTexts;
   @override
@@ -215,7 +215,7 @@ class _$$Checkboxbase extends $Checkboxbase {
   @override
   final QuestionClearIfInvisible? clearIfInvisible;
   @override
-  final String? isRequired;
+  final bool? isRequired;
   @override
   final String? requiredIf;
   @override
@@ -525,9 +525,9 @@ class $CheckboxbaseBuilder
   QuestionState? get state => _$this._state;
   set state(covariant QuestionState? state) => _$this._state = state;
 
-  String? _visible;
-  String? get visible => _$this._visible;
-  set visible(covariant String? visible) => _$this._visible = visible;
+  bool? _visible;
+  bool? get visible => _$this._visible;
+  set visible(covariant bool? visible) => _$this._visible = visible;
 
   bool? _useDisplayValuesInDynamicTexts;
   bool? get useDisplayValuesInDynamicTexts =>
@@ -618,10 +618,9 @@ class $CheckboxbaseBuilder
   set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible) =>
       _$this._clearIfInvisible = clearIfInvisible;
 
-  String? _isRequired;
-  String? get isRequired => _$this._isRequired;
-  set isRequired(covariant String? isRequired) =>
-      _$this._isRequired = isRequired;
+  bool? _isRequired;
+  bool? get isRequired => _$this._isRequired;
+  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
 
   String? _requiredIf;
   String? get requiredIf => _$this._requiredIf;

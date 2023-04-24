@@ -30,8 +30,8 @@ abstract class NonvalueAllOfBuilder {
   QuestionClearIfInvisible? get clearIfInvisible;
   set clearIfInvisible(QuestionClearIfInvisible? clearIfInvisible);
 
-  String? get isRequired;
-  set isRequired(String? isRequired);
+  bool? get isRequired;
+  set isRequired(bool? isRequired);
 
   String? get requiredErrorText;
   set requiredErrorText(String? requiredErrorText);
@@ -71,7 +71,7 @@ class _$$NonvalueAllOf extends $NonvalueAllOf {
   @override
   final QuestionClearIfInvisible? clearIfInvisible;
   @override
-  final String? isRequired;
+  final bool? isRequired;
   @override
   final String? requiredErrorText;
   @override
@@ -220,10 +220,9 @@ class $NonvalueAllOfBuilder
   set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible) =>
       _$this._clearIfInvisible = clearIfInvisible;
 
-  String? _isRequired;
-  String? get isRequired => _$this._isRequired;
-  set isRequired(covariant String? isRequired) =>
-      _$this._isRequired = isRequired;
+  bool? _isRequired;
+  bool? get isRequired => _$this._isRequired;
+  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
 
   String? _requiredErrorText;
   String? get requiredErrorText => _$this._requiredErrorText;

@@ -91,10 +91,10 @@ void main() {
   };
   test("Serialize Deserialize Survey", () {
     final s =
-        standardSerializers.deserializeWith<Survey>(Survey.serializer, json);
-    final serialized = standardSerializers.serializeWith(Survey.serializer, s);
+        surveySerializers.deserializeWith<Survey>(Survey.serializer, json);
+    final serialized = surveySerializers.serializeWith(Survey.serializer, s);
     expect(
-        standardSerializers.deserializeWith<Survey>(
+        surveySerializers.deserializeWith<Survey>(
             Survey.serializer, serialized),
         s);
   });

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 import 'package:flutter_survey_js_model/src/model/visibletrigger_all_of.dart';
 import 'package:built_value/built_value.dart';
@@ -77,7 +78,7 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
       yield r'questions';
       yield serializers.serialize(
         object.questions,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
     if (object.type != null) {
@@ -148,9 +149,9 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
         case r'questions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.questions = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
+          result.questions.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(

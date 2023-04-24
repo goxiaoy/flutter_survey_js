@@ -36,7 +36,7 @@ abstract class PanelbaseAllOf  {
   BuiltList<SurveyQuestionsInner>? get elements;
 
   @BuiltValueField(wireName: r'visible')
-  String? get visible;
+  bool? get visible;
 
   @BuiltValueField(wireName: r'visibleIf')
   String? get visibleIf;
@@ -101,7 +101,7 @@ class _$PanelbaseAllOfSerializer implements PrimitiveSerializer<PanelbaseAllOf> 
       yield r'visible';
       yield serializers.serialize(
         object.visible,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.visibleIf != null) {
@@ -247,8 +247,8 @@ class _$$PanelbaseAllOfSerializer implements PrimitiveSerializer<$PanelbaseAllOf
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.visible = valueDes;
           break;
         case r'visibleIf':

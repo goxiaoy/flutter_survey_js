@@ -36,7 +36,7 @@ abstract class PanelAllOf  {
   // enum stateEnum {  default,  collapsed,  expanded,  };
 
   @BuiltValueField(wireName: r'isRequired')
-  String? get isRequired;
+  bool? get isRequired;
 
   @BuiltValueField(wireName: r'requiredErrorText')
   String? get requiredErrorText;
@@ -104,7 +104,7 @@ class _$PanelAllOfSerializer implements PrimitiveSerializer<PanelAllOf> {
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.requiredErrorText != null) {
@@ -264,8 +264,8 @@ class _$$PanelAllOfSerializer implements PrimitiveSerializer<$PanelAllOf> {
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.isRequired = valueDes;
           break;
         case r'requiredErrorText':
