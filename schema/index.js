@@ -262,6 +262,18 @@ openapi["components"]["schemas"] = {
   ...allEnumDefinitions,
 };
 
+const choices = {
+  type: "array",
+  items: {
+    anyOf: [
+      { $ref: "#/components/schemas/itemvalue" },
+      { $ref: "#/components/schemas/imageitemvalue" },
+      { $ref: "#/components/schemas/buttongroupitemvalue" },
+      { $ref: "#/components/schemas/anyvalue" },
+    ],
+  },
+};
+
 const fix = (target) =>
   _.forIn(target, (value, key, object) => {
     //fix some shit property
@@ -320,24 +332,28 @@ const fix = (target) =>
       };
     }
     if (key === "choices") {
-      object["choices"] = {
-        type: "array",
-        items: {
-          anyOf: [
-            { $ref: "#/components/schemas/itemvalue" },
-            { $ref: "#/components/schemas/imageitemvalue" },
-            { $ref: "#/components/schemas/buttongroupitemvalue" },
-            { $ref: "#/components/schemas/anyvalue" },
-          ],
-        },
+      object["choices"] = choices;
+    }
+    if (key === "defaultValue") {
+      object[key] = {
+        $ref: "#/components/schemas/anyvalue",
       };
     }
-
     if (key === "colCount") {
       object["colCount"] = {
         $ref: "#/components/schemas/checkboxbaseColCount",
       };
     }
+
+    if (
+      key.toLowerCase().endsWith("width") ||
+      key.toLowerCase().endsWith("height")
+    ) {
+      object[key] = {
+        oneOf: [{ type: "string" }, { type: "number" }],
+      };
+    }
+
     //fix ref
     if (
       key === "$ref" &&
@@ -389,6 +405,34 @@ openapi["components"]["schemas"]["visibletrigger"]["allOf"][1]["properties"][
     type: "string",
   },
 };
+openapi["components"]["schemas"]["itemvalue"]["properties"]["value"] = {
+  $ref: "#/components/schemas/anyvalue",
+};
+
+const itemvalues = {
+  type: "array",
+  items: {
+    anyOf: [
+      { $ref: "#/components/schemas/itemvalue" },
+      { $ref: "#/components/schemas/anyvalue" },
+    ],
+  },
+};
+openapi["components"]["schemas"]["matrixdropdown"]["allOf"][1]["properties"][
+  "rows"
+] = itemvalues;
+
+openapi["components"]["schemas"]["matrix"]["allOf"][1]["properties"]["rows"] =
+  itemvalues;
+openapi["components"]["schemas"]["matrix"]["allOf"][1]["properties"][
+  "columns"
+] = itemvalues;
+(openapi["components"]["schemas"]["matrix"]["allOf"][1]["properties"]["cells"] =
+  { $ref: "#/components/schemas/anyvalue" }),
+  (openapi["components"]["schemas"]["rating"]["allOf"][1]["properties"][
+    "rateValues"
+  ] = itemvalues);
+
 fs.writeFile("surveyjs.yaml", YAML.stringify(openapi), function (err) {
   if (err) {
     return console.log(err);

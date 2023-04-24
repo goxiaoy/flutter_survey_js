@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/image_image_fit.dart';
 import 'package:flutter_survey_js_model/src/model/image_content_mode.dart';
 import 'package:built_value/built_value.dart';
@@ -36,10 +37,10 @@ abstract class ImageAllOf  {
   // enum imageFitEnum {  none,  contain,  cover,  fill,  };
 
   @BuiltValueField(wireName: r'imageHeight')
-  String? get imageHeight;
+  SurveyLogoWidth? get imageHeight;
 
   @BuiltValueField(wireName: r'imageWidth')
-  String? get imageWidth;
+  SurveyLogoWidth? get imageWidth;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<ImageAllOf> get serializer => _$ImageAllOfSerializer();
@@ -89,14 +90,14 @@ class _$ImageAllOfSerializer implements PrimitiveSerializer<ImageAllOf> {
       yield r'imageHeight';
       yield serializers.serialize(
         object.imageHeight,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.imageWidth != null) {
       yield r'imageWidth';
       yield serializers.serialize(
         object.imageWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
   }
@@ -193,16 +194,16 @@ class _$$ImageAllOfSerializer implements PrimitiveSerializer<$ImageAllOf> {
         case r'imageHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.imageHeight = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.imageHeight.replace(valueDes);
           break;
         case r'imageWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.imageWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.imageWidth.replace(valueDes);
           break;
         default:
           unhandled.add(key);

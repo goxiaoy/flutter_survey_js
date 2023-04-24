@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panels_state.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_template_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panel_count.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panel_remove_button_location.dart';
@@ -67,7 +68,7 @@ abstract class PaneldynamicAllOf  {
   String? get templateDescription;
 
   @BuiltValueField(wireName: r'minWidth')
-  String? get minWidth;
+  SurveyLogoWidth? get minWidth;
 
   @BuiltValueField(wireName: r'noEntriesText')
   String? get noEntriesText;
@@ -200,7 +201,7 @@ class _$PaneldynamicAllOfSerializer implements PrimitiveSerializer<PaneldynamicA
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.noEntriesText != null) {
@@ -465,9 +466,9 @@ class _$$PaneldynamicAllOfSerializer implements PrimitiveSerializer<$Paneldynami
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.minWidth.replace(valueDes);
           break;
         case r'noEntriesText':
           final valueDes = serializers.deserialize(

@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/signaturepad_all_of.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_survey_js_model/src/model/signaturepad_data_format.dart'
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -111,7 +113,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.validators != null) {
@@ -174,7 +176,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'signatureWidth';
       yield serializers.serialize(
         object.signatureWidth,
-        specifiedType: const FullType(num),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.descriptionLocation != null) {
@@ -209,14 +211,14 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'height';
       yield serializers.serialize(
         object.height,
-        specifiedType: const FullType(num),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.showCommentArea != null) {
@@ -293,7 +295,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.readOnly != null) {
@@ -342,7 +344,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.page != null) {
@@ -356,7 +358,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'signatureHeight';
       yield serializers.serialize(
         object.signatureHeight,
-        specifiedType: const FullType(num),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.allowClear != null) {
@@ -413,8 +415,9 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'validators':
@@ -476,9 +479,9 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'signatureWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.signatureWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.signatureWidth.replace(valueDes);
           break;
         case r'descriptionLocation':
           final valueDes = serializers.deserialize(
@@ -511,16 +514,16 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'height':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.height = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.height.replace(valueDes);
           break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
@@ -595,9 +598,9 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
           final valueDes = serializers.deserialize(
@@ -644,9 +647,9 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.width = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         case r'page':
           final valueDes = serializers.deserialize(
@@ -658,9 +661,9 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'signatureHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.signatureHeight = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.signatureHeight.replace(valueDes);
           break;
         case r'allowClear':
           final valueDes = serializers.deserialize(

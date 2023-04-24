@@ -24,8 +24,8 @@ abstract class PaneldynamicAllOfBuilder {
   String? get templateDescription;
   set templateDescription(String? templateDescription);
 
-  String? get minWidth;
-  set minWidth(String? minWidth);
+  SurveyLogoWidthBuilder get minWidth;
+  set minWidth(SurveyLogoWidthBuilder? minWidth);
 
   String? get noEntriesText;
   set noEntriesText(String? noEntriesText);
@@ -111,7 +111,7 @@ class _$$PaneldynamicAllOf extends $PaneldynamicAllOf {
   @override
   final String? templateDescription;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
   final String? noEntriesText;
   @override
@@ -344,9 +344,11 @@ class $PaneldynamicAllOfBuilder
   set templateDescription(covariant String? templateDescription) =>
       _$this._templateDescription = templateDescription;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
   String? _noEntriesText;
   String? get noEntriesText => _$this._noEntriesText;
@@ -481,7 +483,7 @@ class $PaneldynamicAllOfBuilder
       _templateTitle = $v.templateTitle;
       _templateTabTitle = $v.templateTabTitle;
       _templateDescription = $v.templateDescription;
-      _minWidth = $v.minWidth;
+      _minWidth = $v.minWidth?.toBuilder();
       _noEntriesText = $v.noEntriesText;
       _allowAddPanel = $v.allowAddPanel;
       _allowRemovePanel = $v.allowRemovePanel;
@@ -534,7 +536,7 @@ class $PaneldynamicAllOfBuilder
               templateTitle: templateTitle,
               templateTabTitle: templateTabTitle,
               templateDescription: templateDescription,
-              minWidth: minWidth,
+              minWidth: _minWidth?.build(),
               noEntriesText: noEntriesText,
               allowAddPanel: allowAddPanel,
               allowRemovePanel: allowRemovePanel,
@@ -563,6 +565,9 @@ class $PaneldynamicAllOfBuilder
       try {
         _$failedField = 'templateElements';
         _templateElements?.build();
+
+        _$failedField = 'minWidth';
+        _minWidth?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'$PaneldynamicAllOf', _$failedField, e.toString());

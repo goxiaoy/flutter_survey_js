@@ -7,6 +7,7 @@ import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -45,7 +46,7 @@ abstract class NonvalueAllOf  {
   String? get enableIf;
 
   @BuiltValueField(wireName: r'defaultValue')
-  String? get defaultValue;
+  JsonObject? get defaultValue;
 
   @BuiltValueField(wireName: r'correctAnswer')
   String? get correctAnswer;
@@ -127,7 +128,7 @@ class _$NonvalueAllOfSerializer implements PrimitiveSerializer<NonvalueAllOf> {
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.correctAnswer != null) {
@@ -294,8 +295,9 @@ class _$$NonvalueAllOfSerializer implements PrimitiveSerializer<$NonvalueAllOf> 
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'correctAnswer':

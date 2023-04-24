@@ -3,9 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/matrix_rows_order.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -24,16 +26,16 @@ part 'matrix_all_of.g.dart';
 @BuiltValue(instantiable: false)
 abstract class MatrixAllOf  {
   @BuiltValueField(wireName: r'rowTitleWidth')
-  String? get rowTitleWidth;
+  SurveyLogoWidth? get rowTitleWidth;
 
   @BuiltValueField(wireName: r'columns')
-  BuiltList<Itemvalue>? get columns;
+  BuiltList<MatrixdropdownAllOfRowsInner>? get columns;
 
   @BuiltValueField(wireName: r'rows')
-  BuiltList<Itemvalue>? get rows;
+  BuiltList<MatrixdropdownAllOfRowsInner>? get rows;
 
   @BuiltValueField(wireName: r'cells')
-  String? get cells;
+  JsonObject? get cells;
 
   @BuiltValueField(wireName: r'rowsOrder')
   MatrixRowsOrder? get rowsOrder;
@@ -65,28 +67,28 @@ class _$MatrixAllOfSerializer implements PrimitiveSerializer<MatrixAllOf> {
       yield r'rowTitleWidth';
       yield serializers.serialize(
         object.rowTitleWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.columns != null) {
       yield r'columns';
       yield serializers.serialize(
         object.columns,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
       );
     }
     if (object.rows != null) {
       yield r'rows';
       yield serializers.serialize(
         object.rows,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
       );
     }
     if (object.cells != null) {
       yield r'cells';
       yield serializers.serialize(
         object.cells,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.rowsOrder != null) {
@@ -176,29 +178,30 @@ class _$$MatrixAllOfSerializer implements PrimitiveSerializer<$MatrixAllOf> {
         case r'rowTitleWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.rowTitleWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.rowTitleWidth.replace(valueDes);
           break;
         case r'columns':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
+          ) as BuiltList<MatrixdropdownAllOfRowsInner>;
           result.columns.replace(valueDes);
           break;
         case r'rows':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
+          ) as BuiltList<MatrixdropdownAllOfRowsInner>;
           result.rows.replace(valueDes);
           break;
         case r'cells':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.cells = valueDes;
           break;
         case r'rowsOrder':

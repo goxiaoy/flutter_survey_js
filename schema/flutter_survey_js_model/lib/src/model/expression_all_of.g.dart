@@ -45,8 +45,8 @@ abstract class ExpressionAllOfBuilder {
   String? get defaultValueExpression;
   set defaultValueExpression(String? defaultValueExpression);
 
-  String? get defaultValue;
-  set defaultValue(String? defaultValue);
+  JsonObject? get defaultValue;
+  set defaultValue(JsonObject? defaultValue);
 
   String? get correctAnswer;
   set correctAnswer(String? correctAnswer);
@@ -81,7 +81,7 @@ class _$$ExpressionAllOf extends $ExpressionAllOf {
   @override
   final String? defaultValueExpression;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? correctAnswer;
   @override
@@ -244,9 +244,9 @@ class $ExpressionAllOfBuilder
   set defaultValueExpression(covariant String? defaultValueExpression) =>
       _$this._defaultValueExpression = defaultValueExpression;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _correctAnswer;

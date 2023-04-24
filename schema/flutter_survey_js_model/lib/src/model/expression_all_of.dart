@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/expression_display_style.dart';
 import 'package:flutter_survey_js_model/src/model/expression_currency.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -69,7 +70,7 @@ abstract class ExpressionAllOf  {
   String? get defaultValueExpression;
 
   @BuiltValueField(wireName: r'defaultValue')
-  String? get defaultValue;
+  JsonObject? get defaultValue;
 
   @BuiltValueField(wireName: r'correctAnswer')
   String? get correctAnswer;
@@ -181,7 +182,7 @@ class _$ExpressionAllOfSerializer implements PrimitiveSerializer<ExpressionAllOf
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.correctAnswer != null) {
@@ -348,8 +349,9 @@ class _$$ExpressionAllOfSerializer implements PrimitiveSerializer<$ExpressionAll
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'correctAnswer':

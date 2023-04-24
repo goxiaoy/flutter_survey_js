@@ -16,9 +16,9 @@ class _$File extends File {
   @override
   final bool? allowImagesPreview;
   @override
-  final String? imageHeight;
+  final SurveyLogoWidth? imageHeight;
   @override
-  final String? imageWidth;
+  final SurveyLogoWidth? imageWidth;
   @override
   final String? acceptedTypes;
   @override
@@ -28,7 +28,7 @@ class _$File extends File {
   @override
   final num? maxSize;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? correctAnswer;
   @override
@@ -48,11 +48,11 @@ class _$File extends File {
   @override
   final String? visibleIf;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final bool? startWithNewLine;
   @override
@@ -325,14 +325,16 @@ class FileBuilder
   set allowImagesPreview(covariant bool? allowImagesPreview) =>
       _$this._allowImagesPreview = allowImagesPreview;
 
-  String? _imageHeight;
-  String? get imageHeight => _$this._imageHeight;
-  set imageHeight(covariant String? imageHeight) =>
+  SurveyLogoWidthBuilder? _imageHeight;
+  SurveyLogoWidthBuilder get imageHeight =>
+      _$this._imageHeight ??= new SurveyLogoWidthBuilder();
+  set imageHeight(covariant SurveyLogoWidthBuilder? imageHeight) =>
       _$this._imageHeight = imageHeight;
 
-  String? _imageWidth;
-  String? get imageWidth => _$this._imageWidth;
-  set imageWidth(covariant String? imageWidth) =>
+  SurveyLogoWidthBuilder? _imageWidth;
+  SurveyLogoWidthBuilder get imageWidth =>
+      _$this._imageWidth ??= new SurveyLogoWidthBuilder();
+  set imageWidth(covariant SurveyLogoWidthBuilder? imageWidth) =>
       _$this._imageWidth = imageWidth;
 
   String? _acceptedTypes;
@@ -354,9 +356,9 @@ class FileBuilder
   num? get maxSize => _$this._maxSize;
   set maxSize(covariant num? maxSize) => _$this._maxSize = maxSize;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _correctAnswer;
@@ -403,17 +405,22 @@ class FileBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   bool? _startWithNewLine;
   bool? get startWithNewLine => _$this._startWithNewLine;
@@ -518,8 +525,8 @@ class FileBuilder
       _showPreview = $v.showPreview;
       _allowMultiple = $v.allowMultiple;
       _allowImagesPreview = $v.allowImagesPreview;
-      _imageHeight = $v.imageHeight;
-      _imageWidth = $v.imageWidth;
+      _imageHeight = $v.imageHeight?.toBuilder();
+      _imageWidth = $v.imageWidth?.toBuilder();
       _acceptedTypes = $v.acceptedTypes;
       _storeDataAsText = $v.storeDataAsText;
       _waitForUpload = $v.waitForUpload;
@@ -534,9 +541,9 @@ class FileBuilder
       _visible = $v.visible;
       _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
       _visibleIf = $v.visibleIf;
-      _width = $v.width;
-      _minWidth = $v.minWidth;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _minWidth = $v.minWidth?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _startWithNewLine = $v.startWithNewLine;
       _indent = $v.indent;
       _page = $v.page;
@@ -586,8 +593,8 @@ class FileBuilder
               showPreview: showPreview,
               allowMultiple: allowMultiple,
               allowImagesPreview: allowImagesPreview,
-              imageHeight: imageHeight,
-              imageWidth: imageWidth,
+              imageHeight: _imageHeight?.build(),
+              imageWidth: _imageWidth?.build(),
               acceptedTypes: acceptedTypes,
               storeDataAsText: storeDataAsText,
               waitForUpload: waitForUpload,
@@ -602,9 +609,9 @@ class FileBuilder
               visible: visible,
               useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
               visibleIf: visibleIf,
-              width: width,
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              minWidth: _minWidth?.build(),
+              maxWidth: _maxWidth?.build(),
               startWithNewLine: startWithNewLine,
               indent: indent,
               page: page,
@@ -628,8 +635,20 @@ class FileBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'imageHeight';
+        _imageHeight?.build();
+        _$failedField = 'imageWidth';
+        _imageWidth?.build();
+
         _$failedField = 'validators';
         _validators?.build();
+
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'File', _$failedField, e.toString());

@@ -16,9 +16,9 @@ class _$Image extends Image {
   @override
   final ImageImageFit? imageFit;
   @override
-  final String? imageHeight;
+  final SurveyLogoWidth? imageHeight;
   @override
-  final String? imageWidth;
+  final SurveyLogoWidth? imageWidth;
   @override
   final String? title;
   @override
@@ -28,7 +28,7 @@ class _$Image extends Image {
   @override
   final String? enableIf;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? correctAnswer;
   @override
@@ -60,11 +60,11 @@ class _$Image extends Image {
   @override
   final String? visibleIf;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final bool? startWithNewLine;
   @override
@@ -302,14 +302,16 @@ class ImageBuilder
   set imageFit(covariant ImageImageFit? imageFit) =>
       _$this._imageFit = imageFit;
 
-  String? _imageHeight;
-  String? get imageHeight => _$this._imageHeight;
-  set imageHeight(covariant String? imageHeight) =>
+  SurveyLogoWidthBuilder? _imageHeight;
+  SurveyLogoWidthBuilder get imageHeight =>
+      _$this._imageHeight ??= new SurveyLogoWidthBuilder();
+  set imageHeight(covariant SurveyLogoWidthBuilder? imageHeight) =>
       _$this._imageHeight = imageHeight;
 
-  String? _imageWidth;
-  String? get imageWidth => _$this._imageWidth;
-  set imageWidth(covariant String? imageWidth) =>
+  SurveyLogoWidthBuilder? _imageWidth;
+  SurveyLogoWidthBuilder get imageWidth =>
+      _$this._imageWidth ??= new SurveyLogoWidthBuilder();
+  set imageWidth(covariant SurveyLogoWidthBuilder? imageWidth) =>
       _$this._imageWidth = imageWidth;
 
   String? _title;
@@ -329,9 +331,9 @@ class ImageBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _correctAnswer;
@@ -406,17 +408,22 @@ class ImageBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   bool? _startWithNewLine;
   bool? get startWithNewLine => _$this._startWithNewLine;
@@ -476,8 +483,8 @@ class ImageBuilder
       _altText = $v.altText;
       _contentMode = $v.contentMode;
       _imageFit = $v.imageFit;
-      _imageHeight = $v.imageHeight;
-      _imageWidth = $v.imageWidth;
+      _imageHeight = $v.imageHeight?.toBuilder();
+      _imageWidth = $v.imageWidth?.toBuilder();
       _title = $v.title;
       _description = $v.description;
       _valueName = $v.valueName;
@@ -498,9 +505,9 @@ class ImageBuilder
       _state = $v.state;
       _visible = $v.visible;
       _visibleIf = $v.visibleIf;
-      _width = $v.width;
-      _minWidth = $v.minWidth;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _minWidth = $v.minWidth?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _startWithNewLine = $v.startWithNewLine;
       _indent = $v.indent;
       _page = $v.page;
@@ -540,8 +547,8 @@ class ImageBuilder
               altText: altText,
               contentMode: contentMode,
               imageFit: imageFit,
-              imageHeight: imageHeight,
-              imageWidth: imageWidth,
+              imageHeight: _imageHeight?.build(),
+              imageWidth: _imageWidth?.build(),
               title: title,
               description: description,
               valueName: valueName,
@@ -562,9 +569,9 @@ class ImageBuilder
               state: state,
               visible: visible,
               visibleIf: visibleIf,
-              width: width,
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              minWidth: _minWidth?.build(),
+              maxWidth: _maxWidth?.build(),
               startWithNewLine: startWithNewLine,
               indent: indent,
               page: page,
@@ -578,8 +585,20 @@ class ImageBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'imageHeight';
+        _imageHeight?.build();
+        _$failedField = 'imageWidth';
+        _imageWidth?.build();
+
         _$failedField = 'validators';
         _validators?.build();
+
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Image', _$failedField, e.toString());

@@ -9,14 +9,14 @@ part of 'matrixdropdown_all_of.dart';
 abstract class MatrixdropdownAllOfBuilder {
   void replace(MatrixdropdownAllOf other);
   void update(void Function(MatrixdropdownAllOfBuilder) updates);
-  ListBuilder<Itemvalue> get rows;
-  set rows(ListBuilder<Itemvalue>? rows);
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rows;
+  set rows(ListBuilder<MatrixdropdownAllOfRowsInner>? rows);
 
   String? get rowsVisibleIf;
   set rowsVisibleIf(String? rowsVisibleIf);
 
-  String? get rowTitleWidth;
-  set rowTitleWidth(String? rowTitleWidth);
+  SurveyLogoWidthBuilder get rowTitleWidth;
+  set rowTitleWidth(SurveyLogoWidthBuilder? rowTitleWidth);
 
   String? get totalText;
   set totalText(String? totalText);
@@ -27,11 +27,11 @@ abstract class MatrixdropdownAllOfBuilder {
 
 class _$$MatrixdropdownAllOf extends $MatrixdropdownAllOf {
   @override
-  final BuiltList<Itemvalue>? rows;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? rows;
   @override
   final String? rowsVisibleIf;
   @override
-  final String? rowTitleWidth;
+  final SurveyLogoWidth? rowTitleWidth;
   @override
   final String? totalText;
   @override
@@ -99,19 +99,21 @@ class $MatrixdropdownAllOfBuilder
         MatrixdropdownAllOfBuilder {
   _$$MatrixdropdownAllOf? _$v;
 
-  ListBuilder<Itemvalue>? _rows;
-  ListBuilder<Itemvalue> get rows =>
-      _$this._rows ??= new ListBuilder<Itemvalue>();
-  set rows(covariant ListBuilder<Itemvalue>? rows) => _$this._rows = rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rows =>
+      _$this._rows ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set rows(covariant ListBuilder<MatrixdropdownAllOfRowsInner>? rows) =>
+      _$this._rows = rows;
 
   String? _rowsVisibleIf;
   String? get rowsVisibleIf => _$this._rowsVisibleIf;
   set rowsVisibleIf(covariant String? rowsVisibleIf) =>
       _$this._rowsVisibleIf = rowsVisibleIf;
 
-  String? _rowTitleWidth;
-  String? get rowTitleWidth => _$this._rowTitleWidth;
-  set rowTitleWidth(covariant String? rowTitleWidth) =>
+  SurveyLogoWidthBuilder? _rowTitleWidth;
+  SurveyLogoWidthBuilder get rowTitleWidth =>
+      _$this._rowTitleWidth ??= new SurveyLogoWidthBuilder();
+  set rowTitleWidth(covariant SurveyLogoWidthBuilder? rowTitleWidth) =>
       _$this._rowTitleWidth = rowTitleWidth;
 
   String? _totalText;
@@ -132,7 +134,7 @@ class $MatrixdropdownAllOfBuilder
     if ($v != null) {
       _rows = $v.rows?.toBuilder();
       _rowsVisibleIf = $v.rowsVisibleIf;
-      _rowTitleWidth = $v.rowTitleWidth;
+      _rowTitleWidth = $v.rowTitleWidth?.toBuilder();
       _totalText = $v.totalText;
       _hideIfRowsEmpty = $v.hideIfRowsEmpty;
       _$v = null;
@@ -161,7 +163,7 @@ class $MatrixdropdownAllOfBuilder
           new _$$MatrixdropdownAllOf._(
               rows: _rows?.build(),
               rowsVisibleIf: rowsVisibleIf,
-              rowTitleWidth: rowTitleWidth,
+              rowTitleWidth: _rowTitleWidth?.build(),
               totalText: totalText,
               hideIfRowsEmpty: hideIfRowsEmpty);
     } catch (_) {
@@ -169,6 +171,9 @@ class $MatrixdropdownAllOfBuilder
       try {
         _$failedField = 'rows';
         _rows?.build();
+
+        _$failedField = 'rowTitleWidth';
+        _rowTitleWidth?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'$MatrixdropdownAllOf', _$failedField, e.toString());

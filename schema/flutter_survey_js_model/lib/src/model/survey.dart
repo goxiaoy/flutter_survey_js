@@ -25,6 +25,7 @@ import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
 import 'package:flutter_survey_js_model/src/model/urlconditionitem.dart';
 import 'package:flutter_survey_js_model/src/model/htmlconditionitem.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/survey_check_errors_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.dart';
@@ -127,10 +128,10 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   String? get logo;
 
   @BuiltValueField(wireName: r'logoWidth')
-  String? get logoWidth;
+  SurveyLogoWidth? get logoWidth;
 
   @BuiltValueField(wireName: r'logoHeight')
-  String? get logoHeight;
+  SurveyLogoWidth? get logoHeight;
 
   @BuiltValueField(wireName: r'logoFit')
   SurveyLogoFit? get logoFit;
@@ -338,7 +339,7 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   // enum widthModeEnum {  auto,  static,  responsive,  };
 
   @BuiltValueField(wireName: r'width')
-  String? get width;
+  SurveyLogoWidth? get width;
 
   @BuiltValueField(wireName: r'backgroundImage')
   String? get backgroundImage;
@@ -404,14 +405,14 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'logoWidth';
       yield serializers.serialize(
         object.logoWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.logoHeight != null) {
       yield r'logoHeight';
       yield serializers.serialize(
         object.logoHeight,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.logoFit != null) {
@@ -852,7 +853,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.backgroundImage != null) {
@@ -930,16 +931,16 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'logoWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.logoWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.logoWidth.replace(valueDes);
           break;
         case r'logoHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.logoHeight = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.logoHeight.replace(valueDes);
           break;
         case r'logoFit':
           final valueDes = serializers.deserialize(
@@ -1378,9 +1379,9 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.width = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         case r'backgroundImage':
           final valueDes = serializers.deserialize(

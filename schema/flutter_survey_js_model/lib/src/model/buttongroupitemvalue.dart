@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/buttongroupitemvalue_all_of.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -91,7 +92,7 @@ class _$ButtongroupitemvalueSerializer implements PrimitiveSerializer<Buttongrou
       yield r'value';
       yield serializers.serialize(
         object.value,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
   }
@@ -162,8 +163,9 @@ class _$ButtongroupitemvalueSerializer implements PrimitiveSerializer<Buttongrou
         case r'value':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.value = valueDes;
           break;
         default:

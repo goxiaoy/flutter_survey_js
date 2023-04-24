@@ -21,11 +21,11 @@ abstract class FileAllOfBuilder {
   bool? get allowImagesPreview;
   set allowImagesPreview(bool? allowImagesPreview);
 
-  String? get imageHeight;
-  set imageHeight(String? imageHeight);
+  SurveyLogoWidthBuilder get imageHeight;
+  set imageHeight(SurveyLogoWidthBuilder? imageHeight);
 
-  String? get imageWidth;
-  set imageWidth(String? imageWidth);
+  SurveyLogoWidthBuilder get imageWidth;
+  set imageWidth(SurveyLogoWidthBuilder? imageWidth);
 
   String? get acceptedTypes;
   set acceptedTypes(String? acceptedTypes);
@@ -39,8 +39,8 @@ abstract class FileAllOfBuilder {
   num? get maxSize;
   set maxSize(num? maxSize);
 
-  String? get defaultValue;
-  set defaultValue(String? defaultValue);
+  JsonObject? get defaultValue;
+  set defaultValue(JsonObject? defaultValue);
 
   String? get correctAnswer;
   set correctAnswer(String? correctAnswer);
@@ -62,9 +62,9 @@ class _$$FileAllOf extends $FileAllOf {
   @override
   final bool? allowImagesPreview;
   @override
-  final String? imageHeight;
+  final SurveyLogoWidth? imageHeight;
   @override
-  final String? imageWidth;
+  final SurveyLogoWidth? imageWidth;
   @override
   final String? acceptedTypes;
   @override
@@ -74,7 +74,7 @@ class _$$FileAllOf extends $FileAllOf {
   @override
   final num? maxSize;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? correctAnswer;
   @override
@@ -195,14 +195,16 @@ class $FileAllOfBuilder
   set allowImagesPreview(covariant bool? allowImagesPreview) =>
       _$this._allowImagesPreview = allowImagesPreview;
 
-  String? _imageHeight;
-  String? get imageHeight => _$this._imageHeight;
-  set imageHeight(covariant String? imageHeight) =>
+  SurveyLogoWidthBuilder? _imageHeight;
+  SurveyLogoWidthBuilder get imageHeight =>
+      _$this._imageHeight ??= new SurveyLogoWidthBuilder();
+  set imageHeight(covariant SurveyLogoWidthBuilder? imageHeight) =>
       _$this._imageHeight = imageHeight;
 
-  String? _imageWidth;
-  String? get imageWidth => _$this._imageWidth;
-  set imageWidth(covariant String? imageWidth) =>
+  SurveyLogoWidthBuilder? _imageWidth;
+  SurveyLogoWidthBuilder get imageWidth =>
+      _$this._imageWidth ??= new SurveyLogoWidthBuilder();
+  set imageWidth(covariant SurveyLogoWidthBuilder? imageWidth) =>
       _$this._imageWidth = imageWidth;
 
   String? _acceptedTypes;
@@ -224,9 +226,9 @@ class $FileAllOfBuilder
   num? get maxSize => _$this._maxSize;
   set maxSize(covariant num? maxSize) => _$this._maxSize = maxSize;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _correctAnswer;
@@ -257,8 +259,8 @@ class $FileAllOfBuilder
       _showPreview = $v.showPreview;
       _allowMultiple = $v.allowMultiple;
       _allowImagesPreview = $v.allowImagesPreview;
-      _imageHeight = $v.imageHeight;
-      _imageWidth = $v.imageWidth;
+      _imageHeight = $v.imageHeight?.toBuilder();
+      _imageWidth = $v.imageWidth?.toBuilder();
       _acceptedTypes = $v.acceptedTypes;
       _storeDataAsText = $v.storeDataAsText;
       _waitForUpload = $v.waitForUpload;
@@ -295,8 +297,8 @@ class $FileAllOfBuilder
               showPreview: showPreview,
               allowMultiple: allowMultiple,
               allowImagesPreview: allowImagesPreview,
-              imageHeight: imageHeight,
-              imageWidth: imageWidth,
+              imageHeight: _imageHeight?.build(),
+              imageWidth: _imageWidth?.build(),
               acceptedTypes: acceptedTypes,
               storeDataAsText: storeDataAsText,
               waitForUpload: waitForUpload,
@@ -308,6 +310,11 @@ class $FileAllOfBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'imageHeight';
+        _imageHeight?.build();
+        _$failedField = 'imageWidth';
+        _imageWidth?.build();
+
         _$failedField = 'validators';
         _validators?.build();
       } catch (e) {

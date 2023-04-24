@@ -14,7 +14,7 @@ class _$Buttongroupitemvalue extends Buttongroupitemvalue {
   @override
   final num? iconSize;
   @override
-  final String? value;
+  final JsonObject? value;
   @override
   final String? text;
   @override
@@ -106,9 +106,9 @@ class ButtongroupitemvalueBuilder
   num? get iconSize => _$this._iconSize;
   set iconSize(covariant num? iconSize) => _$this._iconSize = iconSize;
 
-  String? _value;
-  String? get value => _$this._value;
-  set value(covariant String? value) => _$this._value = value;
+  JsonObject? _value;
+  JsonObject? get value => _$this._value;
+  set value(covariant JsonObject? value) => _$this._value = value;
 
   String? _text;
   String? get text => _$this._text;

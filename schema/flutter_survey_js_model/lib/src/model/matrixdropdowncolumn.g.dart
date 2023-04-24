@@ -24,9 +24,9 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final bool? readOnly;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
   final String? visibleIf;
   @override
@@ -220,13 +220,15 @@ class MatrixdropdowncolumnBuilder
   bool? get readOnly => _$this._readOnly;
   set readOnly(bool? readOnly) => _$this._readOnly = readOnly;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(SurveyLogoWidthBuilder? minWidth) => _$this._minWidth = minWidth;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(SurveyLogoWidthBuilder? width) => _$this._width = width;
 
   String? _visibleIf;
   String? get visibleIf => _$this._visibleIf;
@@ -306,8 +308,8 @@ class MatrixdropdowncolumnBuilder
       _isUnique = $v.isUnique;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _minWidth = $v.minWidth;
-      _width = $v.width;
+      _minWidth = $v.minWidth?.toBuilder();
+      _width = $v.width?.toBuilder();
       _visibleIf = $v.visibleIf;
       _enableIf = $v.enableIf;
       _requiredIf = $v.requiredIf;
@@ -353,8 +355,8 @@ class MatrixdropdowncolumnBuilder
               isUnique: isUnique,
               requiredErrorText: requiredErrorText,
               readOnly: readOnly,
-              minWidth: minWidth,
-              width: width,
+              minWidth: _minWidth?.build(),
+              width: _width?.build(),
               visibleIf: visibleIf,
               enableIf: enableIf,
               requiredIf: requiredIf,
@@ -371,6 +373,11 @@ class MatrixdropdowncolumnBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'width';
+        _width?.build();
+
         _$failedField = 'validators';
         _validators?.build();
       } catch (e) {

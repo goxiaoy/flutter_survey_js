@@ -22,11 +22,11 @@ class _$Imagepicker extends Imagepicker {
   @override
   final String? visibleIf;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final bool? startWithNewLine;
   @override
@@ -48,7 +48,7 @@ class _$Imagepicker extends Imagepicker {
   @override
   final String? enableIf;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? defaultValueExpression;
   @override
@@ -114,17 +114,17 @@ class _$Imagepicker extends Imagepicker {
   @override
   final ImagepickerImageFit? imageFit;
   @override
-  final num? imageHeight;
+  final SurveyLogoWidth? imageHeight;
   @override
-  final num? imageWidth;
+  final SurveyLogoWidth? imageWidth;
   @override
-  final String? minImageWidth;
+  final SurveyLogoWidth? minImageWidth;
   @override
-  final String? minImageHeight;
+  final SurveyLogoWidth? minImageHeight;
   @override
-  final String? maxImageWidth;
+  final SurveyLogoWidth? maxImageWidth;
   @override
-  final String? maxImageHeight;
+  final SurveyLogoWidth? maxImageHeight;
   @override
   final bool? showLabel;
   @override
@@ -448,17 +448,22 @@ class ImagepickerBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   bool? _startWithNewLine;
   bool? get startWithNewLine => _$this._startWithNewLine;
@@ -506,9 +511,9 @@ class ImagepickerBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _defaultValueExpression;
@@ -672,33 +677,40 @@ class ImagepickerBuilder
   set imageFit(covariant ImagepickerImageFit? imageFit) =>
       _$this._imageFit = imageFit;
 
-  num? _imageHeight;
-  num? get imageHeight => _$this._imageHeight;
-  set imageHeight(covariant num? imageHeight) =>
+  SurveyLogoWidthBuilder? _imageHeight;
+  SurveyLogoWidthBuilder get imageHeight =>
+      _$this._imageHeight ??= new SurveyLogoWidthBuilder();
+  set imageHeight(covariant SurveyLogoWidthBuilder? imageHeight) =>
       _$this._imageHeight = imageHeight;
 
-  num? _imageWidth;
-  num? get imageWidth => _$this._imageWidth;
-  set imageWidth(covariant num? imageWidth) => _$this._imageWidth = imageWidth;
+  SurveyLogoWidthBuilder? _imageWidth;
+  SurveyLogoWidthBuilder get imageWidth =>
+      _$this._imageWidth ??= new SurveyLogoWidthBuilder();
+  set imageWidth(covariant SurveyLogoWidthBuilder? imageWidth) =>
+      _$this._imageWidth = imageWidth;
 
-  String? _minImageWidth;
-  String? get minImageWidth => _$this._minImageWidth;
-  set minImageWidth(covariant String? minImageWidth) =>
+  SurveyLogoWidthBuilder? _minImageWidth;
+  SurveyLogoWidthBuilder get minImageWidth =>
+      _$this._minImageWidth ??= new SurveyLogoWidthBuilder();
+  set minImageWidth(covariant SurveyLogoWidthBuilder? minImageWidth) =>
       _$this._minImageWidth = minImageWidth;
 
-  String? _minImageHeight;
-  String? get minImageHeight => _$this._minImageHeight;
-  set minImageHeight(covariant String? minImageHeight) =>
+  SurveyLogoWidthBuilder? _minImageHeight;
+  SurveyLogoWidthBuilder get minImageHeight =>
+      _$this._minImageHeight ??= new SurveyLogoWidthBuilder();
+  set minImageHeight(covariant SurveyLogoWidthBuilder? minImageHeight) =>
       _$this._minImageHeight = minImageHeight;
 
-  String? _maxImageWidth;
-  String? get maxImageWidth => _$this._maxImageWidth;
-  set maxImageWidth(covariant String? maxImageWidth) =>
+  SurveyLogoWidthBuilder? _maxImageWidth;
+  SurveyLogoWidthBuilder get maxImageWidth =>
+      _$this._maxImageWidth ??= new SurveyLogoWidthBuilder();
+  set maxImageWidth(covariant SurveyLogoWidthBuilder? maxImageWidth) =>
       _$this._maxImageWidth = maxImageWidth;
 
-  String? _maxImageHeight;
-  String? get maxImageHeight => _$this._maxImageHeight;
-  set maxImageHeight(covariant String? maxImageHeight) =>
+  SurveyLogoWidthBuilder? _maxImageHeight;
+  SurveyLogoWidthBuilder get maxImageHeight =>
+      _$this._maxImageHeight ??= new SurveyLogoWidthBuilder();
+  set maxImageHeight(covariant SurveyLogoWidthBuilder? maxImageHeight) =>
       _$this._maxImageHeight = maxImageHeight;
 
   bool? _showLabel;
@@ -724,9 +736,9 @@ class ImagepickerBuilder
       _visible = $v.visible;
       _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
       _visibleIf = $v.visibleIf;
-      _width = $v.width;
-      _minWidth = $v.minWidth;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _minWidth = $v.minWidth?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _startWithNewLine = $v.startWithNewLine;
       _indent = $v.indent;
       _page = $v.page;
@@ -770,12 +782,12 @@ class ImagepickerBuilder
       _optionsCaption = $v.optionsCaption;
       _contentMode = $v.contentMode;
       _imageFit = $v.imageFit;
-      _imageHeight = $v.imageHeight;
-      _imageWidth = $v.imageWidth;
-      _minImageWidth = $v.minImageWidth;
-      _minImageHeight = $v.minImageHeight;
-      _maxImageWidth = $v.maxImageWidth;
-      _maxImageHeight = $v.maxImageHeight;
+      _imageHeight = $v.imageHeight?.toBuilder();
+      _imageWidth = $v.imageWidth?.toBuilder();
+      _minImageWidth = $v.minImageWidth?.toBuilder();
+      _minImageHeight = $v.minImageHeight?.toBuilder();
+      _maxImageWidth = $v.maxImageWidth?.toBuilder();
+      _maxImageHeight = $v.maxImageHeight?.toBuilder();
       _showLabel = $v.showLabel;
       _multiSelect = $v.multiSelect;
       _$v = null;
@@ -810,9 +822,9 @@ class ImagepickerBuilder
               visible: visible,
               useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
               visibleIf: visibleIf,
-              width: width,
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              minWidth: _minWidth?.build(),
+              maxWidth: _maxWidth?.build(),
               startWithNewLine: startWithNewLine,
               indent: indent,
               page: page,
@@ -856,17 +868,24 @@ class ImagepickerBuilder
               optionsCaption: optionsCaption,
               contentMode: contentMode,
               imageFit: imageFit,
-              imageHeight: imageHeight,
-              imageWidth: imageWidth,
-              minImageWidth: minImageWidth,
-              minImageHeight: minImageHeight,
-              maxImageWidth: maxImageWidth,
-              maxImageHeight: maxImageHeight,
+              imageHeight: _imageHeight?.build(),
+              imageWidth: _imageWidth?.build(),
+              minImageWidth: _minImageWidth?.build(),
+              minImageHeight: _minImageHeight?.build(),
+              maxImageWidth: _maxImageWidth?.build(),
+              maxImageHeight: _maxImageHeight?.build(),
               showLabel: showLabel,
               multiSelect: multiSelect);
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
+
         _$failedField = 'validators';
         _validators?.build();
 
@@ -875,6 +894,19 @@ class ImagepickerBuilder
 
         _$failedField = 'choicesByUrl';
         _choicesByUrl?.build();
+
+        _$failedField = 'imageHeight';
+        _imageHeight?.build();
+        _$failedField = 'imageWidth';
+        _imageWidth?.build();
+        _$failedField = 'minImageWidth';
+        _minImageWidth?.build();
+        _$failedField = 'minImageHeight';
+        _minImageHeight?.build();
+        _$failedField = 'maxImageWidth';
+        _maxImageWidth?.build();
+        _$failedField = 'maxImageHeight';
+        _maxImageHeight?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Imagepicker', _$failedField, e.toString());

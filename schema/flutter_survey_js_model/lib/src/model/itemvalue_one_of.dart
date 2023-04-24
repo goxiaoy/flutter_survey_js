@@ -7,17 +7,17 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'itemvalue.g.dart';
+part 'itemvalue_one_of.g.dart';
 
-/// Itemvalue
+/// ItemvalueOneOf
 ///
 /// Properties:
 /// * [value] 
 /// * [text] 
 /// * [visibleIf] 
 /// * [enableIf] 
-@BuiltValue(instantiable: false)
-abstract class Itemvalue  {
+@BuiltValue()
+abstract class ItemvalueOneOf implements Built<ItemvalueOneOf, ItemvalueOneOfBuilder> {
   @BuiltValueField(wireName: r'value')
   JsonObject? get value;
 
@@ -30,20 +30,27 @@ abstract class Itemvalue  {
   @BuiltValueField(wireName: r'enableIf')
   String? get enableIf;
 
+  ItemvalueOneOf._();
+
+  factory ItemvalueOneOf([void updates(ItemvalueOneOfBuilder b)]) = _$ItemvalueOneOf;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(ItemvalueOneOfBuilder b) => b;
+
   @BuiltValueSerializer(custom: true)
-  static Serializer<Itemvalue> get serializer => _$ItemvalueSerializer();
+  static Serializer<ItemvalueOneOf> get serializer => _$ItemvalueOneOfSerializer();
 }
 
-class _$ItemvalueSerializer implements PrimitiveSerializer<Itemvalue> {
+class _$ItemvalueOneOfSerializer implements PrimitiveSerializer<ItemvalueOneOf> {
   @override
-  final Iterable<Type> types = const [Itemvalue];
+  final Iterable<Type> types = const [ItemvalueOneOf, _$ItemvalueOneOf];
 
   @override
-  final String wireName = r'Itemvalue';
+  final String wireName = r'ItemvalueOneOf';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    Itemvalue object, {
+    ItemvalueOneOf object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     if (object.value != null) {
@@ -79,50 +86,10 @@ class _$ItemvalueSerializer implements PrimitiveSerializer<Itemvalue> {
   @override
   Object serialize(
     Serializers serializers,
-    Itemvalue object, {
+    ItemvalueOneOf object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  @override
-  Itemvalue deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return serializers.deserialize(serialized, specifiedType: FullType($Itemvalue)) as $Itemvalue;
-  }
-}
-
-/// a concrete implementation of [Itemvalue], since [Itemvalue] is not instantiable
-@BuiltValue(instantiable: true)
-abstract class $Itemvalue implements Itemvalue, Built<$Itemvalue, $ItemvalueBuilder> {
-  $Itemvalue._();
-
-  factory $Itemvalue([void Function($ItemvalueBuilder)? updates]) = _$$Itemvalue;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults($ItemvalueBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<$Itemvalue> get serializer => _$$ItemvalueSerializer();
-}
-
-class _$$ItemvalueSerializer implements PrimitiveSerializer<$Itemvalue> {
-  @override
-  final Iterable<Type> types = const [$Itemvalue, _$$Itemvalue];
-
-  @override
-  final String wireName = r'$Itemvalue';
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    $Itemvalue object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return serializers.serialize(object, specifiedType: FullType(Itemvalue))!;
   }
 
   void _deserializeProperties(
@@ -130,7 +97,7 @@ class _$$ItemvalueSerializer implements PrimitiveSerializer<$Itemvalue> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required ItemvalueBuilder result,
+    required ItemvalueOneOfBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -175,12 +142,12 @@ class _$$ItemvalueSerializer implements PrimitiveSerializer<$Itemvalue> {
   }
 
   @override
-  $Itemvalue deserialize(
+  ItemvalueOneOf deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = $ItemvalueBuilder();
+    final result = ItemvalueOneOfBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

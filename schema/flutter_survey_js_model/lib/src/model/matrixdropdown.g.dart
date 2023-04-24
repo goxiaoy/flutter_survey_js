@@ -8,11 +8,11 @@ part of 'matrixdropdown.dart';
 
 class _$Matrixdropdown extends Matrixdropdown {
   @override
-  final BuiltList<Itemvalue>? rows;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? rows;
   @override
   final String? rowsVisibleIf;
   @override
-  final String? rowTitleWidth;
+  final SurveyLogoWidth? rowTitleWidth;
   @override
   final String? totalText;
   @override
@@ -22,7 +22,7 @@ class _$Matrixdropdown extends Matrixdropdown {
   @override
   final String? columnsVisibleIf;
   @override
-  final String? columnMinWidth;
+  final SurveyLogoWidth? columnMinWidth;
   @override
   final bool? showHeader;
   @override
@@ -42,11 +42,11 @@ class _$Matrixdropdown extends Matrixdropdown {
   @override
   final String? visibleIf;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final bool? startWithNewLine;
   @override
@@ -68,7 +68,7 @@ class _$Matrixdropdown extends Matrixdropdown {
   @override
   final String? enableIf;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? defaultValueExpression;
   @override
@@ -375,19 +375,21 @@ class MatrixdropdownBuilder
         MatrixdropdownbaseBuilder {
   _$Matrixdropdown? _$v;
 
-  ListBuilder<Itemvalue>? _rows;
-  ListBuilder<Itemvalue> get rows =>
-      _$this._rows ??= new ListBuilder<Itemvalue>();
-  set rows(covariant ListBuilder<Itemvalue>? rows) => _$this._rows = rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rows =>
+      _$this._rows ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set rows(covariant ListBuilder<MatrixdropdownAllOfRowsInner>? rows) =>
+      _$this._rows = rows;
 
   String? _rowsVisibleIf;
   String? get rowsVisibleIf => _$this._rowsVisibleIf;
   set rowsVisibleIf(covariant String? rowsVisibleIf) =>
       _$this._rowsVisibleIf = rowsVisibleIf;
 
-  String? _rowTitleWidth;
-  String? get rowTitleWidth => _$this._rowTitleWidth;
-  set rowTitleWidth(covariant String? rowTitleWidth) =>
+  SurveyLogoWidthBuilder? _rowTitleWidth;
+  SurveyLogoWidthBuilder get rowTitleWidth =>
+      _$this._rowTitleWidth ??= new SurveyLogoWidthBuilder();
+  set rowTitleWidth(covariant SurveyLogoWidthBuilder? rowTitleWidth) =>
       _$this._rowTitleWidth = rowTitleWidth;
 
   String? _totalText;
@@ -409,9 +411,10 @@ class MatrixdropdownBuilder
   set columnsVisibleIf(covariant String? columnsVisibleIf) =>
       _$this._columnsVisibleIf = columnsVisibleIf;
 
-  String? _columnMinWidth;
-  String? get columnMinWidth => _$this._columnMinWidth;
-  set columnMinWidth(covariant String? columnMinWidth) =>
+  SurveyLogoWidthBuilder? _columnMinWidth;
+  SurveyLogoWidthBuilder get columnMinWidth =>
+      _$this._columnMinWidth ??= new SurveyLogoWidthBuilder();
+  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth) =>
       _$this._columnMinWidth = columnMinWidth;
 
   bool? _showHeader;
@@ -455,17 +458,22 @@ class MatrixdropdownBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   bool? _startWithNewLine;
   bool? get startWithNewLine => _$this._startWithNewLine;
@@ -513,9 +521,9 @@ class MatrixdropdownBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _defaultValueExpression;
@@ -646,12 +654,12 @@ class MatrixdropdownBuilder
     if ($v != null) {
       _rows = $v.rows?.toBuilder();
       _rowsVisibleIf = $v.rowsVisibleIf;
-      _rowTitleWidth = $v.rowTitleWidth;
+      _rowTitleWidth = $v.rowTitleWidth?.toBuilder();
       _totalText = $v.totalText;
       _hideIfRowsEmpty = $v.hideIfRowsEmpty;
       _showCommentArea = $v.showCommentArea;
       _columnsVisibleIf = $v.columnsVisibleIf;
-      _columnMinWidth = $v.columnMinWidth;
+      _columnMinWidth = $v.columnMinWidth?.toBuilder();
       _showHeader = $v.showHeader;
       _verticalAlign = $v.verticalAlign;
       _alternateRows = $v.alternateRows;
@@ -661,9 +669,9 @@ class MatrixdropdownBuilder
       _visible = $v.visible;
       _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
       _visibleIf = $v.visibleIf;
-      _width = $v.width;
-      _minWidth = $v.minWidth;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _minWidth = $v.minWidth?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _startWithNewLine = $v.startWithNewLine;
       _indent = $v.indent;
       _page = $v.page;
@@ -725,12 +733,12 @@ class MatrixdropdownBuilder
           new _$Matrixdropdown._(
               rows: _rows?.build(),
               rowsVisibleIf: rowsVisibleIf,
-              rowTitleWidth: rowTitleWidth,
+              rowTitleWidth: _rowTitleWidth?.build(),
               totalText: totalText,
               hideIfRowsEmpty: hideIfRowsEmpty,
               showCommentArea: showCommentArea,
               columnsVisibleIf: columnsVisibleIf,
-              columnMinWidth: columnMinWidth,
+              columnMinWidth: _columnMinWidth?.build(),
               showHeader: showHeader,
               verticalAlign: verticalAlign,
               alternateRows: alternateRows,
@@ -740,9 +748,9 @@ class MatrixdropdownBuilder
               visible: visible,
               useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
               visibleIf: visibleIf,
-              width: width,
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              minWidth: _minWidth?.build(),
+              maxWidth: _maxWidth?.build(),
               startWithNewLine: startWithNewLine,
               indent: indent,
               page: page,
@@ -782,6 +790,19 @@ class MatrixdropdownBuilder
       try {
         _$failedField = 'rows';
         _rows?.build();
+
+        _$failedField = 'rowTitleWidth';
+        _rowTitleWidth?.build();
+
+        _$failedField = 'columnMinWidth';
+        _columnMinWidth?.build();
+
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
 
         _$failedField = 'validators';
         _validators?.build();

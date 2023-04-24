@@ -7,6 +7,9 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'package:flutter_survey_js_model/src/one_of.dart';
 import 'package:flutter_survey_js_model/src/serializers.dart';
 
+export 'package:flutter_survey_js_model/src/serializers.dart';
+export 'package:flutter_survey_js_model/src/model/date.dart';
+
 export 'package:flutter_survey_js_model/src/model/answercountvalidator.dart';
 export 'package:flutter_survey_js_model/src/model/answercountvalidator_all_of.dart';
 export 'package:flutter_survey_js_model/src/model/boolean.dart';
@@ -28,7 +31,6 @@ export 'package:flutter_survey_js_model/src/model/comment_text_update_mode.dart'
 export 'package:flutter_survey_js_model/src/model/completetrigger.dart';
 export 'package:flutter_survey_js_model/src/model/copyvaluetrigger.dart';
 export 'package:flutter_survey_js_model/src/model/copyvaluetrigger_all_of.dart';
-export 'package:flutter_survey_js_model/src/model/date.dart';
 export 'package:flutter_survey_js_model/src/model/dropdown.dart';
 export 'package:flutter_survey_js_model/src/model/dropdown_all_of.dart';
 export 'package:flutter_survey_js_model/src/model/dropdown_autocomplete.dart';
@@ -67,6 +69,7 @@ export 'package:flutter_survey_js_model/src/model/matrixbase_all_of.dart';
 export 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
 export 'package:flutter_survey_js_model/src/model/matrixdropdown.dart';
 export 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of.dart';
+export 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 export 'package:flutter_survey_js_model/src/model/matrixdropdownbase.dart';
 export 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of.dart';
 export 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
@@ -152,6 +155,7 @@ export 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.
 export 'package:flutter_survey_js_model/src/model/survey_locale.dart';
 export 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 export 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
+export 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 export 'package:flutter_survey_js_model/src/model/survey_mode.dart';
 export 'package:flutter_survey_js_model/src/model/survey_progress_bar_type.dart';
 export 'package:flutter_survey_js_model/src/model/survey_question_description_location.dart';
@@ -190,7 +194,6 @@ export 'package:flutter_survey_js_model/src/model/urlconditionitem_all_of.dart';
 export 'package:flutter_survey_js_model/src/model/visibletrigger.dart';
 export 'package:flutter_survey_js_model/src/model/visibletrigger_all_of.dart';
 export 'package:flutter_survey_js_model/src/one_of.dart';
-export 'package:flutter_survey_js_model/src/serializers.dart';
 
 Serializers surveySerializers = (serializers.toBuilder()
       ..add(SurveyAnyOfSerializer())

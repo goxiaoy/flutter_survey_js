@@ -21,8 +21,8 @@ abstract class RatingAllOfBuilder {
   num? get rateCount;
   set rateCount(num? rateCount);
 
-  ListBuilder<Itemvalue> get rateValues;
-  set rateValues(ListBuilder<Itemvalue>? rateValues);
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rateValues;
+  set rateValues(ListBuilder<MatrixdropdownAllOfRowsInner>? rateValues);
 
   num? get rateMin;
   set rateMin(num? rateMin);
@@ -57,7 +57,7 @@ class _$$RatingAllOf extends $RatingAllOf {
   @override
   final num? rateCount;
   @override
-  final BuiltList<Itemvalue>? rateValues;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? rateValues;
   @override
   final num? rateMin;
   @override
@@ -179,10 +179,11 @@ class $RatingAllOfBuilder
   num? get rateCount => _$this._rateCount;
   set rateCount(covariant num? rateCount) => _$this._rateCount = rateCount;
 
-  ListBuilder<Itemvalue>? _rateValues;
-  ListBuilder<Itemvalue> get rateValues =>
-      _$this._rateValues ??= new ListBuilder<Itemvalue>();
-  set rateValues(covariant ListBuilder<Itemvalue>? rateValues) =>
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _rateValues;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rateValues =>
+      _$this._rateValues ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set rateValues(
+          covariant ListBuilder<MatrixdropdownAllOfRowsInner>? rateValues) =>
       _$this._rateValues = rateValues;
 
   num? _rateMin;

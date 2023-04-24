@@ -10,7 +10,7 @@ class _$Imageitemvalue extends Imageitemvalue {
   @override
   final String? imageLink;
   @override
-  final String? value;
+  final JsonObject? value;
   @override
   final String? text;
   @override
@@ -79,9 +79,9 @@ class ImageitemvalueBuilder
   String? get imageLink => _$this._imageLink;
   set imageLink(covariant String? imageLink) => _$this._imageLink = imageLink;
 
-  String? _value;
-  String? get value => _$this._value;
-  set value(covariant String? value) => _$this._value = value;
+  JsonObject? _value;
+  JsonObject? get value => _$this._value;
+  set value(covariant JsonObject? value) => _$this._value = value;
 
   String? _text;
   String? get text => _$this._text;

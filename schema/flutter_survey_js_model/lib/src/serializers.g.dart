@@ -100,6 +100,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(MatrixRowsOrder.serializer)
       ..add(MatrixbaseVerticalAlign.serializer)
       ..add(Matrixdropdown.serializer)
+      ..add(MatrixdropdownAllOfRowsInner.serializer)
       ..add(MatrixdropdownbaseCellType.serializer)
       ..add(MatrixdropdownbaseColumnColCount.serializer)
       ..add(MatrixdropdownbaseColumnLayout.serializer)
@@ -161,6 +162,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SurveyLocale.serializer)
       ..add(SurveyLogoFit.serializer)
       ..add(SurveyLogoPosition.serializer)
+      ..add(SurveyLogoWidth.serializer)
       ..add(SurveyMode.serializer)
       ..add(SurveyProgressBarType.serializer)
       ..add(SurveyQuestionDescriptionLocation.serializer)
@@ -209,30 +211,37 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Urlconditionitem)]),
           () => new ListBuilder<Urlconditionitem>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
@@ -336,8 +345,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
+          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),

@@ -16,11 +16,11 @@ class _$Panel extends Panel {
   @override
   final bool? startWithNewLine;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final PanelInnerIndent? innerIndent;
   @override
@@ -228,17 +228,22 @@ class PanelBuilder
   set startWithNewLine(covariant bool? startWithNewLine) =>
       _$this._startWithNewLine = startWithNewLine;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   PanelInnerIndent? _innerIndent;
   PanelInnerIndent? get innerIndent => _$this._innerIndent;
@@ -347,9 +352,9 @@ class PanelBuilder
       _isRequired = $v.isRequired;
       _requiredErrorText = $v.requiredErrorText;
       _startWithNewLine = $v.startWithNewLine;
-      _width = $v.width;
-      _minWidth = $v.minWidth;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _minWidth = $v.minWidth?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _innerIndent = $v.innerIndent;
       _indent = $v.indent;
       _page = $v.page;
@@ -399,9 +404,9 @@ class PanelBuilder
               isRequired: isRequired,
               requiredErrorText: requiredErrorText,
               startWithNewLine: startWithNewLine,
-              width: width,
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              minWidth: _minWidth?.build(),
+              maxWidth: _maxWidth?.build(),
               innerIndent: innerIndent,
               indent: indent,
               page: page,
@@ -425,6 +430,13 @@ class PanelBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
+
         _$failedField = 'elements';
         _elements?.build();
 

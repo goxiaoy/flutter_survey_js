@@ -3,11 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/rating_display_mode.dart';
 import 'package:flutter_survey_js_model/src/model/rating_rate_display_mode.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/rating_auto_generate.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -45,7 +45,7 @@ abstract class RatingAllOf  {
   num? get rateCount;
 
   @BuiltValueField(wireName: r'rateValues')
-  BuiltList<Itemvalue>? get rateValues;
+  BuiltList<MatrixdropdownAllOfRowsInner>? get rateValues;
 
   @BuiltValueField(wireName: r'rateMin')
   num? get rateMin;
@@ -117,7 +117,7 @@ class _$RatingAllOfSerializer implements PrimitiveSerializer<RatingAllOf> {
       yield r'rateValues';
       yield serializers.serialize(
         object.rateValues,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
       );
     }
     if (object.rateMin != null) {
@@ -263,8 +263,8 @@ class _$$RatingAllOfSerializer implements PrimitiveSerializer<$RatingAllOf> {
         case r'rateValues':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
+          ) as BuiltList<MatrixdropdownAllOfRowsInner>;
           result.rateValues.replace(valueDes);
           break;
         case r'rateMin':

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -31,7 +32,7 @@ abstract class MatrixbaseAllOf  {
   String? get rowsVisibleIf;
 
   @BuiltValueField(wireName: r'columnMinWidth')
-  String? get columnMinWidth;
+  SurveyLogoWidth? get columnMinWidth;
 
   @BuiltValueField(wireName: r'showHeader')
   bool? get showHeader;
@@ -84,7 +85,7 @@ class _$MatrixbaseAllOfSerializer implements PrimitiveSerializer<MatrixbaseAllOf
       yield r'columnMinWidth';
       yield serializers.serialize(
         object.columnMinWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.showHeader != null) {
@@ -195,9 +196,9 @@ class _$$MatrixbaseAllOfSerializer implements PrimitiveSerializer<$MatrixbaseAll
         case r'columnMinWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.columnMinWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.columnMinWidth.replace(valueDes);
           break;
         case r'showHeader':
           final valueDes = serializers.deserialize(

@@ -76,27 +76,32 @@ class SurveyAnyOfSerializer extends AnyOfSerializer {
       return "";
     };
     final t = getType();
-    if (t.isNotEmpty) {
-      if (questionMap[t] != null) {
-        final index = types.indexOf(questionMap[t]!);
-        if (index != -1) {
-          values[index] = serializers.deserialize(serialized,
-              specifiedType: specifiedType.parameters[index]);
-        }
+
+    if (types.contains(Elementbase)) {
+      //element
+      final targetType = questionMap[t] ?? Elementbase;
+      final index = types.indexOf(targetType);
+      if (index != -1) {
+        values[index] = serializers.deserialize(serialized,
+            specifiedType: specifiedType.parameters[index]);
       }
-      if (triggerMap[t] != null) {
-        final index = types.indexOf(triggerMap[t]!);
-        if (index != -1) {
-          values[index] = serializers.deserialize(serialized,
-              specifiedType: specifiedType.parameters[index]);
-        }
+    }
+    if (types.contains(Surveytrigger)) {
+      //element
+      final targetType = triggerMap[t] ?? Surveytrigger;
+      final index = types.indexOf(targetType);
+      if (index != -1) {
+        values[index] = serializers.deserialize(serialized,
+            specifiedType: specifiedType.parameters[index]);
       }
-      if (validatorMap[t] != null) {
-        final index = types.indexOf(validatorMap[t]!);
-        if (index != -1) {
-          values[index] = serializers.deserialize(serialized,
-              specifiedType: specifiedType.parameters[index]);
-        }
+    }
+    if (types.contains(Surveyvalidator)) {
+      //element
+      final targetType = triggerMap[t] ?? Surveyvalidator;
+      final index = types.indexOf(targetType);
+      if (index != -1) {
+        values[index] = serializers.deserialize(serialized,
+            specifiedType: specifiedType.parameters[index]);
       }
     }
     //fallback

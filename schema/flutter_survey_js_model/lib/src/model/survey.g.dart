@@ -16,9 +16,9 @@ class _$Survey extends Survey {
   @override
   final String? logo;
   @override
-  final String? logoWidth;
+  final SurveyLogoWidth? logoWidth;
   @override
-  final String? logoHeight;
+  final SurveyLogoWidth? logoHeight;
   @override
   final SurveyLogoFit? logoFit;
   @override
@@ -144,7 +144,7 @@ class _$Survey extends Survey {
   @override
   final SurveyWidthMode? widthMode;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
   final String? backgroundImage;
   @override
@@ -492,13 +492,17 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   String? get logo => _$this._logo;
   set logo(String? logo) => _$this._logo = logo;
 
-  String? _logoWidth;
-  String? get logoWidth => _$this._logoWidth;
-  set logoWidth(String? logoWidth) => _$this._logoWidth = logoWidth;
+  SurveyLogoWidthBuilder? _logoWidth;
+  SurveyLogoWidthBuilder get logoWidth =>
+      _$this._logoWidth ??= new SurveyLogoWidthBuilder();
+  set logoWidth(SurveyLogoWidthBuilder? logoWidth) =>
+      _$this._logoWidth = logoWidth;
 
-  String? _logoHeight;
-  String? get logoHeight => _$this._logoHeight;
-  set logoHeight(String? logoHeight) => _$this._logoHeight = logoHeight;
+  SurveyLogoWidthBuilder? _logoHeight;
+  SurveyLogoWidthBuilder get logoHeight =>
+      _$this._logoHeight ??= new SurveyLogoWidthBuilder();
+  set logoHeight(SurveyLogoWidthBuilder? logoHeight) =>
+      _$this._logoHeight = logoHeight;
 
   SurveyLogoFit? _logoFit;
   SurveyLogoFit? get logoFit => _$this._logoFit;
@@ -815,9 +819,10 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   SurveyWidthMode? get widthMode => _$this._widthMode;
   set widthMode(SurveyWidthMode? widthMode) => _$this._widthMode = widthMode;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(SurveyLogoWidthBuilder? width) => _$this._width = width;
 
   String? _backgroundImage;
   String? get backgroundImage => _$this._backgroundImage;
@@ -845,8 +850,8 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _title = $v.title;
       _description = $v.description;
       _logo = $v.logo;
-      _logoWidth = $v.logoWidth;
-      _logoHeight = $v.logoHeight;
+      _logoWidth = $v.logoWidth?.toBuilder();
+      _logoHeight = $v.logoHeight?.toBuilder();
       _logoFit = $v.logoFit;
       _logoPosition = $v.logoPosition;
       _focusFirstQuestionAutomatic = $v.focusFirstQuestionAutomatic;
@@ -909,7 +914,7 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _showTimerPanel = $v.showTimerPanel;
       _showTimerPanelMode = $v.showTimerPanelMode;
       _widthMode = $v.widthMode;
-      _width = $v.width;
+      _width = $v.width?.toBuilder();
       _backgroundImage = $v.backgroundImage;
       _backgroundOpacity = $v.backgroundOpacity;
       _showBrandInfo = $v.showBrandInfo;
@@ -941,8 +946,8 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
               title: title,
               description: description,
               logo: logo,
-              logoWidth: logoWidth,
-              logoHeight: logoHeight,
+              logoWidth: _logoWidth?.build(),
+              logoHeight: _logoHeight?.build(),
               logoFit: logoFit,
               logoPosition: logoPosition,
               focusFirstQuestionAutomatic: focusFirstQuestionAutomatic,
@@ -1005,13 +1010,18 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
               showTimerPanel: showTimerPanel,
               showTimerPanelMode: showTimerPanelMode,
               widthMode: widthMode,
-              width: width,
+              width: _width?.build(),
               backgroundImage: backgroundImage,
               backgroundOpacity: backgroundOpacity,
               showBrandInfo: showBrandInfo);
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'logoWidth';
+        _logoWidth?.build();
+        _$failedField = 'logoHeight';
+        _logoHeight?.build();
+
         _$failedField = 'completedHtmlOnCondition';
         _completedHtmlOnCondition?.build();
 
@@ -1029,6 +1039,9 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
 
         _$failedField = 'showQuestionNumbers';
         _showQuestionNumbers?.build();
+
+        _$failedField = 'width';
+        _width?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Survey', _$failedField, e.toString());

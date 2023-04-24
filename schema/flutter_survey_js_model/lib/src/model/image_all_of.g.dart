@@ -21,11 +21,11 @@ abstract class ImageAllOfBuilder {
   ImageImageFit? get imageFit;
   set imageFit(ImageImageFit? imageFit);
 
-  String? get imageHeight;
-  set imageHeight(String? imageHeight);
+  SurveyLogoWidthBuilder get imageHeight;
+  set imageHeight(SurveyLogoWidthBuilder? imageHeight);
 
-  String? get imageWidth;
-  set imageWidth(String? imageWidth);
+  SurveyLogoWidthBuilder get imageWidth;
+  set imageWidth(SurveyLogoWidthBuilder? imageWidth);
 }
 
 class _$$ImageAllOf extends $ImageAllOf {
@@ -38,9 +38,9 @@ class _$$ImageAllOf extends $ImageAllOf {
   @override
   final ImageImageFit? imageFit;
   @override
-  final String? imageHeight;
+  final SurveyLogoWidth? imageHeight;
   @override
-  final String? imageWidth;
+  final SurveyLogoWidth? imageWidth;
 
   factory _$$ImageAllOf([void Function($ImageAllOfBuilder)? updates]) =>
       (new $ImageAllOfBuilder()..update(updates))._build();
@@ -121,14 +121,16 @@ class $ImageAllOfBuilder
   set imageFit(covariant ImageImageFit? imageFit) =>
       _$this._imageFit = imageFit;
 
-  String? _imageHeight;
-  String? get imageHeight => _$this._imageHeight;
-  set imageHeight(covariant String? imageHeight) =>
+  SurveyLogoWidthBuilder? _imageHeight;
+  SurveyLogoWidthBuilder get imageHeight =>
+      _$this._imageHeight ??= new SurveyLogoWidthBuilder();
+  set imageHeight(covariant SurveyLogoWidthBuilder? imageHeight) =>
       _$this._imageHeight = imageHeight;
 
-  String? _imageWidth;
-  String? get imageWidth => _$this._imageWidth;
-  set imageWidth(covariant String? imageWidth) =>
+  SurveyLogoWidthBuilder? _imageWidth;
+  SurveyLogoWidthBuilder get imageWidth =>
+      _$this._imageWidth ??= new SurveyLogoWidthBuilder();
+  set imageWidth(covariant SurveyLogoWidthBuilder? imageWidth) =>
       _$this._imageWidth = imageWidth;
 
   $ImageAllOfBuilder() {
@@ -142,8 +144,8 @@ class $ImageAllOfBuilder
       _altText = $v.altText;
       _contentMode = $v.contentMode;
       _imageFit = $v.imageFit;
-      _imageHeight = $v.imageHeight;
-      _imageWidth = $v.imageWidth;
+      _imageHeight = $v.imageHeight?.toBuilder();
+      _imageWidth = $v.imageWidth?.toBuilder();
       _$v = null;
     }
     return this;
@@ -164,14 +166,29 @@ class $ImageAllOfBuilder
   $ImageAllOf build() => _build();
 
   _$$ImageAllOf _build() {
-    final _$result = _$v ??
-        new _$$ImageAllOf._(
-            imageLink: imageLink,
-            altText: altText,
-            contentMode: contentMode,
-            imageFit: imageFit,
-            imageHeight: imageHeight,
-            imageWidth: imageWidth);
+    _$$ImageAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$ImageAllOf._(
+              imageLink: imageLink,
+              altText: altText,
+              contentMode: contentMode,
+              imageFit: imageFit,
+              imageHeight: _imageHeight?.build(),
+              imageWidth: _imageWidth?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'imageHeight';
+        _imageHeight?.build();
+        _$failedField = 'imageWidth';
+        _imageWidth?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$ImageAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

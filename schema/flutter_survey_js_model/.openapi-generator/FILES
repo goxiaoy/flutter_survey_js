@@ -61,6 +61,7 @@ lib/src/model/matrixbase_all_of.dart
 lib/src/model/matrixbase_vertical_align.dart
 lib/src/model/matrixdropdown.dart
 lib/src/model/matrixdropdown_all_of.dart
+lib/src/model/matrixdropdown_all_of_rows_inner.dart
 lib/src/model/matrixdropdownbase.dart
 lib/src/model/matrixdropdownbase_all_of.dart
 lib/src/model/matrixdropdownbase_cell_type.dart
@@ -146,6 +147,7 @@ lib/src/model/survey_clear_invisible_values.dart
 lib/src/model/survey_locale.dart
 lib/src/model/survey_logo_fit.dart
 lib/src/model/survey_logo_position.dart
+lib/src/model/survey_logo_width.dart
 lib/src/model/survey_mode.dart
 lib/src/model/survey_progress_bar_type.dart
 lib/src/model/survey_question_description_location.dart

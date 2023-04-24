@@ -3,8 +3,9 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -21,13 +22,13 @@ part 'matrixdropdown_all_of.g.dart';
 @BuiltValue(instantiable: false)
 abstract class MatrixdropdownAllOf  {
   @BuiltValueField(wireName: r'rows')
-  BuiltList<Itemvalue>? get rows;
+  BuiltList<MatrixdropdownAllOfRowsInner>? get rows;
 
   @BuiltValueField(wireName: r'rowsVisibleIf')
   String? get rowsVisibleIf;
 
   @BuiltValueField(wireName: r'rowTitleWidth')
-  String? get rowTitleWidth;
+  SurveyLogoWidth? get rowTitleWidth;
 
   @BuiltValueField(wireName: r'totalText')
   String? get totalText;
@@ -55,7 +56,7 @@ class _$MatrixdropdownAllOfSerializer implements PrimitiveSerializer<Matrixdropd
       yield r'rows';
       yield serializers.serialize(
         object.rows,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
       );
     }
     if (object.rowsVisibleIf != null) {
@@ -69,7 +70,7 @@ class _$MatrixdropdownAllOfSerializer implements PrimitiveSerializer<Matrixdropd
       yield r'rowTitleWidth';
       yield serializers.serialize(
         object.rowTitleWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.totalText != null) {
@@ -152,8 +153,8 @@ class _$$MatrixdropdownAllOfSerializer implements PrimitiveSerializer<$Matrixdro
         case r'rows':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
+          ) as BuiltList<MatrixdropdownAllOfRowsInner>;
           result.rows.replace(valueDes);
           break;
         case r'rowsVisibleIf':
@@ -166,9 +167,9 @@ class _$$MatrixdropdownAllOfSerializer implements PrimitiveSerializer<$Matrixdro
         case r'rowTitleWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.rowTitleWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.rowTitleWidth.replace(valueDes);
           break;
         case r'totalText':
           final valueDes = serializers.deserialize(

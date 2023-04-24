@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_detail_panel_mode.dart';
@@ -67,7 +68,7 @@ abstract class MatrixdropdownbaseAllOf  {
   // enum columnColCountEnum {  0,  1,  2,  3,  4,  };
 
   @BuiltValueField(wireName: r'columnMinWidth')
-  String? get columnMinWidth;
+  SurveyLogoWidth? get columnMinWidth;
 
   @BuiltValueField(wireName: r'allowAdaptiveActions')
   bool? get allowAdaptiveActions;
@@ -162,7 +163,7 @@ class _$MatrixdropdownbaseAllOfSerializer implements PrimitiveSerializer<Matrixd
       yield r'columnMinWidth';
       yield serializers.serialize(
         object.columnMinWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.allowAdaptiveActions != null) {
@@ -308,9 +309,9 @@ class _$$MatrixdropdownbaseAllOfSerializer implements PrimitiveSerializer<$Matri
         case r'columnMinWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.columnMinWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.columnMinWidth.replace(valueDes);
           break;
         case r'allowAdaptiveActions':
           final valueDes = serializers.deserialize(

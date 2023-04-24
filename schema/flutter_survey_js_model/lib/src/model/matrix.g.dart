@@ -8,13 +8,13 @@ part of 'matrix.dart';
 
 class _$Matrix extends Matrix {
   @override
-  final String? rowTitleWidth;
+  final SurveyLogoWidth? rowTitleWidth;
   @override
-  final BuiltList<Itemvalue>? columns;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? columns;
   @override
-  final BuiltList<Itemvalue>? rows;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? rows;
   @override
-  final String? cells;
+  final JsonObject? cells;
   @override
   final MatrixRowsOrder? rowsOrder;
   @override
@@ -28,7 +28,7 @@ class _$Matrix extends Matrix {
   @override
   final String? rowsVisibleIf;
   @override
-  final String? columnMinWidth;
+  final SurveyLogoWidth? columnMinWidth;
   @override
   final bool? showHeader;
   @override
@@ -48,11 +48,11 @@ class _$Matrix extends Matrix {
   @override
   final String? visibleIf;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final bool? startWithNewLine;
   @override
@@ -74,7 +74,7 @@ class _$Matrix extends Matrix {
   @override
   final String? enableIf;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? defaultValueExpression;
   @override
@@ -326,25 +326,27 @@ class MatrixBuilder
         MatrixbaseBuilder {
   _$Matrix? _$v;
 
-  String? _rowTitleWidth;
-  String? get rowTitleWidth => _$this._rowTitleWidth;
-  set rowTitleWidth(covariant String? rowTitleWidth) =>
+  SurveyLogoWidthBuilder? _rowTitleWidth;
+  SurveyLogoWidthBuilder get rowTitleWidth =>
+      _$this._rowTitleWidth ??= new SurveyLogoWidthBuilder();
+  set rowTitleWidth(covariant SurveyLogoWidthBuilder? rowTitleWidth) =>
       _$this._rowTitleWidth = rowTitleWidth;
 
-  ListBuilder<Itemvalue>? _columns;
-  ListBuilder<Itemvalue> get columns =>
-      _$this._columns ??= new ListBuilder<Itemvalue>();
-  set columns(covariant ListBuilder<Itemvalue>? columns) =>
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _columns;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get columns =>
+      _$this._columns ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set columns(covariant ListBuilder<MatrixdropdownAllOfRowsInner>? columns) =>
       _$this._columns = columns;
 
-  ListBuilder<Itemvalue>? _rows;
-  ListBuilder<Itemvalue> get rows =>
-      _$this._rows ??= new ListBuilder<Itemvalue>();
-  set rows(covariant ListBuilder<Itemvalue>? rows) => _$this._rows = rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rows =>
+      _$this._rows ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set rows(covariant ListBuilder<MatrixdropdownAllOfRowsInner>? rows) =>
+      _$this._rows = rows;
 
-  String? _cells;
-  String? get cells => _$this._cells;
-  set cells(covariant String? cells) => _$this._cells = cells;
+  JsonObject? _cells;
+  JsonObject? get cells => _$this._cells;
+  set cells(covariant JsonObject? cells) => _$this._cells = cells;
 
   MatrixRowsOrder? _rowsOrder;
   MatrixRowsOrder? get rowsOrder => _$this._rowsOrder;
@@ -376,9 +378,10 @@ class MatrixBuilder
   set rowsVisibleIf(covariant String? rowsVisibleIf) =>
       _$this._rowsVisibleIf = rowsVisibleIf;
 
-  String? _columnMinWidth;
-  String? get columnMinWidth => _$this._columnMinWidth;
-  set columnMinWidth(covariant String? columnMinWidth) =>
+  SurveyLogoWidthBuilder? _columnMinWidth;
+  SurveyLogoWidthBuilder get columnMinWidth =>
+      _$this._columnMinWidth ??= new SurveyLogoWidthBuilder();
+  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth) =>
       _$this._columnMinWidth = columnMinWidth;
 
   bool? _showHeader;
@@ -422,17 +425,22 @@ class MatrixBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   bool? _startWithNewLine;
   bool? get startWithNewLine => _$this._startWithNewLine;
@@ -480,9 +488,9 @@ class MatrixBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _defaultValueExpression;
@@ -550,7 +558,7 @@ class MatrixBuilder
   MatrixBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _rowTitleWidth = $v.rowTitleWidth;
+      _rowTitleWidth = $v.rowTitleWidth?.toBuilder();
       _columns = $v.columns?.toBuilder();
       _rows = $v.rows?.toBuilder();
       _cells = $v.cells;
@@ -560,7 +568,7 @@ class MatrixBuilder
       _showCommentArea = $v.showCommentArea;
       _columnsVisibleIf = $v.columnsVisibleIf;
       _rowsVisibleIf = $v.rowsVisibleIf;
-      _columnMinWidth = $v.columnMinWidth;
+      _columnMinWidth = $v.columnMinWidth?.toBuilder();
       _showHeader = $v.showHeader;
       _verticalAlign = $v.verticalAlign;
       _alternateRows = $v.alternateRows;
@@ -570,9 +578,9 @@ class MatrixBuilder
       _visible = $v.visible;
       _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
       _visibleIf = $v.visibleIf;
-      _width = $v.width;
-      _minWidth = $v.minWidth;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _minWidth = $v.minWidth?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _startWithNewLine = $v.startWithNewLine;
       _indent = $v.indent;
       _page = $v.page;
@@ -621,7 +629,7 @@ class MatrixBuilder
     try {
       _$result = _$v ??
           new _$Matrix._(
-              rowTitleWidth: rowTitleWidth,
+              rowTitleWidth: _rowTitleWidth?.build(),
               columns: _columns?.build(),
               rows: _rows?.build(),
               cells: cells,
@@ -631,7 +639,7 @@ class MatrixBuilder
               showCommentArea: showCommentArea,
               columnsVisibleIf: columnsVisibleIf,
               rowsVisibleIf: rowsVisibleIf,
-              columnMinWidth: columnMinWidth,
+              columnMinWidth: _columnMinWidth?.build(),
               showHeader: showHeader,
               verticalAlign: verticalAlign,
               alternateRows: alternateRows,
@@ -641,9 +649,9 @@ class MatrixBuilder
               visible: visible,
               useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
               visibleIf: visibleIf,
-              width: width,
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              minWidth: _minWidth?.build(),
+              maxWidth: _maxWidth?.build(),
               startWithNewLine: startWithNewLine,
               indent: indent,
               page: page,
@@ -670,10 +678,22 @@ class MatrixBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'rowTitleWidth';
+        _rowTitleWidth?.build();
         _$failedField = 'columns';
         _columns?.build();
         _$failedField = 'rows';
         _rows?.build();
+
+        _$failedField = 'columnMinWidth';
+        _columnMinWidth?.build();
+
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
 
         _$failedField = 'validators';
         _validators?.build();

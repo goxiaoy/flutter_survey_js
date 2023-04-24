@@ -3,8 +3,10 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -42,10 +44,10 @@ abstract class FileAllOf  {
   bool? get allowImagesPreview;
 
   @BuiltValueField(wireName: r'imageHeight')
-  String? get imageHeight;
+  SurveyLogoWidth? get imageHeight;
 
   @BuiltValueField(wireName: r'imageWidth')
-  String? get imageWidth;
+  SurveyLogoWidth? get imageWidth;
 
   @BuiltValueField(wireName: r'acceptedTypes')
   String? get acceptedTypes;
@@ -60,7 +62,7 @@ abstract class FileAllOf  {
   num? get maxSize;
 
   @BuiltValueField(wireName: r'defaultValue')
-  String? get defaultValue;
+  JsonObject? get defaultValue;
 
   @BuiltValueField(wireName: r'correctAnswer')
   String? get correctAnswer;
@@ -119,14 +121,14 @@ class _$FileAllOfSerializer implements PrimitiveSerializer<FileAllOf> {
       yield r'imageHeight';
       yield serializers.serialize(
         object.imageHeight,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.imageWidth != null) {
       yield r'imageWidth';
       yield serializers.serialize(
         object.imageWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.acceptedTypes != null) {
@@ -161,7 +163,7 @@ class _$FileAllOfSerializer implements PrimitiveSerializer<FileAllOf> {
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.correctAnswer != null) {
@@ -279,16 +281,16 @@ class _$$FileAllOfSerializer implements PrimitiveSerializer<$FileAllOf> {
         case r'imageHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.imageHeight = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.imageHeight.replace(valueDes);
           break;
         case r'imageWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.imageWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.imageWidth.replace(valueDes);
           break;
         case r'acceptedTypes':
           final valueDes = serializers.deserialize(
@@ -321,8 +323,9 @@ class _$$FileAllOfSerializer implements PrimitiveSerializer<$FileAllOf> {
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'correctAnswer':

@@ -1,28 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'itemvalue.dart';
+part of 'itemvalue_one_of.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract class ItemvalueBuilder {
-  void replace(Itemvalue other);
-  void update(void Function(ItemvalueBuilder) updates);
-  JsonObject? get value;
-  set value(JsonObject? value);
-
-  String? get text;
-  set text(String? text);
-
-  String? get visibleIf;
-  set visibleIf(String? visibleIf);
-
-  String? get enableIf;
-  set enableIf(String? enableIf);
-}
-
-class _$$Itemvalue extends $Itemvalue {
+class _$ItemvalueOneOf extends ItemvalueOneOf {
   @override
   final JsonObject? value;
   @override
@@ -32,23 +16,24 @@ class _$$Itemvalue extends $Itemvalue {
   @override
   final String? enableIf;
 
-  factory _$$Itemvalue([void Function($ItemvalueBuilder)? updates]) =>
-      (new $ItemvalueBuilder()..update(updates))._build();
+  factory _$ItemvalueOneOf([void Function(ItemvalueOneOfBuilder)? updates]) =>
+      (new ItemvalueOneOfBuilder()..update(updates))._build();
 
-  _$$Itemvalue._({this.value, this.text, this.visibleIf, this.enableIf})
+  _$ItemvalueOneOf._({this.value, this.text, this.visibleIf, this.enableIf})
       : super._();
 
   @override
-  $Itemvalue rebuild(void Function($ItemvalueBuilder) updates) =>
+  ItemvalueOneOf rebuild(void Function(ItemvalueOneOfBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  $ItemvalueBuilder toBuilder() => new $ItemvalueBuilder()..replace(this);
+  ItemvalueOneOfBuilder toBuilder() =>
+      new ItemvalueOneOfBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is $Itemvalue &&
+    return other is ItemvalueOneOf &&
         value == other.value &&
         text == other.text &&
         visibleIf == other.visibleIf &&
@@ -68,7 +53,7 @@ class _$$Itemvalue extends $Itemvalue {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'$Itemvalue')
+    return (newBuiltValueToStringHelper(r'ItemvalueOneOf')
           ..add('value', value)
           ..add('text', text)
           ..add('visibleIf', visibleIf)
@@ -77,31 +62,31 @@ class _$$Itemvalue extends $Itemvalue {
   }
 }
 
-class $ItemvalueBuilder
-    implements Builder<$Itemvalue, $ItemvalueBuilder>, ItemvalueBuilder {
-  _$$Itemvalue? _$v;
+class ItemvalueOneOfBuilder
+    implements Builder<ItemvalueOneOf, ItemvalueOneOfBuilder> {
+  _$ItemvalueOneOf? _$v;
 
   JsonObject? _value;
   JsonObject? get value => _$this._value;
-  set value(covariant JsonObject? value) => _$this._value = value;
+  set value(JsonObject? value) => _$this._value = value;
 
   String? _text;
   String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  set text(String? text) => _$this._text = text;
 
   String? _visibleIf;
   String? get visibleIf => _$this._visibleIf;
-  set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
+  set visibleIf(String? visibleIf) => _$this._visibleIf = visibleIf;
 
   String? _enableIf;
   String? get enableIf => _$this._enableIf;
-  set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
+  set enableIf(String? enableIf) => _$this._enableIf = enableIf;
 
-  $ItemvalueBuilder() {
-    $Itemvalue._defaults(this);
+  ItemvalueOneOfBuilder() {
+    ItemvalueOneOf._defaults(this);
   }
 
-  $ItemvalueBuilder get _$this {
+  ItemvalueOneOfBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _value = $v.value;
@@ -114,22 +99,22 @@ class $ItemvalueBuilder
   }
 
   @override
-  void replace(covariant $Itemvalue other) {
+  void replace(ItemvalueOneOf other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$$Itemvalue;
+    _$v = other as _$ItemvalueOneOf;
   }
 
   @override
-  void update(void Function($ItemvalueBuilder)? updates) {
+  void update(void Function(ItemvalueOneOfBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  $Itemvalue build() => _build();
+  ItemvalueOneOf build() => _build();
 
-  _$$Itemvalue _build() {
+  _$ItemvalueOneOf _build() {
     final _$result = _$v ??
-        new _$$Itemvalue._(
+        new _$ItemvalueOneOf._(
             value: value, text: text, visibleIf: visibleIf, enableIf: enableIf);
     replace(_$result);
     return _$result;

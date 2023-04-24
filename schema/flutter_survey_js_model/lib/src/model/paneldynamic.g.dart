@@ -18,7 +18,7 @@ class _$Paneldynamic extends Paneldynamic {
   @override
   final String? templateDescription;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
   final String? noEntriesText;
   @override
@@ -78,9 +78,9 @@ class _$Paneldynamic extends Paneldynamic {
   @override
   final String? visibleIf;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final bool? startWithNewLine;
   @override
@@ -102,7 +102,7 @@ class _$Paneldynamic extends Paneldynamic {
   @override
   final String? enableIf;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? defaultValueExpression;
   @override
@@ -437,9 +437,11 @@ class PaneldynamicBuilder
   set templateDescription(covariant String? templateDescription) =>
       _$this._templateDescription = templateDescription;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
   String? _noEntriesText;
   String? get noEntriesText => _$this._noEntriesText;
@@ -589,13 +591,16 @@ class PaneldynamicBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   bool? _startWithNewLine;
   bool? get startWithNewLine => _$this._startWithNewLine;
@@ -643,9 +648,9 @@ class PaneldynamicBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _defaultValueExpression;
@@ -718,7 +723,7 @@ class PaneldynamicBuilder
       _templateTitle = $v.templateTitle;
       _templateTabTitle = $v.templateTabTitle;
       _templateDescription = $v.templateDescription;
-      _minWidth = $v.minWidth;
+      _minWidth = $v.minWidth?.toBuilder();
       _noEntriesText = $v.noEntriesText;
       _allowAddPanel = $v.allowAddPanel;
       _allowRemovePanel = $v.allowRemovePanel;
@@ -748,8 +753,8 @@ class PaneldynamicBuilder
       _visible = $v.visible;
       _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
       _visibleIf = $v.visibleIf;
-      _width = $v.width;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _startWithNewLine = $v.startWithNewLine;
       _indent = $v.indent;
       _page = $v.page;
@@ -803,7 +808,7 @@ class PaneldynamicBuilder
               templateTitle: templateTitle,
               templateTabTitle: templateTabTitle,
               templateDescription: templateDescription,
-              minWidth: minWidth,
+              minWidth: _minWidth?.build(),
               noEntriesText: noEntriesText,
               allowAddPanel: allowAddPanel,
               allowRemovePanel: allowRemovePanel,
@@ -833,8 +838,8 @@ class PaneldynamicBuilder
               visible: visible,
               useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
               visibleIf: visibleIf,
-              width: width,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              maxWidth: _maxWidth?.build(),
               startWithNewLine: startWithNewLine,
               indent: indent,
               page: page,
@@ -863,6 +868,14 @@ class PaneldynamicBuilder
       try {
         _$failedField = 'templateElements';
         _templateElements?.build();
+
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
 
         _$failedField = 'validators';
         _validators?.build();

@@ -73,6 +73,7 @@ import 'package:flutter_survey_js_model/src/model/matrixbase_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdown.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
@@ -158,6 +159,7 @@ import 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.
 import 'package:flutter_survey_js_model/src/model/survey_locale.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/survey_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_progress_bar_type.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_description_location.dart';
@@ -258,6 +260,7 @@ part 'serializers.g.dart';
   MatrixbaseVerticalAlign,
   Matrixdropdown,
   MatrixdropdownAllOf,$MatrixdropdownAllOf,
+  MatrixdropdownAllOfRowsInner,
   Matrixdropdownbase,$Matrixdropdownbase,
   MatrixdropdownbaseAllOf,$MatrixdropdownbaseAllOf,
   MatrixdropdownbaseCellType,
@@ -343,6 +346,7 @@ part 'serializers.g.dart';
   SurveyLocale,
   SurveyLogoFit,
   SurveyLogoPosition,
+  SurveyLogoWidth,
   SurveyMode,
   SurveyProgressBarType,
   SurveyQuestionDescriptionLocation,

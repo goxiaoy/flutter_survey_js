@@ -21,8 +21,8 @@ abstract class NonvalueAllOfBuilder {
   String? get enableIf;
   set enableIf(String? enableIf);
 
-  String? get defaultValue;
-  set defaultValue(String? defaultValue);
+  JsonObject? get defaultValue;
+  set defaultValue(JsonObject? defaultValue);
 
   String? get correctAnswer;
   set correctAnswer(String? correctAnswer);
@@ -65,7 +65,7 @@ class _$$NonvalueAllOf extends $NonvalueAllOf {
   @override
   final String? enableIf;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? correctAnswer;
   @override
@@ -205,9 +205,9 @@ class $NonvalueAllOfBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _correctAnswer;

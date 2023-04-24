@@ -6,6 +6,7 @@
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_col_count.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
@@ -13,13 +14,14 @@ import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inn
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_layout.dart';
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_detail_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -118,7 +120,7 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.validators != null) {
@@ -181,7 +183,7 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'columnMinWidth';
       yield serializers.serialize(
         object.columnMinWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.state != null) {
@@ -216,14 +218,14 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.rowTitleWidth != null) {
       yield r'rowTitleWidth';
       yield serializers.serialize(
         object.rowTitleWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.hideIfRowsEmpty != null) {
@@ -461,14 +463,14 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.rows != null) {
       yield r'rows';
       yield serializers.serialize(
         object.rows,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
       );
     }
     if (object.cellType != null) {
@@ -482,7 +484,7 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
   }
@@ -518,8 +520,9 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'validators':
@@ -581,9 +584,9 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'columnMinWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.columnMinWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.columnMinWidth.replace(valueDes);
           break;
         case r'state':
           final valueDes = serializers.deserialize(
@@ -616,16 +619,16 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.maxWidth.replace(valueDes);
           break;
         case r'rowTitleWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.rowTitleWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.rowTitleWidth.replace(valueDes);
           break;
         case r'hideIfRowsEmpty':
           final valueDes = serializers.deserialize(
@@ -861,15 +864,15 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.minWidth.replace(valueDes);
           break;
         case r'rows':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
+          ) as BuiltList<MatrixdropdownAllOfRowsInner>;
           result.rows.replace(valueDes);
           break;
         case r'cellType':
@@ -882,9 +885,9 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.width = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         default:
           unhandled.add(key);

@@ -4,12 +4,14 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -69,13 +71,13 @@ abstract class QuestionAllOf  {
   String? get visibleIf;
 
   @BuiltValueField(wireName: r'width')
-  String? get width;
+  SurveyLogoWidth? get width;
 
   @BuiltValueField(wireName: r'minWidth')
-  String? get minWidth;
+  SurveyLogoWidth? get minWidth;
 
   @BuiltValueField(wireName: r'maxWidth')
-  String? get maxWidth;
+  SurveyLogoWidth? get maxWidth;
 
   @BuiltValueField(wireName: r'startWithNewLine')
   bool? get startWithNewLine;
@@ -111,7 +113,7 @@ abstract class QuestionAllOf  {
   String? get enableIf;
 
   @BuiltValueField(wireName: r'defaultValue')
-  String? get defaultValue;
+  JsonObject? get defaultValue;
 
   @BuiltValueField(wireName: r'defaultValueExpression')
   String? get defaultValueExpression;
@@ -208,21 +210,21 @@ class _$QuestionAllOfSerializer implements PrimitiveSerializer<QuestionAllOf> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.minWidth != null) {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.startWithNewLine != null) {
@@ -299,7 +301,7 @@ class _$QuestionAllOfSerializer implements PrimitiveSerializer<QuestionAllOf> {
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -494,23 +496,23 @@ class _$$QuestionAllOfSerializer implements PrimitiveSerializer<$QuestionAllOf> 
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.width = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.minWidth.replace(valueDes);
           break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.maxWidth.replace(valueDes);
           break;
         case r'startWithNewLine':
           final valueDes = serializers.deserialize(
@@ -585,8 +587,9 @@ class _$$QuestionAllOfSerializer implements PrimitiveSerializer<$QuestionAllOf> 
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'defaultValueExpression':

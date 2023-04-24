@@ -9,14 +9,14 @@ part of 'signaturepad_all_of.dart';
 abstract class SignaturepadAllOfBuilder {
   void replace(SignaturepadAllOf other);
   void update(void Function(SignaturepadAllOfBuilder) updates);
-  num? get signatureWidth;
-  set signatureWidth(num? signatureWidth);
+  SurveyLogoWidthBuilder get signatureWidth;
+  set signatureWidth(SurveyLogoWidthBuilder? signatureWidth);
 
-  num? get signatureHeight;
-  set signatureHeight(num? signatureHeight);
+  SurveyLogoWidthBuilder get signatureHeight;
+  set signatureHeight(SurveyLogoWidthBuilder? signatureHeight);
 
-  num? get height;
-  set height(num? height);
+  SurveyLogoWidthBuilder get height;
+  set height(SurveyLogoWidthBuilder? height);
 
   bool? get allowClear;
   set allowClear(bool? allowClear);
@@ -30,8 +30,8 @@ abstract class SignaturepadAllOfBuilder {
   SignaturepadDataFormat? get dataFormat;
   set dataFormat(SignaturepadDataFormat? dataFormat);
 
-  String? get defaultValue;
-  set defaultValue(String? defaultValue);
+  JsonObject? get defaultValue;
+  set defaultValue(JsonObject? defaultValue);
 
   String? get correctAnswer;
   set correctAnswer(String? correctAnswer);
@@ -39,11 +39,11 @@ abstract class SignaturepadAllOfBuilder {
 
 class _$$SignaturepadAllOf extends $SignaturepadAllOf {
   @override
-  final num? signatureWidth;
+  final SurveyLogoWidth? signatureWidth;
   @override
-  final num? signatureHeight;
+  final SurveyLogoWidth? signatureHeight;
   @override
-  final num? height;
+  final SurveyLogoWidth? height;
   @override
   final bool? allowClear;
   @override
@@ -53,7 +53,7 @@ class _$$SignaturepadAllOf extends $SignaturepadAllOf {
   @override
   final SignaturepadDataFormat? dataFormat;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? correctAnswer;
 
@@ -135,19 +135,23 @@ class $SignaturepadAllOfBuilder
         SignaturepadAllOfBuilder {
   _$$SignaturepadAllOf? _$v;
 
-  num? _signatureWidth;
-  num? get signatureWidth => _$this._signatureWidth;
-  set signatureWidth(covariant num? signatureWidth) =>
+  SurveyLogoWidthBuilder? _signatureWidth;
+  SurveyLogoWidthBuilder get signatureWidth =>
+      _$this._signatureWidth ??= new SurveyLogoWidthBuilder();
+  set signatureWidth(covariant SurveyLogoWidthBuilder? signatureWidth) =>
       _$this._signatureWidth = signatureWidth;
 
-  num? _signatureHeight;
-  num? get signatureHeight => _$this._signatureHeight;
-  set signatureHeight(covariant num? signatureHeight) =>
+  SurveyLogoWidthBuilder? _signatureHeight;
+  SurveyLogoWidthBuilder get signatureHeight =>
+      _$this._signatureHeight ??= new SurveyLogoWidthBuilder();
+  set signatureHeight(covariant SurveyLogoWidthBuilder? signatureHeight) =>
       _$this._signatureHeight = signatureHeight;
 
-  num? _height;
-  num? get height => _$this._height;
-  set height(covariant num? height) => _$this._height = height;
+  SurveyLogoWidthBuilder? _height;
+  SurveyLogoWidthBuilder get height =>
+      _$this._height ??= new SurveyLogoWidthBuilder();
+  set height(covariant SurveyLogoWidthBuilder? height) =>
+      _$this._height = height;
 
   bool? _allowClear;
   bool? get allowClear => _$this._allowClear;
@@ -167,9 +171,9 @@ class $SignaturepadAllOfBuilder
   set dataFormat(covariant SignaturepadDataFormat? dataFormat) =>
       _$this._dataFormat = dataFormat;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _correctAnswer;
@@ -184,9 +188,9 @@ class $SignaturepadAllOfBuilder
   $SignaturepadAllOfBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _signatureWidth = $v.signatureWidth;
-      _signatureHeight = $v.signatureHeight;
-      _height = $v.height;
+      _signatureWidth = $v.signatureWidth?.toBuilder();
+      _signatureHeight = $v.signatureHeight?.toBuilder();
+      _height = $v.height?.toBuilder();
       _allowClear = $v.allowClear;
       _penColor = $v.penColor;
       _backgroundColor = $v.backgroundColor;
@@ -213,17 +217,34 @@ class $SignaturepadAllOfBuilder
   $SignaturepadAllOf build() => _build();
 
   _$$SignaturepadAllOf _build() {
-    final _$result = _$v ??
-        new _$$SignaturepadAllOf._(
-            signatureWidth: signatureWidth,
-            signatureHeight: signatureHeight,
-            height: height,
-            allowClear: allowClear,
-            penColor: penColor,
-            backgroundColor: backgroundColor,
-            dataFormat: dataFormat,
-            defaultValue: defaultValue,
-            correctAnswer: correctAnswer);
+    _$$SignaturepadAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$SignaturepadAllOf._(
+              signatureWidth: _signatureWidth?.build(),
+              signatureHeight: _signatureHeight?.build(),
+              height: _height?.build(),
+              allowClear: allowClear,
+              penColor: penColor,
+              backgroundColor: backgroundColor,
+              dataFormat: dataFormat,
+              defaultValue: defaultValue,
+              correctAnswer: correctAnswer);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'signatureWidth';
+        _signatureWidth?.build();
+        _$failedField = 'signatureHeight';
+        _signatureHeight?.build();
+        _$failedField = 'height';
+        _height?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$SignaturepadAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

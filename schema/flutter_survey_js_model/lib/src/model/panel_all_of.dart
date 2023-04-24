@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/panel_indent.dart';
 import 'package:flutter_survey_js_model/src/model/panel_inner_indent.dart';
 import 'package:flutter_survey_js_model/src/model/panel_show_question_numbers.dart';
@@ -45,13 +46,13 @@ abstract class PanelAllOf  {
   bool? get startWithNewLine;
 
   @BuiltValueField(wireName: r'width')
-  String? get width;
+  SurveyLogoWidth? get width;
 
   @BuiltValueField(wireName: r'minWidth')
-  String? get minWidth;
+  SurveyLogoWidth? get minWidth;
 
   @BuiltValueField(wireName: r'maxWidth')
-  String? get maxWidth;
+  SurveyLogoWidth? get maxWidth;
 
   @BuiltValueField(wireName: r'innerIndent')
   PanelInnerIndent? get innerIndent;
@@ -125,21 +126,21 @@ class _$PanelAllOfSerializer implements PrimitiveSerializer<PanelAllOf> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.minWidth != null) {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.innerIndent != null) {
@@ -285,23 +286,23 @@ class _$$PanelAllOfSerializer implements PrimitiveSerializer<$PanelAllOf> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.width = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.minWidth.replace(valueDes);
           break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.maxWidth.replace(valueDes);
           break;
         case r'innerIndent':
           final valueDes = serializers.deserialize(

@@ -8,14 +8,16 @@ import 'package:flutter_survey_js_model/src/model/rating_rate_display_mode.dart'
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/rating_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/rating_auto_generate.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -125,7 +127,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.validators != null) {
@@ -258,7 +260,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.enableIf != null) {
@@ -307,7 +309,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'rateValues';
       yield serializers.serialize(
         object.rateValues,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
       );
     }
     if (object.requiredIf != null) {
@@ -328,7 +330,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.readOnly != null) {
@@ -384,7 +386,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.rateMax != null) {
@@ -455,8 +457,9 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'validators':
@@ -588,9 +591,9 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.maxWidth.replace(valueDes);
           break;
         case r'enableIf':
           final valueDes = serializers.deserialize(
@@ -637,8 +640,8 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'rateValues':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownAllOfRowsInner)]),
+          ) as BuiltList<MatrixdropdownAllOfRowsInner>;
           result.rateValues.replace(valueDes);
           break;
         case r'requiredIf':
@@ -658,9 +661,9 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
           final valueDes = serializers.deserialize(
@@ -714,9 +717,9 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.width = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         case r'rateMax':
           final valueDes = serializers.deserialize(

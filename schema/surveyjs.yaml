@@ -27,9 +27,13 @@ components:
         logo:
           type: string
         logoWidth:
-          type: string
+          oneOf:
+            - type: string
+            - type: number
         logoHeight:
-          type: string
+          oneOf:
+            - type: string
+            - type: number
         logoFit:
           $ref: "#/components/schemas/surveyLogoFit"
         logoPosition:
@@ -203,7 +207,9 @@ components:
         widthMode:
           $ref: "#/components/schemas/surveyWidthMode"
         width:
-          type: string
+          oneOf:
+            - type: string
+            - type: number
         backgroundImage:
           type: string
         backgroundOpacity:
@@ -269,11 +275,17 @@ components:
             visibleIf:
               type: string
             width:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             minWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             maxWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             startWithNewLine:
               type: boolean
             indent:
@@ -295,7 +307,7 @@ components:
             enableIf:
               type: string
             defaultValue:
-              type: string
+              $ref: "#/components/schemas/anyvalue"
             defaultValueExpression:
               type: string
             correctAnswer:
@@ -310,7 +322,7 @@ components:
               type: string
             readOnly:
               type: string
-            validators: &a2
+            validators: &a3
               type: array
               items:
                 anyOf:
@@ -395,7 +407,7 @@ components:
               type: string
             choicesFromQuestion:
               type: string
-            choices:
+            choices: &a2
               type: array
               items:
                 anyOf:
@@ -437,7 +449,7 @@ components:
       type: object
       properties:
         value:
-          type: string
+          $ref: "#/components/schemas/anyvalue"
         text:
           type: string
         visibleIf:
@@ -555,31 +567,36 @@ components:
             imageFit:
               $ref: "#/components/schemas/imagepickerImageFit"
             imageHeight:
-              type: number
+              oneOf:
+                - type: string
+                - type: number
             imageWidth:
-              type: number
+              oneOf:
+                - type: string
+                - type: number
             minImageWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             minImageHeight:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             maxImageWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             maxImageHeight:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             showLabel:
               type: boolean
             colCount:
               $ref: "#/components/schemas/checkboxbaseColCount"
             multiSelect:
               type: boolean
-            choices:
-              type: array
-              items:
-                anyOf:
-                  - $ref: "#/components/schemas/itemvalue"
-                  - $ref: "#/components/schemas/imageitemvalue"
-                  - $ref: "#/components/schemas/buttongroupitemvalue"
-                  - $ref: "#/components/schemas/anyvalue"
+            choices: *a2
     imageitemvalue:
       type: object
       allOf:
@@ -592,14 +609,7 @@ components:
       allOf:
         - $ref: "#/components/schemas/checkboxbase"
         - properties:
-            choices:
-              type: array
-              items:
-                anyOf:
-                  - $ref: "#/components/schemas/itemvalue"
-                  - $ref: "#/components/schemas/imageitemvalue"
-                  - $ref: "#/components/schemas/buttongroupitemvalue"
-                  - $ref: "#/components/schemas/anyvalue"
+            choices: *a2
     buttongroupitemvalue:
       type: object
       allOf:
@@ -652,7 +662,9 @@ components:
             rowsVisibleIf:
               type: string
             columnMinWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             showHeader:
               type: boolean
             verticalAlign:
@@ -676,14 +688,7 @@ components:
               $ref: "#/components/schemas/matrixdropdownbaseDetailPanelMode"
             horizontalScroll:
               type: boolean
-            choices:
-              type: array
-              items:
-                anyOf:
-                  - $ref: "#/components/schemas/itemvalue"
-                  - $ref: "#/components/schemas/imageitemvalue"
-                  - $ref: "#/components/schemas/buttongroupitemvalue"
-                  - $ref: "#/components/schemas/anyvalue"
+            choices: *a2
             placeholder:
               type: string
             keyDuplicationError:
@@ -693,7 +698,9 @@ components:
             columnColCount:
               $ref: "#/components/schemas/matrixdropdownbaseColumnColCount"
             columnMinWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             allowAdaptiveActions:
               type: boolean
     matrixdropdowncolumn:
@@ -716,9 +723,13 @@ components:
         readOnly:
           type: boolean
         minWidth:
-          type: string
+          oneOf:
+            - type: string
+            - type: number
         width:
-          type: string
+          oneOf:
+            - type: string
+            - type: number
         visibleIf:
           type: string
         enableIf:
@@ -727,7 +738,7 @@ components:
           type: string
         showInMultipleColumns:
           type: boolean
-        validators: *a2
+        validators: *a3
         totalType:
           $ref: "#/components/schemas/matrixdropdowncolumnTotalType"
         totalExpression:
@@ -749,14 +760,18 @@ components:
       allOf:
         - $ref: "#/components/schemas/matrixdropdownbase"
         - properties:
-            rows:
+            rows: &a4
               type: array
               items:
-                $ref: "#/components/schemas/itemvalue"
+                anyOf:
+                  - $ref: "#/components/schemas/itemvalue"
+                  - $ref: "#/components/schemas/anyvalue"
             rowsVisibleIf:
               type: string
             rowTitleWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             totalText:
               type: string
             hideIfRowsEmpty:
@@ -808,17 +823,13 @@ components:
         - $ref: "#/components/schemas/matrixbase"
         - properties:
             rowTitleWidth:
-              type: string
-            columns:
-              type: array
-              items:
-                $ref: "#/components/schemas/itemvalue"
-            rows:
-              type: array
-              items:
-                $ref: "#/components/schemas/itemvalue"
+              oneOf:
+                - type: string
+                - type: number
+            columns: *a4
+            rows: *a4
             cells:
-              type: string
+              $ref: "#/components/schemas/anyvalue"
             rowsOrder:
               $ref: "#/components/schemas/matrixRowsOrder"
             isAllRowRequired:
@@ -855,7 +866,7 @@ components:
             defaultValueExpression:
               type: string
             defaultValue:
-              type: string
+              $ref: "#/components/schemas/anyvalue"
             correctAnswer:
               type: string
             requiredIf:
@@ -951,7 +962,7 @@ components:
           type: number
         requiredErrorText:
           type: string
-        validators: *a2
+        validators: *a3
     nonvalue:
       type: object
       allOf:
@@ -966,7 +977,7 @@ components:
             enableIf:
               type: string
             defaultValue:
-              type: string
+              $ref: "#/components/schemas/anyvalue"
             correctAnswer:
               type: string
             clearIfInvisible:
@@ -979,7 +990,7 @@ components:
               type: string
             requiredIf:
               type: string
-            validators: *a2
+            validators: *a3
             titleLocation:
               $ref: "#/components/schemas/questionTitleLocation"
             showCommentArea:
@@ -1007,9 +1018,13 @@ components:
             imageFit:
               $ref: "#/components/schemas/imageImageFit"
             imageHeight:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             imageWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
     empty:
       type: object
       allOf:
@@ -1029,9 +1044,13 @@ components:
             allowImagesPreview:
               type: boolean
             imageHeight:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             imageWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             acceptedTypes:
               type: string
             storeDataAsText:
@@ -1041,10 +1060,10 @@ components:
             maxSize:
               type: number
             defaultValue:
-              type: string
+              $ref: "#/components/schemas/anyvalue"
             correctAnswer:
               type: string
-            validators: *a2
+            validators: *a3
             needConfirmRemoveFile:
               type: boolean
     rating:
@@ -1060,10 +1079,7 @@ components:
               $ref: "#/components/schemas/ratingAutoGenerate"
             rateCount:
               type: number
-            rateValues:
-              type: array
-              items:
-                $ref: "#/components/schemas/itemvalue"
+            rateValues: *a4
             rateMin:
               type: number
             rateMax:
@@ -1103,11 +1119,17 @@ components:
         - $ref: "#/components/schemas/question"
         - properties:
             signatureWidth:
-              type: number
+              oneOf:
+                - type: string
+                - type: number
             signatureHeight:
-              type: number
+              oneOf:
+                - type: string
+                - type: number
             height:
-              type: number
+              oneOf:
+                - type: string
+                - type: number
             allowClear:
               type: boolean
             penColor:
@@ -1117,7 +1139,7 @@ components:
             dataFormat:
               $ref: "#/components/schemas/signaturepadDataFormat"
             defaultValue:
-              type: string
+              $ref: "#/components/schemas/anyvalue"
             correctAnswer:
               type: string
     paneldynamic:
@@ -1137,7 +1159,9 @@ components:
             templateDescription:
               type: string
             minWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             noEntriesText:
               type: string
             allowAddPanel:
@@ -1198,11 +1222,17 @@ components:
             startWithNewLine:
               type: boolean
             width:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             minWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             maxWidth:
-              type: string
+              oneOf:
+                - type: string
+                - type: number
             innerIndent:
               $ref: "#/components/schemas/panelInnerIndent"
             indent:
@@ -1571,7 +1601,7 @@ components:
         - 5
     dropdownAutocomplete:
       type: string
-      enum: &a3
+      enum: &a5
         - ""
         - name
         - honorific-prefix
@@ -2238,7 +2268,7 @@ components:
         - ZWL
     textInputType:
       type: string
-      enum: &a4
+      enum: &a6
         - color
         - date
         - datetime-local
@@ -2260,7 +2290,7 @@ components:
         - onTyping
     textAutocomplete:
       type: string
-      enum: *a3
+      enum: *a5
       x-enum-values:
         - numericValue: ""
           identifier: ""
@@ -2440,7 +2470,7 @@ components:
         - 5
     multipletextitemInputType:
       type: string
-      enum: *a4
+      enum: *a6
     imageContentMode:
       type: string
       enum:

@@ -18,8 +18,8 @@ abstract class MatrixbaseAllOfBuilder {
   String? get rowsVisibleIf;
   set rowsVisibleIf(String? rowsVisibleIf);
 
-  String? get columnMinWidth;
-  set columnMinWidth(String? columnMinWidth);
+  SurveyLogoWidthBuilder get columnMinWidth;
+  set columnMinWidth(SurveyLogoWidthBuilder? columnMinWidth);
 
   bool? get showHeader;
   set showHeader(bool? showHeader);
@@ -39,7 +39,7 @@ class _$$MatrixbaseAllOf extends $MatrixbaseAllOf {
   @override
   final String? rowsVisibleIf;
   @override
-  final String? columnMinWidth;
+  final SurveyLogoWidth? columnMinWidth;
   @override
   final bool? showHeader;
   @override
@@ -131,9 +131,10 @@ class $MatrixbaseAllOfBuilder
   set rowsVisibleIf(covariant String? rowsVisibleIf) =>
       _$this._rowsVisibleIf = rowsVisibleIf;
 
-  String? _columnMinWidth;
-  String? get columnMinWidth => _$this._columnMinWidth;
-  set columnMinWidth(covariant String? columnMinWidth) =>
+  SurveyLogoWidthBuilder? _columnMinWidth;
+  SurveyLogoWidthBuilder get columnMinWidth =>
+      _$this._columnMinWidth ??= new SurveyLogoWidthBuilder();
+  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth) =>
       _$this._columnMinWidth = columnMinWidth;
 
   bool? _showHeader;
@@ -160,7 +161,7 @@ class $MatrixbaseAllOfBuilder
       _showCommentArea = $v.showCommentArea;
       _columnsVisibleIf = $v.columnsVisibleIf;
       _rowsVisibleIf = $v.rowsVisibleIf;
-      _columnMinWidth = $v.columnMinWidth;
+      _columnMinWidth = $v.columnMinWidth?.toBuilder();
       _showHeader = $v.showHeader;
       _verticalAlign = $v.verticalAlign;
       _alternateRows = $v.alternateRows;
@@ -184,15 +185,28 @@ class $MatrixbaseAllOfBuilder
   $MatrixbaseAllOf build() => _build();
 
   _$$MatrixbaseAllOf _build() {
-    final _$result = _$v ??
-        new _$$MatrixbaseAllOf._(
-            showCommentArea: showCommentArea,
-            columnsVisibleIf: columnsVisibleIf,
-            rowsVisibleIf: rowsVisibleIf,
-            columnMinWidth: columnMinWidth,
-            showHeader: showHeader,
-            verticalAlign: verticalAlign,
-            alternateRows: alternateRows);
+    _$$MatrixbaseAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$MatrixbaseAllOf._(
+              showCommentArea: showCommentArea,
+              columnsVisibleIf: columnsVisibleIf,
+              rowsVisibleIf: rowsVisibleIf,
+              columnMinWidth: _columnMinWidth?.build(),
+              showHeader: showHeader,
+              verticalAlign: verticalAlign,
+              alternateRows: alternateRows);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'columnMinWidth';
+        _columnMinWidth?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$MatrixbaseAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

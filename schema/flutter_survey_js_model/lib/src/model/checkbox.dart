@@ -12,11 +12,13 @@ import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inn
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase.dart';
 import 'package:flutter_survey_js_model/src/model/choices_restful.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase_col_count.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -123,7 +125,7 @@ class _$CheckboxSerializer implements PrimitiveSerializer<Checkbox> {
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.validators != null) {
@@ -228,7 +230,7 @@ class _$CheckboxSerializer implements PrimitiveSerializer<Checkbox> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.isRequired != null) {
@@ -459,14 +461,14 @@ class _$CheckboxSerializer implements PrimitiveSerializer<Checkbox> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.width != null) {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.colCount != null) {
@@ -570,8 +572,9 @@ class _$$CheckboxSerializer implements PrimitiveSerializer<$Checkbox> {
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'validators':
@@ -675,9 +678,9 @@ class _$$CheckboxSerializer implements PrimitiveSerializer<$Checkbox> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.maxWidth.replace(valueDes);
           break;
         case r'isRequired':
           final valueDes = serializers.deserialize(
@@ -906,16 +909,16 @@ class _$$CheckboxSerializer implements PrimitiveSerializer<$Checkbox> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.minWidth.replace(valueDes);
           break;
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.width = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         case r'colCount':
           final valueDes = serializers.deserialize(

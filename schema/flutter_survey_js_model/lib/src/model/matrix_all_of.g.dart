@@ -9,17 +9,17 @@ part of 'matrix_all_of.dart';
 abstract class MatrixAllOfBuilder {
   void replace(MatrixAllOf other);
   void update(void Function(MatrixAllOfBuilder) updates);
-  String? get rowTitleWidth;
-  set rowTitleWidth(String? rowTitleWidth);
+  SurveyLogoWidthBuilder get rowTitleWidth;
+  set rowTitleWidth(SurveyLogoWidthBuilder? rowTitleWidth);
 
-  ListBuilder<Itemvalue> get columns;
-  set columns(ListBuilder<Itemvalue>? columns);
+  ListBuilder<MatrixdropdownAllOfRowsInner> get columns;
+  set columns(ListBuilder<MatrixdropdownAllOfRowsInner>? columns);
 
-  ListBuilder<Itemvalue> get rows;
-  set rows(ListBuilder<Itemvalue>? rows);
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rows;
+  set rows(ListBuilder<MatrixdropdownAllOfRowsInner>? rows);
 
-  String? get cells;
-  set cells(String? cells);
+  JsonObject? get cells;
+  set cells(JsonObject? cells);
 
   MatrixRowsOrder? get rowsOrder;
   set rowsOrder(MatrixRowsOrder? rowsOrder);
@@ -33,13 +33,13 @@ abstract class MatrixAllOfBuilder {
 
 class _$$MatrixAllOf extends $MatrixAllOf {
   @override
-  final String? rowTitleWidth;
+  final SurveyLogoWidth? rowTitleWidth;
   @override
-  final BuiltList<Itemvalue>? columns;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? columns;
   @override
-  final BuiltList<Itemvalue>? rows;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? rows;
   @override
-  final String? cells;
+  final JsonObject? cells;
   @override
   final MatrixRowsOrder? rowsOrder;
   @override
@@ -112,25 +112,27 @@ class $MatrixAllOfBuilder
     implements Builder<$MatrixAllOf, $MatrixAllOfBuilder>, MatrixAllOfBuilder {
   _$$MatrixAllOf? _$v;
 
-  String? _rowTitleWidth;
-  String? get rowTitleWidth => _$this._rowTitleWidth;
-  set rowTitleWidth(covariant String? rowTitleWidth) =>
+  SurveyLogoWidthBuilder? _rowTitleWidth;
+  SurveyLogoWidthBuilder get rowTitleWidth =>
+      _$this._rowTitleWidth ??= new SurveyLogoWidthBuilder();
+  set rowTitleWidth(covariant SurveyLogoWidthBuilder? rowTitleWidth) =>
       _$this._rowTitleWidth = rowTitleWidth;
 
-  ListBuilder<Itemvalue>? _columns;
-  ListBuilder<Itemvalue> get columns =>
-      _$this._columns ??= new ListBuilder<Itemvalue>();
-  set columns(covariant ListBuilder<Itemvalue>? columns) =>
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _columns;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get columns =>
+      _$this._columns ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set columns(covariant ListBuilder<MatrixdropdownAllOfRowsInner>? columns) =>
       _$this._columns = columns;
 
-  ListBuilder<Itemvalue>? _rows;
-  ListBuilder<Itemvalue> get rows =>
-      _$this._rows ??= new ListBuilder<Itemvalue>();
-  set rows(covariant ListBuilder<Itemvalue>? rows) => _$this._rows = rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _rows;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rows =>
+      _$this._rows ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set rows(covariant ListBuilder<MatrixdropdownAllOfRowsInner>? rows) =>
+      _$this._rows = rows;
 
-  String? _cells;
-  String? get cells => _$this._cells;
-  set cells(covariant String? cells) => _$this._cells = cells;
+  JsonObject? _cells;
+  JsonObject? get cells => _$this._cells;
+  set cells(covariant JsonObject? cells) => _$this._cells = cells;
 
   MatrixRowsOrder? _rowsOrder;
   MatrixRowsOrder? get rowsOrder => _$this._rowsOrder;
@@ -154,7 +156,7 @@ class $MatrixAllOfBuilder
   $MatrixAllOfBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _rowTitleWidth = $v.rowTitleWidth;
+      _rowTitleWidth = $v.rowTitleWidth?.toBuilder();
       _columns = $v.columns?.toBuilder();
       _rows = $v.rows?.toBuilder();
       _cells = $v.cells;
@@ -185,7 +187,7 @@ class $MatrixAllOfBuilder
     try {
       _$result = _$v ??
           new _$$MatrixAllOf._(
-              rowTitleWidth: rowTitleWidth,
+              rowTitleWidth: _rowTitleWidth?.build(),
               columns: _columns?.build(),
               rows: _rows?.build(),
               cells: cells,
@@ -195,6 +197,8 @@ class $MatrixAllOfBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'rowTitleWidth';
+        _rowTitleWidth?.build();
         _$failedField = 'columns';
         _columns?.build();
         _$failedField = 'rows';

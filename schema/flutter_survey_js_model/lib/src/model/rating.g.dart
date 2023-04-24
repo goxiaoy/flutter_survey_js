@@ -20,11 +20,11 @@ class _$Rating extends Rating {
   @override
   final String? visibleIf;
   @override
-  final String? width;
+  final SurveyLogoWidth? width;
   @override
-  final String? minWidth;
+  final SurveyLogoWidth? minWidth;
   @override
-  final String? maxWidth;
+  final SurveyLogoWidth? maxWidth;
   @override
   final bool? startWithNewLine;
   @override
@@ -46,7 +46,7 @@ class _$Rating extends Rating {
   @override
   final String? enableIf;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final String? defaultValueExpression;
   @override
@@ -80,7 +80,7 @@ class _$Rating extends Rating {
   @override
   final num? rateCount;
   @override
-  final BuiltList<Itemvalue>? rateValues;
+  final BuiltList<MatrixdropdownAllOfRowsInner>? rateValues;
   @override
   final num? rateMin;
   @override
@@ -343,17 +343,22 @@ class RatingBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  String? _width;
-  String? get width => _$this._width;
-  set width(covariant String? width) => _$this._width = width;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _minWidth;
-  String? get minWidth => _$this._minWidth;
-  set minWidth(covariant String? minWidth) => _$this._minWidth = minWidth;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _maxWidth;
-  String? get maxWidth => _$this._maxWidth;
-  set maxWidth(covariant String? maxWidth) => _$this._maxWidth = maxWidth;
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
 
   bool? _startWithNewLine;
   bool? get startWithNewLine => _$this._startWithNewLine;
@@ -401,9 +406,9 @@ class RatingBuilder
   String? get enableIf => _$this._enableIf;
   set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(covariant String? defaultValue) =>
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
   String? _defaultValueExpression;
@@ -483,10 +488,11 @@ class RatingBuilder
   num? get rateCount => _$this._rateCount;
   set rateCount(covariant num? rateCount) => _$this._rateCount = rateCount;
 
-  ListBuilder<Itemvalue>? _rateValues;
-  ListBuilder<Itemvalue> get rateValues =>
-      _$this._rateValues ??= new ListBuilder<Itemvalue>();
-  set rateValues(covariant ListBuilder<Itemvalue>? rateValues) =>
+  ListBuilder<MatrixdropdownAllOfRowsInner>? _rateValues;
+  ListBuilder<MatrixdropdownAllOfRowsInner> get rateValues =>
+      _$this._rateValues ??= new ListBuilder<MatrixdropdownAllOfRowsInner>();
+  set rateValues(
+          covariant ListBuilder<MatrixdropdownAllOfRowsInner>? rateValues) =>
       _$this._rateValues = rateValues;
 
   num? _rateMin;
@@ -537,9 +543,9 @@ class RatingBuilder
       _visible = $v.visible;
       _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
       _visibleIf = $v.visibleIf;
-      _width = $v.width;
-      _minWidth = $v.minWidth;
-      _maxWidth = $v.maxWidth;
+      _width = $v.width?.toBuilder();
+      _minWidth = $v.minWidth?.toBuilder();
+      _maxWidth = $v.maxWidth?.toBuilder();
       _startWithNewLine = $v.startWithNewLine;
       _indent = $v.indent;
       _page = $v.page;
@@ -607,9 +613,9 @@ class RatingBuilder
               visible: visible,
               useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
               visibleIf: visibleIf,
-              width: width,
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+              width: _width?.build(),
+              minWidth: _minWidth?.build(),
+              maxWidth: _maxWidth?.build(),
               startWithNewLine: startWithNewLine,
               indent: indent,
               page: page,
@@ -649,6 +655,13 @@ class RatingBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'width';
+        _width?.build();
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
+
         _$failedField = 'validators';
         _validators?.build();
 

@@ -39,8 +39,8 @@ abstract class MatrixdropdownbaseAllOfBuilder {
   MatrixdropdownbaseColumnColCount? get columnColCount;
   set columnColCount(MatrixdropdownbaseColumnColCount? columnColCount);
 
-  String? get columnMinWidth;
-  set columnMinWidth(String? columnMinWidth);
+  SurveyLogoWidthBuilder get columnMinWidth;
+  set columnMinWidth(SurveyLogoWidthBuilder? columnMinWidth);
 
   bool? get allowAdaptiveActions;
   set allowAdaptiveActions(bool? allowAdaptiveActions);
@@ -68,7 +68,7 @@ class _$$MatrixdropdownbaseAllOf extends $MatrixdropdownbaseAllOf {
   @override
   final MatrixdropdownbaseColumnColCount? columnColCount;
   @override
-  final String? columnMinWidth;
+  final SurveyLogoWidth? columnMinWidth;
   @override
   final bool? allowAdaptiveActions;
 
@@ -218,9 +218,10 @@ class $MatrixdropdownbaseAllOfBuilder
           covariant MatrixdropdownbaseColumnColCount? columnColCount) =>
       _$this._columnColCount = columnColCount;
 
-  String? _columnMinWidth;
-  String? get columnMinWidth => _$this._columnMinWidth;
-  set columnMinWidth(covariant String? columnMinWidth) =>
+  SurveyLogoWidthBuilder? _columnMinWidth;
+  SurveyLogoWidthBuilder get columnMinWidth =>
+      _$this._columnMinWidth ??= new SurveyLogoWidthBuilder();
+  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth) =>
       _$this._columnMinWidth = columnMinWidth;
 
   bool? _allowAdaptiveActions;
@@ -245,7 +246,7 @@ class $MatrixdropdownbaseAllOfBuilder
       _keyDuplicationError = $v.keyDuplicationError;
       _cellType = $v.cellType;
       _columnColCount = $v.columnColCount;
-      _columnMinWidth = $v.columnMinWidth;
+      _columnMinWidth = $v.columnMinWidth?.toBuilder();
       _allowAdaptiveActions = $v.allowAdaptiveActions;
       _$v = null;
     }
@@ -281,7 +282,7 @@ class $MatrixdropdownbaseAllOfBuilder
               keyDuplicationError: keyDuplicationError,
               cellType: cellType,
               columnColCount: columnColCount,
-              columnMinWidth: columnMinWidth,
+              columnMinWidth: _columnMinWidth?.build(),
               allowAdaptiveActions: allowAdaptiveActions);
     } catch (_) {
       late String _$failedField;
@@ -291,6 +292,9 @@ class $MatrixdropdownbaseAllOfBuilder
 
         _$failedField = 'choices';
         _choices?.build();
+
+        _$failedField = 'columnMinWidth';
+        _columnMinWidth?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'$MatrixdropdownbaseAllOf', _$failedField, e.toString());

@@ -3,7 +3,9 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/signaturepad_data_format.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -24,13 +26,13 @@ part 'signaturepad_all_of.g.dart';
 @BuiltValue(instantiable: false)
 abstract class SignaturepadAllOf  {
   @BuiltValueField(wireName: r'signatureWidth')
-  num? get signatureWidth;
+  SurveyLogoWidth? get signatureWidth;
 
   @BuiltValueField(wireName: r'signatureHeight')
-  num? get signatureHeight;
+  SurveyLogoWidth? get signatureHeight;
 
   @BuiltValueField(wireName: r'height')
-  num? get height;
+  SurveyLogoWidth? get height;
 
   @BuiltValueField(wireName: r'allowClear')
   bool? get allowClear;
@@ -46,7 +48,7 @@ abstract class SignaturepadAllOf  {
   // enum dataFormatEnum {  {"value":"","text":"PNG"},  {"value":"image/jpeg","text":"JPEG"},  {"value":"image/svg+xml","text":"SVG"},  };
 
   @BuiltValueField(wireName: r'defaultValue')
-  String? get defaultValue;
+  JsonObject? get defaultValue;
 
   @BuiltValueField(wireName: r'correctAnswer')
   String? get correctAnswer;
@@ -71,21 +73,21 @@ class _$SignaturepadAllOfSerializer implements PrimitiveSerializer<SignaturepadA
       yield r'signatureWidth';
       yield serializers.serialize(
         object.signatureWidth,
-        specifiedType: const FullType(num),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.signatureHeight != null) {
       yield r'signatureHeight';
       yield serializers.serialize(
         object.signatureHeight,
-        specifiedType: const FullType(num),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.height != null) {
       yield r'height';
       yield serializers.serialize(
         object.height,
-        specifiedType: const FullType(num),
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.allowClear != null) {
@@ -120,7 +122,7 @@ class _$SignaturepadAllOfSerializer implements PrimitiveSerializer<SignaturepadA
       yield r'defaultValue';
       yield serializers.serialize(
         object.defaultValue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.correctAnswer != null) {
@@ -196,23 +198,23 @@ class _$$SignaturepadAllOfSerializer implements PrimitiveSerializer<$Signaturepa
         case r'signatureWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.signatureWidth = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.signatureWidth.replace(valueDes);
           break;
         case r'signatureHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.signatureHeight = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.signatureHeight.replace(valueDes);
           break;
         case r'height':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
-          result.height = valueDes;
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.height.replace(valueDes);
           break;
         case r'allowClear':
           final valueDes = serializers.deserialize(
@@ -245,8 +247,9 @@ class _$$SignaturepadAllOfSerializer implements PrimitiveSerializer<$Signaturepa
         case r'defaultValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.defaultValue = valueDes;
           break;
         case r'correctAnswer':
