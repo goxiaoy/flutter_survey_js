@@ -12,8 +12,8 @@ abstract class PaneldynamicAllOfBuilder {
   String? get showCommentArea;
   set showCommentArea(String? showCommentArea);
 
-  ListBuilder<ElementBase> get templateElements;
-  set templateElements(ListBuilder<ElementBase>? templateElements);
+  ListBuilder<SurveyQuestionsInner> get templateElements;
+  set templateElements(ListBuilder<SurveyQuestionsInner>? templateElements);
 
   String? get templateTitle;
   set templateTitle(String? templateTitle);
@@ -103,7 +103,7 @@ class _$$PaneldynamicAllOf extends $PaneldynamicAllOf {
   @override
   final String? showCommentArea;
   @override
-  final BuiltList<ElementBase>? templateElements;
+  final BuiltList<SurveyQuestionsInner>? templateElements;
   @override
   final String? templateTitle;
   @override
@@ -322,10 +322,11 @@ class $PaneldynamicAllOfBuilder
   set showCommentArea(covariant String? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
-  ListBuilder<ElementBase>? _templateElements;
-  ListBuilder<ElementBase> get templateElements =>
-      _$this._templateElements ??= new ListBuilder<ElementBase>();
-  set templateElements(covariant ListBuilder<ElementBase>? templateElements) =>
+  ListBuilder<SurveyQuestionsInner>? _templateElements;
+  ListBuilder<SurveyQuestionsInner> get templateElements =>
+      _$this._templateElements ??= new ListBuilder<SurveyQuestionsInner>();
+  set templateElements(
+          covariant ListBuilder<SurveyQuestionsInner>? templateElements) =>
       _$this._templateElements = templateElements;
 
   String? _templateTitle;

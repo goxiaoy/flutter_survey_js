@@ -76,7 +76,7 @@ class _$Expression extends Expression {
   @override
   final QuestionClearIfInvisible? clearIfInvisible;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -448,9 +448,11 @@ class ExpressionBuilder
   set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible) =>
       _$this._clearIfInvisible = clearIfInvisible;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -517,7 +519,7 @@ class ExpressionBuilder
       _hideNumber = $v.hideNumber;
       _valueName = $v.valueName;
       _clearIfInvisible = $v.clearIfInvisible;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _renderAs = $v.renderAs;
       _showCommentArea = $v.showCommentArea;
@@ -544,48 +546,61 @@ class ExpressionBuilder
   Expression build() => _build();
 
   _$Expression _build() {
-    final _$result = _$v ??
-        new _$Expression._(
-            expression: expression,
-            format: format,
-            displayStyle: displayStyle,
-            currency: currency,
-            maximumFractionDigits: maximumFractionDigits,
-            minimumFractionDigits: minimumFractionDigits,
-            useGrouping: useGrouping,
-            enableIf: enableIf,
-            isRequired: isRequired,
-            readOnly: readOnly,
-            requiredErrorText: requiredErrorText,
-            defaultValueExpression: defaultValueExpression,
-            defaultValue: defaultValue,
-            correctAnswer: correctAnswer,
-            requiredIf: requiredIf,
-            type: type,
-            name: name,
-            state: state,
-            visible: visible,
-            useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
-            visibleIf: visibleIf,
-            width: width,
-            minWidth: minWidth,
-            maxWidth: maxWidth,
-            startWithNewLine: startWithNewLine,
-            indent: indent,
-            page: page,
-            title: title,
-            titleLocation: titleLocation,
-            description: description,
-            descriptionLocation: descriptionLocation,
-            hideNumber: hideNumber,
-            valueName: valueName,
-            clearIfInvisible: clearIfInvisible,
-            validators: validators,
-            bindings: bindings,
-            renderAs: renderAs,
-            showCommentArea: showCommentArea,
-            commentText: commentText,
-            commentPlaceholder: commentPlaceholder);
+    _$Expression _$result;
+    try {
+      _$result = _$v ??
+          new _$Expression._(
+              expression: expression,
+              format: format,
+              displayStyle: displayStyle,
+              currency: currency,
+              maximumFractionDigits: maximumFractionDigits,
+              minimumFractionDigits: minimumFractionDigits,
+              useGrouping: useGrouping,
+              enableIf: enableIf,
+              isRequired: isRequired,
+              readOnly: readOnly,
+              requiredErrorText: requiredErrorText,
+              defaultValueExpression: defaultValueExpression,
+              defaultValue: defaultValue,
+              correctAnswer: correctAnswer,
+              requiredIf: requiredIf,
+              type: type,
+              name: name,
+              state: state,
+              visible: visible,
+              useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
+              visibleIf: visibleIf,
+              width: width,
+              minWidth: minWidth,
+              maxWidth: maxWidth,
+              startWithNewLine: startWithNewLine,
+              indent: indent,
+              page: page,
+              title: title,
+              titleLocation: titleLocation,
+              description: description,
+              descriptionLocation: descriptionLocation,
+              hideNumber: hideNumber,
+              valueName: valueName,
+              clearIfInvisible: clearIfInvisible,
+              validators: _validators?.build(),
+              bindings: bindings,
+              renderAs: renderAs,
+              showCommentArea: showCommentArea,
+              commentText: commentText,
+              commentPlaceholder: commentPlaceholder);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Expression', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

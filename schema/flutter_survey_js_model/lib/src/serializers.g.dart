@@ -9,6 +9,7 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add($AnswercountvalidatorAllOf.serializer)
       ..add($BooleanAllOf.serializer)
+      ..add($ButtongroupAllOf.serializer)
       ..add($ButtongroupitemvalueAllOf.serializer)
       ..add($Checkbox.serializer)
       ..add($CheckboxAllOf.serializer)
@@ -132,6 +133,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PaneldynamicShowQuestionNumbers.serializer)
       ..add(PaneldynamicTabAlign.serializer)
       ..add(PaneldynamicTemplateTitleLocation.serializer)
+      ..add(QuestionAllOfValidatorsInner.serializer)
       ..add(QuestionClearIfInvisible.serializer)
       ..add(QuestionDescriptionLocation.serializer)
       ..add(QuestionIndent.serializer)
@@ -145,6 +147,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(RatingRateDisplayMode.serializer)
       ..add(Regexvalidator.serializer)
       ..add(Runexpressiontrigger.serializer)
+      ..add(SelectbaseAllOfChoicesInner.serializer)
       ..add(SelectbaseChoicesFromQuestionMode.serializer)
       ..add(SelectbaseChoicesOrder.serializer)
       ..add(SelectbaseStoreOthersAsComment.serializer)
@@ -163,17 +166,19 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SurveyQuestionDescriptionLocation.serializer)
       ..add(SurveyQuestionErrorLocation.serializer)
       ..add(SurveyQuestionTitleLocation.serializer)
+      ..add(SurveyQuestionsInner.serializer)
       ..add(SurveyQuestionsOnPageMode.serializer)
       ..add(SurveyQuestionsOrder.serializer)
       ..add(SurveyShowNavigationButtons.serializer)
       ..add(SurveyShowPreviewBeforeComplete.serializer)
       ..add(SurveyShowProgressBar.serializer)
       ..add(SurveyShowQuestionNumbers.serializer)
-      ..add(SurveyShowQuestionNumbersOneOf0.serializer)
+      ..add(SurveyShowQuestionNumbersOneOf.serializer)
       ..add(SurveyShowTimerPanel.serializer)
       ..add(SurveyShowTimerPanelMode.serializer)
       ..add(SurveyTextUpdateMode.serializer)
       ..add(SurveyTocLocation.serializer)
+      ..add(SurveyTriggers.serializer)
       ..add(SurveyWidthMode.serializer)
       ..add(Tagbox.serializer)
       ..add(Text.serializer)
@@ -184,32 +189,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Urlconditionitem.serializer)
       ..add(Visibletrigger.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ElementBase)]),
-          () => new ListBuilder<ElementBase>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ElementBase)]),
-          () => new ListBuilder<ElementBase>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ElementBase)]),
-          () => new ListBuilder<ElementBase>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ElementBase)]),
-          () => new ListBuilder<ElementBase>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ElementBase)]),
-          () => new ListBuilder<ElementBase>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ElementBase)]),
-          () => new ListBuilder<ElementBase>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Htmlconditionitem)]),
           () => new ListBuilder<Htmlconditionitem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Page)]),
           () => new ListBuilder<Page>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ElementBase)]),
-          () => new ListBuilder<ElementBase>())
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Calculatedvalue)]),
           () => new ListBuilder<Calculatedvalue>())
@@ -229,72 +217,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(Itemvalue)]),
           () => new ListBuilder<Itemvalue>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Itemvalue)]),
           () => new ListBuilder<Itemvalue>())
       ..addBuilderFactory(
@@ -302,44 +224,292 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<Itemvalue>())
       ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(Matrixdropdowncolumn)]),
-          () => new ListBuilder<Matrixdropdowncolumn>())
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Itemvalue)]),
           () => new ListBuilder<Itemvalue>())
       ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(Matrixdropdowncolumn)]),
-          () => new ListBuilder<Matrixdropdowncolumn>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(Matrixdropdowncolumn)]),
           () => new ListBuilder<Matrixdropdowncolumn>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(Matrixdropdowncolumn)]),
           () => new ListBuilder<Matrixdropdowncolumn>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Itemvalue)]),
-          () => new ListBuilder<Itemvalue>())
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Multipletextitem)]),
           () => new ListBuilder<Multipletextitem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Multipletextitem)]),
           () => new ListBuilder<Multipletextitem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Itemvalue)]),
+          () => new ListBuilder<Itemvalue>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(Matrixdropdowncolumn)]),
+          () => new ListBuilder<Matrixdropdowncolumn>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(Matrixdropdowncolumn)]),
+          () => new ListBuilder<Matrixdropdowncolumn>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
+          () => new ListBuilder<ChoicesRestful>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>()))
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SurveyQuestionsInner)]),
+          () => new ListBuilder<SurveyQuestionsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -87,8 +87,8 @@ abstract class QuestionAllOfBuilder {
   String? get readOnly;
   set readOnly(String? readOnly);
 
-  Surveyvalidator? get validators;
-  set validators(Surveyvalidator? validators);
+  ListBuilder<QuestionAllOfValidatorsInner> get validators;
+  set validators(ListBuilder<QuestionAllOfValidatorsInner>? validators);
 
   String? get bindings;
   set bindings(String? bindings);
@@ -160,7 +160,7 @@ class _$$QuestionAllOf extends $QuestionAllOf {
   @override
   final String? readOnly;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -462,9 +462,11 @@ class $QuestionAllOfBuilder
   String? get readOnly => _$this._readOnly;
   set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -523,7 +525,7 @@ class $QuestionAllOfBuilder
       _requiredIf = $v.requiredIf;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _renderAs = $v.renderAs;
       _showCommentArea = $v.showCommentArea;
@@ -549,40 +551,53 @@ class $QuestionAllOfBuilder
   $QuestionAllOf build() => _build();
 
   _$$QuestionAllOf _build() {
-    final _$result = _$v ??
-        new _$$QuestionAllOf._(
-            name: name,
-            state: state,
-            visible: visible,
-            useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
-            visibleIf: visibleIf,
-            width: width,
-            minWidth: minWidth,
-            maxWidth: maxWidth,
-            startWithNewLine: startWithNewLine,
-            indent: indent,
-            page: page,
-            title: title,
-            titleLocation: titleLocation,
-            description: description,
-            descriptionLocation: descriptionLocation,
-            hideNumber: hideNumber,
-            valueName: valueName,
-            enableIf: enableIf,
-            defaultValue: defaultValue,
-            defaultValueExpression: defaultValueExpression,
-            correctAnswer: correctAnswer,
-            clearIfInvisible: clearIfInvisible,
-            isRequired: isRequired,
-            requiredIf: requiredIf,
-            requiredErrorText: requiredErrorText,
-            readOnly: readOnly,
-            validators: validators,
-            bindings: bindings,
-            renderAs: renderAs,
-            showCommentArea: showCommentArea,
-            commentText: commentText,
-            commentPlaceholder: commentPlaceholder);
+    _$$QuestionAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$QuestionAllOf._(
+              name: name,
+              state: state,
+              visible: visible,
+              useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
+              visibleIf: visibleIf,
+              width: width,
+              minWidth: minWidth,
+              maxWidth: maxWidth,
+              startWithNewLine: startWithNewLine,
+              indent: indent,
+              page: page,
+              title: title,
+              titleLocation: titleLocation,
+              description: description,
+              descriptionLocation: descriptionLocation,
+              hideNumber: hideNumber,
+              valueName: valueName,
+              enableIf: enableIf,
+              defaultValue: defaultValue,
+              defaultValueExpression: defaultValueExpression,
+              correctAnswer: correctAnswer,
+              clearIfInvisible: clearIfInvisible,
+              isRequired: isRequired,
+              requiredIf: requiredIf,
+              requiredErrorText: requiredErrorText,
+              readOnly: readOnly,
+              validators: _validators?.build(),
+              bindings: bindings,
+              renderAs: renderAs,
+              showCommentArea: showCommentArea,
+              commentText: commentText,
+              commentPlaceholder: commentPlaceholder);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$QuestionAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

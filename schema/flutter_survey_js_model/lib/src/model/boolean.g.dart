@@ -76,7 +76,7 @@ class _$Boolean extends Boolean {
   @override
   final String? readOnly;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -433,9 +433,11 @@ class BooleanBuilder
   String? get readOnly => _$this._readOnly;
   set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -493,7 +495,7 @@ class BooleanBuilder
       _requiredIf = $v.requiredIf;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _commentText = $v.commentText;
       _commentPlaceholder = $v.commentPlaceholder;
@@ -518,46 +520,59 @@ class BooleanBuilder
   Boolean build() => _build();
 
   _$Boolean _build() {
-    final _$result = _$v ??
-        new _$Boolean._(
-            showCommentArea: showCommentArea,
-            label: label,
-            labelTrue: labelTrue,
-            labelFalse: labelFalse,
-            valueTrue: valueTrue,
-            valueFalse: valueFalse,
-            renderAs: renderAs,
-            type: type,
-            name: name,
-            state: state,
-            visible: visible,
-            useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
-            visibleIf: visibleIf,
-            width: width,
-            minWidth: minWidth,
-            maxWidth: maxWidth,
-            startWithNewLine: startWithNewLine,
-            indent: indent,
-            page: page,
-            title: title,
-            titleLocation: titleLocation,
-            description: description,
-            descriptionLocation: descriptionLocation,
-            hideNumber: hideNumber,
-            valueName: valueName,
-            enableIf: enableIf,
-            defaultValue: defaultValue,
-            defaultValueExpression: defaultValueExpression,
-            correctAnswer: correctAnswer,
-            clearIfInvisible: clearIfInvisible,
-            isRequired: isRequired,
-            requiredIf: requiredIf,
-            requiredErrorText: requiredErrorText,
-            readOnly: readOnly,
-            validators: validators,
-            bindings: bindings,
-            commentText: commentText,
-            commentPlaceholder: commentPlaceholder);
+    _$Boolean _$result;
+    try {
+      _$result = _$v ??
+          new _$Boolean._(
+              showCommentArea: showCommentArea,
+              label: label,
+              labelTrue: labelTrue,
+              labelFalse: labelFalse,
+              valueTrue: valueTrue,
+              valueFalse: valueFalse,
+              renderAs: renderAs,
+              type: type,
+              name: name,
+              state: state,
+              visible: visible,
+              useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
+              visibleIf: visibleIf,
+              width: width,
+              minWidth: minWidth,
+              maxWidth: maxWidth,
+              startWithNewLine: startWithNewLine,
+              indent: indent,
+              page: page,
+              title: title,
+              titleLocation: titleLocation,
+              description: description,
+              descriptionLocation: descriptionLocation,
+              hideNumber: hideNumber,
+              valueName: valueName,
+              enableIf: enableIf,
+              defaultValue: defaultValue,
+              defaultValueExpression: defaultValueExpression,
+              correctAnswer: correctAnswer,
+              clearIfInvisible: clearIfInvisible,
+              isRequired: isRequired,
+              requiredIf: requiredIf,
+              requiredErrorText: requiredErrorText,
+              readOnly: readOnly,
+              validators: _validators?.build(),
+              bindings: bindings,
+              commentText: commentText,
+              commentPlaceholder: commentPlaceholder);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Boolean', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

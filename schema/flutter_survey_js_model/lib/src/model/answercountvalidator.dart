@@ -14,6 +14,7 @@ part 'answercountvalidator.g.dart';
 ///
 /// Properties:
 /// * [text] 
+/// * [type] 
 /// * [minCount] 
 /// * [maxCount] 
 @BuiltValue()
@@ -52,6 +53,13 @@ class _$AnswercountvalidatorSerializer implements PrimitiveSerializer<Answercoun
       yield r'text';
       yield serializers.serialize(
         object.text,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -98,6 +106,13 @@ class _$AnswercountvalidatorSerializer implements PrimitiveSerializer<Answercoun
             specifiedType: const FullType(String),
           ) as String;
           result.text = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'maxCount':
           final valueDes = serializers.deserialize(

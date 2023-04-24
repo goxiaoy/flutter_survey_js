@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_one_of0.dart';
+import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_one_of.dart';
 import 'dart:core';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -14,7 +14,7 @@ part 'survey_show_question_numbers.g.dart';
 /// SurveyShowQuestionNumbers
 @BuiltValue()
 abstract class SurveyShowQuestionNumbers implements Built<SurveyShowQuestionNumbers, SurveyShowQuestionNumbersBuilder> {
-  /// One Of [SurveyShowQuestionNumbersOneOf0], [bool]
+  /// One Of [SurveyShowQuestionNumbersOneOf], [bool]
   OneOf get oneOf;
 
   SurveyShowQuestionNumbers._();
@@ -60,7 +60,7 @@ class _$SurveyShowQuestionNumbersSerializer implements PrimitiveSerializer<Surve
   }) {
     final result = SurveyShowQuestionNumbersBuilder();
     Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [FullType(SurveyShowQuestionNumbersOneOf0), FullType(bool), ]);
+    final targetType = const FullType(OneOf, [FullType(SurveyShowQuestionNumbersOneOf), FullType(bool), ]);
     oneOfDataSrc = serialized;
     result.oneOf = serializers.deserialize(oneOfDataSrc, specifiedType: targetType) as OneOf;
     return result.build();

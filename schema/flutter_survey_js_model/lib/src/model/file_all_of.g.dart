@@ -45,8 +45,8 @@ abstract class FileAllOfBuilder {
   String? get correctAnswer;
   set correctAnswer(String? correctAnswer);
 
-  Surveyvalidator? get validators;
-  set validators(Surveyvalidator? validators);
+  ListBuilder<QuestionAllOfValidatorsInner> get validators;
+  set validators(ListBuilder<QuestionAllOfValidatorsInner>? validators);
 
   bool? get needConfirmRemoveFile;
   set needConfirmRemoveFile(bool? needConfirmRemoveFile);
@@ -78,7 +78,7 @@ class _$$FileAllOf extends $FileAllOf {
   @override
   final String? correctAnswer;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final bool? needConfirmRemoveFile;
 
@@ -234,9 +234,11 @@ class $FileAllOfBuilder
   set correctAnswer(covariant String? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   bool? _needConfirmRemoveFile;
@@ -263,7 +265,7 @@ class $FileAllOfBuilder
       _maxSize = $v.maxSize;
       _defaultValue = $v.defaultValue;
       _correctAnswer = $v.correctAnswer;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _needConfirmRemoveFile = $v.needConfirmRemoveFile;
       _$v = null;
     }
@@ -285,22 +287,35 @@ class $FileAllOfBuilder
   $FileAllOf build() => _build();
 
   _$$FileAllOf _build() {
-    final _$result = _$v ??
-        new _$$FileAllOf._(
-            showCommentArea: showCommentArea,
-            showPreview: showPreview,
-            allowMultiple: allowMultiple,
-            allowImagesPreview: allowImagesPreview,
-            imageHeight: imageHeight,
-            imageWidth: imageWidth,
-            acceptedTypes: acceptedTypes,
-            storeDataAsText: storeDataAsText,
-            waitForUpload: waitForUpload,
-            maxSize: maxSize,
-            defaultValue: defaultValue,
-            correctAnswer: correctAnswer,
-            validators: validators,
-            needConfirmRemoveFile: needConfirmRemoveFile);
+    _$$FileAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$FileAllOf._(
+              showCommentArea: showCommentArea,
+              showPreview: showPreview,
+              allowMultiple: allowMultiple,
+              allowImagesPreview: allowImagesPreview,
+              imageHeight: imageHeight,
+              imageWidth: imageWidth,
+              acceptedTypes: acceptedTypes,
+              storeDataAsText: storeDataAsText,
+              waitForUpload: waitForUpload,
+              maxSize: maxSize,
+              defaultValue: defaultValue,
+              correctAnswer: correctAnswer,
+              validators: _validators?.build(),
+              needConfirmRemoveFile: needConfirmRemoveFile);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$FileAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

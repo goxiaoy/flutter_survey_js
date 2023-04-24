@@ -11,11 +11,13 @@ class _$Regexvalidator extends Regexvalidator {
   final String? regex;
   @override
   final String? text;
+  @override
+  final String? type;
 
   factory _$Regexvalidator([void Function(RegexvalidatorBuilder)? updates]) =>
       (new RegexvalidatorBuilder()..update(updates))._build();
 
-  _$Regexvalidator._({this.regex, this.text}) : super._();
+  _$Regexvalidator._({this.regex, this.text, this.type}) : super._();
 
   @override
   Regexvalidator rebuild(void Function(RegexvalidatorBuilder) updates) =>
@@ -30,7 +32,8 @@ class _$Regexvalidator extends Regexvalidator {
     if (identical(other, this)) return true;
     return other is Regexvalidator &&
         regex == other.regex &&
-        text == other.text;
+        text == other.text &&
+        type == other.type;
   }
 
   @override
@@ -38,6 +41,7 @@ class _$Regexvalidator extends Regexvalidator {
     var _$hash = 0;
     _$hash = $jc(_$hash, regex.hashCode);
     _$hash = $jc(_$hash, text.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -46,7 +50,8 @@ class _$Regexvalidator extends Regexvalidator {
   String toString() {
     return (newBuiltValueToStringHelper(r'Regexvalidator')
           ..add('regex', regex)
-          ..add('text', text))
+          ..add('text', text)
+          ..add('type', type))
         .toString();
   }
 }
@@ -66,6 +71,10 @@ class RegexvalidatorBuilder
   String? get text => _$this._text;
   set text(covariant String? text) => _$this._text = text;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   RegexvalidatorBuilder() {
     Regexvalidator._defaults(this);
   }
@@ -75,6 +84,7 @@ class RegexvalidatorBuilder
     if ($v != null) {
       _regex = $v.regex;
       _text = $v.text;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -96,7 +106,8 @@ class RegexvalidatorBuilder
   Regexvalidator build() => _build();
 
   _$Regexvalidator _build() {
-    final _$result = _$v ?? new _$Regexvalidator._(regex: regex, text: text);
+    final _$result =
+        _$v ?? new _$Regexvalidator._(regex: regex, text: text, type: type);
     replace(_$result);
     return _$result;
   }

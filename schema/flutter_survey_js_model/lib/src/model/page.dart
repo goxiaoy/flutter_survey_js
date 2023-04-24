@@ -7,7 +7,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/page_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase.dart';
-import 'package:flutter_survey_js_model/src/model/element_base.dart';
+import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/page_navigation_buttons_visibility.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_questions_order.dart';
 import 'package:built_value/built_value.dart';
@@ -140,7 +140,7 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
       yield r'elements';
       yield serializers.serialize(
         object.elements,
-        specifiedType: const FullType(BuiltList, [FullType(ElementBase)]),
+        specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
       );
     }
     if (object.name != null) {
@@ -274,8 +274,8 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
         case r'elements':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ElementBase)]),
-          ) as BuiltList<ElementBase>;
+            specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+          ) as BuiltList<SurveyQuestionsInner>;
           result.elements.replace(valueDes);
           break;
         case r'name':

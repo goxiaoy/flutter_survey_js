@@ -16,6 +16,7 @@ part 'visibletrigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 /// * [name] 
 /// * [pages] 
 /// * [questions] 
@@ -76,6 +77,13 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
       yield r'questions';
       yield serializers.serialize(
         object.questions,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -143,6 +151,13 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
             specifiedType: const FullType(String),
           ) as String;
           result.questions = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

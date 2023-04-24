@@ -36,7 +36,7 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final bool? showInMultipleColumns;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final MatrixdropdowncolumnTotalType? totalType;
   @override
@@ -245,9 +245,10 @@ class MatrixdropdowncolumnBuilder
   set showInMultipleColumns(bool? showInMultipleColumns) =>
       _$this._showInMultipleColumns = showInMultipleColumns;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   MatrixdropdowncolumnTotalType? _totalType;
@@ -311,7 +312,7 @@ class MatrixdropdowncolumnBuilder
       _enableIf = $v.enableIf;
       _requiredIf = $v.requiredIf;
       _showInMultipleColumns = $v.showInMultipleColumns;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _totalType = $v.totalType;
       _totalExpression = $v.totalExpression;
       _totalFormat = $v.totalFormat;
@@ -340,31 +341,44 @@ class MatrixdropdowncolumnBuilder
   Matrixdropdowncolumn build() => _build();
 
   _$Matrixdropdowncolumn _build() {
-    final _$result = _$v ??
-        new _$Matrixdropdowncolumn._(
-            name: name,
-            title: title,
-            cellHint: cellHint,
-            cellType: cellType,
-            isRequired: isRequired,
-            isUnique: isUnique,
-            requiredErrorText: requiredErrorText,
-            readOnly: readOnly,
-            minWidth: minWidth,
-            width: width,
-            visibleIf: visibleIf,
-            enableIf: enableIf,
-            requiredIf: requiredIf,
-            showInMultipleColumns: showInMultipleColumns,
-            validators: validators,
-            totalType: totalType,
-            totalExpression: totalExpression,
-            totalFormat: totalFormat,
-            totalDisplayStyle: totalDisplayStyle,
-            totalCurrency: totalCurrency,
-            totalMaximumFractionDigits: totalMaximumFractionDigits,
-            totalMinimumFractionDigits: totalMinimumFractionDigits,
-            renderAs: renderAs);
+    _$Matrixdropdowncolumn _$result;
+    try {
+      _$result = _$v ??
+          new _$Matrixdropdowncolumn._(
+              name: name,
+              title: title,
+              cellHint: cellHint,
+              cellType: cellType,
+              isRequired: isRequired,
+              isUnique: isUnique,
+              requiredErrorText: requiredErrorText,
+              readOnly: readOnly,
+              minWidth: minWidth,
+              width: width,
+              visibleIf: visibleIf,
+              enableIf: enableIf,
+              requiredIf: requiredIf,
+              showInMultipleColumns: showInMultipleColumns,
+              validators: _validators?.build(),
+              totalType: totalType,
+              totalExpression: totalExpression,
+              totalFormat: totalFormat,
+              totalDisplayStyle: totalDisplayStyle,
+              totalCurrency: totalCurrency,
+              totalMaximumFractionDigits: totalMaximumFractionDigits,
+              totalMinimumFractionDigits: totalMinimumFractionDigits,
+              renderAs: renderAs);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Matrixdropdowncolumn', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

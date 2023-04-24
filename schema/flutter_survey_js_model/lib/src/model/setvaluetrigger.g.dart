@@ -21,6 +21,8 @@ class _$Setvaluetrigger extends Setvaluetrigger {
   final String? value;
   @override
   final String? expression;
+  @override
+  final String? type;
 
   factory _$Setvaluetrigger([void Function(SetvaluetriggerBuilder)? updates]) =>
       (new SetvaluetriggerBuilder()..update(updates))._build();
@@ -32,7 +34,8 @@ class _$Setvaluetrigger extends Setvaluetrigger {
       this.name,
       this.operator_,
       this.value,
-      this.expression})
+      this.expression,
+      this.type})
       : super._();
 
   @override
@@ -53,7 +56,8 @@ class _$Setvaluetrigger extends Setvaluetrigger {
         name == other.name &&
         operator_ == other.operator_ &&
         value == other.value &&
-        expression == other.expression;
+        expression == other.expression &&
+        type == other.type;
   }
 
   @override
@@ -66,6 +70,7 @@ class _$Setvaluetrigger extends Setvaluetrigger {
     _$hash = $jc(_$hash, operator_.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jc(_$hash, expression.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -79,7 +84,8 @@ class _$Setvaluetrigger extends Setvaluetrigger {
           ..add('name', name)
           ..add('operator_', operator_)
           ..add('value', value)
-          ..add('expression', expression))
+          ..add('expression', expression)
+          ..add('type', type))
         .toString();
   }
 }
@@ -120,6 +126,10 @@ class SetvaluetriggerBuilder
   set expression(covariant String? expression) =>
       _$this._expression = expression;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   SetvaluetriggerBuilder() {
     Setvaluetrigger._defaults(this);
   }
@@ -134,6 +144,7 @@ class SetvaluetriggerBuilder
       _operator_ = $v.operator_;
       _value = $v.value;
       _expression = $v.expression;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -163,7 +174,8 @@ class SetvaluetriggerBuilder
             name: name,
             operator_: operator_,
             value: value,
-            expression: expression);
+            expression: expression,
+            type: type);
     replace(_$result);
     return _$result;
   }

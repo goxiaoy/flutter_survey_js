@@ -38,9 +38,9 @@ class _$Survey extends Survey {
   @override
   final BuiltList<Page>? pages;
   @override
-  final BuiltList<ElementBase>? questions;
+  final BuiltList<SurveyQuestionsInner>? questions;
   @override
-  final Surveytrigger? triggers;
+  final SurveyTriggers? triggers;
   @override
   final BuiltList<Calculatedvalue>? calculatedValues;
   @override
@@ -544,15 +544,16 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   ListBuilder<Page> get pages => _$this._pages ??= new ListBuilder<Page>();
   set pages(ListBuilder<Page>? pages) => _$this._pages = pages;
 
-  ListBuilder<ElementBase>? _questions;
-  ListBuilder<ElementBase> get questions =>
-      _$this._questions ??= new ListBuilder<ElementBase>();
-  set questions(ListBuilder<ElementBase>? questions) =>
+  ListBuilder<SurveyQuestionsInner>? _questions;
+  ListBuilder<SurveyQuestionsInner> get questions =>
+      _$this._questions ??= new ListBuilder<SurveyQuestionsInner>();
+  set questions(ListBuilder<SurveyQuestionsInner>? questions) =>
       _$this._questions = questions;
 
-  Surveytrigger? _triggers;
-  Surveytrigger? get triggers => _$this._triggers;
-  set triggers(Surveytrigger? triggers) => _$this._triggers = triggers;
+  SurveyTriggersBuilder? _triggers;
+  SurveyTriggersBuilder get triggers =>
+      _$this._triggers ??= new SurveyTriggersBuilder();
+  set triggers(SurveyTriggersBuilder? triggers) => _$this._triggers = triggers;
 
   ListBuilder<Calculatedvalue>? _calculatedValues;
   ListBuilder<Calculatedvalue> get calculatedValues =>
@@ -855,7 +856,7 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _loadingHtml = $v.loadingHtml;
       _pages = $v.pages?.toBuilder();
       _questions = $v.questions?.toBuilder();
-      _triggers = $v.triggers;
+      _triggers = $v.triggers?.toBuilder();
       _calculatedValues = $v.calculatedValues?.toBuilder();
       _surveyId = $v.surveyId;
       _surveyPostId = $v.surveyPostId;
@@ -951,7 +952,7 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
               loadingHtml: loadingHtml,
               pages: _pages?.build(),
               questions: _questions?.build(),
-              triggers: triggers,
+              triggers: _triggers?.build(),
               calculatedValues: _calculatedValues?.build(),
               surveyId: surveyId,
               surveyPostId: surveyPostId,
@@ -1017,7 +1018,8 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
         _pages?.build();
         _$failedField = 'questions';
         _questions?.build();
-
+        _$failedField = 'triggers';
+        _triggers?.build();
         _$failedField = 'calculatedValues';
         _calculatedValues?.build();
 

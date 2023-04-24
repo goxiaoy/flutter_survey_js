@@ -16,6 +16,7 @@ part 'copyvaluetrigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 /// * [name] 
 /// * [fromName] 
 /// * [setToName] 
@@ -76,6 +77,13 @@ class _$CopyvaluetriggerSerializer implements PrimitiveSerializer<Copyvaluetrigg
       yield r'fromName';
       yield serializers.serialize(
         object.fromName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -143,6 +151,13 @@ class _$CopyvaluetriggerSerializer implements PrimitiveSerializer<Copyvaluetrigg
             specifiedType: const FullType(String),
           ) as String;
           result.fromName = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

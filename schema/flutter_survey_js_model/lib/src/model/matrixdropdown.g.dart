@@ -84,7 +84,7 @@ class _$Matrixdropdown extends Matrixdropdown {
   @override
   final String? readOnly;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -104,7 +104,7 @@ class _$Matrixdropdown extends Matrixdropdown {
   @override
   final bool? horizontalScroll;
   @override
-  final BuiltList<Itemvalue>? choices;
+  final BuiltList<SelectbaseAllOfChoicesInner>? choices;
   @override
   final String? placeholder;
   @override
@@ -552,9 +552,11 @@ class MatrixdropdownBuilder
   String? get readOnly => _$this._readOnly;
   set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -603,10 +605,10 @@ class MatrixdropdownBuilder
   set horizontalScroll(covariant bool? horizontalScroll) =>
       _$this._horizontalScroll = horizontalScroll;
 
-  ListBuilder<Itemvalue>? _choices;
-  ListBuilder<Itemvalue> get choices =>
-      _$this._choices ??= new ListBuilder<Itemvalue>();
-  set choices(covariant ListBuilder<Itemvalue>? choices) =>
+  ListBuilder<SelectbaseAllOfChoicesInner>? _choices;
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices =>
+      _$this._choices ??= new ListBuilder<SelectbaseAllOfChoicesInner>();
+  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices) =>
       _$this._choices = choices;
 
   String? _placeholder;
@@ -681,7 +683,7 @@ class MatrixdropdownBuilder
       _requiredIf = $v.requiredIf;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _renderAs = $v.renderAs;
       _commentText = $v.commentText;
@@ -760,7 +762,7 @@ class MatrixdropdownBuilder
               requiredIf: requiredIf,
               requiredErrorText: requiredErrorText,
               readOnly: readOnly,
-              validators: validators,
+              validators: _validators?.build(),
               bindings: bindings,
               renderAs: renderAs,
               commentText: commentText,
@@ -781,6 +783,9 @@ class MatrixdropdownBuilder
       try {
         _$failedField = 'rows';
         _rows?.build();
+
+        _$failedField = 'validators';
+        _validators?.build();
 
         _$failedField = 'columns';
         _columns?.build();

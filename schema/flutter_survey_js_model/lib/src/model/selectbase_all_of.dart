@@ -3,10 +3,10 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_from_question_mode.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_order.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/choices_restful.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -42,7 +42,7 @@ abstract class SelectbaseAllOf  {
   String? get choicesFromQuestion;
 
   @BuiltValueField(wireName: r'choices')
-  BuiltList<Itemvalue>? get choices;
+  BuiltList<SelectbaseAllOfChoicesInner>? get choices;
 
   @BuiltValueField(wireName: r'choicesFromQuestionMode')
   SelectbaseChoicesFromQuestionMode? get choicesFromQuestionMode;
@@ -122,7 +122,7 @@ class _$SelectbaseAllOfSerializer implements PrimitiveSerializer<SelectbaseAllOf
       yield r'choices';
       yield serializers.serialize(
         object.choices,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
       );
     }
     if (object.choicesFromQuestionMode != null) {
@@ -303,8 +303,8 @@ class _$$SelectbaseAllOfSerializer implements PrimitiveSerializer<$SelectbaseAll
         case r'choices':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+          ) as BuiltList<SelectbaseAllOfChoicesInner>;
           result.choices.replace(valueDes);
           break;
         case r'choicesFromQuestionMode':

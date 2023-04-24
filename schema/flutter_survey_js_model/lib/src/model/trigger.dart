@@ -14,6 +14,7 @@ part 'trigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 @BuiltValue(instantiable: false)
 abstract class Trigger  {
   @BuiltValueField(wireName: r'operator')
@@ -24,6 +25,9 @@ abstract class Trigger  {
 
   @BuiltValueField(wireName: r'expression')
   String? get expression;
+
+  @BuiltValueField(wireName: r'type')
+  String? get type;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Trigger> get serializer => _$TriggerSerializer();
@@ -59,6 +63,13 @@ class _$TriggerSerializer implements PrimitiveSerializer<Trigger> {
       yield r'expression';
       yield serializers.serialize(
         object.expression,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -145,6 +156,13 @@ class _$$TriggerSerializer implements PrimitiveSerializer<$Trigger> {
             specifiedType: const FullType(String),
           ) as String;
           result.expression = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         default:
           unhandled.add(key);

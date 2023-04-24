@@ -7,9 +7,10 @@ import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
-import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
+import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:built_value/built_value.dart';
@@ -109,7 +110,7 @@ class _$MatrixbaseSerializer implements PrimitiveSerializer<Matrixbase> {
       yield r'validators';
       yield serializers.serialize(
         object.validators,
-        specifiedType: const FullType(Surveyvalidator),
+        specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
       );
     }
     if (object.bindings != null) {
@@ -444,9 +445,9 @@ class _$$MatrixbaseSerializer implements PrimitiveSerializer<$Matrixbase> {
         case r'validators':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Surveyvalidator),
-          ) as Surveyvalidator;
-          result.validators = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
+          ) as BuiltList<QuestionAllOfValidatorsInner>;
+          result.validators.replace(valueDes);
           break;
         case r'bindings':
           final valueDes = serializers.deserialize(

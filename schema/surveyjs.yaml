@@ -54,10 +54,42 @@ components:
             $ref: "#/components/schemas/page"
         questions:
           type: array
-          items:
-            $ref: "#/components/schemas/elementBase"
+          items: &a1
+            anyOf:
+              - $ref: "#/components/schemas/checkbox"
+              - $ref: "#/components/schemas/tagbox"
+              - $ref: "#/components/schemas/ranking"
+              - $ref: "#/components/schemas/radiogroup"
+              - $ref: "#/components/schemas/imagepicker"
+              - $ref: "#/components/schemas/buttongroup"
+              - $ref: "#/components/schemas/dropdown"
+              - $ref: "#/components/schemas/matrixdropdownbase"
+              - $ref: "#/components/schemas/matrixdropdown"
+              - $ref: "#/components/schemas/matrixdynamic"
+              - $ref: "#/components/schemas/matrix"
+              - $ref: "#/components/schemas/expression"
+              - $ref: "#/components/schemas/textbase"
+              - $ref: "#/components/schemas/text"
+              - $ref: "#/components/schemas/comment"
+              - $ref: "#/components/schemas/multipletext"
+              - $ref: "#/components/schemas/nonvalue"
+              - $ref: "#/components/schemas/html"
+              - $ref: "#/components/schemas/image"
+              - $ref: "#/components/schemas/empty"
+              - $ref: "#/components/schemas/file"
+              - $ref: "#/components/schemas/rating"
+              - $ref: "#/components/schemas/boolean"
+              - $ref: "#/components/schemas/signaturepad"
+              - $ref: "#/components/schemas/paneldynamic"
+              - $ref: "#/components/schemas/panel"
         triggers:
-          $ref: "#/components/schemas/surveytrigger"
+          anyOf:
+            - $ref: "#/components/schemas/visibletrigger"
+            - $ref: "#/components/schemas/completetrigger"
+            - $ref: "#/components/schemas/setvaluetrigger"
+            - $ref: "#/components/schemas/copyvaluetrigger"
+            - $ref: "#/components/schemas/skiptrigger"
+            - $ref: "#/components/schemas/runexpressiontrigger"
         calculatedValues:
           type: array
           items:
@@ -94,7 +126,7 @@ components:
           type: boolean
         showQuestionNumbers:
           oneOf:
-            - $ref: "#/components/schemas/surveyShowQuestionNumbersOneOf0"
+            - $ref: "#/components/schemas/surveyShowQuestionNumbersOneOf"
             - type: boolean
         questionTitleLocation:
           $ref: "#/components/schemas/surveyQuestionTitleLocation"
@@ -195,8 +227,7 @@ components:
               type: string
             elements:
               type: array
-              items:
-                $ref: "#/components/schemas/elementBase"
+              items: *a1
             visible:
               type: string
             visibleIf:
@@ -272,8 +303,16 @@ components:
               type: string
             readOnly:
               type: string
-            validators:
-              $ref: "#/components/schemas/surveyvalidator"
+            validators: &a2
+              type: array
+              items:
+                anyOf:
+                  - $ref: "#/components/schemas/numericvalidator"
+                  - $ref: "#/components/schemas/textvalidator"
+                  - $ref: "#/components/schemas/answercountvalidator"
+                  - $ref: "#/components/schemas/regexvalidator"
+                  - $ref: "#/components/schemas/emailvalidator"
+                  - $ref: "#/components/schemas/expressionvalidator"
             bindings:
               type: string
             renderAs:
@@ -288,6 +327,8 @@ components:
       type: object
       properties:
         text:
+          type: string
+        type:
           type: string
     numericvalidator:
       type: object
@@ -349,7 +390,10 @@ components:
             choices:
               type: array
               items:
-                $ref: "#/components/schemas/itemvalue"
+                anyOf:
+                  - $ref: "#/components/schemas/itemvalue"
+                  - $ref: "#/components/schemas/imageitemvalue"
+                  - $ref: "#/components/schemas/buttongroupitemvalue"
             choicesFromQuestionMode:
               $ref: "#/components/schemas/selectbaseChoicesFromQuestionMode"
             choicesOrder:
@@ -519,6 +563,13 @@ components:
               $ref: "#/components/schemas/checkboxbaseColCount"
             multiSelect:
               type: boolean
+            choices:
+              type: array
+              items:
+                anyOf:
+                  - $ref: "#/components/schemas/itemvalue"
+                  - $ref: "#/components/schemas/imageitemvalue"
+                  - $ref: "#/components/schemas/buttongroupitemvalue"
     imageitemvalue:
       type: object
       allOf:
@@ -530,7 +581,14 @@ components:
       type: object
       allOf:
         - $ref: "#/components/schemas/checkboxbase"
-        - properties: {}
+        - properties:
+            choices:
+              type: array
+              items:
+                anyOf:
+                  - $ref: "#/components/schemas/itemvalue"
+                  - $ref: "#/components/schemas/imageitemvalue"
+                  - $ref: "#/components/schemas/buttongroupitemvalue"
     buttongroupitemvalue:
       type: object
       allOf:
@@ -610,7 +668,10 @@ components:
             choices:
               type: array
               items:
-                $ref: "#/components/schemas/itemvalue"
+                anyOf:
+                  - $ref: "#/components/schemas/itemvalue"
+                  - $ref: "#/components/schemas/imageitemvalue"
+                  - $ref: "#/components/schemas/buttongroupitemvalue"
             placeholder:
               type: string
             keyDuplicationError:
@@ -654,8 +715,7 @@ components:
           type: string
         showInMultipleColumns:
           type: boolean
-        validators:
-          $ref: "#/components/schemas/surveyvalidator"
+        validators: *a2
         totalType:
           $ref: "#/components/schemas/matrixdropdowncolumnTotalType"
         totalExpression:
@@ -879,8 +939,7 @@ components:
           type: number
         requiredErrorText:
           type: string
-        validators:
-          $ref: "#/components/schemas/surveyvalidator"
+        validators: *a2
     nonvalue:
       type: object
       allOf:
@@ -908,8 +967,7 @@ components:
               type: string
             requiredIf:
               type: string
-            validators:
-              $ref: "#/components/schemas/surveyvalidator"
+            validators: *a2
             titleLocation:
               $ref: "#/components/schemas/questionTitleLocation"
             showCommentArea:
@@ -974,8 +1032,7 @@ components:
               type: string
             correctAnswer:
               type: string
-            validators:
-              $ref: "#/components/schemas/surveyvalidator"
+            validators: *a2
             needConfirmRemoveFile:
               type: boolean
     rating:
@@ -1060,8 +1117,7 @@ components:
               type: string
             templateElements:
               type: array
-              items:
-                $ref: "#/components/schemas/elementBase"
+              items: *a1
             templateTitle:
               type: string
             templateTabTitle:
@@ -1174,6 +1230,8 @@ components:
         value:
           type: string
         expression:
+          type: string
+        type:
           type: string
     surveytrigger:
       type: object
@@ -1299,7 +1357,7 @@ components:
       enum:
         - initial
         - random
-    surveyShowQuestionNumbersOneOf0:
+    surveyShowQuestionNumbersOneOf:
       type: string
       enum:
         - on
@@ -1498,7 +1556,7 @@ components:
         - 5
     dropdownAutocomplete:
       type: string
-      enum: &a1
+      enum: &a3
         - ""
         - name
         - honorific-prefix
@@ -2165,7 +2223,7 @@ components:
         - ZWL
     textInputType:
       type: string
-      enum: &a2
+      enum: &a4
         - color
         - date
         - datetime-local
@@ -2187,7 +2245,7 @@ components:
         - onTyping
     textAutocomplete:
       type: string
-      enum: *a1
+      enum: *a3
       x-enum-values:
         - numericValue: ""
           identifier: ""
@@ -2367,7 +2425,7 @@ components:
         - 5
     multipletextitemInputType:
       type: string
-      enum: *a2
+      enum: *a4
     imageContentMode:
       type: string
       enum:

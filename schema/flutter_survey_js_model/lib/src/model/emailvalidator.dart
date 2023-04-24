@@ -13,6 +13,7 @@ part 'emailvalidator.g.dart';
 ///
 /// Properties:
 /// * [text] 
+/// * [type] 
 @BuiltValue()
 abstract class Emailvalidator implements Surveyvalidator, Built<Emailvalidator, EmailvalidatorBuilder> {
   Emailvalidator._();
@@ -38,6 +39,13 @@ class _$EmailvalidatorSerializer implements PrimitiveSerializer<Emailvalidator> 
     Emailvalidator object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.text != null) {
       yield r'text';
       yield serializers.serialize(
@@ -68,6 +76,13 @@ class _$EmailvalidatorSerializer implements PrimitiveSerializer<Emailvalidator> 
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
+          break;
         case r'text':
           final valueDes = serializers.deserialize(
             value,

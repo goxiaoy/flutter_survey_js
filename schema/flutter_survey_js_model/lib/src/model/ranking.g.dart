@@ -76,7 +76,7 @@ class _$Ranking extends Ranking {
   @override
   final String? readOnly;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -90,7 +90,7 @@ class _$Ranking extends Ranking {
   @override
   final String? choicesFromQuestion;
   @override
-  final BuiltList<Itemvalue>? choices;
+  final BuiltList<SelectbaseAllOfChoicesInner>? choices;
   @override
   final SelectbaseChoicesFromQuestionMode? choicesFromQuestionMode;
   @override
@@ -545,9 +545,11 @@ class RankingBuilder
   String? get readOnly => _$this._readOnly;
   set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -578,10 +580,10 @@ class RankingBuilder
   set choicesFromQuestion(covariant String? choicesFromQuestion) =>
       _$this._choicesFromQuestion = choicesFromQuestion;
 
-  ListBuilder<Itemvalue>? _choices;
-  ListBuilder<Itemvalue> get choices =>
-      _$this._choices ??= new ListBuilder<Itemvalue>();
-  set choices(covariant ListBuilder<Itemvalue>? choices) =>
+  ListBuilder<SelectbaseAllOfChoicesInner>? _choices;
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices =>
+      _$this._choices ??= new ListBuilder<SelectbaseAllOfChoicesInner>();
+  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices) =>
       _$this._choices = choices;
 
   SelectbaseChoicesFromQuestionMode? _choicesFromQuestionMode;
@@ -696,7 +698,7 @@ class RankingBuilder
       _requiredIf = $v.requiredIf;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _renderAs = $v.renderAs;
       _showCommentArea = $v.showCommentArea;
@@ -777,7 +779,7 @@ class RankingBuilder
               requiredIf: requiredIf,
               requiredErrorText: requiredErrorText,
               readOnly: readOnly,
-              validators: validators,
+              validators: _validators?.build(),
               bindings: bindings,
               renderAs: renderAs,
               showCommentArea: showCommentArea,
@@ -802,6 +804,9 @@ class RankingBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'validators';
+        _validators?.build();
+
         _$failedField = 'choices';
         _choices?.build();
 

@@ -11,12 +11,14 @@ class _$Expressionvalidator extends Expressionvalidator {
   final String? expression;
   @override
   final String? text;
+  @override
+  final String? type;
 
   factory _$Expressionvalidator(
           [void Function(ExpressionvalidatorBuilder)? updates]) =>
       (new ExpressionvalidatorBuilder()..update(updates))._build();
 
-  _$Expressionvalidator._({this.expression, this.text}) : super._();
+  _$Expressionvalidator._({this.expression, this.text, this.type}) : super._();
 
   @override
   Expressionvalidator rebuild(
@@ -32,7 +34,8 @@ class _$Expressionvalidator extends Expressionvalidator {
     if (identical(other, this)) return true;
     return other is Expressionvalidator &&
         expression == other.expression &&
-        text == other.text;
+        text == other.text &&
+        type == other.type;
   }
 
   @override
@@ -40,6 +43,7 @@ class _$Expressionvalidator extends Expressionvalidator {
     var _$hash = 0;
     _$hash = $jc(_$hash, expression.hashCode);
     _$hash = $jc(_$hash, text.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -48,7 +52,8 @@ class _$Expressionvalidator extends Expressionvalidator {
   String toString() {
     return (newBuiltValueToStringHelper(r'Expressionvalidator')
           ..add('expression', expression)
-          ..add('text', text))
+          ..add('text', text)
+          ..add('type', type))
         .toString();
   }
 }
@@ -69,6 +74,10 @@ class ExpressionvalidatorBuilder
   String? get text => _$this._text;
   set text(covariant String? text) => _$this._text = text;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   ExpressionvalidatorBuilder() {
     Expressionvalidator._defaults(this);
   }
@@ -78,6 +87,7 @@ class ExpressionvalidatorBuilder
     if ($v != null) {
       _expression = $v.expression;
       _text = $v.text;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -99,8 +109,9 @@ class ExpressionvalidatorBuilder
   Expressionvalidator build() => _build();
 
   _$Expressionvalidator _build() {
-    final _$result =
-        _$v ?? new _$Expressionvalidator._(expression: expression, text: text);
+    final _$result = _$v ??
+        new _$Expressionvalidator._(
+            expression: expression, text: text, type: type);
     replace(_$result);
     return _$result;
   }

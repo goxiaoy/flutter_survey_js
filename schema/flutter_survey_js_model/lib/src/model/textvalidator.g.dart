@@ -10,6 +10,8 @@ class _$Textvalidator extends Textvalidator {
   @override
   final String? text;
   @override
+  final String? type;
+  @override
   final num? minLength;
   @override
   final num? maxLength;
@@ -20,7 +22,7 @@ class _$Textvalidator extends Textvalidator {
       (new TextvalidatorBuilder()..update(updates))._build();
 
   _$Textvalidator._(
-      {this.text, this.minLength, this.maxLength, this.allowDigits})
+      {this.text, this.type, this.minLength, this.maxLength, this.allowDigits})
       : super._();
 
   @override
@@ -35,6 +37,7 @@ class _$Textvalidator extends Textvalidator {
     if (identical(other, this)) return true;
     return other is Textvalidator &&
         text == other.text &&
+        type == other.type &&
         minLength == other.minLength &&
         maxLength == other.maxLength &&
         allowDigits == other.allowDigits;
@@ -44,6 +47,7 @@ class _$Textvalidator extends Textvalidator {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, text.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, minLength.hashCode);
     _$hash = $jc(_$hash, maxLength.hashCode);
     _$hash = $jc(_$hash, allowDigits.hashCode);
@@ -55,6 +59,7 @@ class _$Textvalidator extends Textvalidator {
   String toString() {
     return (newBuiltValueToStringHelper(r'Textvalidator')
           ..add('text', text)
+          ..add('type', type)
           ..add('minLength', minLength)
           ..add('maxLength', maxLength)
           ..add('allowDigits', allowDigits))
@@ -72,6 +77,10 @@ class TextvalidatorBuilder
   String? _text;
   String? get text => _$this._text;
   set text(covariant String? text) => _$this._text = text;
+
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
 
   num? _minLength;
   num? get minLength => _$this._minLength;
@@ -94,6 +103,7 @@ class TextvalidatorBuilder
     final $v = _$v;
     if ($v != null) {
       _text = $v.text;
+      _type = $v.type;
       _minLength = $v.minLength;
       _maxLength = $v.maxLength;
       _allowDigits = $v.allowDigits;
@@ -121,6 +131,7 @@ class TextvalidatorBuilder
     final _$result = _$v ??
         new _$Textvalidator._(
             text: text,
+            type: type,
             minLength: minLength,
             maxLength: maxLength,
             allowDigits: allowDigits);

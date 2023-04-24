@@ -15,8 +15,8 @@ abstract class SelectbaseAllOfBuilder {
   String? get choicesFromQuestion;
   set choicesFromQuestion(String? choicesFromQuestion);
 
-  ListBuilder<Itemvalue> get choices;
-  set choices(ListBuilder<Itemvalue>? choices);
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices;
+  set choices(ListBuilder<SelectbaseAllOfChoicesInner>? choices);
 
   SelectbaseChoicesFromQuestionMode? get choicesFromQuestionMode;
   set choicesFromQuestionMode(
@@ -68,7 +68,7 @@ class _$$SelectbaseAllOf extends $SelectbaseAllOf {
   @override
   final String? choicesFromQuestion;
   @override
-  final BuiltList<Itemvalue>? choices;
+  final BuiltList<SelectbaseAllOfChoicesInner>? choices;
   @override
   final SelectbaseChoicesFromQuestionMode? choicesFromQuestionMode;
   @override
@@ -217,10 +217,10 @@ class $SelectbaseAllOfBuilder
   set choicesFromQuestion(covariant String? choicesFromQuestion) =>
       _$this._choicesFromQuestion = choicesFromQuestion;
 
-  ListBuilder<Itemvalue>? _choices;
-  ListBuilder<Itemvalue> get choices =>
-      _$this._choices ??= new ListBuilder<Itemvalue>();
-  set choices(covariant ListBuilder<Itemvalue>? choices) =>
+  ListBuilder<SelectbaseAllOfChoicesInner>? _choices;
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices =>
+      _$this._choices ??= new ListBuilder<SelectbaseAllOfChoicesInner>();
+  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices) =>
       _$this._choices = choices;
 
   SelectbaseChoicesFromQuestionMode? _choicesFromQuestionMode;

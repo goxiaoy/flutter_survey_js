@@ -24,7 +24,7 @@ class _$Multipletextitem extends Multipletextitem {
   @override
   final String? requiredErrorText;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
 
   factory _$Multipletextitem(
           [void Function(MultipletextitemBuilder)? updates]) =>
@@ -135,9 +135,10 @@ class MultipletextitemBuilder
   set requiredErrorText(String? requiredErrorText) =>
       _$this._requiredErrorText = requiredErrorText;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   MultipletextitemBuilder() {
@@ -155,7 +156,7 @@ class MultipletextitemBuilder
       _maxLength = $v.maxLength;
       _size = $v.size;
       _requiredErrorText = $v.requiredErrorText;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _$v = null;
     }
     return this;
@@ -176,17 +177,30 @@ class MultipletextitemBuilder
   Multipletextitem build() => _build();
 
   _$Multipletextitem _build() {
-    final _$result = _$v ??
-        new _$Multipletextitem._(
-            name: name,
-            isRequired: isRequired,
-            placeholder: placeholder,
-            inputType: inputType,
-            title: title,
-            maxLength: maxLength,
-            size: size,
-            requiredErrorText: requiredErrorText,
-            validators: validators);
+    _$Multipletextitem _$result;
+    try {
+      _$result = _$v ??
+          new _$Multipletextitem._(
+              name: name,
+              isRequired: isRequired,
+              placeholder: placeholder,
+              inputType: inputType,
+              title: title,
+              maxLength: maxLength,
+              size: size,
+              requiredErrorText: requiredErrorText,
+              validators: _validators?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Multipletextitem', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

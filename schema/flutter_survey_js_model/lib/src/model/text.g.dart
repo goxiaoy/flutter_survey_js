@@ -90,7 +90,7 @@ class _$Text extends Text {
   @override
   final String? readOnly;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -519,9 +519,11 @@ class TextBuilder
   String? get readOnly => _$this._readOnly;
   set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -595,7 +597,7 @@ class TextBuilder
       _requiredIf = $v.requiredIf;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _renderAs = $v.renderAs;
       _showCommentArea = $v.showCommentArea;
@@ -667,7 +669,7 @@ class TextBuilder
               requiredIf: requiredIf,
               requiredErrorText: requiredErrorText,
               readOnly: readOnly,
-              validators: validators,
+              validators: _validators?.build(),
               bindings: bindings,
               renderAs: renderAs,
               showCommentArea: showCommentArea,
@@ -678,6 +680,9 @@ class TextBuilder
       try {
         _$failedField = 'dataList';
         _dataList?.build();
+
+        _$failedField = 'validators';
+        _validators?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Text', _$failedField, e.toString());

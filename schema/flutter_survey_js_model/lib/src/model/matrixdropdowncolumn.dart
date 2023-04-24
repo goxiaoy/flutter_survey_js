@@ -4,9 +4,10 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn_total_type.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn_cell_type.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn_total_display_style.dart';
-import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn_total_currency.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -85,7 +86,7 @@ abstract class Matrixdropdowncolumn implements Built<Matrixdropdowncolumn, Matri
   bool? get showInMultipleColumns;
 
   @BuiltValueField(wireName: r'validators')
-  Surveyvalidator? get validators;
+  BuiltList<QuestionAllOfValidatorsInner>? get validators;
 
   @BuiltValueField(wireName: r'totalType')
   MatrixdropdowncolumnTotalType? get totalType;
@@ -239,7 +240,7 @@ class _$MatrixdropdowncolumnSerializer implements PrimitiveSerializer<Matrixdrop
       yield r'validators';
       yield serializers.serialize(
         object.validators,
-        specifiedType: const FullType(Surveyvalidator),
+        specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
       );
     }
     if (object.totalType != null) {
@@ -422,9 +423,9 @@ class _$MatrixdropdowncolumnSerializer implements PrimitiveSerializer<Matrixdrop
         case r'validators':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Surveyvalidator),
-          ) as Surveyvalidator;
-          result.validators = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
+          ) as BuiltList<QuestionAllOfValidatorsInner>;
+          result.validators.replace(valueDes);
           break;
         case r'totalType':
           final valueDes = serializers.deserialize(

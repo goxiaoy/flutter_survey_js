@@ -16,6 +16,8 @@ class _$Visibletrigger extends Visibletrigger {
   @override
   final String? expression;
   @override
+  final String? type;
+  @override
   final String? pages;
   @override
   final String? questions;
@@ -28,6 +30,7 @@ class _$Visibletrigger extends Visibletrigger {
       this.operator_,
       this.value,
       this.expression,
+      this.type,
       this.pages,
       this.questions})
       : super._();
@@ -48,6 +51,7 @@ class _$Visibletrigger extends Visibletrigger {
         operator_ == other.operator_ &&
         value == other.value &&
         expression == other.expression &&
+        type == other.type &&
         pages == other.pages &&
         questions == other.questions;
   }
@@ -59,6 +63,7 @@ class _$Visibletrigger extends Visibletrigger {
     _$hash = $jc(_$hash, operator_.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jc(_$hash, expression.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, pages.hashCode);
     _$hash = $jc(_$hash, questions.hashCode);
     _$hash = $jf(_$hash);
@@ -72,6 +77,7 @@ class _$Visibletrigger extends Visibletrigger {
           ..add('operator_', operator_)
           ..add('value', value)
           ..add('expression', expression)
+          ..add('type', type)
           ..add('pages', pages)
           ..add('questions', questions))
         .toString();
@@ -102,6 +108,10 @@ class VisibletriggerBuilder
   set expression(covariant String? expression) =>
       _$this._expression = expression;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   String? _pages;
   String? get pages => _$this._pages;
   set pages(covariant String? pages) => _$this._pages = pages;
@@ -121,6 +131,7 @@ class VisibletriggerBuilder
       _operator_ = $v.operator_;
       _value = $v.value;
       _expression = $v.expression;
+      _type = $v.type;
       _pages = $v.pages;
       _questions = $v.questions;
       _$v = null;
@@ -150,6 +161,7 @@ class VisibletriggerBuilder
             operator_: operator_,
             value: value,
             expression: expression,
+            type: type,
             pages: pages,
             questions: questions);
     replace(_$result);

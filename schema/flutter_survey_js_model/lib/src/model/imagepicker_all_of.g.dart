@@ -62,6 +62,9 @@ abstract class ImagepickerAllOfBuilder {
 
   bool? get multiSelect;
   set multiSelect(bool? multiSelect);
+
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices;
+  set choices(ListBuilder<SelectbaseAllOfChoicesInner>? choices);
 }
 
 class _$$ImagepickerAllOf extends $ImagepickerAllOf {
@@ -101,6 +104,8 @@ class _$$ImagepickerAllOf extends $ImagepickerAllOf {
   final CheckboxbaseColCount? colCount;
   @override
   final bool? multiSelect;
+  @override
+  final BuiltList<SelectbaseAllOfChoicesInner>? choices;
 
   factory _$$ImagepickerAllOf(
           [void Function($ImagepickerAllOfBuilder)? updates]) =>
@@ -124,7 +129,8 @@ class _$$ImagepickerAllOf extends $ImagepickerAllOf {
       this.maxImageHeight,
       this.showLabel,
       this.colCount,
-      this.multiSelect})
+      this.multiSelect,
+      this.choices})
       : super._();
 
   @override
@@ -156,7 +162,8 @@ class _$$ImagepickerAllOf extends $ImagepickerAllOf {
         maxImageHeight == other.maxImageHeight &&
         showLabel == other.showLabel &&
         colCount == other.colCount &&
-        multiSelect == other.multiSelect;
+        multiSelect == other.multiSelect &&
+        choices == other.choices;
   }
 
   @override
@@ -180,6 +187,7 @@ class _$$ImagepickerAllOf extends $ImagepickerAllOf {
     _$hash = $jc(_$hash, showLabel.hashCode);
     _$hash = $jc(_$hash, colCount.hashCode);
     _$hash = $jc(_$hash, multiSelect.hashCode);
+    _$hash = $jc(_$hash, choices.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -204,7 +212,8 @@ class _$$ImagepickerAllOf extends $ImagepickerAllOf {
           ..add('maxImageHeight', maxImageHeight)
           ..add('showLabel', showLabel)
           ..add('colCount', colCount)
-          ..add('multiSelect', multiSelect))
+          ..add('multiSelect', multiSelect)
+          ..add('choices', choices))
         .toString();
   }
 }
@@ -301,6 +310,12 @@ class $ImagepickerAllOfBuilder
   set multiSelect(covariant bool? multiSelect) =>
       _$this._multiSelect = multiSelect;
 
+  ListBuilder<SelectbaseAllOfChoicesInner>? _choices;
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices =>
+      _$this._choices ??= new ListBuilder<SelectbaseAllOfChoicesInner>();
+  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices) =>
+      _$this._choices = choices;
+
   $ImagepickerAllOfBuilder() {
     $ImagepickerAllOf._defaults(this);
   }
@@ -326,6 +341,7 @@ class $ImagepickerAllOfBuilder
       _showLabel = $v.showLabel;
       _colCount = $v.colCount;
       _multiSelect = $v.multiSelect;
+      _choices = $v.choices?.toBuilder();
       _$v = null;
     }
     return this;
@@ -346,26 +362,40 @@ class $ImagepickerAllOfBuilder
   $ImagepickerAllOf build() => _build();
 
   _$$ImagepickerAllOf _build() {
-    final _$result = _$v ??
-        new _$$ImagepickerAllOf._(
-            showOtherItem: showOtherItem,
-            otherText: otherText,
-            showNoneItem: showNoneItem,
-            noneText: noneText,
-            optionsCaption: optionsCaption,
-            otherErrorText: otherErrorText,
-            storeOthersAsComment: storeOthersAsComment,
-            contentMode: contentMode,
-            imageFit: imageFit,
-            imageHeight: imageHeight,
-            imageWidth: imageWidth,
-            minImageWidth: minImageWidth,
-            minImageHeight: minImageHeight,
-            maxImageWidth: maxImageWidth,
-            maxImageHeight: maxImageHeight,
-            showLabel: showLabel,
-            colCount: colCount,
-            multiSelect: multiSelect);
+    _$$ImagepickerAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$ImagepickerAllOf._(
+              showOtherItem: showOtherItem,
+              otherText: otherText,
+              showNoneItem: showNoneItem,
+              noneText: noneText,
+              optionsCaption: optionsCaption,
+              otherErrorText: otherErrorText,
+              storeOthersAsComment: storeOthersAsComment,
+              contentMode: contentMode,
+              imageFit: imageFit,
+              imageHeight: imageHeight,
+              imageWidth: imageWidth,
+              minImageWidth: minImageWidth,
+              minImageHeight: minImageHeight,
+              maxImageWidth: maxImageWidth,
+              maxImageHeight: maxImageHeight,
+              showLabel: showLabel,
+              colCount: colCount,
+              multiSelect: multiSelect,
+              choices: _choices?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'choices';
+        _choices?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$ImagepickerAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

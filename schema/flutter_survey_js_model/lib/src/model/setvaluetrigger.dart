@@ -16,6 +16,7 @@ part 'setvaluetrigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 /// * [name] 
 /// * [setToName] 
 /// * [setValue] 
@@ -85,6 +86,13 @@ class _$SetvaluetriggerSerializer implements PrimitiveSerializer<Setvaluetrigger
       yield serializers.serialize(
         object.isVariable,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
       );
     }
     if (object.value != null) {
@@ -158,6 +166,13 @@ class _$SetvaluetriggerSerializer implements PrimitiveSerializer<Setvaluetrigger
             specifiedType: const FullType(bool),
           ) as bool;
           result.isVariable = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

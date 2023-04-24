@@ -32,7 +32,7 @@ class _$File extends File {
   @override
   final String? correctAnswer;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final bool? needConfirmRemoveFile;
   @override
@@ -364,9 +364,11 @@ class FileBuilder
   set correctAnswer(covariant String? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   bool? _needConfirmRemoveFile;
@@ -525,7 +527,7 @@ class FileBuilder
       _maxSize = $v.maxSize;
       _defaultValue = $v.defaultValue;
       _correctAnswer = $v.correctAnswer;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _needConfirmRemoveFile = $v.needConfirmRemoveFile;
       _type = $v.type;
       _name = $v.name;
@@ -577,51 +579,64 @@ class FileBuilder
   File build() => _build();
 
   _$File _build() {
-    final _$result = _$v ??
-        new _$File._(
-            showCommentArea: showCommentArea,
-            showPreview: showPreview,
-            allowMultiple: allowMultiple,
-            allowImagesPreview: allowImagesPreview,
-            imageHeight: imageHeight,
-            imageWidth: imageWidth,
-            acceptedTypes: acceptedTypes,
-            storeDataAsText: storeDataAsText,
-            waitForUpload: waitForUpload,
-            maxSize: maxSize,
-            defaultValue: defaultValue,
-            correctAnswer: correctAnswer,
-            validators: validators,
-            needConfirmRemoveFile: needConfirmRemoveFile,
-            type: type,
-            name: name,
-            state: state,
-            visible: visible,
-            useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
-            visibleIf: visibleIf,
-            width: width,
-            minWidth: minWidth,
-            maxWidth: maxWidth,
-            startWithNewLine: startWithNewLine,
-            indent: indent,
-            page: page,
-            title: title,
-            titleLocation: titleLocation,
-            description: description,
-            descriptionLocation: descriptionLocation,
-            hideNumber: hideNumber,
-            valueName: valueName,
-            enableIf: enableIf,
-            defaultValueExpression: defaultValueExpression,
-            clearIfInvisible: clearIfInvisible,
-            isRequired: isRequired,
-            requiredIf: requiredIf,
-            requiredErrorText: requiredErrorText,
-            readOnly: readOnly,
-            bindings: bindings,
-            renderAs: renderAs,
-            commentText: commentText,
-            commentPlaceholder: commentPlaceholder);
+    _$File _$result;
+    try {
+      _$result = _$v ??
+          new _$File._(
+              showCommentArea: showCommentArea,
+              showPreview: showPreview,
+              allowMultiple: allowMultiple,
+              allowImagesPreview: allowImagesPreview,
+              imageHeight: imageHeight,
+              imageWidth: imageWidth,
+              acceptedTypes: acceptedTypes,
+              storeDataAsText: storeDataAsText,
+              waitForUpload: waitForUpload,
+              maxSize: maxSize,
+              defaultValue: defaultValue,
+              correctAnswer: correctAnswer,
+              validators: _validators?.build(),
+              needConfirmRemoveFile: needConfirmRemoveFile,
+              type: type,
+              name: name,
+              state: state,
+              visible: visible,
+              useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
+              visibleIf: visibleIf,
+              width: width,
+              minWidth: minWidth,
+              maxWidth: maxWidth,
+              startWithNewLine: startWithNewLine,
+              indent: indent,
+              page: page,
+              title: title,
+              titleLocation: titleLocation,
+              description: description,
+              descriptionLocation: descriptionLocation,
+              hideNumber: hideNumber,
+              valueName: valueName,
+              enableIf: enableIf,
+              defaultValueExpression: defaultValueExpression,
+              clearIfInvisible: clearIfInvisible,
+              isRequired: isRequired,
+              requiredIf: requiredIf,
+              requiredErrorText: requiredErrorText,
+              readOnly: readOnly,
+              bindings: bindings,
+              renderAs: renderAs,
+              commentText: commentText,
+              commentPlaceholder: commentPlaceholder);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'File', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

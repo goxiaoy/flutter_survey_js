@@ -16,6 +16,7 @@ part 'surveytrigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 /// * [name] 
 @BuiltValue(instantiable: false)
 abstract class Surveytrigger implements SurveytriggerAllOf, Trigger {
@@ -53,6 +54,13 @@ class _$SurveytriggerSerializer implements PrimitiveSerializer<Surveytrigger> {
       yield r'expression';
       yield serializers.serialize(
         object.expression,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -146,6 +154,13 @@ class _$$SurveytriggerSerializer implements PrimitiveSerializer<$Surveytrigger> 
             specifiedType: const FullType(String),
           ) as String;
           result.expression = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

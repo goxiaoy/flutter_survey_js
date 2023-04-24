@@ -16,6 +16,7 @@ part 'runexpressiontrigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 /// * [name] 
 /// * [setToName] 
 /// * [runExpression] 
@@ -76,6 +77,13 @@ class _$RunexpressiontriggerSerializer implements PrimitiveSerializer<Runexpress
       yield r'runExpression';
       yield serializers.serialize(
         object.runExpression,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -143,6 +151,13 @@ class _$RunexpressiontriggerSerializer implements PrimitiveSerializer<Runexpress
             specifiedType: const FullType(String),
           ) as String;
           result.runExpression = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

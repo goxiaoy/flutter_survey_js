@@ -42,8 +42,8 @@ abstract class NonvalueAllOfBuilder {
   String? get requiredIf;
   set requiredIf(String? requiredIf);
 
-  Surveyvalidator? get validators;
-  set validators(Surveyvalidator? validators);
+  ListBuilder<QuestionAllOfValidatorsInner> get validators;
+  set validators(ListBuilder<QuestionAllOfValidatorsInner>? validators);
 
   QuestionTitleLocation? get titleLocation;
   set titleLocation(QuestionTitleLocation? titleLocation);
@@ -79,7 +79,7 @@ class _$$NonvalueAllOf extends $NonvalueAllOf {
   @override
   final String? requiredIf;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final QuestionTitleLocation? titleLocation;
   @override
@@ -239,9 +239,11 @@ class $NonvalueAllOfBuilder
   set requiredIf(covariant String? requiredIf) =>
       _$this._requiredIf = requiredIf;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   QuestionTitleLocation? _titleLocation;
@@ -279,7 +281,7 @@ class $NonvalueAllOfBuilder
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
       _requiredIf = $v.requiredIf;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _titleLocation = $v.titleLocation;
       _showCommentArea = $v.showCommentArea;
       _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
@@ -303,23 +305,36 @@ class $NonvalueAllOfBuilder
   $NonvalueAllOf build() => _build();
 
   _$$NonvalueAllOf _build() {
-    final _$result = _$v ??
-        new _$$NonvalueAllOf._(
-            title: title,
-            description: description,
-            valueName: valueName,
-            enableIf: enableIf,
-            defaultValue: defaultValue,
-            correctAnswer: correctAnswer,
-            clearIfInvisible: clearIfInvisible,
-            isRequired: isRequired,
-            requiredErrorText: requiredErrorText,
-            readOnly: readOnly,
-            requiredIf: requiredIf,
-            validators: validators,
-            titleLocation: titleLocation,
-            showCommentArea: showCommentArea,
-            useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts);
+    _$$NonvalueAllOf _$result;
+    try {
+      _$result = _$v ??
+          new _$$NonvalueAllOf._(
+              title: title,
+              description: description,
+              valueName: valueName,
+              enableIf: enableIf,
+              defaultValue: defaultValue,
+              correctAnswer: correctAnswer,
+              clearIfInvisible: clearIfInvisible,
+              isRequired: isRequired,
+              requiredErrorText: requiredErrorText,
+              readOnly: readOnly,
+              requiredIf: requiredIf,
+              validators: _validators?.build(),
+              titleLocation: titleLocation,
+              showCommentArea: showCommentArea,
+              useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'validators';
+        _validators?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$NonvalueAllOf', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

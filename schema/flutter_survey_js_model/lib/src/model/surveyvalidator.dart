@@ -12,10 +12,14 @@ part 'surveyvalidator.g.dart';
 ///
 /// Properties:
 /// * [text] 
+/// * [type] 
 @BuiltValue(instantiable: false)
 abstract class Surveyvalidator  {
   @BuiltValueField(wireName: r'text')
   String? get text;
+
+  @BuiltValueField(wireName: r'type')
+  String? get type;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Surveyvalidator> get serializer => _$SurveyvalidatorSerializer();
@@ -37,6 +41,13 @@ class _$SurveyvalidatorSerializer implements PrimitiveSerializer<Surveyvalidator
       yield r'text';
       yield serializers.serialize(
         object.text,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -109,6 +120,13 @@ class _$$SurveyvalidatorSerializer implements PrimitiveSerializer<$Surveyvalidat
             specifiedType: const FullType(String),
           ) as String;
           result.text = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         default:
           unhandled.add(key);

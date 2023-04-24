@@ -9,7 +9,6 @@ import 'package:flutter_survey_js_model/src/model/survey_question_description_lo
 import 'package:flutter_survey_js_model/src/model/survey_questions_order.dart';
 import 'package:flutter_survey_js_model/src/model/page.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_on_page_mode.dart';
-import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_navigation_buttons.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_preview_before_complete.dart';
@@ -18,13 +17,14 @@ import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.d
 import 'package:flutter_survey_js_model/src/model/calculatedvalue.dart';
 import 'package:flutter_survey_js_model/src/model/survey_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_error_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
 import 'package:flutter_survey_js_model/src/model/urlconditionitem.dart';
-import 'package:flutter_survey_js_model/src/model/element_base.dart';
 import 'package:flutter_survey_js_model/src/model/htmlconditionitem.dart';
+import 'package:flutter_survey_js_model/src/model/survey_triggers.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/survey_check_errors_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.dart';
@@ -162,10 +162,10 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   BuiltList<Page>? get pages;
 
   @BuiltValueField(wireName: r'questions')
-  BuiltList<ElementBase>? get questions;
+  BuiltList<SurveyQuestionsInner>? get questions;
 
   @BuiltValueField(wireName: r'triggers')
-  Surveytrigger? get triggers;
+  SurveyTriggers? get triggers;
 
   @BuiltValueField(wireName: r'calculatedValues')
   BuiltList<Calculatedvalue>? get calculatedValues;
@@ -481,14 +481,14 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'questions';
       yield serializers.serialize(
         object.questions,
-        specifiedType: const FullType(BuiltList, [FullType(ElementBase)]),
+        specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
       );
     }
     if (object.triggers != null) {
       yield r'triggers';
       yield serializers.serialize(
         object.triggers,
-        specifiedType: const FullType(Surveytrigger),
+        specifiedType: const FullType(SurveyTriggers),
       );
     }
     if (object.calculatedValues != null) {
@@ -1007,16 +1007,16 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'questions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ElementBase)]),
-          ) as BuiltList<ElementBase>;
+            specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+          ) as BuiltList<SurveyQuestionsInner>;
           result.questions.replace(valueDes);
           break;
         case r'triggers':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Surveytrigger),
-          ) as Surveytrigger;
-          result.triggers = valueDes;
+            specifiedType: const FullType(SurveyTriggers),
+          ) as SurveyTriggers;
+          result.triggers.replace(valueDes);
           break;
         case r'calculatedValues':
           final valueDes = serializers.deserialize(

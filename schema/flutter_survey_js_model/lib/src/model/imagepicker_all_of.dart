@@ -5,6 +5,8 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/imagepicker_content_mode.dart';
 import 'package:flutter_survey_js_model/src/model/imagepicker_image_fit.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase_col_count.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -32,6 +34,7 @@ part 'imagepicker_all_of.g.dart';
 /// * [showLabel] 
 /// * [colCount] 
 /// * [multiSelect] 
+/// * [choices] 
 @BuiltValue(instantiable: false)
 abstract class ImagepickerAllOf  {
   @BuiltValueField(wireName: r'showOtherItem')
@@ -90,6 +93,9 @@ abstract class ImagepickerAllOf  {
 
   @BuiltValueField(wireName: r'multiSelect')
   bool? get multiSelect;
+
+  @BuiltValueField(wireName: r'choices')
+  BuiltList<SelectbaseAllOfChoicesInner>? get choices;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<ImagepickerAllOf> get serializer => _$ImagepickerAllOfSerializer();
@@ -231,6 +237,13 @@ class _$ImagepickerAllOfSerializer implements PrimitiveSerializer<ImagepickerAll
       yield serializers.serialize(
         object.multiSelect,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.choices != null) {
+      yield r'choices';
+      yield serializers.serialize(
+        object.choices,
+        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
       );
     }
   }
@@ -421,6 +434,13 @@ class _$$ImagepickerAllOfSerializer implements PrimitiveSerializer<$ImagepickerA
             specifiedType: const FullType(bool),
           ) as bool;
           result.multiSelect = valueDes;
+          break;
+        case r'choices':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+          ) as BuiltList<SelectbaseAllOfChoicesInner>;
+          result.choices.replace(valueDes);
           break;
         default:
           unhandled.add(key);

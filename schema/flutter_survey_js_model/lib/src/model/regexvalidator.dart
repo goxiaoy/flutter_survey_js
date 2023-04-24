@@ -14,6 +14,7 @@ part 'regexvalidator.g.dart';
 ///
 /// Properties:
 /// * [text] 
+/// * [type] 
 /// * [regex] 
 @BuiltValue()
 abstract class Regexvalidator implements RegexvalidatorAllOf, Surveyvalidator, Built<Regexvalidator, RegexvalidatorBuilder> {
@@ -54,6 +55,13 @@ class _$RegexvalidatorSerializer implements PrimitiveSerializer<Regexvalidator> 
         specifiedType: const FullType(String),
       );
     }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
+      );
+    }
   }
 
   @override
@@ -90,6 +98,13 @@ class _$RegexvalidatorSerializer implements PrimitiveSerializer<Regexvalidator> 
             specifiedType: const FullType(String),
           ) as String;
           result.text = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         default:
           unhandled.add(key);

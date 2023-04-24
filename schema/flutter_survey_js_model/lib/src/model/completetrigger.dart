@@ -15,6 +15,7 @@ part 'completetrigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 /// * [name] 
 @BuiltValue()
 abstract class Completetrigger implements Surveytrigger, Built<Completetrigger, CompletetriggerBuilder> {
@@ -59,6 +60,13 @@ class _$CompletetriggerSerializer implements PrimitiveSerializer<Completetrigger
       yield r'expression';
       yield serializers.serialize(
         object.expression,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -112,6 +120,13 @@ class _$CompletetriggerSerializer implements PrimitiveSerializer<Completetrigger
             specifiedType: const FullType(String),
           ) as String;
           result.expression = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

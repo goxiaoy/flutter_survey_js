@@ -38,34 +38,82 @@ const replace = (target) =>
   });
 replace(schema);
 
-//use base class
-schema["properties"]["questions"]["items"] = {
-  $ref: "#elementBase",
+const allElements = {
+  anyOf: [
+    { $ref: "#/components/schemas/checkbox" },
+    { $ref: "#/components/schemas/tagbox" },
+    { $ref: "#/components/schemas/ranking" },
+    { $ref: "#/components/schemas/radiogroup" },
+    { $ref: "#/components/schemas/imagepicker" },
+    { $ref: "#/components/schemas/buttongroup" },
+    { $ref: "#/components/schemas/dropdown" },
+    { $ref: "#/components/schemas/matrixdropdownbase" },
+    { $ref: "#/components/schemas/matrixdropdown" },
+    { $ref: "#/components/schemas/matrixdynamic" },
+    { $ref: "#/components/schemas/matrix" },
+    { $ref: "#/components/schemas/expression" },
+    { $ref: "#/components/schemas/textbase" },
+    { $ref: "#/components/schemas/text" },
+    { $ref: "#/components/schemas/comment" },
+    { $ref: "#/components/schemas/multipletext" },
+    { $ref: "#/components/schemas/nonvalue" },
+    { $ref: "#/components/schemas/html" },
+    { $ref: "#/components/schemas/image" },
+    { $ref: "#/components/schemas/empty" },
+    { $ref: "#/components/schemas/file" },
+    { $ref: "#/components/schemas/rating" },
+    { $ref: "#/components/schemas/boolean" },
+    { $ref: "#/components/schemas/signaturepad" },
+    { $ref: "#/components/schemas/paneldynamic" },
+    { $ref: "#/components/schemas/panel" },
+  ],
 };
 
-schema["properties"]["triggers"] = {
-  $ref: "#surveytrigger",
+const allTriggers = {
+  anyOf: [
+    { $ref: "#/components/schemas/visibletrigger" },
+    { $ref: "#/components/schemas/completetrigger" },
+    { $ref: "#/components/schemas/setvaluetrigger" },
+    { $ref: "#/components/schemas/copyvaluetrigger" },
+    { $ref: "#/components/schemas/skiptrigger" },
+    { $ref: "#/components/schemas/runexpressiontrigger" },
+  ],
 };
-schema["definitions"]["panelbase"]["properties"]["elements"]["items"] = {
-  $ref: "#elementBase",
+const allValidators = {
+  type: "array",
+  items: {
+    anyOf: [
+      { $ref: "#/components/schemas/numericvalidator" },
+      { $ref: "#/components/schemas/textvalidator" },
+      { $ref: "#/components/schemas/answercountvalidator" },
+      { $ref: "#/components/schemas/regexvalidator" },
+      { $ref: "#/components/schemas/emailvalidator" },
+      { $ref: "#/components/schemas/expressionvalidator" },
+    ],
+  },
 };
 
-schema["definitions"]["question"]["properties"]["validators"] = {
-  $ref: "#surveyvalidator",
-};
+schema["properties"]["questions"]["items"] = allElements;
 
-schema["definitions"]["matrixdropdowncolumn"]["properties"]["validators"] = {
-  $ref: "#surveyvalidator",
-};
-schema["definitions"]["multipletextitem"]["properties"]["validators"] = {
-  $ref: "#surveyvalidator",
-};
+schema["properties"]["triggers"] = allTriggers;
+schema["definitions"]["panelbase"]["properties"]["elements"]["items"] =
+  allElements;
+
+// schema["definitions"]["question"]["properties"]["validators"] = {
+//   $ref: "#surveyvalidator",
+// };
+
+// schema["definitions"]["matrixdropdowncolumn"]["properties"]["validators"] = {
+//   $ref: "#surveyvalidator",
+// };
+// schema["definitions"]["multipletextitem"]["properties"]["validators"] = {
+//   $ref: "#surveyvalidator",
+// };
 
 schema["definitions"]["paneldynamic"]["allOf"][1]["properties"][
   "templateElements"
-]["items"] = {
-  $ref: "#elementBase",
-};
+]["items"] = allElements;
+
 // add elementbase property to question and panelbase
 {
   const { properties, ...rest } = schema["definitions"]["question"];
@@ -158,7 +206,7 @@ let openapi = {
 const allEnumDefinitions = {};
 const getEnumName = (accessPath) => {
   return accessPath
-    .filter((p) => p !== "allOf" && p != "1" && p !== "properties")
+    .filter((p) => p !== "allOf" && p != "0" && p != "1" && p !== "properties")
     .reduce((a, b) => {
       if (a === "") {
         return b;
@@ -214,7 +262,7 @@ const fix = (target) =>
       object["separateSpecialChoices"]["type"] = "boolean";
     }
     if (key === "validators") {
-      object["validators"] = { $ref: "#/components/schemas/surveyvalidator" };
+      object["validators"] = allValidators;
     }
     if (key === "clearIfInvisible") {
       object["clearIfInvisible"] = {
@@ -249,6 +297,18 @@ const fix = (target) =>
     if (key === "maxSelectedChoices") {
       object["maxSelectedChoices"] = {
         type: "number",
+      };
+    }
+    if (key === "choices") {
+      object["choices"] = {
+        type: "array",
+        items: {
+          anyOf: [
+            { $ref: "#/components/schemas/itemvalue" },
+            { $ref: "#/components/schemas/imageitemvalue" },
+            { $ref: "#/components/schemas/buttongroupitemvalue" },
+          ],
+        },
       };
     }
 
@@ -288,12 +348,12 @@ const fix = (target) =>
     }
   });
 fix(openapi);
-delete openapi["components"]["schemas"]["imagepicker"]["allOf"][1][
-  "properties"
-]["choices"];
-delete openapi["components"]["schemas"]["buttongroup"]["allOf"][1][
-  "properties"
-]["choices"];
+openapi["components"]["schemas"]["trigger"]["properties"]["type"] = {
+  type: "string",
+};
+openapi["components"]["schemas"]["surveyvalidator"]["properties"]["type"] = {
+  type: "string",
+};
 fs.writeFile("surveyjs.yaml", YAML.stringify(openapi), function (err) {
   if (err) {
     return console.log(err);

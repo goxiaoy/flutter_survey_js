@@ -13,12 +13,14 @@ class _$Answercountvalidator extends Answercountvalidator {
   final num? maxCount;
   @override
   final String? text;
+  @override
+  final String? type;
 
   factory _$Answercountvalidator(
           [void Function(AnswercountvalidatorBuilder)? updates]) =>
       (new AnswercountvalidatorBuilder()..update(updates))._build();
 
-  _$Answercountvalidator._({this.minCount, this.maxCount, this.text})
+  _$Answercountvalidator._({this.minCount, this.maxCount, this.text, this.type})
       : super._();
 
   @override
@@ -36,7 +38,8 @@ class _$Answercountvalidator extends Answercountvalidator {
     return other is Answercountvalidator &&
         minCount == other.minCount &&
         maxCount == other.maxCount &&
-        text == other.text;
+        text == other.text &&
+        type == other.type;
   }
 
   @override
@@ -45,6 +48,7 @@ class _$Answercountvalidator extends Answercountvalidator {
     _$hash = $jc(_$hash, minCount.hashCode);
     _$hash = $jc(_$hash, maxCount.hashCode);
     _$hash = $jc(_$hash, text.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54,7 +58,8 @@ class _$Answercountvalidator extends Answercountvalidator {
     return (newBuiltValueToStringHelper(r'Answercountvalidator')
           ..add('minCount', minCount)
           ..add('maxCount', maxCount)
-          ..add('text', text))
+          ..add('text', text)
+          ..add('type', type))
         .toString();
   }
 }
@@ -78,6 +83,10 @@ class AnswercountvalidatorBuilder
   String? get text => _$this._text;
   set text(covariant String? text) => _$this._text = text;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   AnswercountvalidatorBuilder() {
     Answercountvalidator._defaults(this);
   }
@@ -88,6 +97,7 @@ class AnswercountvalidatorBuilder
       _minCount = $v.minCount;
       _maxCount = $v.maxCount;
       _text = $v.text;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -111,7 +121,7 @@ class AnswercountvalidatorBuilder
   _$Answercountvalidator _build() {
     final _$result = _$v ??
         new _$Answercountvalidator._(
-            minCount: minCount, maxCount: maxCount, text: text);
+            minCount: minCount, maxCount: maxCount, text: text, type: type);
     replace(_$result);
     return _$result;
   }

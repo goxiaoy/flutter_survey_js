@@ -19,6 +19,8 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
   final String? value;
   @override
   final String? expression;
+  @override
+  final String? type;
 
   factory _$Copyvaluetrigger(
           [void Function(CopyvaluetriggerBuilder)? updates]) =>
@@ -30,7 +32,8 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
       this.name,
       this.operator_,
       this.value,
-      this.expression})
+      this.expression,
+      this.type})
       : super._();
 
   @override
@@ -50,7 +53,8 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
         name == other.name &&
         operator_ == other.operator_ &&
         value == other.value &&
-        expression == other.expression;
+        expression == other.expression &&
+        type == other.type;
   }
 
   @override
@@ -62,6 +66,7 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
     _$hash = $jc(_$hash, operator_.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jc(_$hash, expression.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -74,7 +79,8 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
           ..add('name', name)
           ..add('operator_', operator_)
           ..add('value', value)
-          ..add('expression', expression))
+          ..add('expression', expression)
+          ..add('type', type))
         .toString();
   }
 }
@@ -111,6 +117,10 @@ class CopyvaluetriggerBuilder
   set expression(covariant String? expression) =>
       _$this._expression = expression;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   CopyvaluetriggerBuilder() {
     Copyvaluetrigger._defaults(this);
   }
@@ -124,6 +134,7 @@ class CopyvaluetriggerBuilder
       _operator_ = $v.operator_;
       _value = $v.value;
       _expression = $v.expression;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -152,7 +163,8 @@ class CopyvaluetriggerBuilder
             name: name,
             operator_: operator_,
             value: value,
-            expression: expression);
+            expression: expression,
+            type: type);
     replace(_$result);
     return _$result;
   }

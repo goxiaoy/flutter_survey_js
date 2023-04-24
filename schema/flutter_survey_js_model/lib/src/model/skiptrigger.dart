@@ -16,6 +16,7 @@ part 'skiptrigger.g.dart';
 /// * [operator_] 
 /// * [value] 
 /// * [expression] 
+/// * [type] 
 /// * [name] 
 /// * [gotoName] 
 @BuiltValue()
@@ -43,13 +44,6 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
     Skiptrigger object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.operator_ != null) {
       yield r'operator';
       yield serializers.serialize(
@@ -61,6 +55,20 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
       yield r'expression';
       yield serializers.serialize(
         object.expression,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
         specifiedType: const FullType(String),
       );
     }
@@ -101,13 +109,6 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
         case r'operator':
           final valueDes = serializers.deserialize(
             value,
@@ -121,6 +122,20 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
             specifiedType: const FullType(String),
           ) as String;
           result.expression = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'value':
           final valueDes = serializers.deserialize(

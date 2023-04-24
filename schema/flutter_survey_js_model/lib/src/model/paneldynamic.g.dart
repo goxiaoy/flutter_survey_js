@@ -10,7 +10,7 @@ class _$Paneldynamic extends Paneldynamic {
   @override
   final String? showCommentArea;
   @override
-  final BuiltList<ElementBase>? templateElements;
+  final BuiltList<SurveyQuestionsInner>? templateElements;
   @override
   final String? templateTitle;
   @override
@@ -118,7 +118,7 @@ class _$Paneldynamic extends Paneldynamic {
   @override
   final String? readOnly;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -415,10 +415,11 @@ class PaneldynamicBuilder
   set showCommentArea(covariant String? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
-  ListBuilder<ElementBase>? _templateElements;
-  ListBuilder<ElementBase> get templateElements =>
-      _$this._templateElements ??= new ListBuilder<ElementBase>();
-  set templateElements(covariant ListBuilder<ElementBase>? templateElements) =>
+  ListBuilder<SurveyQuestionsInner>? _templateElements;
+  ListBuilder<SurveyQuestionsInner> get templateElements =>
+      _$this._templateElements ??= new ListBuilder<SurveyQuestionsInner>();
+  set templateElements(
+          covariant ListBuilder<SurveyQuestionsInner>? templateElements) =>
       _$this._templateElements = templateElements;
 
   String? _templateTitle;
@@ -681,9 +682,11 @@ class PaneldynamicBuilder
   String? get readOnly => _$this._readOnly;
   set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -766,7 +769,7 @@ class PaneldynamicBuilder
       _requiredIf = $v.requiredIf;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _renderAs = $v.renderAs;
       _commentText = $v.commentText;
@@ -851,7 +854,7 @@ class PaneldynamicBuilder
               requiredIf: requiredIf,
               requiredErrorText: requiredErrorText,
               readOnly: readOnly,
-              validators: validators,
+              validators: _validators?.build(),
               bindings: bindings,
               renderAs: renderAs,
               commentText: commentText,
@@ -861,6 +864,9 @@ class PaneldynamicBuilder
       try {
         _$failedField = 'templateElements';
         _templateElements?.build();
+
+        _$failedField = 'validators';
+        _validators?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Paneldynamic', _$failedField, e.toString());

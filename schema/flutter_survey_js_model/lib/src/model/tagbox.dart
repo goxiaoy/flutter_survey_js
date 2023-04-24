@@ -6,14 +6,14 @@
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_from_question_mode.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_order.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
-import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
+import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/tagbox_all_of.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/checkbox.dart';
 import 'package:flutter_survey_js_model/src/model/choices_restful.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase_col_count.dart';
@@ -151,7 +151,7 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'validators';
       yield serializers.serialize(
         object.validators,
-        specifiedType: const FullType(Surveyvalidator),
+        specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
       );
     }
     if (object.bindings != null) {
@@ -326,7 +326,7 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'choices';
       yield serializers.serialize(
         object.choices,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
       );
     }
     if (object.showNoneItem != null) {
@@ -607,9 +607,9 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'validators':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Surveyvalidator),
-          ) as Surveyvalidator;
-          result.validators = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
+          ) as BuiltList<QuestionAllOfValidatorsInner>;
+          result.validators.replace(valueDes);
           break;
         case r'bindings':
           final valueDes = serializers.deserialize(
@@ -782,8 +782,8 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'choices':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+          ) as BuiltList<SelectbaseAllOfChoicesInner>;
           result.choices.replace(valueDes);
           break;
         case r'showNoneItem':

@@ -6,16 +6,17 @@
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of.dart';
-import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_col_count.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
+import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_layout.dart';
 import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_detail_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase.dart';
@@ -124,7 +125,7 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'validators';
       yield serializers.serialize(
         object.validators,
-        specifiedType: const FullType(Surveyvalidator),
+        specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
       );
     }
     if (object.totalText != null) {
@@ -327,7 +328,7 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
       yield r'choices';
       yield serializers.serialize(
         object.choices,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
       );
     }
     if (object.indent != null) {
@@ -524,9 +525,9 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'validators':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Surveyvalidator),
-          ) as Surveyvalidator;
-          result.validators = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
+          ) as BuiltList<QuestionAllOfValidatorsInner>;
+          result.validators.replace(valueDes);
           break;
         case r'totalText':
           final valueDes = serializers.deserialize(
@@ -727,8 +728,8 @@ class _$MatrixdropdownSerializer implements PrimitiveSerializer<Matrixdropdown> 
         case r'choices':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+          ) as BuiltList<SelectbaseAllOfChoicesInner>;
           result.choices.replace(valueDes);
           break;
         case r'indent':

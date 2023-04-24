@@ -13,12 +13,15 @@ class _$Numericvalidator extends Numericvalidator {
   final num? maxValue;
   @override
   final String? text;
+  @override
+  final String? type;
 
   factory _$Numericvalidator(
           [void Function(NumericvalidatorBuilder)? updates]) =>
       (new NumericvalidatorBuilder()..update(updates))._build();
 
-  _$Numericvalidator._({this.minValue, this.maxValue, this.text}) : super._();
+  _$Numericvalidator._({this.minValue, this.maxValue, this.text, this.type})
+      : super._();
 
   @override
   Numericvalidator rebuild(void Function(NumericvalidatorBuilder) updates) =>
@@ -34,7 +37,8 @@ class _$Numericvalidator extends Numericvalidator {
     return other is Numericvalidator &&
         minValue == other.minValue &&
         maxValue == other.maxValue &&
-        text == other.text;
+        text == other.text &&
+        type == other.type;
   }
 
   @override
@@ -43,6 +47,7 @@ class _$Numericvalidator extends Numericvalidator {
     _$hash = $jc(_$hash, minValue.hashCode);
     _$hash = $jc(_$hash, maxValue.hashCode);
     _$hash = $jc(_$hash, text.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52,7 +57,8 @@ class _$Numericvalidator extends Numericvalidator {
     return (newBuiltValueToStringHelper(r'Numericvalidator')
           ..add('minValue', minValue)
           ..add('maxValue', maxValue)
-          ..add('text', text))
+          ..add('text', text)
+          ..add('type', type))
         .toString();
   }
 }
@@ -76,6 +82,10 @@ class NumericvalidatorBuilder
   String? get text => _$this._text;
   set text(covariant String? text) => _$this._text = text;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   NumericvalidatorBuilder() {
     Numericvalidator._defaults(this);
   }
@@ -86,6 +96,7 @@ class NumericvalidatorBuilder
       _minValue = $v.minValue;
       _maxValue = $v.maxValue;
       _text = $v.text;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -109,7 +120,7 @@ class NumericvalidatorBuilder
   _$Numericvalidator _build() {
     final _$result = _$v ??
         new _$Numericvalidator._(
-            minValue: minValue, maxValue: maxValue, text: text);
+            minValue: minValue, maxValue: maxValue, text: text, type: type);
     replace(_$result);
     return _$result;
   }

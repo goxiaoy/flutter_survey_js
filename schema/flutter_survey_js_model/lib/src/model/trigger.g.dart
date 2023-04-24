@@ -17,6 +17,9 @@ abstract class TriggerBuilder {
 
   String? get expression;
   set expression(String? expression);
+
+  String? get type;
+  set type(String? type);
 }
 
 class _$$Trigger extends $Trigger {
@@ -26,11 +29,14 @@ class _$$Trigger extends $Trigger {
   final String? value;
   @override
   final String? expression;
+  @override
+  final String? type;
 
   factory _$$Trigger([void Function($TriggerBuilder)? updates]) =>
       (new $TriggerBuilder()..update(updates))._build();
 
-  _$$Trigger._({this.operator_, this.value, this.expression}) : super._();
+  _$$Trigger._({this.operator_, this.value, this.expression, this.type})
+      : super._();
 
   @override
   $Trigger rebuild(void Function($TriggerBuilder) updates) =>
@@ -45,7 +51,8 @@ class _$$Trigger extends $Trigger {
     return other is $Trigger &&
         operator_ == other.operator_ &&
         value == other.value &&
-        expression == other.expression;
+        expression == other.expression &&
+        type == other.type;
   }
 
   @override
@@ -54,6 +61,7 @@ class _$$Trigger extends $Trigger {
     _$hash = $jc(_$hash, operator_.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jc(_$hash, expression.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -63,7 +71,8 @@ class _$$Trigger extends $Trigger {
     return (newBuiltValueToStringHelper(r'$Trigger')
           ..add('operator_', operator_)
           ..add('value', value)
-          ..add('expression', expression))
+          ..add('expression', expression)
+          ..add('type', type))
         .toString();
   }
 }
@@ -85,6 +94,10 @@ class $TriggerBuilder
   set expression(covariant String? expression) =>
       _$this._expression = expression;
 
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
+
   $TriggerBuilder() {
     $Trigger._defaults(this);
   }
@@ -95,6 +108,7 @@ class $TriggerBuilder
       _operator_ = $v.operator_;
       _value = $v.value;
       _expression = $v.expression;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -117,7 +131,10 @@ class $TriggerBuilder
   _$$Trigger _build() {
     final _$result = _$v ??
         new _$$Trigger._(
-            operator_: operator_, value: value, expression: expression);
+            operator_: operator_,
+            value: value,
+            expression: expression,
+            type: type);
     replace(_$result);
     return _$result;
   }

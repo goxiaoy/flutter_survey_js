@@ -19,6 +19,7 @@ import 'package:flutter_survey_js_model/src/model/answercountvalidator_all_of.da
 import 'package:flutter_survey_js_model/src/model/boolean.dart';
 import 'package:flutter_survey_js_model/src/model/boolean_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/buttongroup.dart';
+import 'package:flutter_survey_js_model/src/model/buttongroup_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/buttongroupitemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/buttongroupitemvalue_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/calculatedvalue.dart';
@@ -119,6 +120,7 @@ import 'package:flutter_survey_js_model/src/model/paneldynamic_tab_align.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_template_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
@@ -139,6 +141,7 @@ import 'package:flutter_survey_js_model/src/model/runexpressiontrigger.dart';
 import 'package:flutter_survey_js_model/src/model/runexpressiontrigger_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_from_question_mode.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_order.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_store_others_as_comment.dart';
@@ -160,17 +163,19 @@ import 'package:flutter_survey_js_model/src/model/survey_progress_bar_type.dart'
 import 'package:flutter_survey_js_model/src/model/survey_question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_error_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_on_page_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_order.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_navigation_buttons.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_preview_before_complete.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_progress_bar.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.dart';
-import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_one_of0.dart';
+import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_one_of.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_toc_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_triggers.dart';
 import 'package:flutter_survey_js_model/src/model/survey_width_mode.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger_all_of.dart';
@@ -199,6 +204,7 @@ part 'serializers.g.dart';
   Boolean,
   BooleanAllOf,$BooleanAllOf,
   Buttongroup,
+  ButtongroupAllOf,$ButtongroupAllOf,
   Buttongroupitemvalue,
   ButtongroupitemvalueAllOf,$ButtongroupitemvalueAllOf,
   Calculatedvalue,
@@ -299,6 +305,7 @@ part 'serializers.g.dart';
   PaneldynamicTemplateTitleLocation,
   Question,$Question,
   QuestionAllOf,$QuestionAllOf,
+  QuestionAllOfValidatorsInner,
   QuestionClearIfInvisible,
   QuestionDescriptionLocation,
   QuestionIndent,
@@ -319,6 +326,7 @@ part 'serializers.g.dart';
   RunexpressiontriggerAllOf,$RunexpressiontriggerAllOf,
   Selectbase,$Selectbase,
   SelectbaseAllOf,$SelectbaseAllOf,
+  SelectbaseAllOfChoicesInner,
   SelectbaseChoicesFromQuestionMode,
   SelectbaseChoicesOrder,
   SelectbaseStoreOthersAsComment,
@@ -340,17 +348,19 @@ part 'serializers.g.dart';
   SurveyQuestionDescriptionLocation,
   SurveyQuestionErrorLocation,
   SurveyQuestionTitleLocation,
+  SurveyQuestionsInner,
   SurveyQuestionsOnPageMode,
   SurveyQuestionsOrder,
   SurveyShowNavigationButtons,
   SurveyShowPreviewBeforeComplete,
   SurveyShowProgressBar,
   SurveyShowQuestionNumbers,
-  SurveyShowQuestionNumbersOneOf0,
+  SurveyShowQuestionNumbersOneOf,
   SurveyShowTimerPanel,
   SurveyShowTimerPanelMode,
   SurveyTextUpdateMode,
   SurveyTocLocation,
+  SurveyTriggers,
   SurveyWidthMode,
   Surveytrigger,$Surveytrigger,
   SurveytriggerAllOf,$SurveytriggerAllOf,
@@ -374,6 +384,7 @@ part 'serializers.g.dart';
 Serializers serializers = (_$serializers.toBuilder()
       ..add(AnswercountvalidatorAllOf.serializer)
       ..add(BooleanAllOf.serializer)
+      ..add(ButtongroupAllOf.serializer)
       ..add(ButtongroupitemvalueAllOf.serializer)
       ..add(Checkbox.serializer)
       ..add(CheckboxAllOf.serializer)

@@ -14,6 +14,7 @@ part 'textvalidator.g.dart';
 ///
 /// Properties:
 /// * [text] 
+/// * [type] 
 /// * [minLength] 
 /// * [maxLength] 
 /// * [allowDigits] 
@@ -54,6 +55,13 @@ class _$TextvalidatorSerializer implements PrimitiveSerializer<Textvalidator> {
       yield serializers.serialize(
         object.allowDigits,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
       );
     }
     if (object.maxLength != null) {
@@ -106,6 +114,13 @@ class _$TextvalidatorSerializer implements PrimitiveSerializer<Textvalidator> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.allowDigits = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
         case r'maxLength':
           final valueDes = serializers.deserialize(

@@ -24,8 +24,8 @@ abstract class MatrixdropdownbaseAllOfBuilder {
   bool? get horizontalScroll;
   set horizontalScroll(bool? horizontalScroll);
 
-  ListBuilder<Itemvalue> get choices;
-  set choices(ListBuilder<Itemvalue>? choices);
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices;
+  set choices(ListBuilder<SelectbaseAllOfChoicesInner>? choices);
 
   String? get placeholder;
   set placeholder(String? placeholder);
@@ -58,7 +58,7 @@ class _$$MatrixdropdownbaseAllOf extends $MatrixdropdownbaseAllOf {
   @override
   final bool? horizontalScroll;
   @override
-  final BuiltList<Itemvalue>? choices;
+  final BuiltList<SelectbaseAllOfChoicesInner>? choices;
   @override
   final String? placeholder;
   @override
@@ -190,10 +190,10 @@ class $MatrixdropdownbaseAllOfBuilder
   set horizontalScroll(covariant bool? horizontalScroll) =>
       _$this._horizontalScroll = horizontalScroll;
 
-  ListBuilder<Itemvalue>? _choices;
-  ListBuilder<Itemvalue> get choices =>
-      _$this._choices ??= new ListBuilder<Itemvalue>();
-  set choices(covariant ListBuilder<Itemvalue>? choices) =>
+  ListBuilder<SelectbaseAllOfChoicesInner>? _choices;
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices =>
+      _$this._choices ??= new ListBuilder<SelectbaseAllOfChoicesInner>();
+  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices) =>
       _$this._choices = choices;
 
   String? _placeholder;

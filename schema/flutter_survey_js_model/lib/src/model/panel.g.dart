@@ -40,7 +40,7 @@ class _$Panel extends Panel {
   @override
   final String? name;
   @override
-  final BuiltList<ElementBase>? elements;
+  final BuiltList<SurveyQuestionsInner>? elements;
   @override
   final String? visible;
   @override
@@ -277,10 +277,10 @@ class PanelBuilder
   String? get name => _$this._name;
   set name(covariant String? name) => _$this._name = name;
 
-  ListBuilder<ElementBase>? _elements;
-  ListBuilder<ElementBase> get elements =>
-      _$this._elements ??= new ListBuilder<ElementBase>();
-  set elements(covariant ListBuilder<ElementBase>? elements) =>
+  ListBuilder<SurveyQuestionsInner>? _elements;
+  ListBuilder<SurveyQuestionsInner> get elements =>
+      _$this._elements ??= new ListBuilder<SurveyQuestionsInner>();
+  set elements(covariant ListBuilder<SurveyQuestionsInner>? elements) =>
       _$this._elements = elements;
 
   String? _visible;

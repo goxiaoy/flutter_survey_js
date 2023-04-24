@@ -3,9 +3,9 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_detail_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_col_count.dart';
@@ -50,7 +50,7 @@ abstract class MatrixdropdownbaseAllOf  {
   bool? get horizontalScroll;
 
   @BuiltValueField(wireName: r'choices')
-  BuiltList<Itemvalue>? get choices;
+  BuiltList<SelectbaseAllOfChoicesInner>? get choices;
 
   @BuiltValueField(wireName: r'placeholder')
   String? get placeholder;
@@ -127,7 +127,7 @@ class _$MatrixdropdownbaseAllOfSerializer implements PrimitiveSerializer<Matrixd
       yield r'choices';
       yield serializers.serialize(
         object.choices,
-        specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
+        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
       );
     }
     if (object.placeholder != null) {
@@ -273,8 +273,8 @@ class _$$MatrixdropdownbaseAllOfSerializer implements PrimitiveSerializer<$Matri
         case r'choices':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(Itemvalue)]),
-          ) as BuiltList<Itemvalue>;
+            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+          ) as BuiltList<SelectbaseAllOfChoicesInner>;
           result.choices.replace(valueDes);
           break;
         case r'placeholder':

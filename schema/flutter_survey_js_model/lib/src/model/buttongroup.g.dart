@@ -8,6 +8,8 @@ part of 'buttongroup.dart';
 
 class _$Buttongroup extends Buttongroup {
   @override
+  final BuiltList<SelectbaseAllOfChoicesInner>? choices;
+  @override
   final CheckboxbaseColCount? colCount;
   @override
   final String? type;
@@ -64,7 +66,7 @@ class _$Buttongroup extends Buttongroup {
   @override
   final String? readOnly;
   @override
-  final Surveyvalidator? validators;
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
   final String? bindings;
   @override
@@ -77,8 +79,6 @@ class _$Buttongroup extends Buttongroup {
   final String? commentPlaceholder;
   @override
   final String? choicesFromQuestion;
-  @override
-  final BuiltList<Itemvalue>? choices;
   @override
   final SelectbaseChoicesFromQuestionMode? choicesFromQuestionMode;
   @override
@@ -112,7 +112,8 @@ class _$Buttongroup extends Buttongroup {
       (new ButtongroupBuilder()..update(updates))._build();
 
   _$Buttongroup._(
-      {this.colCount,
+      {this.choices,
+      this.colCount,
       this.type,
       this.name,
       this.state,
@@ -147,7 +148,6 @@ class _$Buttongroup extends Buttongroup {
       this.commentText,
       this.commentPlaceholder,
       this.choicesFromQuestion,
-      this.choices,
       this.choicesFromQuestionMode,
       this.choicesOrder,
       this.choicesByUrl,
@@ -175,6 +175,7 @@ class _$Buttongroup extends Buttongroup {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Buttongroup &&
+        choices == other.choices &&
         colCount == other.colCount &&
         type == other.type &&
         name == other.name &&
@@ -211,7 +212,6 @@ class _$Buttongroup extends Buttongroup {
         commentText == other.commentText &&
         commentPlaceholder == other.commentPlaceholder &&
         choicesFromQuestion == other.choicesFromQuestion &&
-        choices == other.choices &&
         choicesFromQuestionMode == other.choicesFromQuestionMode &&
         choicesOrder == other.choicesOrder &&
         choicesByUrl == other.choicesByUrl &&
@@ -231,6 +231,7 @@ class _$Buttongroup extends Buttongroup {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, choices.hashCode);
     _$hash = $jc(_$hash, colCount.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
@@ -266,7 +267,6 @@ class _$Buttongroup extends Buttongroup {
     _$hash = $jc(_$hash, commentText.hashCode);
     _$hash = $jc(_$hash, commentPlaceholder.hashCode);
     _$hash = $jc(_$hash, choicesFromQuestion.hashCode);
-    _$hash = $jc(_$hash, choices.hashCode);
     _$hash = $jc(_$hash, choicesFromQuestionMode.hashCode);
     _$hash = $jc(_$hash, choicesOrder.hashCode);
     _$hash = $jc(_$hash, choicesByUrl.hashCode);
@@ -288,6 +288,7 @@ class _$Buttongroup extends Buttongroup {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Buttongroup')
+          ..add('choices', choices)
           ..add('colCount', colCount)
           ..add('type', type)
           ..add('name', name)
@@ -324,7 +325,6 @@ class _$Buttongroup extends Buttongroup {
           ..add('commentText', commentText)
           ..add('commentPlaceholder', commentPlaceholder)
           ..add('choicesFromQuestion', choicesFromQuestion)
-          ..add('choices', choices)
           ..add('choicesFromQuestionMode', choicesFromQuestionMode)
           ..add('choicesOrder', choicesOrder)
           ..add('choicesByUrl', choicesByUrl)
@@ -344,8 +344,17 @@ class _$Buttongroup extends Buttongroup {
 }
 
 class ButtongroupBuilder
-    implements Builder<Buttongroup, ButtongroupBuilder>, CheckboxbaseBuilder {
+    implements
+        Builder<Buttongroup, ButtongroupBuilder>,
+        ButtongroupAllOfBuilder,
+        CheckboxbaseBuilder {
   _$Buttongroup? _$v;
+
+  ListBuilder<SelectbaseAllOfChoicesInner>? _choices;
+  ListBuilder<SelectbaseAllOfChoicesInner> get choices =>
+      _$this._choices ??= new ListBuilder<SelectbaseAllOfChoicesInner>();
+  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices) =>
+      _$this._choices = choices;
 
   CheckboxbaseColCount? _colCount;
   CheckboxbaseColCount? get colCount => _$this._colCount;
@@ -476,9 +485,11 @@ class ButtongroupBuilder
   String? get readOnly => _$this._readOnly;
   set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
-  Surveyvalidator? _validators;
-  Surveyvalidator? get validators => _$this._validators;
-  set validators(covariant Surveyvalidator? validators) =>
+  ListBuilder<QuestionAllOfValidatorsInner>? _validators;
+  ListBuilder<QuestionAllOfValidatorsInner> get validators =>
+      _$this._validators ??= new ListBuilder<QuestionAllOfValidatorsInner>();
+  set validators(
+          covariant ListBuilder<QuestionAllOfValidatorsInner>? validators) =>
       _$this._validators = validators;
 
   String? _bindings;
@@ -508,12 +519,6 @@ class ButtongroupBuilder
   String? get choicesFromQuestion => _$this._choicesFromQuestion;
   set choicesFromQuestion(covariant String? choicesFromQuestion) =>
       _$this._choicesFromQuestion = choicesFromQuestion;
-
-  ListBuilder<Itemvalue>? _choices;
-  ListBuilder<Itemvalue> get choices =>
-      _$this._choices ??= new ListBuilder<Itemvalue>();
-  set choices(covariant ListBuilder<Itemvalue>? choices) =>
-      _$this._choices = choices;
 
   SelectbaseChoicesFromQuestionMode? _choicesFromQuestionMode;
   SelectbaseChoicesFromQuestionMode? get choicesFromQuestionMode =>
@@ -594,6 +599,7 @@ class ButtongroupBuilder
   ButtongroupBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _choices = $v.choices?.toBuilder();
       _colCount = $v.colCount;
       _type = $v.type;
       _name = $v.name;
@@ -622,14 +628,13 @@ class ButtongroupBuilder
       _requiredIf = $v.requiredIf;
       _requiredErrorText = $v.requiredErrorText;
       _readOnly = $v.readOnly;
-      _validators = $v.validators;
+      _validators = $v.validators?.toBuilder();
       _bindings = $v.bindings;
       _renderAs = $v.renderAs;
       _showCommentArea = $v.showCommentArea;
       _commentText = $v.commentText;
       _commentPlaceholder = $v.commentPlaceholder;
       _choicesFromQuestion = $v.choicesFromQuestion;
-      _choices = $v.choices?.toBuilder();
       _choicesFromQuestionMode = $v.choicesFromQuestionMode;
       _choicesOrder = $v.choicesOrder;
       _choicesByUrl = $v.choicesByUrl?.toBuilder();
@@ -650,6 +655,7 @@ class ButtongroupBuilder
   }
 
   @override
+// ignore: override_on_non_overriding_method
   void replace(covariant Buttongroup other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Buttongroup;
@@ -668,6 +674,7 @@ class ButtongroupBuilder
     try {
       _$result = _$v ??
           new _$Buttongroup._(
+              choices: _choices?.build(),
               colCount: colCount,
               type: type,
               name: name,
@@ -696,14 +703,13 @@ class ButtongroupBuilder
               requiredIf: requiredIf,
               requiredErrorText: requiredErrorText,
               readOnly: readOnly,
-              validators: validators,
+              validators: _validators?.build(),
               bindings: bindings,
               renderAs: renderAs,
               showCommentArea: showCommentArea,
               commentText: commentText,
               commentPlaceholder: commentPlaceholder,
               choicesFromQuestion: choicesFromQuestion,
-              choices: _choices?.build(),
               choicesFromQuestionMode: choicesFromQuestionMode,
               choicesOrder: choicesOrder,
               choicesByUrl: _choicesByUrl?.build(),
@@ -723,6 +729,9 @@ class ButtongroupBuilder
       try {
         _$failedField = 'choices';
         _choices?.build();
+
+        _$failedField = 'validators';
+        _validators?.build();
 
         _$failedField = 'choicesByUrl';
         _choicesByUrl?.build();

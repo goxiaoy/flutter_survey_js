@@ -16,8 +16,8 @@ abstract class PanelbaseBuilder
   String? get name;
   set name(covariant String? name);
 
-  ListBuilder<ElementBase> get elements;
-  set elements(covariant ListBuilder<ElementBase>? elements);
+  ListBuilder<SurveyQuestionsInner> get elements;
+  set elements(covariant ListBuilder<SurveyQuestionsInner>? elements);
 
   String? get visible;
   set visible(covariant String? visible);
@@ -54,7 +54,7 @@ class _$$Panelbase extends $Panelbase {
   @override
   final String? name;
   @override
-  final BuiltList<ElementBase>? elements;
+  final BuiltList<SurveyQuestionsInner>? elements;
   @override
   final String? visible;
   @override
@@ -167,10 +167,10 @@ class $PanelbaseBuilder
   String? get name => _$this._name;
   set name(covariant String? name) => _$this._name = name;
 
-  ListBuilder<ElementBase>? _elements;
-  ListBuilder<ElementBase> get elements =>
-      _$this._elements ??= new ListBuilder<ElementBase>();
-  set elements(covariant ListBuilder<ElementBase>? elements) =>
+  ListBuilder<SurveyQuestionsInner>? _elements;
+  ListBuilder<SurveyQuestionsInner> get elements =>
+      _$this._elements ??= new ListBuilder<SurveyQuestionsInner>();
+  set elements(covariant ListBuilder<SurveyQuestionsInner>? elements) =>
       _$this._elements = elements;
 
   String? _visible;

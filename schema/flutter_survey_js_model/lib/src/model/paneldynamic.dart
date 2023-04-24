@@ -6,11 +6,10 @@
 import 'package:flutter_survey_js_model/src/model/paneldynamic_template_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panel_count.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
-import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
+import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
-import 'package:flutter_survey_js_model/src/model/element_base.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
@@ -19,6 +18,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panel_remove_button_location.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_show_question_numbers.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_tab_align.dart';
+import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_render_mode.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -138,7 +138,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'validators';
       yield serializers.serialize(
         object.validators,
-        specifiedType: const FullType(Surveyvalidator),
+        specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
       );
     }
     if (object.bindings != null) {
@@ -292,7 +292,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'templateElements';
       yield serializers.serialize(
         object.templateElements,
-        specifiedType: const FullType(BuiltList, [FullType(ElementBase)]),
+        specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
       );
     }
     if (object.templateDescription != null) {
@@ -580,9 +580,9 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'validators':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Surveyvalidator),
-          ) as Surveyvalidator;
-          result.validators = valueDes;
+            specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
+          ) as BuiltList<QuestionAllOfValidatorsInner>;
+          result.validators.replace(valueDes);
           break;
         case r'bindings':
           final valueDes = serializers.deserialize(
@@ -734,8 +734,8 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'templateElements':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ElementBase)]),
-          ) as BuiltList<ElementBase>;
+            specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+          ) as BuiltList<SurveyQuestionsInner>;
           result.templateElements.replace(valueDes);
           break;
         case r'templateDescription':
