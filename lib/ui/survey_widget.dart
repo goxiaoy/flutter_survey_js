@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -206,7 +206,8 @@ extension SurveyFormExtension on s.Survey {
     return pages!.fold<List<s.Elementbase>>(
         [],
         (previousValue, element) => previousValue
-          ..addAll(element.elements?.map((p) => p.realElement) ?? []));
+          ..addAll(
+              element.elementsOrQuestions?.map((p) => p.realElement) ?? []));
   }
 }
 

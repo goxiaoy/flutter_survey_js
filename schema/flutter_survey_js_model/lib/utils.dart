@@ -2,14 +2,14 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-import 'package:flutter_survey_js_model/src/any_of.dart';
 import 'package:flutter_survey_js_model/src/survey_serializer.dart';
 
 import 'flutter_survey_js_model.dart';
 
 Serializers surveySerializers = (serializers.toBuilder()
-  ..add(SurveyAnyOfSerializer())..add(SurveySerializer())
-  ..addPlugin(StandardJsonPlugin()))
+      ..add(SurveyAnyOfSerializer())
+      ..add(SurveySerializer())
+      ..addPlugin(StandardJsonPlugin()))
     .build();
 
 Survey? surveyFromJson(Object? serialized) {
@@ -25,30 +25,30 @@ extension SelectbaseAllOfChoicesInnerExtension on SelectbaseAllOfChoicesInner {
   Itemvalue castToItemvalue() {
     if (this.anyOf.isType(Itemvalue)) {
       return this.anyOf.values[this.anyOf.types.indexOf(Itemvalue)]
-      as Itemvalue;
+          as Itemvalue;
     }
     final b = $ItemvalueBuilder();
     b.value =
-    this.anyOf.values[this.anyOf.types.indexOf(JsonObject)] as JsonObject;
+        this.anyOf.values[this.anyOf.types.indexOf(JsonObject)] as JsonObject;
     return b.build();
   }
 }
 
 extension MatrixdropdownAllOfRowsInnerExtension
-on MatrixdropdownAllOfRowsInner {
+    on MatrixdropdownAllOfRowsInner {
   Itemvalue castToItemvalue() {
     if (this.anyOf.isType(Itemvalue)) {
       return this.anyOf.values[this.anyOf.types.indexOf(Itemvalue)]
-      as Itemvalue;
+          as Itemvalue;
     }
     final b = $ItemvalueBuilder();
     b.value =
-    this.anyOf.values[this.anyOf.types.indexOf(JsonObject)] as JsonObject;
+        this.anyOf.values[this.anyOf.types.indexOf(JsonObject)] as JsonObject;
     return b.build();
   }
 }
 
-extension PageExtension on Page {
+extension PanelbaseExtension on Panelbase {
   BuiltList<SurveyQuestionsInner>? get elementsOrQuestions {
     return this.elements ?? this.questions;
   }
@@ -61,7 +61,7 @@ extension SurveyQuestionsInnerExtension on SurveyQuestionsInner {
 }
 
 extension QuestionAllOfValidatorsInnerExtension
-on QuestionAllOfValidatorsInner {
+    on QuestionAllOfValidatorsInner {
   Surveyvalidator get realValidator {
     return this.anyOf.values.values.first as Surveyvalidator;
   }
@@ -80,8 +80,8 @@ extension SurveyShowQuestionNumbersExtension on SurveyShowQuestionNumbers {
           true;
     }
     return (this.anyOf.values[
-    this.anyOf.types.indexOf(SurveyShowQuestionNumbersAnyOf)]
-    as SurveyShowQuestionNumbersAnyOf) ==
+                this.anyOf.types.indexOf(SurveyShowQuestionNumbersAnyOf)]
+            as SurveyShowQuestionNumbersAnyOf) ==
         SurveyShowQuestionNumbersAnyOf.on_;
   }
 
@@ -91,8 +91,8 @@ extension SurveyShowQuestionNumbersExtension on SurveyShowQuestionNumbers {
           false;
     }
     return (this.anyOf.values[
-    this.anyOf.types.indexOf(SurveyShowQuestionNumbersAnyOf)]
-    as SurveyShowQuestionNumbersAnyOf) ==
+                this.anyOf.types.indexOf(SurveyShowQuestionNumbersAnyOf)]
+            as SurveyShowQuestionNumbersAnyOf) ==
         SurveyShowQuestionNumbersAnyOf.off;
   }
 
@@ -101,14 +101,13 @@ extension SurveyShowQuestionNumbersExtension on SurveyShowQuestionNumbers {
       return false;
     }
     return (this.anyOf.values[
-    this.anyOf.types.indexOf(SurveyShowQuestionNumbersAnyOf)]
-    as SurveyShowQuestionNumbersAnyOf) ==
+                this.anyOf.types.indexOf(SurveyShowQuestionNumbersAnyOf)]
+            as SurveyShowQuestionNumbersAnyOf) ==
         SurveyShowQuestionNumbersAnyOf.onPage;
   }
 }
 
 extension JsonObjectExtension on JsonObject? {
-
   int? tryCastToInt() {
     if (this == null) {
       return null;
@@ -116,8 +115,7 @@ extension JsonObjectExtension on JsonObject? {
     if (!(this is NumJsonObject)) {
       return null;
     }
-    return (this as NumJsonObject)
-        .value.toInt();
+    return (this as NumJsonObject).value.toInt();
   }
 
   List<Object> tryCastToListObj() {

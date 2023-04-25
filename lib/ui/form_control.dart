@@ -1,7 +1,7 @@
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/elements/survey_element_factory.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:built_value/json_object.dart';
+
 import 'validators.dart';
 
 // elementsToFormGroup mapping question json elements to FormGroup
@@ -29,7 +29,7 @@ extension ElementExtension on s.Elementbase {
       if (this is s.Panel) {
         final p = this as s.Panel;
         return elementsToFormGroup(
-            p.elements?.map((p) => p.realElement).toList() ?? [],
+            p.elementsOrQuestions?.map((p) => p.realElement).toList() ?? [],
             validators: p.isRequired == true ? [Validators.required] : [],
             controlsMap: controlsMap);
       }

@@ -1,5 +1,4 @@
 import 'package:built_value/serializer.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart';
 import 'package:one_of/any_of.dart';
 import 'package:one_of_serializer/any_of_serializer.dart';
@@ -26,11 +25,15 @@ const questionMap = <String, Type>{
   "image": Image,
   "empty": Empty,
   "file": File,
+  "rating": Rating,
   "boolean": Boolean,
   "signaturepad": Signaturepad,
   "paneldynamic": Paneldynamic,
   "panel": Panel,
 };
+
+final questionTypeName =
+    Map.fromEntries(questionMap.entries.map((e) => MapEntry(e.value, e.key)));
 
 const triggerMap = <String, Type>{
   "visible": Visibletrigger,

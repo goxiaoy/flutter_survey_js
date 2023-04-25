@@ -1,11 +1,11 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/survey_page_widget.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:im_stepper/stepper.dart';
 import 'package:logging/logging.dart';
-import 'package:built_collection/built_collection.dart';
 
 Widget defaultSurveyTitleBuilder(BuildContext context, s.Survey survey) {
   if (survey.title != null) {
@@ -150,8 +150,8 @@ class SurveyLayoutState extends State<SurveyLayout> {
       final pageBuilder = s.Page().toBuilder();
       pageBuilder.elements = ListBuilder<s.SurveyQuestionsInner>(
           (survey.pages?.toList() ?? <s.Page>[])
-              .map<List<s.SurveyQuestionsInner>>(
-                  (e) => e.elements?.toList() ?? <s.SurveyQuestionsInner>[])
+              .map<List<s.SurveyQuestionsInner>>((e) =>
+                  e.elementsOrQuestions?.toList() ?? <s.SurveyQuestionsInner>[])
               .fold<List<s.SurveyQuestionsInner>>(<s.SurveyQuestionsInner>[],
                   (previousValue, element) => previousValue..addAll(element)));
 

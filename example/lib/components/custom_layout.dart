@@ -130,7 +130,8 @@ class CustomLayoutState extends State<CustomLayout> {
   List<s.Elementbase> _consolidateQuestions(s.Survey survey) {
     return (survey.pages?.toList() ?? [])
         .map<List<s.Elementbase>>((e) =>
-            e.elements?.map((p) => p.realElement).toList() ?? <s.Elementbase>[])
+            e.elementsOrQuestions?.map((p) => p.realElement).toList() ??
+            <s.Elementbase>[])
         .fold(<s.Elementbase>[],
             (previousValue, element) => previousValue..addAll(element));
   }

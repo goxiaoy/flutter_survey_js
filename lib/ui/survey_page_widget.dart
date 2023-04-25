@@ -36,7 +36,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
   void initState() {
     super.initState();
 
-    maxIndex = widget.page.elements?.length ?? 0;
+    maxIndex = widget.page.elementsOrQuestions?.length ?? 0;
     itemPositionsListener.itemPositions.addListener(() {
       final v = itemPositionsListener.itemPositions.value
           .where((element) => element.index == 0)
@@ -126,9 +126,12 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
                     itemScrollController: itemScrollController,
                     itemPositionsListener: itemPositionsListener,
                     itemBuilder: (context, index) {
-                      if (index < widget.page.elements!.length && index >= 0) {
+                      if (index < widget.page.elementsOrQuestions!.length &&
+                          index >= 0) {
                         return SurveyElementFactory().resolve(
-                            context, widget.page.elements![index].realElement);
+                            context,
+                            widget
+                                .page.elementsOrQuestions![index].realElement);
                       } else {
                         return Container(
                           width: double.infinity,
