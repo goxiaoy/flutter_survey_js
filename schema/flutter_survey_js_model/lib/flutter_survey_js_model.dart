@@ -4,7 +4,7 @@
 
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-import 'package:flutter_survey_js_model/src/one_of.dart';
+import 'package:flutter_survey_js_model/src/any_of.dart';
 import 'package:flutter_survey_js_model/src/serializers.dart';
 
 export 'package:flutter_survey_js_model/src/serializers.dart';
@@ -193,7 +193,7 @@ export 'package:flutter_survey_js_model/src/model/urlconditionitem.dart';
 export 'package:flutter_survey_js_model/src/model/urlconditionitem_all_of.dart';
 export 'package:flutter_survey_js_model/src/model/visibletrigger.dart';
 export 'package:flutter_survey_js_model/src/model/visibletrigger_all_of.dart';
-export 'package:flutter_survey_js_model/src/one_of.dart';
+export 'package:flutter_survey_js_model/src/any_of.dart';
 
 Serializers surveySerializers = (serializers.toBuilder()
       ..add(SurveyAnyOfSerializer())
