@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -12,13 +12,13 @@ final SurveyElementBuilder matrixDropdownBuilder =
     (context, element, {bool hasTitle = true}) {
   return MatrixDropdownElement(
     formControlName: element.name!,
-    matrix: element as s.MatrixDropdown,
+    matrix: element as s.Matrixdropdown,
   ).wrapQuestionTitle(element, hasTitle: hasTitle);
 };
 
 class MatrixDropdownElement extends StatelessWidget {
   final String formControlName;
-  final s.MatrixDropdown matrix;
+  final s.Matrixdropdown matrix;
 
   const MatrixDropdownElement(
       {Key? key, required this.formControlName, required this.matrix})
@@ -39,11 +39,11 @@ class MatrixDropdownElement extends StatelessWidget {
             ),
             children: [
               const TableCell(child: Text('')),
-              ...((matrix.columns ?? []).map((e) => TableCell(
+              ...((matrix.columns?.toList() ?? []).map((e) => TableCell(
                     child: MatrixDropdownTitle(e),
                   )))
             ]));
-        (matrix.rows ?? []).asMap().forEach((i, row) {
+        (matrix.rows?.toList() ?? []).asMap().forEach((i, row) {
           list.add(TableRow(
               decoration: i % 2 != 0
                   ? const BoxDecoration(
@@ -54,15 +54,16 @@ class MatrixDropdownElement extends StatelessWidget {
                 //Row name
                 TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Text(row.text ?? "")),
-                ...(matrix.columns ?? []).map((column) {
+                    child: Text(row.castToItemvalue().text ?? "")),
+                ...(matrix.columns?.toList() ?? []).map((column) {
                   final q = matrixDropdownColumnToQuestion(matrix, column);
                   final v = questionToValidators(q);
 
                   return TableCell(
                       verticalAlignment: TableCellVerticalAlignment.middle,
                       child: ReactiveNestedForm(
-                        formControlName: row.value!.toString(),
+                        formControlName:
+                            row.castToItemvalue().value!.toString(),
                         child: Builder(
                           builder: (context) {
                             final fg = ReactiveForm.of(context) as FormGroup;

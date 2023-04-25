@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
-
+import 'package:built_collection/built_collection.dart';
 import 'question_title.dart';
 import 'survey_element_factory.dart';
 
 final SurveyElementBuilder multipleTextBuilder =
     (context, element, {bool hasTitle = true}) {
-  final e = element as s.MultipleText;
-  final texts = (e.items ?? []).map(toText).toList();
+  final e = element as s.Multipletext;
+  final texts = (e.items?.toList() ?? []).map(toText).toList();
   return ReactiveNestedForm(
       formControlName: e.name,
       child: ListView.separated(
@@ -32,22 +32,24 @@ final SurveyElementBuilder multipleTextBuilder =
 };
 
 final SurveyFormControlBuilder multipleTextControlBuilder =
-    (s.ElementBase element, {validators = const []}) {
-  final e = element as s.MultipleText;
-  final texts = (e.items ?? []).map(toText).toList();
+    (s.Elementbase element, {validators = const []}) {
+  final e = element as s.Multipletext;
+  final texts = (e.items?.toList() ?? []).map(toText).toList();
   final res = elementsToFormGroup(texts, validators: validators);
   return res;
 };
 
-s.Text toText(s.MultipleTextItem multipleTextItem) {
-  return s.Text()
+s.Text toText(s.Multipletextitem multipleTextItem) {
+  final b = s.Text().toBuilder()
     ..name = multipleTextItem.name
     ..isRequired = multipleTextItem.isRequired
-    ..validators = multipleTextItem.validators
-    ..inputType = multipleTextItem.inputType
+    ..validators = ListBuilder(multipleTextItem.validators?.toList() ?? [])
+    ..inputType = s.TextInputType.valueOf(multipleTextItem.inputType.toString())
     ..title = multipleTextItem.title
     ..maxLength = multipleTextItem.maxLength
     ..size = multipleTextItem.size
     ..requiredErrorText = multipleTextItem.requiredErrorText
     ..placeholder = multipleTextItem.placeholder;
+
+  return b.build();
 }

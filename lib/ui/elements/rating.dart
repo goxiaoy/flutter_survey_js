@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_segmented_control/reactive_segmented_control.dart';
 
@@ -19,8 +19,10 @@ final SurveyElementBuilder ratingBuilder =
     final children = <int, Widget>{};
     if (e.rateValues != null && e.rateValues!.isNotEmpty) {
       for (final v in e.rateValues!) {
-        children[v.value] = Text(
-          v.text ?? v.value?.toString() ?? '',
+        children[v.castToItemvalue().value.tryCastToInt()!] = Text(
+          v.castToItemvalue().text ??
+              v.castToItemvalue().value?.toString() ??
+              '',
           style: textStyle,
         );
       }
@@ -31,7 +33,7 @@ final SurveyElementBuilder ratingBuilder =
       final step = e.rateStep ?? 1;
       var current = min;
       while (current <= maxValue) {
-        children[current] = Text(
+        children[current.toInt()] = Text(
           current.toString(),
           style: selectedValue == current
               ? textStyle?.copyWith(color: Colors.white)

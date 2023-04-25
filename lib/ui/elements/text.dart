@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_color_picker.dart';
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
@@ -91,7 +91,7 @@ final SurveyElementBuilder textBuilder =
 };
 
 final SurveyFormControlBuilder textControlBuilder =
-    (s.ElementBase element, {validators = const <ValidatorFunction>[]}) {
+    (s.Elementbase element, {validators = const <ValidatorFunction>[]}) {
   final e = element as s.Text;
   if (e.inputType == 'date' ||
       e.inputType == 'datetime' ||

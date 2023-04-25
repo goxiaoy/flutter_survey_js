@@ -190,3 +190,4 @@ export 'package:flutter_survey_js_model/src/model/visibletrigger.dart';
 export 'package:flutter_survey_js_model/src/model/visibletrigger_all_of.dart';
 
 export 'package:flutter_survey_js_model/utils.dart';
+export 'package:flutter_survey_js_model/src/any_of.dart';

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 
 class PanelTitle extends StatelessWidget {
-  final s.PanelBase panel;
+  final s.Panelbase panel;
   final VoidCallback? onTimeout;
-  const PanelTitle({Key? key, required this.panel, this.onTimeout}) : super(key: key);
+
+  const PanelTitle({Key? key, required this.panel, this.onTimeout})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

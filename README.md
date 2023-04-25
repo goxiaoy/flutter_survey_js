@@ -7,10 +7,11 @@ All these widgets and highly depend on [reactive_forms](https://pub.dev/packages
 Live preview [https://goxiaoy.github.io/flutter_survey_js/](https://goxiaoy.github.io/flutter_survey_js/)
 
 # IMPORTANT_NOTE
+
 # This package has not fully tested, use at your own risk
 
-
 Supported widgets:
+
 - [x] matrixdropdown
 - [x] matrixdynamic
 - [x] matrix
@@ -33,6 +34,7 @@ Supported widgets:
 - [x] panel
 
 Supported validator:
+
 - [x] numericvalidator
 - [x] textvalidator
 - [ ] answercountvalidator
@@ -58,7 +60,7 @@ const survey = {
 };
 ...
 s.SurveyWidget(
-  survey: s.Survey.fromJson(survey),
+  survey: s.surveyFromJson(survey),
   onChange: (v) {
     print(v);
   },

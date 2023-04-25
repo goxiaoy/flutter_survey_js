@@ -148,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   toSurvey(String value) {
     final j = json.decode(value);
-    return s.Survey.fromJson(j);
+    return s.surveyFromJson(j);
   }
 }
 

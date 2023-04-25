@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/survey_page_widget.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:logging/logging.dart';
+import 'package:built_collection/built_collection.dart';
 
-final defaultSurveyTitleBuilder = (BuildContext context, s.Survey survey) {
+Widget defaultSurveyTitleBuilder(BuildContext context, s.Survey survey) {
   if (survey.title != null) {
-    return Container(
-      child: ListTile(
-        title: Text(survey.title!),
-      ),
+    return ListTile(
+      title: Text(survey.title!),
     );
   }
   return Container();
-};
+}
 
-final defaultStepperBuilder =
-    (BuildContext context, int pageCount, int currentPage) {
+Widget defaultStepperBuilder(
+    BuildContext context, int pageCount, int currentPage) {
   if (pageCount > 1) {
     return DotStepper(
       // direction: Axis.vertical,
@@ -37,7 +36,7 @@ final defaultStepperBuilder =
     );
   }
   return Container();
-};
+}
 
 class SurveyLayout extends StatefulWidget {
   final Widget Function(BuildContext context, s.Survey survey)?
@@ -146,15 +145,17 @@ class SurveyLayoutState extends State<SurveyLayout> {
     var pages = <s.Page>[];
 
     if (!showQuestionsInOnePage) {
-      pages = survey.pages ?? [];
+      pages = survey.pages?.toList() ?? [];
     } else {
-      pages = [
-        s.Page()
-          ..elements = (survey.pages ?? [])
-              .map<List<s.ElementBase>>((e) => e.elements ?? <s.ElementBase>[])
-              .fold(<s.ElementBase>[],
-                  (previousValue, element) => previousValue!..addAll(element))
-      ];
+      final pageBuilder = s.Page().toBuilder();
+      pageBuilder.elements = ListBuilder<s.SurveyQuestionsInner>(
+          (survey.pages?.toList() ?? <s.Page>[])
+              .map<List<s.SurveyQuestionsInner>>(
+                  (e) => e.elements?.toList() ?? <s.SurveyQuestionsInner>[])
+              .fold<List<s.SurveyQuestionsInner>>(<s.SurveyQuestionsInner>[],
+                  (previousValue, element) => previousValue..addAll(element)));
+
+      pages = [pageBuilder.build()];
     }
     return pages;
   }

@@ -4,6 +4,7 @@ import 'package:flutter_survey_js/survey.dart' as s;
 class Simple extends StatelessWidget {
   final s.Survey? survey;
   final Map<String, Object?>? answer;
+
   Simple({Key? key, this.survey, this.answer}) : super(key: key);
 
   @override

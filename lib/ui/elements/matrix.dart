@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -37,11 +37,11 @@ class MatrixElement extends StatelessWidget {
             ),
             children: [
               const TableCell(child: Text('')),
-              ...((matrix.columns ?? []).map((e) => TableCell(
-                    child: _MatrixTitle(e),
+              ...((matrix.columns?.toList() ?? []).map((e) => TableCell(
+                    child: _MatrixTitle(e.castToItemvalue()),
                   )))
             ]));
-        (matrix.rows ?? []).asMap().forEach((i, row) {
+        (matrix.rows?.toList() ?? []).asMap().forEach((i, row) {
           list.add(TableRow(
               decoration: i % 2 != 0
                   ? const BoxDecoration(
@@ -52,14 +52,14 @@ class MatrixElement extends StatelessWidget {
                 //Row name
                 TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Text(row.text ?? "")),
-                ...(matrix.columns ?? []).map((column) {
+                    child: Text(row.castToItemvalue().text ?? "")),
+                ...(matrix.columns?.toList() ?? []).map((column) {
                   // matrix use the same row control
                   return TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
                     child: ReactiveRadioListTile(
-                        formControlName: row.value.toString(),
-                        value: column.value),
+                        formControlName: row.castToItemvalue().value.toString(),
+                        value: column.castToItemvalue().value),
                   );
                 }).toList()
               ]));
@@ -79,7 +79,7 @@ class MatrixElement extends StatelessWidget {
 
 // Class _MatrixTitle
 class _MatrixTitle extends StatelessWidget {
-  final s.ItemValue column;
+  final s.Itemvalue column;
 
   const _MatrixTitle(this.column);
 

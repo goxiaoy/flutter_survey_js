@@ -1,4 +1,4 @@
-import 'package:flutter_survey_js/model/survey.dart';
+import 'package:flutter_survey_js/survey.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -30,6 +30,6 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = Survey.fromJson(json);
+    final s = surveyFromJson(json);
   });
 }

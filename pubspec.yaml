@@ -32,8 +32,8 @@ dependencies:
   file: ^6.1.4
   group_button: ^5.2.2
   equatable: ^2.0.5
-  surveyjs_model:
-    path: ./schema/surveyjs_model
+  flutter_survey_js_model:
+    path: ./schema/flutter_survey_js_model
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +41,7 @@ dev_dependencies:
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
   flutter_lints: ^2.0.1
+  melos: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

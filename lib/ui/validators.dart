@@ -1,20 +1,21 @@
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 List<ValidatorFunction> questionToValidators(s.Question question) {
   return surveyToValidators(
-      isRequired: question.isRequired, validators: question.validators);
+      isRequired: question.isRequired,
+      validators: question.validators?.map((p) => p.realValidator).toList());
 }
 
 List<ValidatorFunction> surveyToValidators(
-    {bool? isRequired, List<s.SurveyValidator>? validators}) {
+    {bool? isRequired, List<s.Surveyvalidator>? validators}) {
   final res = <ValidatorFunction>[];
   if (isRequired == true) {
     res.add(Validators.required);
   }
   if (validators != null) {
     for (var value in validators) {
-      if (value is s.NumericValidator) {
+      if (value is s.Numericvalidator) {
         res.add(Validators.number);
         if (value.maxValue != null) {
           res.add(Validators.max(value.maxValue));
@@ -23,12 +24,12 @@ List<ValidatorFunction> surveyToValidators(
           res.add(Validators.min(value.minValue));
         }
       }
-      if (value is s.TextValidator) {
+      if (value is s.Textvalidator) {
         if (value.maxLength != null) {
-          res.add(Validators.maxLength(value.maxLength!));
+          res.add(Validators.maxLength(value.maxLength!.toInt()));
         }
         if (value.minLength != null) {
-          res.add(Validators.minLength(value.minLength!));
+          res.add(Validators.minLength(value.minLength!.toInt()));
         }
         if (value.allowDigits != null) {
           res.add((control) {
@@ -43,23 +44,23 @@ List<ValidatorFunction> surveyToValidators(
         }
       }
 
-      if (value is s.AnswerCountValidator) {
+      if (value is s.Answercountvalidator) {
         if (value.maxCount != null) {
-          res.add(Validators.maxLength(value.maxCount!));
+          res.add(Validators.maxLength(value.maxCount!.toInt()));
         }
         if (value.minCount != null) {
-          res.add(Validators.minLength(value.minCount!));
+          res.add(Validators.minLength(value.minCount!.toInt()));
         }
       }
-      if (value is s.RegexValidator) {
+      if (value is s.Regexvalidator) {
         if (value.regex != null) {
           res.add(Validators.pattern(value.regex!));
         }
       }
-      if (value is s.EmailValidator) {
+      if (value is s.Emailvalidator) {
         res.add(Validators.email);
       }
-      if (value is s.ExpressionValidator) {
+      if (value is s.Expressionvalidator) {
         //TODO expression
       }
     }

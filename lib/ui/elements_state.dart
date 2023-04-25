@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 
 @immutable
 class ElementsState {
-  final Map<s.ElementBase, ElementStatus> _statusMap;
+  final Map<s.Elementbase, ElementStatus> _statusMap;
 
-  const ElementsState(Map<s.ElementBase, ElementStatus> status)
+  const ElementsState(Map<s.Elementbase, ElementStatus> status)
       : _statusMap = status;
 
-  ElementStatus? get(s.ElementBase element) {
+  ElementStatus? get(s.Elementbase element) {
     return _statusMap[element];
   }
 }
@@ -16,8 +16,10 @@ class ElementsState {
 @immutable
 class ElementStatus {
   final bool isVisible;
+
   //
   final bool isEnabled;
+
   //element index
   final int? indexAll;
 

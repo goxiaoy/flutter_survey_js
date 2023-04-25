@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'elements/survey_element_factory.dart';
@@ -16,6 +16,7 @@ class SurveyPageWidget extends StatefulWidget {
     required this.page,
     this.initIndex = 0,
   }) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => SurveyPageWidgetState();
 
@@ -30,6 +31,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
       ItemPositionsListener.create();
   bool _showBackToTopButton = false;
   late int maxIndex;
+
   @override
   void initState() {
     super.initState();
@@ -125,8 +127,8 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
                     itemPositionsListener: itemPositionsListener,
                     itemBuilder: (context, index) {
                       if (index < widget.page.elements!.length && index >= 0) {
-                        return SurveyElementFactory()
-                            .resolve(context, widget.page.elements![index]);
+                        return SurveyElementFactory().resolve(
+                            context, widget.page.elements![index].realElement);
                       } else {
                         return Container(
                           width: double.infinity,

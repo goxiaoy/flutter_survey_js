@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/model/survey.dart';
+import 'package:flutter_survey_js/survey.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -34,13 +34,13 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = Survey.fromJson(json);
+    final s = surveyFromJson(json);
   });
 
   group('placeholder', () {
     testWidgets('displays placeholder', (WidgetTester tester) async {
       const placeholder = 'Select...';
-      final s = Survey.fromJson(
+      final s = surveyFromJson(
         {
           "title": "Single Page Survey",
           "pages": [
@@ -57,7 +57,7 @@ void main() {
             }
           ]
         },
-      );
+      )!;
       await tester.pumpWidget(
         MaterialApp(
           localizationsDelegates: const [appLocalizationDelegate],
@@ -78,7 +78,7 @@ void main() {
       testWidgets(
           'displays localized default text if `"placeholder"` is not specified in the JSON',
           (WidgetTester tester) async {
-        final s = Survey.fromJson(
+        final s = surveyFromJson(
           {
             "title": "Single Page Survey",
             "pages": [
@@ -94,7 +94,7 @@ void main() {
               }
             ]
           },
-        );
+        )!;
         await tester.pumpWidget(
           MaterialApp(
             localizationsDelegates: const [
@@ -142,7 +142,7 @@ void main() {
         ],
         home: Material(
           child: SurveyWidget(
-              survey: Survey.fromJson({
+              survey: surveyFromJson({
             "questions": [
               {
                 "type": "dropdown",
@@ -158,7 +158,7 @@ void main() {
                 "otherText": otherText,
               }
             ]
-          })),
+          })!),
         ),
       ),
     );
@@ -189,7 +189,7 @@ void main() {
         ],
         home: Material(
           child: SurveyWidget(
-              survey: Survey.fromJson(const {
+              survey: surveyFromJson(const {
             "questions": [
               {
                 "type": "dropdown",
@@ -206,7 +206,7 @@ void main() {
                 "otherPlaceholder": otherPlaceholder,
               }
             ]
-          })),
+          })!),
         ),
       ),
     );
@@ -236,7 +236,7 @@ void main() {
         ],
         home: Material(
           child: SurveyWidget(
-              survey: Survey.fromJson({
+              survey: surveyFromJson({
             "questions": [
               {
                 "type": "dropdown",
@@ -252,7 +252,7 @@ void main() {
                 "noneText": noneText,
               }
             ]
-          })),
+          })!),
         ),
       ),
     );
@@ -282,7 +282,7 @@ void main() {
         home: Material(
           child: SurveyWidget(
               answer: const {questionName: existingAnswer},
-              survey: Survey.fromJson(const {
+              survey: surveyFromJson(const {
                 "questions": [
                   {
                     "type": "dropdown",
@@ -298,7 +298,7 @@ void main() {
                     "otherText": otherText,
                   }
                 ]
-              })),
+              })!),
         ),
       ),
     );
@@ -329,7 +329,7 @@ void main() {
         home: Material(
           child: SurveyWidget(
               answer: const {questionName: existingAnswer},
-              survey: Survey.fromJson(const {
+              survey: surveyFromJson(const {
                 "questions": [
                   {
                     "type": "dropdown",
@@ -345,7 +345,7 @@ void main() {
                     "otherText": otherText,
                   }
                 ]
-              })),
+              })!),
         ),
       ),
     );

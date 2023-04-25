@@ -83,7 +83,7 @@ class CustomLayoutState extends State<CustomLayout> {
   @override
   Widget build(BuildContext context) {
     final elements = _consolidateQuestions(survey);
-    IndexedWidgetBuilder itemBuilder(List<s.ElementBase> elements) {
+    IndexedWidgetBuilder itemBuilder(List<s.Elementbase> elements) {
       return (context, index) {
         if (index < elements.length && index >= 0) {
           return SurveyElementFactory().resolve(context, elements[index]);
@@ -127,10 +127,11 @@ class CustomLayoutState extends State<CustomLayout> {
     );
   }
 
-  List<s.ElementBase> _consolidateQuestions(s.Survey survey) {
-    return (survey.pages ?? [])
-        .map<List<s.ElementBase>>((e) => e.elements ?? <s.ElementBase>[])
-        .fold(<s.ElementBase>[],
+  List<s.Elementbase> _consolidateQuestions(s.Survey survey) {
+    return (survey.pages?.toList() ?? [])
+        .map<List<s.Elementbase>>((e) =>
+            e.elements?.map((p) => p.realElement).toList() ?? <s.Elementbase>[])
+        .fold(<s.Elementbase>[],
             (previousValue, element) => previousValue..addAll(element));
   }
 }

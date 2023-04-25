@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/panel_title.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
@@ -22,8 +22,8 @@ import 'rating.dart';
 import 'text.dart';
 
 typedef SurveyElementBuilder = Widget
-    Function(BuildContext context, s.ElementBase element, {bool hasTitle});
-typedef SurveyFormControlBuilder = Object? Function(s.ElementBase element,
+    Function(BuildContext context, s.Elementbase element, {bool hasTitle});
+typedef SurveyFormControlBuilder = Object? Function(s.Elementbase element,
     {List<ValidatorFunction> validators});
 
 class SurveyElementFactory {
@@ -34,17 +34,18 @@ class SurveyElementFactory {
   factory SurveyElementFactory() {
     return _singleton;
   }
+
   SurveyElementFactory._internal() {
     register<s.Matrix>(matrixBuilder);
-    register<s.MatrixDropdown>(matrixDropdownBuilder);
-    register<s.MatrixDynamic>(matrixDynamicBuilder);
-    register<s.CheckBox>(checkBoxBuilder,
+    register<s.Matrixdropdown>(matrixDropdownBuilder);
+    register<s.Matrixdynamic>(matrixDynamicBuilder);
+    register<s.Checkbox>(checkBoxBuilder,
         control: (element, {validators = const []}) =>
             fb.array([], validators));
     register<s.Ranking>(rankingBuilder,
         control: (element, {validators = const []}) =>
             FormControl<List<dynamic>>(validators: validators));
-    register<s.RadioGroup>(radioGroupBuilder);
+    register<s.Radiogroup>(radioGroupBuilder);
     register<s.Boolean>(
         //TODO ReactiveSwitch is not safe
         (context, element, {bool hasTitle = true}) {
@@ -77,7 +78,8 @@ class SurveyElementFactory {
 
     register<s.Rating>(ratingBuilder,
         control: (element, {validators = const []}) => FormControl<int>(
-            validators: validators, value: (element as s.Rating).defaultValue));
+            validators: validators,
+            value: (element as s.Rating).defaultValue.tryCastToInt()));
 
     register<s.Comment>((context, element, {bool hasTitle = true}) =>
         ReactiveTextField(
@@ -97,12 +99,12 @@ class SurveyElementFactory {
         ).wrapQuestionTitle(element, hasTitle: hasTitle));
 
     register<s.Text>(textBuilder, control: textControlBuilder);
-    register<s.MultipleText>(multipleTextBuilder,
+    register<s.Multipletext>(multipleTextBuilder,
         control: multipleTextControlBuilder);
     register<s.Html>((context, element, {bool hasTitle = true}) {
       return HtmlWidget((element as s.Html).html ?? '');
     });
-    register<s.SignaturePad>((context, element, {bool hasTitle = true}) {
+    register<s.Signaturepad>((context, element, {bool hasTitle = true}) {
       return LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         return ReactiveSignatureString(
@@ -125,20 +127,20 @@ class SurveyElementFactory {
     register<s.Dropdown>(dropdownBuilder,
         control: (element, {validators = const []}) => FormControl<String>(
             validators: validators,
-            value: (element as s.Dropdown).defaultValue));
-    register<s.PanelDynamic>(panelDynamicBuilder);
+            value: (element as s.Dropdown).defaultValue?.toString()));
+    register<s.Paneldynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {
       return ReactiveNestedForm(
           formControlName: element.name!,
           child: Column(
             children: [
-              PanelTitle(panel: element as s.PanelBase),
+              PanelTitle(panel: element as s.Panelbase),
               ListView.separated(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return resolve(
-                        context, (element as s.Panel).elements![index]);
+                    return resolve(context,
+                        (element as s.Panel).elements![index].realElement);
                   },
                   separatorBuilder: (context, index) =>
                       separatorBuilder(context),
@@ -178,7 +180,7 @@ class SurveyElementFactory {
     }
   }
 
-  Widget resolve(BuildContext context, s.ElementBase element,
+  Widget resolve(BuildContext context, s.Elementbase element,
       {bool hasTitle = true}) {
     final t = element.runtimeType;
     var res = _map[t];
@@ -192,7 +194,7 @@ class SurveyElementFactory {
     return res(context, element, hasTitle: hasTitle);
   }
 
-  SurveyFormControlBuilder? resolveFormControl(s.ElementBase element) {
+  SurveyFormControlBuilder? resolveFormControl(s.Elementbase element) {
     final t = element.runtimeType;
     return _formControlMap[t];
   }

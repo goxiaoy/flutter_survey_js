@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 
 class QuestionTitle extends StatelessWidget {
@@ -25,6 +25,7 @@ class QuestionTitle extends StatelessWidget {
         return Container();
       }
     }
+
     titleTextStyle() {
       return TextStyle(
           fontSize: 16.0,
@@ -106,7 +107,7 @@ class QuestionTitle extends StatelessWidget {
 }
 
 extension QuestionTitleExtension on Widget {
-  Widget wrapQuestionTitle(s.ElementBase element, {required bool hasTitle}) {
+  Widget wrapQuestionTitle(s.Elementbase element, {required bool hasTitle}) {
     if (!hasTitle) {
       //in a matrix
       return this;
