@@ -90,12 +90,8 @@ void main() {
         "<p><h4>Thank you for sharing this information with us.</h4></p><p>Your name is: <b>{name}</b></p><p>Your email is: <b>{email}</b></p><p>This information is not in the survey data result:<b> {tempvar}</b></p>"
   };
   test("Serialize Deserialize Survey", () {
-    final s =
-        surveySerializers.deserializeWith<Survey>(Survey.serializer, json);
-    final serialized = surveySerializers.serializeWith(Survey.serializer, s);
-    expect(
-        surveySerializers.deserializeWith<Survey>(
-            Survey.serializer, serialized),
-        s);
+    final s = surveyFromJson(json);
+    final serialized = surveyToJson(s);
+    expect(surveyFromJson(serialized), s);
   });
 }

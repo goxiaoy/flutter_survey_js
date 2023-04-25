@@ -3,19 +3,19 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_one_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_any_of.dart';
 import 'dart:core';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:one_of/one_of.dart';
+import 'package:one_of/any_of.dart';
 
 part 'survey_show_question_numbers.g.dart';
 
 /// SurveyShowQuestionNumbers
 @BuiltValue()
 abstract class SurveyShowQuestionNumbers implements Built<SurveyShowQuestionNumbers, SurveyShowQuestionNumbersBuilder> {
-  /// One Of [SurveyShowQuestionNumbersOneOf], [bool]
-  OneOf get oneOf;
+  /// Any Of [SurveyShowQuestionNumbersAnyOf], [bool]
+  AnyOf get anyOf;
 
   SurveyShowQuestionNumbers._();
 
@@ -48,8 +48,8 @@ class _$SurveyShowQuestionNumbersSerializer implements PrimitiveSerializer<Surve
     SurveyShowQuestionNumbers object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final oneOf = object.oneOf;
-    return serializers.serialize(oneOf.value, specifiedType: FullType(oneOf.valueType))!;
+    final anyOf = object.anyOf;
+    return serializers.serialize(anyOf, specifiedType: FullType(AnyOf, anyOf.valueTypes.map((type) => FullType(type)).toList()))!;
   }
 
   @override
@@ -59,10 +59,10 @@ class _$SurveyShowQuestionNumbersSerializer implements PrimitiveSerializer<Surve
     FullType specifiedType = FullType.unspecified,
   }) {
     final result = SurveyShowQuestionNumbersBuilder();
-    Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [FullType(SurveyShowQuestionNumbersOneOf), FullType(bool), ]);
-    oneOfDataSrc = serialized;
-    result.oneOf = serializers.deserialize(oneOfDataSrc, specifiedType: targetType) as OneOf;
+    Object? anyOfDataSrc;
+    final targetType = const FullType(AnyOf, [FullType(bool), FullType(SurveyShowQuestionNumbersAnyOf), ]);
+    anyOfDataSrc = serialized;
+    result.anyOf = serializers.deserialize(anyOfDataSrc, specifiedType: targetType) as AnyOf;
     return result.build();
   }
 }

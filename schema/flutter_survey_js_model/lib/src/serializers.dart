@@ -172,7 +172,7 @@ import 'package:flutter_survey_js_model/src/model/survey_show_navigation_buttons
 import 'package:flutter_survey_js_model/src/model/survey_show_preview_before_complete.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_progress_bar.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.dart';
-import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_one_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_any_of.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
@@ -359,7 +359,7 @@ part 'serializers.g.dart';
   SurveyShowPreviewBeforeComplete,
   SurveyShowProgressBar,
   SurveyShowQuestionNumbers,
-  SurveyShowQuestionNumbersOneOf,
+  SurveyShowQuestionNumbersAnyOf,
   SurveyShowTimerPanel,
   SurveyShowTimerPanelMode,
   SurveyTextUpdateMode,

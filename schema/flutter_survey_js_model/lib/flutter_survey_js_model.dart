@@ -2,11 +2,6 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import 'package:built_value/serializer.dart';
-import 'package:built_value/standard_json_plugin.dart';
-import 'package:flutter_survey_js_model/src/any_of.dart';
-import 'package:flutter_survey_js_model/src/serializers.dart';
-
 export 'package:flutter_survey_js_model/src/serializers.dart';
 export 'package:flutter_survey_js_model/src/model/date.dart';
 
@@ -168,7 +163,7 @@ export 'package:flutter_survey_js_model/src/model/survey_show_navigation_buttons
 export 'package:flutter_survey_js_model/src/model/survey_show_preview_before_complete.dart';
 export 'package:flutter_survey_js_model/src/model/survey_show_progress_bar.dart';
 export 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.dart';
-export 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_one_of.dart';
+export 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_any_of.dart';
 export 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 export 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
 export 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
@@ -193,9 +188,5 @@ export 'package:flutter_survey_js_model/src/model/urlconditionitem.dart';
 export 'package:flutter_survey_js_model/src/model/urlconditionitem_all_of.dart';
 export 'package:flutter_survey_js_model/src/model/visibletrigger.dart';
 export 'package:flutter_survey_js_model/src/model/visibletrigger_all_of.dart';
-export 'package:flutter_survey_js_model/src/any_of.dart';
 
-Serializers surveySerializers = (serializers.toBuilder()
-      ..add(SurveyAnyOfSerializer())
-      ..addPlugin(StandardJsonPlugin()))
-    .build();
+export 'package:flutter_survey_js_model/utils.dart';

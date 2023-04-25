@@ -69,12 +69,8 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s =
-        surveySerializers.deserializeWith<Survey>(Survey.serializer, json);
-    final serialized = surveySerializers.serializeWith(Survey.serializer, s);
-    expect(
-        surveySerializers.deserializeWith<Survey>(
-            Survey.serializer, serialized),
-        s);
+    final s = surveyFromJson(json);
+    final serialized = surveyToJson(s);
+    expect(surveyFromJson(serialized), s);
   });
 }

@@ -8,15 +8,15 @@ part of 'survey_show_question_numbers.dart';
 
 class _$SurveyShowQuestionNumbers extends SurveyShowQuestionNumbers {
   @override
-  final OneOf oneOf;
+  final AnyOf anyOf;
 
   factory _$SurveyShowQuestionNumbers(
           [void Function(SurveyShowQuestionNumbersBuilder)? updates]) =>
       (new SurveyShowQuestionNumbersBuilder()..update(updates))._build();
 
-  _$SurveyShowQuestionNumbers._({required this.oneOf}) : super._() {
+  _$SurveyShowQuestionNumbers._({required this.anyOf}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        oneOf, r'SurveyShowQuestionNumbers', 'oneOf');
+        anyOf, r'SurveyShowQuestionNumbers', 'anyOf');
   }
 
   @override
@@ -31,13 +31,13 @@ class _$SurveyShowQuestionNumbers extends SurveyShowQuestionNumbers {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is SurveyShowQuestionNumbers && oneOf == other.oneOf;
+    return other is SurveyShowQuestionNumbers && anyOf == other.anyOf;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, oneOf.hashCode);
+    _$hash = $jc(_$hash, anyOf.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -45,7 +45,7 @@ class _$SurveyShowQuestionNumbers extends SurveyShowQuestionNumbers {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SurveyShowQuestionNumbers')
-          ..add('oneOf', oneOf))
+          ..add('anyOf', anyOf))
         .toString();
   }
 }
@@ -55,9 +55,9 @@ class SurveyShowQuestionNumbersBuilder
         Builder<SurveyShowQuestionNumbers, SurveyShowQuestionNumbersBuilder> {
   _$SurveyShowQuestionNumbers? _$v;
 
-  OneOf? _oneOf;
-  OneOf? get oneOf => _$this._oneOf;
-  set oneOf(OneOf? oneOf) => _$this._oneOf = oneOf;
+  AnyOf? _anyOf;
+  AnyOf? get anyOf => _$this._anyOf;
+  set anyOf(AnyOf? anyOf) => _$this._anyOf = anyOf;
 
   SurveyShowQuestionNumbersBuilder() {
     SurveyShowQuestionNumbers._defaults(this);
@@ -66,7 +66,7 @@ class SurveyShowQuestionNumbersBuilder
   SurveyShowQuestionNumbersBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _oneOf = $v.oneOf;
+      _anyOf = $v.anyOf;
       _$v = null;
     }
     return this;
@@ -89,8 +89,8 @@ class SurveyShowQuestionNumbersBuilder
   _$SurveyShowQuestionNumbers _build() {
     final _$result = _$v ??
         new _$SurveyShowQuestionNumbers._(
-            oneOf: BuiltValueNullFieldError.checkNotNull(
-                oneOf, r'SurveyShowQuestionNumbers', 'oneOf'));
+            anyOf: BuiltValueNullFieldError.checkNotNull(
+                anyOf, r'SurveyShowQuestionNumbers', 'anyOf'));
     replace(_$result);
     return _$result;
   }

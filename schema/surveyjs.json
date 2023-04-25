@@ -261,12 +261,12 @@
             "type": "boolean"
           },
           "showQuestionNumbers": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/surveyShowQuestionNumbersOneOf"
-              },
+            "anyOf": [
               {
                 "type": "boolean"
+              },
+              {
+                "$ref": "#/components/schemas/surveyShowQuestionNumbersAnyOf"
               }
             ]
           },
@@ -2960,7 +2960,7 @@
           "random"
         ]
       },
-      "surveyShowQuestionNumbersOneOf": {
+      "surveyShowQuestionNumbersAnyOf": {
         "type": "string",
         "enum": [
           "on",

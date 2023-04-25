@@ -14,13 +14,13 @@ const oldShowQuestionNumbers = {
   enum: ["on", "onPage", "off"],
 };
 const newShowQuestionNumbers = {
-  oneOf: [
+  anyOf: [
+    {
+      type: "boolean",
+    },
     {
       type: "string",
       enum: ["on", "onPage", "off"],
-    },
-    {
-      type: "boolean",
     },
   ],
 };
