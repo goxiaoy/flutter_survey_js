@@ -1,6 +1,5 @@
 .gitignore
 analysis_options.yaml
-lib/flutter_survey_js_model.dart
 lib/src/date_serializer.dart
 lib/src/model/answercountvalidator.dart
 lib/src/model/answercountvalidator_all_of.dart

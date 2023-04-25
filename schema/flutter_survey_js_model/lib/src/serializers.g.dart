@@ -381,8 +381,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
           () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
@@ -392,8 +397,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
           () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
@@ -403,8 +413,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
           () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
+          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
@@ -414,9 +429,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
           () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
@@ -425,42 +437,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
           () => new ListBuilder<SelectbaseAllOfChoicesInner>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
-      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
           () => new ListBuilder<SelectbaseAllOfChoicesInner>())
@@ -472,9 +448,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
           () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
@@ -483,9 +456,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(ChoicesRestful)]),
-          () => new ListBuilder<ChoicesRestful>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

@@ -2,7 +2,6 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -36,8 +35,8 @@ void main() {
             home: Material(
               child: SurveyWidget(
                 survey: surveyFromJson({
-                  {
-                    "pages": {
+                  "pages": [
+                    {
                       "elements": [
                         {
                           "type": "rating",
@@ -46,7 +45,7 @@ void main() {
                         }
                       ]
                     }
-                  }
+                  ]
                 })!,
               ),
             ),
@@ -72,13 +71,13 @@ void main() {
             home: Material(
               child: SurveyWidget(
                 survey: surveyFromJson({
-                  {
-                    "pages": {
+                  "pages": [
+                    {
                       "elements": [
                         {"type": "rating", "name": elementName}
                       ]
                     }
-                  }
+                  ]
                 })!,
               ),
             ),

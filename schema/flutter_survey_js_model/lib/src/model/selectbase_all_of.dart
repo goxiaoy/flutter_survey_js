@@ -53,7 +53,7 @@ abstract class SelectbaseAllOf  {
   // enum choicesOrderEnum {  none,  asc,  desc,  random,  };
 
   @BuiltValueField(wireName: r'choicesByUrl')
-  BuiltList<ChoicesRestful>? get choicesByUrl;
+  ChoicesRestful? get choicesByUrl;
 
   @BuiltValueField(wireName: r'hideIfChoicesEmpty')
   bool? get hideIfChoicesEmpty;
@@ -143,7 +143,7 @@ class _$SelectbaseAllOfSerializer implements PrimitiveSerializer<SelectbaseAllOf
       yield r'choicesByUrl';
       yield serializers.serialize(
         object.choicesByUrl,
-        specifiedType: const FullType(BuiltList, [FullType(ChoicesRestful)]),
+        specifiedType: const FullType(ChoicesRestful),
       );
     }
     if (object.hideIfChoicesEmpty != null) {
@@ -324,8 +324,8 @@ class _$$SelectbaseAllOfSerializer implements PrimitiveSerializer<$SelectbaseAll
         case r'choicesByUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChoicesRestful)]),
-          ) as BuiltList<ChoicesRestful>;
+            specifiedType: const FullType(ChoicesRestful),
+          ) as ChoicesRestful;
           result.choicesByUrl.replace(valueDes);
           break;
         case r'hideIfChoicesEmpty':

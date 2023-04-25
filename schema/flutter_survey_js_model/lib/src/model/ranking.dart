@@ -329,7 +329,7 @@ class _$RankingSerializer implements PrimitiveSerializer<Ranking> {
       yield r'choicesByUrl';
       yield serializers.serialize(
         object.choicesByUrl,
-        specifiedType: const FullType(BuiltList, [FullType(ChoicesRestful)]),
+        specifiedType: const FullType(ChoicesRestful),
       );
     }
     if (object.maxSelectedChoices != null) {
@@ -744,8 +744,8 @@ class _$RankingSerializer implements PrimitiveSerializer<Ranking> {
         case r'choicesByUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(ChoicesRestful)]),
-          ) as BuiltList<ChoicesRestful>;
+            specifiedType: const FullType(ChoicesRestful),
+          ) as ChoicesRestful;
           result.choicesByUrl.replace(valueDes);
           break;
         case r'maxSelectedChoices':

@@ -940,10 +940,7 @@
                 "$ref": "#/components/schemas/selectbaseChoicesOrder"
               },
               "choicesByUrl": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/choicesRestful"
-                }
+                "$ref": "#/components/schemas/choicesRestful"
               },
               "hideIfChoicesEmpty": {
                 "type": "boolean"

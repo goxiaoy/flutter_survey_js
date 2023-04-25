@@ -344,6 +344,11 @@ const fix = (target) =>
         $ref: "#/components/schemas/checkboxbaseColCount",
       };
     }
+    if (key === "choicesByUrl") {
+      object[key] = {
+        $ref: "#/components/schemas/choicesRestful",
+      };
+    }
 
     if (
       key.toLowerCase().endsWith("width") ||

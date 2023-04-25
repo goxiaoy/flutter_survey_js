@@ -146,8 +146,8 @@ abstract class CheckboxBuilder
   SelectbaseChoicesOrder? get choicesOrder;
   set choicesOrder(covariant SelectbaseChoicesOrder? choicesOrder);
 
-  ListBuilder<ChoicesRestful> get choicesByUrl;
-  set choicesByUrl(covariant ListBuilder<ChoicesRestful>? choicesByUrl);
+  ChoicesRestfulBuilder get choicesByUrl;
+  set choicesByUrl(covariant ChoicesRestfulBuilder? choicesByUrl);
 
   bool? get hideIfChoicesEmpty;
   set hideIfChoicesEmpty(covariant bool? hideIfChoicesEmpty);
@@ -270,7 +270,7 @@ class _$$Checkbox extends $Checkbox {
   @override
   final SelectbaseChoicesOrder? choicesOrder;
   @override
-  final BuiltList<ChoicesRestful>? choicesByUrl;
+  final ChoicesRestful? choicesByUrl;
   @override
   final bool? hideIfChoicesEmpty;
   @override
@@ -768,10 +768,10 @@ class $CheckboxBuilder
   set choicesOrder(covariant SelectbaseChoicesOrder? choicesOrder) =>
       _$this._choicesOrder = choicesOrder;
 
-  ListBuilder<ChoicesRestful>? _choicesByUrl;
-  ListBuilder<ChoicesRestful> get choicesByUrl =>
-      _$this._choicesByUrl ??= new ListBuilder<ChoicesRestful>();
-  set choicesByUrl(covariant ListBuilder<ChoicesRestful>? choicesByUrl) =>
+  ChoicesRestfulBuilder? _choicesByUrl;
+  ChoicesRestfulBuilder get choicesByUrl =>
+      _$this._choicesByUrl ??= new ChoicesRestfulBuilder();
+  set choicesByUrl(covariant ChoicesRestfulBuilder? choicesByUrl) =>
       _$this._choicesByUrl = choicesByUrl;
 
   bool? _hideIfChoicesEmpty;

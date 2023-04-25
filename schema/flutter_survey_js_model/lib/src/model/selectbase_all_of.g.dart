@@ -25,8 +25,8 @@ abstract class SelectbaseAllOfBuilder {
   SelectbaseChoicesOrder? get choicesOrder;
   set choicesOrder(SelectbaseChoicesOrder? choicesOrder);
 
-  ListBuilder<ChoicesRestful> get choicesByUrl;
-  set choicesByUrl(ListBuilder<ChoicesRestful>? choicesByUrl);
+  ChoicesRestfulBuilder get choicesByUrl;
+  set choicesByUrl(ChoicesRestfulBuilder? choicesByUrl);
 
   bool? get hideIfChoicesEmpty;
   set hideIfChoicesEmpty(bool? hideIfChoicesEmpty);
@@ -74,7 +74,7 @@ class _$$SelectbaseAllOf extends $SelectbaseAllOf {
   @override
   final SelectbaseChoicesOrder? choicesOrder;
   @override
-  final BuiltList<ChoicesRestful>? choicesByUrl;
+  final ChoicesRestful? choicesByUrl;
   @override
   final bool? hideIfChoicesEmpty;
   @override
@@ -236,10 +236,10 @@ class $SelectbaseAllOfBuilder
   set choicesOrder(covariant SelectbaseChoicesOrder? choicesOrder) =>
       _$this._choicesOrder = choicesOrder;
 
-  ListBuilder<ChoicesRestful>? _choicesByUrl;
-  ListBuilder<ChoicesRestful> get choicesByUrl =>
-      _$this._choicesByUrl ??= new ListBuilder<ChoicesRestful>();
-  set choicesByUrl(covariant ListBuilder<ChoicesRestful>? choicesByUrl) =>
+  ChoicesRestfulBuilder? _choicesByUrl;
+  ChoicesRestfulBuilder get choicesByUrl =>
+      _$this._choicesByUrl ??= new ChoicesRestfulBuilder();
+  set choicesByUrl(covariant ChoicesRestfulBuilder? choicesByUrl) =>
       _$this._choicesByUrl = choicesByUrl;
 
   bool? _hideIfChoicesEmpty;
