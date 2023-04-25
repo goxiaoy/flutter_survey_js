@@ -11,12 +11,12 @@ part 'survey_show_question_numbers_one_of.g.dart';
 
 class SurveyShowQuestionNumbersOneOf extends EnumClass {
 
-  @BuiltValueEnumConst(wireName: r'true')
-  static const SurveyShowQuestionNumbersOneOf true_ = _$true_;
+  @BuiltValueEnumConst(wireName: r'on')
+  static const SurveyShowQuestionNumbersOneOf on_ = _$on_;
   @BuiltValueEnumConst(wireName: r'onPage')
   static const SurveyShowQuestionNumbersOneOf onPage = _$onPage;
-  @BuiltValueEnumConst(wireName: r'false')
-  static const SurveyShowQuestionNumbersOneOf false_ = _$false_;
+  @BuiltValueEnumConst(wireName: r'off')
+  static const SurveyShowQuestionNumbersOneOf off = _$off;
   @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
   static const SurveyShowQuestionNumbersOneOf unknownDefaultOpenApi = _$unknownDefaultOpenApi;
 

@@ -11,8 +11,8 @@ part 'paneldynamic_show_question_numbers.g.dart';
 
 class PaneldynamicShowQuestionNumbers extends EnumClass {
 
-  @BuiltValueEnumConst(wireName: r'false')
-  static const PaneldynamicShowQuestionNumbers false_ = _$false_;
+  @BuiltValueEnumConst(wireName: r'off')
+  static const PaneldynamicShowQuestionNumbers off = _$off;
   @BuiltValueEnumConst(wireName: r'onPanel')
   static const PaneldynamicShowQuestionNumbers onPanel = _$onPanel;
   @BuiltValueEnumConst(wireName: r'onSurvey')

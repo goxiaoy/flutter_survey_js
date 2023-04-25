@@ -6,7 +6,7 @@ part of 'survey_show_progress_bar.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const SurveyShowProgressBar _$false_ = const SurveyShowProgressBar._('false_');
+const SurveyShowProgressBar _$off = const SurveyShowProgressBar._('off');
 const SurveyShowProgressBar _$top = const SurveyShowProgressBar._('top');
 const SurveyShowProgressBar _$bottom = const SurveyShowProgressBar._('bottom');
 const SurveyShowProgressBar _$both = const SurveyShowProgressBar._('both');
@@ -15,8 +15,8 @@ const SurveyShowProgressBar _$unknownDefaultOpenApi =
 
 SurveyShowProgressBar _$valueOf(String name) {
   switch (name) {
-    case 'false_':
-      return _$false_;
+    case 'off':
+      return _$off;
     case 'top':
       return _$top;
     case 'bottom':
@@ -32,7 +32,7 @@ SurveyShowProgressBar _$valueOf(String name) {
 
 final BuiltSet<SurveyShowProgressBar> _$values =
     new BuiltSet<SurveyShowProgressBar>(const <SurveyShowProgressBar>[
-  _$false_,
+  _$off,
   _$top,
   _$bottom,
   _$both,
@@ -41,7 +41,7 @@ final BuiltSet<SurveyShowProgressBar> _$values =
 
 class _$SurveyShowProgressBarMeta {
   const _$SurveyShowProgressBarMeta();
-  SurveyShowProgressBar get false_ => _$false_;
+  SurveyShowProgressBar get off => _$off;
   SurveyShowProgressBar get top => _$top;
   SurveyShowProgressBar get bottom => _$bottom;
   SurveyShowProgressBar get both => _$both;
@@ -62,14 +62,14 @@ Serializer<SurveyShowProgressBar> _$surveyShowProgressBarSerializer =
 class _$SurveyShowProgressBarSerializer
     implements PrimitiveSerializer<SurveyShowProgressBar> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'false_': 'false',
+    'off': 'off',
     'top': 'top',
     'bottom': 'bottom',
     'both': 'both',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'false': 'false_',
+    'off': 'off',
     'top': 'top',
     'bottom': 'bottom',
     'both': 'both',

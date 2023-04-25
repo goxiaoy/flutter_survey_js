@@ -125,7 +125,7 @@ abstract class PaneldynamicAllOf  {
 
   @BuiltValueField(wireName: r'showQuestionNumbers')
   PaneldynamicShowQuestionNumbers? get showQuestionNumbers;
-  // enum showQuestionNumbersEnum {  false,  onPanel,  onSurvey,  };
+  // enum showQuestionNumbersEnum {  off,  onPanel,  onSurvey,  };
 
   @BuiltValueField(wireName: r'showRangeInProgress')
   bool? get showRangeInProgress;

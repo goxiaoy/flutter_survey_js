@@ -11,8 +11,8 @@ part 'survey_show_progress_bar.g.dart';
 
 class SurveyShowProgressBar extends EnumClass {
 
-  @BuiltValueEnumConst(wireName: r'false')
-  static const SurveyShowProgressBar false_ = _$false_;
+  @BuiltValueEnumConst(wireName: r'off')
+  static const SurveyShowProgressBar off = _$off;
   @BuiltValueEnumConst(wireName: r'top')
   static const SurveyShowProgressBar top = _$top;
   @BuiltValueEnumConst(wireName: r'bottom')

@@ -6,8 +6,8 @@ part of 'paneldynamic_show_question_numbers.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const PaneldynamicShowQuestionNumbers _$false_ =
-    const PaneldynamicShowQuestionNumbers._('false_');
+const PaneldynamicShowQuestionNumbers _$off =
+    const PaneldynamicShowQuestionNumbers._('off');
 const PaneldynamicShowQuestionNumbers _$onPanel =
     const PaneldynamicShowQuestionNumbers._('onPanel');
 const PaneldynamicShowQuestionNumbers _$onSurvey =
@@ -17,8 +17,8 @@ const PaneldynamicShowQuestionNumbers _$unknownDefaultOpenApi =
 
 PaneldynamicShowQuestionNumbers _$valueOf(String name) {
   switch (name) {
-    case 'false_':
-      return _$false_;
+    case 'off':
+      return _$off;
     case 'onPanel':
       return _$onPanel;
     case 'onSurvey':
@@ -32,7 +32,7 @@ PaneldynamicShowQuestionNumbers _$valueOf(String name) {
 
 final BuiltSet<PaneldynamicShowQuestionNumbers> _$values = new BuiltSet<
     PaneldynamicShowQuestionNumbers>(const <PaneldynamicShowQuestionNumbers>[
-  _$false_,
+  _$off,
   _$onPanel,
   _$onSurvey,
   _$unknownDefaultOpenApi,
@@ -40,7 +40,7 @@ final BuiltSet<PaneldynamicShowQuestionNumbers> _$values = new BuiltSet<
 
 class _$PaneldynamicShowQuestionNumbersMeta {
   const _$PaneldynamicShowQuestionNumbersMeta();
-  PaneldynamicShowQuestionNumbers get false_ => _$false_;
+  PaneldynamicShowQuestionNumbers get off => _$off;
   PaneldynamicShowQuestionNumbers get onPanel => _$onPanel;
   PaneldynamicShowQuestionNumbers get onSurvey => _$onSurvey;
   PaneldynamicShowQuestionNumbers get unknownDefaultOpenApi =>
@@ -62,13 +62,13 @@ Serializer<PaneldynamicShowQuestionNumbers>
 class _$PaneldynamicShowQuestionNumbersSerializer
     implements PrimitiveSerializer<PaneldynamicShowQuestionNumbers> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'false_': 'false',
+    'off': 'off',
     'onPanel': 'onPanel',
     'onSurvey': 'onSurvey',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'false': 'false_',
+    'off': 'off',
     'onPanel': 'onPanel',
     'onSurvey': 'onSurvey',
     'unknown_default_open_api': 'unknownDefaultOpenApi',

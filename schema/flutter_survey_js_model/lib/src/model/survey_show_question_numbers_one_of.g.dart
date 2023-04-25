@@ -6,23 +6,23 @@ part of 'survey_show_question_numbers_one_of.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const SurveyShowQuestionNumbersOneOf _$true_ =
-    const SurveyShowQuestionNumbersOneOf._('true_');
+const SurveyShowQuestionNumbersOneOf _$on_ =
+    const SurveyShowQuestionNumbersOneOf._('on_');
 const SurveyShowQuestionNumbersOneOf _$onPage =
     const SurveyShowQuestionNumbersOneOf._('onPage');
-const SurveyShowQuestionNumbersOneOf _$false_ =
-    const SurveyShowQuestionNumbersOneOf._('false_');
+const SurveyShowQuestionNumbersOneOf _$off =
+    const SurveyShowQuestionNumbersOneOf._('off');
 const SurveyShowQuestionNumbersOneOf _$unknownDefaultOpenApi =
     const SurveyShowQuestionNumbersOneOf._('unknownDefaultOpenApi');
 
 SurveyShowQuestionNumbersOneOf _$valueOf(String name) {
   switch (name) {
-    case 'true_':
-      return _$true_;
+    case 'on_':
+      return _$on_;
     case 'onPage':
       return _$onPage;
-    case 'false_':
-      return _$false_;
+    case 'off':
+      return _$off;
     case 'unknownDefaultOpenApi':
       return _$unknownDefaultOpenApi;
     default:
@@ -32,17 +32,17 @@ SurveyShowQuestionNumbersOneOf _$valueOf(String name) {
 
 final BuiltSet<SurveyShowQuestionNumbersOneOf> _$values = new BuiltSet<
     SurveyShowQuestionNumbersOneOf>(const <SurveyShowQuestionNumbersOneOf>[
-  _$true_,
+  _$on_,
   _$onPage,
-  _$false_,
+  _$off,
   _$unknownDefaultOpenApi,
 ]);
 
 class _$SurveyShowQuestionNumbersOneOfMeta {
   const _$SurveyShowQuestionNumbersOneOfMeta();
-  SurveyShowQuestionNumbersOneOf get true_ => _$true_;
+  SurveyShowQuestionNumbersOneOf get on_ => _$on_;
   SurveyShowQuestionNumbersOneOf get onPage => _$onPage;
-  SurveyShowQuestionNumbersOneOf get false_ => _$false_;
+  SurveyShowQuestionNumbersOneOf get off => _$off;
   SurveyShowQuestionNumbersOneOf get unknownDefaultOpenApi =>
       _$unknownDefaultOpenApi;
   SurveyShowQuestionNumbersOneOf valueOf(String name) => _$valueOf(name);
@@ -62,15 +62,15 @@ Serializer<SurveyShowQuestionNumbersOneOf>
 class _$SurveyShowQuestionNumbersOneOfSerializer
     implements PrimitiveSerializer<SurveyShowQuestionNumbersOneOf> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'true_': 'true',
+    'on_': 'on',
     'onPage': 'onPage',
-    'false_': 'false',
+    'off': 'off',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    'true': 'true_',
+    'on': 'on_',
     'onPage': 'onPage',
-    'false': 'false_',
+    'off': 'off',
     'unknown_default_open_api': 'unknownDefaultOpenApi',
   };
 

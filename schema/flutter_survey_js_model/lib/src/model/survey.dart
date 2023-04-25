@@ -232,7 +232,7 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
 
   @BuiltValueField(wireName: r'showProgressBar')
   SurveyShowProgressBar? get showProgressBar;
-  // enum showProgressBarEnum {  false,  top,  bottom,  both,  };
+  // enum showProgressBarEnum {  off,  top,  bottom,  both,  };
 
   @BuiltValueField(wireName: r'progressBarType')
   SurveyProgressBarType? get progressBarType;

@@ -433,9 +433,13 @@ openapi["components"]["schemas"]["matrix"]["allOf"][1]["properties"][
     "rateValues"
   ] = itemvalues);
 
-fs.writeFile("surveyjs.yaml", YAML.stringify(openapi), function (err) {
-  if (err) {
-    return console.log(err);
+fs.writeFile(
+  "surveyjs.json",
+  JSON.stringify(openapi, undefined, 2),
+  function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("The file was saved!");
   }
-  console.log("The file was saved!");
-});
+);

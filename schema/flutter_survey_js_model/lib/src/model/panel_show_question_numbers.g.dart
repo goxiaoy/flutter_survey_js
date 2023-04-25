@@ -10,8 +10,7 @@ const PanelShowQuestionNumbers _$default_ =
     const PanelShowQuestionNumbers._('default_');
 const PanelShowQuestionNumbers _$onpanel =
     const PanelShowQuestionNumbers._('onpanel');
-const PanelShowQuestionNumbers _$false_ =
-    const PanelShowQuestionNumbers._('false_');
+const PanelShowQuestionNumbers _$off = const PanelShowQuestionNumbers._('off');
 const PanelShowQuestionNumbers _$unknownDefaultOpenApi =
     const PanelShowQuestionNumbers._('unknownDefaultOpenApi');
 
@@ -21,8 +20,8 @@ PanelShowQuestionNumbers _$valueOf(String name) {
       return _$default_;
     case 'onpanel':
       return _$onpanel;
-    case 'false_':
-      return _$false_;
+    case 'off':
+      return _$off;
     case 'unknownDefaultOpenApi':
       return _$unknownDefaultOpenApi;
     default:
@@ -34,7 +33,7 @@ final BuiltSet<PanelShowQuestionNumbers> _$values =
     new BuiltSet<PanelShowQuestionNumbers>(const <PanelShowQuestionNumbers>[
   _$default_,
   _$onpanel,
-  _$false_,
+  _$off,
   _$unknownDefaultOpenApi,
 ]);
 
@@ -42,7 +41,7 @@ class _$PanelShowQuestionNumbersMeta {
   const _$PanelShowQuestionNumbersMeta();
   PanelShowQuestionNumbers get default_ => _$default_;
   PanelShowQuestionNumbers get onpanel => _$onpanel;
-  PanelShowQuestionNumbers get false_ => _$false_;
+  PanelShowQuestionNumbers get off => _$off;
   PanelShowQuestionNumbers get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   PanelShowQuestionNumbers valueOf(String name) => _$valueOf(name);
   BuiltSet<PanelShowQuestionNumbers> get values => _$values;
@@ -62,13 +61,13 @@ class _$PanelShowQuestionNumbersSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'default_': 'default',
     'onpanel': 'onpanel',
-    'false_': 'false',
+    'off': 'off',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'default': 'default_',
     'onpanel': 'onpanel',
-    'false': 'false_',
+    'off': 'off',
     'unknown_default_open_api': 'unknownDefaultOpenApi',
   };
 

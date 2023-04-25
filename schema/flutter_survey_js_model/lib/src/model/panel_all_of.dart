@@ -70,7 +70,7 @@ abstract class PanelAllOf  {
 
   @BuiltValueField(wireName: r'showQuestionNumbers')
   PanelShowQuestionNumbers? get showQuestionNumbers;
-  // enum showQuestionNumbersEnum {  default,  onpanel,  false,  };
+  // enum showQuestionNumbersEnum {  default,  onpanel,  off,  };
 
   @BuiltValueField(wireName: r'questionStartIndex')
   String? get questionStartIndex;

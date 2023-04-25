@@ -15,8 +15,8 @@ class PanelShowQuestionNumbers extends EnumClass {
   static const PanelShowQuestionNumbers default_ = _$default_;
   @BuiltValueEnumConst(wireName: r'onpanel')
   static const PanelShowQuestionNumbers onpanel = _$onpanel;
-  @BuiltValueEnumConst(wireName: r'false')
-  static const PanelShowQuestionNumbers false_ = _$false_;
+  @BuiltValueEnumConst(wireName: r'off')
+  static const PanelShowQuestionNumbers off = _$off;
   @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
   static const PanelShowQuestionNumbers unknownDefaultOpenApi = _$unknownDefaultOpenApi;
 
