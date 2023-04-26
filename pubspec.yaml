@@ -1,10 +1,10 @@
 name: flutter_survey_js
 description: Parse and display survey js
-version: 0.0.1-dev.5
+version: 0.0.2-dev.1
 homepage: https://github.com/Goxiaoy/flutter_survey_js
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.15.0 <3.0.0"
   flutter: ">=3.7.0"
 
 dependencies:
@@ -27,11 +27,9 @@ dependencies:
   signature: ^5.3.2
   logging: ^1.0.1
   intl: ^0.17.0
-  json_annotation: ^4.6.0
   platform: ^3.1.0
   file: ^6.1.4
   group_button: ^5.2.2
-  equatable: ^2.0.5
   flutter_survey_js_model:
     path: ./schema/flutter_survey_js_model
 
@@ -39,7 +37,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.3.3
-  json_serializable: ^6.6.1
   flutter_lints: ^2.0.1
   melos: ^3.0.1
 
