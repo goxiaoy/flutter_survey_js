@@ -6,8 +6,7 @@ import 'package:reactive_segmented_control/reactive_segmented_control.dart';
 import 'question_title.dart';
 import 'survey_element_factory.dart';
 
-final SurveyElementBuilder ratingBuilder =
-    (context, element, {bool hasTitle = true}) {
+Widget ratingBuilder(context, element, {bool hasTitle = true}) {
   final e = element as s.Rating;
 
   final textStyle = Theme.of(context)
@@ -54,4 +53,4 @@ final SurveyElementBuilder ratingBuilder =
       ).wrapQuestionTitle(element, hasTitle: hasTitle);
     },
   );
-};
+}

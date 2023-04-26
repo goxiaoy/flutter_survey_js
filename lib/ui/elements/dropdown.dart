@@ -36,10 +36,10 @@ class _DropdownWidgetWithOtherOptionState
     if (controlValue == null) {
       return false;
     }
-    return !(widget.dropdown.choices
-            ?.map((e) => e.castToItemvalue().text)
-            .contains(controlValue) ??
-        true);
+    final choiceMatch = widget.dropdown.choices
+        ?.map((e) => e.castToItemvalue().value?.value)
+        .contains(controlValue);
+    return !(choiceMatch == true);
   }();
 
   var textEditingController = TextEditingController();
@@ -52,7 +52,7 @@ class _DropdownWidgetWithOtherOptionState
       ...e.choices
               ?.map(
                 (e) => DropdownMenuItem(
-                  value: e.castToItemvalue().value,
+                  value: e.castToItemvalue().value?.value,
                   child: Text(
                     e.castToItemvalue().text ??
                         e.castToItemvalue().value?.toString() ??
@@ -106,8 +106,8 @@ class _DropdownWidgetWithOtherOptionState
                     showOtherTextField = true;
                     return;
                   }
-                  List<String> choices = (e.choices?.toList() ?? [])
-                      .map((e) => e.castToItemvalue().value as String)
+                  List<Object> choices = (e.choices?.toList() ?? [])
+                      .map((e) => e.castToItemvalue().value!.value)
                       .toList();
                   if (e.showNoneItem == true) {
                     choices.add('none');

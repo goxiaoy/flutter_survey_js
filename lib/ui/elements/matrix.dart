@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'question_title.dart';
-import 'survey_element_factory.dart';
 
-final SurveyElementBuilder matrixBuilder =
-    (context, element, {bool hasTitle = true}) {
+Widget matrixBuilder(context, element, {bool hasTitle = true}) {
   return MatrixElement(
     formControlName: element.name!,
     matrix: element as s.Matrix,
   ).wrapQuestionTitle(element, hasTitle: hasTitle);
-};
+}
 
 class MatrixElement extends StatelessWidget {
   final String formControlName;
@@ -59,13 +57,14 @@ class MatrixElement extends StatelessWidget {
                     verticalAlignment: TableCellVerticalAlignment.middle,
                     child: ReactiveRadioListTile(
                         formControlName: row.castToItemvalue().value.toString(),
-                        value: column.castToItemvalue().value),
+                        value: column.castToItemvalue().value?.value),
                   );
                 }).toList()
               ]));
         });
 
         return Table(
+          defaultColumnWidth: const IntrinsicColumnWidth(),
           border: TableBorder.all(
             width: 1.0,
           ),

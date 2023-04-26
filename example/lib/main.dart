@@ -69,6 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
   late Future<List> assetLoader;
   Map<TestJsonType, String> _surveyMap = {};
 
+  TestJsonType? selected;
+
   @override
   void initState() {
     assetLoader = Future.wait(
@@ -77,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
           .then((value) => _surveyMap[e] = JsonElement.format(value))),
     ).then((value) {
       setState(() {
-        survey = value.first;
+        selected = TestJsonType.complex;
+        survey = _surveyMap[selected!]!;
       });
       return value;
     });
@@ -113,19 +116,28 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             return Column(children: [
               Text("Choose or edit survey"),
-              Wrap(
-                direction: Axis.horizontal,
-                children: _surveyMap.entries.map((p) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        survey = p.value;
-                      });
-                    },
-                    child: Text(
-                      p.key.buttonName,
-                    ),
-                  );
+              DropdownButton<TestJsonType>(
+                value: selected,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (TestJsonType? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    selected = value;
+                    survey = _surveyMap[selected!]!;
+                  });
+                },
+                items:
+                    _surveyMap.entries.map<DropdownMenuItem<TestJsonType>>((p) {
+                  return DropdownMenuItem<TestJsonType>(
+                      value: p.key,
+                      child: Text(
+                        p.key.buttonName,
+                      ));
                 }).toList(),
               ),
               Expanded(
@@ -137,6 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       mounted) {
                     setState(() {
                       survey = value.toString();
+                      selected = null;
                     });
                   }
                 },
@@ -152,15 +165,15 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-enum TestJsonType { simple, complex, pageOnly }
+enum TestJsonType { complex, multiPage, pageOnly }
 
 extension TestJsonTypeExtension on TestJsonType {
   String get buttonName {
     switch (this) {
       case TestJsonType.complex:
         return 'Complex';
-      case TestJsonType.simple:
-        return 'Survey with Single Page';
+      case TestJsonType.multiPage:
+        return 'Survey with Multiple Pages';
       case TestJsonType.pageOnly:
         return 'Page without Survey';
     }
@@ -168,10 +181,10 @@ extension TestJsonTypeExtension on TestJsonType {
 
   String get fileLocation {
     switch (this) {
-      case TestJsonType.simple:
-        return 'assets/single_page.json';
       case TestJsonType.complex:
         return 'assets/complex.json';
+      case TestJsonType.multiPage:
+        return 'assets/multi_page.json';
       case TestJsonType.pageOnly:
         return 'assets/page_without_survey.json';
     }

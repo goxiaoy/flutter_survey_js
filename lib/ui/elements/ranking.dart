@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_reorderable_list.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'question_title.dart';
@@ -51,7 +51,7 @@ class ItemValueAccessor
     }
     final copied = List<s.Itemvalue>.from(choices);
     for (int i = modelValue.length - 1; i >= 0; i--) {
-      final index = copied.indexWhere((c) => c.value == modelValue[i]);
+      final index = copied.indexWhere((c) => c.value?.value == modelValue[i]);
       if (index != -1) {
         //move to head
         final r = copied.removeAt(index);
@@ -63,6 +63,6 @@ class ItemValueAccessor
 
   @override
   List<dynamic>? viewToModelValue(List<s.Itemvalue>? viewValue) {
-    return viewValue == null ? null : viewValue.map((p) => p.value).toList();
+    return viewValue?.map((p) => p.value?.value).toList();
   }
 }

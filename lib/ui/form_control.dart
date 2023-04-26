@@ -2,6 +2,7 @@ import 'package:flutter_survey_js/ui/elements/survey_element_factory.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
+import 'elements/matrix_dropdown_base.dart';
 import 'validators.dart';
 
 // elementsToFormGroup mapping question json elements to FormGroup
@@ -52,8 +53,9 @@ extension ElementExtension on s.Elementbase {
         return fb.group(Map.fromEntries(
             (m.rows?.map((p) => p.castToItemvalue()) ?? []).map((e) => MapEntry(
                 e.value.toString(),
-                fb.group(Map.fromEntries((m.columns?.toList() ?? []).map((e) =>
-                    MapEntry(e.name!, FormControl<Object>(value: null)))))))));
+                elementsToFormGroup((m.columns?.toList() ?? [])
+                    .map((column) => matrixDropdownColumnToQuestion(m, column))
+                    .toList())))));
       }
       final validators = <ValidatorFunction>[];
       if (this is s.Question) {

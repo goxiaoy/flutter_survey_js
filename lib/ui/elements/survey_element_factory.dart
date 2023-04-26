@@ -125,7 +125,7 @@ class SurveyElementFactory {
     // register<s.ImagePicker>(imagePickerBuilder);
 
     register<s.Dropdown>(dropdownBuilder,
-        control: (element, {validators = const []}) => FormControl<String>(
+        control: (element, {validators = const []}) => FormControl<Object>(
             validators: validators,
             value: (element as s.Dropdown).defaultValue?.toString()));
     register<s.Paneldynamic>(panelDynamicBuilder);
@@ -153,9 +153,9 @@ class SurveyElementFactory {
           ));
     });
 
-    unsupported = (context, element, {bool hasTitle = true}) => Container(
-          child: Text('Unsupported ${element.name ?? ""}'),
-        ).wrapQuestionTitle(element, hasTitle: hasTitle);
+    unsupported = (context, element, {bool hasTitle = true}) =>
+        Text('Unsupported element ${element.type ?? ""}')
+            .wrapQuestionTitle(element, hasTitle: hasTitle);
   }
 
   SurveyElementBuilder? unsupported;

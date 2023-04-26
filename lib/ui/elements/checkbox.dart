@@ -3,15 +3,13 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'question_title.dart';
-import 'survey_element_factory.dart';
 
-final SurveyElementBuilder checkBoxBuilder =
-    (context, element, {bool hasTitle = true}) {
+Widget checkBoxBuilder(context, element, {bool hasTitle = true}) {
   return CheckBoxElement(
     formControlName: element.name!,
     element: element as s.Checkbox,
   ).wrapQuestionTitle(element, hasTitle: hasTitle);
-};
+}
 
 class CheckBoxElement extends StatelessWidget {
   final String formControlName;

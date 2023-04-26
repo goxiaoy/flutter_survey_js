@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'matrix_dropdown_base.dart';
 import 'question_title.dart';
 import 'survey_element_factory.dart';
 
-final SurveyElementBuilder matrixDropdownBuilder =
-    (context, element, {bool hasTitle = true}) {
+Widget matrixDropdownBuilder(context, element, {bool hasTitle = true}) {
   return MatrixDropdownElement(
     formControlName: element.name!,
     matrix: element as s.Matrixdropdown,
   ).wrapQuestionTitle(element, hasTitle: hasTitle);
-};
+}
 
 class MatrixDropdownElement extends StatelessWidget {
   final String formControlName;
@@ -83,6 +82,7 @@ class MatrixDropdownElement extends StatelessWidget {
         });
 
         return Table(
+          defaultColumnWidth: const IntrinsicColumnWidth(),
           border: TableBorder.all(
             width: 1.0,
           ),

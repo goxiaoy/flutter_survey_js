@@ -68,7 +68,7 @@ class ReactiveGroupButton extends ReactiveFocusableFormField<dynamic, dynamic> {
                           }
                           if (field.control.enabled) {
                             if (!selected) {
-                              field.didChange(itemValue.value);
+                              field.didChange(itemValue.value?.value);
                             } else {
                               field.didChange(null);
                             }
@@ -104,7 +104,7 @@ class _ReactiveGroupButtonState<T>
         ? currentWidget._controller!
         : GroupButtonController();
     final index = currentWidget._buttons.indexWhere(
-        (element) => element.castToItemvalue().value == initialValue);
+        (element) => element.castToItemvalue().value?.value == initialValue);
     if (index != -1) {
       _controller.selectIndex(index);
     }

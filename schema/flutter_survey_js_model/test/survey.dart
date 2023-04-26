@@ -7,13 +7,13 @@ void main() {
     "showProgressBar": "both",
     "description": "Survey Description",
     "title": "Survey New Design Test",
-    "logo": "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg",
+    "logo": "https://picsum.photos/200",
     "logoPosition": "left",
     "questions": [
       {
         "name": "unsupported",
         "type": "unsupported",
-        "title": "Unsupported Question",
+        "title": "Unsupported Question"
       },
       {
         "name": "signature",
@@ -136,8 +136,7 @@ void main() {
         "name": "banner",
         "imageHeight": "300px",
         "imageWidth": "450px",
-        "imageLink":
-            "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg"
+        "imageLink": "https://picsum.photos/200"
       },
       {
         "type": "image",
@@ -146,7 +145,7 @@ void main() {
         "imageHeight": "300px",
         "imageWidth": "450px",
         "imageLink":
-            "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
       },
       {
         "type": "imagepicker",
@@ -155,26 +154,10 @@ void main() {
         "imageHeight": "150px",
         "imageWidth": "225px",
         "choices": [
-          {
-            "value": "lion",
-            "imageLink":
-                "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg"
-          },
-          {
-            "value": "giraffe",
-            "imageLink":
-                "https://surveyjs.io/Content/Images/examples/image-picker/giraffe.jpg"
-          },
-          {
-            "value": "panda",
-            "imageLink":
-                "https://surveyjs.io/Content/Images/examples/image-picker/panda.jpg"
-          },
-          {
-            "value": "camel",
-            "imageLink":
-                "https://surveyjs.io/Content/Images/examples/image-picker/camel.jpg"
-          }
+          {"value": "lion", "imageLink": "https://picsum.photos/200"},
+          {"value": "giraffe", "imageLink": "https://picsum.photos/200"},
+          {"value": "panda", "imageLink": "https://picsum.photos/200"},
+          {"value": "camel", "imageLink": "https://picsum.photos/200"}
         ]
       },
       {
@@ -188,12 +171,12 @@ void main() {
           {
             "value": "short_but_high",
             "imageLink":
-                "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"
+                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
           },
           {
             "value": "long_but_poor",
             "imageLink":
-                "https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_1mb.mp4"
+                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
           }
         ]
       },
