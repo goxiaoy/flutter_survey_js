@@ -68,7 +68,7 @@ class SurveyAnyOfSerializer extends AnyOfSerializer {
     final values = <int, Object?>{};
 
     final getType = () {
-      final serializedList = (serialized as Iterable<Object?>).toList();
+      final serializedList = serialized.toList();
       for (var i = 0; i < serializedList.length; i += 2) {
         final key = serializedList[i] as String;
         final value = serializedList[i + 1];

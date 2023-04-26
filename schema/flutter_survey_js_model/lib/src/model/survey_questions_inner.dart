@@ -274,12 +274,6 @@ class _$SurveyQuestionsInnerSerializer
   @override
   final String wireName = r'SurveyQuestionsInner';
 
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    SurveyQuestionsInner object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {}
-
   @override
   Object serialize(
     Serializers serializers,
