@@ -12,11 +12,18 @@ FormGroup elementsToFormGroup(List<s.Elementbase> elements,
     List<AsyncValidatorFunction> asyncValidators = const []}) {
   final Map<String, Object> controls = <String, Object>{};
   for (var element in elements) {
-    if (element.name != null) {
+    //the behavior of panel seems different from previous version --2023/04/26 Goxiaoy
+    if (element.name != null && element is! s.Panel) {
       final obj = element.toFormObject(controlsMap: controlsMap);
       controls[element.name!] = obj;
       if (controlsMap != null) {
         controlsMap[element] = obj;
+      }
+    } else {
+      //patch parent
+      final obj = element.toFormObject(controlsMap: controlsMap);
+      if (obj is FormGroup) {
+        controls.addAll(obj.controls);
       }
     }
   }

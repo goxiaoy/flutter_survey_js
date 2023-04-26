@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/panel_title.dart';
-import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -130,27 +129,23 @@ class SurveyElementFactory {
             value: (element as s.Dropdown).defaultValue?.toString()));
     register<s.Paneldynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {
-      return ReactiveNestedForm(
-          formControlName: element.name!,
-          child: Column(
-            children: [
-              PanelTitle(panel: element as s.Panelbase),
-              ListView.separated(
-                  shrinkWrap: true,
-                  physics: const ClampingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return resolve(
-                        context,
-                        (element as s.Panel)
-                            .elementsOrQuestions![index]
-                            .realElement);
-                  },
-                  separatorBuilder: (context, index) =>
-                      separatorBuilder(context),
-                  itemCount:
-                      (element as s.Panel).elementsOrQuestions?.length ?? 0)
-            ],
-          ));
+      return Column(
+        children: [
+          PanelTitle(panel: element as s.Panelbase),
+          ListView.separated(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return resolve(
+                    context,
+                    (element as s.Panel)
+                        .elementsOrQuestions![index]
+                        .realElement);
+              },
+              separatorBuilder: (context, index) => separatorBuilder(context),
+              itemCount: (element as s.Panel).elementsOrQuestions?.length ?? 0)
+        ],
+      );
     });
 
     unsupported = (context, element, {bool hasTitle = true}) =>
