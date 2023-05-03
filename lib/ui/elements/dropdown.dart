@@ -103,6 +103,8 @@ class _DropdownWidgetWithOtherOptionState
                 setState(() {
                   if (control.value == 'other') {
                     control.value = '';
+                    control.markAsUntouched();
+                    control.markAsPristine();
                     showOtherTextField = true;
                     return;
                   }

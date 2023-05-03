@@ -357,4 +357,62 @@ void main() {
     expect(find.byType(ReactiveTextField), findsNothing);
     expect(find.text(existingAnswer), findsOneWidget);
   });
+
+  group('Other error text', () {
+    testWidgets(
+        'does not display when the Other option is initially selected but will if submitted',
+        (WidgetTester tester) async {
+      const otherText = "Other size";
+      const questionName = "What t-shirt size do you want?";
+      const existingAnswer = "M";
+      final SurveyController controller = SurveyController();
+
+      await tester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            appLocalizationDelegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: Material(
+            child: SurveyWidget(
+                controller: controller,
+                survey: Survey.fromJson(const {
+                  "questions": [
+                    {
+                      "type": "dropdown",
+                      "name": questionName,
+                      "isRequired": true,
+                      "choices": [
+                        "S",
+                        existingAnswer,
+                        "L",
+                        "XL",
+                      ],
+                      "showOtherItem": true,
+                      "otherText": otherText,
+                    }
+                  ]
+                })),
+          ),
+        ),
+      );
+
+      await tester.pump();
+      await tester.idle();
+      await tester.tap(find.byType(ReactiveDropdownField));
+      await tester.pump();
+      await tester.idle();
+      await tester.tap(find.text(otherText).last);
+      await tester.pump();
+      await tester.idle();
+      expect(find.byType(ReactiveTextField), findsOneWidget);
+      expect(find.text('required'), findsNothing);
+      controller.submit();
+      await tester.pump();
+      await tester.idle();
+      expect(find.text('required'), findsOneWidget);
+    });
+  });
 }
