@@ -360,7 +360,7 @@ void main() {
 
   group('Other error text', () {
     testWidgets(
-        'does not display when the Other option is initially selected but will if submitted',
+        'does not continue to display after a selecting an existing answer then re-selecting the Other field',
         (WidgetTester tester) async {
       const otherText = "Other size";
       const questionName = "What t-shirt size do you want?";
@@ -413,6 +413,18 @@ void main() {
       await tester.pump();
       await tester.idle();
       expect(find.text('required'), findsOneWidget);
+
+      await tester.tap(find.text(otherText).last);
+      await tester.pump();
+      await tester.idle();
+      await tester.tap(find.text(existingAnswer).last);
+      await tester.pump();
+      await tester.idle();
+      await tester.tap(find.text(existingAnswer).last);
+      await tester.pump();
+      await tester.idle();
+      await tester.tap(find.text(otherText).last);
+      expect(find.text('required'), findsNothing);
     });
   });
 }
