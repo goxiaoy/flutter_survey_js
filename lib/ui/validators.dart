@@ -1,6 +1,28 @@
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
+/// Validator that requires the control have a non-empty value.
+class NonEmptyValidator extends Validator<dynamic> {
+  @override
+  Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
+    final error = <String, dynamic>{ValidationMessage.required: true};
+
+    if (control.value == null) {
+      return error;
+    } else if (control.value is String) {
+      return (control.value as String).trim().isEmpty ? error : null;
+    } else if (control.value is List) {
+      return (control.value as List).isEmpty ? error : null;
+    } else if (control.value is Map) {
+      return (control.value as Map).isEmpty ? error : null;
+    }
+
+    return null;
+  }
+
+  static ValidatorFunction get get => NonEmptyValidator().validate;
+}
+
 List<ValidatorFunction> questionToValidators(s.Question question) {
   return surveyToValidators(
       isRequired: question.isRequired,
@@ -11,7 +33,7 @@ List<ValidatorFunction> surveyToValidators(
     {bool? isRequired, List<s.Surveyvalidator>? validators}) {
   final res = <ValidatorFunction>[];
   if (isRequired == true) {
-    res.add(Validators.required);
+    res.add(NonEmptyValidator.get);
   }
   if (validators != null) {
     for (var value in validators) {
