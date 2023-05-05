@@ -15,9 +15,7 @@ class CheckBoxElement extends StatelessWidget {
   final String formControlName;
   final s.Checkbox element;
 
-  const CheckBoxElement(
-      {Key? key, required this.formControlName, required this.element})
-      : super(key: key);
+  const CheckBoxElement({Key? key, required this.formControlName, required this.element}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +23,15 @@ class CheckBoxElement extends StatelessWidget {
         formArrayName: formControlName,
         builder: (context, formArray, child) {
           final list = <Widget>[];
-          for (var element
-              in (element.choices?.map((p0) => p0.castToItemvalue()).toList() ??
-                  [])) {
+          for (var element in (element.choices?.map((p0) => p0.castToItemvalue()).toList() ?? [])) {
             list.add(CheckboxListTile(
-              value: formArray.controls.any((c) => c.value == element.value),
+              value: formArray.controls.any((c) => c.value?.toString() == element.value?.toString()),
               title: Text(element.text ?? element.value?.toString() ?? ''),
               onChanged: (v) {
                 if (v == true) {
-                  formArray.add(FormControl<Object>(value: element.value));
+                  formArray.add(FormControl<Object>(value: element.value?.toString()));
                 } else {
-                  final rs = formArray.controls
-                      .where((c) => c.value == element.value)
-                      .toList();
+                  final rs = formArray.controls.where((c) => c.value?.toString() == element.value?.toString()).toList();
                   if (rs.isNotEmpty) {
                     for (var r in rs) {
                       formArray.remove(r);
