@@ -25,18 +25,20 @@ class CheckBoxElement extends StatelessWidget {
         formArrayName: formControlName,
         builder: (context, formArray, child) {
           final list = <Widget>[];
-          for (var element
+          for (s.Itemvalue element
               in (element.choices?.map((p0) => p0.castToItemvalue()).toList() ??
                   [])) {
             list.add(CheckboxListTile(
-              value: formArray.controls.any((c) => c.value == element.value),
+              value: formArray.controls
+                  .any((c) => c.value == element.value?.value),
               title: Text(element.text ?? element.value?.toString() ?? ''),
               onChanged: (v) {
                 if (v == true) {
-                  formArray.add(FormControl<Object>(value: element.value));
+                  formArray
+                      .add(FormControl<Object>(value: element.value?.value));
                 } else {
                   final rs = formArray.controls
-                      .where((c) => c.value == element.value)
+                      .where((c) => c.value == element.value?.value)
                       .toList();
                   if (rs.isNotEmpty) {
                     for (var r in rs) {

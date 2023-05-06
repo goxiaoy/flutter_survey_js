@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/survey.dart';
-import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -378,7 +377,7 @@ void main() {
           home: Material(
             child: SurveyWidget(
                 controller: controller,
-                survey: Survey.fromJson(const {
+                survey: surveyFromJson(const {
                   "questions": [
                     {
                       "type": "dropdown",
@@ -394,7 +393,7 @@ void main() {
                       "otherText": otherText,
                     }
                   ]
-                })),
+                })!),
           ),
         ),
       );

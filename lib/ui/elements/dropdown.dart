@@ -175,10 +175,10 @@ class _NonReactiveDropdownField extends StatelessWidget {
           autofocus: false,
           alignment: AlignmentDirectional.centerStart,
           onChanged: (value) {
-            final FormControl<String> formControlValue =
+            final FormControl<Object> formControlValue =
                 ((ReactiveForm.of(context, listen: false)
                         as FormControlCollection)
-                    .control(formControlName) as FormControl<String>)
+                    .control(formControlName) as FormControl<Object>)
                   ..updateValue(value);
             onChanged?.call(formControlValue);
           },
