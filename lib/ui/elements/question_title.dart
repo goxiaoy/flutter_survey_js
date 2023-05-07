@@ -23,7 +23,7 @@ class QuestionTitle extends StatelessWidget {
       }
     }
 
-    titleTextStyle() => Theme.of(context).textTheme.titleMedium;
+    titleTextStyle() => Theme.of(context).textTheme.titleLarge;
 
     title() {
       List<Widget> listTitle = <Widget>[];
