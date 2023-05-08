@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "placeholder": MessageLookupByLibrary.simpleMessage("请选择..."),
         "previousPage": MessageLookupByLibrary.simpleMessage("上一页"),
         "remove": MessageLookupByLibrary.simpleMessage("删除"),
+        "selectAllText": MessageLookupByLibrary.simpleMessage("全选"),
         "submitSurvey": MessageLookupByLibrary.simpleMessage("提交")
       };
 }

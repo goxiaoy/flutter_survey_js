@@ -44,7 +44,9 @@
       "placeHolder": "jon.snow@nightwatch.org",
       "isRequired": true,
       "validators": [
-        {"type": "email"}
+        {
+          "type": "email"
+        }
       ]
     },
     {
@@ -92,6 +94,11 @@
       "isRequired": true,
       "showSelectAllItem": true,
       "showNoneItem": true,
+      "showOtherItem": true,
+      "selectAllText": "Select All",
+      "noneText": "None of the above",
+      "otherText": "Other",
+      "otherPlaceholder": "Some other value",
       "colCount": 4,
       "choices": [
         "Ford",
@@ -131,8 +138,7 @@
       "name": "banner",
       "imageHeight": "300px",
       "imageWidth": "450px",
-      "imageLink":
-      "https://picsum.photos/200"
+      "imageLink": "https://picsum.photos/200"
     },
     {
       "type": "image",
@@ -140,8 +146,7 @@
       "contentMode": "video",
       "imageHeight": "300px",
       "imageWidth": "450px",
-      "imageLink":
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      "imageLink": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
     },
     {
       "type": "imagepicker",
@@ -152,23 +157,19 @@
       "choices": [
         {
           "value": "lion",
-          "imageLink":
-          "https://picsum.photos/200"
+          "imageLink": "https://picsum.photos/200"
         },
         {
           "value": "giraffe",
-          "imageLink":
-          "https://picsum.photos/200"
+          "imageLink": "https://picsum.photos/200"
         },
         {
           "value": "panda",
-          "imageLink":
-          "https://picsum.photos/200"
+          "imageLink": "https://picsum.photos/200"
         },
         {
           "value": "camel",
-          "imageLink":
-          "https://picsum.photos/200"
+          "imageLink": "https://picsum.photos/200"
         }
       ]
     },
@@ -182,13 +183,11 @@
       "choices": [
         {
           "value": "short_but_high",
-          "imageLink":
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          "imageLink": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         },
         {
           "value": "long_but_poor",
-          "imageLink":
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          "imageLink": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
         }
       ]
     },
@@ -204,14 +203,32 @@
       "name": "Quality",
       "title": "Matrix",
       "columns": [
-        {"value": 1, "text": "Strongly Disagree"},
-        {"value": 2, "text": "Disagree"},
-        {"value": 3, "text": "Neutral"},
-        {"value": 4, "text": "Agree"},
-        {"value": 5, "text": "Strongly Agree"}
+        {
+          "value": 1,
+          "text": "Strongly Disagree"
+        },
+        {
+          "value": 2,
+          "text": "Disagree"
+        },
+        {
+          "value": 3,
+          "text": "Neutral"
+        },
+        {
+          "value": 4,
+          "text": "Agree"
+        },
+        {
+          "value": 5,
+          "text": "Strongly Agree"
+        }
       ],
       "rows": [
-        {"value": "affordable", "text": "Product is affordable"},
+        {
+          "value": "affordable",
+          "text": "Product is affordable"
+        },
         {
           "value": "does what it claims",
           "text": "Product does what it claims"
@@ -220,7 +237,10 @@
           "value": "better than others",
           "text": "Product is better than other products on the market"
         },
-        {"value": "easy to use", "text": "Product is easy to use"}
+        {
+          "value": "easy to use",
+          "text": "Product is easy to use"
+        }
       ]
     },
     {
@@ -234,15 +254,17 @@
         "Highly Effective"
       ],
       "rows": [
-        {"value": "dataToPlan", "text": "Utilizes Assessment Data to Plan"},
+        {
+          "value": "dataToPlan",
+          "text": "Utilizes Assessment Data to Plan"
+        },
         {
           "value": "ambitiousGoals",
           "text": "Ambitious and Measurable Achievement Goal"
         },
         {
           "value": "developsStandards",
-          "text":
-          "Develops Standards.<br/>Based Unit Plans and Assessments.<br/>Evaluation Values."
+          "text": "Develops Standards.<br/>Based Unit Plans and Assessments.<br/>Evaluation Values."
         },
         {
           "value": "createsObjective",
@@ -251,44 +273,28 @@
       ],
       "cells": {
         "dataToPlan": {
-          "Ineffective":
-          "Teacher rarely or never uses formal and informal assessment data when planning",
-          "Improvement Necessary":
-          "Teacher uses formal and informal assessment data to formulate <br/> - Achievement goals, unit plans, or lesson plans, but not all of these",
-          "Effective":
-          "Teacher uses formal and informal assessment data to formulate <br/>- Achievement goals, unit plans, and lesson plans",
-          "Highly Effective":
-          "Teacher uses formal and informal assessment data to formulate achievement goals, unit plans, and lesson plans<br/>- Incorporates differentiated instructional strategies in planning to reach every student at his/her level of understanding"
+          "Ineffective": "Teacher rarely or never uses formal and informal assessment data when planning",
+          "Improvement Necessary": "Teacher uses formal and informal assessment data to formulate <br/> - Achievement goals, unit plans, or lesson plans, but not all of these",
+          "Effective": "Teacher uses formal and informal assessment data to formulate <br/>- Achievement goals, unit plans, and lesson plans",
+          "Highly Effective": "Teacher uses formal and informal assessment data to formulate achievement goals, unit plans, and lesson plans<br/>- Incorporates differentiated instructional strategies in planning to reach every student at his/her level of understanding"
         },
         "ambitiousGoals": {
-          "Ineffective":
-          "Teacher rarely or never develops achievement goals for the class, or goals are developed but are too general to be helpful for planning purposes",
-          "Improvement Necessary":
-          "Teacher develops an annual student achievement goalthat lacks one or more of these traits:<br/>- Measurable<br/>- Aligned to content standards<br/>- Includes benchmarks to help monitor learning and inform interventions throughout the year",
-          "Effective":
-          "Teacher develops an annual student achievement goal that<br/>- Is measurable<br/>- Is aligned to content standards<br/>- Includes benchmarks to help monitor learning and inform interventions throughout the year",
-          "Highly Effective":
-          "Teacher develops an annual student achievement goal that<br/>- Is measurable<br/>- Is aligned to content standards where applicable<br/>- Includes benchmarks to help monitor learning and informinterventions throughout the year"
+          "Ineffective": "Teacher rarely or never develops achievement goals for the class, or goals are developed but are too general to be helpful for planning purposes",
+          "Improvement Necessary": "Teacher develops an annual student achievement goalthat lacks one or more of these traits:<br/>- Measurable<br/>- Aligned to content standards<br/>- Includes benchmarks to help monitor learning and inform interventions throughout the year",
+          "Effective": "Teacher develops an annual student achievement goal that<br/>- Is measurable<br/>- Is aligned to content standards<br/>- Includes benchmarks to help monitor learning and inform interventions throughout the year",
+          "Highly Effective": "Teacher develops an annual student achievement goal that<br/>- Is measurable<br/>- Is aligned to content standards where applicable<br/>- Includes benchmarks to help monitor learning and informinterventions throughout the year"
         },
         "developsStandards": {
-          "Ineffective":
-          "Teacher rarely or never plans by identifying content standards that students will master in each unit, or there is little to no evidence that teacher plans units at all",
-          "Improvement Necessary":
-          "Based on achievement goals, teacher plans units but omits one or more of these steps:<br/>- Identifying content standards that students will master in each unit<br/>- Creating assessments before planning units<br/>- Allocating an instructionally appropriate amount of time for each unit",
-          "Effective":
-          "Based on achievement goals, teacher plans units by<br/>- Identifying content standards that students will master in each unit<br/>- Creating assessments before each unit begins for backwards planning<br/>- Allocating an instructionally appropriate amount of time for each unit",
-          "Highly Effective":
-          "Based on achievement goals, teacher plans units by<br/>- Identifying content standards that students will master in each unit<br/>- Creating assessments before each unit begins for backwards planning<br/>- Allocating an instructionally appropriate amount of time for each unit"
+          "Ineffective": "Teacher rarely or never plans by identifying content standards that students will master in each unit, or there is little to no evidence that teacher plans units at all",
+          "Improvement Necessary": "Based on achievement goals, teacher plans units but omits one or more of these steps:<br/>- Identifying content standards that students will master in each unit<br/>- Creating assessments before planning units<br/>- Allocating an instructionally appropriate amount of time for each unit",
+          "Effective": "Based on achievement goals, teacher plans units by<br/>- Identifying content standards that students will master in each unit<br/>- Creating assessments before each unit begins for backwards planning<br/>- Allocating an instructionally appropriate amount of time for each unit",
+          "Highly Effective": "Based on achievement goals, teacher plans units by<br/>- Identifying content standards that students will master in each unit<br/>- Creating assessments before each unit begins for backwards planning<br/>- Allocating an instructionally appropriate amount of time for each unit"
         },
         "createsObjective": {
-          "Ineffective":
-          "Teacher rarely or never uses a system to track student assessment/progress data and/or has an ineffective grading system",
-          "Improvement Necessary":
-          "Teacher uses a data tracking system to record student assessment / progress data and maintain a grading system but fails in one or more of the following steps<br/>- Use data to analyze student progress toward mastery or to plan future lessons / units<br/>- Have a grading system that appropriately aligns with student learning goals",
-          "Effective":
-          "Teacher uses an effective data tracking system for<br/>- Recording student assessment / progress data<br/>- Analyzing student progress towards mastery and planning future lessons/units accordingly<br/>- Maintaining a grading system aligned to student learning goals",
-          "Highly Effective":
-          "Teacher uses an effective data tracking system that<br/>- Records student assessment / progress data<br/>- Analyzes student progress toward mastery and plans future lessons/units accordingly<br/>- Maintains a grading system aligned to student learning goals"
+          "Ineffective": "Teacher rarely or never uses a system to track student assessment/progress data and/or has an ineffective grading system",
+          "Improvement Necessary": "Teacher uses a data tracking system to record student assessment / progress data and maintain a grading system but fails in one or more of the following steps<br/>- Use data to analyze student progress toward mastery or to plan future lessons / units<br/>- Have a grading system that appropriately aligns with student learning goals",
+          "Effective": "Teacher uses an effective data tracking system for<br/>- Recording student assessment / progress data<br/>- Analyzing student progress towards mastery and planning future lessons/units accordingly<br/>- Maintaining a grading system aligned to student learning goals",
+          "Highly Effective": "Teacher uses an effective data tracking system that<br/>- Records student assessment / progress data<br/>- Analyzes student progress toward mastery and plans future lessons/units accordingly<br/>- Maintains a grading system aligned to student learning goals"
         }
       }
     },
@@ -296,27 +302,50 @@
       "type": "matrixdropdown",
       "name": "frameworksRate",
       "title": "Matrixdropdown",
-      "choices": ["Excelent", "Good", "Average", "Fair", "Poor"],
+      "choices": [
+        "Excelent",
+        "Good",
+        "Average",
+        "Fair",
+        "Poor"
+      ],
       "columns": [
         {
           "name": "using",
           "title": "Do you use it?",
-          "choices": ["Yes", "No"],
+          "choices": [
+            "Yes",
+            "No"
+          ],
           "cellType": "radiogroup"
         },
         {
           "name": "experience",
           "title": "How long do you use it?",
           "choices": [
-            {"value": 5, "text": "3-5 years"},
-            {"value": 2, "text": "1-2 years"},
-            {"value": 1, "text": "less than a year"}
+            {
+              "value": 5,
+              "text": "3-5 years"
+            },
+            {
+              "value": 2,
+              "text": "1-2 years"
+            },
+            {
+              "value": 1,
+              "text": "less than a year"
+            }
           ]
         },
         {
           "name": "strength",
           "title": "What is main strength?",
-          "choices": ["Easy", "Compact", "Fast", "Powerfull"],
+          "choices": [
+            "Easy",
+            "Compact",
+            "Fast",
+            "Powerfull"
+          ],
           "cellType": "checkbox"
         },
         {
@@ -324,13 +353,26 @@
           "title": "Please describe your experience",
           "cellType": "text"
         },
-        {"name": "rate", "title": "Please rate the framework itself"}
+        {
+          "name": "rate",
+          "title": "Please rate the framework itself"
+        }
       ],
       "rows": [
-        {"value": "angularv1", "text": "angularjs v1.x"},
-        {"value": "angularv2", "text": "angularjs v2"},
-        {"value": "knockoutjs"},
-        {"value": "reactjs"}
+        {
+          "value": "angularv1",
+          "text": "angularjs v1.x"
+        },
+        {
+          "value": "angularv2",
+          "text": "angularjs v2"
+        },
+        {
+          "value": "knockoutjs"
+        },
+        {
+          "value": "reactjs"
+        }
       ]
     },
     {
@@ -343,9 +385,18 @@
       "columnColCount": 1,
       "cellType": "radiogroup",
       "choices": [
-        {"value": 1, "text": "Yes"},
-        {"value": 0, "text": "Sometimes"},
-        {"value": -1, "text": "No"}
+        {
+          "value": 1,
+          "text": "Yes"
+        },
+        {
+          "value": 0,
+          "text": "Sometimes"
+        },
+        {
+          "value": -1,
+          "text": "No"
+        }
       ],
       "columns": [
         {
@@ -383,25 +434,46 @@
             "World Languages: Japanese"
           ]
         },
-        {"name": "explains", "title": "Clearly explains the objectives"},
-        {"name": "interesting", "title": "Makes class interesting"},
-        {"name": "effective", "title": "Uses class time effectively"},
-        {"name": "knowledge", "title": "Knows the subject matter"},
+        {
+          "name": "explains",
+          "title": "Clearly explains the objectives"
+        },
+        {
+          "name": "interesting",
+          "title": "Makes class interesting"
+        },
+        {
+          "name": "effective",
+          "title": "Uses class time effectively"
+        },
+        {
+          "name": "knowledge",
+          "title": "Knows the subject matter"
+        },
         {
           "name": "recognition",
           "title": "Recognizes and acknowledges effort"
         },
-        {"name": "inform", "title": "Keeps me informed of my progress"},
+        {
+          "name": "inform",
+          "title": "Keeps me informed of my progress"
+        },
         {
           "name": "opinion",
           "title": "Encourages and accepts different opinions"
         },
-        {"name": "respect", "title": "Has the respect of the student"},
+        {
+          "name": "respect",
+          "title": "Has the respect of the student"
+        },
         {
           "name": "cooperation",
           "title": "Encourages cooperation and participation"
         },
-        {"name": "parents", "title": "Communicates with my parents"},
+        {
+          "name": "parents",
+          "title": "Communicates with my parents"
+        },
         {
           "name": "selfthinking",
           "title": "Encourages me to think for myself"
@@ -421,8 +493,7 @@
         {
           "name": "improvements",
           "cellType": "comment",
-          "title":
-          "What do you wish this teacher would do differently that would improve this class?",
+          "title": "What do you wish this teacher would do differently that would improve this class?",
           "minWidth": "250px"
         }
       ],
@@ -442,17 +513,37 @@
           "cellType": "text",
           "inputType": "date"
         },
-        {"name": "AmbDistance", "title": "Amb Distance", "cellType": "text"},
+        {
+          "name": "AmbDistance",
+          "title": "Amb Distance",
+          "cellType": "text"
+        },
         {
           "name": "Amb Assistance",
           "cellType": "dropdown",
-          "choices": ["D", "MAX", "MOD", "MIN"]
+          "choices": [
+            "D",
+            "MAX",
+            "MOD",
+            "MIN"
+          ]
         },
-        {"name": "Standing Tolerance", "cellType": "text"},
-        {"name": "UE Strength", "cellType": "text"},
-        {"name": "Cognitive Function", "cellType": "comment"}
+        {
+          "name": "Standing Tolerance",
+          "cellType": "text"
+        },
+        {
+          "name": "UE Strength",
+          "cellType": "text"
+        },
+        {
+          "name": "Cognitive Function",
+          "cellType": "comment"
+        }
       ],
-      "choices": [1],
+      "choices": [
+        1
+      ],
       "cellType": "comment",
       "confirmDelete": true,
       "addRowText": "Add Date +",
@@ -479,8 +570,16 @@
           "totalType": "count",
           "totalFormat": "Items count: {0}",
           "choices": [
-            {"value": "iPhone7-32", "text": "iPhone 7, 32GB", "price": 449},
-            {"value": "iPhone7-128", "text": "iPhone 7, 128GB", "price": 549},
+            {
+              "value": "iPhone7-32",
+              "text": "iPhone 7, 32GB",
+              "price": 449
+            },
+            {
+              "value": "iPhone7-128",
+              "text": "iPhone 7, 128GB",
+              "price": 549
+            },
             {
               "value": "iPhone7Plus-32",
               "text": "iPhone 7 Plus, 32GB",
@@ -491,8 +590,16 @@
               "text": "iPhone 7 Plus, 128GB",
               "price": 669
             },
-            {"value": "iPhone8-64", "text": "iPhone 8, 64GB", "price": 599},
-            {"value": "iPhone8-256", "text": "iPhone 8, 256GB", "price": 749},
+            {
+              "value": "iPhone8-64",
+              "text": "iPhone 8, 64GB",
+              "price": 599
+            },
+            {
+              "value": "iPhone8-256",
+              "text": "iPhone 8, 256GB",
+              "price": 749
+            },
             {
               "value": "iPhone8Plus-64",
               "text": "iPhone 8 Plus, 64GB",
@@ -503,7 +610,11 @@
               "text": "iPhone 8 Plus, 256GB",
               "price": 849
             },
-            {"value": "iPhoneXR-64", "text": "iPhone XR, 64GB", "price": 749},
+            {
+              "value": "iPhoneXR-64",
+              "text": "iPhone XR, 64GB",
+              "price": 749
+            },
             {
               "value": "iPhoneXR-128",
               "text": "iPhone XR, 128GB",
@@ -514,7 +625,11 @@
               "text": "iPhone XR, 256GB",
               "price": 899
             },
-            {"value": "iPhoneXS-64", "text": "iPhone XS, 64GB", "price": 999},
+            {
+              "value": "iPhoneXS-64",
+              "text": "iPhone XS, 64GB",
+              "price": 999
+            },
             {
               "value": "iPhoneXS-256",
               "text": "iPhone XS, 256GB",
@@ -558,7 +673,11 @@
           "totalType": "sum",
           "totalFormat": "Total phones: {0}",
           "validators": [
-            {"type": "numeric", "minValue": 1, "maxValue": 100}
+            {
+              "type": "numeric",
+              "minValue": 1,
+              "maxValue": 100
+            }
           ]
         },
         {
@@ -580,7 +699,11 @@
       "defaultValue": 20,
       "inputType": "number",
       "validators": [
-        {"type": "numeric", "minValue": 0, "maxValue": 40}
+        {
+          "type": "numeric",
+          "minValue": 0,
+          "maxValue": 40
+        }
       ]
     },
     {
@@ -625,8 +748,7 @@
     {
       "type": "ranking",
       "name": "smartphone-features",
-      "title":
-      "Please rank the following smartphone features in order of importance:",
+      "title": "Please rank the following smartphone features in order of importance:",
       "choices": [
         "Battery life",
         "Screen size",
@@ -637,7 +759,11 @@
         "Price"
       ]
     },
-    {"type": "comment", "name": "suggestions", "title": "Comment"},
+    {
+      "type": "comment",
+      "name": "suggestions",
+      "title": "Comment"
+    },
     {
       "type": "file",
       "title": "File",
@@ -656,9 +782,18 @@
         {
           "type": "checkbox",
           "choices": [
-            {"value": "1", "text": "Customer relationship"},
-            {"value": "2", "text": "Service quality"},
-            {"value": "3", "text": "Support response time"}
+            {
+              "value": "1",
+              "text": "Customer relationship"
+            },
+            {
+              "value": "2",
+              "text": "Service quality"
+            },
+            {
+              "value": "3",
+              "text": "Support response time"
+            }
           ],
           "name": "What should be improved?"
         },
@@ -697,7 +832,10 @@
           "startWithNewLine": false,
           "isRequired": true,
           "colCount": 0,
-          "choices": ["Yes", "No"]
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "name": "liveage",
@@ -717,7 +855,10 @@
           "startWithNewLine": false,
           "visibleIf": "{panel.isalive} = 'No'",
           "choices": [
-            {"value": -1, "text": "Unknown"}
+            {
+              "value": -1,
+              "text": "Unknown"
+            }
           ],
           "choicesMin": 1,
           "choicesMax": 115
@@ -730,7 +871,10 @@
           "colCount": 0,
           "startWithNewLine": false,
           "visibleIf": "{panel.isalive} = 'No'",
-          "choices": ["Yes", "No"]
+          "choices": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "name": "causeofdeath",
@@ -738,8 +882,7 @@
           "title": "Cause of Death",
           "isRequired": true,
           "startWithNewLine": false,
-          "visibleIf":
-          "{panel.isalive} = 'No' and {panel.causeofdeathknown} = 'Yes'"
+          "visibleIf": "{panel.isalive} = 'No' and {panel.causeofdeathknown} = 'Yes'"
         },
         {
           "type": "panel",
