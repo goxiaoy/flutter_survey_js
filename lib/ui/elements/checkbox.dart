@@ -45,6 +45,14 @@ class CheckBoxElement extends StatefulWidget {
 
 class _CheckBoxElementState extends State<CheckBoxElement> {
   bool showOtherTextField = false;
+  String oldOtherValue = '';
+  void resetOtherItem() {
+    setState(() {
+      showOtherTextField = false;
+      oldOtherValue = '';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<s.Itemvalue> choices =
@@ -62,19 +70,14 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
               value: CheckBoxElement.allChecked(choices, formArray.controls),
               title: Text(text),
               onChanged: (v) {
+                formArray.clear();
+                resetOtherItem();
                 if (v == true) {
-                  formArray.clear();
                   formArray.addAll(choices
                       .map((choice) =>
                           FormControl<Object>(value: choice.value?.value))
                       .toList());
-                } else {
-                  formArray.clear();
                 }
-                setState(() {
-                  showOtherTextField =
-                      formArray.controls.any((c) => c.value == 'other');
-                });
               },
             ));
           }
@@ -101,10 +104,6 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                     }
                   }
                 }
-                setState(() {
-                  showOtherTextField =
-                      formArray.controls.any((c) => c.value == 'other');
-                });
               },
             ));
           }
@@ -116,16 +115,13 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
               value: formArray.controls.any((c) => c.value == 'none'),
               title: Text(text),
               onChanged: (v) {
+                resetOtherItem();
                 if (v == true) {
                   formArray.clear();
                   formArray.add(FormControl<Object>(value: 'none'));
                 } else {
                   CheckBoxElement.excludeFrom(formArray, 'none');
                 }
-                setState(() {
-                  showOtherTextField =
-                      formArray.controls.any((c) => c.value == 'other');
-                });
               },
             ));
           }
@@ -134,35 +130,46 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
             String? text =
                 widget.element.otherText ?? S.of(context).otherItemText;
             list.add(CheckboxListTile(
-              value: formArray.controls.any((c) => c.value == 'other'),
+              value: showOtherTextField,
               title: Text(text),
               onChanged: (v) {
                 if (v == true) {
-                  formArray.add(FormControl<Object>(value: 'other'));
-                } else {
-                  CheckBoxElement.excludeFrom(formArray, 'other');
+                  CheckBoxElement.excludeFrom(formArray, 'none');
+                }
+                if (oldOtherValue.isNotEmpty) {
+                  CheckBoxElement.excludeFrom(formArray, oldOtherValue);
                 }
                 setState(() {
-                  showOtherTextField =
-                      formArray.controls.any((c) => c.value == 'other');
+                  oldOtherValue = '';
+                  showOtherTextField = v ?? false;
+                });
+              },
+            ));
+          }
+          if (showOtherTextField) {
+            list.add(TextFormField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: widget.element.otherPlaceholder,
+              ),
+              initialValue: oldOtherValue,
+              onChanged: (value) {
+                if (oldOtherValue.isNotEmpty) {
+                  CheckBoxElement.excludeFrom(formArray, oldOtherValue);
+                }
+                if (value.isNotEmpty) {
+                  formArray.add(FormControl<Object>(value: value));
+                }
+                setState(() {
+                  oldOtherValue = value;
                 });
               },
             ));
           }
           return Column(
-            children: [
-              ...list,
-              if (showOtherTextField)
-                ReactiveTextField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  formControl: FormControl<String?>(), // TODO form logic
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: widget.element.otherPlaceholder,
-                  ),
-                ),
-            ],
+            children: list,
           );
         });
   }

@@ -55,6 +55,7 @@
       "title": "Dropdown",
       "isRequired": true,
       "showNoneItem": true,
+      "showOtherItem": true,
       "colCount": 4,
       "choices": [
         "Ford",
