@@ -129,6 +129,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Select All`
+  String get selectAllText {
+    return Intl.message(
+      'Select All',
+      name: 'selectAllText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
