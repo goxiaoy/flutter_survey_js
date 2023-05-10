@@ -49,11 +49,16 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
   void resetOtherItem(List<s.Itemvalue> choices, FormArray<Object?> formArray) {
     bool showOther = false;
     String otherValue = '';
-    for (Object? value in formArray.controls.map((e) => e.value)) {
-      if (!choices.any((c) => c.value?.value == value)) {
-        showOther = true;
-        otherValue = value.toString();
+    if (!formArray.controls.any((c) => c.value == "none")) {
+      for (Object? value in formArray.controls.map((e) => e.value)) {
+        if (!choices.any((c) => c.value?.value == value)) {
+          showOther = true;
+          otherValue = value.toString();
+        }
       }
+    } else {
+      showOther = false;
+      otherValue = '';
     }
     setState(() {
       showOtherTextField = showOther;
@@ -135,13 +140,13 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
               value: formArray.controls.any((c) => c.value == 'none'),
               title: Text(text),
               onChanged: (v) {
-                resetOtherItem(choices, formArray);
                 if (v == true) {
                   formArray.clear();
                   formArray.add(FormControl<Object>(value: 'none'));
                 } else {
                   CheckBoxElement.excludeFrom(formArray, 'none');
                 }
+                resetOtherItem(choices, formArray);
               },
             ));
           }

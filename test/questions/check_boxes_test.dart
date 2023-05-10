@@ -160,4 +160,37 @@ void main() {
     expect(find.byType(TextFormField), findsOneWidget);
     expect(find.text("UNN Thomas Prince"), findsNothing);
   });
+
+  testWidgets("checkbox with none option checked should uncheck other option",
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          appLocalizationDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Material(
+          child: SurveyWidget(
+            survey: surveyFromJson(extended)!,
+            answer: const {
+              "warships": ["UNN Thomas Prince"]
+            },
+          ),
+        ),
+      ),
+    );
+
+    await tester.pump();
+    await tester.idle();
+    expect(find.byType(TextFormField), findsOneWidget);
+    expect(find.text("UNN Thomas Prince"), findsOneWidget);
+
+    // uncheck the "None of them" option
+    await tester.tap(find.text("None of them"));
+    await tester.pump();
+    await tester.idle();
+    expect(find.byType(TextFormField), findsNothing);
+  });
 }
