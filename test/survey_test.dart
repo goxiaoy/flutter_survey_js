@@ -52,6 +52,28 @@ void main() {
         expect(actual, expected);
       });
 
+      test('parses as "on" string when json value is `null`', () {
+        const String expected = 'on';
+        final Survey survey = Survey.fromJson(
+          {
+            "title": "Software developer survey.",
+            "pages": [
+              {
+                "elements": [
+                  {
+                    "type": "text",
+                    "isRequired": true,
+                    "name": "question 1",
+                  },
+                ]
+              }
+            ],
+          },
+        );
+        final String? actual = survey.showQuestionNumbers;
+        expect(actual, expected);
+      });
+
       test('does not modify string json values', () {
         const String expected = 'some_showQuestionNumbers_value';
         final Survey survey = Survey.fromJson(

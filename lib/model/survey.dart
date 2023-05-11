@@ -126,6 +126,9 @@ class Survey extends Equatable {
   Map<String, dynamic> toJson() => _$SurveyToJson(this);
 
   static String? _boolToString(dynamic inputValue) {
+    if (inputValue == null) {
+      return 'on';
+    }
     if (inputValue is bool) {
       return inputValue ? 'on' : 'off';
     }
