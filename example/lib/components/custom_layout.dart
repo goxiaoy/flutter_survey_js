@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:flutter_survey_js/ui/elements/survey_element_factory.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
+import 'package:json_editor/json_editor.dart';
 import 'package:logging/logging.dart';
 
 class CustomLayoutPage extends StatelessWidget {
@@ -44,8 +45,7 @@ class CustomLayoutPage extends StatelessWidget {
                             children: [
                               Expanded(
                                   child: Container(
-                                      child: SingleChildScrollView(
-                                          child: Text(v.toString())))),
+                                      child: JsonEditor.object(object: v))),
                               ElevatedButton(
                                 child: const Text('Close'),
                                 onPressed: () => Navigator.pop(context),
@@ -83,7 +83,7 @@ class CustomLayoutState extends State<CustomLayout> {
   @override
   Widget build(BuildContext context) {
     final elements = _consolidateQuestions(survey);
-    IndexedWidgetBuilder itemBuilder(List<s.ElementBase> elements) {
+    IndexedWidgetBuilder itemBuilder(List<s.Elementbase> elements) {
       return (context, index) {
         if (index < elements.length && index >= 0) {
           return SurveyElementFactory().resolve(context, elements[index]);
@@ -127,10 +127,12 @@ class CustomLayoutState extends State<CustomLayout> {
     );
   }
 
-  List<s.ElementBase> _consolidateQuestions(s.Survey survey) {
-    return (survey.pages ?? [])
-        .map<List<s.ElementBase>>((e) => e.elements ?? <s.ElementBase>[])
-        .fold(<s.ElementBase>[],
+  List<s.Elementbase> _consolidateQuestions(s.Survey survey) {
+    return (survey.pages?.toList() ?? [])
+        .map<List<s.Elementbase>>((e) =>
+            e.elementsOrQuestions?.map((p) => p.realElement).toList() ??
+            <s.Elementbase>[])
+        .fold(<s.Elementbase>[],
             (previousValue, element) => previousValue..addAll(element));
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:json_editor/json_editor.dart';
 
 import 'components/custom_layout.dart';
@@ -11,6 +11,7 @@ class AnswerPage extends StatefulWidget {
   final s.Survey? survey;
 
   const AnswerPage({Key? key, this.survey}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => AnswerPageState();
 }

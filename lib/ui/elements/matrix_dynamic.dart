@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
@@ -14,13 +14,13 @@ final SurveyElementBuilder matrixDynamicBuilder =
     (context, element, {bool hasTitle = true}) {
   return MatrixDynamicElement(
     formControlName: element.name!,
-    matrix: element as s.MatrixDynamic,
+    matrix: element as s.Matrixdynamic,
   ).wrapQuestionTitle(element, hasTitle: hasTitle);
 };
 
 class MatrixDynamicElement extends StatelessWidget {
   final String formControlName;
-  final s.MatrixDynamic matrix;
+  final s.Matrixdynamic matrix;
 
   const MatrixDynamicElement(
       {Key? key, required this.formControlName, required this.matrix})
@@ -30,7 +30,7 @@ class MatrixDynamicElement extends StatelessWidget {
   Widget build(BuildContext context) {
     createNew() {
       //create new formGroup
-      return elementsToFormGroup((matrix.columns ?? [])
+      return elementsToFormGroup((matrix.columns?.toList() ?? [])
           .map((column) => matrixDropdownColumnToQuestion(matrix, column))
           .toList());
     }
@@ -49,7 +49,7 @@ class MatrixDynamicElement extends StatelessWidget {
               color: Colors.grey,
             ),
             children: [
-              ...((matrix.columns ?? []).map((e) => TableCell(
+              ...((matrix.columns?.toList() ?? []).map((e) => TableCell(
                     child: MatrixDropdownTitle(e),
                   ))),
               const TableCell(
@@ -65,7 +65,7 @@ class MatrixDynamicElement extends StatelessWidget {
                     )
                   : null,
               children: [
-                ...(matrix.columns ?? []).map((column) {
+                ...(matrix.columns?.toList() ?? []).map((column) {
                   final q = matrixDropdownColumnToQuestion(matrix, column);
                   final v = questionToValidators(q);
 
@@ -109,7 +109,9 @@ class MatrixDynamicElement extends StatelessWidget {
           return Column(
             children: [
               Table(
-                columnWidths: {columnCount - 1: const FixedColumnWidth(actionSize)},
+                columnWidths: {
+                  columnCount - 1: const FixedColumnWidth(actionSize)
+                },
                 border: TableBorder.all(
                   width: 1.0,
                 ),

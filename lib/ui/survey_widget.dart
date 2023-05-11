@@ -2,19 +2,17 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
 import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'elements_state.dart';
 import 'form_control.dart';
 
-final defaultBuilder = (BuildContext context) {
+Widget defaultBuilder(BuildContext context) {
   return const SurveyLayout();
-};
-
-typedef SurveyBuilder = Widget Function(BuildContext context);
+}
 
 class SurveyWidget extends StatefulWidget {
   final s.Survey survey;
@@ -24,9 +22,9 @@ class SurveyWidget extends StatefulWidget {
   final ValueSetter<Map<String, Object?>?>? onChange;
   final bool showQuestionsInOnePage;
   final SurveyController? controller;
-  final SurveyBuilder? builder;
+  final WidgetBuilder? builder;
 
-  SurveyWidget({
+  const SurveyWidget({
     Key? key,
     required this.survey,
     this.answer,
@@ -65,7 +63,7 @@ class SurveyWidget extends StatefulWidget {
 class SurveyWidgetState extends State<SurveyWidget> {
   final Logger logger = Logger('SurveyWidgetState');
   late FormGroup formGroup;
-  late Map<s.ElementBase, Object> _controlsMap;
+  late Map<s.Elementbase, Object> _controlsMap;
 
   late int pageCount;
 
@@ -100,7 +98,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
   Widget build(BuildContext context) {
     //TODO recalculate page count and visible
     //TODO calculate status
-    Map<s.ElementBase, ElementStatus> status = {};
+    Map<s.Elementbase, ElementStatus> status = {};
     int index = 0;
     for (final kv in _controlsMap.entries) {
       var visible = true;
@@ -224,11 +222,12 @@ class SurveyProvider extends InheritedWidget {
 }
 
 extension SurveyFormExtension on s.Survey {
-  List<s.ElementBase> getElements() {
-    return pages!.fold<List<s.ElementBase>>(
+  List<s.Elementbase> getElements() {
+    return pages!.fold<List<s.Elementbase>>(
         [],
-        (previousValue, element) =>
-            previousValue..addAll(element.elements ?? []));
+        (previousValue, element) => previousValue
+          ..addAll(
+              element.elementsOrQuestions?.map((p) => p.realElement) ?? []));
   }
 }
 
@@ -280,6 +279,6 @@ class SurveyController {
 
 extension SurveyExtension on s.Survey {
   int getPageCount() {
-    return (pages ?? []).length;
+    return (pages?.toList() ?? []).length;
   }
 }

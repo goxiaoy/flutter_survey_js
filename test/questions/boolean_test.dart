@@ -19,11 +19,11 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = Survey.fromJson(json);
+    final s = surveyFromJson(json);
   });
 
   testWidgets('displays title if present in json', (WidgetTester tester) async {
-    final s = Survey.fromJson(
+    final s = surveyFromJson(
       {
         "pages": [
           {
@@ -37,7 +37,7 @@ void main() {
           },
         ],
       },
-    );
+    )!;
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: const [
@@ -56,7 +56,7 @@ void main() {
 
   testWidgets('displays labelFalse and not labelTrue',
       (WidgetTester tester) async {
-    final s = Survey.fromJson(
+    final s = surveyFromJson(
       {
         "pages": [
           {
@@ -70,7 +70,7 @@ void main() {
           },
         ],
       },
-    );
+    )!;
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: const [
@@ -91,7 +91,7 @@ void main() {
   testWidgets('displays labelTrue and not labelFalse',
       (WidgetTester tester) async {
     String labelTrueText = "true text";
-    final s = Survey.fromJson(
+    final s = surveyFromJson(
       {
         "pages": [
           {
@@ -105,7 +105,7 @@ void main() {
           },
         ],
       },
-    );
+    )!;
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: const [
@@ -126,7 +126,7 @@ void main() {
   testWidgets('displays both labelTrue and labelFalse if both present in json',
       (WidgetTester tester) async {
     String labelTrueText = "true text";
-    final s = Survey.fromJson(
+    final s = surveyFromJson(
       {
         "pages": [
           {
@@ -141,7 +141,7 @@ void main() {
           },
         ],
       },
-    );
+    )!;
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: const [

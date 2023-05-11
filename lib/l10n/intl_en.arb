@@ -6,5 +6,6 @@
   "remove": "Remove",
   "placeholder": "Select...",
   "otherItemText": "Other (describe)",
-  "noneItemText": "None"
+  "noneItemText": "None",
+  "selectAllText": "Select All"
 }

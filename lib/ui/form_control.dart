@@ -1,54 +1,68 @@
-import 'package:flutter_survey_js/model/survey.dart' as s;
 import 'package:flutter_survey_js/ui/elements/survey_element_factory.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
+import 'elements/matrix_dropdown_base.dart';
 import 'validators.dart';
 
 // elementsToFormGroup mapping question json elements to FormGroup
-FormGroup elementsToFormGroup(List<s.ElementBase> elements,
-    {Map<s.ElementBase, Object>? controlsMap,
+FormGroup elementsToFormGroup(List<s.Elementbase> elements,
+    {Map<s.Elementbase, Object>? controlsMap,
     List<ValidatorFunction> validators = const [],
     List<AsyncValidatorFunction> asyncValidators = const []}) {
   final Map<String, Object> controls = <String, Object>{};
   for (var element in elements) {
-    if (element.name != null) {
+    //the behavior of panel seems different from previous version --2023/04/26 Goxiaoy
+    if (element.name != null && element is! s.Panel) {
       final obj = element.toFormObject(controlsMap: controlsMap);
       controls[element.name!] = obj;
       if (controlsMap != null) {
         controlsMap[element] = obj;
+      }
+    } else {
+      //patch parent
+      final obj = element.toFormObject(controlsMap: controlsMap);
+      if (obj is FormGroup) {
+        controls.addAll(obj.controls);
       }
     }
   }
   return fb.group(controls, validators, asyncValidators);
 }
 
-extension ElementExtension on s.ElementBase {
+extension ElementExtension on s.Elementbase {
   // toFormObject convert question json element to FromControl
-  Object toFormObject({Map<s.ElementBase, Object>? controlsMap}) {
+  Object toFormObject({Map<s.Elementbase, Object>? controlsMap}) {
     formFunc() {
       if (this is s.Panel) {
         final p = this as s.Panel;
-        return elementsToFormGroup(p.elements ?? [],
+        return elementsToFormGroup(
+            p.elementsOrQuestions?.map((p) => p.realElement).toList() ?? [],
             validators: p.isRequired == true ? [Validators.required] : [],
             controlsMap: controlsMap);
       }
-      if (this is s.PanelDynamic) {
-        return fb.array((this as s.PanelDynamic).defaultValue ?? []);
+      if (this is s.Paneldynamic) {
+        return fb
+            .array((this as s.Paneldynamic).defaultValue.tryCastToListObj());
       }
-      if (this is s.MatrixDynamic) {
-        return fb.array((this as s.MatrixDynamic).defaultValue ?? []);
+      if (this is s.Matrixdynamic) {
+        return fb
+            .array((this as s.Matrixdynamic).defaultValue.tryCastToListObj());
       }
       if (this is s.Matrix) {
         final m = this as s.Matrix;
-        return fb.group(Map.fromEntries((m.rows ?? []).map((e) =>
-            MapEntry(e.value.toString(), FormControl<Object>(value: null)))));
+        return fb.group(Map.fromEntries(
+            (m.rows?.map((p) => p.castToItemvalue()) ?? []).map((e) => MapEntry(
+                e.value.toString(), FormControl<Object>(value: null)))));
       }
-      if (this is s.MatrixDropdown) {
-        final m = this as s.MatrixDropdown;
-        return fb.group(Map.fromEntries((m.rows ?? []).map((e) => MapEntry(
-            e.value.toString(),
-            fb.group(Map.fromEntries((m.columns ?? []).map((e) =>
-                MapEntry(e.name!, FormControl<Object>(value: null)))))))));
+      if (this is s.Matrixdropdown) {
+        final m = this as s.Matrixdropdown;
+        return fb.group(Map.fromEntries(
+            (m.rows?.map((p) => p.castToItemvalue()) ?? []).map((e) => MapEntry(
+                e.value.toString(),
+                elementsToFormGroup((m.columns?.toList() ?? [])
+                    .map((column) => matrixDropdownColumnToQuestion(m, column))
+                    .toList())))));
       }
       final validators = <ValidatorFunction>[];
       if (this is s.Question) {

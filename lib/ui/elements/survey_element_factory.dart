@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/panel_title.dart';
-import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -22,8 +21,8 @@ import 'rating.dart';
 import 'text.dart';
 
 typedef SurveyElementBuilder = Widget
-    Function(BuildContext context, s.ElementBase element, {bool hasTitle});
-typedef SurveyFormControlBuilder = Object? Function(s.ElementBase element,
+    Function(BuildContext context, s.Elementbase element, {bool hasTitle});
+typedef SurveyFormControlBuilder = Object? Function(s.Elementbase element,
     {List<ValidatorFunction> validators});
 
 class SurveyElementFactory {
@@ -34,17 +33,18 @@ class SurveyElementFactory {
   factory SurveyElementFactory() {
     return _singleton;
   }
+
   SurveyElementFactory._internal() {
     register<s.Matrix>(matrixBuilder);
-    register<s.MatrixDropdown>(matrixDropdownBuilder);
-    register<s.MatrixDynamic>(matrixDynamicBuilder);
-    register<s.CheckBox>(checkBoxBuilder,
+    register<s.Matrixdropdown>(matrixDropdownBuilder);
+    register<s.Matrixdynamic>(matrixDynamicBuilder);
+    register<s.Checkbox>(checkBoxBuilder,
         control: (element, {validators = const []}) =>
             fb.array([], validators));
     register<s.Ranking>(rankingBuilder,
         control: (element, {validators = const []}) =>
             FormControl<List<dynamic>>(validators: validators));
-    register<s.RadioGroup>(radioGroupBuilder);
+    register<s.Radiogroup>(radioGroupBuilder);
     register<s.Boolean>(
         //TODO ReactiveSwitch is not safe
         (context, element, {bool hasTitle = true}) {
@@ -77,7 +77,8 @@ class SurveyElementFactory {
 
     register<s.Rating>(ratingBuilder,
         control: (element, {validators = const []}) => FormControl<int>(
-            validators: validators, value: (element as s.Rating).defaultValue));
+            validators: validators,
+            value: (element as s.Rating).defaultValue.tryCastToInt()));
 
     register<s.Comment>((context, element, {bool hasTitle = true}) =>
         ReactiveTextField(
@@ -98,12 +99,12 @@ class SurveyElementFactory {
         ).wrapQuestionTitle(element, hasTitle: hasTitle));
 
     register<s.Text>(textBuilder, control: textControlBuilder);
-    register<s.MultipleText>(multipleTextBuilder,
+    register<s.Multipletext>(multipleTextBuilder,
         control: multipleTextControlBuilder);
     register<s.Html>((context, element, {bool hasTitle = true}) {
       return HtmlWidget((element as s.Html).html ?? '');
     });
-    register<s.SignaturePad>((context, element, {bool hasTitle = true}) {
+    register<s.Signaturepad>((context, element, {bool hasTitle = true}) {
       return LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         return ReactiveSignatureString(
@@ -123,36 +124,33 @@ class SurveyElementFactory {
     });
     // register<s.ImagePicker>(imagePickerBuilder);
     register<s.Dropdown>(dropdownBuilder,
-        control: (element, {validators = const []}) => FormControl<String>(
+        control: (element, {validators = const []}) => FormControl<Object>(
             validators: validators,
-            value: (element as s.Dropdown).defaultValue));
-
-    register<s.PanelDynamic>(panelDynamicBuilder);
+            value: (element as s.Dropdown).defaultValue?.toString()));
+    register<s.Paneldynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {
-      return ReactiveNestedForm(
-          formControlName: element.name!,
-          child: Column(
-            children: [
-              PanelTitle(panel: element as s.PanelBase),
-              ListView.separated(
-                  shrinkWrap: true,
-                  physics: const ClampingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return resolve(
-                        context, (element as s.Panel).elements![index]);
-                  },
-                  separatorBuilder: (context, index) =>
-                      separatorBuilder(context),
-                  itemCount: (element as s.Panel).elements?.length ?? 0)
-            ],
-          ));
+      return Column(
+        children: [
+          PanelTitle(panel: element as s.Panelbase),
+          ListView.separated(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return resolve(
+                    context,
+                    (element as s.Panel)
+                        .elementsOrQuestions![index]
+                        .realElement);
+              },
+              separatorBuilder: (context, index) => separatorBuilder(context),
+              itemCount: (element as s.Panel).elementsOrQuestions?.length ?? 0)
+        ],
+      );
     });
 
-    unsupported = (context, element, {bool hasTitle = true}) => Container(
-          child: Text(
-            'Unsupported ${element.name ?? ""}',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
+    unsupported = (context, element, {bool hasTitle = true}) => Text(
+          'Unsupported element ${element.type ?? ""}',
+          style: Theme.of(context).textTheme.bodyMedium,
         ).wrapQuestionTitle(element, hasTitle: hasTitle);
   }
 
@@ -170,25 +168,29 @@ class SurveyElementFactory {
         ],
       );
 
-  final Map<Type, SurveyElementBuilder> _map = <Type, SurveyElementBuilder>{};
-  final Map<Type, SurveyFormControlBuilder> _formControlMap =
-      <Type, SurveyFormControlBuilder>{};
+  final Map<String, SurveyElementBuilder> _map =
+      <String, SurveyElementBuilder>{};
+  final Map<String, SurveyFormControlBuilder> _formControlMap =
+      <String, SurveyFormControlBuilder>{};
 
   void register<T>(SurveyElementBuilder builder,
       {SurveyFormControlBuilder? control}) {
-    _map[T] = builder;
+    final name = s.questionTypeName[T];
+    if (name == null) {
+      throw UnsupportedError("element type $T not supported");
+    }
+    _map[name] = builder;
     if (control != null) {
-      _formControlMap[T] = control;
+      _formControlMap[name] = control;
     }
   }
 
-  Widget resolve(BuildContext context, s.ElementBase element,
+  Widget resolve(BuildContext context, s.Elementbase element,
       {bool hasTitle = true}) {
-    final t = element.runtimeType;
-    var res = _map[t];
+    var res = _map[element.type];
     if (res == null) {
       if (unsupported == null) {
-        throw UnsupportedError('Unsupported element $t');
+        throw UnsupportedError('Unsupported element ${element.type}');
       } else {
         res = unsupported!;
       }
@@ -196,8 +198,7 @@ class SurveyElementFactory {
     return res(context, element, hasTitle: hasTitle);
   }
 
-  SurveyFormControlBuilder? resolveFormControl(s.ElementBase element) {
-    final t = element.runtimeType;
-    return _formControlMap[t];
+  SurveyFormControlBuilder? resolveFormControl(s.Elementbase element) {
+    return _formControlMap[element.type];
   }
 }

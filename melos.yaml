@@ -1,0 +1,17 @@
+name: flutter_survey_js
+repository: https://github.com/Goxiaoy/flutter_survey_js
+packages:
+  - schema/*
+  - schema/*/*
+  - .
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  build:
+    exec: flutter pub run build_runner build --delete-conflicting-outputs
+    select-package:
+      depends-on: build_runner
+  analyze:
+    exec: flutter analyze --no-fatal-infos

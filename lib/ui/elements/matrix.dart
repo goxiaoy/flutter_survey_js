@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'question_title.dart';
-import 'survey_element_factory.dart';
 
-final SurveyElementBuilder matrixBuilder =
-    (context, element, {bool hasTitle = true}) {
+Widget matrixBuilder(context, element, {bool hasTitle = true}) {
   return MatrixElement(
     formControlName: element.name!,
     matrix: element as s.Matrix,
   ).wrapQuestionTitle(element, hasTitle: hasTitle);
-};
+}
 
 class MatrixElement extends StatelessWidget {
   final String formControlName;
@@ -37,11 +35,11 @@ class MatrixElement extends StatelessWidget {
             ),
             children: [
               const TableCell(child: Text('')),
-              ...((matrix.columns ?? []).map((e) => TableCell(
-                    child: _MatrixTitle(e),
+              ...((matrix.columns?.toList() ?? []).map((e) => TableCell(
+                    child: _MatrixTitle(e.castToItemvalue()),
                   )))
             ]));
-        (matrix.rows ?? []).asMap().forEach((i, row) {
+        (matrix.rows?.toList() ?? []).asMap().forEach((i, row) {
           list.add(TableRow(
               decoration: i % 2 != 0
                   ? const BoxDecoration(
@@ -51,25 +49,25 @@ class MatrixElement extends StatelessWidget {
               children: [
                 //Row name
                 TableCell(
-                  verticalAlignment: TableCellVerticalAlignment.middle,
-                  child: Text(
-                    row.text ?? '',
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                ),
-                ...(matrix.columns ?? []).map((column) {
+                    verticalAlignment: TableCellVerticalAlignment.middle,
+                    child: Text(
+                      row.castToItemvalue().text ?? "",
+                      style: Theme.of(context).textTheme.bodyText2,
+                    )),
+                ...(matrix.columns?.toList() ?? []).map((column) {
                   // matrix use the same row control
                   return TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
                     child: ReactiveRadioListTile(
-                        formControlName: row.value.toString(),
-                        value: column.value),
+                        formControlName: row.castToItemvalue().value.toString(),
+                        value: column.castToItemvalue().value?.value),
                   );
                 }).toList()
               ]));
         });
 
         return Table(
+          defaultColumnWidth: const IntrinsicColumnWidth(),
           border: TableBorder.all(
             width: 1.0,
           ),
@@ -83,7 +81,7 @@ class MatrixElement extends StatelessWidget {
 
 // Class _MatrixTitle
 class _MatrixTitle extends StatelessWidget {
-  final s.ItemValue column;
+  final s.Itemvalue column;
 
   const _MatrixTitle(this.column);
 

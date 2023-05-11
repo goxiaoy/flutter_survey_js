@@ -97,18 +97,18 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = Survey.fromJson(json);
+    final s = surveyFromJson(json);
   });
 
   testWidgets('displays placeholder', (WidgetTester tester) async {
     const placeholder = 'Enter some text here...';
-    final s = Survey.fromJson(
+    final s = surveyFromJson(
       {
         "questions": [
           {"name": "name", "type": "text", "placeholder": placeholder},
         ],
       },
-    );
+    )!;
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: const [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
 import 'package:flutter_survey_js/ui/survey_widget.dart';
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 
 class QuestionTitle extends StatelessWidget {
   final s.Question q;
@@ -40,13 +40,13 @@ class QuestionTitle extends StatelessWidget {
         final survey = SurveyProvider.of(context);
         final status = survey.elementsState.get(q);
         if (status != null) {
-          if (survey.survey.showQuestionNumbers == "on" &&
+          if ((survey.survey.showQuestionNumbers?.isOn ?? false) &&
               status.indexAll != null) {
             return Text(
               '${status.indexAll! + 1}.',
               style: titleTextStyle(),
             );
-          } else if (survey.survey.showQuestionNumbers == "onPage" &&
+          } else if ((survey.survey.showQuestionNumbers?.isOnPage ?? false) &&
               status.indexInPage != null) {
             return Text(
               '${status.indexInPage! + 1}.',
@@ -100,7 +100,7 @@ class QuestionTitle extends StatelessWidget {
 }
 
 extension QuestionTitleExtension on Widget {
-  Widget wrapQuestionTitle(s.ElementBase element, {required bool hasTitle}) {
+  Widget wrapQuestionTitle(s.Elementbase element, {required bool hasTitle}) {
     if (!hasTitle) {
       //in a matrix
       return this;

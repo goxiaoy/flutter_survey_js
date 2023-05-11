@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:json_editor/json_editor.dart';
 
 class Simple extends StatelessWidget {
   final s.Survey? survey;
   final Map<String, Object?>? answer;
+
   Simple({Key? key, this.survey, this.answer}) : super(key: key);
 
   @override
@@ -36,8 +38,7 @@ class Simple extends StatelessWidget {
                                 children: [
                                   Expanded(
                                       child: Container(
-                                          child: SingleChildScrollView(
-                                              child: Text(v.toString())))),
+                                          child: JsonEditor.object(object: v))),
                                   ElevatedButton(
                                     child: const Text('Close'),
                                     onPressed: () => Navigator.pop(context),
