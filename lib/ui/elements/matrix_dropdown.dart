@@ -50,11 +50,13 @@ class MatrixDropdownElement extends StatelessWidget {
                     )
                   : null,
               children: [
-                //Row namef
+                //Row name
                 TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Text(row.castToItemvalue().text ?? "",
-            style: Theme.of(context).textTheme.bodyText2,)),
+                    child: Text(
+                      row.castToItemvalue().text ?? "",
+                      style: Theme.of(context).textTheme.bodyText2,
+                    )),
                 ...(matrix.columns?.toList() ?? []).map((column) {
                   final q = matrixDropdownColumnToQuestion(matrix, column);
                   final v = questionToValidators(q);
