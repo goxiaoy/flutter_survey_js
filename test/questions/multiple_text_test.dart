@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/model/survey.dart';
+import 'package:flutter_survey_js/survey.dart';
 import 'package:flutter_survey_js/multi_localization_delegate.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -27,12 +27,12 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = Survey.fromJson(json);
+    final s = surveyFromJson(json);
   });
   testWidgets('displays placeholders', (WidgetTester tester) async {
     const placeholder1 = 'Write text1 answer here...';
     const placeholder2 = 'Write text2 answer here...';
-    final s = Survey.fromJson(
+    final s = surveyFromJson(
       {
         "title": "Single Page Survey",
         "pages": [
@@ -57,7 +57,7 @@ void main() {
           }
         ]
       },
-    );
+    )!;
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: const [

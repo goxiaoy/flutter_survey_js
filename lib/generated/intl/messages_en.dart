@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "placeholder": MessageLookupByLibrary.simpleMessage("Select..."),
         "previousPage": MessageLookupByLibrary.simpleMessage("PreviousPage"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "selectAllText": MessageLookupByLibrary.simpleMessage("Select All"),
         "submitSurvey": MessageLookupByLibrary.simpleMessage("Submit")
       };
 }

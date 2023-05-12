@@ -1,0 +1,8 @@
+{
+    "pubName": "flutter_survey_js_model",
+    "pubVersion": "0.0.1",
+    "browserClient": false,
+    "useEnumExtension": true,
+    "enumUnknownDefaultCase": true,
+    "pubDescription": "Model package auto generated from surveyjs json schema"
+}

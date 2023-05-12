@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_survey_js/data/condition/condition_runner.dart';
-import 'package:flutter_survey_js/model/survey.dart' as s;
+import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/survey.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -9,7 +9,7 @@ class ConditionWidget extends StatelessWidget {
   final String? visibleIf;
   final String? enableIf;
   final String? requiredIf;
-  final s.ElementBase? element;
+  final s.Elementbase? element;
 
   const ConditionWidget(
       {Key? key,

@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gen": "node index.js"
+    "gen": "node index.js && npm run model",
+    "model": "bash ./model.sh"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.21",
-    "survey-core": "1.9.81"
+    "survey-core": "1.9.84",
+    "yaml": "^2.2.1"
   },
   "type": "module"
 }
