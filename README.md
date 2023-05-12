@@ -45,7 +45,7 @@ Supported validator:
 ## Getting Started
 
 ```dart
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/survey_test.dart' as s;
 ...
 const survey = {
   "questions": [

@@ -25,7 +25,7 @@ void main() {
         "name": "name",
         "type": "text",
         "title": "Text",
-        "placeHolder": "Jon Snow",
+        "placeholder": "Jon Snow",
         "isRequired": true
       },
       {
@@ -46,7 +46,7 @@ void main() {
         "type": "text",
         "inputType": "email",
         "title": "Text Email",
-        "placeHolder": "jon.snow@nightwatch.org",
+        "placeholder": "jon.snow@nightwatch.org",
         "isRequired": true,
         "validators": [
           {"type": "email"}
@@ -1112,5 +1112,274 @@ void main() {
     final s = surveyFromJson(multiPageJson);
     final serialized = surveyToJson(s);
     expect(surveyFromJson(serialized), s);
+  });
+
+  group('JsonSerializable', () {
+    group('showQuestionNumbers', () {
+      test('parses as `on` when json value is `true` boolean', () {
+        final Survey survey = surveyFromJson(
+          {
+            "title": "Software developer survey.",
+            "pages": [
+              {
+                "elements": [
+                  {
+                    "type": "text",
+                    "isRequired": true,
+                    "name": "question 1",
+                  },
+                ]
+              }
+            ],
+            "showQuestionNumbers": true,
+          },
+        )!;
+        expect(survey.showQuestionNumbers?.isOn, true);
+      });
+
+      test('parses as `off` when json value is `false` boolean', () {
+        final Survey survey = surveyFromJson(
+          {
+            "title": "Software developer survey.",
+            "pages": [
+              {
+                "elements": [
+                  {
+                    "type": "text",
+                    "isRequired": true,
+                    "name": "question 1",
+                  },
+                ]
+              }
+            ],
+            "showQuestionNumbers": false,
+          },
+        )!;
+        expect(survey.showQuestionNumbers?.isOff, true);
+      });
+
+      test('parses as `on` when json value is "on" string', () {
+        final Survey survey = surveyFromJson(
+          {
+            "title": "Software developer survey.",
+            "pages": [
+              {
+                "elements": [
+                  {
+                    "type": "text",
+                    "isRequired": true,
+                    "name": "question 1",
+                  },
+                ]
+              }
+            ],
+            "showQuestionNumbers": "on",
+          },
+        )!;
+        expect(survey.showQuestionNumbers?.isOn, true);
+      });
+
+      test('parses as `off` when json value is "off" string', () {
+        final Survey survey = surveyFromJson(
+          {
+            "title": "Software developer survey.",
+            "pages": [
+              {
+                "elements": [
+                  {
+                    "type": "text",
+                    "isRequired": true,
+                    "name": "question 1",
+                  },
+                ]
+              }
+            ],
+            "showQuestionNumbers": "off",
+          },
+        )!;
+        expect(survey.showQuestionNumbers?.isOff, true);
+      });
+
+      test('parses as `onPage` when json value is "onPage" string', () {
+        final Survey survey = surveyFromJson(
+          {
+            "title": "Software developer survey.",
+            "pages": [
+              {
+                "elements": [
+                  {
+                    "type": "text",
+                    "isRequired": true,
+                    "name": "question 1",
+                  },
+                ]
+              }
+            ],
+            "showQuestionNumbers": "onPage",
+          },
+        )!;
+        expect(survey.showQuestionNumbers?.isOnPage, true);
+      });
+    });
+
+    test('prioritizes elements over pages.elements', () {
+      const pageElementTitle = 'we should not see this';
+      const elementsElementTitle = 'we should see this';
+      final Survey survey = surveyFromJson(
+        {
+          "title": "Single Page Survey",
+          "pages": [
+            {
+              "name": "page1",
+              "elements": [
+                {
+                  "type": "checkbox",
+                  "name": pageElementTitle,
+                  "choices": ["Item 1", "Item 2", "Item 3"]
+                }
+              ]
+            }
+          ],
+          "elements": [
+            {
+              "type": "checkbox",
+              "name": elementsElementTitle,
+              "choices": ["Item 1", "Item 2", "Item 3"]
+            }
+          ]
+        },
+      )!;
+      expect(
+          (survey.pages!.first.elements!.first.anyOf.values[0] as Checkbox)
+              .name,
+          elementsElementTitle);
+    });
+
+    test('prioritizes questions over pages.elements', () {
+      const pageElementTitle = 'we should not see this';
+      const questionsElementTitle = 'we should see this';
+      final Survey survey = surveyFromJson(
+        {
+          "title": "Single Page Survey",
+          "pages": [
+            {
+              "name": "page1",
+              "elements": [
+                {
+                  "type": "checkbox",
+                  "name": pageElementTitle,
+                  "choices": ["Item 1", "Item 2", "Item 3"]
+                }
+              ]
+            }
+          ],
+          "questions": [
+            {
+              "type": "checkbox",
+              "name": questionsElementTitle,
+              "choices": ["Item 1", "Item 2", "Item 3"]
+            }
+          ]
+        },
+      )!;
+      expect(
+          (survey.pages!.first.questions!.first.anyOf.values[0] as Checkbox)
+              .name,
+          questionsElementTitle);
+    });
+  });
+
+  group('from page model JSON', () {
+    test('maps page description to survey description', () {
+      final String expected = 'Survey Description';
+      final actual = surveyFromJson({'description': expected})!.description;
+      expect(actual, expected);
+    });
+
+    test('maps page elements to survey.page.elements', () {
+      final String element1Name = 'some signature';
+      final String element1Type = 'signaturepad';
+      final String element1Title = 'Sign here';
+      final bool element1IsRequired = true;
+      final String element2Name = 'some text';
+      final String element2Type = 'text';
+      final String element2Title = 'Text';
+      final String element2Placeholder = 'Jon Snow';
+      final bool element2IsRequired = true;
+      final survey = surveyFromJson({
+        "elements": [
+          {
+            "name": element1Name,
+            "type": element1Type,
+            "title": element1Title,
+            "isRequired": element1IsRequired,
+          },
+          {
+            "name": element2Name,
+            "type": element2Type,
+            "title": element2Title,
+            "placeholder": element2Placeholder,
+            "isRequired": element2IsRequired,
+          },
+        ]
+      })!;
+      final page = survey.pages?.first;
+      final elements = page?.elements;
+      final firstQuestion =
+          elements!.first!.anyOf.values.values.single as Signaturepad;
+      final secondQuestion = elements!.last!.anyOf.values.values.single as Text;
+      expect(firstQuestion.name, element1Name);
+      expect(firstQuestion.type, element1Type);
+      expect(firstQuestion.title, element1Title);
+      expect(firstQuestion.isRequired, element1IsRequired);
+      expect(secondQuestion.name, element2Name);
+      expect(secondQuestion.type, element2Type);
+      expect(secondQuestion.title, element2Title);
+      expect(secondQuestion.placeholder, element2Placeholder);
+      expect(secondQuestion.isRequired, element2IsRequired);
+    });
+
+    test('maps page questions to survey.page.questions', () {
+      final String element1Name = 'some signature';
+      final String element1Type = 'signaturepad';
+      final String element1Title = 'Sign here';
+      final bool element1IsRequired = true;
+      final String element2Name = 'some text';
+      final String element2Type = 'text';
+      final String element2Title = 'Text';
+      final String element2Placeholder = 'Jon Snow';
+      final bool element2IsRequired = true;
+      final survey = surveyFromJson({
+        "questions": [
+          {
+            "name": element1Name,
+            "type": element1Type,
+            "title": element1Title,
+            "isRequired": element1IsRequired,
+          },
+          {
+            "name": element2Name,
+            "type": element2Type,
+            "title": element2Title,
+            "placeholder": element2Placeholder,
+            "isRequired": element2IsRequired,
+          },
+        ]
+      })!;
+      final page = survey.pages?.first;
+      final elements = page?.questions;
+      final firstQuestion =
+          elements!.first!.anyOf.values.values.single as Signaturepad;
+      final secondQuestion = elements!.last!.anyOf.values.values.single as Text;
+      expect(firstQuestion.name, element1Name);
+      expect(firstQuestion.type, element1Type);
+      expect(firstQuestion.title, element1Title);
+      expect(firstQuestion.isRequired, element1IsRequired);
+      expect(secondQuestion.name, element2Name);
+      expect(secondQuestion.type, element2Type);
+      expect(secondQuestion.title, element2Title);
+      expect(secondQuestion.placeholder, element2Placeholder);
+      expect(secondQuestion.isRequired, element2IsRequired);
+    });
   });
 }
