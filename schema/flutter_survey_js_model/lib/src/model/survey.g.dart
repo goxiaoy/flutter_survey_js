@@ -148,6 +148,8 @@ class _$Survey extends Survey {
   @override
   final String? backgroundImage;
   @override
+  final SurveyBackgroundImageFit? backgroundImageFit;
+  @override
   final num? backgroundOpacity;
   @override
   final bool? showBrandInfo;
@@ -226,6 +228,7 @@ class _$Survey extends Survey {
       this.widthMode,
       this.width,
       this.backgroundImage,
+      this.backgroundImageFit,
       this.backgroundOpacity,
       this.showBrandInfo})
       : super._();
@@ -311,6 +314,7 @@ class _$Survey extends Survey {
         widthMode == other.widthMode &&
         width == other.width &&
         backgroundImage == other.backgroundImage &&
+        backgroundImageFit == other.backgroundImageFit &&
         backgroundOpacity == other.backgroundOpacity &&
         showBrandInfo == other.showBrandInfo;
   }
@@ -388,6 +392,7 @@ class _$Survey extends Survey {
     _$hash = $jc(_$hash, widthMode.hashCode);
     _$hash = $jc(_$hash, width.hashCode);
     _$hash = $jc(_$hash, backgroundImage.hashCode);
+    _$hash = $jc(_$hash, backgroundImageFit.hashCode);
     _$hash = $jc(_$hash, backgroundOpacity.hashCode);
     _$hash = $jc(_$hash, showBrandInfo.hashCode);
     _$hash = $jf(_$hash);
@@ -467,6 +472,7 @@ class _$Survey extends Survey {
           ..add('widthMode', widthMode)
           ..add('width', width)
           ..add('backgroundImage', backgroundImage)
+          ..add('backgroundImageFit', backgroundImageFit)
           ..add('backgroundOpacity', backgroundOpacity)
           ..add('showBrandInfo', showBrandInfo))
         .toString();
@@ -829,6 +835,12 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set backgroundImage(String? backgroundImage) =>
       _$this._backgroundImage = backgroundImage;
 
+  SurveyBackgroundImageFit? _backgroundImageFit;
+  SurveyBackgroundImageFit? get backgroundImageFit =>
+      _$this._backgroundImageFit;
+  set backgroundImageFit(SurveyBackgroundImageFit? backgroundImageFit) =>
+      _$this._backgroundImageFit = backgroundImageFit;
+
   num? _backgroundOpacity;
   num? get backgroundOpacity => _$this._backgroundOpacity;
   set backgroundOpacity(num? backgroundOpacity) =>
@@ -916,6 +928,7 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _widthMode = $v.widthMode;
       _width = $v.width?.toBuilder();
       _backgroundImage = $v.backgroundImage;
+      _backgroundImageFit = $v.backgroundImageFit;
       _backgroundOpacity = $v.backgroundOpacity;
       _showBrandInfo = $v.showBrandInfo;
       _$v = null;
@@ -1012,6 +1025,7 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
               widthMode: widthMode,
               width: _width?.build(),
               backgroundImage: backgroundImage,
+              backgroundImageFit: backgroundImageFit,
               backgroundOpacity: backgroundOpacity,
               showBrandInfo: showBrandInfo);
     } catch (_) {

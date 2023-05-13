@@ -4,8 +4,6 @@ import Survey from "survey-core";
 import * as fs from "fs";
 import _ from "lodash";
 
-import * as YAML from "yaml";
-
 let schema = Survey.Serializer.generateSchema();
 
 //https://surveyjs.io/form-library/documentation/api-reference/survey-data-model#showQuestionNumbers

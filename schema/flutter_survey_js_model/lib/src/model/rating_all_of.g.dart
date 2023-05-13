@@ -12,8 +12,14 @@ abstract class RatingAllOfBuilder {
   String? get showCommentArea;
   set showCommentArea(String? showCommentArea);
 
-  RatingRateDisplayMode? get rateDisplayMode;
-  set rateDisplayMode(RatingRateDisplayMode? rateDisplayMode);
+  RatingRateType? get rateType;
+  set rateType(RatingRateType? rateType);
+
+  RatingScaleColorMode? get scaleColorMode;
+  set scaleColorMode(RatingScaleColorMode? scaleColorMode);
+
+  RatingRateColorMode? get rateColorMode;
+  set rateColorMode(RatingRateColorMode? rateColorMode);
 
   RatingAutoGenerate? get autoGenerate;
   set autoGenerate(RatingAutoGenerate? autoGenerate);
@@ -51,7 +57,11 @@ class _$$RatingAllOf extends $RatingAllOf {
   @override
   final String? showCommentArea;
   @override
-  final RatingRateDisplayMode? rateDisplayMode;
+  final RatingRateType? rateType;
+  @override
+  final RatingScaleColorMode? scaleColorMode;
+  @override
+  final RatingRateColorMode? rateColorMode;
   @override
   final RatingAutoGenerate? autoGenerate;
   @override
@@ -78,7 +88,9 @@ class _$$RatingAllOf extends $RatingAllOf {
 
   _$$RatingAllOf._(
       {this.showCommentArea,
-      this.rateDisplayMode,
+      this.rateType,
+      this.scaleColorMode,
+      this.rateColorMode,
       this.autoGenerate,
       this.rateCount,
       this.rateValues,
@@ -103,7 +115,9 @@ class _$$RatingAllOf extends $RatingAllOf {
     if (identical(other, this)) return true;
     return other is $RatingAllOf &&
         showCommentArea == other.showCommentArea &&
-        rateDisplayMode == other.rateDisplayMode &&
+        rateType == other.rateType &&
+        scaleColorMode == other.scaleColorMode &&
+        rateColorMode == other.rateColorMode &&
         autoGenerate == other.autoGenerate &&
         rateCount == other.rateCount &&
         rateValues == other.rateValues &&
@@ -121,7 +135,9 @@ class _$$RatingAllOf extends $RatingAllOf {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, showCommentArea.hashCode);
-    _$hash = $jc(_$hash, rateDisplayMode.hashCode);
+    _$hash = $jc(_$hash, rateType.hashCode);
+    _$hash = $jc(_$hash, scaleColorMode.hashCode);
+    _$hash = $jc(_$hash, rateColorMode.hashCode);
     _$hash = $jc(_$hash, autoGenerate.hashCode);
     _$hash = $jc(_$hash, rateCount.hashCode);
     _$hash = $jc(_$hash, rateValues.hashCode);
@@ -140,7 +156,9 @@ class _$$RatingAllOf extends $RatingAllOf {
   String toString() {
     return (newBuiltValueToStringHelper(r'$RatingAllOf')
           ..add('showCommentArea', showCommentArea)
-          ..add('rateDisplayMode', rateDisplayMode)
+          ..add('rateType', rateType)
+          ..add('scaleColorMode', scaleColorMode)
+          ..add('rateColorMode', rateColorMode)
           ..add('autoGenerate', autoGenerate)
           ..add('rateCount', rateCount)
           ..add('rateValues', rateValues)
@@ -165,10 +183,20 @@ class $RatingAllOfBuilder
   set showCommentArea(covariant String? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
-  RatingRateDisplayMode? _rateDisplayMode;
-  RatingRateDisplayMode? get rateDisplayMode => _$this._rateDisplayMode;
-  set rateDisplayMode(covariant RatingRateDisplayMode? rateDisplayMode) =>
-      _$this._rateDisplayMode = rateDisplayMode;
+  RatingRateType? _rateType;
+  RatingRateType? get rateType => _$this._rateType;
+  set rateType(covariant RatingRateType? rateType) =>
+      _$this._rateType = rateType;
+
+  RatingScaleColorMode? _scaleColorMode;
+  RatingScaleColorMode? get scaleColorMode => _$this._scaleColorMode;
+  set scaleColorMode(covariant RatingScaleColorMode? scaleColorMode) =>
+      _$this._scaleColorMode = scaleColorMode;
+
+  RatingRateColorMode? _rateColorMode;
+  RatingRateColorMode? get rateColorMode => _$this._rateColorMode;
+  set rateColorMode(covariant RatingRateColorMode? rateColorMode) =>
+      _$this._rateColorMode = rateColorMode;
 
   RatingAutoGenerate? _autoGenerate;
   RatingAutoGenerate? get autoGenerate => _$this._autoGenerate;
@@ -229,7 +257,9 @@ class $RatingAllOfBuilder
     final $v = _$v;
     if ($v != null) {
       _showCommentArea = $v.showCommentArea;
-      _rateDisplayMode = $v.rateDisplayMode;
+      _rateType = $v.rateType;
+      _scaleColorMode = $v.scaleColorMode;
+      _rateColorMode = $v.rateColorMode;
       _autoGenerate = $v.autoGenerate;
       _rateCount = $v.rateCount;
       _rateValues = $v.rateValues?.toBuilder();
@@ -266,7 +296,9 @@ class $RatingAllOfBuilder
       _$result = _$v ??
           new _$$RatingAllOf._(
               showCommentArea: showCommentArea,
-              rateDisplayMode: rateDisplayMode,
+              rateType: rateType,
+              scaleColorMode: scaleColorMode,
+              rateColorMode: rateColorMode,
               autoGenerate: autoGenerate,
               rateCount: rateCount,
               rateValues: _rateValues?.build(),

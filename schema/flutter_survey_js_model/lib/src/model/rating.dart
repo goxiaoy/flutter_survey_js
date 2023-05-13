@@ -4,15 +4,17 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/rating_display_mode.dart';
-import 'package:flutter_survey_js_model/src/model/rating_rate_display_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/rating_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/rating_auto_generate.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
+import 'package:flutter_survey_js_model/src/model/rating_rate_color_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
+import 'package:flutter_survey_js_model/src/model/rating_rate_type.dart';
+import 'package:flutter_survey_js_model/src/model/rating_scale_color_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
@@ -59,7 +61,9 @@ part 'rating.g.dart';
 /// * [showCommentArea] 
 /// * [commentText] 
 /// * [commentPlaceholder] 
-/// * [rateDisplayMode] 
+/// * [rateType] 
+/// * [scaleColorMode] 
+/// * [rateColorMode] 
 /// * [autoGenerate] 
 /// * [rateCount] 
 /// * [rateValues] 
@@ -151,13 +155,6 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.rateDisplayMode != null) {
-      yield r'rateDisplayMode';
-      yield serializers.serialize(
-        object.rateDisplayMode,
-        specifiedType: const FullType(RatingRateDisplayMode),
-      );
-    }
     if (object.rateMin != null) {
       yield r'rateMin';
       yield serializers.serialize(
@@ -198,6 +195,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield serializers.serialize(
         object.clearIfInvisible,
         specifiedType: const FullType(QuestionClearIfInvisible),
+      );
+    }
+    if (object.rateType != null) {
+      yield r'rateType';
+      yield serializers.serialize(
+        object.rateType,
+        specifiedType: const FullType(RatingRateType),
       );
     }
     if (object.rateCount != null) {
@@ -277,6 +281,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         specifiedType: const FullType(bool),
       );
     }
+    if (object.rateColorMode != null) {
+      yield r'rateColorMode';
+      yield serializers.serialize(
+        object.rateColorMode,
+        specifiedType: const FullType(RatingRateColorMode),
+      );
+    }
     if (object.visible != null) {
       yield r'visible';
       yield serializers.serialize(
@@ -345,6 +356,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield serializers.serialize(
         object.displayMode,
         specifiedType: const FullType(RatingDisplayMode),
+      );
+    }
+    if (object.scaleColorMode != null) {
+      yield r'scaleColorMode';
+      yield serializers.serialize(
+        object.scaleColorMode,
+        specifiedType: const FullType(RatingScaleColorMode),
       );
     }
     if (object.titleLocation != null) {
@@ -483,13 +501,6 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
           ) as String;
           result.description = valueDes;
           break;
-        case r'rateDisplayMode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(RatingRateDisplayMode),
-          ) as RatingRateDisplayMode;
-          result.rateDisplayMode = valueDes;
-          break;
         case r'rateMin':
           final valueDes = serializers.deserialize(
             value,
@@ -531,6 +542,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
             specifiedType: const FullType(QuestionClearIfInvisible),
           ) as QuestionClearIfInvisible;
           result.clearIfInvisible = valueDes;
+          break;
+        case r'rateType':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RatingRateType),
+          ) as RatingRateType;
+          result.rateType = valueDes;
           break;
         case r'rateCount':
           final valueDes = serializers.deserialize(
@@ -609,6 +627,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
           ) as bool;
           result.isRequired = valueDes;
           break;
+        case r'rateColorMode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RatingRateColorMode),
+          ) as RatingRateColorMode;
+          result.rateColorMode = valueDes;
+          break;
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
@@ -678,6 +703,13 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
             specifiedType: const FullType(RatingDisplayMode),
           ) as RatingDisplayMode;
           result.displayMode = valueDes;
+          break;
+        case r'scaleColorMode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RatingScaleColorMode),
+          ) as RatingScaleColorMode;
+          result.scaleColorMode = valueDes;
           break;
         case r'titleLocation':
           final valueDes = serializers.deserialize(

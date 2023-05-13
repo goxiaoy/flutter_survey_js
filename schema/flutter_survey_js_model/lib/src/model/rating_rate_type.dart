@@ -7,25 +7,25 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'rating_rate_display_mode.g.dart';
+part 'rating_rate_type.g.dart';
 
-class RatingRateDisplayMode extends EnumClass {
+class RatingRateType extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'labels')
-  static const RatingRateDisplayMode labels = _$labels;
+  static const RatingRateType labels = _$labels;
   @BuiltValueEnumConst(wireName: r'stars')
-  static const RatingRateDisplayMode stars = _$stars;
+  static const RatingRateType stars = _$stars;
   @BuiltValueEnumConst(wireName: r'smileys')
-  static const RatingRateDisplayMode smileys = _$smileys;
+  static const RatingRateType smileys = _$smileys;
   @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
-  static const RatingRateDisplayMode unknownDefaultOpenApi = _$unknownDefaultOpenApi;
+  static const RatingRateType unknownDefaultOpenApi = _$unknownDefaultOpenApi;
 
-  static Serializer<RatingRateDisplayMode> get serializer => _$ratingRateDisplayModeSerializer;
+  static Serializer<RatingRateType> get serializer => _$ratingRateTypeSerializer;
 
-  const RatingRateDisplayMode._(String name): super(name);
+  const RatingRateType._(String name): super(name);
 
-  static BuiltSet<RatingRateDisplayMode> get values => _$values;
-  static RatingRateDisplayMode valueOf(String name) => _$valueOf(name);
+  static BuiltSet<RatingRateType> get values => _$values;
+  static RatingRateType valueOf(String name) => _$valueOf(name);
 }
 
 /// Optionally, enum_class can generate a mixin to go with your enum for use
@@ -34,5 +34,5 @@ class RatingRateDisplayMode extends EnumClass {
 /// corresponding Angular template.
 ///
 /// Trigger mixin generation by writing a line like this one next to your enum.
-abstract class RatingRateDisplayModeMixin = Object with _$RatingRateDisplayModeMixin;
+abstract class RatingRateTypeMixin = Object with _$RatingRateTypeMixin;
 

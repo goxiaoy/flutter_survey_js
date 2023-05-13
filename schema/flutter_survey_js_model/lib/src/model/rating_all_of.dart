@@ -4,10 +4,12 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/rating_display_mode.dart';
-import 'package:flutter_survey_js_model/src/model/rating_rate_display_mode.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/rating_auto_generate.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
+import 'package:flutter_survey_js_model/src/model/rating_rate_color_mode.dart';
+import 'package:flutter_survey_js_model/src/model/rating_rate_type.dart';
+import 'package:flutter_survey_js_model/src/model/rating_scale_color_mode.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,7 +19,9 @@ part 'rating_all_of.g.dart';
 ///
 /// Properties:
 /// * [showCommentArea] 
-/// * [rateDisplayMode] 
+/// * [rateType] 
+/// * [scaleColorMode] 
+/// * [rateColorMode] 
 /// * [autoGenerate] 
 /// * [rateCount] 
 /// * [rateValues] 
@@ -33,9 +37,17 @@ abstract class RatingAllOf  {
   @BuiltValueField(wireName: r'showCommentArea')
   String? get showCommentArea;
 
-  @BuiltValueField(wireName: r'rateDisplayMode')
-  RatingRateDisplayMode? get rateDisplayMode;
-  // enum rateDisplayModeEnum {  labels,  stars,  smileys,  };
+  @BuiltValueField(wireName: r'rateType')
+  RatingRateType? get rateType;
+  // enum rateTypeEnum {  labels,  stars,  smileys,  };
+
+  @BuiltValueField(wireName: r'scaleColorMode')
+  RatingScaleColorMode? get scaleColorMode;
+  // enum scaleColorModeEnum {  monochrome,  colored,  };
+
+  @BuiltValueField(wireName: r'rateColorMode')
+  RatingRateColorMode? get rateColorMode;
+  // enum rateColorModeEnum {  default,  scale,  };
 
   @BuiltValueField(wireName: r'autoGenerate')
   RatingAutoGenerate? get autoGenerate;
@@ -92,11 +104,25 @@ class _$RatingAllOfSerializer implements PrimitiveSerializer<RatingAllOf> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.rateDisplayMode != null) {
-      yield r'rateDisplayMode';
+    if (object.rateType != null) {
+      yield r'rateType';
       yield serializers.serialize(
-        object.rateDisplayMode,
-        specifiedType: const FullType(RatingRateDisplayMode),
+        object.rateType,
+        specifiedType: const FullType(RatingRateType),
+      );
+    }
+    if (object.scaleColorMode != null) {
+      yield r'scaleColorMode';
+      yield serializers.serialize(
+        object.scaleColorMode,
+        specifiedType: const FullType(RatingScaleColorMode),
+      );
+    }
+    if (object.rateColorMode != null) {
+      yield r'rateColorMode';
+      yield serializers.serialize(
+        object.rateColorMode,
+        specifiedType: const FullType(RatingRateColorMode),
       );
     }
     if (object.autoGenerate != null) {
@@ -239,12 +265,26 @@ class _$$RatingAllOfSerializer implements PrimitiveSerializer<$RatingAllOf> {
           ) as String;
           result.showCommentArea = valueDes;
           break;
-        case r'rateDisplayMode':
+        case r'rateType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RatingRateDisplayMode),
-          ) as RatingRateDisplayMode;
-          result.rateDisplayMode = valueDes;
+            specifiedType: const FullType(RatingRateType),
+          ) as RatingRateType;
+          result.rateType = valueDes;
+          break;
+        case r'scaleColorMode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RatingScaleColorMode),
+          ) as RatingScaleColorMode;
+          result.scaleColorMode = valueDes;
+          break;
+        case r'rateColorMode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RatingRateColorMode),
+          ) as RatingRateColorMode;
+          result.rateColorMode = valueDes;
           break;
         case r'autoGenerate':
           final valueDes = serializers.deserialize(

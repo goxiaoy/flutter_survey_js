@@ -74,7 +74,11 @@ class _$Rating extends Rating {
   @override
   final String? commentPlaceholder;
   @override
-  final RatingRateDisplayMode? rateDisplayMode;
+  final RatingRateType? rateType;
+  @override
+  final RatingScaleColorMode? scaleColorMode;
+  @override
+  final RatingRateColorMode? rateColorMode;
   @override
   final RatingAutoGenerate? autoGenerate;
   @override
@@ -133,7 +137,9 @@ class _$Rating extends Rating {
       this.showCommentArea,
       this.commentText,
       this.commentPlaceholder,
-      this.rateDisplayMode,
+      this.rateType,
+      this.scaleColorMode,
+      this.rateColorMode,
       this.autoGenerate,
       this.rateCount,
       this.rateValues,
@@ -191,7 +197,9 @@ class _$Rating extends Rating {
         showCommentArea == other.showCommentArea &&
         commentText == other.commentText &&
         commentPlaceholder == other.commentPlaceholder &&
-        rateDisplayMode == other.rateDisplayMode &&
+        rateType == other.rateType &&
+        scaleColorMode == other.scaleColorMode &&
+        rateColorMode == other.rateColorMode &&
         autoGenerate == other.autoGenerate &&
         rateCount == other.rateCount &&
         rateValues == other.rateValues &&
@@ -241,7 +249,9 @@ class _$Rating extends Rating {
     _$hash = $jc(_$hash, showCommentArea.hashCode);
     _$hash = $jc(_$hash, commentText.hashCode);
     _$hash = $jc(_$hash, commentPlaceholder.hashCode);
-    _$hash = $jc(_$hash, rateDisplayMode.hashCode);
+    _$hash = $jc(_$hash, rateType.hashCode);
+    _$hash = $jc(_$hash, scaleColorMode.hashCode);
+    _$hash = $jc(_$hash, rateColorMode.hashCode);
     _$hash = $jc(_$hash, autoGenerate.hashCode);
     _$hash = $jc(_$hash, rateCount.hashCode);
     _$hash = $jc(_$hash, rateValues.hashCode);
@@ -293,7 +303,9 @@ class _$Rating extends Rating {
           ..add('showCommentArea', showCommentArea)
           ..add('commentText', commentText)
           ..add('commentPlaceholder', commentPlaceholder)
-          ..add('rateDisplayMode', rateDisplayMode)
+          ..add('rateType', rateType)
+          ..add('scaleColorMode', scaleColorMode)
+          ..add('rateColorMode', rateColorMode)
           ..add('autoGenerate', autoGenerate)
           ..add('rateCount', rateCount)
           ..add('rateValues', rateValues)
@@ -474,10 +486,20 @@ class RatingBuilder
   set commentPlaceholder(covariant String? commentPlaceholder) =>
       _$this._commentPlaceholder = commentPlaceholder;
 
-  RatingRateDisplayMode? _rateDisplayMode;
-  RatingRateDisplayMode? get rateDisplayMode => _$this._rateDisplayMode;
-  set rateDisplayMode(covariant RatingRateDisplayMode? rateDisplayMode) =>
-      _$this._rateDisplayMode = rateDisplayMode;
+  RatingRateType? _rateType;
+  RatingRateType? get rateType => _$this._rateType;
+  set rateType(covariant RatingRateType? rateType) =>
+      _$this._rateType = rateType;
+
+  RatingScaleColorMode? _scaleColorMode;
+  RatingScaleColorMode? get scaleColorMode => _$this._scaleColorMode;
+  set scaleColorMode(covariant RatingScaleColorMode? scaleColorMode) =>
+      _$this._scaleColorMode = scaleColorMode;
+
+  RatingRateColorMode? _rateColorMode;
+  RatingRateColorMode? get rateColorMode => _$this._rateColorMode;
+  set rateColorMode(covariant RatingRateColorMode? rateColorMode) =>
+      _$this._rateColorMode = rateColorMode;
 
   RatingAutoGenerate? _autoGenerate;
   RatingAutoGenerate? get autoGenerate => _$this._autoGenerate;
@@ -570,7 +592,9 @@ class RatingBuilder
       _showCommentArea = $v.showCommentArea;
       _commentText = $v.commentText;
       _commentPlaceholder = $v.commentPlaceholder;
-      _rateDisplayMode = $v.rateDisplayMode;
+      _rateType = $v.rateType;
+      _scaleColorMode = $v.scaleColorMode;
+      _rateColorMode = $v.rateColorMode;
       _autoGenerate = $v.autoGenerate;
       _rateCount = $v.rateCount;
       _rateValues = $v.rateValues?.toBuilder();
@@ -640,7 +664,9 @@ class RatingBuilder
               showCommentArea: showCommentArea,
               commentText: commentText,
               commentPlaceholder: commentPlaceholder,
-              rateDisplayMode: rateDisplayMode,
+              rateType: rateType,
+              scaleColorMode: scaleColorMode,
+              rateColorMode: rateColorMode,
               autoGenerate: autoGenerate,
               rateCount: rateCount,
               rateValues: _rateValues?.build(),

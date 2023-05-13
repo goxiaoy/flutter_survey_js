@@ -72,3 +72,14 @@ s.SurveyWidget(
 
 ```
 
+# Development
+## Melos
+
+Install
+```shell
+dart pub global activate melos
+```
+
+```bootstrap
+dart pub global run melos bs
+```

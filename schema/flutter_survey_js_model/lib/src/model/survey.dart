@@ -19,6 +19,7 @@ import 'package:flutter_survey_js_model/src/model/survey_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_triggers_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_title_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
+import 'package:flutter_survey_js_model/src/model/survey_background_image_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_error_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
@@ -110,6 +111,7 @@ part 'survey.g.dart';
 /// * [widthMode] 
 /// * [width] 
 /// * [backgroundImage] 
+/// * [backgroundImageFit] 
 /// * [backgroundOpacity] 
 /// * [showBrandInfo] 
 @BuiltValue()
@@ -343,6 +345,10 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
 
   @BuiltValueField(wireName: r'backgroundImage')
   String? get backgroundImage;
+
+  @BuiltValueField(wireName: r'backgroundImageFit')
+  SurveyBackgroundImageFit? get backgroundImageFit;
+  // enum backgroundImageFitEnum {  auto,  contain,  cover,  };
 
   @BuiltValueField(wireName: r'backgroundOpacity')
   num? get backgroundOpacity;
@@ -861,6 +867,13 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield serializers.serialize(
         object.backgroundImage,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.backgroundImageFit != null) {
+      yield r'backgroundImageFit';
+      yield serializers.serialize(
+        object.backgroundImageFit,
+        specifiedType: const FullType(SurveyBackgroundImageFit),
       );
     }
     if (object.backgroundOpacity != null) {
@@ -1389,6 +1402,13 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
             specifiedType: const FullType(String),
           ) as String;
           result.backgroundImage = valueDes;
+          break;
+        case r'backgroundImageFit':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyBackgroundImageFit),
+          ) as SurveyBackgroundImageFit;
+          result.backgroundImageFit = valueDes;
           break;
         case r'backgroundOpacity':
           final valueDes = serializers.deserialize(
