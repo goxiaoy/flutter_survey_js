@@ -75,6 +75,9 @@ extension SurveyTriggersInnerExtension on SurveyTriggersInner {
 
 extension SurveyShowQuestionNumbersExtension on SurveyShowQuestionNumbers {
   bool get isOn {
+    if (this.anyOf.isNull || this.anyOf.values.isEmpty) {
+      return true;
+    }
     if (this.anyOf.isType(bool)) {
       return (this.anyOf.values[this.anyOf.types.indexOf(bool)] as bool) ==
           true;
