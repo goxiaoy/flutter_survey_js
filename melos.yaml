@@ -15,3 +15,11 @@ scripts:
       depends-on: build_runner
   analyze:
     exec: flutter analyze --no-fatal-infos
+  test:
+    exec: flutter test
+    select-package:
+      dir-exists: test
+  outdated:
+    exec: dart pub outdated
+  upgrade:
+    exec: dart pub upgrade --major-versions

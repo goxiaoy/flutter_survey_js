@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
-import 'package:flutter_survey_js/multi_localization_delegate.dart';
-import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
