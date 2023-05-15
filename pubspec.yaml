@@ -15,18 +15,22 @@ dependencies:
   scrollable_positioned_list: ^0.3.5
   im_stepper: ^1.0.1+1
   flutter_widget_from_html_core: ^0.10.0
-  multiple_localization: ^0.3.0
-  reactive_forms: ^14.1.0
-  reactive_date_time_picker: ^0.5.0
-  reactive_date_range_picker: ^0.5.0
-  reactive_segmented_control: ^0.5.0
-  reactive_advanced_switch: ^0.5.0
-  reactive_image_picker: ^0.12.0
+  # https://github.com/Innim/flutter_multiple_localization/pull/12
+  multiple_localization:
+    git:
+      url: https://github.com/goxiaoy/flutter_multiple_localization.git
+      ref: master
+
+  reactive_forms: ^14.3.0
+  reactive_date_time_picker: ^0.6.1
+  reactive_date_range_picker: ^0.6.0
+  reactive_segmented_control: ^0.6.0
+  reactive_advanced_switch: ^0.6.1
+  reactive_image_picker: ^2.0.0
   implicitly_animated_reorderable_list_2: ^0.5.0
   flutter_colorpicker: ^1.0.3
   signature: ^4.1.1
   logging: ^1.0.1
-  intl: ^0.17.0
   platform: ^3.1.0
   file: ^6.1.4
   group_button: ^5.2.2
@@ -34,12 +38,16 @@ dependencies:
   built_value: ">=8.4.0 <9.0.0"
   built_collection: ">=5.1.1 <6.0.0"
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.3.3
   flutter_lints: ^2.0.1
   melos: ^3.0.1
+
+dependency_overrides:
+  intl: 0.18.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

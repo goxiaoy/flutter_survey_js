@@ -123,7 +123,9 @@ lib/src/model/rating.dart
 lib/src/model/rating_all_of.dart
 lib/src/model/rating_auto_generate.dart
 lib/src/model/rating_display_mode.dart
-lib/src/model/rating_rate_display_mode.dart
+lib/src/model/rating_rate_color_mode.dart
+lib/src/model/rating_rate_type.dart
+lib/src/model/rating_scale_color_mode.dart
 lib/src/model/regexvalidator.dart
 lib/src/model/regexvalidator_all_of.dart
 lib/src/model/runexpressiontrigger.dart
@@ -142,6 +144,7 @@ lib/src/model/signaturepad_data_format.dart
 lib/src/model/skiptrigger.dart
 lib/src/model/skiptrigger_all_of.dart
 lib/src/model/survey.dart
+lib/src/model/survey_background_image_fit.dart
 lib/src/model/survey_check_errors_mode.dart
 lib/src/model/survey_clear_invisible_values.dart
 lib/src/model/survey_locale.dart

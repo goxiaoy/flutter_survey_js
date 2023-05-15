@@ -388,6 +388,9 @@
           "backgroundImage": {
             "type": "string"
           },
+          "backgroundImageFit": {
+            "$ref": "#/components/schemas/surveyBackgroundImageFit"
+          },
           "backgroundOpacity": {
             "type": "number"
           },
@@ -2283,8 +2286,14 @@
               "showCommentArea": {
                 "type": "string"
               },
-              "rateDisplayMode": {
-                "$ref": "#/components/schemas/ratingRateDisplayMode"
+              "rateType": {
+                "$ref": "#/components/schemas/ratingRateType"
+              },
+              "scaleColorMode": {
+                "$ref": "#/components/schemas/ratingScaleColorMode"
+              },
+              "rateColorMode": {
+                "$ref": "#/components/schemas/ratingRateColorMode"
               },
               "autoGenerate": {
                 "$ref": "#/components/schemas/ratingAutoGenerate"
@@ -3086,6 +3095,14 @@
           "auto",
           "static",
           "responsive"
+        ]
+      },
+      "surveyBackgroundImageFit": {
+        "type": "string",
+        "enum": [
+          "auto",
+          "contain",
+          "cover"
         ]
       },
       "panelbaseQuestionTitleLocation": {
@@ -4431,12 +4448,26 @@
           "fill"
         ]
       },
-      "ratingRateDisplayMode": {
+      "ratingRateType": {
         "type": "string",
         "enum": [
           "labels",
           "stars",
           "smileys"
+        ]
+      },
+      "ratingScaleColorMode": {
+        "type": "string",
+        "enum": [
+          "monochrome",
+          "colored"
+        ]
+      },
+      "ratingRateColorMode": {
+        "type": "string",
+        "enum": [
+          "default",
+          "scale"
         ]
       },
       "ratingAutoGenerate": {

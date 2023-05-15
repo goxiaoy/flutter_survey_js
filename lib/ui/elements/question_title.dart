@@ -40,7 +40,7 @@ class QuestionTitle extends StatelessWidget {
         final survey = SurveyProvider.of(context);
         final status = survey.elementsState.get(q);
         if (status != null) {
-          if ((survey.survey.showQuestionNumbers?.isOn ?? false) &&
+          if ((survey.survey.showQuestionNumbers?.isOn ?? true) &&
               status.indexAll != null) {
             return Text(
               '${status.indexAll! + 1}.',

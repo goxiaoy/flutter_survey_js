@@ -1,13 +1,15 @@
-name: Flutter Web
+name: Pages
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Analyze & Test"]
+    types: [completed]
+    branches: [master]
+
+  workflow_dispatch:
 jobs:
-  build:
-    name: Build Web
-    env:
-      my_secret: ${{secrets.commit_secret}}
+  publish:
+    name: Publish Github Pages
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -20,12 +22,9 @@ jobs:
           dart pub global activate melos 2.9.0
       - name: Bootstrap melos
         run: melos bs
-      - name: Run tests
-        run: melos exec --dir-exists=test -- flutter test
       - run: |
           cd example
           flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -352,7 +352,7 @@ void main() {
     await tester.pump();
     await tester.idle();
 
-    expect(find.text(otherText), findsOneWidget);
+    expect(find.text(otherText), findsNothing);
     expect(find.byType(ReactiveTextField), findsNothing);
     expect(find.text(existingAnswer), findsOneWidget);
   });

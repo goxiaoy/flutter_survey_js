@@ -135,7 +135,9 @@ import 'package:flutter_survey_js_model/src/model/rating.dart';
 import 'package:flutter_survey_js_model/src/model/rating_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/rating_auto_generate.dart';
 import 'package:flutter_survey_js_model/src/model/rating_display_mode.dart';
-import 'package:flutter_survey_js_model/src/model/rating_rate_display_mode.dart';
+import 'package:flutter_survey_js_model/src/model/rating_rate_color_mode.dart';
+import 'package:flutter_survey_js_model/src/model/rating_rate_type.dart';
+import 'package:flutter_survey_js_model/src/model/rating_scale_color_mode.dart';
 import 'package:flutter_survey_js_model/src/model/regexvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/regexvalidator_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/runexpressiontrigger.dart';
@@ -154,6 +156,7 @@ import 'package:flutter_survey_js_model/src/model/signaturepad_data_format.dart'
 import 'package:flutter_survey_js_model/src/model/skiptrigger.dart';
 import 'package:flutter_survey_js_model/src/model/skiptrigger_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/survey.dart';
+import 'package:flutter_survey_js_model/src/model/survey_background_image_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_check_errors_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.dart';
 import 'package:flutter_survey_js_model/src/model/survey_locale.dart';
@@ -322,7 +325,9 @@ part 'serializers.g.dart';
   RatingAllOf,$RatingAllOf,
   RatingAutoGenerate,
   RatingDisplayMode,
-  RatingRateDisplayMode,
+  RatingRateColorMode,
+  RatingRateType,
+  RatingScaleColorMode,
   Regexvalidator,
   RegexvalidatorAllOf,$RegexvalidatorAllOf,
   Runexpressiontrigger,
@@ -341,6 +346,7 @@ part 'serializers.g.dart';
   Skiptrigger,
   SkiptriggerAllOf,$SkiptriggerAllOf,
   Survey,
+  SurveyBackgroundImageFit,
   SurveyCheckErrorsMode,
   SurveyClearInvisibleValues,
   SurveyLocale,
