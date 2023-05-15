@@ -50,7 +50,9 @@ Widget textBuilder(context, element, {ElementConfiguration? configuration}) {
       decoration: InputDecoration(hintText: hintText),
     );
   }
-  if (e.inputType == s.TextInputType.range) {}
+  if (e.inputType == s.TextInputType.range) {
+    //TODO
+  }
   if (e.inputType == s.TextInputType.tel) {
     widget = ReactiveTextField(
       keyboardType: TextInputType.phone,
@@ -58,9 +60,15 @@ Widget textBuilder(context, element, {ElementConfiguration? configuration}) {
       decoration: InputDecoration(hintText: hintText),
     );
   }
-  if (e.inputType == s.TextInputType.time) {}
-  if (e.inputType == s.TextInputType.url) {}
-  if (e.inputType == s.TextInputType.week) {}
+  if (e.inputType == s.TextInputType.time) {
+    //TODO
+  }
+  if (e.inputType == s.TextInputType.url) {
+    //TODO
+  }
+  if (e.inputType == s.TextInputType.week) {
+    //TODO
+  }
   if (e.inputType == s.TextInputType.number) {
     widget = ReactiveTextField(
       keyboardType: TextInputType.number,
@@ -93,6 +101,9 @@ AbstractControl textControlBuilder(BuildContext context, s.Elementbase element,
         value: e.defaultValue.tryCastToString() ?? value.tryCastToString());
   }
   if (e.inputType == s.TextInputType.number) {
+    final num? defaultValue = e.defaultValue?.value is String
+        ? num.tryParse(e.defaultValue!.value as String)
+        : e.defaultValue?.value as num?;
     return FormControl<num>(
         validators: [...validators, NullableNumberValidator().validate],
         value: e.defaultValue.tryCastToNum() ?? value.tryCastToNum());
