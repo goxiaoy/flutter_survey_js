@@ -31,16 +31,19 @@ class QuestionTitle extends StatelessWidget {
         final survey = SurveyProvider.of(context);
         final status = survey.elementsState.get(q);
         if (status != null) {
+          const Key questionNumberTextKey = Key('question-number-text');
           if ((survey.survey.showQuestionNumbers?.isOn ?? true) &&
               status.indexAll != null) {
             return Text(
               '${status.indexAll! + 1}.',
+              key: questionNumberTextKey,
               style: titleTextStyle(),
             );
           } else if ((survey.survey.showQuestionNumbers?.isOnPage ?? false) &&
               status.indexInPage != null) {
             return Text(
               '${status.indexInPage! + 1}.',
+              key: questionNumberTextKey,
               style: titleTextStyle(),
             );
           }
