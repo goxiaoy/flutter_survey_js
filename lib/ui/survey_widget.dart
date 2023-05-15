@@ -121,7 +121,9 @@ class SurveyWidgetState extends State<SurveyWidget> {
     formGroup = elementsToFormGroup(widget.survey.getElements(),
         controlsMap: _controlsMap);
 
-    if (widget.answer != null) {
+    final answer = widget.answer;
+
+    if (answer != null && answer.isNotEmpty) {
       formGroup.updateValue(widget.answer);
     }
 

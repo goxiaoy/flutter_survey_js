@@ -37,7 +37,7 @@ dependencies:
   flutter_survey_js_model: ^0.0.2-dev.1
   built_value: ">=8.4.0 <9.0.0"
   built_collection: ">=5.1.1 <6.0.0"
-
+  intl: 0.18.0
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_color_picker.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
+import 'package:intl/intl.dart';
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -57,7 +58,9 @@ Widget textBuilder(context, element, {bool hasTitle = true}) {
       decoration: InputDecoration(hintText: hintText),
     );
   }
-  if (e.inputType == s.TextInputType.range) {}
+  if (e.inputType == s.TextInputType.range) {
+    //TODO
+  }
   if (e.inputType == s.TextInputType.tel) {
     widget = ReactiveTextField(
       keyboardType: TextInputType.phone,
@@ -66,9 +69,15 @@ Widget textBuilder(context, element, {bool hasTitle = true}) {
       decoration: InputDecoration(hintText: hintText),
     );
   }
-  if (e.inputType == s.TextInputType.time) {}
-  if (e.inputType == s.TextInputType.url) {}
-  if (e.inputType == s.TextInputType.week) {}
+  if (e.inputType == s.TextInputType.time) {
+    //TODO
+  }
+  if (e.inputType == s.TextInputType.url) {
+    //TODO
+  }
+  if (e.inputType == s.TextInputType.week) {
+    //TODO
+  }
   if (e.inputType == s.TextInputType.number) {
     widget = ReactiveTextField(
       keyboardType: TextInputType.number,
@@ -86,17 +95,37 @@ Object? textControlBuilder(s.Elementbase element,
   final e = element as s.Text;
   if (e.inputType == s.TextInputType.date ||
       e.inputType == s.TextInputType.datetimeLocal) {
-    return FormControl<DateTime>(validators: validators);
+    final defaultValue = e.defaultValue?.value as String?;
+
+    return FormControl<DateTime>(
+        validators: validators,
+        value: defaultValue != null
+            ? DateFormat('yyyy-MM-dd').parse(defaultValue)
+            : null);
   }
   if (e.inputType == s.TextInputType.color) {
-    return FormControl<String>(validators: validators);
+    return FormControl<String>(
+      validators:
+          validators, /*Unsure how to parse Color from a defaultValue String...*/
+    );
   }
   if (e.inputType == s.TextInputType.email) {
-    return FormControl<String>(validators: [...validators, Validators.email]);
+    final defaultValue = e.defaultValue?.value as String?;
+
+    return FormControl<String>(
+        validators: [...validators, Validators.email], value: defaultValue);
   }
   if (e.inputType == s.TextInputType.number) {
+    final num? defaultValue = e.defaultValue?.value is String
+        ? num.tryParse(e.defaultValue!.value as String)
+        : e.defaultValue?.value as num?;
     return FormControl<num>(
-        validators: [...validators, NullableNumberValidator().validate]);
+      validators: [...validators, NullableNumberValidator().validate],
+      value: defaultValue,
+    );
   }
-  return FormControl<String>(validators: validators);
+
+  final defaultValue = e.defaultValue?.value as String?;
+
+  return FormControl<String>(validators: validators, value: defaultValue);
 }
