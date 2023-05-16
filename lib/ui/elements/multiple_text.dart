@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
@@ -6,13 +7,12 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
-import 'question_title.dart';
-import '../survey_element_factory.dart';
-
 Widget multipleTextBuilder(context, element,
     {ElementConfiguration? configuration}) {
   final e = element as s.Multipletext;
-  final texts = (e.items?.toList() ?? []).map(toText).toList();
+  final texts = (e.items?.toList() ?? [])
+      .map((item) => toText(item, e.defaultValue))
+      .toList();
   return ReactiveNestedForm(
       formControlName: e.name,
       child: ListView.separated(
@@ -40,13 +40,18 @@ AbstractControl multipleTextControlBuilder(
     BuildContext context, s.Elementbase element,
     {validators = const [], Object? value}) {
   final e = element as s.Multipletext;
-  final texts = (e.items?.toList() ?? []).map(toText).toList();
+  final texts = (e.items?.toList() ?? [])
+      .map((item) => toText(item, e.defaultValue))
+      .toList();
   final res = elementsToFormGroup(context, texts,
       validators: validators, value: e.defaultValue?.value ?? value);
   return res;
 }
 
-s.Text toText(s.Multipletextitem multipleTextItem) {
+s.Text toText(s.Multipletextitem multipleTextItem, JsonObject? defaultValue) {
+  final Object? defaultValueForItem = defaultValue is MapJsonObject
+      ? defaultValue.value[multipleTextItem.name]
+      : defaultValue;
   final b = s.Text().toBuilder()
     ..type = "text"
     ..name = multipleTextItem.name
@@ -57,7 +62,9 @@ s.Text toText(s.Multipletextitem multipleTextItem) {
     ..maxLength = multipleTextItem.maxLength
     ..size = multipleTextItem.size
     ..requiredErrorText = multipleTextItem.requiredErrorText
-    ..placeholder = multipleTextItem.placeholder;
+    ..placeholder = multipleTextItem.placeholder
+    ..defaultValue =
+        defaultValueForItem == null ? null : JsonObject(defaultValueForItem);
 
   return b.build();
 }
