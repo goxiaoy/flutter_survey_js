@@ -17,6 +17,7 @@ part 'multipletextitem.g.dart';
 /// * [name] 
 /// * [isRequired] 
 /// * [placeholder] 
+/// * [defaultValue] 
 /// * [inputType] 
 /// * [title] 
 /// * [maxLength] 
@@ -33,6 +34,9 @@ abstract class Multipletextitem implements Built<Multipletextitem, Multipletexti
 
   @BuiltValueField(wireName: r'placeholder')
   String? get placeholder;
+
+  @BuiltValueField(wireName: r'defaultValue')
+  String? get defaultValue;
 
   @BuiltValueField(wireName: r'inputType')
   MultipletextitemInputType? get inputType;
@@ -94,6 +98,13 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
       yield r'placeholder';
       yield serializers.serialize(
         object.placeholder,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.defaultValue != null) {
+      yield r'defaultValue';
+      yield serializers.serialize(
+        object.defaultValue,
         specifiedType: const FullType(String),
       );
     }
@@ -182,6 +193,13 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
             specifiedType: const FullType(String),
           ) as String;
           result.placeholder = valueDes;
+          break;
+        case r'defaultValue':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.defaultValue = valueDes;
           break;
         case r'inputType':
           final valueDes = serializers.deserialize(
