@@ -47,7 +47,13 @@ class SurveyElementFactory {
           validators: validators,
           value: (element as s.Ranking).defaultValue?.value as List<Object?>),
     );
-    register<s.Radiogroup>(radioGroupBuilder);
+    register<s.Radiogroup>(
+      radioGroupBuilder,
+      control: (element, {validators = const []}) => FormControl(
+        validators: validators,
+        value: (element as s.Radiogroup).defaultValue?.value,
+      ),
+    );
     register<s.Boolean>(
         //TODO ReactiveSwitch is not safe
         (context, element, {bool hasTitle = true}) {
