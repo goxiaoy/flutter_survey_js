@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/survey.dart' hide Text;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -305,9 +305,23 @@ void main() {
     await tester.pump();
     await tester.idle();
 
-    expect(find.text(otherText), findsOneWidget);
-    expect(find.byType(ReactiveTextField), findsOneWidget);
-    expect(find.text(existingAnswer), findsOneWidget);
+    final DropdownButton dropdownButton =
+        tester.widget<DropdownButton>(find.byType(DropdownButton));
+    final DropdownMenuItem selectedMenuItem = dropdownButton.items!
+        .singleWhere((element) => element.value == dropdownButton.value);
+    expect(
+      (selectedMenuItem.child as Text).data,
+      otherText,
+    );
+    expect(
+      tester
+          .widget<TextField>(find.descendant(
+              of: find.byType(ReactiveTextField),
+              matching: find.byType(TextField)))
+          .controller
+          ?.text,
+      existingAnswer,
+    );
   });
 
   testWidgets(
@@ -352,9 +366,15 @@ void main() {
     await tester.pump();
     await tester.idle();
 
-    expect(find.text(otherText), findsNothing);
+    final DropdownButton dropdownButton =
+        tester.widget<DropdownButton>(find.byType(DropdownButton));
+    final DropdownMenuItem selectedMenuItem = dropdownButton.items!
+        .singleWhere((element) => element.value == dropdownButton.value);
+    expect(
+      (selectedMenuItem.child as Text).data,
+      existingAnswer,
+    );
     expect(find.byType(ReactiveTextField), findsNothing);
-    expect(find.text(existingAnswer), findsOneWidget);
   });
 
   group('Other error text', () {
