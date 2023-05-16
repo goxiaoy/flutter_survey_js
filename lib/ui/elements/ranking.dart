@@ -29,7 +29,11 @@ class RankingElement extends StatelessWidget {
       formControlName: formControlName,
       valueAccessor: accessor,
       itemBuilder: (item) {
-        return Text(item.text ?? item.value?.toString() ?? '');
+        final String text = item.text ?? item.value?.toString() ?? '';
+        return Text(
+          text,
+          key: Key('$text-key'),
+        );
       },
     );
   }
