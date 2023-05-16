@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
-import 'package:flutter_survey_js/multi_localization_delegate.dart';
-import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
   // 单一的测试
@@ -42,5 +41,109 @@ void main() {
     await tester.idle();
 
     expect(find.text(placeholder), findsOneWidget);
+  });
+
+  group('defaultValue', () {
+    testWidgets('is reflected when input is string', (widgetTester) async {
+      const String defaultValue = 'Hello world!';
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": "name",
+              "type": "comment",
+              "defaultValue": defaultValue,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final Finder reactiveTextFieldFinder = find.byType(ReactiveTextField);
+      expect(reactiveTextFieldFinder, findsOneWidget);
+      final TextField textField = widgetTester.widget<TextField>(
+          find.descendant(
+              of: reactiveTextFieldFinder, matching: find.byType(TextField)));
+      expect(textField.controller!.text, defaultValue);
+    });
+
+    testWidgets('is reflected when input is int', (widgetTester) async {
+      const int defaultValue = 20;
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": "name",
+              "type": "comment",
+              "defaultValue": defaultValue,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final Finder reactiveTextFieldFinder = find.byType(ReactiveTextField);
+      expect(reactiveTextFieldFinder, findsOneWidget);
+      final TextField textField = widgetTester.widget<TextField>(
+          find.descendant(
+              of: reactiveTextFieldFinder, matching: find.byType(TextField)));
+      expect(textField.controller!.text, defaultValue.toString());
+    });
+
+    testWidgets('is reflected when input is double', (widgetTester) async {
+      const double defaultValue = 3.14159;
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": "name",
+              "type": "comment",
+              "defaultValue": defaultValue,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final Finder reactiveTextFieldFinder = find.byType(ReactiveTextField);
+      expect(reactiveTextFieldFinder, findsOneWidget);
+      final TextField textField = widgetTester.widget<TextField>(
+          find.descendant(
+              of: reactiveTextFieldFinder, matching: find.byType(TextField)));
+      expect(textField.controller!.text, defaultValue.toString());
+    });
   });
 }
