@@ -107,8 +107,9 @@ class SurveyElementFactory {
         ),
       ).wrapQuestionTitle(element, hasTitle: hasTitle),
       control: (element, {validators = const []}) => FormControl<String>(
-          validators: validators,
-          value: (element as s.Comment).defaultValue?.value as String?),
+        validators: validators,
+        value: (element as s.Comment).defaultValue?.value.toString(),
+      ),
     );
 
     register<s.Text>(textBuilder, control: textControlBuilder);

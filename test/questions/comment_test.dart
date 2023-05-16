@@ -44,7 +44,7 @@ void main() {
   });
 
   group('defaultValue', () {
-    testWidgets('is reflected', (widgetTester) async {
+    testWidgets('is reflected when input is string', (widgetTester) async {
       const String defaultValue = 'Hello world!';
       final s = surveyFromJson(
         {
@@ -76,6 +76,74 @@ void main() {
           find.descendant(
               of: reactiveTextFieldFinder, matching: find.byType(TextField)));
       expect(textField.controller!.text, defaultValue);
+    });
+
+    testWidgets('is reflected when input is int', (widgetTester) async {
+      const int defaultValue = 20;
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": "name",
+              "type": "comment",
+              "defaultValue": defaultValue,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final Finder reactiveTextFieldFinder = find.byType(ReactiveTextField);
+      expect(reactiveTextFieldFinder, findsOneWidget);
+      final TextField textField = widgetTester.widget<TextField>(
+          find.descendant(
+              of: reactiveTextFieldFinder, matching: find.byType(TextField)));
+      expect(textField.controller!.text, defaultValue.toString());
+    });
+
+    testWidgets('is reflected when input is double', (widgetTester) async {
+      const double defaultValue = 3.14159;
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": "name",
+              "type": "comment",
+              "defaultValue": defaultValue,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final Finder reactiveTextFieldFinder = find.byType(ReactiveTextField);
+      expect(reactiveTextFieldFinder, findsOneWidget);
+      final TextField textField = widgetTester.widget<TextField>(
+          find.descendant(
+              of: reactiveTextFieldFinder, matching: find.byType(TextField)));
+      expect(textField.controller!.text, defaultValue.toString());
     });
   });
 }
