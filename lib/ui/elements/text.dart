@@ -125,7 +125,7 @@ Object? textControlBuilder(s.Elementbase element,
     );
   }
 
-  final defaultValue = e.defaultValue?.value as String?;
+  final defaultValue = e.defaultValue?.value.toString();
 
   return FormControl<String>(validators: validators, value: defaultValue);
 }
