@@ -89,23 +89,27 @@ class SurveyElementFactory {
             validators: validators,
             value: (element as s.Rating).defaultValue.tryCastToInt()));
 
-    register<s.Comment>((context, element, {bool hasTitle = true}) =>
-        ReactiveTextField(
-          keyboardType: TextInputType.multiline,
-          maxLines: null,
-          style: Theme.of(context).textTheme.bodyMedium,
-          formControlName: element.name!,
-          decoration: InputDecoration(
-            fillColor: Colors.white,
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                borderSide: BorderSide(color: Colors.blue)),
-            filled: true,
-            contentPadding:
-                const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
-            hintText: (element as s.Comment).placeholder,
-          ),
-        ).wrapQuestionTitle(element, hasTitle: hasTitle));
+    register<s.Comment>(
+      (context, element, {bool hasTitle = true}) => ReactiveTextField(
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        style: Theme.of(context).textTheme.bodyMedium,
+        formControlName: element.name!,
+        decoration: InputDecoration(
+          fillColor: Colors.white,
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              borderSide: BorderSide(color: Colors.blue)),
+          filled: true,
+          contentPadding:
+              const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+          hintText: (element as s.Comment).placeholder,
+        ),
+      ).wrapQuestionTitle(element, hasTitle: hasTitle),
+      control: (element, {validators = const []}) => FormControl<String>(
+          validators: validators,
+          value: (element as s.Comment).defaultValue?.value as String?),
+    );
 
     register<s.Text>(textBuilder, control: textControlBuilder);
     register<s.Multipletext>(multipleTextBuilder,
