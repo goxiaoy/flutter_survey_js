@@ -14,7 +14,7 @@ class _$Multipletextitem extends Multipletextitem {
   @override
   final String? placeholder;
   @override
-  final String? defaultValue;
+  final JsonObject? defaultValue;
   @override
   final MultipletextitemInputType? inputType;
   @override
@@ -119,9 +119,10 @@ class MultipletextitemBuilder
   String? get placeholder => _$this._placeholder;
   set placeholder(String? placeholder) => _$this._placeholder = placeholder;
 
-  String? _defaultValue;
-  String? get defaultValue => _$this._defaultValue;
-  set defaultValue(String? defaultValue) => _$this._defaultValue = defaultValue;
+  JsonObject? _defaultValue;
+  JsonObject? get defaultValue => _$this._defaultValue;
+  set defaultValue(JsonObject? defaultValue) =>
+      _$this._defaultValue = defaultValue;
 
   MultipletextitemInputType? _inputType;
   MultipletextitemInputType? get inputType => _$this._inputType;
