@@ -446,4 +446,158 @@ void main() {
       expect(find.text('required'), findsNothing);
     });
   });
+
+  group('defaultValue', () {
+    testWidgets('is reflected when defaultValue is an int and is a choice',
+        (widgetTester) async {
+      const String formControlName = 'name';
+      const int defaultValue = 2;
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": formControlName,
+              "type": "dropdown",
+              "choices": [
+                0,
+                1,
+                defaultValue,
+                3,
+              ],
+              "defaultValue": defaultValue,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [appLocalizationDelegate],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final reactiveForm =
+          widgetTester.widget<ReactiveForm>(find.byType(ReactiveForm));
+      expect(reactiveForm.formGroup.control(formControlName).value,
+          defaultValue.toString());
+    });
+
+    testWidgets(
+        'is reflected when defaultValue is an int, is not a choice, and `showOtherItem` is true',
+        (widgetTester) async {
+      const String formControlName = 'name';
+      const int defaultValue = 2;
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": formControlName,
+              "type": "dropdown",
+              "choices": [
+                0,
+                1,
+              ],
+              "defaultValue": defaultValue,
+              "showOtherItem": true,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [appLocalizationDelegate],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final reactiveForm =
+          widgetTester.widget<ReactiveForm>(find.byType(ReactiveForm));
+      expect(reactiveForm.formGroup.control(formControlName).value,
+          defaultValue.toString());
+    });
+
+    testWidgets('is reflected when defaultValue is a string and is a choice',
+        (widgetTester) async {
+      const String formControlName = 'name';
+      const String defaultValue = '2';
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": formControlName,
+              "type": "dropdown",
+              "choices": [
+                '0',
+                '1',
+                defaultValue,
+                '3',
+              ],
+              "defaultValue": defaultValue,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [appLocalizationDelegate],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final reactiveForm =
+          widgetTester.widget<ReactiveForm>(find.byType(ReactiveForm));
+      expect(
+          reactiveForm.formGroup.control(formControlName).value, defaultValue);
+    });
+
+    testWidgets(
+        'is reflected when defaultValue is a string, is not a choice, and `showOtherItem` is true',
+        (widgetTester) async {
+      const String formControlName = 'name';
+      const String defaultValue = '2';
+      final s = surveyFromJson(
+        {
+          "questions": [
+            {
+              "name": formControlName,
+              "type": "dropdown",
+              "choices": [
+                '0',
+                '1',
+              ],
+              "defaultValue": defaultValue,
+              "showOtherItem": true,
+            },
+          ],
+        },
+      )!;
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [appLocalizationDelegate],
+          home: Material(
+            child: SurveyWidget(survey: s),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+
+      final reactiveForm =
+          widgetTester.widget<ReactiveForm>(find.byType(ReactiveForm));
+      expect(reactiveForm.formGroup.control(formControlName).value,
+          defaultValue.toString());
+    });
+  });
 }

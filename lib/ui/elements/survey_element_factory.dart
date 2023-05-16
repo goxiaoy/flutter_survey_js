@@ -133,9 +133,13 @@ class SurveyElementFactory {
     });
     // register<s.ImagePicker>(imagePickerBuilder);
     register<s.Dropdown>(dropdownBuilder,
-        control: (element, {validators = const []}) => FormControl<Object>(
-            validators: validators,
-            value: (element as s.Dropdown).defaultValue?.toString()));
+        control: (element, {validators = const []}) {
+      final defaultValue = (element as s.Dropdown).defaultValue;
+      return FormControl<Object>(
+        validators: validators,
+        value: defaultValue?.value.toString(),
+      );
+    });
     register<s.Paneldynamic>(panelDynamicBuilder);
     register<s.Panel>((context, element, {bool hasTitle = true}) {
       return Column(
