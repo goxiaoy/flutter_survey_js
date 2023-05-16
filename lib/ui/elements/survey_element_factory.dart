@@ -41,9 +41,12 @@ class SurveyElementFactory {
     register<s.Checkbox>(checkBoxBuilder,
         control: (element, {validators = const []}) =>
             fb.array([], validators));
-    register<s.Ranking>(rankingBuilder,
-        control: (element, {validators = const []}) =>
-            FormControl<List<dynamic>>(validators: validators));
+    register<s.Ranking>(
+      rankingBuilder,
+      control: (element, {validators = const []}) => FormControl<List<Object?>>(
+          validators: validators,
+          value: (element as s.Ranking).defaultValue?.value as List<Object?>),
+    );
     register<s.Radiogroup>(radioGroupBuilder);
     register<s.Boolean>(
         //TODO ReactiveSwitch is not safe
