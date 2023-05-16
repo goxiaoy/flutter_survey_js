@@ -1,3 +1,4 @@
+import 'package:built_value/json_object.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
@@ -41,9 +42,10 @@ class _DropdownWidgetWithOtherOptionState
       return false;
     }
     final choiceMatch = widget.dropdown.choices
-        ?.map((e) => e.castToItemvalue().value?.value)
-        .contains(controlValue);
-    return !(choiceMatch == true);
+        ?.map((e) => e.castToItemvalue().value?.value.toString());
+    return !(choiceMatch!.toList().contains(
+            controlValue is JsonObject ? controlValue.value : controlValue) ==
+        true);
   }();
 
   var textEditingController = TextEditingController();
@@ -56,7 +58,7 @@ class _DropdownWidgetWithOtherOptionState
       ...e.choices
               ?.map(
                 (e) => DropdownMenuItem(
-                  value: e.castToItemvalue().value?.value,
+                  value: e.castToItemvalue().value?.value.toString(),
                   child: Text(
                     e.castToItemvalue().text ??
                         e.castToItemvalue().value?.toString() ??
