@@ -1986,7 +1986,7 @@
             "type": "string"
           },
           "defaultValue": {
-            "type": "string"
+            "$ref": "#/components/schemas/anyvalue"
           },
           "inputType": {
             "$ref": "#/components/schemas/multipletextitemInputType"
