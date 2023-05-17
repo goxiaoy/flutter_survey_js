@@ -1,3 +1,4 @@
+
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
@@ -118,7 +119,7 @@ extension JsonObjectExtension on JsonObject? {
     if (!(this is BoolJsonObject)) {
       return null;
     }
-    return (this as BoolJsonObject).value;
+    return (this as BoolJsonObject).value.tryCastToBool();
   }
 
   String? tryCastToString() {
@@ -128,7 +129,7 @@ extension JsonObjectExtension on JsonObject? {
     if (!(this is StringJsonObject)) {
       return null;
     }
-    return (this as StringJsonObject).value;
+    return (this as StringJsonObject).value.tryCastToString();
   }
 
   num? tryCastToNum() {
@@ -138,7 +139,7 @@ extension JsonObjectExtension on JsonObject? {
     if (!(this is NumJsonObject)) {
       return null;
     }
-    return (this as NumJsonObject).value;
+    return (this as NumJsonObject).value.tryCastToNum();
   }
 
   DateTime? tryCastToDateTime() {
@@ -149,7 +150,7 @@ extension JsonObjectExtension on JsonObject? {
       return null;
     }
 
-    return DateTime.tryParse((this as StringJsonObject).value);
+    return (this as StringJsonObject).value.tryCastToDateTime();
   }
 
   int? tryCastToInt() {
@@ -159,7 +160,7 @@ extension JsonObjectExtension on JsonObject? {
     if (!(this is NumJsonObject)) {
       return null;
     }
-    return (this as NumJsonObject).value.toInt();
+    return (this as NumJsonObject).value.tryCastToInt();
   }
 
   List<Object>? tryCastToListObj() {
@@ -186,5 +187,55 @@ extension ObjectExtension on Object? {
       return (this as List).cast<Object>();
     }
     return null;
+  }
+
+  bool? tryCastToBool() {
+    if (this == null) {
+      return null;
+    }
+    if (this is bool) {
+      return this as bool;
+    }
+    return bool.tryParse(this.toString(), caseSensitive: false);
+  }
+
+  String? tryCastToString() {
+    if (this == null) {
+      return null;
+    }
+    if (this is String) {
+      return this as String;
+    }
+    return this.toString();
+  }
+
+  int? tryCastToInt() {
+    if (this == null) {
+      return null;
+    }
+    if (this is num) {
+      return (this as num).toInt();
+    }
+    if (this is int) {
+      return this as int;
+    }
+    return int.tryParse(this.toString());
+  }
+
+  DateTime? tryCastToDateTime() {
+    if (this == null) {
+      return null;
+    }
+    return DateTime.tryParse(this.toString());
+  }
+
+  num? tryCastToNum() {
+    if (this == null) {
+      return null;
+    }
+    if (this is num) {
+      return this as num;
+    }
+    return num.tryParse(this.toString());
   }
 }

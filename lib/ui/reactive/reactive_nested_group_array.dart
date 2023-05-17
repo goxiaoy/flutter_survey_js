@@ -10,11 +10,12 @@ class ReactiveNestedGroupArray<T> extends StatelessWidget {
   final FormArray<T>? formArray;
   final Widget? child;
   final ReactiveNestedGroupArrayBuilder builder;
-  final FormGroup Function()? createNew;
+  final AbstractControl<T> Function()? createNew;
   final int minLength;
   final int? maxLength;
 
-  const ReactiveNestedGroupArray({Key? key, 
+  const ReactiveNestedGroupArray({
+    Key? key,
     InputDecoration decoration = const InputDecoration(),
     this.formArrayName,
     this.formArray,
@@ -23,7 +24,8 @@ class ReactiveNestedGroupArray<T> extends StatelessWidget {
     this.createNew,
     this.minLength = 0,
     this.maxLength,
-  }) : assert(minLength >= 0), super(key: key);
+  })  : assert(minLength >= 0),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

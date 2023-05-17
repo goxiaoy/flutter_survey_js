@@ -74,27 +74,30 @@ Widget textBuilder(context, element, {ElementConfiguration? configuration}) {
 }
 
 AbstractControl textControlBuilder(BuildContext context, s.Elementbase element,
-    {validators = const <ValidatorFunction>[]}) {
+    {validators = const <ValidatorFunction>[], Object? value}) {
   final e = element as s.Text;
   if (e.inputType == s.TextInputType.date ||
       e.inputType == s.TextInputType.datetimeLocal) {
     return FormControl<DateTime>(
-        validators: validators, value: e.defaultValue.tryCastToDateTime());
+        validators: validators,
+        value: e.defaultValue.tryCastToDateTime() ?? value.tryCastToDateTime());
   }
   if (e.inputType == s.TextInputType.color) {
     return FormControl<String>(
-        validators: validators, value: e.defaultValue.tryCastToString());
+        validators: validators,
+        value: e.defaultValue.tryCastToString() ?? value.tryCastToString());
   }
   if (e.inputType == s.TextInputType.email) {
     return FormControl<String>(
         validators: [...validators, Validators.email],
-        value: e.defaultValue.tryCastToString());
+        value: e.defaultValue.tryCastToString() ?? value.tryCastToString());
   }
   if (e.inputType == s.TextInputType.number) {
     return FormControl<num>(
         validators: [...validators, NullableNumberValidator().validate],
-        value: e.defaultValue.tryCastToNum());
+        value: e.defaultValue.tryCastToNum() ?? value.tryCastToNum());
   }
   return FormControl<String>(
-      validators: validators, value: e.defaultValue.tryCastToString());
+      validators: validators,
+      value: e.defaultValue.tryCastToString() ?? value.tryCastToString());
 }

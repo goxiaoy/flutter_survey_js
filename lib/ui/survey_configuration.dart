@@ -8,8 +8,9 @@ import 'package:reactive_forms/reactive_forms.dart';
 typedef SurveyElementBuilder = Widget Function(
     BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration});
-typedef SurveyFormControlBuilder = AbstractControl
-    Function(BuildContext context,s.Elementbase element, {List<ValidatorFunction> validators});
+typedef SurveyFormControlBuilder = AbstractControl Function(
+    BuildContext context, s.Elementbase element,
+    {List<ValidatorFunction> validators, Object? value});
 
 typedef SurveyTitleBuilder = Widget Function(
     BuildContext context, s.Elementbase element, Widget child);
