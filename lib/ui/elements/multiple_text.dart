@@ -41,7 +41,8 @@ AbstractControl multipleTextControlBuilder(
     {validators = const []}) {
   final e = element as s.Multipletext;
   final texts = (e.items?.toList() ?? []).map(toText).toList();
-  final res = elementsToFormGroup(context, texts, validators: validators);
+  final res = elementsToFormGroup(context, texts,
+      validators: validators, value: e.defaultValue?.value);
   return res;
 }
 

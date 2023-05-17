@@ -3,6 +3,7 @@ repository: https://github.com/Goxiaoy/flutter_survey_js
 packages:
   - schema/*
   - schema/*/*
+  - example/
   - .
 command:
   bootstrap:

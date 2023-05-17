@@ -29,9 +29,11 @@ class MatrixDynamicElement extends StatelessWidget {
   Widget build(BuildContext context) {
     createNew() {
       //create new formGroup
-      return elementsToFormGroup(context,(matrix.columns?.toList() ?? [])
-          .map((column) => matrixDropdownColumnToQuestion(matrix, column))
-          .toList());
+      return elementsToFormGroup(
+          context,
+          (matrix.columns?.toList() ?? [])
+              .map((column) => matrixDropdownColumnToQuestion(matrix, column))
+              .toList());
     }
 
     return ReactiveFormArray(
