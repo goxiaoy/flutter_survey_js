@@ -1985,9 +1985,6 @@
           "placeholder": {
             "type": "string"
           },
-          "defaultValue": {
-            "$ref": "#/components/schemas/anyvalue"
-          },
           "inputType": {
             "$ref": "#/components/schemas/multipletextitemInputType"
           },

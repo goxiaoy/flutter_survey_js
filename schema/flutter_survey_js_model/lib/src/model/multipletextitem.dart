@@ -6,7 +6,6 @@
 import 'package:flutter_survey_js_model/src/model/multipletextitem_input_type.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
-import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -18,7 +17,6 @@ part 'multipletextitem.g.dart';
 /// * [name] 
 /// * [isRequired] 
 /// * [placeholder] 
-/// * [defaultValue] 
 /// * [inputType] 
 /// * [title] 
 /// * [maxLength] 
@@ -35,9 +33,6 @@ abstract class Multipletextitem implements Built<Multipletextitem, Multipletexti
 
   @BuiltValueField(wireName: r'placeholder')
   String? get placeholder;
-
-  @BuiltValueField(wireName: r'defaultValue')
-  JsonObject? get defaultValue;
 
   @BuiltValueField(wireName: r'inputType')
   MultipletextitemInputType? get inputType;
@@ -100,13 +95,6 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
       yield serializers.serialize(
         object.placeholder,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.defaultValue != null) {
-      yield r'defaultValue';
-      yield serializers.serialize(
-        object.defaultValue,
-        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.inputType != null) {
@@ -194,14 +182,6 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
             specifiedType: const FullType(String),
           ) as String;
           result.placeholder = valueDes;
-          break;
-        case r'defaultValue':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.defaultValue = valueDes;
           break;
         case r'inputType':
           final valueDes = serializers.deserialize(

@@ -14,8 +14,6 @@ class _$Multipletextitem extends Multipletextitem {
   @override
   final String? placeholder;
   @override
-  final JsonObject? defaultValue;
-  @override
   final MultipletextitemInputType? inputType;
   @override
   final String? title;
@@ -36,7 +34,6 @@ class _$Multipletextitem extends Multipletextitem {
       {this.name,
       this.isRequired,
       this.placeholder,
-      this.defaultValue,
       this.inputType,
       this.title,
       this.maxLength,
@@ -60,7 +57,6 @@ class _$Multipletextitem extends Multipletextitem {
         name == other.name &&
         isRequired == other.isRequired &&
         placeholder == other.placeholder &&
-        defaultValue == other.defaultValue &&
         inputType == other.inputType &&
         title == other.title &&
         maxLength == other.maxLength &&
@@ -75,7 +71,6 @@ class _$Multipletextitem extends Multipletextitem {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, isRequired.hashCode);
     _$hash = $jc(_$hash, placeholder.hashCode);
-    _$hash = $jc(_$hash, defaultValue.hashCode);
     _$hash = $jc(_$hash, inputType.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, maxLength.hashCode);
@@ -92,7 +87,6 @@ class _$Multipletextitem extends Multipletextitem {
           ..add('name', name)
           ..add('isRequired', isRequired)
           ..add('placeholder', placeholder)
-          ..add('defaultValue', defaultValue)
           ..add('inputType', inputType)
           ..add('title', title)
           ..add('maxLength', maxLength)
@@ -118,11 +112,6 @@ class MultipletextitemBuilder
   String? _placeholder;
   String? get placeholder => _$this._placeholder;
   set placeholder(String? placeholder) => _$this._placeholder = placeholder;
-
-  JsonObject? _defaultValue;
-  JsonObject? get defaultValue => _$this._defaultValue;
-  set defaultValue(JsonObject? defaultValue) =>
-      _$this._defaultValue = defaultValue;
 
   MultipletextitemInputType? _inputType;
   MultipletextitemInputType? get inputType => _$this._inputType;
@@ -162,7 +151,6 @@ class MultipletextitemBuilder
       _name = $v.name;
       _isRequired = $v.isRequired;
       _placeholder = $v.placeholder;
-      _defaultValue = $v.defaultValue;
       _inputType = $v.inputType;
       _title = $v.title;
       _maxLength = $v.maxLength;
@@ -196,7 +184,6 @@ class MultipletextitemBuilder
               name: name,
               isRequired: isRequired,
               placeholder: placeholder,
-              defaultValue: defaultValue,
               inputType: inputType,
               title: title,
               maxLength: maxLength,
