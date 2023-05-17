@@ -64,7 +64,14 @@ class SurveyElementFactory {
                 value: (element as s.Rating).defaultValue.tryCastToInt() ??
                     value.tryCastToInt()));
 
-    register<s.Comment>(commentBuilder);
+    register<s.Comment>(
+      commentBuilder,
+      control: (context, element, {validators = const [], value}) =>
+          FormControl<String>(
+        validators: validators,
+        value: (element as s.Comment).defaultValue.tryCastToString(),
+      ),
+    );
 
     register<s.Text>(textBuilder, control: textControlBuilder);
     register<s.Multipletext>(multipleTextBuilder,
@@ -100,10 +107,11 @@ class SurveyElementFactory {
     // register<s.ImagePicker>(imagePickerBuilder);
 
     register<s.Dropdown>(dropdownBuilder,
-        control: (context, element, {validators = const [], value}) =>
-            FormControl<Object>(
-                validators: validators,
-                value: (element as s.Dropdown).defaultValue?.value ?? value));
+        control: (context, element, {validators = const [], value}) {
+      value = (element as s.Dropdown).defaultValue?.value ?? value;
+      return FormControl<Object>(
+          validators: validators, value: value?.toString());
+    });
     register<s.Paneldynamic>(panelDynamicBuilder);
     register<s.Panel>(panelBuilder);
   }

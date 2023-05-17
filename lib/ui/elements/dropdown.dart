@@ -42,10 +42,11 @@ class _DropdownWidgetWithOtherOptionState
       return false;
     }
     final choiceMatch = widget.dropdown.choices
-        ?.map((e) => e.castToItemvalue().value?.value.toString());
-    return !(choiceMatch!.toList().contains(
-            controlValue is JsonObject ? controlValue.value : controlValue) ==
-        true);
+        ?.map((e) => e.castToItemvalue().value?.value.toString())
+        .toList();
+    return !(choiceMatch!.contains(controlValue is JsonObject
+        ? controlValue.tryCastToString()
+        : controlValue.toString()));
   }();
 
   var textEditingController = TextEditingController();
