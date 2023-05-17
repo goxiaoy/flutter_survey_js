@@ -20,7 +20,9 @@ Widget multipleTextBuilder(context, element,
         shrinkWrap: true,
         itemCount: texts.length,
         itemBuilder: (BuildContext context, int index) {
-          final res = SurveyElementFactory().resolve(context, texts[index]);
+          final res = SurveyConfiguration.of(context)!
+              .factory
+              .resolve(context, texts[index]);
           return index == 0
               ? Padding(
                   padding: EdgeInsets.only(top: 8.0),
@@ -34,11 +36,12 @@ Widget multipleTextBuilder(context, element,
       ).wrapQuestionTitle(context, element, configuration: configuration));
 }
 
-AbstractControl multipleTextControlBuilder(s.Elementbase element,
+AbstractControl multipleTextControlBuilder(
+    BuildContext context, s.Elementbase element,
     {validators = const []}) {
   final e = element as s.Multipletext;
   final texts = (e.items?.toList() ?? []).map(toText).toList();
-  final res = elementsToFormGroup(texts, validators: validators);
+  final res = elementsToFormGroup(context, texts, validators: validators);
   return res;
 }
 

@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
-import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -40,6 +39,7 @@ class SurveyWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => SurveyWidgetState();
 }
+
 
 class SurveyWidgetState extends State<SurveyWidget> {
   final Logger logger = Logger('SurveyWidgetState');
@@ -121,7 +121,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     _controlsMap = {};
     _currentPage = 0;
 
-    formGroup = elementsToFormGroup(widget.survey.getElements(),
+    formGroup = elementsToFormGroup(context, widget.survey.getElements(),
         controlsMap: _controlsMap);
 
     if (widget.answer != null) {

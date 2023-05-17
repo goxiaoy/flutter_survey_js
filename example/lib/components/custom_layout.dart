@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
-import 'package:flutter_survey_js/ui/survey_element_factory.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:json_editor/json_editor.dart';
 import 'package:logging/logging.dart';

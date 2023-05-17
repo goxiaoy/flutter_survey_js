@@ -30,6 +30,7 @@ class PanelDynamicElement extends StatelessWidget {
     createNew() {
       //create new formGroup
       return elementsToFormGroup(
+          context,
           (element.templateElements?.map((p0) => p0.realElement).toList() ?? [])
               .toList());
     }
@@ -48,8 +49,10 @@ class PanelDynamicElement extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: element.templateElements?.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
-                      final res = SurveyElementFactory().resolve(context,
-                          element.templateElements![index].realElement);
+                      final res = SurveyConfiguration.of(context)!
+                          .factory
+                          .resolve(context,
+                              element.templateElements![index].realElement);
                       return res;
                     },
                     separatorBuilder: (BuildContext context, int index) {
