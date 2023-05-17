@@ -111,6 +111,47 @@ extension SurveyShowQuestionNumbersExtension on SurveyShowQuestionNumbers {
 }
 
 extension JsonObjectExtension on JsonObject? {
+  bool? tryCastToBool() {
+    if (this == null) {
+      return null;
+    }
+    if (!(this is BoolJsonObject)) {
+      return null;
+    }
+    return (this as BoolJsonObject).value;
+  }
+
+  String? tryCastToString() {
+    if (this == null) {
+      return null;
+    }
+    if (!(this is StringJsonObject)) {
+      return null;
+    }
+    return (this as StringJsonObject).value;
+  }
+
+  num? tryCastToNum() {
+    if (this == null) {
+      return null;
+    }
+    if (!(this is NumJsonObject)) {
+      return null;
+    }
+    return (this as NumJsonObject).value;
+  }
+
+  DateTime? tryCastToDateTime() {
+    if (this == null) {
+      return null;
+    }
+    if (!(this is StringJsonObject)) {
+      return null;
+    }
+
+    return DateTime.tryParse((this as StringJsonObject).value);
+  }
+
   int? tryCastToInt() {
     if (this == null) {
       return null;
@@ -121,17 +162,29 @@ extension JsonObjectExtension on JsonObject? {
     return (this as NumJsonObject).value.toInt();
   }
 
-  List<Object> tryCastToListObj() {
+  List<Object>? tryCastToListObj() {
     if (this == null) {
-      return [];
+      return null;
     }
     if (!(this is ListJsonObject)) {
-      return [];
+      return null;
     }
     return (this as ListJsonObject)
         .value
         .where((element) => element != null)
         .map((e) => e!)
         .toList();
+  }
+}
+
+extension ObjectExtension on Object? {
+  List<Object>? tryCastToList() {
+    if (this == null) {
+      return null;
+    }
+    if (this is List) {
+      return (this as List).cast<Object>();
+    }
+    return null;
   }
 }

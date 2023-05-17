@@ -35,15 +35,21 @@ class SurveyElementFactory {
     register<s.Matrixdropdown>(matrixDropdownBuilder);
     register<s.Matrixdynamic>(matrixDynamicBuilder);
     register<s.Checkbox>(checkBoxBuilder,
-        control: (context, element, {validators = const []}) =>
-            fb.array([], validators));
+        control: (context, element, {validators = const []}) => fb.array(
+            (element as s.Checkbox).defaultValue.tryCastToListObj() ?? [],
+            validators));
     register<s.Ranking>(rankingBuilder,
         control: (context, element, {validators = const []}) =>
-            FormControl<List<dynamic>>(validators: validators));
+            FormControl<List<dynamic>>(
+                value: (element as s.Ranking).defaultValue.tryCastToListObj() ??
+                    [],
+                validators: validators));
     register<s.Radiogroup>(radioGroupBuilder);
     register<s.Boolean>(booleanBuilder,
         control: (context, element, {validators = const []}) =>
-            FormControl<bool>(validators: validators));
+            FormControl<bool>(
+                value: (element as s.Boolean).defaultValue.tryCastToBool(),
+                validators: validators));
 
     register<s.Rating>(ratingBuilder,
         control: (context, element, {validators = const []}) =>
@@ -72,8 +78,12 @@ class SurveyElementFactory {
         );
       }).wrapQuestionTitle(context, element, configuration: configuration);
     },
-        control: (context, _, {validators = const []}) =>
-            FormControl<String>(validators: validators));
+        control: (context, element, {validators = const []}) =>
+            FormControl<String>(
+                validators: validators,
+                value: (element as s.Signaturepad)
+                    .defaultValue
+                    ?.tryCastToString()));
     register<s.Image>((context, element,
         {ElementConfiguration? configuration}) {
       return urlToImage((element as s.Image).imageLink)
@@ -85,7 +95,7 @@ class SurveyElementFactory {
         control: (context, element, {validators = const []}) =>
             FormControl<Object>(
                 validators: validators,
-                value: (element as s.Dropdown).defaultValue?.toString()));
+                value: (element as s.Dropdown).defaultValue?.value));
     register<s.Paneldynamic>(panelDynamicBuilder);
     register<s.Panel>(panelBuilder);
   }

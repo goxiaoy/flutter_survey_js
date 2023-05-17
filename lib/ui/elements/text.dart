@@ -78,17 +78,23 @@ AbstractControl textControlBuilder(BuildContext context, s.Elementbase element,
   final e = element as s.Text;
   if (e.inputType == s.TextInputType.date ||
       e.inputType == s.TextInputType.datetimeLocal) {
-    return FormControl<DateTime>(validators: validators);
+    return FormControl<DateTime>(
+        validators: validators, value: e.defaultValue.tryCastToDateTime());
   }
   if (e.inputType == s.TextInputType.color) {
-    return FormControl<String>(validators: validators);
+    return FormControl<String>(
+        validators: validators, value: e.defaultValue.tryCastToString());
   }
   if (e.inputType == s.TextInputType.email) {
-    return FormControl<String>(validators: [...validators, Validators.email]);
+    return FormControl<String>(
+        validators: [...validators, Validators.email],
+        value: e.defaultValue.tryCastToString());
   }
   if (e.inputType == s.TextInputType.number) {
     return FormControl<num>(
-        validators: [...validators, NullableNumberValidator().validate]);
+        validators: [...validators, NullableNumberValidator().validate],
+        value: e.defaultValue.tryCastToNum());
   }
-  return FormControl<String>(validators: validators);
+  return FormControl<String>(
+      validators: validators, value: e.defaultValue.tryCastToString());
 }
