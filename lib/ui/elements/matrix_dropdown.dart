@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'matrix_dropdown_base.dart';
 import 'question_title.dart';
-import 'survey_element_factory.dart';
+import '../survey_element_factory.dart';
 
-Widget matrixDropdownBuilder(context, element, {bool hasTitle = true}) {
+Widget matrixDropdownBuilder(context, element,
+    {ElementConfiguration? configuration}) {
   return MatrixDropdownElement(
     formControlName: element.name!,
     matrix: element as s.Matrixdropdown,
-  ).wrapQuestionTitle(element, hasTitle: hasTitle);
+  ).wrapQuestionTitle(context, element, configuration: configuration);
 }
 
 class MatrixDropdownElement extends StatelessWidget {
@@ -72,8 +74,12 @@ class MatrixDropdownElement extends StatelessWidget {
                             // final newV = HashSet<ValidatorFunction>.of(
                             //     [...c.validators, ...v]).toList();
                             c.setValidators(v);
-                            return SurveyElementFactory()
-                                .resolve(context, q, hasTitle: false);
+                            return SurveyConfiguration.of(context)!
+                                .factory
+                                .resolve(
+                                    context, q,
+                                    configuration: const ElementConfiguration(
+                                        hasTitle: false));
                           },
                         ),
                       ));

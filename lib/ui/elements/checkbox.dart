@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_wrap_form_array.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../generated/l10n.dart';
 import 'question_title.dart';
 
-Widget checkBoxBuilder(context, element, {bool hasTitle = true}) {
+Widget checkBoxBuilder(context, element,
+    {ElementConfiguration? configuration}) {
   return CheckBoxElement(
     formControlName: element.name!,
     element: element as s.Checkbox,
-  ).wrapQuestionTitle(element, hasTitle: hasTitle);
+  ).wrapQuestionTitle(context, element, configuration: configuration);
 }
 
 class CheckBoxElement extends StatefulWidget {

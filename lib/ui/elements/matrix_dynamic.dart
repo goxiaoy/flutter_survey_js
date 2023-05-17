@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
@@ -7,16 +8,14 @@ import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'matrix_dropdown_base.dart';
-import 'question_title.dart';
-import 'survey_element_factory.dart';
 
-final SurveyElementBuilder matrixDynamicBuilder =
-    (context, element, {bool hasTitle = true}) {
+Widget matrixDynamicBuilder(context, element,
+    {ElementConfiguration? configuration}) {
   return MatrixDynamicElement(
     formControlName: element.name!,
     matrix: element as s.Matrixdynamic,
-  ).wrapQuestionTitle(element, hasTitle: hasTitle);
-};
+  ).wrapQuestionTitle(context, element, configuration: configuration);
+}
 
 class MatrixDynamicElement extends StatelessWidget {
   final String formControlName;
@@ -82,8 +81,12 @@ class MatrixDynamicElement extends StatelessWidget {
                             //     [...c.validators, ...v]).toList();
                             //TODO runner
                             c.setValidators(v);
-                            return SurveyElementFactory()
-                                .resolve(context, q, hasTitle: false);
+                            return SurveyConfiguration.of(context)!
+                                .factory
+                                .resolve(
+                                    context, q,
+                                    configuration: const ElementConfiguration(
+                                        hasTitle: false));
                           },
                         ),
                       ));

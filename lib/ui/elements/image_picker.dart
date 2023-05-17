@@ -8,7 +8,7 @@
 // import 'survey_element_factory.dart';
 //
 // final SurveyElementBuilder imagePickerBuilder =
-//     (context, element, {bool hasTitle = true}) {
+//     (context, element, {ElementConfiguration? configuration}) {
 //   return ImagePickerElement(
 //     formControlName: element.name!,
 //     element: element as s.ImagePicker,

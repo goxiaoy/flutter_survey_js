@@ -1,6 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/survey_page_widget.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
@@ -109,36 +110,36 @@ class SurveyLayoutState extends State<SurveyLayout> {
     final currentPage = surveyWidgetState.currentPage;
     final pages = _reCalculatePages(
         surveyWidgetState.widget.showQuestionsInOnePage, survey);
-    return Column(
-      children: [
-        widget.surveyTitleBuilder != null
-            ? widget.surveyTitleBuilder!(context, survey)
-            : defaultSurveyTitleBuilder(context, survey),
-        Expanded(
-            child: Padding(
-          padding: widget.padding ?? const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              (widget.stepperBuilder ?? defaultStepperBuilder)(
-                  context, pageCount, currentPage),
-
-              Expanded(
-                child: buildPages(pages),
-              ),
-              // Next and Previous buttons.
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return  Column(
+          children: [
+            widget.surveyTitleBuilder != null
+                ? widget.surveyTitleBuilder!(context, survey)
+                : defaultSurveyTitleBuilder(context, survey),
+            Expanded(
+                child: Padding(
+              padding: widget.padding ?? const EdgeInsets.all(8.0),
+              child: Column(
                 children: [
-                  if (currentPage != 0) previousButton(),
-                  nextButton()
+                  (widget.stepperBuilder ?? defaultStepperBuilder)(
+                      context, pageCount, currentPage),
+
+                  Expanded(
+                    child: buildPages(pages),
+                  ),
+                  // Next and Previous buttons.
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      if (currentPage != 0) previousButton(),
+                      nextButton()
+                    ],
+                  )
                 ],
-              )
-            ],
-          ),
-        ))
-      ],
-    );
+              ),
+            ))
+          ],
+        );
   }
 
   List<s.Page> _reCalculatePages(bool showQuestionsInOnePage, s.Survey survey) {

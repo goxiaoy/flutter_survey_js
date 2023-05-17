@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -89,26 +90,28 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
     final elementsState = ElementsState(status);
 
-    return ReactiveForm(
-      formGroup: formGroup,
-      child: StreamBuilder(
-        stream: formGroup.valueChanges,
-        builder: (BuildContext context,
-            AsyncSnapshot<Map<String, Object?>?> snapshot) {
-          return SurveyProvider(
-            survey: widget.survey,
-            formGroup: formGroup,
-            elementsState: elementsState,
-            currentPage: currentPage,
-            initialPage: initialPage,
-            showQuestionsInOnePage: widget.showQuestionsInOnePage,
-            child: Builder(
-                builder: (context) =>
-                    (widget.builder ?? defaultBuilder)(context)),
-          );
-        },
-      ),
-    );
+    return SurveyConfiguration.copyAncestor(
+        context: context,
+        child: ReactiveForm(
+          formGroup: formGroup,
+          child: StreamBuilder(
+            stream: formGroup.valueChanges,
+            builder: (BuildContext context,
+                AsyncSnapshot<Map<String, Object?>?> snapshot) {
+              return SurveyProvider(
+                survey: widget.survey,
+                formGroup: formGroup,
+                elementsState: elementsState,
+                currentPage: currentPage,
+                initialPage: initialPage,
+                showQuestionsInOnePage: widget.showQuestionsInOnePage,
+                child: Builder(
+                    builder: (context) =>
+                        (widget.builder ?? defaultBuilder)(context)),
+              );
+            },
+          ),
+        ));
   }
 
   void rebuildForm() {

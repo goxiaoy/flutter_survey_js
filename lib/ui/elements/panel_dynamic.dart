@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_group_array.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'question_title.dart';
-import 'survey_element_factory.dart';
+import '../survey_element_factory.dart';
 
-Widget panelDynamicBuilder(context, element, {bool hasTitle = true}) {
+Widget panelDynamicBuilder(context, element,
+    {ElementConfiguration? configuration}) {
   return PanelDynamicElement(
     formControlName: element.name!,
     element: element as s.Paneldynamic,
-  ).wrapQuestionTitle(element, hasTitle: hasTitle);
+  ).wrapQuestionTitle(context, element, configuration: configuration);
 }
 
 class PanelDynamicElement extends StatelessWidget {
@@ -51,7 +53,8 @@ class PanelDynamicElement extends StatelessWidget {
                       return res;
                     },
                     separatorBuilder: (BuildContext context, int index) {
-                      return SurveyElementFactory().separatorBuilder(context);
+                      return SurveyConfiguration.of(context)!
+                          .separatorBuilder(context);
                     },
                   )));
         });

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
-import 'package:flutter_survey_js/ui/elements/survey_element_factory.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
+import 'package:flutter_survey_js/ui/survey_element_factory.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:json_editor/json_editor.dart';
 import 'package:logging/logging.dart';
@@ -86,7 +87,9 @@ class CustomLayoutState extends State<CustomLayout> {
     IndexedWidgetBuilder itemBuilder(List<s.Elementbase> elements) {
       return (context, index) {
         if (index < elements.length && index >= 0) {
-          return SurveyElementFactory().resolve(context, elements[index]);
+          return SurveyConfiguration.of(context)!
+              .factory
+              .resolve(context, elements[index]);
         } else {
           return Container(
             width: double.infinity,
@@ -97,7 +100,7 @@ class CustomLayoutState extends State<CustomLayout> {
 
     final IndexedWidgetBuilder separatorBuilder =
         (BuildContext context, int index) {
-      return SurveyElementFactory().separatorBuilder.call(context);
+      return SurveyConfiguration.of(context)!.separatorBuilder.call(context);
     };
     return SingleChildScrollView(
       child: Column(
