@@ -2,12 +2,15 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
+import 'package:reactive_forms/reactive_forms.dart';
 
 import 'question_title.dart';
-import 'survey_element_factory.dart';
+import '../survey_element_factory.dart';
 
-Widget multipleTextBuilder(context, element, {bool hasTitle = true}) {
+Widget multipleTextBuilder(context, element,
+    {ElementConfiguration? configuration}) {
   final e = element as s.Multipletext;
   final texts = (e.items?.toList() ?? []).map(toText).toList();
   return ReactiveNestedForm(
@@ -26,12 +29,12 @@ Widget multipleTextBuilder(context, element, {bool hasTitle = true}) {
               : res;
         },
         separatorBuilder: (BuildContext context, int index) {
-          return SurveyElementFactory().separatorBuilder(context);
+          return SurveyConfiguration.of(context)!.separatorBuilder(context);
         },
-      ).wrapQuestionTitle(element, hasTitle: hasTitle));
+      ).wrapQuestionTitle(context, element, configuration: configuration));
 }
 
-Object? multipleTextControlBuilder(s.Elementbase element,
+AbstractControl multipleTextControlBuilder(s.Elementbase element,
     {validators = const []}) {
   final e = element as s.Multipletext;
   final texts = (e.items?.toList() ?? []).map(toText).toList();

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_color_picker.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import 'question_title.dart';
-
-Widget textBuilder(context, element, {bool hasTitle = true}) {
+Widget textBuilder(context, element, {ElementConfiguration? configuration}) {
   final e = element as s.Text;
   final String? hintText = e.placeholder;
   Widget widget = ReactiveTextField(
@@ -70,10 +69,11 @@ Widget textBuilder(context, element, {bool hasTitle = true}) {
       decoration: InputDecoration(hintText: hintText),
     );
   }
-  return widget.wrapQuestionTitle(element, hasTitle: hasTitle);
+  return widget.wrapQuestionTitle(context, element,
+      configuration: configuration);
 }
 
-Object? textControlBuilder(s.Elementbase element,
+AbstractControl textControlBuilder(s.Elementbase element,
     {validators = const <ValidatorFunction>[]}) {
   final e = element as s.Text;
   if (e.inputType == s.TextInputType.date ||

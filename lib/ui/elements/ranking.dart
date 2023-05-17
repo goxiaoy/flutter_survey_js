@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_reorderable_list.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
-import 'question_title.dart';
-
-Widget rankingBuilder(context, element, {bool hasTitle = true}) {
+Widget rankingBuilder(context, element, {ElementConfiguration? configuration}) {
   return RankingElement(
     formControlName: element.name!,
     element: element as s.Ranking,
-  ).wrapQuestionTitle(element, hasTitle: hasTitle);
+  ).wrapQuestionTitle(context, element, configuration: configuration);
 }
 
 class RankingElement extends StatelessWidget {

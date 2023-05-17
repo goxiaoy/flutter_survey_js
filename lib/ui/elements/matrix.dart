@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
+import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 import 'question_title.dart';
 
-Widget matrixBuilder(context, element, {bool hasTitle = true}) {
+Widget matrixBuilder(context, element, {ElementConfiguration? configuration}) {
   return MatrixElement(
     formControlName: element.name!,
     matrix: element as s.Matrix,
-  ).wrapQuestionTitle(element, hasTitle: hasTitle);
+  ).wrapQuestionTitle(context, element, configuration: configuration);
 }
 
 class MatrixElement extends StatelessWidget {

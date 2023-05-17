@@ -72,6 +72,25 @@ s.SurveyWidget(
 
 ```
 
+## Customize
+```dart
+s.SurveyConfiguration(
+  unsupportedBuilder: ...,
+  ...
+  child: s.SurveyWidget(
+    survey: s.surveyFromJson(survey),
+    onChange: (v) {
+      print(v);
+    },
+    onSubmit: (v) {
+      print(v);
+    },
+  )
+)
+
+
+```
+
 # Development
 ## Melos
 
