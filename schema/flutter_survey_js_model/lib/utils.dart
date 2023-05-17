@@ -127,7 +127,7 @@ extension JsonObjectExtension on JsonObject? {
       return null;
     }
     if (!(this is StringJsonObject)) {
-      return null;
+      return this.toString();
     }
     return (this as StringJsonObject).value.tryCastToString();
   }
@@ -137,6 +137,9 @@ extension JsonObjectExtension on JsonObject? {
       return null;
     }
     if (!(this is NumJsonObject)) {
+      if (this is StringJsonObject && this != null) {
+        return num.tryParse(this!.asString);
+      }
       return null;
     }
     return (this as NumJsonObject).value.tryCastToNum();
@@ -158,6 +161,9 @@ extension JsonObjectExtension on JsonObject? {
       return null;
     }
     if (!(this is NumJsonObject)) {
+      if (this is StringJsonObject && this != null) {
+        return int.tryParse(this!.asString);
+      }
       return null;
     }
     return (this as NumJsonObject).value.tryCastToInt();
