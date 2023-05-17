@@ -40,7 +40,6 @@ class SurveyWidget extends StatefulWidget {
   State<StatefulWidget> createState() => SurveyWidgetState();
 }
 
-
 class SurveyWidgetState extends State<SurveyWidget> {
   final Logger logger = Logger('SurveyWidgetState');
   late FormGroup formGroup;
@@ -125,7 +124,8 @@ class SurveyWidgetState extends State<SurveyWidget> {
         controlsMap: _controlsMap);
 
     if (widget.answer != null) {
-      formGroup.updateValue(widget.answer);
+      
+      formGroup.patchValue(widget.answer);
     }
 
     _listener = formGroup.valueChanges.listen((event) {
