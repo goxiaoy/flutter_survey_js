@@ -36,28 +36,33 @@ class SurveyElementFactory {
     register<s.Matrixdropdown>(matrixDropdownBuilder);
     register<s.Matrixdynamic>(matrixDynamicBuilder);
     register<s.Checkbox>(checkBoxBuilder,
-        control: (context, element, {validators = const []}) =>
+        control: (context, element, {validators = const [], value}) =>
             alwaysUpdateArray(
-                (element as s.Checkbox).defaultValue.tryCastToListObj() ?? [],
+                (element as s.Checkbox).defaultValue.tryCastToListObj() ??
+                    value.tryCastToList() ??
+                    [],
                 validators));
     register<s.Ranking>(rankingBuilder,
-        control: (context, element, {validators = const []}) =>
+        control: (context, element, {validators = const [], value}) =>
             FormControl<List<dynamic>>(
                 value: (element as s.Ranking).defaultValue.tryCastToListObj() ??
+                    value.tryCastToList() ??
                     [],
                 validators: validators));
     register<s.Radiogroup>(radioGroupBuilder);
     register<s.Boolean>(booleanBuilder,
-        control: (context, element, {validators = const []}) =>
+        control: (context, element, {validators = const [], value}) =>
             FormControl<bool>(
-                value: (element as s.Boolean).defaultValue.tryCastToBool(),
+                value: (element as s.Boolean).defaultValue.tryCastToBool() ??
+                    value.tryCastToBool(),
                 validators: validators));
 
     register<s.Rating>(ratingBuilder,
-        control: (context, element, {validators = const []}) =>
+        control: (context, element, {validators = const [], value}) =>
             FormControl<int>(
                 validators: validators,
-                value: (element as s.Rating).defaultValue.tryCastToInt()));
+                value: (element as s.Rating).defaultValue.tryCastToInt() ??
+                    value.tryCastToInt()));
 
     register<s.Comment>(commentBuilder);
 
@@ -80,12 +85,13 @@ class SurveyElementFactory {
         );
       }).wrapQuestionTitle(context, element, configuration: configuration);
     },
-        control: (context, element, {validators = const []}) =>
+        control: (context, element, {validators = const [], value}) =>
             FormControl<String>(
                 validators: validators,
                 value: (element as s.Signaturepad)
-                    .defaultValue
-                    ?.tryCastToString()));
+                        .defaultValue
+                        ?.tryCastToString() ??
+                    value.tryCastToString()));
     register<s.Image>((context, element,
         {ElementConfiguration? configuration}) {
       return urlToImage((element as s.Image).imageLink)
@@ -94,10 +100,10 @@ class SurveyElementFactory {
     // register<s.ImagePicker>(imagePickerBuilder);
 
     register<s.Dropdown>(dropdownBuilder,
-        control: (context, element, {validators = const []}) =>
+        control: (context, element, {validators = const [], value}) =>
             FormControl<Object>(
                 validators: validators,
-                value: (element as s.Dropdown).defaultValue?.value));
+                value: (element as s.Dropdown).defaultValue?.value ?? value));
     register<s.Paneldynamic>(panelDynamicBuilder);
     register<s.Panel>(panelBuilder);
   }

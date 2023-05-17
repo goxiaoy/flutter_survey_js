@@ -4,7 +4,7 @@ version: 0.0.2-dev.2
 homepage: https://github.com/Goxiaoy/flutter_survey_js
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.15.0 <4.0.0"
   flutter: ">=3.7.0"
 
 dependencies:
@@ -37,7 +37,7 @@ dependencies:
   flutter_survey_js_model: ^0.0.2-dev.2
   built_value: ">=8.4.0 <9.0.0"
   built_collection: ">=5.1.1 <6.0.0"
-
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

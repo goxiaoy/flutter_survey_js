@@ -106,7 +106,8 @@ Object toFormObject(BuildContext context, s.Elementbase element,
         ((SurveyConfiguration.of(context)?.factory) ?? SurveyElementFactory())
             .resolveFormControl(element);
     //find from facotry or fallback to FormControl<Object>
-    final res = c?.call(context, element, validators: validators) ??
+    final res = c?.call(context, element,
+            validators: validators, value: value) ??
         FormControl<Object>(validators: validators, value: getDefaultValue());
     return res;
   }
