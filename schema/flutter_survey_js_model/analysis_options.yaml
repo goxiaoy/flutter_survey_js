@@ -3,7 +3,7 @@ analyzer:
     strict-inference: true
     strict-raw-types: true
   exclude:
-    - src/*.dart
-    - test/*.dart
+    - lib/src/**.dart
+    - test/**.dart
   errors:
     deprecated_member_use_from_same_package: ignore
