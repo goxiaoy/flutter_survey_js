@@ -3,6 +3,7 @@ import 'package:flutter_survey_js/ui/elements/boolean.dart';
 import 'package:flutter_survey_js/ui/elements/comment.dart';
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/elements/panel.dart';
+import 'package:flutter_survey_js/ui/reactive/always_update_form_array.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
@@ -35,9 +36,10 @@ class SurveyElementFactory {
     register<s.Matrixdropdown>(matrixDropdownBuilder);
     register<s.Matrixdynamic>(matrixDynamicBuilder);
     register<s.Checkbox>(checkBoxBuilder,
-        control: (context, element, {validators = const []}) => fb.array(
-            (element as s.Checkbox).defaultValue.tryCastToListObj() ?? [],
-            validators));
+        control: (context, element, {validators = const []}) =>
+            alwaysUpdateArray(
+                (element as s.Checkbox).defaultValue.tryCastToListObj() ?? [],
+                validators));
     register<s.Ranking>(rankingBuilder,
         control: (context, element, {validators = const []}) =>
             FormControl<List<dynamic>>(

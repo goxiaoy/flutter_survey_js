@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/ui/reactive/always_update_form_array.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -65,12 +66,12 @@ Object toFormObject(BuildContext context, s.Elementbase element,
           value: value);
     }
     if (element is s.Paneldynamic) {
-      return fb.array(element.defaultValue.tryCastToListObj() ??
+      return alwaysUpdateArray(element.defaultValue.tryCastToListObj() ??
           value.tryCastToList() ??
           []);
     }
     if (element is s.Matrixdynamic) {
-      return fb.array(element.defaultValue.tryCastToListObj() ??
+      return alwaysUpdateArray(element.defaultValue.tryCastToListObj() ??
           value.tryCastToList() ??
           []);
     }
