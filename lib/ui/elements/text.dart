@@ -73,7 +73,7 @@ Widget textBuilder(context, element, {ElementConfiguration? configuration}) {
       configuration: configuration);
 }
 
-AbstractControl textControlBuilder(s.Elementbase element,
+AbstractControl textControlBuilder(BuildContext context, s.Elementbase element,
     {validators = const <ValidatorFunction>[]}) {
   final e = element as s.Text;
   if (e.inputType == s.TextInputType.date ||

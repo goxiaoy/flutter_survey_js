@@ -129,7 +129,7 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
                     itemBuilder: (context, index) {
                       if (index < widget.page.elementsOrQuestions!.length &&
                           index >= 0) {
-                        return SurveyElementFactory().resolve(
+                        return SurveyConfiguration.of(context)!.factory.resolve(
                             context,
                             widget
                                 .page.elementsOrQuestions![index].realElement);
