@@ -119,7 +119,7 @@ abstract class QuestionAllOf  {
   String? get defaultValueExpression;
 
   @BuiltValueField(wireName: r'correctAnswer')
-  String? get correctAnswer;
+  JsonObject? get correctAnswer;
 
   @BuiltValueField(wireName: r'clearIfInvisible')
   QuestionClearIfInvisible? get clearIfInvisible;
@@ -315,7 +315,7 @@ class _$QuestionAllOfSerializer implements PrimitiveSerializer<QuestionAllOf> {
       yield r'correctAnswer';
       yield serializers.serialize(
         object.correctAnswer,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -602,8 +602,9 @@ class _$$QuestionAllOfSerializer implements PrimitiveSerializer<$QuestionAllOf> 
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
         case r'clearIfInvisible':

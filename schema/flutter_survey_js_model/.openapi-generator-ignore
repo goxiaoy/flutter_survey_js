@@ -31,3 +31,4 @@ README.md
 lib/src/model/survey_questions_inner.dart
 lib/flutter_survey_js_model.dart
 pubspec.yaml
+analysis_options.yaml

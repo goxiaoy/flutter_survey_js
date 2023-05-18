@@ -33,8 +33,8 @@ abstract class SignaturepadAllOfBuilder {
   JsonObject? get defaultValue;
   set defaultValue(JsonObject? defaultValue);
 
-  String? get correctAnswer;
-  set correctAnswer(String? correctAnswer);
+  JsonObject? get correctAnswer;
+  set correctAnswer(JsonObject? correctAnswer);
 }
 
 class _$$SignaturepadAllOf extends $SignaturepadAllOf {
@@ -55,7 +55,7 @@ class _$$SignaturepadAllOf extends $SignaturepadAllOf {
   @override
   final JsonObject? defaultValue;
   @override
-  final String? correctAnswer;
+  final JsonObject? correctAnswer;
 
   factory _$$SignaturepadAllOf(
           [void Function($SignaturepadAllOfBuilder)? updates]) =>
@@ -176,9 +176,9 @@ class $SignaturepadAllOfBuilder
   set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
-  String? _correctAnswer;
-  String? get correctAnswer => _$this._correctAnswer;
-  set correctAnswer(covariant String? correctAnswer) =>
+  JsonObject? _correctAnswer;
+  JsonObject? get correctAnswer => _$this._correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
   $SignaturepadAllOfBuilder() {

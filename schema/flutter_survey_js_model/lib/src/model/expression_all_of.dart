@@ -73,7 +73,7 @@ abstract class ExpressionAllOf  {
   JsonObject? get defaultValue;
 
   @BuiltValueField(wireName: r'correctAnswer')
-  String? get correctAnswer;
+  JsonObject? get correctAnswer;
 
   @BuiltValueField(wireName: r'requiredIf')
   String? get requiredIf;
@@ -189,7 +189,7 @@ class _$ExpressionAllOfSerializer implements PrimitiveSerializer<ExpressionAllOf
       yield r'correctAnswer';
       yield serializers.serialize(
         object.correctAnswer,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.requiredIf != null) {
@@ -357,8 +357,9 @@ class _$$ExpressionAllOfSerializer implements PrimitiveSerializer<$ExpressionAll
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
         case r'requiredIf':

@@ -96,8 +96,8 @@ abstract class MatrixbaseBuilder
   String? get defaultValueExpression;
   set defaultValueExpression(covariant String? defaultValueExpression);
 
-  String? get correctAnswer;
-  set correctAnswer(covariant String? correctAnswer);
+  JsonObject? get correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer);
 
   QuestionClearIfInvisible? get clearIfInvisible;
   set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible);
@@ -189,7 +189,7 @@ class _$$Matrixbase extends $Matrixbase {
   @override
   final String? defaultValueExpression;
   @override
-  final String? correctAnswer;
+  final JsonObject? correctAnswer;
   @override
   final QuestionClearIfInvisible? clearIfInvisible;
   @override
@@ -541,9 +541,9 @@ class $MatrixbaseBuilder
   set defaultValueExpression(covariant String? defaultValueExpression) =>
       _$this._defaultValueExpression = defaultValueExpression;
 
-  String? _correctAnswer;
-  String? get correctAnswer => _$this._correctAnswer;
-  set correctAnswer(covariant String? correctAnswer) =>
+  JsonObject? _correctAnswer;
+  JsonObject? get correctAnswer => _$this._correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
   QuestionClearIfInvisible? _clearIfInvisible;

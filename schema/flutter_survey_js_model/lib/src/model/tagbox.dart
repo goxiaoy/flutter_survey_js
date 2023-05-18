@@ -237,7 +237,7 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'correctAnswer';
       yield serializers.serialize(
         object.correctAnswer,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.showCommentArea != null) {
@@ -694,8 +694,9 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
         case r'showCommentArea':

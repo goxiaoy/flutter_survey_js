@@ -30,7 +30,7 @@ class _$File extends File {
   @override
   final JsonObject? defaultValue;
   @override
-  final String? correctAnswer;
+  final JsonObject? correctAnswer;
   @override
   final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
@@ -361,9 +361,9 @@ class FileBuilder
   set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
-  String? _correctAnswer;
-  String? get correctAnswer => _$this._correctAnswer;
-  set correctAnswer(covariant String? correctAnswer) =>
+  JsonObject? _correctAnswer;
+  JsonObject? get correctAnswer => _$this._correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
   ListBuilder<QuestionAllOfValidatorsInner>? _validators;

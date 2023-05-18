@@ -1,5 +1,4 @@
 .gitignore
-analysis_options.yaml
 lib/src/date_serializer.dart
 lib/src/model/answercountvalidator.dart
 lib/src/model/answercountvalidator_all_of.dart
