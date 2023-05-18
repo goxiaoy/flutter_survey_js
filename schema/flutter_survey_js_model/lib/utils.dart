@@ -1,4 +1,3 @@
-
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
@@ -116,51 +115,35 @@ extension JsonObjectExtension on JsonObject? {
     if (this == null) {
       return null;
     }
-    if (!(this is BoolJsonObject)) {
-      return null;
-    }
-    return (this as BoolJsonObject).value.tryCastToBool();
+    return this!.value.tryCastToBool();
   }
 
   String? tryCastToString() {
     if (this == null) {
       return null;
     }
-    if (!(this is StringJsonObject)) {
-      return null;
-    }
-    return (this as StringJsonObject).value.tryCastToString();
+    return this!.value.tryCastToString();
   }
 
   num? tryCastToNum() {
     if (this == null) {
       return null;
     }
-    if (!(this is NumJsonObject)) {
-      return null;
-    }
-    return (this as NumJsonObject).value.tryCastToNum();
+    return this!.value.tryCastToNum();
   }
 
   DateTime? tryCastToDateTime() {
     if (this == null) {
       return null;
     }
-    if (!(this is StringJsonObject)) {
-      return null;
-    }
-
-    return (this as StringJsonObject).value.tryCastToDateTime();
+    return this!.value.tryCastToDateTime();
   }
 
   int? tryCastToInt() {
     if (this == null) {
       return null;
     }
-    if (!(this is NumJsonObject)) {
-      return null;
-    }
-    return (this as NumJsonObject).value.tryCastToInt();
+    return this!.value.tryCastToInt();
   }
 
   List<Object>? tryCastToListObj() {
