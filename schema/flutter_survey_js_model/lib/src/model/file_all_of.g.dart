@@ -42,8 +42,8 @@ abstract class FileAllOfBuilder {
   JsonObject? get defaultValue;
   set defaultValue(JsonObject? defaultValue);
 
-  String? get correctAnswer;
-  set correctAnswer(String? correctAnswer);
+  JsonObject? get correctAnswer;
+  set correctAnswer(JsonObject? correctAnswer);
 
   ListBuilder<QuestionAllOfValidatorsInner> get validators;
   set validators(ListBuilder<QuestionAllOfValidatorsInner>? validators);
@@ -76,7 +76,7 @@ class _$$FileAllOf extends $FileAllOf {
   @override
   final JsonObject? defaultValue;
   @override
-  final String? correctAnswer;
+  final JsonObject? correctAnswer;
   @override
   final BuiltList<QuestionAllOfValidatorsInner>? validators;
   @override
@@ -231,9 +231,9 @@ class $FileAllOfBuilder
   set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
-  String? _correctAnswer;
-  String? get correctAnswer => _$this._correctAnswer;
-  set correctAnswer(covariant String? correctAnswer) =>
+  JsonObject? _correctAnswer;
+  JsonObject? get correctAnswer => _$this._correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
   ListBuilder<QuestionAllOfValidatorsInner>? _validators;

@@ -347,6 +347,11 @@ const fix = (target) =>
         $ref: "#/components/schemas/choicesRestful",
       };
     }
+    if (key === "correctAnswer") {
+      object[key] = {
+        $ref: "#/components/schemas/anyvalue",
+      };
+    }
 
     if (
       key.toLowerCase().endsWith("width") ||

@@ -25,8 +25,8 @@ abstract class NonvalueBuilder
   JsonObject? get defaultValue;
   set defaultValue(covariant JsonObject? defaultValue);
 
-  String? get correctAnswer;
-  set correctAnswer(covariant String? correctAnswer);
+  JsonObject? get correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer);
 
   QuestionClearIfInvisible? get clearIfInvisible;
   set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible);
@@ -125,7 +125,7 @@ class _$$Nonvalue extends $Nonvalue {
   @override
   final JsonObject? defaultValue;
   @override
-  final String? correctAnswer;
+  final JsonObject? correctAnswer;
   @override
   final QuestionClearIfInvisible? clearIfInvisible;
   @override
@@ -374,9 +374,9 @@ class $NonvalueBuilder
   set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
-  String? _correctAnswer;
-  String? get correctAnswer => _$this._correctAnswer;
-  set correctAnswer(covariant String? correctAnswer) =>
+  JsonObject? _correctAnswer;
+  JsonObject? get correctAnswer => _$this._correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
   QuestionClearIfInvisible? _clearIfInvisible;

@@ -34,7 +34,7 @@ class _$Expression extends Expression {
   @override
   final JsonObject? defaultValue;
   @override
-  final String? correctAnswer;
+  final JsonObject? correctAnswer;
   @override
   final String? requiredIf;
   @override
@@ -351,9 +351,9 @@ class ExpressionBuilder
   set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
 
-  String? _correctAnswer;
-  String? get correctAnswer => _$this._correctAnswer;
-  set correctAnswer(covariant String? correctAnswer) =>
+  JsonObject? _correctAnswer;
+  JsonObject? get correctAnswer => _$this._correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
   String? _requiredIf;

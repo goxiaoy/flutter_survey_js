@@ -730,7 +730,7 @@
                 "type": "string"
               },
               "correctAnswer": {
-                "type": "string"
+                "$ref": "#/components/schemas/anyvalue"
               },
               "clearIfInvisible": {
                 "$ref": "#/components/schemas/questionClearIfInvisible"
@@ -1839,7 +1839,7 @@
                 "$ref": "#/components/schemas/anyvalue"
               },
               "correctAnswer": {
-                "type": "string"
+                "$ref": "#/components/schemas/anyvalue"
               },
               "requiredIf": {
                 "type": "string"
@@ -2054,7 +2054,7 @@
                 "$ref": "#/components/schemas/anyvalue"
               },
               "correctAnswer": {
-                "type": "string"
+                "$ref": "#/components/schemas/anyvalue"
               },
               "clearIfInvisible": {
                 "$ref": "#/components/schemas/questionClearIfInvisible"
@@ -2238,7 +2238,7 @@
                 "$ref": "#/components/schemas/anyvalue"
               },
               "correctAnswer": {
-                "type": "string"
+                "$ref": "#/components/schemas/anyvalue"
               },
               "validators": {
                 "type": "array",
@@ -2426,7 +2426,7 @@
                 "$ref": "#/components/schemas/anyvalue"
               },
               "correctAnswer": {
-                "type": "string"
+                "$ref": "#/components/schemas/anyvalue"
               }
             }
           }

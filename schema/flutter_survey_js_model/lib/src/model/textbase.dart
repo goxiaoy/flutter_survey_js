@@ -181,7 +181,7 @@ class _$TextbaseSerializer implements PrimitiveSerializer<Textbase> {
       yield r'correctAnswer';
       yield serializers.serialize(
         object.correctAnswer,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.maxWidth != null) {
@@ -475,8 +475,9 @@ class _$$TextbaseSerializer implements PrimitiveSerializer<$Textbase> {
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
         case r'maxWidth':
