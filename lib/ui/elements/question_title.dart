@@ -35,14 +35,14 @@ class QuestionTitle extends StatelessWidget {
           if ((survey.survey.showQuestionNumbers?.isOn ?? true) &&
               status.indexAll != null) {
             return Text(
-              '${status.indexAll! + 1}.',
+              '${status.indexAll! + 1}. ',
               key: questionNumberTextKey,
               style: titleTextStyle(),
             );
           } else if ((survey.survey.showQuestionNumbers?.isOnPage ?? false) &&
               status.indexInPage != null) {
             return Text(
-              '${status.indexInPage! + 1}.',
+              '${status.indexInPage! + 1}. ',
               key: questionNumberTextKey,
               style: titleTextStyle(),
             );
