@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_js/ui/custom_scroll_behavior.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
@@ -64,14 +65,19 @@ class MatrixElement extends StatelessWidget {
               ]));
         });
 
-        return Table(
-          defaultColumnWidth: const IntrinsicColumnWidth(),
-          border: TableBorder.all(
-            width: 1.0,
-          ),
-          // columnWidths: map,
-          children: list,
-        );
+        return ScrollConfiguration(
+            behavior: CustomScrollBehavior(),
+            child: Scrollbar(
+                child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Table(
+                      defaultColumnWidth: const IntrinsicColumnWidth(),
+                      border: TableBorder.all(
+                        width: 1.0,
+                      ),
+                      // columnWidths: map,
+                      children: list,
+                    ))));
       }),
     );
   }
