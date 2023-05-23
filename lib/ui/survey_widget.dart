@@ -124,7 +124,6 @@ class SurveyWidgetState extends State<SurveyWidget> {
         controlsMap: _controlsMap);
 
     if (widget.answer != null) {
-      
       formGroup.patchValue(widget.answer);
     }
 
@@ -176,8 +175,6 @@ class SurveyWidgetState extends State<SurveyWidget> {
 }
 
 class SurveyProvider extends InheritedWidget {
-  @override
-  final Widget child;
   final s.Survey survey;
   final FormGroup formGroup;
   final ElementsState elementsState;
@@ -188,7 +185,7 @@ class SurveyProvider extends InheritedWidget {
   const SurveyProvider({
     Key? key,
     required this.elementsState,
-    required this.child,
+    required Widget child,
     required this.survey,
     required this.formGroup,
     required this.currentPage,

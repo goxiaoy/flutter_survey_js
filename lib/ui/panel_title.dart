@@ -14,11 +14,9 @@ class PanelTitle extends StatelessWidget {
       onTap: () {
         // SurveyWidget.of(context).formGroup.vali;
       },
-      child: Container(
-        child: ListTile(
-          title: Text(panel.title ?? panel.name ?? ''),
-          subtitle: panel.description != null ? Text(panel.description!) : null,
-        ),
+      child: ListTile(
+        title: Text(panel.title ?? panel.name ?? ''),
+        subtitle: panel.description != null ? Text(panel.description!) : null,
       ),
     );
   }

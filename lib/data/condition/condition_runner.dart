@@ -23,7 +23,7 @@ class ConditionRunner {
   }
 
   List<String> getVariables() {
-    return _root != null ? _root.getVariables() : [];
+    return _root.getVariables();
   }
 
   bool run({Map<String, dynamic>? values, Map<String, dynamic>? properties}) {
@@ -51,8 +51,7 @@ class ExpressionRunner {
   set expression(String? value) {
     if (expression == value) return;
     _expressionValue = value;
-    _operand =
-        ConditionsParser().parseExpression(_expressionValue);
+    _operand = ConditionsParser().parseExpression(_expressionValue);
   }
 
   bool canRun() {
