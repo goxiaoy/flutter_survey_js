@@ -4,7 +4,7 @@ description: Model package auto generated from surveyjs json schema
 homepage: https://github.com/Goxiaoy/flutter_survey_js
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=2.15.0 <4.0.0"
 
 dependencies:
   one_of: ">=1.5.0 <2.0.0"

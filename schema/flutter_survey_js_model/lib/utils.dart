@@ -179,7 +179,7 @@ extension ObjectExtension on Object? {
     if (this is bool) {
       return this as bool;
     }
-    return bool.tryParse(this.toString(), caseSensitive: false);
+    return this.toString().toBoolean();
   }
 
   String? tryCastToString() {
@@ -220,5 +220,19 @@ extension ObjectExtension on Object? {
       return this as num;
     }
     return num.tryParse(this.toString());
+  }
+}
+
+extension on String {
+  bool? toBoolean() {
+    return (this.toLowerCase() == "true" ||
+            this.toLowerCase() == "1" ||
+            this.toLowerCase() == "on")
+        ? true
+        : (this.toLowerCase() == "false" ||
+                this.toLowerCase() == "0" ||
+                this.toLowerCase() == "off"
+            ? false
+            : null);
   }
 }
