@@ -1,3 +1,9 @@
+## 0.0.2-dev.3
+
+ - **FIX**: model correctAnswer. ([763dda2b](https://github.com/Goxiaoy/flutter_survey_js/commit/763dda2b8f91f13e87f7f624f94c98b50d826929))
+ - **FIX**: jsonobject value parse. ([fcd048af](https://github.com/Goxiaoy/flutter_survey_js/commit/fcd048af1025bcb66f5dc59f85743bf1b640d759))
+ - **FIX**: multiple_text default value missing. ([d386a2af](https://github.com/Goxiaoy/flutter_survey_js/commit/d386a2af1c8e8736a9ef05e89df3aaab399b18fe))
+
 ## 0.0.2-dev.2
 
  - **FIX**: treat showQuestionNumbersclose null as true.  close [#65](https://github.com/Goxiaoy/flutter_survey_js/issues/65). ([a35afd5f](https://github.com/Goxiaoy/flutter_survey_js/commit/a35afd5f25f245eb97fd9beb78ba09a86b3779be))

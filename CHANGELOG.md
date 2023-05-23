@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-05-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`flutter_survey_js` - `v0.0.2-dev.3`](#flutter_survey_js---v002-dev3)
+ - [`flutter_survey_js_model` - `v0.0.2-dev.3`](#flutter_survey_js_model---v002-dev3)
+
+---
+
+#### `flutter_survey_js` - `v0.0.2-dev.3`
+
+ - **FIX**: model correctAnswer. ([763dda2b](https://github.com/Goxiaoy/flutter_survey_js/commit/763dda2b8f91f13e87f7f624f94c98b50d826929))
+ - **FIX**: jsonobject value parse. ([fcd048af](https://github.com/Goxiaoy/flutter_survey_js/commit/fcd048af1025bcb66f5dc59f85743bf1b640d759))
+ - **FIX**: multiple_text default value missing. ([d386a2af](https://github.com/Goxiaoy/flutter_survey_js/commit/d386a2af1c8e8736a9ef05e89df3aaab399b18fe))
+
+#### `flutter_survey_js_model` - `v0.0.2-dev.3`
+
+ - **FIX**: model correctAnswer. ([763dda2b](https://github.com/Goxiaoy/flutter_survey_js/commit/763dda2b8f91f13e87f7f624f94c98b50d826929))
+ - **FIX**: jsonobject value parse. ([fcd048af](https://github.com/Goxiaoy/flutter_survey_js/commit/fcd048af1025bcb66f5dc59f85743bf1b640d759))
+ - **FIX**: multiple_text default value missing. ([d386a2af](https://github.com/Goxiaoy/flutter_survey_js/commit/d386a2af1c8e8736a9ef05e89df3aaab399b18fe))
+
+## 0.0.2-dev.3
+
+ - **FIX**: model correctAnswer. ([763dda2b](https://github.com/Goxiaoy/flutter_survey_js/commit/763dda2b8f91f13e87f7f624f94c98b50d826929))
+ - **FIX**: jsonobject value parse. ([fcd048af](https://github.com/Goxiaoy/flutter_survey_js/commit/fcd048af1025bcb66f5dc59f85743bf1b640d759))
+ - **FIX**: multiple_text default value missing. ([d386a2af](https://github.com/Goxiaoy/flutter_survey_js/commit/d386a2af1c8e8736a9ef05e89df3aaab399b18fe))
+
+
 ## 2023-05-17
 
 ### Changes
