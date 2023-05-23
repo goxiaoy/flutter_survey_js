@@ -12,14 +12,16 @@ command:
 scripts:
   build:
     exec: flutter pub run build_runner build --delete-conflicting-outputs
-    select-package:
-      depends-on: build_runner
+    packageFilters:
+      dependsOn:
+        - build_runner
   analyze:
     exec: flutter analyze --no-fatal-infos
   test:
     exec: flutter test
-    select-package:
-      dir-exists: test
+    packageFilters:
+      dirExists:
+        - test
   outdated:
     exec: dart pub outdated
   upgrade:
