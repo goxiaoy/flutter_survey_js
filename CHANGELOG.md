@@ -15,6 +15,40 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`flutter_survey_js` - `v0.0.2-dev.4`](#flutter_survey_js---v002-dev4)
+ - [`flutter_survey_js_model` - `v0.0.2-dev.4`](#flutter_survey_js_model---v002-dev4)
+
+---
+
+#### `flutter_survey_js` - `v0.0.2-dev.4`
+
+ - revert sdk upgrade
+
+#### `flutter_survey_js_model` - `v0.0.2-dev.4`
+
+ - revert sdk upgrade
+
+## 0.0.2-dev.4
+
+ - revert sdk upgrade
+
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 2023-05-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`flutter_survey_js` - `v0.0.2-dev.3`](#flutter_survey_js---v002-dev3)
  - [`flutter_survey_js_model` - `v0.0.2-dev.3`](#flutter_survey_js_model---v002-dev3)
 

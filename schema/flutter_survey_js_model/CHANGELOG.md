@@ -1,3 +1,7 @@
+## 0.0.2-dev.4
+
+ - revert sdk upgrade
+
 ## 0.0.2-dev.3
 
  - **FIX**: model correctAnswer. ([763dda2b](https://github.com/Goxiaoy/flutter_survey_js/commit/763dda2b8f91f13e87f7f624f94c98b50d826929))
