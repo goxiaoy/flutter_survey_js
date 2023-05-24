@@ -1,7 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/survey_page_widget.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;

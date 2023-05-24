@@ -6,8 +6,6 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
-import 'question_title.dart';
-import '../survey_element_factory.dart';
 
 Widget multipleTextBuilder(context, element,
     {ElementConfiguration? configuration}) {
@@ -25,7 +23,7 @@ Widget multipleTextBuilder(context, element,
               .resolve(context, texts[index]);
           return index == 0
               ? Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: res,
                 )
               : res;

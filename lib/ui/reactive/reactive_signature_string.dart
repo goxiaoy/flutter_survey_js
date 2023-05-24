@@ -82,7 +82,7 @@ class ReactiveSignatureString
   /// ```
   ///
   /// For documentation about the various parameters, see the [TextField] class
-  /// and [new TextField], the constructor.
+  /// and [TextField.new], the constructor.
   ReactiveSignatureString({
     Key? key,
     String? formControlName,
