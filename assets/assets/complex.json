@@ -20,7 +20,7 @@
       "name": "name",
       "type": "text",
       "title": "Text",
-      "placeHolder": "Jon Snow",
+      "placeholder": "Jon Snow",
       "isRequired": true
     },
     {
@@ -41,7 +41,7 @@
       "type": "text",
       "inputType": "email",
       "title": "Text Email",
-      "placeHolder": "jon.snow@nightwatch.org",
+      "placeholder": "jon.snow@nightwatch.org",
       "isRequired": true,
       "validators": [
         {
@@ -56,7 +56,6 @@
       "isRequired": true,
       "showNoneItem": true,
       "showOtherItem": true,
-      "colCount": 4,
       "choices": [
         "Ford",
         "Vauxhall",
