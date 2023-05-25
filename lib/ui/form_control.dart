@@ -121,7 +121,7 @@ Object toFormObject(BuildContext context, s.Elementbase element,
 
 String? getErrorTextFromFormControl<T>(
     BuildContext context, AbstractControl<T> control) {
-  if (control.hasErrors) {
+  if (control.touched && control.hasErrors) {
     final errorKey = control.errors.keys.first;
     final formConfig = ReactiveFormConfig.of(context);
 
