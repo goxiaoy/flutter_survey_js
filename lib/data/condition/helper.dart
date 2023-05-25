@@ -9,12 +9,11 @@ class Helpers {
         (value.toLowerCase() == "true" || value.toLowerCase() == "false");
   }
 
-  static bool isNumeric(String value) {
+  static bool isNumeric(String? value) {
     if (value == null) {
       return false;
     }
-    if (value.runtimeType == int || value.runtimeType == double) return true;
-    return double.tryParse(value) != null;
+    return num.tryParse(value) != null;
   }
 
   static SimpleValue getSimpleValue(dynamic val) {
@@ -87,8 +86,8 @@ class Helpers {
     return true;
   }
 
-  static bool? isTwoValueEquals(dynamic x, dynamic y, bool ignoreOrder
-      /* boolean = false*/) {
+  static bool? isTwoValueEquals(
+      dynamic x, dynamic y, bool ignoreOrder /* boolean = false*/) {
     if (x == y) return true;
     if ((x != null && y == null) || (x == null && y != null)) return false;
     if (!(x.runtimeType == Object) && !(y.runtimeType == Object)) return x == y;

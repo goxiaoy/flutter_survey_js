@@ -26,3 +26,5 @@ scripts:
     exec: dart pub outdated
   upgrade:
     exec: dart pub upgrade --major-versions
+  fix:
+    exec: dart fix --apply

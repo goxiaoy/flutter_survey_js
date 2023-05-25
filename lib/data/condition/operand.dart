@@ -26,8 +26,8 @@ class Operand {
       return res;
     }
 
-    if (originalValue.runtimeType == int ||
-        originalValue.runtimeType == double) return originalValue;
+    if (originalValue.runtimeType == int || originalValue.runtimeType == double)
+      return originalValue;
 
     if (originalValue.runtimeType == String) {
       String? strValue = originalValue;
@@ -101,7 +101,6 @@ class Operand {
     return false;
   }
   */
-
 }
 
 class ExpressionOperand extends Operand {
