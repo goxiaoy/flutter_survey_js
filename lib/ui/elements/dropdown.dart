@@ -5,7 +5,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../generated/l10n.dart';
 
-Widget dropdownBuilder(context, element,
+Widget dropdownBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   final e = (element as s.Dropdown);
 

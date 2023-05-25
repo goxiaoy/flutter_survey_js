@@ -4,7 +4,7 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_group_button.dart';
 import 'package:group_button/group_button.dart';
 
-Widget radioGroupBuilder(context, element,
+Widget radioGroupBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   final e = element as s.Radiogroup;
   return ReactiveGroupButton(

@@ -7,7 +7,7 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 
-Widget panelDynamicBuilder(context, element,
+Widget panelDynamicBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   return PanelDynamicElement(
     formControlName: element.name!,

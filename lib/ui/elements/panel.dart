@@ -3,7 +3,7 @@ import 'package:flutter_survey_js/ui/panel_title.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 
-Widget panelBuilder(context, element, {ElementConfiguration? configuration}) {
+Widget panelBuilder(BuildContext context, s.Elementbase element, {ElementConfiguration? configuration}) {
   final surveyConfig = SurveyConfiguration.of(context)!;
   return Column(
     children: [

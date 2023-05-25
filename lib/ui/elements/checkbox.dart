@@ -7,7 +7,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 import '../../generated/l10n.dart';
 
-Widget checkBoxBuilder(context, element,
+Widget checkBoxBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   return CheckBoxElement(
     formControlName: element.name!,

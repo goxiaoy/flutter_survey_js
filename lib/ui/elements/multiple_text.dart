@@ -7,7 +7,7 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 
-Widget multipleTextBuilder(context, element,
+Widget multipleTextBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   final e = element as s.Multipletext;
   final texts = (e.items?.toList() ?? []).map(toText).toList();

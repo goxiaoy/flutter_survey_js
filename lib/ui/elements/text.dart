@@ -6,7 +6,8 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-Widget textBuilder(context, element, {ElementConfiguration? configuration}) {
+Widget textBuilder(BuildContext context, s.Elementbase element,
+    {ElementConfiguration? configuration}) {
   final e = element as s.Text;
   final String? hintText = e.placeholder;
   Widget widget = ReactiveTextField(

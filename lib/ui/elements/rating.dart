@@ -4,7 +4,7 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_segmented_control/reactive_segmented_control.dart';
 
-Widget ratingBuilder(context, element, {ElementConfiguration? configuration}) {
+Widget ratingBuilder(BuildContext context, s.Elementbase element, {ElementConfiguration? configuration}) {
   final e = element as s.Rating;
 
   final textStyle = Theme.of(context)

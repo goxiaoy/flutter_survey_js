@@ -3,7 +3,7 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
-Widget commentBuilder(context, element, {ElementConfiguration? configuration}) {
+Widget commentBuilder(BuildContext context, s.Elementbase element, {ElementConfiguration? configuration}) {
   return ReactiveTextField(
     keyboardType: TextInputType.multiline,
     maxLines: null,
