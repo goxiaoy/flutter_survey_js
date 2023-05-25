@@ -34,7 +34,13 @@ class SurveyElementFactory {
   SurveyElementFactory() {
     register<s.Matrix>(matrixBuilder);
     register<s.Matrixdropdown>(matrixDropdownBuilder);
-    register<s.Matrixdynamic>(matrixDynamicBuilder);
+    register<s.Matrixdynamic>(matrixDynamicBuilder,
+        control: (context, element, {validators = const [], value}) =>
+            alwaysUpdateArray<Map<String, Object>>(
+                (element as s.Matrixdynamic).defaultValue.tryCastToListObj() ??
+                    value.tryCastToList() ??
+                    [],
+                validators));
     register<s.Checkbox>(checkBoxBuilder,
         control: (context, element, {validators = const [], value}) =>
             alwaysUpdateArray(
