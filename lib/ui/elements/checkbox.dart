@@ -79,6 +79,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
         (ReactiveForm.of(context, listen: false) as FormControlCollection)
             .control(widget.formControlName) as FormArray<Object?>;
     resetOtherItem(choices, formArray);
+    formArray.markAsUntouched();
   }
 
   @override
@@ -106,6 +107,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                         FormControl<Object>(value: choice.value?.value))
                     .toList());
               }
+              formArray.markAsTouched();
             },
           ));
         }
@@ -131,6 +133,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                   }
                 }
               }
+              formArray.markAsTouched();
             },
           ));
         }
@@ -148,6 +151,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                 CheckBoxElement.excludeFrom(formArray, 'none');
               }
               resetOtherItem(choices, formArray);
+              formArray.markAsTouched();
             },
           ));
         }
@@ -169,6 +173,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                 oldOtherValue = '';
                 showOtherTextField = v ?? false;
               });
+              formArray.markAsTouched();
             },
           ));
         }
@@ -191,6 +196,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
               setState(() {
                 oldOtherValue = value;
               });
+              formArray.markAsTouched();
             },
           ));
         }

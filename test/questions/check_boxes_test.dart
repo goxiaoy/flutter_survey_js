@@ -193,4 +193,69 @@ void main() {
     await tester.idle();
     expect(find.byType(TextFormField), findsNothing);
   });
+
+  testWidgets("checkbox should not show error messages when not touched",
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          appLocalizationDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Material(
+          child: SurveyWidget(survey: surveyFromJson(extended)!),
+        ),
+      ),
+    );
+
+    // initially no error messages
+    await tester.pump();
+    await tester.idle();
+    expect(find.byType(CheckboxListTile), findsWidgets);
+    expect(find.text("required"), findsNothing);
+
+    // check the "UNN Agatha King" option, no error messages
+    await tester.tap(find.text("UNN Agatha King"));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("required"), findsNothing);
+
+    // uncheck the "UNN Agatha King" option, show "required"
+    await tester.tap(find.text("UNN Agatha King"));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("required"), findsOneWidget);
+  });
+
+  testWidgets(
+      "checkbox should not show error messages when not touched, but should when not fully answered",
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          appLocalizationDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Material(
+          child: SurveyWidget(survey: surveyFromJson(extended)!),
+        ),
+      ),
+    );
+
+    // initially no error messages
+    await tester.pump();
+    await tester.idle();
+    expect(find.byType(CheckboxListTile), findsWidgets);
+    expect(find.text("required"), findsNothing);
+
+    // check the "Other" option but without entering any text, show "required"
+    await tester.tap(find.text("Other"));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("required"), findsOneWidget);
+  });
 }
