@@ -31,8 +31,8 @@ Widget defaultUnsupportedBuilder(BuildContext context, s.Elementbase element,
 Widget defaultSeparatorBuilder(
   BuildContext context,
 ) {
-  return const Wrap(
-    children: [
+  return Wrap(
+    children: const [
       SizedBox(
         height: 5,
       ),
