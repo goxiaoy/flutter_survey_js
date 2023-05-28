@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
+import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 
@@ -79,7 +80,10 @@ class SelectbaseController extends ChangeNotifier {
       //make show formControl exists
 
       if (!_fg.contains(name)) {
-        _fg.addAll({getOtherName(): fb.control<String>("")});
+        _fg.addAll({
+          getOtherName(): fb.control<String>(
+              "", [if (element.isRequired ?? false) NonEmptyValidator.get])
+        });
       }
     } else {
       if (_fg.contains(name)) {

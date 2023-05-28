@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -20,7 +21,7 @@ FormGroup elementsToFormGroup(
     List<AsyncValidatorFunction> asyncValidators = const [],
     Object? value}) {
   final Map<String, Object> controls = <String, Object>{};
-
+  final newValidators = [...validators];
   for (var element in elements) {
     //the behavior of panel seems different from previous version --2023/04/26 Goxiaoy
     if (element.name != null && element is! s.Panel) {
@@ -39,11 +40,13 @@ FormGroup elementsToFormGroup(
       }
     }
     if (element is s.Selectbase) {
+      final commentName = "${element.name}-Comment";
       //always add comment control for selectbase, so that the answer patch will work
-      controls["${element.name}-Comment"] = fb.control<String>("");
+      controls[commentName] = fb.control<String>(
+          "", [if (element.isRequired ?? false) NonEmptyValidator.get]);
     }
   }
-  return fb.group(controls, validators, asyncValidators);
+  return fb.group(controls, newValidators, asyncValidators);
 }
 
 Object? getDefaultValue(s.Elementbase element, Object? value) {

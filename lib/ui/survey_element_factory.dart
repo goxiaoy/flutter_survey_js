@@ -164,7 +164,7 @@ class SurveyElementFactory {
                     [],
                 //panel does not implement Question. so we need to set required explicitly
                 validators: element.isRequired == true
-                    ? [Validators.required, ...validators]
+                    ? [NonEmptyValidator.get, ...validators]
                     : validators,
                 value: value));
   }

@@ -255,6 +255,7 @@ void main() {
 
     // check the "Other" option but without entering any text, show "required"
     await tester.tap(find.text("Other"));
+    await tester.tap(find.byType(ElevatedButton));
     await tester.pump();
     await tester.idle();
     expect(find.text("required"), findsOneWidget);
