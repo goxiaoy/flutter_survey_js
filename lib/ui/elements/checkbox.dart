@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_js/survey.dart' hide Text;
+import 'package:flutter_survey_js/ui/elements/selectbase.dart';
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_wrap_form_array.dart';
-import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -47,31 +48,51 @@ class CheckBoxElement extends StatefulWidget {
 }
 
 class _CheckBoxElementState extends State<CheckBoxElement> {
-  bool showOtherTextField = false;
-  String oldOtherValue = '';
+  late SelectbaseController otherController;
+
   void resetOtherItem(List<s.Itemvalue> choices, FormArray<Object?> formArray) {
-    bool showOther = false;
-    String otherValue = '';
-    if (!formArray.controls.any((c) => c.value == "none")) {
-      for (Object? value in formArray.controls.map((e) => e.value)) {
-        if (!choices.any((c) => c.value?.value == value)) {
-          showOther = true;
-          otherValue = value.toString();
+    Future.microtask(() {
+      otherController
+          .setShowOther(formArray.controls.any((c) => c.value == otherValue));
+      otherController.setShowNone(widget.element.showNoneItem ?? false);
+      //set other value
+      if (formArray.controls.any((e) => e.value == noneValue)) {
+        otherController.clearOtherValue();
+        return;
+      }
+      final validValue = choices.map((e) => e.value?.value);
+      //outside choice value. treat as other value
+      for (final v in formArray.controls.map((e) => e.value)) {
+        if (!validValue.contains(v)) {
+          otherController.setOtherValue(v.toString());
+          checkOther(formArray);
         }
       }
-    } else {
-      showOther = false;
-      otherValue = '';
+      //still got no other
+      if (!formArray.controls.any((c) => c.value == otherValue)) {
+        otherController.clearOtherValue();
+      }
+    });
+  }
+
+  void checkOther(FormArray<Object?> formArray) {
+    if (!formArray.controls.any((e) => e.value == otherValue)) {
+      //make sure othervalue is checked
+      formArray.add(fb.control<dynamic>(otherValue));
     }
-    setState(() {
-      showOtherTextField = showOther;
-      oldOtherValue = otherValue;
+  }
+
+  void uncheckOther(FormArray<Object?> formArray) {
+    formArray.controls.where((e) => e.value == otherValue).forEach((element) {
+      formArray.remove(element);
     });
   }
 
   @override
   void initState() {
     super.initState();
+    otherController = SelectbaseController(element: widget.element);
+
     var choices =
         widget.element.choices?.map((p0) => p0.castToItemvalue()).toList() ??
             [];
@@ -87,134 +108,114 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
     List<s.Itemvalue> choices =
         widget.element.choices?.map((p0) => p0.castToItemvalue()).toList() ??
             [];
-    return ReactiveWrapFormArray(
-      formArrayName: widget.formControlName,
-      wrapper:
-          (BuildContext context, FormArray<Object?> formArray, Widget child) {
-        final effectiveDecoration = const InputDecoration()
-            .applyDefaults(Theme.of(context).inputDecorationTheme);
+    return SelectbaseWidget(
+        controller: otherController,
+        child: ReactiveWrapFormArray(
+          formArrayName: widget.formControlName,
+          wrapper: (BuildContext context, FormArray<Object?> formArray,
+              Widget child) {
+            final effectiveDecoration = const InputDecoration()
+                .applyDefaults(Theme.of(context).inputDecorationTheme);
 
-        return InputDecorator(
-          decoration: effectiveDecoration.copyWith(
-              errorText: getErrorTextFromFormControl(context, formArray)),
-          child: child,
-        );
-      },
-      builder: (context, formArray, child) {
-        final list = <Widget>[];
-        // showSelectAllItem
-        if (widget.element.showSelectAllItem ?? false) {
-          String? text =
-              widget.element.selectAllText ?? S.of(context).selectAllText;
-          list.add(CheckboxListTile(
-            value: CheckBoxElement.allChecked(choices, formArray.controls),
-            title: Text(text),
-            onChanged: (v) {
-              formArray.clear();
-              resetOtherItem(choices, formArray);
-              if (v == true) {
-                formArray.addAll(choices
-                    .map((choice) =>
-                        FormControl<Object>(value: choice.value?.value))
-                    .toList());
-              }
-              formArray.markAsTouched();
-            },
-          ));
-        }
-        for (s.Itemvalue element in (widget.element.choices
-                ?.map((p0) => p0.castToItemvalue())
-                .toList() ??
-            [])) {
-          list.add(CheckboxListTile(
-            value:
-                formArray.controls.any((c) => c.value == element.value?.value),
-            title: Text(element.text ?? element.value?.toString() ?? ''),
-            onChanged: (v) {
-              if (v == true) {
-                CheckBoxElement.excludeFrom(formArray, 'none');
-                formArray.add(FormControl<Object>(value: element.value?.value));
-              } else {
-                final rs = formArray.controls
-                    .where((c) => c.value == element.value?.value)
-                    .toList();
-                if (rs.isNotEmpty) {
-                  for (var r in rs) {
-                    formArray.remove(r);
+            return InputDecorator(
+              decoration: effectiveDecoration.copyWith(
+                  errorText: getErrorTextFromFormControl(context, formArray)),
+              child: child,
+            );
+          },
+          builder: (context, formArray, child) {
+            final list = <Widget>[];
+            // showSelectAllItem
+            if (widget.element.showSelectAllItem ?? false) {
+              String? text =
+                  widget.element.selectAllText ?? S.of(context).selectAllText;
+              list.add(CheckboxListTile(
+                value: CheckBoxElement.allChecked(choices, formArray.controls),
+                title: Text(text),
+                onChanged: (v) {
+                  formArray.clear();
+                  otherController.clearOtherValue();
+                  resetOtherItem(choices, formArray);
+                  if (v == true) {
+                    formArray.addAll(choices
+                        .map((choice) =>
+                            FormControl<Object>(value: choice.value?.value))
+                        .toList());
                   }
-                }
-              }
-              formArray.markAsTouched();
-            },
-          ));
-        }
-        // showNoneItem
-        if (widget.element.showNoneItem ?? false) {
-          String? text = widget.element.noneText ?? S.of(context).noneItemText;
-          list.add(CheckboxListTile(
-            value: formArray.controls.any((c) => c.value == 'none'),
-            title: Text(text),
-            onChanged: (v) {
-              if (v == true) {
-                formArray.clear();
-                formArray.add(FormControl<Object>(value: 'none'));
-              } else {
-                CheckBoxElement.excludeFrom(formArray, 'none');
-              }
-              resetOtherItem(choices, formArray);
-              formArray.markAsTouched();
-            },
-          ));
-        }
-        // showOtherItem
-        if (widget.element.showOtherItem ?? false) {
-          String? text =
-              widget.element.otherText ?? S.of(context).otherItemText;
-          list.add(CheckboxListTile(
-            value: showOtherTextField,
-            title: Text(text),
-            onChanged: (v) {
-              if (v == true) {
-                CheckBoxElement.excludeFrom(formArray, 'none');
-              }
-              if (oldOtherValue.isNotEmpty) {
-                CheckBoxElement.excludeFrom(formArray, oldOtherValue);
-              }
-              setState(() {
-                oldOtherValue = '';
-                showOtherTextField = v ?? false;
-              });
-              formArray.markAsTouched();
-            },
-          ));
-        }
-        if (showOtherTextField) {
-          list.add(TextFormField(
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              hintText: widget.element.otherPlaceholder,
-            ),
-            initialValue: oldOtherValue,
-            onChanged: (value) {
-              if (oldOtherValue.isNotEmpty) {
-                CheckBoxElement.excludeFrom(formArray, oldOtherValue);
-              }
-              if (value.isNotEmpty) {
-                formArray.add(FormControl<Object>(value: value));
-              }
-              setState(() {
-                oldOtherValue = value;
-              });
-              formArray.markAsTouched();
-            },
-          ));
-        }
-        return Column(
-          children: list,
-        );
-      },
-    );
+                  formArray.markAsTouched();
+                },
+              ));
+            }
+            for (s.Itemvalue element in (widget.element.choices
+                    ?.map((p0) => p0.castToItemvalue())
+                    .toList() ??
+                [])) {
+              list.add(CheckboxListTile(
+                value: formArray.controls
+                    .any((c) => c.value == element.value?.value),
+                title: Text(element.text ?? element.value?.toString() ?? ''),
+                onChanged: (v) {
+                  if (v == true) {
+                    CheckBoxElement.excludeFrom(formArray, noneValue);
+                    formArray
+                        .add(FormControl<Object>(value: element.value?.value));
+                  } else {
+                    final rs = formArray.controls
+                        .where((c) => c.value == element.value?.value)
+                        .toList();
+                    if (rs.isNotEmpty) {
+                      for (var r in rs) {
+                        formArray.remove(r);
+                      }
+                    }
+                  }
+                  formArray.markAsTouched();
+                },
+              ));
+            }
+            // showNoneItem
+            if (otherController.showNone) {
+              String? text =
+                  widget.element.noneText ?? S.of(context).noneItemText;
+              list.add(CheckboxListTile(
+                value: formArray.controls.any((c) => c.value == noneValue),
+                title: Text(text),
+                onChanged: (v) {
+                  if (v == true) {
+                    formArray.clear();
+                    formArray.add(FormControl<Object>(value: noneValue));
+                  } else {
+                    CheckBoxElement.excludeFrom(formArray, noneValue);
+                  }
+                  resetOtherItem(choices, formArray);
+                  formArray.markAsTouched();
+                },
+              ));
+            }
+            // showOtherItem
+            if (widget.element.showOtherItem ?? false) {
+              String? text = otherController.getOtherLocaledText(context);
+              list.add(CheckboxListTile(
+                value: formArray.controls.any((c) => c.value == otherValue),
+                title: Text(text),
+                onChanged: (v) {
+                  if (v != null) {
+                    otherController.setShowOther(v);
+                    if (v) {
+                      checkOther(formArray);
+                    } else {
+                      uncheckOther(formArray);
+                    }
+                  }
+                  formArray.markAsTouched();
+                },
+              ));
+            }
+
+            return Column(
+              children: list,
+            );
+          },
+        ));
   }
 }

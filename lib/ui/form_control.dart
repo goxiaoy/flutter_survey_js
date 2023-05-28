@@ -38,6 +38,10 @@ FormGroup elementsToFormGroup(
         controls.addAll(obj.controls);
       }
     }
+    if (element is s.Selectbase) {
+      //always add comment control for selectbase, so that the answer patch will work
+      controls["${element.name}-Comment"] = fb.control<String>("");
+    }
   }
   return fb.group(controls, validators, asyncValidators);
 }

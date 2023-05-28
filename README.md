@@ -12,20 +12,23 @@ Live preview [https://goxiaoy.github.io/flutter_survey_js/](https://goxiaoy.gith
 
 Supported widgets:
 
+- [x] checkbox
+- [ ] tagbox
+- [x] ranking
+- [x] radiogroup
+- [ ] imagepicker
+- [ ] buttongroup
+- [x] dropdown
 - [x] matrixdropdown
 - [x] matrixdynamic
 - [x] matrix
 - [ ] expression
-- [x] checkbox
-- [x] ranking
-- [x] radiogroup
-- [ ] imagepicker
-- [x] dropdown
 - [x] text
+- [x] comment
 - [x] multipletext
 - [x] html
 - [x] image
-- [x] comment
+- [ ] empty
 - [ ] file
 - [x] rating
 - [x] boolean
