@@ -49,6 +49,7 @@ class ReactiveWrapFormArrayState<T> extends ReactiveFormArrayState<T> {
 
   @override
   void dispose() {
+    _unsubscribeEvents();
     super.dispose();
   }
 

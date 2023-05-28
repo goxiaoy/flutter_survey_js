@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/ui/custom_scroll_behavior.dart';
+import 'package:flutter_survey_js/ui/reactive/reactive_wrap_form_array.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/form_control.dart';
@@ -38,7 +39,18 @@ class MatrixDynamicElement extends StatelessWidget {
           value: value);
     }
 
-    return ReactiveFormArray(
+    return ReactiveWrapFormArray(
+      wrapper:
+          (BuildContext context, FormArray<Object?> formArray, Widget child) {
+        final effectiveDecoration = const InputDecoration()
+            .applyDefaults(Theme.of(context).inputDecorationTheme);
+
+        return InputDecorator(
+          decoration: effectiveDecoration.copyWith(
+              errorText: getErrorTextFromFormControl(context, formArray)),
+          child: child,
+        );
+      },
       formArrayName: formControlName,
       builder: (context, formArray, child) {
         final formGroups = <FormGroup>[];

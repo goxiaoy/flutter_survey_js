@@ -6,6 +6,7 @@ import 'package:flutter_survey_js/ui/elements/panel.dart';
 import 'package:flutter_survey_js/ui/reactive/always_update_form_array.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
+import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:logging/logging.dart';
@@ -15,6 +16,7 @@ import 'elements/checkbox.dart';
 import 'elements/dropdown.dart';
 import 'elements/image.dart';
 import 'elements/matrix.dart';
+import 'elements/matrix_dropdown_base.dart';
 import 'elements/matrix_dynamic.dart';
 import 'elements/multiple_text.dart';
 import 'elements/panel_dynamic.dart';
@@ -22,6 +24,7 @@ import 'elements/radio_group.dart';
 import 'elements/ranking.dart';
 import 'elements/rating.dart';
 import 'elements/text.dart';
+import 'form_control.dart';
 
 class SurveyElementFactory {
   final logger = Logger('SurveyElementFactory');
@@ -32,23 +35,56 @@ class SurveyElementFactory {
       <String, SurveyFormControlBuilder>{};
 
   SurveyElementFactory() {
-    register<s.Matrix>(matrixBuilder);
-    register<s.Matrixdropdown>(matrixDropdownBuilder);
+    register<s.Matrix>(matrixBuilder,
+        control: (context, element, {validators = const [], value}) {
+      //Matrix returns single object
+      return fb.group(
+          Map.fromEntries(((element as s.Matrix)
+                      .rows
+                      ?.map((p) => p.castToItemvalue()) ??
+                  [])
+              .map((e) => MapEntry(
+                  e.value.toString(),
+                  fb.control<Object?>(tryGetValue(
+                      e.value.toString(), getDefaultValue(element, value)))))),
+          validators);
+    });
+    register<s.Matrixdropdown>(matrixDropdownBuilder,
+        control: (context, elementBase, {validators = const [], value}) {
+      final element = elementBase as s.Matrixdropdown;
+      //Matrixdropdown returns single object
+      return fb.group(
+          Map.fromEntries((element.rows?.map((p) => p.castToItemvalue()) ?? [])
+              .map((e) => MapEntry(
+                  e.value.toString(),
+                  elementsToFormGroup(
+                      context,
+                      (element.columns?.toList() ?? [])
+                          .map((column) =>
+                              matrixDropdownColumnToQuestion(element, column))
+                          .toList(),
+                      value: tryGetValue(e.value.toString(),
+                          getDefaultValue(element, value)))))),
+          validators);
+    });
     register<s.Matrixdynamic>(matrixDynamicBuilder,
         control: (context, element, {validators = const [], value}) =>
-            alwaysUpdateArray<Map<String, Object>>(
+            //Matrixdynamic returns array of object
+            alwaysUpdateArray<Map<String, Object?>>(
                 (element as s.Matrixdynamic).defaultValue.tryCastToListObj() ??
                     value.tryCastToList() ??
                     [],
                 validators));
     register<s.Checkbox>(checkBoxBuilder,
         control: (context, element, {validators = const [], value}) =>
+            //Checkbox returns array of object or array of single value( string, boolean etc.)
             alwaysUpdateArray(
                 (element as s.Checkbox).defaultValue.tryCastToListObj() ??
                     value.tryCastToList() ??
                     [],
                 validators));
     register<s.Ranking>(rankingBuilder,
+        //Ranking returns array of single value( string, boolean etc.)
         control: (context, element, {validators = const [], value}) =>
             FormControl<List<dynamic>>(
                 value: (element as s.Ranking).defaultValue.tryCastToListObj() ??
@@ -110,8 +146,27 @@ class SurveyElementFactory {
             FormControl<Object>(
                 validators: validators,
                 value: (element as s.Dropdown).defaultValue?.value ?? value));
-    register<s.Paneldynamic>(panelDynamicBuilder);
-    register<s.Panel>(panelBuilder);
+    register<s.Paneldynamic>(panelDynamicBuilder,
+        control: (context, element, {validators = const [], value}) =>
+            alwaysUpdateArray<Map<String, Object?>>(
+                (element as s.Paneldynamic).defaultValue.tryCastToListObj() ??
+                    value.tryCastToList() ??
+                    [],
+                validators));
+    register<s.Panel>(panelBuilder,
+        control: (context, element, {validators = const [], value}) =>
+            elementsToFormGroup(
+                context,
+                (element as s.Panel)
+                        .elementsOrQuestions
+                        ?.map((p) => p.realElement)
+                        .toList() ??
+                    [],
+                //panel does not implement Question. so we need to set required explicitly
+                validators: element.isRequired == true
+                    ? [Validators.required, ...validators]
+                    : validators,
+                value: value));
   }
 
   void register<T>(SurveyElementBuilder builder,
@@ -126,6 +181,7 @@ class SurveyElementFactory {
     }
   }
 
+  // resolve resolve widet from element
   Widget resolve(BuildContext context, s.Elementbase element,
       {ElementConfiguration? configuration}) {
     var res = _map[element.type];
@@ -141,7 +197,20 @@ class SurveyElementFactory {
     return res(context, element, configuration: configuration);
   }
 
-  SurveyFormControlBuilder? resolveFormControl(s.Elementbase element) {
-    return _formControlMap[element.type];
+  // resolveFormControl resolve formControl from element
+  // [value] default value passed down from parent. default value will be resolved by self default value then from parent
+  Object resolveFormControl(BuildContext context, s.Elementbase element,
+      {Object? value}) {
+    final validators = <ValidatorFunction>[];
+    if (element is s.Question) {
+      validators.addAll(questionToValidators(element));
+    }
+    final c = _formControlMap[element.type];
+    //find from facotry or fallback to FormControl<Object>
+    final res =
+        c?.call(context, element, validators: validators, value: value) ??
+            FormControl<Object>(
+                validators: validators, value: getDefaultValue(element, value));
+    return res;
   }
 }

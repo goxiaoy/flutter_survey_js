@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
+import 'package:flutter_survey_js/ui/form_control.dart';
+import 'package:flutter_survey_js/ui/reactive/reactive_wrap_form_array.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 typedef ReactiveNestedGroupArrayBuilder = Widget Function(
@@ -29,7 +31,18 @@ class ReactiveNestedGroupArray<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveFormArray(
+    return ReactiveWrapFormArray(
+      wrapper:
+          (BuildContext context, FormArray<Object?> formArray, Widget child) {
+        final effectiveDecoration = const InputDecoration()
+            .applyDefaults(Theme.of(context).inputDecorationTheme);
+
+        return InputDecorator(
+          decoration: effectiveDecoration.copyWith(
+              errorText: getErrorTextFromFormControl(context, formArray)),
+          child: child,
+        );
+      },
       formArrayName: formArrayName,
       formArray: formArray,
       child: child,

@@ -89,6 +89,17 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
             [];
     return ReactiveWrapFormArray(
       formArrayName: widget.formControlName,
+      wrapper:
+          (BuildContext context, FormArray<Object?> formArray, Widget child) {
+        final effectiveDecoration = const InputDecoration()
+            .applyDefaults(Theme.of(context).inputDecorationTheme);
+
+        return InputDecorator(
+          decoration: effectiveDecoration.copyWith(
+              errorText: getErrorTextFromFormControl(context, formArray)),
+          child: child,
+        );
+      },
       builder: (context, formArray, child) {
         final list = <Widget>[];
         // showSelectAllItem
@@ -202,17 +213,6 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
         }
         return Column(
           children: list,
-        );
-      },
-      wrapper:
-          (BuildContext context, FormArray<Object?> formArray, Widget child) {
-        final effectiveDecoration = const InputDecoration()
-            .applyDefaults(Theme.of(context).inputDecorationTheme);
-
-        return InputDecorator(
-          decoration: effectiveDecoration.copyWith(
-              errorText: getErrorTextFromFormControl(context, formArray)),
-          child: child,
         );
       },
     );
