@@ -43,18 +43,24 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
           .toList();
       if (v.isNotEmpty) {
         if (v.first.itemLeadingEdge < 0) {
+          if (_showBackToTopButton != true) {
+            setState(() {
+              _showBackToTopButton = true;
+            });
+          }
+        } else {
+          if (_showBackToTopButton != false) {
+            setState(() {
+              _showBackToTopButton = false;
+            });
+          }
+        }
+      } else {
+        if (_showBackToTopButton != true) {
           setState(() {
             _showBackToTopButton = true;
           });
-        } else {
-          setState(() {
-            _showBackToTopButton = false;
-          });
         }
-      } else {
-        setState(() {
-          _showBackToTopButton = true;
-        });
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
