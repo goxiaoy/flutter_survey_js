@@ -74,8 +74,18 @@ class SelectbaseController extends ChangeNotifier {
   late FormGroup _fg;
 
   void setShowOther(bool value) {
-    _showOther = value;
     final name = getOtherName();
+    if (element.showOtherItem != true) {
+      //always false
+      _showOther = false;
+      if (_fg.contains(name)) {
+        _fg.removeControl(getOtherName());
+      }
+      notifyListeners();
+      return;
+    }
+
+    _showOther = value;
     if (value) {
       //make show formControl exists
 
@@ -96,7 +106,11 @@ class SelectbaseController extends ChangeNotifier {
   void setShowNone(
     bool value,
   ) {
-    _showNone = value;
+    if (element.showNoneItem == true) {
+      _showNone = value;
+    } else {
+      _showNone = false;
+    }
     notifyListeners();
   }
 
@@ -105,7 +119,10 @@ class SelectbaseController extends ChangeNotifier {
     if (!_showOther) {
       setShowOther(true);
     }
-    _fg.control(name).value = value;
+    if (_fg.contains(name)) {
+      // setShowOther is guradianed by  element.showOtherItem. so it could be not inside formgroup
+      _fg.control(name).value = value;
+    }
   }
 
   String? getOtherValue() {
