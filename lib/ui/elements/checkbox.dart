@@ -57,20 +57,25 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
       otherController.setShowNone(widget.element.showNoneItem ?? false);
       //set other value
       if (formArray.controls.any((e) => e.value == noneValue)) {
-        otherController.clearOtherValue();
+        otherController.setShowOther(false);
         return;
       }
       final validValue = choices.map((e) => e.value?.value);
       //outside choice value. treat as other value
-      for (final v in formArray.controls.map((e) => e.value)) {
-        if (!validValue.contains(v)) {
-          otherController.setOtherValue(v.toString());
+      AbstractControl<Object?>? waitToRemove;
+      for (final v in formArray.controls) {
+        if (!validValue.contains(v.value)) {
+          otherController.setOtherValue(v.value.toString());
           checkOther(formArray);
+          waitToRemove = v;
         }
+      }
+      if (waitToRemove != null) {
+        formArray.remove(waitToRemove);
       }
       //still got no other
       if (!formArray.controls.any((c) => c.value == otherValue)) {
-        otherController.clearOtherValue();
+        otherController.setShowOther(false);
       }
     });
   }
@@ -134,7 +139,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                 title: Text(text),
                 onChanged: (v) {
                   formArray.clear();
-                  otherController.clearOtherValue();
+                  otherController.setShowOther(false);
                   resetOtherItem(choices, formArray);
                   if (v == true) {
                     formArray.addAll(choices

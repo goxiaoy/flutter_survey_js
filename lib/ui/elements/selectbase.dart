@@ -74,10 +74,17 @@ class SelectbaseController extends ChangeNotifier {
 
   void setShowOther(bool value) {
     _showOther = value;
+    final name = getOtherName();
     if (value) {
-      setOtherValue("");
+      //make show formControl exists
+
+      if (!_fg.contains(name)) {
+        _fg.addAll({getOtherName(): fb.control<String>("")});
+      }
     } else {
-      clearOtherValue();
+      if (_fg.contains(name)) {
+        _fg.removeControl(getOtherName());
+      }
     }
     notifyListeners();
   }
@@ -89,17 +96,10 @@ class SelectbaseController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearOtherValue() {
-    final name = getOtherName();
-    if (_fg.contains(name)) {
-      _fg.removeControl(getOtherName());
-    }
-  }
-
   void setOtherValue(String value) {
     final name = getOtherName();
-    if (!_fg.contains(name)) {
-      _fg.addAll({getOtherName(): fb.control<String>(value)});
+    if (!_showOther) {
+      setShowOther(true);
     }
     _fg.control(name).value = value;
   }

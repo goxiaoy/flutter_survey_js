@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/survey.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {
   const appLocalizationDelegate = AppLocalizationDelegate();
@@ -55,7 +56,7 @@ void main() {
           "UNN Agatha King",
           "EMC Frederick Lewis",
           "Behemoth",
-          "Heart of the Tempest",
+          "Heart of the Tempest"
         ]
       }
     ]
@@ -105,19 +106,19 @@ void main() {
 
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsNothing);
+    expect(find.byType(ReactiveTextField), findsNothing);
 
     // check the "Other" option
     await tester.tap(find.text("Other"));
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsOneWidget);
+    expect(find.byType(ReactiveTextField), findsOneWidget);
 
     // uncheck the "Other" option
     await tester.tap(find.text("Other"));
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsNothing);
+    expect(find.byType(ReactiveTextField), findsNothing);
   });
 
   testWidgets(
@@ -144,20 +145,20 @@ void main() {
 
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsOneWidget);
+    expect(find.byType(ReactiveTextField), findsOneWidget);
     expect(find.text("UNN Thomas Prince"), findsOneWidget);
 
     // uncheck the "Other" option
     await tester.tap(find.text("Other"));
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsNothing);
+    expect(find.byType(ReactiveTextField), findsNothing);
 
     // re-check the "Other" option
     await tester.tap(find.text("Other"));
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsOneWidget);
+    expect(find.byType(ReactiveTextField), findsOneWidget);
     expect(find.text("UNN Thomas Prince"), findsNothing);
   });
 
@@ -184,14 +185,14 @@ void main() {
 
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsOneWidget);
+    expect(find.byType(ReactiveTextField), findsOneWidget);
     expect(find.text("UNN Thomas Prince"), findsOneWidget);
 
     // uncheck the "None of them" option
     await tester.tap(find.text("None of them"));
     await tester.pump();
     await tester.idle();
-    expect(find.byType(TextFormField), findsNothing);
+    expect(find.byType(ReactiveTextField), findsNothing);
   });
 
   testWidgets("checkbox should not show error messages when not touched",
