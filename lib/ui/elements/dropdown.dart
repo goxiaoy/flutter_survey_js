@@ -10,13 +10,13 @@ Widget dropdownBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   final e = (element as s.Dropdown);
 
-  return _DropdownWidgetWithOtherOption(
+  return _DropdownWidget(
     dropdown: e,
   ).wrapQuestionTitle(context, e, configuration: configuration);
 }
 
-class _DropdownWidgetWithOtherOption<T> extends StatefulWidget {
-  const _DropdownWidgetWithOtherOption({
+class _DropdownWidget<T> extends StatefulWidget {
+  const _DropdownWidget({
     Key? key,
     required this.dropdown,
   }) : super(key: key);
@@ -24,12 +24,10 @@ class _DropdownWidgetWithOtherOption<T> extends StatefulWidget {
   final s.Dropdown dropdown;
 
   @override
-  State<_DropdownWidgetWithOtherOption> createState() =>
-      _DropdownWidgetWithOtherOptionState();
+  State<_DropdownWidget> createState() => _DropdownWidgetState();
 }
 
-class _DropdownWidgetWithOtherOptionState
-    extends State<_DropdownWidgetWithOtherOption> {
+class _DropdownWidgetState extends State<_DropdownWidget> {
   AbstractControl getCurrentControl() {
     return ((ReactiveForm.of(context, listen: false) as FormControlCollection)
         .control(widget.dropdown.name!));
@@ -44,10 +42,11 @@ class _DropdownWidgetWithOtherOptionState
       final control = getCurrentControl();
       final value = control.value;
       selectbaseController.setShowOther(value == otherValue);
-      if (!(widget.dropdown.choices
-                  ?.map((e) => e.castToItemvalue().value?.value) ??
-              [])
-          .contains(value)) {
+      if (value != null &&
+          !(widget.dropdown.choices
+                      ?.map((e) => e.castToItemvalue().value?.value) ??
+                  [])
+              .contains(value)) {
         //current value outside of choices
         selectbaseController.setOtherValue(value?.toString() ?? "");
         control.value = otherValue;
