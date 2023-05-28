@@ -1,5 +1,7 @@
 // ignore_for_file: implementation_imports
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms/src/widgets/form_control_inherited_notifier.dart';
@@ -37,10 +39,39 @@ class ReactiveWrapFormArray<T> extends ReactiveFormArray<T> {
 class ReactiveWrapFormArrayState<T> extends ReactiveFormArrayState<T> {
   late FormArray<T> _formArray;
 
+  StreamSubscription<ControlStatus>? _statusChangesSubscription;
+  StreamSubscription<bool>? _touchChangesSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _subscribeEvents() {
+    _unsubscribeEvents();
+    _statusChangesSubscription = _formArray.statusChanged.listen((_) {
+      setState(() {});
+    });
+    _touchChangesSubscription = _formArray.touchChanges.listen((_) {
+      setState(() {});
+    });
+  }
+
+  void _unsubscribeEvents() {
+    _statusChangesSubscription?.cancel();
+    _touchChangesSubscription?.cancel();
+  }
+
   @override
   void didChangeDependencies() {
     if (widget.formArray != null) {
       _formArray = widget.formArray!;
+      _subscribeEvents();
     } else {
       final form = ReactiveForm.of(context, listen: false);
       if (form == null || form is! FormControlCollection) {
@@ -48,6 +79,7 @@ class ReactiveWrapFormArrayState<T> extends ReactiveFormArrayState<T> {
       }
       final collection = form as FormControlCollection;
       _formArray = collection.control(widget.formArrayName!) as FormArray<T>;
+      _subscribeEvents();
     }
     super.didChangeDependencies();
   }
