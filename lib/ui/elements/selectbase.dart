@@ -13,7 +13,7 @@ typedef SelectbaseItemBuilder = Widget Function(
 Widget defaultSelectbaseItemBuilder(
     BuildContext context, Widget child, SelectbaseController controller) {
   final element = controller.element;
-  return Column(children: [
+  return Wrap(children: [
     child,
     if (controller.showOther)
       ReactiveTextField(

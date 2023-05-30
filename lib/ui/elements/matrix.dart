@@ -16,9 +16,8 @@ Widget matrixBuilder(BuildContext context, s.Elementbase element,
 class MatrixElement extends StatelessWidget {
   final String formControlName;
   final s.Matrix matrix;
-
-  const MatrixElement(
-      {Key? key, required this.formControlName, required this.matrix})
+  final scrollController = ScrollController();
+  MatrixElement({Key? key, required this.formControlName, required this.matrix})
       : super(key: key);
 
   @override
@@ -67,7 +66,9 @@ class MatrixElement extends StatelessWidget {
         return ScrollConfiguration(
             behavior: CustomScrollBehavior(),
             child: Scrollbar(
+                controller: scrollController,
                 child: SingleChildScrollView(
+                    controller: scrollController,
                     scrollDirection: Axis.horizontal,
                     child: Table(
                       defaultColumnWidth: const IntrinsicColumnWidth(),

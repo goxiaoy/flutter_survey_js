@@ -22,8 +22,8 @@ Widget matrixDynamicBuilder(BuildContext context, s.Elementbase element,
 class MatrixDynamicElement extends StatelessWidget {
   final String formControlName;
   final s.Matrixdynamic matrix;
-
-  const MatrixDynamicElement(
+  final scrollController = ScrollController();
+  MatrixDynamicElement(
       {Key? key, required this.formControlName, required this.matrix})
       : super(key: key);
 
@@ -138,7 +138,9 @@ class MatrixDynamicElement extends StatelessWidget {
               ScrollConfiguration(
                   behavior: CustomScrollBehavior(),
                   child: Scrollbar(
+                      controller: scrollController,
                       child: SingleChildScrollView(
+                          controller: scrollController,
                           scrollDirection: Axis.horizontal,
                           child: Table(
                             defaultColumnWidth: const IntrinsicColumnWidth(),

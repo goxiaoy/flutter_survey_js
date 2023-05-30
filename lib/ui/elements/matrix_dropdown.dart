@@ -20,7 +20,8 @@ class MatrixDropdownElement extends StatelessWidget {
   final String formControlName;
   final s.Matrixdropdown matrix;
 
-  const MatrixDropdownElement(
+  final scrollController = ScrollController();
+  MatrixDropdownElement(
       {Key? key, required this.formControlName, required this.matrix})
       : super(key: key);
 
@@ -89,7 +90,9 @@ class MatrixDropdownElement extends StatelessWidget {
         return ScrollConfiguration(
             behavior: CustomScrollBehavior(),
             child: Scrollbar(
+                controller: scrollController,
                 child: SingleChildScrollView(
+                    controller: scrollController,
                     scrollDirection: Axis.horizontal,
                     child: Table(
                       defaultColumnWidth: const IntrinsicColumnWidth(),
