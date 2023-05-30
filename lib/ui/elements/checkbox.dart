@@ -50,62 +50,65 @@ class CheckBoxElement extends StatefulWidget {
 class _CheckBoxElementState extends State<CheckBoxElement> {
   late SelectbaseController otherController;
 
-  void resetOtherItem(List<s.Itemvalue> choices, FormArray<Object?> formArray) {
+  List<Itemvalue> get choices =>
+      widget.element.choices?.map((p0) => p0.castToItemvalue()).toList() ?? [];
+
+  void resetOtherItem(FormArray<Object?> formArray) {
     Future.microtask(() {
-      otherController
-          .setShowOther(formArray.controls.any((c) => c.value == otherValue));
-      otherController.setShowNone(widget.element.showNoneItem ?? false);
       //set other value
-      if (formArray.controls.any((e) => e.value == noneValue)) {
+      if (otherController.showNone &&
+          formArray.controls.any((e) => e.value == noneValue)) {
         otherController.setShowOther(false);
         return;
       }
-      final validValue = choices.map((e) => e.value?.value);
+
       //outside choice value. treat as other value
-      AbstractControl<Object?>? waitToRemove;
-      for (final v in formArray.controls) {
-        if (!validValue.contains(v.value)) {
-          otherController.setOtherValue(v.value.toString());
-          checkOther(formArray);
-          waitToRemove = v;
-        }
+      AbstractControl<Object?>? otherValueControl =
+          findPossibleOtherValueControl(formArray);
+      if (otherController.storeOtherAsComment) {
+        otherController
+            .setShowOther(formArray.controls.any((c) => c.value == otherValue));
       }
-      if (waitToRemove != null) {
-        formArray.remove(waitToRemove);
-      }
-      //still got no other
-      if (!formArray.controls.any((c) => c.value == otherValue)) {
-        otherController.setShowOther(false);
+      if (otherValueControl != null) {
+        otherController.setOtherValue(otherValueControl.value.toString());
       }
     });
   }
 
-  void checkOther(FormArray<Object?> formArray) {
-    if (!formArray.controls.any((e) => e.value == otherValue)) {
-      //make sure othervalue is checked
-      formArray.add(fb.control<dynamic>(otherValue));
+  AbstractControl<Object?>? findPossibleOtherValueControl(
+      FormArray<Object?> formArray) {
+    final validValues = choices.map((e) => e.value?.value);
+    AbstractControl<Object?>? ret;
+    for (final v in formArray.controls) {
+      if (!validValues.contains(v.value)) {
+        ret = v;
+      }
     }
+    return ret;
   }
 
-  void uncheckOther(FormArray<Object?> formArray) {
-    formArray.controls.where((e) => e.value == otherValue).forEach((element) {
-      formArray.remove(element);
-    });
-  }
+  FormArray<Object?> getFormArray() =>
+      (ReactiveForm.of(context, listen: false) as FormControlCollection)
+          .control(widget.formControlName) as FormArray<Object?>;
 
   @override
   void initState() {
     super.initState();
     otherController = SelectbaseController(element: widget.element);
 
-    var choices =
-        widget.element.choices?.map((p0) => p0.castToItemvalue()).toList() ??
-            [];
-    var formArray =
-        (ReactiveForm.of(context, listen: false) as FormControlCollection)
-            .control(widget.formControlName) as FormArray<Object?>;
-    resetOtherItem(choices, formArray);
+    var formArray = getFormArray();
+
+    resetOtherItem(formArray);
     formArray.markAsUntouched();
+  }
+
+  void addOther() {
+    final formArray = getFormArray();
+    if (otherController.storeOtherAsComment) {
+      if (!formArray.controls.any((e) => e.value == otherValue)) {
+        formArray.add(fb.control<dynamic>(otherValue));
+      }
+    }
   }
 
   @override
@@ -115,6 +118,18 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
             [];
     return SelectbaseWidget(
         controller: otherController,
+        otherValueChanged: (v) {
+          final formArray = getFormArray();
+          if (!otherController.storeOtherAsComment) {
+            final c = findPossibleOtherValueControl(formArray);
+            if (c != null) {
+              c.value = v;
+            } else {
+              formArray.add(FormControl<Object>(value: v));
+            }
+          }
+          addOther();
+        },
         child: ReactiveWrapFormArray(
           formArrayName: widget.formControlName,
           wrapper: (BuildContext context, FormArray<Object?> formArray,
@@ -140,7 +155,6 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                 onChanged: (v) {
                   formArray.clear();
                   otherController.setShowOther(false);
-                  resetOtherItem(choices, formArray);
                   if (v == true) {
                     formArray.addAll(choices
                         .map((choice) =>
@@ -192,7 +206,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
                   } else {
                     CheckBoxElement.excludeFrom(formArray, noneValue);
                   }
-                  resetOtherItem(choices, formArray);
+                  resetOtherItem(formArray);
                   formArray.markAsTouched();
                 },
               ));
@@ -201,18 +215,26 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
             if (widget.element.showOtherItem ?? false) {
               String? text = otherController.getOtherLocaledText(context);
               list.add(CheckboxListTile(
-                value: formArray.controls.any((c) => c.value == otherValue),
+                value: otherController.showOther,
                 title: Text(text),
                 onChanged: (v) {
-                  if (v != null) {
-                    otherController.setShowOther(v);
-                    if (v) {
-                      checkOther(formArray);
-                    } else {
-                      uncheckOther(formArray);
+                  setState(() {
+                    if (otherController.showNone) {
+                      CheckBoxElement.excludeFrom(formArray, noneValue);
                     }
-                  }
-                  formArray.markAsTouched();
+                    if (v != null) {
+                      otherController.setShowOther(v);
+                      if (!v) {
+                        final otherValueControl =
+                            findPossibleOtherValueControl(formArray);
+                        if (otherValueControl != null) {
+                          formArray.remove(otherValueControl);
+                        }
+                      } else {
+                        addOther();
+                      }
+                    }
+                  });
                 },
               ));
             }

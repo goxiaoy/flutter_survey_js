@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_js/ui/elements/selectbase.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_reorderable_list.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
@@ -6,10 +7,37 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 Widget rankingBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
-  return RankingElement(
-    formControlName: element.name!,
+  return RankingWidget(
     element: element as s.Ranking,
   ).wrapQuestionTitle(context, element, configuration: configuration);
+}
+
+class RankingWidget extends StatefulWidget {
+  final s.Ranking element;
+
+  const RankingWidget({Key? key, required this.element}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() => RankingWidgetState();
+}
+
+class RankingWidgetState extends State<RankingWidget> {
+  late SelectbaseController selectbaseController;
+
+  @override
+  void initState() {
+    super.initState();
+    selectbaseController = SelectbaseController(element: widget.element);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SelectbaseWidget(
+        controller: selectbaseController,
+        child: RankingElement(
+          formControlName: widget.element.name!,
+          element: widget.element,
+        ));
+  }
 }
 
 class RankingElement extends StatelessWidget {

@@ -7,37 +7,18 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 const otherValue = "other";
 const noneValue = "none";
 
-typedef SelectbaseItemBuilder = Widget Function(
-    BuildContext context, Widget child, SelectbaseController controller);
-
-Widget defaultSelectbaseItemBuilder(
-    BuildContext context, Widget child, SelectbaseController controller) {
-  final element = controller.element;
-  return Wrap(children: [
-    child,
-    if (controller.showOther)
-      ReactiveTextField(
-        formControlName: controller.getOtherName(),
-        maxLines: null,
-        keyboardType: TextInputType.multiline,
-        decoration: InputDecoration(
-            border: const OutlineInputBorder(),
-            hintText: element.otherPlaceholder),
-      )
-  ]);
-}
-
 class SelectbaseWidget extends StatefulWidget {
   final Widget child;
 
   final SelectbaseController controller;
-  final SelectbaseItemBuilder builder;
+
+  final ValueChanged<String>? otherValueChanged;
 
   const SelectbaseWidget({
     Key? key,
     required this.child,
     required this.controller,
-    this.builder = defaultSelectbaseItemBuilder,
+    this.otherValueChanged,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => SelectbaseWidgetState();
@@ -52,7 +33,50 @@ class SelectbaseWidgetState extends State<SelectbaseWidget> {
         return ListenableBuilder(
           listenable: widget.controller,
           builder: (context, _) {
-            return widget.builder(context, widget.child, widget.controller);
+            final element = widget.controller.element;
+            final controller = widget.controller;
+            return Wrap(children: [
+              widget.child,
+              if (controller.showOther)
+                controller.storeOtherAsComment
+                    ? ReactiveTextField<dynamic>(
+                        formControlName: controller.getCommentName(),
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
+                        onChanged: (control) {
+                          widget.otherValueChanged
+                              ?.call(control.value?.toString() ?? "");
+                        },
+                        decoration: InputDecoration(
+                            border: const OutlineInputBorder(),
+                            hintText: element.otherPlaceholder),
+                      )
+                    : TextField(
+                        controller: widget.controller._otherTextController,
+                        maxLines: null,
+                        keyboardType: TextInputType.multiline,
+                        decoration: InputDecoration(
+                            border: const OutlineInputBorder(),
+                            hintText: element.otherPlaceholder),
+                        onChanged: (v) {
+                          widget.otherValueChanged?.call(v);
+                        }),
+              if (controller.showCommentArea)
+                Text(controller.getCommentLocaledText(context)),
+              if (controller.showCommentArea)
+                ReactiveTextField<dynamic>(
+                  formControlName: controller.getCommentName(),
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
+                  onChanged: (control) {
+                    widget.otherValueChanged
+                        ?.call(control.value?.toString() ?? "");
+                  },
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      hintText: element.commentPlaceholder),
+                ),
+            ]);
           },
         );
       },
@@ -64,77 +88,91 @@ class SelectbaseController extends ChangeNotifier {
   SelectbaseController({required this.element, this.postfix = "-Comment"});
 
   bool _showOther = false;
-  bool _showNone = false;
+
   final String postfix;
   final s.Selectbase element;
 
   bool get showOther => _showOther;
-  bool get showNone => _showNone;
+  bool get showNone => element.showNoneItem ?? false;
+  bool get showCommentArea => element.showCommentArea ?? false;
+
+  bool get storeOtherAsComment => !showCommentArea;
 
   late FormGroup _fg;
 
-  void setShowOther(bool value) {
-    final name = getOtherName();
-    if (element.showOtherItem != true) {
-      //always false
-      _showOther = false;
-      if (_fg.contains(name)) {
-        _fg.removeControl(getOtherName());
-      }
-      notifyListeners();
-      return;
-    }
+  final TextEditingController _otherTextController = TextEditingController();
 
-    _showOther = value;
-    if (value) {
-      //make show formControl exists
+  String get otherValue => storeOtherAsComment ? "" : _otherTextController.text;
 
-      if (!_fg.contains(name)) {
-        _fg.addAll({
-          getOtherName(): fb.control<String>(
-              "", [if (element.isRequired ?? false) NonEmptyValidator.get])
-        });
+  void _resetControl() {
+    if (storeOtherAsComment) {
+      //showCommentArea == false
+      if (showOther) {
+        _ensureCommentControl();
+      } else {
+        _removeCommentControl();
       }
     } else {
-      if (_fg.contains(name)) {
-        _fg.removeControl(getOtherName());
-      }
+      //showCommentArea == true
+      _ensureCommentControl();
     }
-    notifyListeners();
   }
 
-  void setShowNone(
-    bool value,
-  ) {
-    if (element.showNoneItem == true) {
-      _showNone = value;
-    } else {
-      _showNone = false;
+  void _ensureCommentControl() {
+    final name = getCommentName();
+    if (!_fg.contains(name)) {
+      _fg.addAll({
+        getCommentName(): fb.control<String>(
+            "", [if (element.isRequired ?? false) NonEmptyValidator.get])
+      });
     }
+  }
+
+  void _removeCommentControl() {
+    final name = getCommentName();
+    if (_fg.contains(name)) {
+      _fg.removeControl(getCommentName());
+    }
+  }
+
+  void setShowOther(bool value) {
+    _showOther = value;
+    if (!value) {
+      _otherTextController.text = "";
+    }
+    _resetControl();
+
     notifyListeners();
   }
 
   void setOtherValue(String value) {
-    final name = getOtherName();
     if (!_showOther) {
       setShowOther(true);
     }
-    if (_fg.contains(name)) {
-      // setShowOther is guradianed by  element.showOtherItem. so it could be not inside formgroup
+    if (!storeOtherAsComment) {
+      //store in self
+      _otherTextController.text = value;
+    } else {
+      _ensureCommentControl();
+      final name = getCommentName();
       _fg.control(name).value = value;
     }
   }
 
   String? getOtherValue() {
-    final name = getOtherName();
+    final name = getCommentName();
     return _fg.contains(name) ? _fg.control(name).value : null;
   }
 
-  String getOtherName() {
+  String getCommentName() {
     return "${element.name!}$postfix";
   }
 
   String getOtherLocaledText(BuildContext context) {
     return element.otherText ?? S.of(context).otherItemText;
+  }
+
+  String getCommentLocaledText(BuildContext context) {
+    return element.commentText ?? S.of(context).otherItemText;
   }
 }
