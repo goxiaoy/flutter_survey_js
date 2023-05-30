@@ -1,3 +1,7 @@
+## 0.0.2-dev.5
+
+ - Bump "flutter_survey_js_model" to `0.0.2-dev.5`.
+
 ## 0.0.2-dev.4
 
  - revert sdk upgrade

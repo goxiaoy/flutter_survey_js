@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-05-30
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`flutter_survey_js` - `v0.0.2-dev.5`](#flutter_survey_js---v002-dev5)
+ - [`flutter_survey_js_model` - `v0.0.2-dev.5`](#flutter_survey_js_model---v002-dev5)
+
+---
+
+#### `flutter_survey_js` - `v0.0.2-dev.5`
+
+#### `flutter_survey_js_model` - `v0.0.2-dev.5`
+
+ - Bump "flutter_survey_js_model" to `0.0.2-dev.5`.
+
+## 0.0.2-dev.5
+
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## 2023-05-23
 
 ### Changes
