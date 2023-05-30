@@ -34,6 +34,22 @@ class _RadioGroupWidgetState extends State<_RadioGroupWidget> {
         .control(widget.element.name!));
   }
 
+  List<s.Itemvalue> get choices =>
+      widget.element.choices?.map((p0) => p0.castToItemvalue()).toList() ?? [];
+
+  bool isOtherValue(Object? value) {
+    if (widget.element.showNoneItem ?? false) {
+      return value != null &&
+          ![...choices.map((element) => element.value?.value), noneValue]
+              .any((v) => v == value);
+    } else {
+      return value != null &&
+          !choices
+              .map((element) => element.value?.value)
+              .any((v) => v == value);
+    }
+  }
+
   late SelectbaseController selectbaseController;
   @override
   void initState() {
@@ -42,15 +58,16 @@ class _RadioGroupWidgetState extends State<_RadioGroupWidget> {
     Future.microtask(() {
       final control = getCurrentControl();
       final value = control.value;
-      selectbaseController.setShowOther(value == otherValue);
-      if (value != null &&
-          !(widget.element.choices
-                      ?.map((e) => e.castToItemvalue().value?.value) ??
-                  [])
-              .contains(value)) {
+      if (selectbaseController.storeOtherAsComment) {
+        selectbaseController.setShowOther(value == otherValue);
+      }
+
+      if (isOtherValue(value)) {
         //current value outside of choices
         selectbaseController.setOtherValue(value?.toString() ?? "");
-        control.value = otherValue;
+        if (selectbaseController.storeOtherAsComment) {
+          control.value = otherValue;
+        }
       }
     });
   }
@@ -60,40 +77,57 @@ class _RadioGroupWidgetState extends State<_RadioGroupWidget> {
     var e = widget.element;
 
     final elementItems = <ReactiveGroupButtonItem>[
-      ...e.choices
-              ?.map(
-                (e) => ReactiveGroupButtonItem(
-                  value: e.castToItemvalue().value?.value,
-                  title: e.castToItemvalue().text ??
-                      e.castToItemvalue().value?.toString() ??
-                      '',
-                ),
-              )
-              .toList(growable: false) ??
-          [],
+      ...choices
+          .map(
+            (e) => ReactiveGroupButtonItem(
+              value: e.value?.value,
+              title: e.text ?? e.value?.toString() ?? '',
+            ),
+          )
+          .toList(growable: false),
       if (widget.element.showNoneItem == true)
         ReactiveGroupButtonItem(
-          value: 'none',
+          value: noneValue,
           title: e.noneText ?? S.of(context).noneItemText,
         ),
       if (widget.element.showOtherItem == true)
         ReactiveGroupButtonItem(
-          value: 'other',
+          value: selectbaseController.storeOtherAsComment
+              ? otherValue
+              : selectbaseController.otherValue,
           title: e.otherText ?? S.of(context).otherItemText,
         )
     ];
     return SelectbaseWidget(
         controller: selectbaseController,
+        otherValueChanged: (value) {
+          if (!selectbaseController.storeOtherAsComment) {
+            getCurrentControl().value = value;
+          } else {
+            getCurrentControl().value = otherValue;
+          }
+        },
         child: ReactiveGroupButton(
             options: const GroupButtonOptions(spacing: 0, runSpacing: 0),
             isRadio: true,
             formControlName: e.name!,
             buttons: elementItems,
             onChanged: (control) {
-              if ((e.showOtherItem ?? false) && control.value == otherValue) {
-                selectbaseController.setShowOther(true);
+              if (widget.element.showOtherItem ?? false) {
+                if (selectbaseController.storeOtherAsComment) {
+                  selectbaseController
+                      .setShowOther(control.value == otherValue);
+                } else {
+                  selectbaseController
+                      .setShowOther(isOtherValue(control.value));
+                }
               } else {
                 selectbaseController.setShowOther(false);
+              }
+              if (widget.element.showNoneItem ?? false) {
+                if (control.value == noneValue) {
+                  selectbaseController.setShowOther(false);
+                }
               }
             }));
   }

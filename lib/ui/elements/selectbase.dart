@@ -68,10 +68,6 @@ class SelectbaseWidgetState extends State<SelectbaseWidget> {
                   formControlName: controller.getCommentName(),
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
-                  onChanged: (control) {
-                    widget.otherValueChanged
-                        ?.call(control.value?.toString() ?? "");
-                  },
                   decoration: InputDecoration(
                       border: const OutlineInputBorder(),
                       hintText: element.commentPlaceholder),
