@@ -36,7 +36,7 @@ class _$Html extends Html {
   @override
   final QuestionTitleLocation? titleLocation;
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final bool? useDisplayValuesInDynamicTexts;
   @override
@@ -320,9 +320,9 @@ class HtmlBuilder
   set titleLocation(covariant QuestionTitleLocation? titleLocation) =>
       _$this._titleLocation = titleLocation;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   bool? _useDisplayValuesInDynamicTexts;

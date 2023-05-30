@@ -10,8 +10,8 @@ abstract class MatrixdropdownbaseBuilder
     implements MatrixbaseBuilder, MatrixdropdownbaseAllOfBuilder {
   void replace(covariant Matrixdropdownbase other);
   void update(void Function(MatrixdropdownbaseBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(covariant String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea);
 
   String? get columnsVisibleIf;
   set columnsVisibleIf(covariant String? columnsVisibleIf);
@@ -168,7 +168,7 @@ abstract class MatrixdropdownbaseBuilder
 
 class _$$Matrixdropdownbase extends $Matrixdropdownbase {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? columnsVisibleIf;
   @override
@@ -512,9 +512,9 @@ class $MatrixdropdownbaseBuilder
         MatrixdropdownbaseBuilder {
   _$$Matrixdropdownbase? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _columnsVisibleIf;

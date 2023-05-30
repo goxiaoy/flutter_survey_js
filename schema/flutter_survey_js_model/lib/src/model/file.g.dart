@@ -8,7 +8,7 @@ part of 'file.dart';
 
 class _$File extends File {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final bool? showPreview;
   @override
@@ -305,9 +305,9 @@ class FileBuilder
     implements Builder<File, FileBuilder>, FileAllOfBuilder, QuestionBuilder {
   _$File? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   bool? _showPreview;

@@ -8,7 +8,7 @@ part of 'matrixdynamic.dart';
 
 class _$Matrixdynamic extends Matrixdynamic {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? columnsVisibleIf;
   @override
@@ -452,9 +452,9 @@ class MatrixdynamicBuilder
         MatrixdynamicAllOfBuilder {
   _$Matrixdynamic? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _columnsVisibleIf;

@@ -276,56 +276,56 @@ const fix = (target) =>
   _.forIn(target, (value, key, object) => {
     //fix some shit property
     if (key === "useDisplayValuesInDynamicTexts") {
-      object["useDisplayValuesInDynamicTexts"]["type"] = "boolean";
+      object[key]["type"] = "boolean";
     }
     if (key === "separateSpecialChoices") {
-      object["separateSpecialChoices"]["type"] = "boolean";
+      object[key]["type"] = "boolean";
     }
     if (key === "validators") {
-      object["validators"] = allValidators;
+      object[key] = allValidators;
     }
     if (key === "clearIfInvisible") {
-      object["clearIfInvisible"] = {
+      object[key] = {
         $ref: "#/components/schemas/questionClearIfInvisible",
       };
     }
     if (key === "titleLocation") {
-      object["titleLocation"] = {
+      object[key] = {
         $ref: "#/components/schemas/questionTitleLocation",
       };
     }
     if (key === "storeOthersAsComment") {
-      object["storeOthersAsComment"] = {
+      object[key] = {
         type: "boolean",
       };
     }
     if (key === "showOtherItem") {
-      object["showOtherItem"] = {
+      object[key] = {
         type: "boolean",
       };
     }
     if (key === "showSelectAllItem") {
-      object["showSelectAllItem"] = {
+      object[key] = {
         type: "boolean",
       };
     }
     if (key === "isRequired") {
-      object["isRequired"] = {
+      object[key] = {
         type: "boolean",
       };
     }
     if (key === "showNoneItem") {
-      object["showNoneItem"] = {
+      object[key] = {
         type: "boolean",
       };
     }
     if (key === "visible") {
-      object["visible"] = {
+      object[key] = {
         type: "boolean",
       };
     }
     if (key === "maxSelectedChoices") {
-      object["maxSelectedChoices"] = {
+      object[key] = {
         type: "number",
       };
     }
@@ -338,7 +338,7 @@ const fix = (target) =>
       };
     }
     if (key === "colCount") {
-      object["colCount"] = {
+      object[key] = {
         $ref: "#/components/schemas/checkboxbaseColCount",
       };
     }
@@ -350,6 +350,11 @@ const fix = (target) =>
     if (key === "correctAnswer") {
       object[key] = {
         $ref: "#/components/schemas/anyvalue",
+      };
+    }
+    if (key === "showCommentArea") {
+      object[key] = {
+        type: "boolean",
       };
     }
 

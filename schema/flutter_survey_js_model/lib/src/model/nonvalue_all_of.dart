@@ -75,7 +75,7 @@ abstract class NonvalueAllOf  {
   // enum titleLocationEnum {  default,  top,  bottom,  left,  hidden,  };
 
   @BuiltValueField(wireName: r'showCommentArea')
-  String? get showCommentArea;
+  bool? get showCommentArea;
 
   @BuiltValueField(wireName: r'useDisplayValuesInDynamicTexts')
   bool? get useDisplayValuesInDynamicTexts;
@@ -191,7 +191,7 @@ class _$NonvalueAllOfSerializer implements PrimitiveSerializer<NonvalueAllOf> {
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.useDisplayValuesInDynamicTexts != null) {
@@ -360,8 +360,8 @@ class _$$NonvalueAllOfSerializer implements PrimitiveSerializer<$NonvalueAllOf> 
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'useDisplayValuesInDynamicTexts':

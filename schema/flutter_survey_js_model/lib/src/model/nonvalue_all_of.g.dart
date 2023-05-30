@@ -48,8 +48,8 @@ abstract class NonvalueAllOfBuilder {
   QuestionTitleLocation? get titleLocation;
   set titleLocation(QuestionTitleLocation? titleLocation);
 
-  String? get showCommentArea;
-  set showCommentArea(String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(bool? showCommentArea);
 
   bool? get useDisplayValuesInDynamicTexts;
   set useDisplayValuesInDynamicTexts(bool? useDisplayValuesInDynamicTexts);
@@ -83,7 +83,7 @@ class _$$NonvalueAllOf extends $NonvalueAllOf {
   @override
   final QuestionTitleLocation? titleLocation;
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final bool? useDisplayValuesInDynamicTexts;
 
@@ -250,9 +250,9 @@ class $NonvalueAllOfBuilder
   set titleLocation(covariant QuestionTitleLocation? titleLocation) =>
       _$this._titleLocation = titleLocation;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   bool? _useDisplayValuesInDynamicTexts;

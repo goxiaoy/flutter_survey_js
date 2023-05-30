@@ -8,7 +8,7 @@ part of 'boolean.dart';
 
 class _$Boolean extends Boolean {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? label;
   @override
@@ -278,9 +278,9 @@ class BooleanBuilder
         QuestionBuilder {
   _$Boolean? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _label;

@@ -9,8 +9,8 @@ part of 'rating_all_of.dart';
 abstract class RatingAllOfBuilder {
   void replace(RatingAllOf other);
   void update(void Function(RatingAllOfBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(bool? showCommentArea);
 
   RatingRateType? get rateType;
   set rateType(RatingRateType? rateType);
@@ -55,7 +55,7 @@ abstract class RatingAllOfBuilder {
 
 class _$$RatingAllOf extends $RatingAllOf {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final RatingRateType? rateType;
   @override
@@ -178,9 +178,9 @@ class $RatingAllOfBuilder
     implements Builder<$RatingAllOf, $RatingAllOfBuilder>, RatingAllOfBuilder {
   _$$RatingAllOf? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   RatingRateType? _rateType;

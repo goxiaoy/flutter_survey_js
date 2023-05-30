@@ -68,7 +68,7 @@ class _$Rating extends Rating {
   @override
   final String? renderAs;
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? commentText;
   @override
@@ -471,9 +471,9 @@ class RatingBuilder
   String? get renderAs => _$this._renderAs;
   set renderAs(covariant String? renderAs) => _$this._renderAs = renderAs;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _commentText;

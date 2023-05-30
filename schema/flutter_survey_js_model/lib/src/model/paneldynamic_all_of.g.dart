@@ -9,8 +9,8 @@ part of 'paneldynamic_all_of.dart';
 abstract class PaneldynamicAllOfBuilder {
   void replace(PaneldynamicAllOf other);
   void update(void Function(PaneldynamicAllOfBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(bool? showCommentArea);
 
   ListBuilder<SurveyQuestionsInner> get templateElements;
   set templateElements(ListBuilder<SurveyQuestionsInner>? templateElements);
@@ -101,7 +101,7 @@ abstract class PaneldynamicAllOfBuilder {
 
 class _$$PaneldynamicAllOf extends $PaneldynamicAllOf {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final BuiltList<SurveyQuestionsInner>? templateElements;
   @override
@@ -317,9 +317,9 @@ class $PaneldynamicAllOfBuilder
         PaneldynamicAllOfBuilder {
   _$$PaneldynamicAllOf? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   ListBuilder<SurveyQuestionsInner>? _templateElements;

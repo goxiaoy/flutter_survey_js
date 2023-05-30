@@ -197,7 +197,7 @@ class _$CheckboxbaseSerializer implements PrimitiveSerializer<Checkboxbase> {
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.maxWidth != null) {
@@ -611,8 +611,8 @@ class _$$CheckboxbaseSerializer implements PrimitiveSerializer<$Checkboxbase> {
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'maxWidth':

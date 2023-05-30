@@ -35,7 +35,7 @@ part 'rating_all_of.g.dart';
 @BuiltValue(instantiable: false)
 abstract class RatingAllOf  {
   @BuiltValueField(wireName: r'showCommentArea')
-  String? get showCommentArea;
+  bool? get showCommentArea;
 
   @BuiltValueField(wireName: r'rateType')
   RatingRateType? get rateType;
@@ -101,7 +101,7 @@ class _$RatingAllOfSerializer implements PrimitiveSerializer<RatingAllOf> {
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.rateType != null) {
@@ -261,8 +261,8 @@ class _$$RatingAllOfSerializer implements PrimitiveSerializer<$RatingAllOf> {
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'rateType':

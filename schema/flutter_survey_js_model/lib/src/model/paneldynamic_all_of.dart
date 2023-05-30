@@ -53,7 +53,7 @@ part 'paneldynamic_all_of.g.dart';
 @BuiltValue(instantiable: false)
 abstract class PaneldynamicAllOf  {
   @BuiltValueField(wireName: r'showCommentArea')
-  String? get showCommentArea;
+  bool? get showCommentArea;
 
   @BuiltValueField(wireName: r'templateElements')
   BuiltList<SurveyQuestionsInner>? get templateElements;
@@ -166,7 +166,7 @@ class _$PaneldynamicAllOfSerializer implements PrimitiveSerializer<PaneldynamicA
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.templateElements != null) {
@@ -431,8 +431,8 @@ class _$$PaneldynamicAllOfSerializer implements PrimitiveSerializer<$Paneldynami
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'templateElements':

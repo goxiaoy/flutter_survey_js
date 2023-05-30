@@ -9,8 +9,8 @@ part of 'boolean_all_of.dart';
 abstract class BooleanAllOfBuilder {
   void replace(BooleanAllOf other);
   void update(void Function(BooleanAllOfBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(bool? showCommentArea);
 
   String? get label;
   set label(String? label);
@@ -33,7 +33,7 @@ abstract class BooleanAllOfBuilder {
 
 class _$$BooleanAllOf extends $BooleanAllOf {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? label;
   @override
@@ -114,9 +114,9 @@ class $BooleanAllOfBuilder
         BooleanAllOfBuilder {
   _$$BooleanAllOf? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _label;

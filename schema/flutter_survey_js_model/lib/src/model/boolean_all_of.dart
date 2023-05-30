@@ -21,7 +21,7 @@ part 'boolean_all_of.g.dart';
 @BuiltValue(instantiable: false)
 abstract class BooleanAllOf  {
   @BuiltValueField(wireName: r'showCommentArea')
-  String? get showCommentArea;
+  bool? get showCommentArea;
 
   @BuiltValueField(wireName: r'label')
   String? get label;
@@ -61,7 +61,7 @@ class _$BooleanAllOfSerializer implements PrimitiveSerializer<BooleanAllOf> {
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.label != null) {
@@ -172,8 +172,8 @@ class _$$BooleanAllOfSerializer implements PrimitiveSerializer<$BooleanAllOf> {
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'label':

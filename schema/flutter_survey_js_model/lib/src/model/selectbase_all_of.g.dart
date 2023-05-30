@@ -9,8 +9,8 @@ part of 'selectbase_all_of.dart';
 abstract class SelectbaseAllOfBuilder {
   void replace(SelectbaseAllOf other);
   void update(void Function(SelectbaseAllOfBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(bool? showCommentArea);
 
   String? get choicesFromQuestion;
   set choicesFromQuestion(String? choicesFromQuestion);
@@ -64,7 +64,7 @@ abstract class SelectbaseAllOfBuilder {
 
 class _$$SelectbaseAllOf extends $SelectbaseAllOf {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? choicesFromQuestion;
   @override
@@ -207,9 +207,9 @@ class $SelectbaseAllOfBuilder
         SelectbaseAllOfBuilder {
   _$$SelectbaseAllOf? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _choicesFromQuestion;

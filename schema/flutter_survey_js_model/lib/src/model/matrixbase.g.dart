@@ -10,8 +10,8 @@ abstract class MatrixbaseBuilder
     implements MatrixbaseAllOfBuilder, QuestionBuilder {
   void replace(covariant Matrixbase other);
   void update(void Function(MatrixbaseBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(covariant String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea);
 
   String? get columnsVisibleIf;
   set columnsVisibleIf(covariant String? columnsVisibleIf);
@@ -133,7 +133,7 @@ abstract class MatrixbaseBuilder
 
 class _$$Matrixbase extends $Matrixbase {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? columnsVisibleIf;
   @override
@@ -406,9 +406,9 @@ class $MatrixbaseBuilder
     implements Builder<$Matrixbase, $MatrixbaseBuilder>, MatrixbaseBuilder {
   _$$Matrixbase? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _columnsVisibleIf;

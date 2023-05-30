@@ -147,7 +147,7 @@ abstract class QuestionAllOf  {
   String? get renderAs;
 
   @BuiltValueField(wireName: r'showCommentArea')
-  String? get showCommentArea;
+  bool? get showCommentArea;
 
   @BuiltValueField(wireName: r'commentText')
   String? get commentText;
@@ -378,7 +378,7 @@ class _$QuestionAllOfSerializer implements PrimitiveSerializer<QuestionAllOf> {
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.commentText != null) {
@@ -666,8 +666,8 @@ class _$$QuestionAllOfSerializer implements PrimitiveSerializer<$QuestionAllOf> 
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'commentText':

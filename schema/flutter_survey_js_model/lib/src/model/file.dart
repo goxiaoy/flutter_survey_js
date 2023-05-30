@@ -234,7 +234,7 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.showPreview != null) {
@@ -559,8 +559,8 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'showPreview':

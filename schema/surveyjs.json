@@ -782,7 +782,7 @@
                 "type": "string"
               },
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "commentText": {
                 "type": "string"
@@ -912,7 +912,7 @@
           {
             "properties": {
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "choicesFromQuestion": {
                 "type": "string"
@@ -1403,7 +1403,7 @@
           {
             "properties": {
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "columnsVisibleIf": {
                 "type": "string"
@@ -2103,7 +2103,7 @@
                 "$ref": "#/components/schemas/questionTitleLocation"
               },
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "useDisplayValuesInDynamicTexts": {
                 "type": "boolean"
@@ -2191,7 +2191,7 @@
           {
             "properties": {
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "showPreview": {
                 "type": "boolean"
@@ -2284,7 +2284,7 @@
           {
             "properties": {
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "rateType": {
                 "$ref": "#/components/schemas/ratingRateType"
@@ -2348,7 +2348,7 @@
           {
             "properties": {
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "label": {
                 "type": "string"
@@ -2441,7 +2441,7 @@
           {
             "properties": {
               "showCommentArea": {
-                "type": "string"
+                "type": "boolean"
               },
               "templateElements": {
                 "type": "array",

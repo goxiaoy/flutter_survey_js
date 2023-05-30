@@ -8,7 +8,7 @@ part of 'paneldynamic.dart';
 
 class _$Paneldynamic extends Paneldynamic {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final BuiltList<SurveyQuestionsInner>? templateElements;
   @override
@@ -410,9 +410,9 @@ class PaneldynamicBuilder
         QuestionBuilder {
   _$Paneldynamic? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   ListBuilder<SurveyQuestionsInner>? _templateElements;

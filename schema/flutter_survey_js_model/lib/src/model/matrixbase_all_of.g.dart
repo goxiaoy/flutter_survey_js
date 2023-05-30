@@ -9,8 +9,8 @@ part of 'matrixbase_all_of.dart';
 abstract class MatrixbaseAllOfBuilder {
   void replace(MatrixbaseAllOf other);
   void update(void Function(MatrixbaseAllOfBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(bool? showCommentArea);
 
   String? get columnsVisibleIf;
   set columnsVisibleIf(String? columnsVisibleIf);
@@ -33,7 +33,7 @@ abstract class MatrixbaseAllOfBuilder {
 
 class _$$MatrixbaseAllOf extends $MatrixbaseAllOf {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? columnsVisibleIf;
   @override
@@ -116,9 +116,9 @@ class $MatrixbaseAllOfBuilder
         MatrixbaseAllOfBuilder {
   _$$MatrixbaseAllOf? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _columnsVisibleIf;

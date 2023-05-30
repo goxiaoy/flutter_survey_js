@@ -9,8 +9,8 @@ part of 'file_all_of.dart';
 abstract class FileAllOfBuilder {
   void replace(FileAllOf other);
   void update(void Function(FileAllOfBuilder) updates);
-  String? get showCommentArea;
-  set showCommentArea(String? showCommentArea);
+  bool? get showCommentArea;
+  set showCommentArea(bool? showCommentArea);
 
   bool? get showPreview;
   set showPreview(bool? showPreview);
@@ -54,7 +54,7 @@ abstract class FileAllOfBuilder {
 
 class _$$FileAllOf extends $FileAllOf {
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final bool? showPreview;
   @override
@@ -175,9 +175,9 @@ class $FileAllOfBuilder
     implements Builder<$FileAllOf, $FileAllOfBuilder>, FileAllOfBuilder {
   _$$FileAllOf? _$v;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   bool? _showPreview;

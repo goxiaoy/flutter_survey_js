@@ -23,7 +23,7 @@ part 'matrixbase_all_of.g.dart';
 @BuiltValue(instantiable: false)
 abstract class MatrixbaseAllOf  {
   @BuiltValueField(wireName: r'showCommentArea')
-  String? get showCommentArea;
+  bool? get showCommentArea;
 
   @BuiltValueField(wireName: r'columnsVisibleIf')
   String? get columnsVisibleIf;
@@ -64,7 +64,7 @@ class _$MatrixbaseAllOfSerializer implements PrimitiveSerializer<MatrixbaseAllOf
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.columnsVisibleIf != null) {
@@ -175,8 +175,8 @@ class _$$MatrixbaseAllOfSerializer implements PrimitiveSerializer<$MatrixbaseAll
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'columnsVisibleIf':

@@ -90,7 +90,7 @@ class _$Dropdown extends Dropdown {
   @override
   final String? bindings;
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? commentText;
   @override
@@ -605,9 +605,9 @@ class DropdownBuilder
   String? get bindings => _$this._bindings;
   set bindings(covariant String? bindings) => _$this._bindings = bindings;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _commentText;

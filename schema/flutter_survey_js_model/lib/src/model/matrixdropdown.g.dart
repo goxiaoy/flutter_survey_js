@@ -18,7 +18,7 @@ class _$Matrixdropdown extends Matrixdropdown {
   @override
   final bool? hideIfRowsEmpty;
   @override
-  final String? showCommentArea;
+  final bool? showCommentArea;
   @override
   final String? columnsVisibleIf;
   @override
@@ -401,9 +401,9 @@ class MatrixdropdownBuilder
   set hideIfRowsEmpty(covariant bool? hideIfRowsEmpty) =>
       _$this._hideIfRowsEmpty = hideIfRowsEmpty;
 
-  String? _showCommentArea;
-  String? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant String? showCommentArea) =>
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
       _$this._showCommentArea = showCommentArea;
 
   String? _columnsVisibleIf;

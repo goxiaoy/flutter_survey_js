@@ -225,7 +225,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'showCommentArea';
       yield serializers.serialize(
         object.showCommentArea,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.enableIf != null) {
@@ -529,8 +529,8 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showCommentArea = valueDes;
           break;
         case r'enableIf':
