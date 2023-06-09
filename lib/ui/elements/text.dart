@@ -51,7 +51,9 @@ Widget textBuilder(BuildContext context, s.Elementbase element,
       decoration: InputDecoration(hintText: hintText),
     );
   }
-  if (e.inputType == s.TextInputType.range) {}
+  if (e.inputType == s.TextInputType.range) {
+      //TODO
+  }
   if (e.inputType == s.TextInputType.tel) {
     widget = ReactiveTextField(
       keyboardType: TextInputType.phone,
@@ -59,9 +61,15 @@ Widget textBuilder(BuildContext context, s.Elementbase element,
       decoration: InputDecoration(hintText: hintText),
     );
   }
-  if (e.inputType == s.TextInputType.time) {}
-  if (e.inputType == s.TextInputType.url) {}
-  if (e.inputType == s.TextInputType.week) {}
+  if (e.inputType == s.TextInputType.time) {
+      //TODO
+  }
+  if (e.inputType == s.TextInputType.url) {
+      //TODO
+  }
+  if (e.inputType == s.TextInputType.week) {
+      //TODO
+  }
   if (e.inputType == s.TextInputType.number) {
     widget = ReactiveTextField(
       keyboardType: TextInputType.number,

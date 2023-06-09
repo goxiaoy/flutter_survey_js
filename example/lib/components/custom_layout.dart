@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:json_editor/json_editor.dart';
 import 'package:logging/logging.dart';
+
+import 'package:example/storage.dart';
 
 class CustomLayoutPage extends StatelessWidget {
   final s.Survey? survey;
@@ -30,6 +34,7 @@ class CustomLayoutPage extends StatelessWidget {
                 answer: answer,
                 onChange: (v) {
                   print(v);
+                  storeAnswer(jsonEncode(v));
                 },
                 builder: (context) => CustomLayout(),
                 onSubmit: (v) {

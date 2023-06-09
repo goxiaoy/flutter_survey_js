@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:example/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:json_editor/json_editor.dart';
@@ -22,8 +25,9 @@ class Simple extends StatelessWidget {
                 : s.SurveyWidget(
                     survey: survey!,
                     answer: answer,
-                    onChange: (v) {
+                    onChange: (v)async {
                       print(v);
+                      storeAnswer(jsonEncode(v));
                     },
                     onSubmit: (v) {
                       print(v);

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:example/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -66,21 +67,29 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
 
-  late Future<List> assetLoader;
+  late Future<List<String?>> loader;
   Map<TestJsonType, String> _surveyMap = {};
 
   TestJsonType? selected;
 
   @override
   void initState() {
-    assetLoader = Future.wait(
-      TestJsonType.values.map((e) => rootBundle
-          .loadString(e.fileLocation)
-          .then((value) => _surveyMap[e] = JsonElement.format(value))),
+    loader = Future.wait<String?>(
+      [
+        ...TestJsonType.values.map((e) => rootBundle
+            .loadString(e.fileLocation)
+            .then((value) => _surveyMap[e] = JsonElement.format(value))),
+        getSurvey(),
+      ],
     ).then((value) {
       setState(() {
-        selected = TestJsonType.complex;
-        survey = _surveyMap[selected!]!;
+        if (value.last == null) {
+          selected = TestJsonType.complex;
+          survey = _surveyMap[selected!]!;
+        } else {
+          selected = null;
+          survey = value.last!;
+        }
       });
       return value;
     });
@@ -109,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: SafeArea(
             child: FutureBuilder(
-          future: this.assetLoader,
+          future: this.loader,
           builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             if (!snapshot.hasData) {
               return CircularProgressIndicator();
@@ -124,8 +133,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 2,
                   color: Colors.deepPurpleAccent,
                 ),
-                onChanged: (TestJsonType? value) {
+                onChanged: (TestJsonType? value) async {
                   // This is called when the user selects an item.
+                  await clearSurvey();
                   setState(() {
                     selected = value;
                     survey = _surveyMap[selected!]!;
@@ -143,10 +153,11 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                   child: JsonEditor.string(
                 jsonString: survey,
-                onValueChanged: (value) {
+                onValueChanged: (value) async {
                   if (value.toString() !=
                           JsonElement.fromString(survey).toString() &&
                       mounted) {
+                    await storeSurvey(value.toString());
                     setState(() {
                       survey = value.toString();
                       selected = null;
