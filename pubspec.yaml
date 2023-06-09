@@ -18,7 +18,6 @@ dependencies:
   multiple_localization: ^0.4.0
 
   reactive_forms: ^14.3.0
-  reactive_date_time_picker: ^0.6.1
   reactive_date_range_picker: ^0.6.0
   reactive_segmented_control: ^0.6.0
   reactive_advanced_switch: ^0.6.1

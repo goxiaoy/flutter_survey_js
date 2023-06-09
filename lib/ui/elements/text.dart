@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_color_picker.dart';
+import 'package:flutter_survey_js/ui/reactive/reactive_date_time_picker.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
-import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 Widget textBuilder(BuildContext context, s.Elementbase element,
@@ -52,7 +52,7 @@ Widget textBuilder(BuildContext context, s.Elementbase element,
     );
   }
   if (e.inputType == s.TextInputType.range) {
-      //TODO
+    //TODO
   }
   if (e.inputType == s.TextInputType.tel) {
     widget = ReactiveTextField(
@@ -62,13 +62,13 @@ Widget textBuilder(BuildContext context, s.Elementbase element,
     );
   }
   if (e.inputType == s.TextInputType.time) {
-      //TODO
+    //TODO
   }
   if (e.inputType == s.TextInputType.url) {
-      //TODO
+    //TODO
   }
   if (e.inputType == s.TextInputType.week) {
-      //TODO
+    //TODO
   }
   if (e.inputType == s.TextInputType.number) {
     widget = ReactiveTextField(
@@ -87,9 +87,9 @@ AbstractControl textControlBuilder(BuildContext context, s.Elementbase element,
   final e = element as s.Text;
   if (e.inputType == s.TextInputType.date ||
       e.inputType == s.TextInputType.datetimeLocal) {
-    return FormControl<DateTime>(
+    return FormControl<String>(
         validators: validators,
-        value: e.defaultValue.tryCastToDateTime() ?? value.tryCastToDateTime());
+        value: e.defaultValue.tryCastToString() ?? value.tryCastToString());
   }
   if (e.inputType == s.TextInputType.color) {
     return FormControl<String>(

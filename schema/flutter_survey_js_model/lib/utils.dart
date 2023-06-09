@@ -179,7 +179,7 @@ extension ObjectExtension on Object? {
     if (this is bool) {
       return this as bool;
     }
-    return this.toString().toBoolean();
+    return this.toString().trim().toBoolean();
   }
 
   String? tryCastToString() {
@@ -202,14 +202,14 @@ extension ObjectExtension on Object? {
     if (this is int) {
       return this as int;
     }
-    return int.tryParse(this.toString());
+    return int.tryParse(this.toString().trim());
   }
 
   DateTime? tryCastToDateTime() {
     if (this == null) {
       return null;
     }
-    return DateTime.tryParse(this.toString());
+    return DateTime.tryParse(this.toString().trim());
   }
 
   num? tryCastToNum() {
@@ -219,7 +219,7 @@ extension ObjectExtension on Object? {
     if (this is num) {
       return this as num;
     }
-    return num.tryParse(this.toString());
+    return num.tryParse(this.toString().trim());
   }
 }
 
