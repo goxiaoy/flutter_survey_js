@@ -31396,7 +31396,6 @@ All Tencent Modifications are Copyright (C) 2015 THL A29 Limited.
 --------------------------------------------------------------------------------
 reactive_advanced_switch
 reactive_date_range_picker
-reactive_date_time_picker
 reactive_image_picker
 reactive_segmented_control
 
@@ -34043,7 +34042,7 @@ SOFTWARE.
 --------------------------------------------------------------------------------
 win32
 
-Copyright 2019, the Dart project authors. All rights reserved.
+Copyright 2019, Dart | Windows. All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
