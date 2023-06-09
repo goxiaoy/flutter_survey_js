@@ -4,6 +4,7 @@ import 'package:flutter_survey_js/ui/elements/comment.dart';
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/elements/panel.dart';
 import 'package:flutter_survey_js/ui/reactive/always_update_form_array.dart';
+import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
@@ -38,7 +39,7 @@ class SurveyElementFactory {
     register<s.Matrix>(matrixBuilder,
         control: (context, element, {validators = const [], value}) {
       //Matrix returns single object
-      return fb.group(
+      return surveyfb.group(
           Map.fromEntries(((element as s.Matrix)
                       .rows
                       ?.map((p) => p.castToItemvalue()) ??
@@ -53,7 +54,7 @@ class SurveyElementFactory {
         control: (context, elementBase, {validators = const [], value}) {
       final element = elementBase as s.Matrixdropdown;
       //Matrixdropdown returns single object
-      return fb.group(
+      return surveyfb.group(
           Map.fromEntries((element.rows?.map((p) => p.castToItemvalue()) ?? [])
               .map((e) => MapEntry(
                   e.value.toString(),
@@ -70,7 +71,7 @@ class SurveyElementFactory {
     register<s.Matrixdynamic>(matrixDynamicBuilder,
         control: (context, element, {validators = const [], value}) =>
             //Matrixdynamic returns array of object
-            alwaysUpdateArray<Map<String, Object?>>(
+            surveyfb.array<Map<String, Object?>>(
                 (element as s.Matrixdynamic).defaultValue.tryCastToListObj() ??
                     value.tryCastToList() ??
                     [],
@@ -78,7 +79,7 @@ class SurveyElementFactory {
     register<s.Checkbox>(checkBoxBuilder,
         control: (context, element, {validators = const [], value}) =>
             //Checkbox returns array of object or array of single value( string, boolean etc.)
-            alwaysUpdateArray(
+            surveyfb.array(
                 (element as s.Checkbox).defaultValue.tryCastToListObj() ??
                     value.tryCastToList() ??
                     [],
@@ -148,7 +149,7 @@ class SurveyElementFactory {
                 value: (element as s.Dropdown).defaultValue?.value ?? value));
     register<s.Paneldynamic>(panelDynamicBuilder,
         control: (context, element, {validators = const [], value}) =>
-            alwaysUpdateArray<Map<String, Object?>>(
+            surveyfb.array<Map<String, Object?>>(
                 (element as s.Paneldynamic).defaultValue.tryCastToListObj() ??
                     value.tryCastToList() ??
                     [],

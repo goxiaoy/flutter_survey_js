@@ -23,23 +23,3 @@ class AlwaysUpdateFormArray<T> extends FormArray<T> {
   }
 }
 
-FormArray<T> alwaysUpdateArray<T>(
-  List<Object> value, [
-  List<ValidatorFunction> validators = const [],
-  List<AsyncValidatorFunction> asyncValidators = const [],
-]) {
-  return AlwaysUpdateFormArray<T>(
-    value.map<AbstractControl<T>>((v) {
-      if (v is Map<String, Object>) {
-        return fb.group(v) as AbstractControl<T>;
-      }
-      if (v is AbstractControl<T>) {
-        return v;
-      }
-
-      return fb.control<T>(v as T);
-    }).toList(),
-    validators: validators,
-    asyncValidators: asyncValidators,
-  );
-}

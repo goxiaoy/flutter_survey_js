@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
@@ -46,7 +47,7 @@ FormGroup elementsToFormGroup(
           "", [if (element.isRequired ?? false) NonEmptyValidator.get]);
     }
   }
-  return fb.group(controls, newValidators, asyncValidators);
+  return surveyfb.group(controls, newValidators, asyncValidators);
 }
 
 Object? getDefaultValue(s.Elementbase element, Object? value) {
