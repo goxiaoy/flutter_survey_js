@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_color_picker.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_date_time_picker.dart';
@@ -72,6 +73,7 @@ Widget textBuilder(BuildContext context, s.Elementbase element,
   }
   if (e.inputType == s.TextInputType.number) {
     widget = ReactiveTextField(
+      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[-+0-9.]'))],
       keyboardType: TextInputType.number,
       formControlName: element.name!,
       valueAccessor: NumStringValueAccessor(),
