@@ -124,4 +124,77 @@ void main() {
 
     expect(find.text(placeholder), findsOneWidget);
   });
+
+  testWidgets("number input should allow both ints and doubles",
+      (WidgetTester tester) async {
+    final s = surveyFromJson(
+      {
+        "questions": [
+          {
+            "title": "your score",
+            "name": "your score",
+            "type": "text",
+            "inputType": "number",
+            "isRequired": true
+          },
+        ],
+      },
+    )!;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          MultiAppLocalizationsDelegate(),
+        ],
+        home: Material(
+          child: SurveyWidget(survey: s),
+        ),
+      ),
+    );
+
+    // initially the form is rendered
+    await tester.pump();
+    await tester.idle();
+    expect(find.byType(SurveyWidget), findsWidgets);
+
+    // input an int
+    await tester.enterText(find.byType(TextField), '1');
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("number"), findsNothing);
+    expect(find.text("required"), findsNothing);
+
+    // input a double
+    await tester.enterText(find.byType(TextField), '0.5');
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("number"), findsNothing);
+    expect(find.text("required"), findsNothing);
+
+    // input a negative double
+    await tester.enterText(find.byType(TextField), '-0.5');
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("number"), findsNothing);
+    expect(find.text("required"), findsNothing);
+
+    // NaN
+    await tester.enterText(find.byType(TextField), '2.22.22');
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("number"), findsNothing);
+    expect(find.text("required"), findsOneWidget);
+
+    // NaN
+    await tester.enterText(find.byType(TextField), 'a');
+    await tester.tap(find.byType(ElevatedButton));
+    await tester.pump();
+    await tester.idle();
+    expect(find.text("number"), findsNothing);
+    expect(find.text("required"), findsOneWidget);
+  });
 }

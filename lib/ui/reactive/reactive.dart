@@ -18,7 +18,7 @@ class NumStringValueAccessor extends ControlValueAccessor<num, String> {
 /// Validator that validates if control's value is a numeric value.
 class NullableNumberValidator extends Validator<dynamic> {
   /// The regex expression of a numeric string value.
-  static final RegExp numberRegex = RegExp(r'^-?[0-9]+$');
+  static final RegExp numberRegex = RegExp(r'^[-+]?\d+(\.\d+)?$');
 
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
