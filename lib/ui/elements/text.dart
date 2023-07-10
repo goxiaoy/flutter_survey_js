@@ -63,7 +63,12 @@ Widget textBuilder(BuildContext context, s.Elementbase element,
     );
   }
   if (e.inputType == s.TextInputType.time) {
-    //TODO
+    widget = ReactiveDateTimePicker(
+      locale: Localizations.localeOf(context),
+      formControlName: element.name!,
+      type: ReactiveDatePickerFieldType.time,
+      decoration: InputDecoration(hintText: hintText),
+    );
   }
   if (e.inputType == s.TextInputType.url) {
     //TODO
