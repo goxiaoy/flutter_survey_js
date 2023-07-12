@@ -3,7 +3,6 @@ import 'package:flutter_survey_js/ui/elements/boolean.dart';
 import 'package:flutter_survey_js/ui/elements/comment.dart';
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/elements/panel.dart';
-import 'package:flutter_survey_js/ui/reactive/always_update_form_array.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
@@ -16,6 +15,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'elements/checkbox.dart';
 import 'elements/dropdown.dart';
 import 'elements/image.dart';
+import 'elements/image_picker.dart';
 import 'elements/matrix.dart';
 import 'elements/matrix_dropdown_base.dart';
 import 'elements/matrix_dynamic.dart';
@@ -140,7 +140,7 @@ class SurveyElementFactory {
       return urlToImage((element as s.Image).imageLink)
           .wrapQuestionTitle(context, element, configuration: configuration);
     });
-    // register<s.ImagePicker>(imagePickerBuilder);
+    register<s.Imagepicker>(imagePickerBuilder);
 
     register<s.Dropdown>(dropdownBuilder,
         control: (context, element, {validators = const [], value}) =>

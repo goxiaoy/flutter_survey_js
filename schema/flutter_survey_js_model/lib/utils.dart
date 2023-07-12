@@ -32,6 +32,28 @@ extension SelectbaseAllOfChoicesInnerExtension on SelectbaseAllOfChoicesInner {
         this.anyOf.values[this.anyOf.types.indexOf(JsonObject)] as JsonObject;
     return b.build();
   }
+
+  Imageitemvalue? castToImageitemvalue() {
+    if (this.anyOf.isType(Imageitemvalue)) {
+      return this.anyOf.values[this.anyOf.types.indexOf(Imageitemvalue)]
+          as Imageitemvalue;
+    }
+    final b = ImageitemvalueBuilder();
+    b.value =
+        this.anyOf.values[this.anyOf.types.indexOf(JsonObject)] as JsonObject;
+    return b.build();
+  }
+
+  Buttongroupitemvalue? castToButtongroupitemvalue() {
+    if (this.anyOf.isType(Buttongroupitemvalue)) {
+      return this.anyOf.values[this.anyOf.types.indexOf(Buttongroupitemvalue)]
+          as Buttongroupitemvalue;
+    }
+    final b = ButtongroupitemvalueBuilder();
+    b.value =
+        this.anyOf.values[this.anyOf.types.indexOf(JsonObject)] as JsonObject;
+    return b.build();
+  }
 }
 
 extension MatrixdropdownAllOfRowsInnerExtension
@@ -70,6 +92,12 @@ extension QuestionAllOfValidatorsInnerExtension
 extension SurveyTriggersInnerExtension on SurveyTriggersInner {
   Surveytrigger get realValidator {
     return this.anyOf.values.values.first as Surveytrigger;
+  }
+}
+
+extension SurveyWidthExtension on SurveyLogoWidth {
+  double? get realValue {
+    return this.oneOf.value.tryCastToDouble();
   }
 }
 
@@ -203,6 +231,19 @@ extension ObjectExtension on Object? {
       return this as int;
     }
     return int.tryParse(this.toString().trim());
+  }
+
+  double? tryCastToDouble() {
+    if (this == null) {
+      return null;
+    }
+    if (this is num) {
+      return (this as num).toDouble();
+    }
+    if (this is double) {
+      return this as double;
+    }
+    return double.tryParse(this.toString().trim());
   }
 
   DateTime? tryCastToDateTime() {
