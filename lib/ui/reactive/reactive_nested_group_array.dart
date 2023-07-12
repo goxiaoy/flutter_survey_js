@@ -12,7 +12,7 @@ class ReactiveNestedGroupArray<T> extends StatelessWidget {
   final FormArray<T>? formArray;
   final Widget? child;
   final ReactiveNestedGroupArrayBuilder builder;
-  final AbstractControl<T> Function()? createNew;
+  final FormGroup Function({Object? value}) createNew;
   final int minLength;
   final int? maxLength;
 
@@ -23,7 +23,7 @@ class ReactiveNestedGroupArray<T> extends StatelessWidget {
     this.formArray,
     this.child,
     required this.builder,
-    this.createNew,
+    required this.createNew,
     this.minLength = 0,
     this.maxLength,
   })  : assert(minLength >= 0),
@@ -48,7 +48,21 @@ class ReactiveNestedGroupArray<T> extends StatelessWidget {
       child: child,
       builder: (context, formArray, child) {
         while (formArray.controls.length < minLength) {
-          formArray.add(createNew!());
+          formArray.add(createNew());
+        }
+        final formGroups = <FormGroup>[];
+        bool modified = false;
+        for (final c in formArray.controls) {
+          if (c is FormGroup) {
+            formGroups.add(c);
+          } else {
+            formGroups.add(createNew(value: c.value));
+            modified = true;
+          }
+        }
+        if (modified) {
+          formArray.clear();
+          formArray.addAll(formGroups);
         }
         final controls = formArray.controls.cast<FormGroup>().toList();
         return Column(children: [

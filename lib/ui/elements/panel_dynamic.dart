@@ -6,7 +6,6 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
-
 Widget panelDynamicBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   return PanelDynamicElement(
@@ -25,12 +24,13 @@ class PanelDynamicElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    createNew() {
+    createNew({Object? value}) {
       //create new formGroup
       return elementsToFormGroup(
           context,
           (element.templateElements?.map((p0) => p0.realElement).toList() ?? [])
-              .toList());
+              .toList(),
+          value: value);
     }
 
     return ReactiveNestedGroupArray(
