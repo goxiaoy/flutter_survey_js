@@ -71,7 +71,7 @@ class SurveyElementFactory {
     register<s.Matrixdynamic>(matrixDynamicBuilder,
         control: (context, element, {validators = const [], value}) =>
             //Matrixdynamic returns array of object
-            surveyfb.array<Map<String, Object?>>(
+            surveyfb.array(
                 (element as s.Matrixdynamic).defaultValue.tryCastToListObj() ??
                     value.tryCastToList() ??
                     [],
@@ -149,7 +149,7 @@ class SurveyElementFactory {
                 value: (element as s.Dropdown).defaultValue?.value ?? value));
     register<s.Paneldynamic>(panelDynamicBuilder,
         control: (context, element, {validators = const [], value}) =>
-            surveyfb.array<Map<String, Object?>>(
+            surveyfb.array(
                 (element as s.Paneldynamic).defaultValue.tryCastToListObj() ??
                     value.tryCastToList() ??
                     [],
