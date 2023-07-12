@@ -138,12 +138,14 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
   }
 
-  void submit() {
+  bool submit() {
     if (formGroup.valid) {
       widget.onSubmit?.call(formGroup.value);
+      return true;
     } else {
       widget.onErrors?.call(formGroup.errors);
       formGroup.markAllAsTouched();
+      return false;
     }
   }
 
@@ -235,9 +237,9 @@ class SurveyController {
     _widgetState = null;
   }
 
-  void submit() {
+  bool submit() {
     assert(_widgetState != null, "SurveyWidget not initialized");
-    _widgetState?.submit();
+    return _widgetState!.submit();
   }
 
   // nextPageOrSubmit return true if submit or return false for next page
