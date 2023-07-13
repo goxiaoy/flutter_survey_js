@@ -83,7 +83,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     for (final kv in _controlsMap.entries) {
       var visible = true;
       status[kv.key] = ElementStatus(indexAll: index);
-      if (visible) {
+      if (visible && kv.key is! Nonvalue) {
         index++;
       }
     }
