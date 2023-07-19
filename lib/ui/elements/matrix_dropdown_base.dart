@@ -17,8 +17,11 @@ class MatrixDropdownTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(column.title ?? column.name?.toString() ?? "",
-        softWrap: true, style: Theme.of(context).textTheme.titleMedium);
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: Text(column.title ?? column.name?.toString() ?? "",
+          softWrap: true, style: Theme.of(context).textTheme.titleMedium),
+    );
   }
 }
 
