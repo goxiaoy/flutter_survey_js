@@ -18,7 +18,7 @@ Widget defaultSurveyTitleBuilder(BuildContext context, s.Survey survey) {
 
 Widget defaultStepperBuilder(
     BuildContext context, int pageCount, int currentPage) {
-  if (pageCount > 1) {
+  if (pageCount > 1 && pageCount < 7) {
     return DotStepper(
       // direction: Axis.vertical,
       dotCount: pageCount,
