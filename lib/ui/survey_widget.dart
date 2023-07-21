@@ -21,6 +21,7 @@ class SurveyWidget extends StatefulWidget {
   final FutureOr<void> Function(dynamic data)? onErrors;
   final ValueSetter<Map<String, Object?>?>? onChange;
   final bool showQuestionsInOnePage;
+  final bool showPageDots;
   final SurveyController? controller;
   final WidgetBuilder? builder;
 
@@ -34,6 +35,7 @@ class SurveyWidget extends StatefulWidget {
     this.controller,
     this.builder,
     this.showQuestionsInOnePage = false,
+    this.showPageDots = true,
   }) : super(key: key);
 
   @override
@@ -104,6 +106,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
                 currentPage: currentPage,
                 initialPage: initialPage,
                 showQuestionsInOnePage: widget.showQuestionsInOnePage,
+                showPageDots: widget.showPageDots,
                 child: Builder(
                     builder: (context) =>
                         (widget.builder ?? defaultBuilder)(context)),
@@ -181,6 +184,7 @@ class SurveyProvider extends InheritedWidget {
   final int currentPage;
   final int initialPage;
   final bool showQuestionsInOnePage;
+  final bool showPageDots;
 
   const SurveyProvider({
     Key? key,
@@ -191,6 +195,7 @@ class SurveyProvider extends InheritedWidget {
     required this.currentPage,
     required this.initialPage,
     this.showQuestionsInOnePage = false,
+    this.showPageDots = true,
   }) : super(key: key, child: child);
 
   static SurveyProvider of(BuildContext context) {
