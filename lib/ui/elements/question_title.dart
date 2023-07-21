@@ -14,7 +14,7 @@ class QuestionTitle extends StatelessWidget {
     description() {
       if (q.description != null && q.description!.isNotEmpty) {
         return Container(
-          padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+          padding: const EdgeInsets.only(left: 0.0, right: 0.0, bottom: 10.0),
           child: Text(q.description!,
               style: Theme.of(context).textTheme.bodyMedium),
         );
@@ -57,10 +57,13 @@ class QuestionTitle extends StatelessWidget {
       }
 
       listTitle.add(Expanded(
-          child: Text(
-        q.title ?? q.name ?? "",
-        style: titleTextStyle(),
-      )));
+          child: Container(
+            padding: EdgeInsets.only(top: 10),
+            child: Text(
+              q.title ?? q.name ?? "",
+              style: titleTextStyle(),
+            ),
+          )));
 
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,

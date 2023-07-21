@@ -107,17 +107,18 @@ class SurveyPageWidgetState extends State<SurveyPageWidget> {
             WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
           },
           child: Container(
+            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
             color: Colors.white,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(
-                  height: 8.0,
+                  height: 5.0,
                 ),
                 if (widget.page.title != null ||
                     widget.page.description != null)
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(2.0),
                     child: PanelTitle(
                       panel: widget.page,
                       onTimeout: () {

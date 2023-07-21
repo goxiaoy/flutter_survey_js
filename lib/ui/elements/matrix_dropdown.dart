@@ -36,7 +36,8 @@ class MatrixDropdownElement extends StatelessWidget {
         /// Add title bar
         list.add(TableRow(
             decoration: const BoxDecoration(
-              color: Colors.grey,
+              //color: Colors.grey,
+              color: Color(0xFFDFDFDF),
             ),
             children: [
               const TableCell(child: Text('')),
@@ -48,14 +49,18 @@ class MatrixDropdownElement extends StatelessWidget {
           list.add(TableRow(
               decoration: i % 2 != 0
                   ? const BoxDecoration(
-                      color: Colors.grey,
+                      //color: Colors.grey,
+                      color: Color(0xFFF4F4F4),
                     )
                   : null,
               children: [
                 //Row name
                 TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Text(row.castToItemvalue().text ?? "")),
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      child: Text(row.castToItemvalue().text ?? ""),
+                    )),
                 ...(matrix.columns?.toList() ?? []).map((column) {
                   final q = matrixDropdownColumnToQuestion(matrix, column);
                   final v = questionToValidators(q);
@@ -87,6 +92,9 @@ class MatrixDropdownElement extends StatelessWidget {
               ]));
         });
 
+        final screenWidth = MediaQuery.of(context).size.width;
+        final colLength = (matrix.columns?.toList() ?? []).length;
+        final colFixedWidth = (screenWidth-27) / ((colLength > 3) ? 3 : colLength+1); // Max 3 columns in the screen
         return ScrollConfiguration(
             behavior: CustomScrollBehavior(),
             child: Scrollbar(
@@ -95,9 +103,10 @@ class MatrixDropdownElement extends StatelessWidget {
                     controller: scrollController,
                     scrollDirection: Axis.horizontal,
                     child: Table(
-                      defaultColumnWidth: const IntrinsicColumnWidth(),
+                      defaultColumnWidth: FixedColumnWidth(colFixedWidth), //const IntrinsicColumnWidth(),
                       border: TableBorder.all(
                         width: 1.0,
+                        color: Colors.grey,
                       ),
                       // columnWidths: map,
                       children: list,

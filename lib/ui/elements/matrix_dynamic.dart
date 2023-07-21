@@ -73,7 +73,8 @@ class MatrixDynamicElement extends StatelessWidget {
         /// Add title bar
         list.add(TableRow(
             decoration: const BoxDecoration(
-              color: Colors.grey,
+              //color: Colors.grey,
+              color: Color(0xFFDFDFDF),
             ),
             children: [
               ...((matrix.columns?.toList() ?? []).map((e) => TableCell(
@@ -85,7 +86,8 @@ class MatrixDynamicElement extends StatelessWidget {
           list.add(TableRow(
               decoration: i % 2 != 0
                   ? const BoxDecoration(
-                      color: Colors.grey,
+                      //color: Colors.grey,
+                      color: Color(0xFFF4F4F4),
                     )
                   : null,
               children: [
@@ -131,6 +133,9 @@ class MatrixDynamicElement extends StatelessWidget {
               ]));
         });
 
+        final screenWidth = MediaQuery.of(context).size.width;
+        final colLength = (matrix.columns?.toList() ?? []).length;
+        final colFixedWidth = (screenWidth-32) / ((colLength > 3) ? 3 : colLength); // Max 3 columns in the screen
         return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
           return Column(
@@ -143,9 +148,10 @@ class MatrixDynamicElement extends StatelessWidget {
                           controller: scrollController,
                           scrollDirection: Axis.horizontal,
                           child: Table(
-                            defaultColumnWidth: const IntrinsicColumnWidth(),
+                            defaultColumnWidth: FixedColumnWidth(colFixedWidth), //const IntrinsicColumnWidth(),
                             border: TableBorder.all(
                               width: 1.0,
+                              color: Colors.grey,
                             ),
                             // columnWidths: map,
                             children: list,
