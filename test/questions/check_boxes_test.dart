@@ -109,6 +109,8 @@ void main() {
     expect(find.byType(ReactiveTextField), findsNothing);
 
     // check the "Other" option
+    await tester.ensureVisible(find.text("Other"));
+    await tester.pumpAndSettle();
     await tester.tap(find.text("Other"));
     await tester.pump();
     await tester.idle();
@@ -149,6 +151,8 @@ void main() {
     expect(find.text("UNN Thomas Prince"), findsOneWidget);
 
     // uncheck the "Other" option
+    await tester.ensureVisible(find.text("Other"));
+    await tester.pumpAndSettle();
     await tester.tap(find.text("Other"));
     await tester.pump();
     await tester.idle();
@@ -254,6 +258,8 @@ void main() {
     expect(find.text("required"), findsNothing);
 
     // check the "Other" option but without entering any text, show "required"
+    await tester.ensureVisible(find.text("Other"));
+    await tester.pumpAndSettle();
     await tester.tap(find.text("Other"));
     await tester.tap(find.byType(ElevatedButton));
     await tester.pump();

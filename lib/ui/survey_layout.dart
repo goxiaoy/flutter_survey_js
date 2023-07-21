@@ -176,7 +176,7 @@ class SurveyLayoutState extends State<SurveyLayout> {
       controller: pageController,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: itemBuilder,
-      // itemCount: pages.length,
+      itemCount: pages.length,
     );
   }
 
