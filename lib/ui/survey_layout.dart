@@ -6,9 +6,10 @@ import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:im_stepper/stepper.dart';
 import 'package:logging/logging.dart';
+import 'package:flutter_survey_js/ui/custom_scroll_behavior.dart';
 
 Widget defaultSurveyTitleBuilder(BuildContext context, s.Survey survey) {
-  if (survey.title != null) {
+  if (survey.title != null && (survey.showTitle==null || survey.showTitle == true)) { // Option to show/hide survey title
     return ListTile(
       title: Text(survey.title!),
     );
@@ -17,22 +18,33 @@ Widget defaultSurveyTitleBuilder(BuildContext context, s.Survey survey) {
 }
 
 Widget defaultStepperBuilder(
-    BuildContext context, int pageCount, int currentPage) {
-  if (pageCount > 1) {
-    return DotStepper(
-      // direction: Axis.vertical,
-      dotCount: pageCount,
-      dotRadius: 12,
-      activeStep: currentPage,
-      shape: Shape.circle,
-      spacing: 10,
-      indicator: Indicator.shift,
-      onDotTapped: (tappedDotIndex) async {
-        SurveyWidgetState.of(context).toPage(tappedDotIndex);
-      },
-      indicatorDecoration: IndicatorDecoration(
-          color: Theme.of(context).primaryColor,
-          strokeColor: Theme.of(context).primaryColor),
+    BuildContext context, int pageCount, int currentPage, bool showPageDots) {
+  final scrollController = ScrollController();
+  if (pageCount > 1 && showPageDots == true) { // Option to show/hide page dots
+    return ScrollConfiguration( // ADDED SCROLL TO PAGE DOTS TO HANDLE TOO MANY PAGES BY DFA
+      behavior: CustomScrollBehavior(),
+      child: Scrollbar(
+        controller: scrollController,
+        child: SingleChildScrollView(
+          controller: scrollController,
+          scrollDirection: Axis.horizontal,
+          child: DotStepper(
+            // direction: Axis.vertical,
+            dotCount: pageCount,
+            dotRadius: 12,
+            activeStep: currentPage,
+            shape: Shape.circle,
+            spacing: 10,
+            indicator: Indicator.shift,
+            onDotTapped: (tappedDotIndex) async {
+              SurveyWidgetState.of(context).toPage(tappedDotIndex);
+            },
+            indicatorDecoration: IndicatorDecoration(
+                color: Theme.of(context).primaryColor,
+                strokeColor: Theme.of(context).primaryColor),
+          ),
+        ),
+      ),
     );
   }
   return Container();
@@ -107,6 +119,7 @@ class SurveyLayoutState extends State<SurveyLayout> {
   Widget build(BuildContext context) {
     final surveyWidgetState = SurveyWidgetState.of(context);
     final currentPage = surveyWidgetState.currentPage;
+    final showPageDots = surveyWidgetState.widget.showPageDots;
     final pages = _reCalculatePages(
         surveyWidgetState.widget.showQuestionsInOnePage, survey);
     return  Column(
@@ -120,7 +133,7 @@ class SurveyLayoutState extends State<SurveyLayout> {
               child: Column(
                 children: [
                   (widget.stepperBuilder ?? defaultStepperBuilder)(
-                      context, pageCount, currentPage),
+                      context, pageCount, currentPage, showPageDots),
 
                   Expanded(
                     child: buildPages(pages),
