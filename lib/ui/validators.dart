@@ -23,17 +23,34 @@ class NonEmptyValidator extends Validator<dynamic> {
   static ValidatorFunction get get => NonEmptyValidator().validate;
 }
 
-List<ValidatorFunction> questionToValidators(s.Question question) {
-  return surveyToValidators(
-      isRequired: question.isRequired,
-      validators: question.validators?.map((p) => p.realValidator).toList());
+class MultipleTextNonEmptyValidator extends Validator<dynamic> {
+  @override
+  Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
+    final error = <String, dynamic>{ValidationMessage.required: true};
+
+    bool hasError = true;
+
+    for (final value in control.value.values) {
+      if (value != null && value.toString().trim().isNotEmpty) {
+        hasError = false;
+      }
+    }
+
+    return hasError ? error : null;
+  }
+
+  static ValidatorFunction get get => MultipleTextNonEmptyValidator().validate;
 }
 
-List<ValidatorFunction> surveyToValidators(
-    {bool? isRequired, List<s.Surveyvalidator>? validators}) {
+List<ValidatorFunction> questionToValidators(s.Question question) {
   final res = <ValidatorFunction>[];
-  if (isRequired == true) {
-    res.add(NonEmptyValidator.get);
+  final validators = question.validators?.map((p) => p.realValidator).toList();
+  if (question.isRequired == true) {
+    if (question is s.Multipletext) {
+      res.add(MultipleTextNonEmptyValidator.get);
+    } else {
+      res.add(NonEmptyValidator.get);
+    }
   }
   if (validators != null) {
     for (var value in validators) {
