@@ -35,6 +35,7 @@ dependencies:
   intl: ^0.18.0
   appinio_video_player: ^1.2.1
   path: ^1.8.3
+  async: ^2.11.0
 
 dev_dependencies:
   flutter_test:
