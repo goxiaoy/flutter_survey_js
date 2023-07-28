@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-07-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+- There are no breaking changes in this release.
+
+Packages with other changes:
+
+- [`flutter_survey_js` - `v0.0.2-dev.7`](#flutter_survey_js---v002-dev7)
+- [`flutter_survey_js_model` - `v0.0.2-dev.7`](#flutter_survey_js_model---v002-dev7)
+
+---
+
+#### `flutter_survey_js` - `v0.0.2-dev.7`
+
+- **FIX**: multiple_text required validator not working. ([68b60f16](https://github.com/wwt/flutter_survey_js/commit/68b60f16d6aa040a8f3d8fe00a23fce3bf4ef9c5))
+- Bump "flutter_survey_js" to `0.0.2-dev.7`.
+
+#### `flutter_survey_js_model` - `v0.0.2-dev.7`
+
+- Bump "flutter_survey_js_model" to `0.0.2-dev.7`.
+
+## 0.0.2-dev.7
+
+- **FIX**: multiple_text required validator not working. ([68b60f16](https://github.com/wwt/flutter_survey_js/commit/68b60f16d6aa040a8f3d8fe00a23fce3bf4ef9c5))
+
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## 2023-07-12
 
 ### Changes
