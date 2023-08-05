@@ -6,6 +6,17 @@ import _ from "lodash";
 
 let schema = Survey.Serializer.generateSchema();
 
+fs.writeFile(
+  "surveyjs_raw.json",
+  JSON.stringify(schema, undefined, 2),
+  function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("The raw file was saved!");
+  }
+);
+
 //https://surveyjs.io/form-library/documentation/api-reference/survey-data-model#showQuestionNumbers
 const oldShowQuestionNumbers = {
   type: "string",
@@ -174,27 +185,6 @@ let openapi = {
         properties,
       },
       ...definitions,
-      //https://surveyjs.io/form-library/documentation/api-reference/choicesrestful
-      choicesRestful: {
-        type: "object",
-        properties: {
-          url: {
-            type: "string",
-          },
-          valueName: {
-            type: "string",
-          },
-          titleName: {
-            type: "string",
-          },
-          imageLinkName: {
-            type: "string",
-          },
-          path: {
-            type: "string",
-          },
-        },
-      },
       elementbase: {
         type: "object",
         properties: {
@@ -207,6 +197,44 @@ let openapi = {
         },
       },
       anyvalue: {},
+      imageitemvalue: {
+        type: "object",
+        $id: "#imageitemvalue",
+        allOf: [
+          {
+            $ref: "#itemvalue",
+          },
+          {
+            properties: {
+              imageLink: {
+                type: "string",
+              },
+            },
+          },
+        ],
+      },
+      buttongroupitemvalue: {
+        type: "object",
+        $id: "#buttongroupitemvalue",
+        allOf: [
+          {
+            $ref: "#itemvalue",
+          },
+          {
+            properties: {
+              showCaption: {
+                type: "boolean",
+              },
+              iconName: {
+                type: "string",
+              },
+              iconSize: {
+                type: "number",
+              },
+            },
+          },
+        ],
+      },
     },
   },
 };
@@ -275,12 +303,6 @@ const choices = {
 const fix = (target) =>
   _.forIn(target, (value, key, object) => {
     //fix some shit property
-    if (key === "useDisplayValuesInDynamicTexts") {
-      object[key]["type"] = "boolean";
-    }
-    if (key === "separateSpecialChoices") {
-      object[key]["type"] = "boolean";
-    }
     if (key === "validators") {
       object[key] = allValidators;
     }
@@ -299,36 +321,7 @@ const fix = (target) =>
         type: "boolean",
       };
     }
-    if (key === "showOtherItem") {
-      object[key] = {
-        type: "boolean",
-      };
-    }
-    if (key === "showSelectAllItem") {
-      object[key] = {
-        type: "boolean",
-      };
-    }
-    if (key === "isRequired") {
-      object[key] = {
-        type: "boolean",
-      };
-    }
-    if (key === "showNoneItem") {
-      object[key] = {
-        type: "boolean",
-      };
-    }
-    if (key === "visible") {
-      object[key] = {
-        type: "boolean",
-      };
-    }
-    if (key === "maxSelectedChoices") {
-      object[key] = {
-        type: "number",
-      };
-    }
+
     if (key === "choices") {
       object["choices"] = choices;
     }
@@ -340,11 +333,6 @@ const fix = (target) =>
     if (key === "colCount") {
       object[key] = {
         $ref: "#/components/schemas/checkboxbaseColCount",
-      };
-    }
-    if (key === "choicesByUrl") {
-      object[key] = {
-        $ref: "#/components/schemas/choicesRestful",
       };
     }
     if (key === "correctAnswer") {
@@ -371,11 +359,14 @@ const fix = (target) =>
     if (
       key === "$ref" &&
       _.startsWith(value, "#") &&
-      !_.startsWith(value, "#/")
+      !_.startsWith(value, "#/components/schemas/")
     ) {
-      //fix ChoicesRestful
-      let v = _.replace(value, "ChoicesRestful", "choicesRestful");
-      v = _.replace(v, "#", "#/components/schemas/");
+      let v = value;
+      if (v.startsWith("#/definitions/")) {
+        v = _.replace(v, "#/definitions/", "#/components/schemas/");
+      } else if (v.startsWith("#")) {
+        v = _.replace(v, "#", "#/components/schemas/");
+      }
       _.set(object, key, v);
 
       if (v === "#/components/schemas/string") {
@@ -434,6 +425,24 @@ const itemvalues = {
 openapi["components"]["schemas"]["matrixdropdown"]["allOf"][1]["properties"][
   "rows"
 ] = itemvalues;
+
+openapi["components"]["schemas"]["matrixdropdowncolumn"]["allOf"] = [
+  { $ref: "#/components/schemas/dropdown" },
+  { $ref: "#/components/schemas/checkbox" },
+  { $ref: "#/components/schemas/radiogroup" },
+  { $ref: "#/components/schemas/tagbox" },
+  { $ref: "#/components/schemas/text" },
+  { $ref: "#/components/schemas/comment" },
+  { $ref: "#/components/schemas/boolean" },
+  { $ref: "#/components/schemas/expression" },
+  { $ref: "#/components/schemas/rating" },
+  {
+    properties:
+      openapi["components"]["schemas"]["matrixdropdowncolumn"]["properties"],
+  },
+];
+
+delete openapi["components"]["schemas"]["matrixdropdowncolumn"]["properties"];
 
 openapi["components"]["schemas"]["matrix"]["allOf"][1]["properties"]["rows"] =
   itemvalues;

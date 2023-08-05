@@ -1,0 +1,31 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
+  survey-core:
+    specifier: 1.9.101
+    version: 1.9.101
+  yaml:
+    specifier: ^2.2.1
+    version: 2.2.1
+
+packages:
+
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
+
+  /survey-core@1.9.101:
+    resolution: {integrity: sha512-ldt0sWVhVRbUUmzxN3m7fl4+dewl4DNIFY0Ljmh39DpBy+D9hd/KwKnFqBKqObDBowHGxDOkia9F7Wyj79436A==}
+    dev: false
+
+  /yaml@2.2.1:
+    resolution: {integrity: sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==}
+    engines: {node: '>= 14'}
+    dev: false

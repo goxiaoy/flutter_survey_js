@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.21",
-    "survey-core": "1.9.87",
+    "survey-core": "1.9.101",
     "yaml": "^2.2.1"
   },
   "type": "module"

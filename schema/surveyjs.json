@@ -32,13 +32,34 @@
             "$ref": "#/components/schemas/surveyLocale"
           },
           "title": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "description": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "logo": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "logoWidth": {
             "oneOf": [
@@ -73,10 +94,24 @@
             "type": "boolean"
           },
           "completedHtml": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "completedBeforeHtml": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "completedHtmlOnCondition": {
             "type": "array",
@@ -85,7 +120,14 @@
             }
           },
           "loadingHtml": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "pages": {
             "type": "array",
@@ -257,6 +299,9 @@
           "questionsOrder": {
             "$ref": "#/components/schemas/surveyQuestionsOrder"
           },
+          "matrixDragHandleArea": {
+            "$ref": "#/components/schemas/surveyMatrixDragHandleArea"
+          },
           "showPageNumbers": {
             "type": "boolean"
           },
@@ -286,7 +331,7 @@
             "$ref": "#/components/schemas/surveyProgressBarType"
           },
           "showTOC": {
-            "type": "string"
+            "type": "boolean"
           },
           "tocLocation": {
             "$ref": "#/components/schemas/surveyTocLocation"
@@ -318,23 +363,68 @@
           "autoGrowComment": {
             "type": "boolean"
           },
+          "allowResizeComment": {
+            "type": "boolean"
+          },
           "startSurveyText": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "pagePrevText": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "pageNextText": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "completeText": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "previewText": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "editText": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "requiredText": {
             "type": "string"
@@ -343,10 +433,17 @@
             "type": "string"
           },
           "questionTitlePattern": {
-            "$ref": "#/components/schemas/surveyQuestionTitlePattern"
+            "type": "string"
           },
           "questionTitleTemplate": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "firstPageIsStarted": {
             "type": "boolean"
@@ -386,16 +483,37 @@
             ]
           },
           "backgroundImage": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "backgroundImageFit": {
             "$ref": "#/components/schemas/surveyBackgroundImageFit"
+          },
+          "backgroundImageAttachment": {
+            "$ref": "#/components/schemas/surveyBackgroundImageAttachment"
           },
           "backgroundOpacity": {
             "type": "number"
           },
           "showBrandInfo": {
             "type": "boolean"
+          }
+        }
+      },
+      "locstring": {
+        "type": "object",
+        "properties": {
+          "default": {
+            "type": "string"
+          },
+          "en": {
+            "type": "string"
           }
         }
       },
@@ -416,7 +534,14 @@
           {
             "properties": {
               "html": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               }
             }
           }
@@ -540,10 +665,24 @@
                 "$ref": "#/components/schemas/panelbaseQuestionTitleLocation"
               },
               "title": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "description": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "questionsOrder": {
                 "$ref": "#/components/schemas/panelbaseQuestionsOrder"
@@ -642,12 +781,19 @@
       },
       "question": {
         "type": "object",
+        "required": [
+          "type",
+          "name"
+        ],
         "allOf": [
           {
             "$ref": "#/components/schemas/elementbase"
           },
           {
             "properties": {
+              "type": {
+                "type": "string"
+              },
               "name": {
                 "type": "string"
               },
@@ -700,16 +846,30 @@
                 "$ref": "#/components/schemas/questionIndent"
               },
               "page": {
-                "$ref": "#/components/schemas/questionPage"
+                "type": "string"
               },
               "title": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "titleLocation": {
                 "$ref": "#/components/schemas/questionTitleLocation"
               },
               "description": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "descriptionLocation": {
                 "$ref": "#/components/schemas/questionDescriptionLocation"
@@ -742,10 +902,17 @@
                 "type": "string"
               },
               "requiredErrorText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "readOnly": {
-                "type": "string"
+                "type": "boolean"
               },
               "validators": {
                 "type": "array",
@@ -785,10 +952,24 @@
                 "type": "boolean"
               },
               "commentText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "commentPlaceholder": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               }
             }
           }
@@ -798,7 +979,14 @@
         "type": "object",
         "properties": {
           "text": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "type": {
             "type": "string"
@@ -903,497 +1091,6 @@
           }
         ]
       },
-      "selectbase": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/question"
-          },
-          {
-            "properties": {
-              "showCommentArea": {
-                "type": "boolean"
-              },
-              "choicesFromQuestion": {
-                "type": "string"
-              },
-              "choices": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/itemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/imageitemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/buttongroupitemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/anyvalue"
-                    }
-                  ]
-                }
-              },
-              "choicesFromQuestionMode": {
-                "$ref": "#/components/schemas/selectbaseChoicesFromQuestionMode"
-              },
-              "choicesOrder": {
-                "$ref": "#/components/schemas/selectbaseChoicesOrder"
-              },
-              "choicesByUrl": {
-                "$ref": "#/components/schemas/choicesRestful"
-              },
-              "hideIfChoicesEmpty": {
-                "type": "boolean"
-              },
-              "choicesVisibleIf": {
-                "type": "string"
-              },
-              "choicesEnableIf": {
-                "type": "string"
-              },
-              "separateSpecialChoices": {
-                "type": "boolean"
-              },
-              "showOtherItem": {
-                "type": "boolean"
-              },
-              "showNoneItem": {
-                "type": "boolean"
-              },
-              "otherPlaceholder": {
-                "type": "string"
-              },
-              "noneText": {
-                "type": "string"
-              },
-              "otherText": {
-                "type": "string"
-              },
-              "otherErrorText": {
-                "type": "string"
-              },
-              "storeOthersAsComment": {
-                "type": "boolean"
-              }
-            }
-          }
-        ]
-      },
-      "itemvalue": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "$ref": "#/components/schemas/anyvalue"
-          },
-          "text": {
-            "type": "string"
-          },
-          "visibleIf": {
-            "type": "string"
-          },
-          "enableIf": {
-            "type": "string"
-          }
-        }
-      },
-      "checkboxbase": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/selectbase"
-          },
-          {
-            "properties": {
-              "colCount": {
-                "$ref": "#/components/schemas/checkboxbaseColCount"
-              }
-            }
-          }
-        ]
-      },
-      "checkbox": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/checkboxbase"
-          },
-          {
-            "properties": {
-              "showSelectAllItem": {
-                "type": "boolean"
-              },
-              "separateSpecialChoices": {
-                "type": "boolean"
-              },
-              "maxSelectedChoices": {
-                "type": "number"
-              },
-              "selectAllText": {
-                "type": "string"
-              },
-              "valuePropertyName": {
-                "type": "string"
-              },
-              "itemComponent": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "tagbox": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/checkbox"
-          },
-          {
-            "properties": {
-              "placeholder": {
-                "type": "string"
-              },
-              "allowClear": {
-                "type": "boolean"
-              },
-              "searchEnabled": {
-                "type": "boolean"
-              },
-              "choicesLazyLoadEnabled": {
-                "type": "boolean"
-              },
-              "choicesLazyLoadPageSize": {
-                "type": "number"
-              },
-              "hideSelectedItems": {
-                "type": "boolean"
-              },
-              "closeOnSelect": {
-                "type": "boolean"
-              },
-              "itemComponent": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "ranking": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/checkbox"
-          },
-          {
-            "properties": {
-              "showOtherItem": {
-                "type": "boolean"
-              },
-              "otherText": {
-                "type": "string"
-              },
-              "otherErrorText": {
-                "type": "string"
-              },
-              "storeOthersAsComment": {
-                "type": "boolean"
-              },
-              "showNoneItem": {
-                "type": "boolean"
-              },
-              "noneText": {
-                "type": "string"
-              },
-              "showSelectAllItem": {
-                "type": "boolean"
-              },
-              "selectAllText": {
-                "type": "string"
-              },
-              "colCount": {
-                "$ref": "#/components/schemas/checkboxbaseColCount"
-              },
-              "maxSelectedChoices": {
-                "type": "number"
-              },
-              "separateSpecialChoices": {
-                "type": "boolean"
-              },
-              "longTap": {
-                "type": "string"
-              },
-              "itemComponent": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "radiogroup": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/checkboxbase"
-          },
-          {
-            "properties": {
-              "showClearButton": {
-                "type": "boolean"
-              },
-              "separateSpecialChoices": {
-                "type": "boolean"
-              },
-              "itemComponent": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "imagepicker": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/checkboxbase"
-          },
-          {
-            "properties": {
-              "showOtherItem": {
-                "type": "boolean"
-              },
-              "otherText": {
-                "type": "string"
-              },
-              "showNoneItem": {
-                "type": "boolean"
-              },
-              "noneText": {
-                "type": "string"
-              },
-              "optionsCaption": {
-                "type": "string"
-              },
-              "otherErrorText": {
-                "type": "string"
-              },
-              "storeOthersAsComment": {
-                "type": "boolean"
-              },
-              "contentMode": {
-                "$ref": "#/components/schemas/imagepickerContentMode"
-              },
-              "imageFit": {
-                "$ref": "#/components/schemas/imagepickerImageFit"
-              },
-              "imageHeight": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              "imageWidth": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              "minImageWidth": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              "minImageHeight": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              "maxImageWidth": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              "maxImageHeight": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              },
-              "showLabel": {
-                "type": "boolean"
-              },
-              "colCount": {
-                "$ref": "#/components/schemas/checkboxbaseColCount"
-              },
-              "multiSelect": {
-                "type": "boolean"
-              },
-              "choices": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/itemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/imageitemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/buttongroupitemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/anyvalue"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]
-      },
-      "imageitemvalue": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/itemvalue"
-          },
-          {
-            "properties": {
-              "imageLink": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "buttongroup": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/checkboxbase"
-          },
-          {
-            "properties": {
-              "choices": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/itemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/imageitemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/buttongroupitemvalue"
-                    },
-                    {
-                      "$ref": "#/components/schemas/anyvalue"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]
-      },
-      "buttongroupitemvalue": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/itemvalue"
-          },
-          {
-            "properties": {
-              "showCaption": {
-                "type": "boolean"
-              },
-              "iconName": {
-                "type": "string"
-              },
-              "iconSize": {
-                "type": "number"
-              }
-            }
-          }
-        ]
-      },
-      "dropdown": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/selectbase"
-          },
-          {
-            "properties": {
-              "placeholder": {
-                "type": "string"
-              },
-              "allowClear": {
-                "type": "boolean"
-              },
-              "choicesMin": {
-                "type": "number"
-              },
-              "choicesMax": {
-                "type": "number"
-              },
-              "choicesStep": {
-                "type": "number"
-              },
-              "autocomplete": {
-                "$ref": "#/components/schemas/dropdownAutocomplete"
-              },
-              "renderAs": {
-                "type": "string"
-              },
-              "searchEnabled": {
-                "type": "boolean"
-              },
-              "choicesLazyLoadEnabled": {
-                "type": "boolean"
-              },
-              "choicesLazyLoadPageSize": {
-                "type": "number"
-              },
-              "inputFieldComponent": {
-                "type": "string"
-              },
-              "itemComponent": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
       "matrixbase": {
         "type": "object",
         "allOf": [
@@ -1402,9 +1099,6 @@
           },
           {
             "properties": {
-              "showCommentArea": {
-                "type": "boolean"
-              },
               "columnsVisibleIf": {
                 "type": "string"
               },
@@ -1480,26 +1174,30 @@
                 }
               },
               "placeholder": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "keyDuplicationError": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "cellType": {
                 "$ref": "#/components/schemas/matrixdropdownbaseCellType"
               },
               "columnColCount": {
                 "$ref": "#/components/schemas/matrixdropdownbaseColumnColCount"
-              },
-              "columnMinWidth": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
               },
               "allowAdaptiveActions": {
                 "type": "boolean"
@@ -1510,48 +1208,192 @@
       },
       "matrixdropdowncolumn": {
         "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
+        "required": [
+          "name"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/dropdown"
           },
-          "title": {
-            "type": "string"
+          {
+            "$ref": "#/components/schemas/checkbox"
           },
-          "cellHint": {
-            "type": "string"
+          {
+            "$ref": "#/components/schemas/radiogroup"
           },
-          "cellType": {
-            "$ref": "#/components/schemas/matrixdropdowncolumnCellType"
+          {
+            "$ref": "#/components/schemas/tagbox"
           },
-          "isRequired": {
-            "type": "boolean"
+          {
+            "$ref": "#/components/schemas/text"
           },
-          "isUnique": {
-            "type": "boolean"
+          {
+            "$ref": "#/components/schemas/comment"
           },
-          "requiredErrorText": {
-            "type": "string"
+          {
+            "$ref": "#/components/schemas/boolean"
           },
-          "readOnly": {
-            "type": "boolean"
+          {
+            "$ref": "#/components/schemas/expression"
           },
-          "minWidth": {
-            "oneOf": [
-              {
+          {
+            "$ref": "#/components/schemas/rating"
+          },
+          {
+            "properties": {
+              "name": {
                 "type": "string"
               },
-              {
+              "title": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "cellHint": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "cellType": {
+                "$ref": "#/components/schemas/matrixdropdowncolumnCellType"
+              },
+              "isRequired": {
+                "type": "boolean"
+              },
+              "isUnique": {
+                "type": "boolean"
+              },
+              "requiredErrorText": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "readOnly": {
+                "type": "boolean"
+              },
+              "minWidth": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "width": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "visibleIf": {
+                "type": "string"
+              },
+              "enableIf": {
+                "type": "string"
+              },
+              "requiredIf": {
+                "type": "string"
+              },
+              "showInMultipleColumns": {
+                "type": "boolean"
+              },
+              "validators": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/numericvalidator"
+                    },
+                    {
+                      "$ref": "#/components/schemas/textvalidator"
+                    },
+                    {
+                      "$ref": "#/components/schemas/answercountvalidator"
+                    },
+                    {
+                      "$ref": "#/components/schemas/regexvalidator"
+                    },
+                    {
+                      "$ref": "#/components/schemas/emailvalidator"
+                    },
+                    {
+                      "$ref": "#/components/schemas/expressionvalidator"
+                    },
+                    {
+                      "$ref": "#/components/schemas/surveyvalidator"
+                    }
+                  ]
+                }
+              },
+              "totalType": {
+                "$ref": "#/components/schemas/matrixdropdowncolumnTotalType"
+              },
+              "totalExpression": {
+                "type": "string"
+              },
+              "totalFormat": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "totalDisplayStyle": {
+                "$ref": "#/components/schemas/matrixdropdowncolumnTotalDisplayStyle"
+              },
+              "totalCurrency": {
+                "$ref": "#/components/schemas/matrixdropdowncolumnTotalCurrency"
+              },
+              "totalMaximumFractionDigits": {
                 "type": "number"
+              },
+              "totalMinimumFractionDigits": {
+                "type": "number"
+              },
+              "renderAs": {
+                "type": "string"
               }
-            ]
+            }
+          }
+        ]
+      },
+      "itemvalue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "$ref": "#/components/schemas/anyvalue"
           },
-          "width": {
+          "text": {
             "oneOf": [
               {
                 "type": "string"
               },
               {
-                "type": "number"
+                "$ref": "#/components/schemas/locstring"
               }
             ]
           },
@@ -1560,66 +1402,11 @@
           },
           "enableIf": {
             "type": "string"
-          },
-          "requiredIf": {
-            "type": "string"
-          },
-          "showInMultipleColumns": {
-            "type": "boolean"
-          },
-          "validators": {
-            "type": "array",
-            "items": {
-              "anyOf": [
-                {
-                  "$ref": "#/components/schemas/numericvalidator"
-                },
-                {
-                  "$ref": "#/components/schemas/textvalidator"
-                },
-                {
-                  "$ref": "#/components/schemas/answercountvalidator"
-                },
-                {
-                  "$ref": "#/components/schemas/regexvalidator"
-                },
-                {
-                  "$ref": "#/components/schemas/emailvalidator"
-                },
-                {
-                  "$ref": "#/components/schemas/expressionvalidator"
-                },
-                {
-                  "$ref": "#/components/schemas/surveyvalidator"
-                }
-              ]
-            }
-          },
-          "totalType": {
-            "$ref": "#/components/schemas/matrixdropdowncolumnTotalType"
-          },
-          "totalExpression": {
-            "type": "string"
-          },
-          "totalFormat": {
-            "type": "string"
-          },
-          "totalDisplayStyle": {
-            "$ref": "#/components/schemas/matrixdropdowncolumnTotalDisplayStyle"
-          },
-          "totalCurrency": {
-            "$ref": "#/components/schemas/matrixdropdowncolumnTotalCurrency"
-          },
-          "totalMaximumFractionDigits": {
-            "type": "number"
-          },
-          "totalMinimumFractionDigits": {
-            "type": "number"
-          },
-          "renderAs": {
-            "type": "string"
           }
-        }
+        },
+        "required": [
+          "value"
+        ]
       },
       "matrixdropdown": {
         "type": "object",
@@ -1642,9 +1429,6 @@
                   ]
                 }
               },
-              "rowsVisibleIf": {
-                "type": "string"
-              },
               "rowTitleWidth": {
                 "oneOf": [
                   {
@@ -1656,7 +1440,14 @@
                 ]
               },
               "totalText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "hideIfRowsEmpty": {
                 "type": "boolean"
@@ -1673,9 +1464,6 @@
           },
           {
             "properties": {
-              "rowsVisibleIf": {
-                "type": "string"
-              },
               "allowAddRows": {
                 "type": "boolean"
               },
@@ -1704,28 +1492,56 @@
                 "type": "boolean"
               },
               "confirmDeleteText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "addRowLocation": {
                 "$ref": "#/components/schemas/matrixdynamicAddRowLocation"
               },
               "addRowText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "removeRowText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "hideColumnsIfEmpty": {
                 "type": "boolean"
               },
               "emptyRowsText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "detailPanelShowOnAdding": {
                 "type": "boolean"
               },
               "allowRowsDragAndDrop": {
-                "type": "string"
+                "type": "boolean"
               }
             }
           }
@@ -1803,7 +1619,14 @@
                 "type": "string"
               },
               "format": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "displayStyle": {
                 "$ref": "#/components/schemas/expressionDisplayStyle"
@@ -1820,28 +1643,418 @@
               "useGrouping": {
                 "type": "boolean"
               },
-              "enableIf": {
+              "precision": {
+                "type": "number"
+              }
+            }
+          }
+        ]
+      },
+      "selectbase": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/question"
+          },
+          {
+            "properties": {
+              "choicesFromQuestion": {
                 "type": "string"
               },
-              "isRequired": {
+              "choices": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/itemvalue"
+                    },
+                    {
+                      "$ref": "#/components/schemas/imageitemvalue"
+                    },
+                    {
+                      "$ref": "#/components/schemas/buttongroupitemvalue"
+                    },
+                    {
+                      "$ref": "#/components/schemas/anyvalue"
+                    }
+                  ]
+                }
+              },
+              "choicesFromQuestionMode": {
+                "$ref": "#/components/schemas/selectbaseChoicesFromQuestionMode"
+              },
+              "choicesOrder": {
+                "$ref": "#/components/schemas/selectbaseChoicesOrder"
+              },
+              "choicesByUrl": {
+                "$ref": "#/components/schemas/choicesByUrl"
+              },
+              "hideIfChoicesEmpty": {
                 "type": "boolean"
               },
-              "readOnly": {
+              "choicesVisibleIf": {
                 "type": "string"
               },
-              "requiredErrorText": {
+              "choicesEnableIf": {
                 "type": "string"
               },
-              "defaultValueExpression": {
+              "separateSpecialChoices": {
+                "type": "boolean"
+              },
+              "showOtherItem": {
+                "type": "boolean"
+              },
+              "showNoneItem": {
+                "type": "boolean"
+              },
+              "otherPlaceholder": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "noneText": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "otherText": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "otherErrorText": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "storeOthersAsComment": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "choicesByUrl": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "valueName": {
+            "type": "string"
+          },
+          "titleName": {
+            "type": "string"
+          },
+          "imageLinkName": {
+            "type": "string"
+          },
+          "allowEmptyResponse": {
+            "type": "boolean"
+          },
+          "attachOriginalItems": {
+            "type": "boolean"
+          }
+        }
+      },
+      "checkboxbase": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/selectbase"
+          },
+          {
+            "properties": {
+              "colCount": {
+                "$ref": "#/components/schemas/checkboxbaseColCount"
+              }
+            }
+          }
+        ]
+      },
+      "checkbox": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/checkboxbase"
+          },
+          {
+            "properties": {
+              "showSelectAllItem": {
+                "type": "boolean"
+              },
+              "maxSelectedChoices": {
+                "type": "number"
+              },
+              "minSelectedChoices": {
+                "type": "number"
+              },
+              "selectAllText": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "valuePropertyName": {
                 "type": "string"
               },
-              "defaultValue": {
-                "$ref": "#/components/schemas/anyvalue"
+              "itemComponent": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "tagbox": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/checkbox"
+          },
+          {
+            "properties": {
+              "placeholder": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
-              "correctAnswer": {
-                "$ref": "#/components/schemas/anyvalue"
+              "allowClear": {
+                "type": "boolean"
               },
-              "requiredIf": {
+              "searchEnabled": {
+                "type": "boolean"
+              },
+              "choicesLazyLoadEnabled": {
+                "type": "boolean"
+              },
+              "choicesLazyLoadPageSize": {
+                "type": "number"
+              },
+              "hideSelectedItems": {
+                "type": "boolean"
+              },
+              "closeOnSelect": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "ranking": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/checkbox"
+          },
+          {
+            "properties": {
+              "longTap": {
+                "type": "string"
+              },
+              "selectToRankEnabled": {
+                "type": "string"
+              },
+              "selectToRankAreasLayout": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "radiogroup": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/checkboxbase"
+          },
+          {
+            "properties": {
+              "showClearButton": {
+                "type": "boolean"
+              },
+              "itemComponent": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "imagepicker": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/checkboxbase"
+          },
+          {
+            "properties": {
+              "optionsCaption": {
+                "type": "string"
+              },
+              "contentMode": {
+                "$ref": "#/components/schemas/imagepickerContentMode"
+              },
+              "imageFit": {
+                "$ref": "#/components/schemas/imagepickerImageFit"
+              },
+              "imageHeight": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "imageWidth": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "minImageWidth": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "minImageHeight": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "maxImageWidth": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "maxImageHeight": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "showLabel": {
+                "type": "boolean"
+              },
+              "multiSelect": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "buttongroup": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/checkboxbase"
+          },
+          {
+            "properties": {}
+          }
+        ]
+      },
+      "dropdown": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/selectbase"
+          },
+          {
+            "properties": {
+              "placeholder": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "allowClear": {
+                "type": "boolean"
+              },
+              "choicesMin": {
+                "type": "number"
+              },
+              "choicesMax": {
+                "type": "number"
+              },
+              "choicesStep": {
+                "type": "number"
+              },
+              "autocomplete": {
+                "$ref": "#/components/schemas/dropdownAutocomplete"
+              },
+              "searchEnabled": {
+                "type": "boolean"
+              },
+              "choicesLazyLoadEnabled": {
+                "type": "boolean"
+              },
+              "choicesLazyLoadPageSize": {
+                "type": "number"
+              },
+              "inputFieldComponent": {
+                "type": "string"
+              },
+              "itemComponent": {
                 "type": "string"
               }
             }
@@ -1892,10 +2105,24 @@
                 "type": "string"
               },
               "minErrorText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "maxErrorText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "step": {
                 "type": "number"
@@ -1904,13 +2131,24 @@
                 "type": "number"
               },
               "placeholder": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "dataList": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               }
             }
           }
@@ -1934,12 +2172,22 @@
                 "type": "number"
               },
               "placeholder": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "textUpdateMode": {
                 "$ref": "#/components/schemas/commentTextUpdateMode"
               },
               "autoGrow": {
+                "type": "boolean"
+              },
+              "allowResize": {
                 "type": "boolean"
               },
               "acceptCarriageReturn": {
@@ -1971,6 +2219,9 @@
               }
             }
           }
+        ],
+        "required": [
+          "items"
         ]
       },
       "multipletextitem": {
@@ -1983,13 +2234,27 @@
             "type": "boolean"
           },
           "placeholder": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "inputType": {
             "$ref": "#/components/schemas/multipletextitemInputType"
           },
           "title": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "maxLength": {
             "type": "number"
@@ -1998,7 +2263,14 @@
             "type": "number"
           },
           "requiredErrorText": {
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/locstring"
+              }
+            ]
           },
           "validators": {
             "type": "array",
@@ -2028,7 +2300,10 @@
               ]
             }
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "nonvalue": {
         "type": "object",
@@ -2037,78 +2312,7 @@
             "$ref": "#/components/schemas/question"
           },
           {
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "valueName": {
-                "type": "string"
-              },
-              "enableIf": {
-                "type": "string"
-              },
-              "defaultValue": {
-                "$ref": "#/components/schemas/anyvalue"
-              },
-              "correctAnswer": {
-                "$ref": "#/components/schemas/anyvalue"
-              },
-              "clearIfInvisible": {
-                "$ref": "#/components/schemas/questionClearIfInvisible"
-              },
-              "isRequired": {
-                "type": "boolean"
-              },
-              "requiredErrorText": {
-                "type": "string"
-              },
-              "readOnly": {
-                "type": "string"
-              },
-              "requiredIf": {
-                "type": "string"
-              },
-              "validators": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/numericvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/textvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/answercountvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/regexvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/emailvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/expressionvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/surveyvalidator"
-                    }
-                  ]
-                }
-              },
-              "titleLocation": {
-                "$ref": "#/components/schemas/questionTitleLocation"
-              },
-              "showCommentArea": {
-                "type": "boolean"
-              },
-              "useDisplayValuesInDynamicTexts": {
-                "type": "boolean"
-              }
-            }
+            "properties": {}
           }
         ]
       },
@@ -2121,7 +2325,14 @@
           {
             "properties": {
               "html": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               }
             }
           }
@@ -2136,10 +2347,24 @@
           {
             "properties": {
               "imageLink": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "altText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "contentMode": {
                 "$ref": "#/components/schemas/imageContentMode"
@@ -2190,9 +2415,6 @@
           },
           {
             "properties": {
-              "showCommentArea": {
-                "type": "boolean"
-              },
               "showPreview": {
                 "type": "boolean"
               },
@@ -2234,41 +2456,10 @@
               "maxSize": {
                 "type": "number"
               },
-              "defaultValue": {
-                "$ref": "#/components/schemas/anyvalue"
-              },
-              "correctAnswer": {
-                "$ref": "#/components/schemas/anyvalue"
-              },
-              "validators": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/numericvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/textvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/answercountvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/regexvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/emailvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/expressionvalidator"
-                    },
-                    {
-                      "$ref": "#/components/schemas/surveyvalidator"
-                    }
-                  ]
-                }
-              },
               "needConfirmRemoveFile": {
+                "type": "boolean"
+              },
+              "allowCameraAccess": {
                 "type": "boolean"
               }
             }
@@ -2283,9 +2474,6 @@
           },
           {
             "properties": {
-              "showCommentArea": {
-                "type": "boolean"
-              },
               "rateType": {
                 "$ref": "#/components/schemas/ratingRateType"
               },
@@ -2324,10 +2512,24 @@
                 "type": "number"
               },
               "minRateDescription": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "maxRateDescription": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "displayRateDescriptionsAsExtremeItems": {
                 "type": "boolean"
@@ -2347,25 +2549,40 @@
           },
           {
             "properties": {
-              "showCommentArea": {
-                "type": "boolean"
-              },
               "label": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "labelTrue": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "labelFalse": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "valueTrue": {
                 "type": "string"
               },
               "valueFalse": {
-                "type": "string"
-              },
-              "renderAs": {
                 "type": "string"
               }
             }
@@ -2421,12 +2638,6 @@
               },
               "dataFormat": {
                 "$ref": "#/components/schemas/signaturepadDataFormat"
-              },
-              "defaultValue": {
-                "$ref": "#/components/schemas/anyvalue"
-              },
-              "correctAnswer": {
-                "$ref": "#/components/schemas/anyvalue"
               }
             }
           }
@@ -2440,9 +2651,6 @@
           },
           {
             "properties": {
-              "showCommentArea": {
-                "type": "boolean"
-              },
               "templateElements": {
                 "type": "array",
                 "items": {
@@ -2532,26 +2740,44 @@
                 }
               },
               "templateTitle": {
-                "type": "string"
-              },
-              "templateTabTitle": {
-                "type": "string"
-              },
-              "templateDescription": {
-                "type": "string"
-              },
-              "minWidth": {
                 "oneOf": [
                   {
                     "type": "string"
                   },
                   {
-                    "type": "number"
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "templateTabTitle": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
+              },
+              "templateDescription": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
                   }
                 ]
               },
               "noEntriesText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "allowAddPanel": {
                 "type": "boolean"
@@ -2581,25 +2807,67 @@
                 "type": "string"
               },
               "keyDuplicationError": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "confirmDelete": {
                 "type": "boolean"
               },
               "confirmDeleteText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "panelAddText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "panelRemoveText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "panelPrevText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "panelNextText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "showQuestionNumbers": {
                 "$ref": "#/components/schemas/paneldynamicShowQuestionNumbers"
@@ -2616,6 +2884,9 @@
               "templateTitleLocation": {
                 "$ref": "#/components/schemas/paneldynamicTemplateTitleLocation"
               },
+              "templateVisibleIf": {
+                "type": "string"
+              },
               "panelRemoveButtonLocation": {
                 "$ref": "#/components/schemas/paneldynamicPanelRemoveButtonLocation"
               }
@@ -2631,6 +2902,9 @@
           },
           {
             "properties": {
+              "type": {
+                "type": "string"
+              },
               "state": {
                 "$ref": "#/components/schemas/panelState"
               },
@@ -2638,7 +2912,14 @@
                 "type": "boolean"
               },
               "requiredErrorText": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "startWithNewLine": {
                 "type": "boolean"
@@ -2680,7 +2961,7 @@
                 "$ref": "#/components/schemas/panelIndent"
               },
               "page": {
-                "$ref": "#/components/schemas/panelPage"
+                "type": "string"
               },
               "showNumber": {
                 "type": "boolean"
@@ -2696,6 +2977,9 @@
               }
             }
           }
+        ],
+        "required": [
+          "type"
         ]
       },
       "page": {
@@ -2713,16 +2997,24 @@
                 "type": "number"
               },
               "navigationTitle": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               },
               "navigationDescription": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               }
             }
           }
@@ -2811,6 +3103,9 @@
               }
             }
           }
+        ],
+        "required": [
+          "setToName"
         ]
       },
       "copyvaluetrigger": {
@@ -2826,9 +3121,16 @@
               },
               "setToName": {
                 "type": "string"
+              },
+              "copyDisplayValue": {
+                "type": "boolean"
               }
             }
           }
+        ],
+        "required": [
+          "fromName",
+          "setToName"
         ]
       },
       "skiptrigger": {
@@ -2844,6 +3146,9 @@
               }
             }
           }
+        ],
+        "required": [
+          "gotoName"
         ]
       },
       "runexpressiontrigger": {
@@ -2876,7 +3181,10 @@
           "includeIntoResult": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "urlconditionitem": {
         "type": "object",
@@ -2887,31 +3195,18 @@
           {
             "properties": {
               "url": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/components/schemas/locstring"
+                  }
+                ]
               }
             }
           }
         ]
-      },
-      "choicesRestful": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string"
-          },
-          "valueName": {
-            "type": "string"
-          },
-          "titleName": {
-            "type": "string"
-          },
-          "imageLinkName": {
-            "type": "string"
-          },
-          "path": {
-            "type": "string"
-          }
-        }
       },
       "elementbase": {
         "type": "object",
@@ -2925,6 +3220,42 @@
         }
       },
       "anyvalue": {},
+      "imageitemvalue": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/itemvalue"
+          },
+          {
+            "properties": {
+              "imageLink": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "buttongroupitemvalue": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/itemvalue"
+          },
+          {
+            "properties": {
+              "showCaption": {
+                "type": "boolean"
+              },
+              "iconName": {
+                "type": "string"
+              },
+              "iconSize": {
+                "type": "number"
+              }
+            }
+          }
+        ]
+      },
       "surveyLocale": {
         "type": "string",
         "enum": [
@@ -2964,6 +3295,13 @@
         "enum": [
           "initial",
           "random"
+        ]
+      },
+      "surveyMatrixDragHandleArea": {
+        "type": "string",
+        "enum": [
+          "entireItem",
+          "icon"
         ]
       },
       "surveyShowQuestionNumbersAnyOf": {
@@ -3054,9 +3392,6 @@
           "onTyping"
         ]
       },
-      "surveyQuestionTitlePattern": {
-        "type": "string"
-      },
       "surveyQuestionsOnPageMode": {
         "type": "string",
         "enum": [
@@ -3105,6 +3440,13 @@
           "cover"
         ]
       },
+      "surveyBackgroundImageAttachment": {
+        "type": "string",
+        "enum": [
+          "scroll",
+          "fixed"
+        ]
+      },
       "panelbaseQuestionTitleLocation": {
         "type": "string",
         "enum": [
@@ -3140,9 +3482,6 @@
           3
         ]
       },
-      "questionPage": {
-        "type": "string"
-      },
       "questionTitleLocation": {
         "type": "string",
         "enum": [
@@ -3167,401 +3506,8 @@
           "default",
           "none",
           "onComplete",
-          "onHidden"
-        ]
-      },
-      "selectbaseChoicesFromQuestionMode": {
-        "type": "string",
-        "enum": [
-          "all",
-          "selected",
-          "unselected"
-        ]
-      },
-      "selectbaseChoicesOrder": {
-        "type": "string",
-        "enum": [
-          "none",
-          "asc",
-          "desc",
-          "random"
-        ]
-      },
-      "selectbaseStoreOthersAsComment": {
-        "type": "string",
-        "enum": [
-          "default",
-          true,
-          false
-        ]
-      },
-      "checkboxbaseColCount": {
-        "type": "number",
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "imagepickerContentMode": {
-        "type": "string",
-        "enum": [
-          "image",
-          "video"
-        ]
-      },
-      "imagepickerImageFit": {
-        "type": "string",
-        "enum": [
-          "none",
-          "contain",
-          "cover",
-          "fill"
-        ]
-      },
-      "imagepickerColCount": {
-        "type": "number",
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "dropdownAutocomplete": {
-        "type": "string",
-        "enum": [
-          "",
-          "name",
-          "honorific-prefix",
-          "given-name",
-          "additional-name",
-          "family-name",
-          "honorific-suffix",
-          "nickname",
-          "organization-title",
-          "username",
-          "new-password",
-          "current-password",
-          "organization",
-          "street-address",
-          "address-line1",
-          "address-line2",
-          "address-line3",
-          "address-level4",
-          "address-level3",
-          "address-level2",
-          "address-level1",
-          "country",
-          "country-name",
-          "postal-code",
-          "cc-name",
-          "cc-given-name",
-          "cc-additional-name",
-          "cc-family-name",
-          "cc-number",
-          "cc-exp",
-          "cc-exp-month",
-          "cc-exp-year",
-          "cc-csc",
-          "cc-type",
-          "transaction-currency",
-          "transaction-amount",
-          "language",
-          "bday",
-          "bday-day",
-          "bday-month",
-          "bday-year",
-          "sex",
-          "url",
-          "photo",
-          "tel",
-          "tel-country-code",
-          "tel-national",
-          "tel-area-code",
-          "tel-local",
-          "tel-local-prefix",
-          "tel-local-suffix",
-          "tel-extension",
-          "email",
-          "impp"
-        ],
-        "x-enum-values": [
-          {
-            "numericValue": "",
-            "identifier": "",
-            "description": ""
-          },
-          {
-            "numericValue": "name",
-            "identifier": "namee",
-            "description": "namee"
-          },
-          {
-            "numericValue": "honorific-prefix",
-            "identifier": "honorific-prefix",
-            "description": "honorific-prefix"
-          },
-          {
-            "numericValue": "given-name",
-            "identifier": "given-name",
-            "description": "given-name"
-          },
-          {
-            "numericValue": "additional-name",
-            "identifier": "additional-name",
-            "description": "additional-name"
-          },
-          {
-            "numericValue": "family-name",
-            "identifier": "family-name",
-            "description": "family-name"
-          },
-          {
-            "numericValue": "honorific-suffix",
-            "identifier": "honorific-suffix",
-            "description": "honorific-suffix"
-          },
-          {
-            "numericValue": "nickname",
-            "identifier": "nickname",
-            "description": "nickname"
-          },
-          {
-            "numericValue": "organization-title",
-            "identifier": "organization-title",
-            "description": "organization-title"
-          },
-          {
-            "numericValue": "username",
-            "identifier": "username",
-            "description": "username"
-          },
-          {
-            "numericValue": "new-password",
-            "identifier": "new-password",
-            "description": "new-password"
-          },
-          {
-            "numericValue": "current-password",
-            "identifier": "current-password",
-            "description": "current-password"
-          },
-          {
-            "numericValue": "organization",
-            "identifier": "organization",
-            "description": "organization"
-          },
-          {
-            "numericValue": "street-address",
-            "identifier": "street-address",
-            "description": "street-address"
-          },
-          {
-            "numericValue": "address-line1",
-            "identifier": "address-line1",
-            "description": "address-line1"
-          },
-          {
-            "numericValue": "address-line2",
-            "identifier": "address-line2",
-            "description": "address-line2"
-          },
-          {
-            "numericValue": "address-line3",
-            "identifier": "address-line3",
-            "description": "address-line3"
-          },
-          {
-            "numericValue": "address-level4",
-            "identifier": "address-level4",
-            "description": "address-level4"
-          },
-          {
-            "numericValue": "address-level3",
-            "identifier": "address-level3",
-            "description": "address-level3"
-          },
-          {
-            "numericValue": "address-level2",
-            "identifier": "address-level2",
-            "description": "address-level2"
-          },
-          {
-            "numericValue": "address-level1",
-            "identifier": "address-level1",
-            "description": "address-level1"
-          },
-          {
-            "numericValue": "country",
-            "identifier": "country",
-            "description": "country"
-          },
-          {
-            "numericValue": "country-name",
-            "identifier": "country-name",
-            "description": "country-name"
-          },
-          {
-            "numericValue": "postal-code",
-            "identifier": "postal-code",
-            "description": "postal-code"
-          },
-          {
-            "numericValue": "cc-name",
-            "identifier": "cc-name",
-            "description": "cc-name"
-          },
-          {
-            "numericValue": "cc-given-name",
-            "identifier": "cc-given-name",
-            "description": "cc-given-name"
-          },
-          {
-            "numericValue": "cc-additional-name",
-            "identifier": "cc-additional-name",
-            "description": "cc-additional-name"
-          },
-          {
-            "numericValue": "cc-family-name",
-            "identifier": "cc-family-name",
-            "description": "cc-family-name"
-          },
-          {
-            "numericValue": "cc-number",
-            "identifier": "cc-number",
-            "description": "cc-number"
-          },
-          {
-            "numericValue": "cc-exp",
-            "identifier": "cc-exp",
-            "description": "cc-exp"
-          },
-          {
-            "numericValue": "cc-exp-month",
-            "identifier": "cc-exp-month",
-            "description": "cc-exp-month"
-          },
-          {
-            "numericValue": "cc-exp-year",
-            "identifier": "cc-exp-year",
-            "description": "cc-exp-year"
-          },
-          {
-            "numericValue": "cc-csc",
-            "identifier": "cc-csc",
-            "description": "cc-csc"
-          },
-          {
-            "numericValue": "cc-type",
-            "identifier": "cc-type",
-            "description": "cc-type"
-          },
-          {
-            "numericValue": "transaction-currency",
-            "identifier": "transaction-currency",
-            "description": "transaction-currency"
-          },
-          {
-            "numericValue": "transaction-amount",
-            "identifier": "transaction-amount",
-            "description": "transaction-amount"
-          },
-          {
-            "numericValue": "language",
-            "identifier": "language",
-            "description": "language"
-          },
-          {
-            "numericValue": "bday",
-            "identifier": "bday",
-            "description": "bday"
-          },
-          {
-            "numericValue": "bday-day",
-            "identifier": "bday-day",
-            "description": "bday-day"
-          },
-          {
-            "numericValue": "bday-month",
-            "identifier": "bday-month",
-            "description": "bday-month"
-          },
-          {
-            "numericValue": "bday-year",
-            "identifier": "bday-year",
-            "description": "bday-year"
-          },
-          {
-            "numericValue": "sex",
-            "identifier": "sex",
-            "description": "sex"
-          },
-          {
-            "numericValue": "url",
-            "identifier": "url",
-            "description": "url"
-          },
-          {
-            "numericValue": "photo",
-            "identifier": "photo",
-            "description": "photo"
-          },
-          {
-            "numericValue": "tel",
-            "identifier": "tel",
-            "description": "tel"
-          },
-          {
-            "numericValue": "tel-country-code",
-            "identifier": "tel-country-code",
-            "description": "tel-country-code"
-          },
-          {
-            "numericValue": "tel-national",
-            "identifier": "tel-national",
-            "description": "tel-national"
-          },
-          {
-            "numericValue": "tel-area-code",
-            "identifier": "tel-area-code",
-            "description": "tel-area-code"
-          },
-          {
-            "numericValue": "tel-local",
-            "identifier": "tel-local",
-            "description": "tel-local"
-          },
-          {
-            "numericValue": "tel-local-prefix",
-            "identifier": "tel-local-prefix",
-            "description": "tel-local-prefix"
-          },
-          {
-            "numericValue": "tel-local-suffix",
-            "identifier": "tel-local-suffix",
-            "description": "tel-local-suffix"
-          },
-          {
-            "numericValue": "tel-extension",
-            "identifier": "tel-extension",
-            "description": "tel-extension"
-          },
-          {
-            "numericValue": "email",
-            "identifier": "email",
-            "description": "email"
-          },
-          {
-            "numericValue": "impp",
-            "identifier": "impp",
-            "description": "impp"
-          }
+          "onHidden",
+          "onHiddenContainer"
         ]
       },
       "matrixbaseVerticalAlign": {
@@ -4037,6 +3983,389 @@
           "ZWL"
         ]
       },
+      "selectbaseChoicesFromQuestionMode": {
+        "type": "string",
+        "enum": [
+          "all",
+          "selected",
+          "unselected"
+        ]
+      },
+      "selectbaseChoicesOrder": {
+        "type": "string",
+        "enum": [
+          "none",
+          "asc",
+          "desc",
+          "random"
+        ]
+      },
+      "selectbaseStoreOthersAsComment": {
+        "type": "string",
+        "enum": [
+          "default",
+          true,
+          false
+        ]
+      },
+      "checkboxbaseColCount": {
+        "type": "number",
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "imagepickerContentMode": {
+        "type": "string",
+        "enum": [
+          "image",
+          "video"
+        ]
+      },
+      "imagepickerImageFit": {
+        "type": "string",
+        "enum": [
+          "none",
+          "contain",
+          "cover",
+          "fill"
+        ]
+      },
+      "dropdownAutocomplete": {
+        "type": "string",
+        "enum": [
+          "",
+          "name",
+          "honorific-prefix",
+          "given-name",
+          "additional-name",
+          "family-name",
+          "honorific-suffix",
+          "nickname",
+          "organization-title",
+          "username",
+          "new-password",
+          "current-password",
+          "organization",
+          "street-address",
+          "address-line1",
+          "address-line2",
+          "address-line3",
+          "address-level4",
+          "address-level3",
+          "address-level2",
+          "address-level1",
+          "country",
+          "country-name",
+          "postal-code",
+          "cc-name",
+          "cc-given-name",
+          "cc-additional-name",
+          "cc-family-name",
+          "cc-number",
+          "cc-exp",
+          "cc-exp-month",
+          "cc-exp-year",
+          "cc-csc",
+          "cc-type",
+          "transaction-currency",
+          "transaction-amount",
+          "language",
+          "bday",
+          "bday-day",
+          "bday-month",
+          "bday-year",
+          "sex",
+          "url",
+          "photo",
+          "tel",
+          "tel-country-code",
+          "tel-national",
+          "tel-area-code",
+          "tel-local",
+          "tel-local-prefix",
+          "tel-local-suffix",
+          "tel-extension",
+          "email",
+          "impp"
+        ],
+        "x-enum-values": [
+          {
+            "numericValue": "",
+            "identifier": "",
+            "description": ""
+          },
+          {
+            "numericValue": "name",
+            "identifier": "namee",
+            "description": "namee"
+          },
+          {
+            "numericValue": "honorific-prefix",
+            "identifier": "honorific-prefix",
+            "description": "honorific-prefix"
+          },
+          {
+            "numericValue": "given-name",
+            "identifier": "given-name",
+            "description": "given-name"
+          },
+          {
+            "numericValue": "additional-name",
+            "identifier": "additional-name",
+            "description": "additional-name"
+          },
+          {
+            "numericValue": "family-name",
+            "identifier": "family-name",
+            "description": "family-name"
+          },
+          {
+            "numericValue": "honorific-suffix",
+            "identifier": "honorific-suffix",
+            "description": "honorific-suffix"
+          },
+          {
+            "numericValue": "nickname",
+            "identifier": "nickname",
+            "description": "nickname"
+          },
+          {
+            "numericValue": "organization-title",
+            "identifier": "organization-title",
+            "description": "organization-title"
+          },
+          {
+            "numericValue": "username",
+            "identifier": "username",
+            "description": "username"
+          },
+          {
+            "numericValue": "new-password",
+            "identifier": "new-password",
+            "description": "new-password"
+          },
+          {
+            "numericValue": "current-password",
+            "identifier": "current-password",
+            "description": "current-password"
+          },
+          {
+            "numericValue": "organization",
+            "identifier": "organization",
+            "description": "organization"
+          },
+          {
+            "numericValue": "street-address",
+            "identifier": "street-address",
+            "description": "street-address"
+          },
+          {
+            "numericValue": "address-line1",
+            "identifier": "address-line1",
+            "description": "address-line1"
+          },
+          {
+            "numericValue": "address-line2",
+            "identifier": "address-line2",
+            "description": "address-line2"
+          },
+          {
+            "numericValue": "address-line3",
+            "identifier": "address-line3",
+            "description": "address-line3"
+          },
+          {
+            "numericValue": "address-level4",
+            "identifier": "address-level4",
+            "description": "address-level4"
+          },
+          {
+            "numericValue": "address-level3",
+            "identifier": "address-level3",
+            "description": "address-level3"
+          },
+          {
+            "numericValue": "address-level2",
+            "identifier": "address-level2",
+            "description": "address-level2"
+          },
+          {
+            "numericValue": "address-level1",
+            "identifier": "address-level1",
+            "description": "address-level1"
+          },
+          {
+            "numericValue": "country",
+            "identifier": "country",
+            "description": "country"
+          },
+          {
+            "numericValue": "country-name",
+            "identifier": "country-name",
+            "description": "country-name"
+          },
+          {
+            "numericValue": "postal-code",
+            "identifier": "postal-code",
+            "description": "postal-code"
+          },
+          {
+            "numericValue": "cc-name",
+            "identifier": "cc-name",
+            "description": "cc-name"
+          },
+          {
+            "numericValue": "cc-given-name",
+            "identifier": "cc-given-name",
+            "description": "cc-given-name"
+          },
+          {
+            "numericValue": "cc-additional-name",
+            "identifier": "cc-additional-name",
+            "description": "cc-additional-name"
+          },
+          {
+            "numericValue": "cc-family-name",
+            "identifier": "cc-family-name",
+            "description": "cc-family-name"
+          },
+          {
+            "numericValue": "cc-number",
+            "identifier": "cc-number",
+            "description": "cc-number"
+          },
+          {
+            "numericValue": "cc-exp",
+            "identifier": "cc-exp",
+            "description": "cc-exp"
+          },
+          {
+            "numericValue": "cc-exp-month",
+            "identifier": "cc-exp-month",
+            "description": "cc-exp-month"
+          },
+          {
+            "numericValue": "cc-exp-year",
+            "identifier": "cc-exp-year",
+            "description": "cc-exp-year"
+          },
+          {
+            "numericValue": "cc-csc",
+            "identifier": "cc-csc",
+            "description": "cc-csc"
+          },
+          {
+            "numericValue": "cc-type",
+            "identifier": "cc-type",
+            "description": "cc-type"
+          },
+          {
+            "numericValue": "transaction-currency",
+            "identifier": "transaction-currency",
+            "description": "transaction-currency"
+          },
+          {
+            "numericValue": "transaction-amount",
+            "identifier": "transaction-amount",
+            "description": "transaction-amount"
+          },
+          {
+            "numericValue": "language",
+            "identifier": "language",
+            "description": "language"
+          },
+          {
+            "numericValue": "bday",
+            "identifier": "bday",
+            "description": "bday"
+          },
+          {
+            "numericValue": "bday-day",
+            "identifier": "bday-day",
+            "description": "bday-day"
+          },
+          {
+            "numericValue": "bday-month",
+            "identifier": "bday-month",
+            "description": "bday-month"
+          },
+          {
+            "numericValue": "bday-year",
+            "identifier": "bday-year",
+            "description": "bday-year"
+          },
+          {
+            "numericValue": "sex",
+            "identifier": "sex",
+            "description": "sex"
+          },
+          {
+            "numericValue": "url",
+            "identifier": "url",
+            "description": "url"
+          },
+          {
+            "numericValue": "photo",
+            "identifier": "photo",
+            "description": "photo"
+          },
+          {
+            "numericValue": "tel",
+            "identifier": "tel",
+            "description": "tel"
+          },
+          {
+            "numericValue": "tel-country-code",
+            "identifier": "tel-country-code",
+            "description": "tel-country-code"
+          },
+          {
+            "numericValue": "tel-national",
+            "identifier": "tel-national",
+            "description": "tel-national"
+          },
+          {
+            "numericValue": "tel-area-code",
+            "identifier": "tel-area-code",
+            "description": "tel-area-code"
+          },
+          {
+            "numericValue": "tel-local",
+            "identifier": "tel-local",
+            "description": "tel-local"
+          },
+          {
+            "numericValue": "tel-local-prefix",
+            "identifier": "tel-local-prefix",
+            "description": "tel-local-prefix"
+          },
+          {
+            "numericValue": "tel-local-suffix",
+            "identifier": "tel-local-suffix",
+            "description": "tel-local-suffix"
+          },
+          {
+            "numericValue": "tel-extension",
+            "identifier": "tel-extension",
+            "description": "tel-extension"
+          },
+          {
+            "numericValue": "email",
+            "identifier": "email",
+            "description": "email"
+          },
+          {
+            "numericValue": "impp",
+            "identifier": "impp",
+            "description": "impp"
+          }
+        ]
+      },
       "textInputType": {
         "type": "string",
         "enum": [
@@ -4473,14 +4802,8 @@
       "ratingAutoGenerate": {
         "type": "string",
         "enum": [
-          {
-            "value": true,
-            "text": "Generate"
-          },
-          {
-            "value": false,
-            "text": "Enter manually"
-          }
+          true,
+          false
         ]
       },
       "ratingDisplayMode": {
@@ -4495,7 +4818,7 @@
         "type": "string",
         "enum": [
           {
-            "value": "",
+            "value": "png",
             "text": "PNG"
           },
           {
@@ -4600,9 +4923,6 @@
           2,
           3
         ]
-      },
-      "panelPage": {
-        "type": "string"
       },
       "panelShowQuestionNumbers": {
         "type": "string",
