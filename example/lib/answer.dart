@@ -20,7 +20,7 @@ class AnswerPage extends StatefulWidget {
 class AnswerPageState extends State<AnswerPage> {
   JsonElement answer = JsonElement.fromString("{}");
 
-  late Future<String?> loader;
+  late Future<void> loader;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class AnswerPageState extends State<AnswerPage> {
       body: SafeArea(
         child: FutureBuilder(
           future: loader,
-          builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
               return CircularProgressIndicator();
             }

@@ -6,11 +6,12 @@ import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:im_stepper/stepper.dart';
 import 'package:logging/logging.dart';
+import 'package:flutter_survey_js/utils.dart';
 
 Widget defaultSurveyTitleBuilder(BuildContext context, s.Survey survey) {
-  if (survey.title != null) {
+  if (survey.title?.getLocalizedText(context) != null) {
     return ListTile(
-      title: Text(survey.title!),
+      title: Text(survey.title!.getLocalizedText(context)!),
     );
   }
   return Container();

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/custom_scroll_behavior.dart';
-import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 Widget matrixBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   return MatrixElement(
@@ -55,7 +54,7 @@ class MatrixElement extends StatelessWidget {
                     verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Container(
                       padding: EdgeInsets.all(5),
-                      child: Text(row.castToItemvalue().text ?? ""),
+                      child: Text(row.castToItemvalue().text ?.getLocalizedText(context) ?? ""),
                     )),
                 ...(matrix.columns?.toList() ?? []).map((column) {
                   // matrix use the same row control
@@ -101,7 +100,7 @@ class _MatrixTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(column.text ?? column.value?.toString() ?? "",
+    return Text(column.text ?.getLocalizedText(context) ?? column.value?.toString() ?? "",
         softWrap: true, style: Theme.of(context).textTheme.titleMedium);
   }
 }

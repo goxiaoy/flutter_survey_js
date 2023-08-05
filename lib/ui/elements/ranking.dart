@@ -4,7 +4,7 @@ import 'package:flutter_survey_js/ui/reactive/reactive_reorderable_list.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 Widget rankingBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   return RankingWidget(
@@ -58,7 +58,7 @@ class RankingElement extends StatelessWidget {
       formControlName: formControlName,
       valueAccessor: accessor,
       itemBuilder: (item) {
-        return Text(item.text ?? item.value?.toString() ?? '');
+        return Text(item.text?.getLocalizedText(context) ?? item.value?.toString() ?? '');
       },
     );
   }

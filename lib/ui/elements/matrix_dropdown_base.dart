@@ -3,6 +3,7 @@ import 'package:built_value/serializer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js_model/utils.dart';
+import 'package:flutter_survey_js/utils.dart';
 
 mixin MatrixDropdownMixin {
   late final String formControlName;
@@ -18,9 +19,13 @@ class MatrixDropdownTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
-      child: Text(column.title ?? column.name?.toString() ?? "",
-          softWrap: true, style: Theme.of(context).textTheme.titleMedium),
+      padding: const EdgeInsets.all(5),
+      child: Text(
+          column.title?.getLocalizedText(context) ??
+              column.name?.toString() ??
+              "",
+          softWrap: true,
+          style: Theme.of(context).textTheme.titleMedium),
     );
   }
 }
@@ -29,13 +34,8 @@ s.Question matrixDropdownColumnToQuestion(
     s.Matrixdropdownbase dropdown, s.Matrixdropdowncolumn column) {
   final encoded = s.surveySerializers
       .serializeWith(s.Matrixdropdowncolumn.serializer, column);
-  (encoded as Map<String, Object?>)['choices'] =
-      s.surveySerializers.serialize(dropdown.choices,
-          specifiedType: const FullType(
-            BuiltList,
-            [FullType(s.SelectbaseAllOfChoicesInner)],
-          ));
-  encoded["type"] = column.cellType?.toString() ?? "dropdown";
+  (encoded as Map<String, Object?>)["type"] =
+      column.cellType?.toString() ?? "dropdown";
   s.Question? res = s.surveySerializers
       .deserializeWith<s.SurveyQuestionsInner>(
           s.SurveyQuestionsInner.serializer, encoded)

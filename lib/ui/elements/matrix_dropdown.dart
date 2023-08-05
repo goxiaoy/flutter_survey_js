@@ -5,7 +5,7 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 import 'matrix_dropdown_base.dart';
 
 Widget matrixDropdownBuilder(BuildContext context, s.Elementbase element,
@@ -58,8 +58,8 @@ class MatrixDropdownElement extends StatelessWidget {
                 TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Container(
-                      padding: EdgeInsets.all(5),
-                      child: Text(row.castToItemvalue().text ?? ""),
+                      padding: const EdgeInsets.all(5),
+                      child: Text(row.castToItemvalue().text ?.getLocalizedText(context) ?? ""),
                     )),
                 ...(matrix.columns?.toList() ?? []).map((column) {
                   final q = matrixDropdownColumnToQuestion(matrix, column);

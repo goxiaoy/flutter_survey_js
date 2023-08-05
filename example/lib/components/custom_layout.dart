@@ -6,7 +6,7 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:json_editor/json_editor.dart';
 import 'package:logging/logging.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 import 'package:example/storage.dart';
 
 class CustomLayoutPage extends StatelessWidget {
@@ -21,7 +21,8 @@ class CustomLayoutPage extends StatelessWidget {
     final survey = this.survey;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Survey Customize:' + (survey?.title ?? '')),
+        title: Text('Survey Customize:' +
+            (survey?.title?.getLocalizedText(context) ?? '')),
       ),
       body: SafeArea(
         child: survey == null

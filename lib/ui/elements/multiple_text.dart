@@ -62,17 +62,17 @@ AbstractControl multipleTextControlBuilder(
 }
 
 s.Text toText(s.Multipletextitem multipleTextItem) {
-  final b = s.Text().toBuilder()
+  final b = s.$TextBuilder()
     ..type = "text"
     ..name = multipleTextItem.name
     ..isRequired = multipleTextItem.isRequired
     ..validators = ListBuilder(multipleTextItem.validators?.toList() ?? [])
     ..inputType = s.TextInputType.valueOf(multipleTextItem.inputType.toString())
-    ..title = multipleTextItem.title
+    ..title = multipleTextItem.title?.toBuilder()
     ..maxLength = multipleTextItem.maxLength
     ..size = multipleTextItem.size
-    ..requiredErrorText = multipleTextItem.requiredErrorText
-    ..placeholder = multipleTextItem.placeholder;
+    ..requiredErrorText = multipleTextItem.requiredErrorText?.toBuilder()
+    ..placeholder = multipleTextItem.placeholder?.toBuilder();
 
   return b.build();
 }

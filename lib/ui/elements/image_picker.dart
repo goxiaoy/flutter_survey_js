@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_grid_item_picker.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'image.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 Widget imagePickerBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   return ImagePickerElement(
@@ -62,7 +61,7 @@ class ImagePickerElement extends StatelessWidget {
                 Flexible(
                   child: Container(
                       padding: EdgeInsets.only(top: 2),
-                      child: Text(item.text ?? item.value?.toString() ?? "")),
+                      child: Text(item.text?.getLocalizedText(context) ?? item.value?.toString() ?? "")),
                 ),
               ],
             ));

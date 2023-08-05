@@ -6,11 +6,11 @@ import 'package:flutter_survey_js/ui/reactive/reactive_date_time_picker.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 Widget textBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   final e = element as s.Text;
-  final String? hintText = e.placeholder;
+  final String? hintText = e.placeholder?.getLocalizedText(context);
   Widget widget = ReactiveTextField(
     formControlName: element.name!,
     decoration: InputDecoration(hintText: hintText),

@@ -5,7 +5,7 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/ui/reactive/reactive_group_button.dart';
 import 'package:group_button/group_button.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 import '../../generated/l10n.dart';
 
 Widget radioGroupBuilder(BuildContext context, s.Elementbase element,
@@ -81,21 +81,21 @@ class _RadioGroupWidgetState extends State<_RadioGroupWidget> {
           .map(
             (e) => ReactiveGroupButtonItem(
               value: e.value?.value,
-              title: e.text ?? e.value?.toString() ?? '',
+              title: e.text?.getLocalizedText(context) ?? e.value?.toString() ?? '',
             ),
           )
           .toList(growable: false),
       if (widget.element.showNoneItem == true)
         ReactiveGroupButtonItem(
           value: noneValue,
-          title: e.noneText ?? S.of(context).noneItemText,
+          title: e.noneText?.getLocalizedText(context) ?? S.of(context).noneItemText,
         ),
       if (widget.element.showOtherItem == true)
         ReactiveGroupButtonItem(
           value: selectbaseController.storeOtherAsComment
               ? otherValue
               : selectbaseController.otherValue,
-          title: e.otherText ?? S.of(context).otherItemText,
+          title: e.otherText?.getLocalizedText(context) ?? S.of(context).otherItemText,
         )
     ];
     return SelectbaseWidget(

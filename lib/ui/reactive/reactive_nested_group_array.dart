@@ -103,13 +103,12 @@ class ReactiveNestedGroupArray<T> extends StatelessWidget {
               ],
             );
           }),
-          if (createNew != null &&
-              (maxLength == null || formArray.controls.length < maxLength!))
+          if (maxLength == null || formArray.controls.length < maxLength!)
             Padding(
               padding: const EdgeInsets.all(5),
               child: ElevatedButton(
                 onPressed: () {
-                  formArray.add(createNew!());
+                  formArray.add(createNew());
                 },
                 child: Text(S.of(context).add),
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 Widget commentBuilder(BuildContext context, s.Elementbase element, {ElementConfiguration? configuration}) {
   return ReactiveTextField(
     keyboardType: TextInputType.multiline,
@@ -16,7 +16,7 @@ Widget commentBuilder(BuildContext context, s.Elementbase element, {ElementConfi
       filled: true,
       contentPadding:
           const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
-      hintText: (element as s.Comment).placeholder,
+      hintText: (element as s.Comment).placeholder?.getLocalizedText(context),
     ),
   ).wrapQuestionTitle(context, element, configuration: configuration);
 }

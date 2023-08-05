@@ -12,7 +12,7 @@ typedef SurveyFormControlBuilder = AbstractControl Function(
     BuildContext context, s.Elementbase element,
     {List<ValidatorFunction> validators, Object? value});
 
-typedef SurveyTitleBuilder = Widget Function(
+typedef SurveyTitleWidgetBuilder = Widget Function(
     BuildContext context, s.Elementbase element, Widget child);
 
 @immutable
@@ -31,8 +31,8 @@ Widget defaultUnsupportedBuilder(BuildContext context, s.Elementbase element,
 Widget defaultSeparatorBuilder(
   BuildContext context,
 ) {
-  return Wrap(
-    children: const [
+  return const Wrap(
+    children: [
       SizedBox(
         height: 5,
       ),
@@ -61,7 +61,7 @@ class SurveyConfiguration extends InheritedWidget {
 
   final WidgetBuilder separatorBuilder;
 
-  final SurveyTitleBuilder titleBuilder;
+  final SurveyTitleWidgetBuilder titleBuilder;
 
   final SurveyElementFactory factory;
 
@@ -84,7 +84,7 @@ class SurveyConfiguration extends InheritedWidget {
     required Widget child,
     SurveyElementBuilder? unsupportedBuilder,
     WidgetBuilder? separatorBuilder,
-    SurveyTitleBuilder? titleBuilder,
+    SurveyTitleWidgetBuilder? titleBuilder,
     SurveyElementFactory? factory,
   })  : unsupportedBuilder = unsupportedBuilder ??
             SurveyConfiguration.of(context)?.unsupportedBuilder ??

@@ -3,7 +3,7 @@ import 'package:flutter_survey_js/ui/elements/selectbase.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 import '../../generated/l10n.dart';
 
 Widget dropdownBuilder(BuildContext context, s.Elementbase element,
@@ -81,7 +81,7 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
             (e) => DropdownMenuItem(
               value: e.value?.value,
               child: Text(
-                e.text ?? e.value?.toString() ?? '',
+                e.text?.getLocalizedText(context) ?? e.value?.toString() ?? '',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
@@ -91,7 +91,7 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
         DropdownMenuItem(
             value: noneValue,
             child: Text(
-              e.noneText ?? S.of(context).noneItemText,
+              e.noneText?.getLocalizedText(context) ?? S.of(context).noneItemText,
               style: Theme.of(context).textTheme.bodyMedium,
             )),
       if (widget.dropdown.showOtherItem == true)
@@ -100,7 +100,7 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
                 ? otherValue
                 : selectbaseController.otherValue,
             child: Text(
-              e.otherText ?? S.of(context).otherItemText,
+              e.otherText?.getLocalizedText(context) ?? S.of(context).otherItemText,
               style: Theme.of(context).textTheme.bodyMedium,
             )),
     ];
@@ -115,7 +115,7 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
       },
       child: ReactiveDropdownField<dynamic>(
           formControlName: e.name!,
-          hint: Text(e.placeholder ?? S.of(context).placeholder),
+          hint: Text(e.placeholder?.getLocalizedText(context) ?? S.of(context).placeholder),
           onChanged: (control) {
             if (widget.dropdown.showOtherItem ?? false) {
               if (selectbaseController.storeOtherAsComment) {

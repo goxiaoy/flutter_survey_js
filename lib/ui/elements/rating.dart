@@ -3,7 +3,7 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_segmented_control/reactive_segmented_control.dart';
-
+import 'package:flutter_survey_js/utils.dart';
 Widget ratingBuilder(BuildContext context, s.Elementbase element, {ElementConfiguration? configuration}) {
   final e = element as s.Rating;
 
@@ -17,7 +17,7 @@ Widget ratingBuilder(BuildContext context, s.Elementbase element, {ElementConfig
     if (e.rateValues != null && e.rateValues!.isNotEmpty) {
       for (final v in e.rateValues!) {
         children[v.castToItemvalue().value.tryCastToInt()!] = Text(
-          v.castToItemvalue().text ??
+          v.castToItemvalue().text?.getLocalizedText(context) ??
               v.castToItemvalue().value?.toString() ??
               '',
           style: textStyle,

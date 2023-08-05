@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
-
+import 'package:flutter_survey_js/utils.dart';
 class PanelTitle extends StatelessWidget {
   final s.Panelbase panel;
   final VoidCallback? onTimeout;
@@ -15,8 +15,8 @@ class PanelTitle extends StatelessWidget {
         // SurveyWidget.of(context).formGroup.vali;
       },
       child: ListTile(
-        title: Text(panel.title ?? panel.name ?? ''),
-        subtitle: panel.description != null ? Text(panel.description!) : null,
+        title: Text(panel.title?.getLocalizedText(context) ?? panel.name ?? ''),
+        subtitle: panel.description?.getLocalizedText(context) != null ? Text(panel.description!.getLocalizedText(context)!) : null,
       ),
     );
   }

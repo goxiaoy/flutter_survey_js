@@ -230,7 +230,7 @@ class ReactiveDateTimePicker extends ReactiveFormField<String, String> {
                       field.value ?? '',
                       style: Theme.of(field.context)
                           .textTheme
-                          .subtitle1
+                          .titleMedium
                           ?.merge(style),
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
+import 'package:flutter_survey_js/utils.dart';
 
 class QuestionTitle extends StatelessWidget {
   final s.Question q;
@@ -12,10 +13,11 @@ class QuestionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     description() {
-      if (q.description != null && q.description!.isNotEmpty) {
+      if (q.description?.getLocalizedText(context) != null &&
+          q.description!.getLocalizedText(context)!.isNotEmpty) {
         return Container(
           padding: const EdgeInsets.only(left: 0.0, right: 0.0, bottom: 10.0),
-          child: Text(q.description!,
+          child: Text(q.description!.getLocalizedText(context)!,
               style: Theme.of(context).textTheme.bodyMedium),
         );
       } else {
@@ -58,12 +60,12 @@ class QuestionTitle extends StatelessWidget {
 
       listTitle.add(Expanded(
           child: Container(
-            padding: EdgeInsets.only(top: 10),
-            child: Text(
-              q.title ?? q.name ?? "",
-              style: titleTextStyle(),
-            ),
-          )));
+        padding: EdgeInsets.only(top: 10),
+        child: Text(
+          q.title?.getLocalizedText(context) ?? q.name ?? "",
+          style: titleTextStyle(),
+        ),
+      )));
 
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,

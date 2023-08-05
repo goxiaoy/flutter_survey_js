@@ -11,6 +11,7 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:flutter_survey_js/utils.dart';
 
 import 'elements/checkbox.dart';
 import 'elements/dropdown.dart';
@@ -113,7 +114,7 @@ class SurveyElementFactory {
     register<s.Multipletext>(multipleTextBuilder,
         control: multipleTextControlBuilder);
     register<s.Html>((context, element, {ElementConfiguration? configuration}) {
-      return HtmlWidget((element as s.Html).html ?? '');
+      return HtmlWidget((element as s.Html).html?.getLocalizedText(context) ?? '');
     });
     register<s.Signaturepad>((context, element,
             {ElementConfiguration? configuration}) {
@@ -137,7 +138,7 @@ class SurveyElementFactory {
                     value.tryCastToString()));
     register<s.Image>((context, element,
         {ElementConfiguration? configuration}) {
-      return urlToImage((element as s.Image).imageLink)
+      return urlToImage((element as s.Image).imageLink?.getLocalizedText(context))
           .wrapQuestionTitle(context, element, configuration: configuration);
     });
     register<s.Imagepicker>(imagePickerBuilder);
