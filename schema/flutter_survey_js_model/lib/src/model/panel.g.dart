@@ -12,7 +12,7 @@ class _$Panel extends Panel {
   @override
   final PanelIndent? indent;
   @override
-  final SurveyLogoWidth? minWidth;
+  final StringOrNum? minWidth;
   @override
   final PanelInnerIndent? innerIndent;
   @override
@@ -26,7 +26,7 @@ class _$Panel extends Panel {
   @override
   final String? questionStartIndex;
   @override
-  final SurveyLogoWidth? width;
+  final StringOrNum? width;
   @override
   final PanelState? state;
   @override
@@ -34,7 +34,7 @@ class _$Panel extends Panel {
   @override
   final bool? allowAdaptiveActions;
   @override
-  final SurveyLogoWidth? maxWidth;
+  final StringOrNum? maxWidth;
   @override
   final String? enableIf;
   @override
@@ -214,10 +214,10 @@ class PanelBuilder implements Builder<Panel, PanelBuilder>, PanelbaseBuilder {
   PanelIndent? get indent => _$this._indent;
   set indent(covariant PanelIndent? indent) => _$this._indent = indent;
 
-  SurveyLogoWidthBuilder? _minWidth;
-  SurveyLogoWidthBuilder get minWidth =>
-      _$this._minWidth ??= new SurveyLogoWidthBuilder();
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+  StringOrNumBuilder? _minWidth;
+  StringOrNumBuilder get minWidth =>
+      _$this._minWidth ??= new StringOrNumBuilder();
+  set minWidth(covariant StringOrNumBuilder? minWidth) =>
       _$this._minWidth = minWidth;
 
   PanelInnerIndent? _innerIndent;
@@ -252,10 +252,9 @@ class PanelBuilder implements Builder<Panel, PanelBuilder>, PanelbaseBuilder {
   set questionStartIndex(covariant String? questionStartIndex) =>
       _$this._questionStartIndex = questionStartIndex;
 
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
+  StringOrNumBuilder? _width;
+  StringOrNumBuilder get width => _$this._width ??= new StringOrNumBuilder();
+  set width(covariant StringOrNumBuilder? width) => _$this._width = width;
 
   PanelState? _state;
   PanelState? get state => _$this._state;
@@ -270,10 +269,10 @@ class PanelBuilder implements Builder<Panel, PanelBuilder>, PanelbaseBuilder {
   set allowAdaptiveActions(covariant bool? allowAdaptiveActions) =>
       _$this._allowAdaptiveActions = allowAdaptiveActions;
 
-  SurveyLogoWidthBuilder? _maxWidth;
-  SurveyLogoWidthBuilder get maxWidth =>
-      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+  StringOrNumBuilder? _maxWidth;
+  StringOrNumBuilder get maxWidth =>
+      _$this._maxWidth ??= new StringOrNumBuilder();
+  set maxWidth(covariant StringOrNumBuilder? maxWidth) =>
       _$this._maxWidth = maxWidth;
 
   String? _enableIf;

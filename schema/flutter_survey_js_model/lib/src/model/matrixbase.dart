@@ -5,9 +5,9 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
@@ -78,7 +78,7 @@ abstract class Matrixbase implements Question {
   bool? get showHeader;
 
   @BuiltValueField(wireName: r'columnMinWidth')
-  SurveyLogoWidth? get columnMinWidth;
+  StringOrNum? get columnMinWidth;
 
   @BuiltValueField(wireName: r'columnsVisibleIf')
   String? get columnsVisibleIf;
@@ -185,7 +185,7 @@ class _$MatrixbaseSerializer implements PrimitiveSerializer<Matrixbase> {
       yield r'columnMinWidth';
       yield serializers.serialize(
         object.columnMinWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.descriptionLocation != null) {
@@ -220,7 +220,7 @@ class _$MatrixbaseSerializer implements PrimitiveSerializer<Matrixbase> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.showCommentArea != null) {
@@ -311,7 +311,7 @@ class _$MatrixbaseSerializer implements PrimitiveSerializer<Matrixbase> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.readOnly != null) {
@@ -351,7 +351,7 @@ class _$MatrixbaseSerializer implements PrimitiveSerializer<Matrixbase> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.page != null) {
@@ -519,8 +519,8 @@ class _$$MatrixbaseSerializer implements PrimitiveSerializer<$Matrixbase> {
         case r'columnMinWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.columnMinWidth.replace(valueDes);
           break;
         case r'descriptionLocation':
@@ -555,8 +555,8 @@ class _$$MatrixbaseSerializer implements PrimitiveSerializer<$Matrixbase> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
@@ -646,8 +646,8 @@ class _$$MatrixbaseSerializer implements PrimitiveSerializer<$Matrixbase> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
@@ -688,8 +688,8 @@ class _$$MatrixbaseSerializer implements PrimitiveSerializer<$Matrixbase> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'page':

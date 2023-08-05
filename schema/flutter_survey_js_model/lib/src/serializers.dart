@@ -116,6 +116,7 @@ import 'package:flutter_survey_js_model/src/model/setvaluetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/signaturepad.dart';
 import 'package:flutter_survey_js_model/src/model/signaturepad_data_format.dart';
 import 'package:flutter_survey_js_model/src/model/skiptrigger.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/survey.dart';
 import 'package:flutter_survey_js_model/src/model/survey_background_image_attachment.dart';
 import 'package:flutter_survey_js_model/src/model/survey_background_image_fit.dart';
@@ -124,7 +125,6 @@ import 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.
 import 'package:flutter_survey_js_model/src/model/survey_locale.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/survey_matrix_drag_handle_area.dart';
 import 'package:flutter_survey_js_model/src/model/survey_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_progress_bar_type.dart';
@@ -262,6 +262,7 @@ part 'serializers.g.dart';
   Signaturepad,
   SignaturepadDataFormat,
   Skiptrigger,
+  StringOrNum,
   Survey,
   SurveyBackgroundImageAttachment,
   SurveyBackgroundImageFit,
@@ -270,7 +271,6 @@ part 'serializers.g.dart';
   SurveyLocale,
   SurveyLogoFit,
   SurveyLogoPosition,
-  SurveyLogoWidth,
   SurveyMatrixDragHandleArea,
   SurveyMode,
   SurveyProgressBarType,

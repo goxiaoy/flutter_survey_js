@@ -38,15 +38,3 @@ class SurveySerializer implements PrimitiveSerializer<Survey> {
         .serialize(serializers, object, specifiedType: specifiedType);
   }
 }
-
-class ConvertStringSerializer extends StringSerializer {
-  @override
-  String deserialize(Serializers serializers, Object? serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    if (serialized is String) {
-      return serialized as String;
-    } else {
-      return serialized?.toString() ?? "";
-    }
-  }
-}

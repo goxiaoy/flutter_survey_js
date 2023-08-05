@@ -5,9 +5,9 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/signaturepad_data_format.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
@@ -69,7 +69,7 @@ abstract class Signaturepad implements Question, Built<Signaturepad, Signaturepa
   String? get backgroundColor;
 
   @BuiltValueField(wireName: r'signatureWidth')
-  SurveyLogoWidth? get signatureWidth;
+  StringOrNum? get signatureWidth;
 
   @BuiltValueField(wireName: r'dataFormat')
   SignaturepadDataFormat? get dataFormat;
@@ -79,13 +79,13 @@ abstract class Signaturepad implements Question, Built<Signaturepad, Signaturepa
   String? get penColor;
 
   @BuiltValueField(wireName: r'signatureHeight')
-  SurveyLogoWidth? get signatureHeight;
+  StringOrNum? get signatureHeight;
 
   @BuiltValueField(wireName: r'allowClear')
   bool? get allowClear;
 
   @BuiltValueField(wireName: r'height')
-  SurveyLogoWidth? get height;
+  StringOrNum? get height;
 
   Signaturepad._();
 
@@ -196,7 +196,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'signatureWidth';
       yield serializers.serialize(
         object.signatureWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.descriptionLocation != null) {
@@ -231,14 +231,14 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'height';
       yield serializers.serialize(
         object.height,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.showCommentArea != null) {
@@ -315,7 +315,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.readOnly != null) {
@@ -362,7 +362,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.page != null) {
@@ -376,7 +376,7 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
       yield r'signatureHeight';
       yield serializers.serialize(
         object.signatureHeight,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.allowClear != null) {
@@ -497,8 +497,8 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'signatureWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.signatureWidth.replace(valueDes);
           break;
         case r'descriptionLocation':
@@ -533,15 +533,15 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'height':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.height.replace(valueDes);
           break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
@@ -617,8 +617,8 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
@@ -666,8 +666,8 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'page':
@@ -680,8 +680,8 @@ class _$SignaturepadSerializer implements PrimitiveSerializer<Signaturepad> {
         case r'signatureHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.signatureHeight.replace(valueDes);
           break;
         case r'allowClear':

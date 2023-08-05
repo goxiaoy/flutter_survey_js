@@ -18,7 +18,7 @@ class _$Matrix extends Matrix {
   @override
   final BuiltList<MatrixdropdownAllOfRowsInner>? rows;
   @override
-  final SurveyLogoWidth? rowTitleWidth;
+  final StringOrNum? rowTitleWidth;
   @override
   final bool? hideIfRowsEmpty;
   @override
@@ -30,7 +30,7 @@ class _$Matrix extends Matrix {
   @override
   final bool? showHeader;
   @override
-  final SurveyLogoWidth? columnMinWidth;
+  final StringOrNum? columnMinWidth;
   @override
   final String? columnsVisibleIf;
   @override
@@ -64,7 +64,7 @@ class _$Matrix extends Matrix {
   @override
   final JsonObject? correctAnswer;
   @override
-  final SurveyLogoWidth? maxWidth;
+  final StringOrNum? maxWidth;
   @override
   final bool? showCommentArea;
   @override
@@ -82,7 +82,7 @@ class _$Matrix extends Matrix {
   @override
   final String? renderAs;
   @override
-  final SurveyLogoWidth? minWidth;
+  final StringOrNum? minWidth;
   @override
   final bool? readOnly;
   @override
@@ -92,7 +92,7 @@ class _$Matrix extends Matrix {
   @override
   final String? visibleIf;
   @override
-  final SurveyLogoWidth? width;
+  final StringOrNum? width;
   @override
   final String? page;
   @override
@@ -349,10 +349,10 @@ class MatrixBuilder
   set rows(covariant ListBuilder<MatrixdropdownAllOfRowsInner>? rows) =>
       _$this._rows = rows;
 
-  SurveyLogoWidthBuilder? _rowTitleWidth;
-  SurveyLogoWidthBuilder get rowTitleWidth =>
-      _$this._rowTitleWidth ??= new SurveyLogoWidthBuilder();
-  set rowTitleWidth(covariant SurveyLogoWidthBuilder? rowTitleWidth) =>
+  StringOrNumBuilder? _rowTitleWidth;
+  StringOrNumBuilder get rowTitleWidth =>
+      _$this._rowTitleWidth ??= new StringOrNumBuilder();
+  set rowTitleWidth(covariant StringOrNumBuilder? rowTitleWidth) =>
       _$this._rowTitleWidth = rowTitleWidth;
 
   bool? _hideIfRowsEmpty;
@@ -379,10 +379,10 @@ class MatrixBuilder
   bool? get showHeader => _$this._showHeader;
   set showHeader(covariant bool? showHeader) => _$this._showHeader = showHeader;
 
-  SurveyLogoWidthBuilder? _columnMinWidth;
-  SurveyLogoWidthBuilder get columnMinWidth =>
-      _$this._columnMinWidth ??= new SurveyLogoWidthBuilder();
-  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth) =>
+  StringOrNumBuilder? _columnMinWidth;
+  StringOrNumBuilder get columnMinWidth =>
+      _$this._columnMinWidth ??= new StringOrNumBuilder();
+  set columnMinWidth(covariant StringOrNumBuilder? columnMinWidth) =>
       _$this._columnMinWidth = columnMinWidth;
 
   String? _columnsVisibleIf;
@@ -467,10 +467,10 @@ class MatrixBuilder
   set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
-  SurveyLogoWidthBuilder? _maxWidth;
-  SurveyLogoWidthBuilder get maxWidth =>
-      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+  StringOrNumBuilder? _maxWidth;
+  StringOrNumBuilder get maxWidth =>
+      _$this._maxWidth ??= new StringOrNumBuilder();
+  set maxWidth(covariant StringOrNumBuilder? maxWidth) =>
       _$this._maxWidth = maxWidth;
 
   bool? _showCommentArea;
@@ -510,10 +510,10 @@ class MatrixBuilder
   String? get renderAs => _$this._renderAs;
   set renderAs(covariant String? renderAs) => _$this._renderAs = renderAs;
 
-  SurveyLogoWidthBuilder? _minWidth;
-  SurveyLogoWidthBuilder get minWidth =>
-      _$this._minWidth ??= new SurveyLogoWidthBuilder();
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+  StringOrNumBuilder? _minWidth;
+  StringOrNumBuilder get minWidth =>
+      _$this._minWidth ??= new StringOrNumBuilder();
+  set minWidth(covariant StringOrNumBuilder? minWidth) =>
       _$this._minWidth = minWidth;
 
   bool? _readOnly;
@@ -535,10 +535,9 @@ class MatrixBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
+  StringOrNumBuilder? _width;
+  StringOrNumBuilder get width => _$this._width ??= new StringOrNumBuilder();
+  set width(covariant StringOrNumBuilder? width) => _$this._width = width;
 
   String? _page;
   String? get page => _$this._page;

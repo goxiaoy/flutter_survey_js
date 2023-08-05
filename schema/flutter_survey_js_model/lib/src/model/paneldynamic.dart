@@ -13,8 +13,8 @@ import 'package:flutter_survey_js_model/src/model/question_description_location.
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panels_state.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panel_remove_button_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_show_question_numbers.dart';
@@ -307,7 +307,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.showCommentArea != null) {
@@ -599,7 +599,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.confirmDelete != null) {
@@ -627,7 +627,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
   }
@@ -756,8 +756,8 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
@@ -1050,8 +1050,8 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'confirmDelete':
@@ -1078,8 +1078,8 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         default:

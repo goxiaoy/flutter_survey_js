@@ -8,7 +8,6 @@ import 'flutter_survey_js_model.dart';
 
 Serializers surveySerializers = (serializers.toBuilder()
       ..add(SurveyAnyOfSerializer())
-      ..add(ConvertStringSerializer())
       ..add(SurveySerializer())
       ..addPlugin(StandardJsonPlugin()))
     .build();
@@ -97,9 +96,13 @@ extension SurveyTriggersInnerExtension on SurveyTriggersInner {
   }
 }
 
-extension SurveyWidthExtension on SurveyLogoWidth {
+extension SurveyWidthExtension on StringOrNum {
   double? get realValue {
     return this.oneOf.value.tryCastToDouble();
+  }
+
+  String? get asString {
+    return this.oneOf.value.tryCastToString();
   }
 }
 
@@ -137,6 +140,27 @@ extension SurveyShowQuestionNumbersExtension on SurveyShowQuestionNumbers {
                 this.anyOf.types.indexOf(SurveyShowQuestionNumbersAnyOf)]
             as SurveyShowQuestionNumbersAnyOf) ==
         SurveyShowQuestionNumbersAnyOf.onPage;
+  }
+}
+
+extension SurveyTitleExtesion on SurveyTitle {
+  String? getTextFromLocale({String? locale}) {
+    if (oneOf.isType(String)) {
+      return oneOf.value as String?;
+    }
+    if (oneOf.isType(Locstring)) {
+      final obj = (oneOf.value as Locstring);
+      String? ret;
+      switch (locale) {
+        case "en":
+          ret = obj.en;
+          break;
+        default:
+          ret = obj.default_;
+      }
+      return ret;
+    }
+    return null;
   }
 }
 

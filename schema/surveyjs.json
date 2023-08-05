@@ -62,6 +62,7 @@
             ]
           },
           "logoWidth": {
+            "title": "StringOrNum",
             "oneOf": [
               {
                 "type": "string"
@@ -72,6 +73,7 @@
             ]
           },
           "logoHeight": {
+            "title": "StringOrNum",
             "oneOf": [
               {
                 "type": "string"
@@ -473,6 +475,7 @@
             "$ref": "#/components/schemas/surveyWidthMode"
           },
           "width": {
+            "title": "StringOrNum",
             "oneOf": [
               {
                 "type": "string"
@@ -810,6 +813,7 @@
                 "type": "string"
               },
               "width": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -820,6 +824,7 @@
                 ]
               },
               "minWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -830,6 +835,7 @@
                 ]
               },
               "maxWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1106,6 +1112,7 @@
                 "type": "string"
               },
               "columnMinWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1287,6 +1294,7 @@
                 "type": "boolean"
               },
               "minWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1297,6 +1305,7 @@
                 ]
               },
               "width": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1430,6 +1439,7 @@
                 }
               },
               "rowTitleWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1556,6 +1566,7 @@
           {
             "properties": {
               "rowTitleWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1929,6 +1940,7 @@
                 "$ref": "#/components/schemas/imagepickerImageFit"
               },
               "imageHeight": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1939,6 +1951,7 @@
                 ]
               },
               "imageWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1949,6 +1962,7 @@
                 ]
               },
               "minImageWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1959,6 +1973,7 @@
                 ]
               },
               "minImageHeight": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1969,6 +1984,7 @@
                 ]
               },
               "maxImageWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -1979,6 +1995,7 @@
                 ]
               },
               "maxImageHeight": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2093,10 +2110,26 @@
                 "$ref": "#/components/schemas/autocomplete"
               },
               "min": {
-                "type": "string"
+                "title": "StringOrNum",
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
               },
               "max": {
-                "type": "string"
+                "title": "StringOrNum",
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
               },
               "minValueExpression": {
                 "type": "string"
@@ -2373,6 +2406,7 @@
                 "$ref": "#/components/schemas/imageImageFit"
               },
               "imageHeight": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2383,6 +2417,7 @@
                 ]
               },
               "imageWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2425,6 +2460,7 @@
                 "type": "boolean"
               },
               "imageHeight": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2435,6 +2471,7 @@
                 ]
               },
               "imageWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2598,6 +2635,7 @@
           {
             "properties": {
               "signatureWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2608,6 +2646,7 @@
                 ]
               },
               "signatureHeight": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2618,6 +2657,7 @@
                 ]
               },
               "height": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2925,6 +2965,7 @@
                 "type": "boolean"
               },
               "width": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2935,6 +2976,7 @@
                 ]
               },
               "minWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"
@@ -2945,6 +2987,7 @@
                 ]
               },
               "maxWidth": {
+                "title": "StringOrNum",
                 "oneOf": [
                   {
                     "type": "string"

@@ -4,9 +4,9 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
@@ -107,7 +107,7 @@ abstract class Question implements Elementbase {
   JsonObject? get correctAnswer;
 
   @BuiltValueField(wireName: r'maxWidth')
-  SurveyLogoWidth? get maxWidth;
+  StringOrNum? get maxWidth;
 
   @BuiltValueField(wireName: r'showCommentArea')
   bool? get showCommentArea;
@@ -134,7 +134,7 @@ abstract class Question implements Elementbase {
   String? get renderAs;
 
   @BuiltValueField(wireName: r'minWidth')
-  SurveyLogoWidth? get minWidth;
+  StringOrNum? get minWidth;
 
   @BuiltValueField(wireName: r'readOnly')
   bool? get readOnly;
@@ -150,7 +150,7 @@ abstract class Question implements Elementbase {
   String? get visibleIf;
 
   @BuiltValueField(wireName: r'width')
-  SurveyLogoWidth? get width;
+  StringOrNum? get width;
 
   @BuiltValueField(wireName: r'page')
   String? get page;
@@ -287,7 +287,7 @@ class _$QuestionSerializer implements PrimitiveSerializer<Question> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.showCommentArea != null) {
@@ -350,7 +350,7 @@ class _$QuestionSerializer implements PrimitiveSerializer<Question> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.readOnly != null) {
@@ -385,7 +385,7 @@ class _$QuestionSerializer implements PrimitiveSerializer<Question> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.name != null) {
@@ -582,8 +582,8 @@ class _$$QuestionSerializer implements PrimitiveSerializer<$Question> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
@@ -645,8 +645,8 @@ class _$$QuestionSerializer implements PrimitiveSerializer<$Question> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
@@ -680,8 +680,8 @@ class _$$QuestionSerializer implements PrimitiveSerializer<$Question> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'name':

@@ -14,9 +14,9 @@ import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inn
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/imagepicker_content_mode.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase_col_count.dart';
@@ -96,30 +96,30 @@ abstract class Imagepicker implements Checkboxbase, Built<Imagepicker, Imagepick
   String? get optionsCaption;
 
   @BuiltValueField(wireName: r'imageWidth')
-  SurveyLogoWidth? get imageWidth;
+  StringOrNum? get imageWidth;
 
   @BuiltValueField(wireName: r'maxImageHeight')
-  SurveyLogoWidth? get maxImageHeight;
+  StringOrNum? get maxImageHeight;
 
   @BuiltValueField(wireName: r'imageFit')
   ImagepickerImageFit? get imageFit;
   // enum imageFitEnum {  none,  contain,  cover,  fill,  };
 
   @BuiltValueField(wireName: r'minImageWidth')
-  SurveyLogoWidth? get minImageWidth;
+  StringOrNum? get minImageWidth;
 
   @BuiltValueField(wireName: r'maxImageWidth')
-  SurveyLogoWidth? get maxImageWidth;
+  StringOrNum? get maxImageWidth;
 
   @BuiltValueField(wireName: r'contentMode')
   ImagepickerContentMode? get contentMode;
   // enum contentModeEnum {  image,  video,  };
 
   @BuiltValueField(wireName: r'minImageHeight')
-  SurveyLogoWidth? get minImageHeight;
+  StringOrNum? get minImageHeight;
 
   @BuiltValueField(wireName: r'imageHeight')
-  SurveyLogoWidth? get imageHeight;
+  StringOrNum? get imageHeight;
 
   @BuiltValueField(wireName: r'showLabel')
   bool? get showLabel;
@@ -175,7 +175,7 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'maxImageWidth';
       yield serializers.serialize(
         object.maxImageWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.defaultValue != null) {
@@ -222,7 +222,7 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'maxImageHeight';
       yield serializers.serialize(
         object.maxImageHeight,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.storeOthersAsComment != null) {
@@ -271,7 +271,7 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.showCommentArea != null) {
@@ -285,7 +285,7 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'imageWidth';
       yield serializers.serialize(
         object.imageWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.isRequired != null) {
@@ -416,7 +416,7 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'minImageHeight';
       yield serializers.serialize(
         object.minImageHeight,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.description != null) {
@@ -451,7 +451,7 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'minImageWidth';
       yield serializers.serialize(
         object.minImageWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.descriptionLocation != null) {
@@ -528,14 +528,14 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.imageHeight != null) {
       yield r'imageHeight';
       yield serializers.serialize(
         object.imageHeight,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.imageFit != null) {
@@ -556,7 +556,7 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.colCount != null) {
@@ -620,8 +620,8 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'maxImageWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxImageWidth.replace(valueDes);
           break;
         case r'defaultValue':
@@ -670,8 +670,8 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'maxImageHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxImageHeight.replace(valueDes);
           break;
         case r'storeOthersAsComment':
@@ -720,8 +720,8 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
@@ -734,8 +734,8 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'imageWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.imageWidth.replace(valueDes);
           break;
         case r'isRequired':
@@ -867,8 +867,8 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'minImageHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minImageHeight.replace(valueDes);
           break;
         case r'description':
@@ -902,8 +902,8 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'minImageWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minImageWidth.replace(valueDes);
           break;
         case r'descriptionLocation':
@@ -979,15 +979,15 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'imageHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.imageHeight.replace(valueDes);
           break;
         case r'imageFit':
@@ -1007,8 +1007,8 @@ class _$ImagepickerSerializer implements PrimitiveSerializer<Imagepicker> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'colCount':

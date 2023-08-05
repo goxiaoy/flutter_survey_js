@@ -70,7 +70,7 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final JsonObject? correctAnswer;
   @override
-  final SurveyLogoWidth? maxWidth;
+  final StringOrNum? maxWidth;
   @override
   final bool? showCommentArea;
   @override
@@ -88,7 +88,7 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final String? renderAs;
   @override
-  final SurveyLogoWidth? minWidth;
+  final StringOrNum? minWidth;
   @override
   final bool? readOnly;
   @override
@@ -98,7 +98,7 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final String? visibleIf;
   @override
-  final SurveyLogoWidth? width;
+  final StringOrNum? width;
   @override
   final String? page;
   @override
@@ -236,9 +236,9 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final String? minValueExpression;
   @override
-  final String? max;
+  final StringOrNum? max;
   @override
-  final String? min;
+  final StringOrNum? min;
   @override
   final num? size;
   @override
@@ -961,10 +961,10 @@ class MatrixdropdowncolumnBuilder
   set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
-  SurveyLogoWidthBuilder? _maxWidth;
-  SurveyLogoWidthBuilder get maxWidth =>
-      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+  StringOrNumBuilder? _maxWidth;
+  StringOrNumBuilder get maxWidth =>
+      _$this._maxWidth ??= new StringOrNumBuilder();
+  set maxWidth(covariant StringOrNumBuilder? maxWidth) =>
       _$this._maxWidth = maxWidth;
 
   bool? _showCommentArea;
@@ -1004,10 +1004,10 @@ class MatrixdropdowncolumnBuilder
   String? get renderAs => _$this._renderAs;
   set renderAs(covariant String? renderAs) => _$this._renderAs = renderAs;
 
-  SurveyLogoWidthBuilder? _minWidth;
-  SurveyLogoWidthBuilder get minWidth =>
-      _$this._minWidth ??= new SurveyLogoWidthBuilder();
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+  StringOrNumBuilder? _minWidth;
+  StringOrNumBuilder get minWidth =>
+      _$this._minWidth ??= new StringOrNumBuilder();
+  set minWidth(covariant StringOrNumBuilder? minWidth) =>
       _$this._minWidth = minWidth;
 
   bool? _readOnly;
@@ -1029,10 +1029,9 @@ class MatrixdropdowncolumnBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
+  StringOrNumBuilder? _width;
+  StringOrNumBuilder get width => _$this._width ??= new StringOrNumBuilder();
+  set width(covariant StringOrNumBuilder? width) => _$this._width = width;
 
   String? _page;
   String? get page => _$this._page;
@@ -1379,13 +1378,13 @@ class MatrixdropdowncolumnBuilder
   set minValueExpression(covariant String? minValueExpression) =>
       _$this._minValueExpression = minValueExpression;
 
-  String? _max;
-  String? get max => _$this._max;
-  set max(covariant String? max) => _$this._max = max;
+  StringOrNumBuilder? _max;
+  StringOrNumBuilder get max => _$this._max ??= new StringOrNumBuilder();
+  set max(covariant StringOrNumBuilder? max) => _$this._max = max;
 
-  String? _min;
-  String? get min => _$this._min;
-  set min(covariant String? min) => _$this._min = min;
+  StringOrNumBuilder? _min;
+  StringOrNumBuilder get min => _$this._min ??= new StringOrNumBuilder();
+  set min(covariant StringOrNumBuilder? min) => _$this._min = min;
 
   num? _size;
   num? get size => _$this._size;
@@ -1545,8 +1544,8 @@ class MatrixdropdowncolumnBuilder
       _closeOnSelect = $v.closeOnSelect;
       _hideSelectedItems = $v.hideSelectedItems;
       _minValueExpression = $v.minValueExpression;
-      _max = $v.max;
-      _min = $v.min;
+      _max = $v.max?.toBuilder();
+      _min = $v.min?.toBuilder();
       _size = $v.size;
       _minErrorText = $v.minErrorText?.toBuilder();
       _dataList = $v.dataList?.toBuilder();
@@ -1694,8 +1693,8 @@ class MatrixdropdowncolumnBuilder
               closeOnSelect: closeOnSelect,
               hideSelectedItems: hideSelectedItems,
               minValueExpression: minValueExpression,
-              max: max,
-              min: min,
+              max: _max?.build(),
+              min: _min?.build(),
               size: size,
               minErrorText: _minErrorText?.build(),
               dataList: _dataList?.build(),
@@ -1777,6 +1776,11 @@ class MatrixdropdowncolumnBuilder
         _minRateDescription?.build();
         _$failedField = 'maxRateDescription';
         _maxRateDescription?.build();
+
+        _$failedField = 'max';
+        _max?.build();
+        _$failedField = 'min';
+        _min?.build();
 
         _$failedField = 'minErrorText';
         _minErrorText?.build();

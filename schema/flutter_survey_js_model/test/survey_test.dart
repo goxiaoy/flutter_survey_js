@@ -1292,7 +1292,9 @@ void main() {
   group('from page model JSON', () {
     test('maps page description to survey description', () {
       final String expected = 'Survey Description';
-      final actual = surveyFromJson({'description': expected})!.description;
+      final actual = surveyFromJson({'description': expected})!
+          .description
+          ?.getTextFromLocale();
       expect(actual, expected);
     });
 
@@ -1330,12 +1332,13 @@ void main() {
       final secondQuestion = elements!.last!.anyOf.values.values.single as Text;
       expect(firstQuestion.name, element1Name);
       expect(firstQuestion.type, element1Type);
-      expect(firstQuestion.title, element1Title);
+      expect(firstQuestion.title?.getTextFromLocale(), element1Title);
       expect(firstQuestion.isRequired, element1IsRequired);
       expect(secondQuestion.name, element2Name);
       expect(secondQuestion.type, element2Type);
-      expect(secondQuestion.title, element2Title);
-      expect(secondQuestion.placeholder, element2Placeholder);
+      expect(secondQuestion.title?.getTextFromLocale(), element2Title);
+      expect(
+          secondQuestion.placeholder?.getTextFromLocale(), element2Placeholder);
       expect(secondQuestion.isRequired, element2IsRequired);
     });
 
@@ -1373,12 +1376,12 @@ void main() {
       final secondQuestion = elements!.last!.anyOf.values.values.single as Text;
       expect(firstQuestion.name, element1Name);
       expect(firstQuestion.type, element1Type);
-      expect(firstQuestion.title, element1Title);
+      expect(firstQuestion.title?.getTextFromLocale(), element1Title);
       expect(firstQuestion.isRequired, element1IsRequired);
       expect(secondQuestion.name, element2Name);
       expect(secondQuestion.type, element2Type);
-      expect(secondQuestion.title, element2Title);
-      expect(secondQuestion.placeholder, element2Placeholder);
+      expect(secondQuestion.title?.getTextFromLocale(), element2Title);
+      expect(secondQuestion.placeholder?.getTextFromLocale(), element2Placeholder);
       expect(secondQuestion.isRequired, element2IsRequired);
     });
   });

@@ -12,8 +12,8 @@ import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.da
 import 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/textbase.dart';
 import 'package:built_value/json_object.dart';
@@ -82,10 +82,10 @@ abstract class Text implements Textbase {
   // enum autocompleteEnum {  ,  name,  honorific-prefix,  given-name,  additional-name,  family-name,  honorific-suffix,  nickname,  organization-title,  username,  new-password,  current-password,  organization,  street-address,  address-line1,  address-line2,  address-line3,  address-level4,  address-level3,  address-level2,  address-level1,  country,  country-name,  postal-code,  cc-name,  cc-given-name,  cc-additional-name,  cc-family-name,  cc-number,  cc-exp,  cc-exp-month,  cc-exp-year,  cc-csc,  cc-type,  transaction-currency,  transaction-amount,  language,  bday,  bday-day,  bday-month,  bday-year,  sex,  url,  photo,  tel,  tel-country-code,  tel-national,  tel-area-code,  tel-local,  tel-local-prefix,  tel-local-suffix,  tel-extension,  email,  impp,  };
 
   @BuiltValueField(wireName: r'max')
-  String? get max;
+  StringOrNum? get max;
 
   @BuiltValueField(wireName: r'min')
-  String? get min;
+  StringOrNum? get min;
 
   @BuiltValueField(wireName: r'size')
   num? get size;
@@ -221,7 +221,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'min';
       yield serializers.serialize(
         object.min,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.startWithNewLine != null) {
@@ -291,7 +291,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.showCommentArea != null) {
@@ -340,7 +340,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'max';
       yield serializers.serialize(
         object.max,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -368,7 +368,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.readOnly != null) {
@@ -429,7 +429,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.step != null) {
@@ -611,9 +611,9 @@ class _$$TextSerializer implements PrimitiveSerializer<$Text> {
         case r'min':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.min = valueDes;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
+          result.min.replace(valueDes);
           break;
         case r'startWithNewLine':
           final valueDes = serializers.deserialize(
@@ -682,8 +682,8 @@ class _$$TextSerializer implements PrimitiveSerializer<$Text> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
@@ -731,9 +731,9 @@ class _$$TextSerializer implements PrimitiveSerializer<$Text> {
         case r'max':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.max = valueDes;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
+          result.max.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -759,8 +759,8 @@ class _$$TextSerializer implements PrimitiveSerializer<$Text> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
@@ -822,8 +822,8 @@ class _$$TextSerializer implements PrimitiveSerializer<$Text> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'step':

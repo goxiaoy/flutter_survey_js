@@ -10,7 +10,7 @@ class _$File extends File {
   @override
   final bool? showPreview;
   @override
-  final SurveyLogoWidth? imageWidth;
+  final StringOrNum? imageWidth;
   @override
   final bool? waitForUpload;
   @override
@@ -28,7 +28,7 @@ class _$File extends File {
   @override
   final String? acceptedTypes;
   @override
-  final SurveyLogoWidth? imageHeight;
+  final StringOrNum? imageHeight;
   @override
   final bool? useDisplayValuesInDynamicTexts;
   @override
@@ -60,7 +60,7 @@ class _$File extends File {
   @override
   final JsonObject? correctAnswer;
   @override
-  final SurveyLogoWidth? maxWidth;
+  final StringOrNum? maxWidth;
   @override
   final bool? showCommentArea;
   @override
@@ -78,7 +78,7 @@ class _$File extends File {
   @override
   final String? renderAs;
   @override
-  final SurveyLogoWidth? minWidth;
+  final StringOrNum? minWidth;
   @override
   final bool? readOnly;
   @override
@@ -88,7 +88,7 @@ class _$File extends File {
   @override
   final String? visibleIf;
   @override
-  final SurveyLogoWidth? width;
+  final StringOrNum? width;
   @override
   final String? page;
   @override
@@ -315,10 +315,10 @@ class FileBuilder implements Builder<File, FileBuilder>, QuestionBuilder {
   set showPreview(covariant bool? showPreview) =>
       _$this._showPreview = showPreview;
 
-  SurveyLogoWidthBuilder? _imageWidth;
-  SurveyLogoWidthBuilder get imageWidth =>
-      _$this._imageWidth ??= new SurveyLogoWidthBuilder();
-  set imageWidth(covariant SurveyLogoWidthBuilder? imageWidth) =>
+  StringOrNumBuilder? _imageWidth;
+  StringOrNumBuilder get imageWidth =>
+      _$this._imageWidth ??= new StringOrNumBuilder();
+  set imageWidth(covariant StringOrNumBuilder? imageWidth) =>
       _$this._imageWidth = imageWidth;
 
   bool? _waitForUpload;
@@ -360,10 +360,10 @@ class FileBuilder implements Builder<File, FileBuilder>, QuestionBuilder {
   set acceptedTypes(covariant String? acceptedTypes) =>
       _$this._acceptedTypes = acceptedTypes;
 
-  SurveyLogoWidthBuilder? _imageHeight;
-  SurveyLogoWidthBuilder get imageHeight =>
-      _$this._imageHeight ??= new SurveyLogoWidthBuilder();
-  set imageHeight(covariant SurveyLogoWidthBuilder? imageHeight) =>
+  StringOrNumBuilder? _imageHeight;
+  StringOrNumBuilder get imageHeight =>
+      _$this._imageHeight ??= new StringOrNumBuilder();
+  set imageHeight(covariant StringOrNumBuilder? imageHeight) =>
       _$this._imageHeight = imageHeight;
 
   bool? _useDisplayValuesInDynamicTexts;
@@ -443,10 +443,10 @@ class FileBuilder implements Builder<File, FileBuilder>, QuestionBuilder {
   set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
-  SurveyLogoWidthBuilder? _maxWidth;
-  SurveyLogoWidthBuilder get maxWidth =>
-      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+  StringOrNumBuilder? _maxWidth;
+  StringOrNumBuilder get maxWidth =>
+      _$this._maxWidth ??= new StringOrNumBuilder();
+  set maxWidth(covariant StringOrNumBuilder? maxWidth) =>
       _$this._maxWidth = maxWidth;
 
   bool? _showCommentArea;
@@ -486,10 +486,10 @@ class FileBuilder implements Builder<File, FileBuilder>, QuestionBuilder {
   String? get renderAs => _$this._renderAs;
   set renderAs(covariant String? renderAs) => _$this._renderAs = renderAs;
 
-  SurveyLogoWidthBuilder? _minWidth;
-  SurveyLogoWidthBuilder get minWidth =>
-      _$this._minWidth ??= new SurveyLogoWidthBuilder();
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+  StringOrNumBuilder? _minWidth;
+  StringOrNumBuilder get minWidth =>
+      _$this._minWidth ??= new StringOrNumBuilder();
+  set minWidth(covariant StringOrNumBuilder? minWidth) =>
       _$this._minWidth = minWidth;
 
   bool? _readOnly;
@@ -511,10 +511,9 @@ class FileBuilder implements Builder<File, FileBuilder>, QuestionBuilder {
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
+  StringOrNumBuilder? _width;
+  StringOrNumBuilder get width => _$this._width ??= new StringOrNumBuilder();
+  set width(covariant StringOrNumBuilder? width) => _$this._width = width;
 
   String? _page;
   String? get page => _$this._page;

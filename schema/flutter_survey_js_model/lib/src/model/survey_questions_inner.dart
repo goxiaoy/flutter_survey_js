@@ -14,6 +14,7 @@ import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.da
 import 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/matrix.dart';
 import 'package:flutter_survey_js_model/src/model/boolean.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/rating.dart';
 import 'package:flutter_survey_js_model/src/model/buttongroup.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase.dart';
@@ -31,7 +32,6 @@ import 'package:flutter_survey_js_model/src/model/text_input_type.dart';
 import 'package:flutter_survey_js_model/src/model/signaturepad_data_format.dart';
 import 'package:flutter_survey_js_model/src/model/rating_rate_type.dart';
 import 'package:flutter_survey_js_model/src/model/nonvalue.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/panel_indent.dart';
 import 'package:flutter_survey_js_model/src/model/panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';

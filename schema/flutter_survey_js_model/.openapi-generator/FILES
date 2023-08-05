@@ -104,6 +104,7 @@ lib/src/model/setvaluetrigger.dart
 lib/src/model/signaturepad.dart
 lib/src/model/signaturepad_data_format.dart
 lib/src/model/skiptrigger.dart
+lib/src/model/string_or_num.dart
 lib/src/model/survey.dart
 lib/src/model/survey_background_image_attachment.dart
 lib/src/model/survey_background_image_fit.dart
@@ -112,14 +113,12 @@ lib/src/model/survey_clear_invisible_values.dart
 lib/src/model/survey_locale.dart
 lib/src/model/survey_logo_fit.dart
 lib/src/model/survey_logo_position.dart
-lib/src/model/survey_logo_width.dart
 lib/src/model/survey_matrix_drag_handle_area.dart
 lib/src/model/survey_mode.dart
 lib/src/model/survey_progress_bar_type.dart
 lib/src/model/survey_question_description_location.dart
 lib/src/model/survey_question_error_location.dart
 lib/src/model/survey_question_title_location.dart
-lib/src/model/survey_questions_inner.dart
 lib/src/model/survey_questions_on_page_mode.dart
 lib/src/model/survey_questions_order.dart
 lib/src/model/survey_show_navigation_buttons.dart

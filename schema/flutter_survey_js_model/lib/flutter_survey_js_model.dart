@@ -108,6 +108,7 @@ export 'package:flutter_survey_js_model/src/model/setvaluetrigger.dart';
 export 'package:flutter_survey_js_model/src/model/signaturepad.dart';
 export 'package:flutter_survey_js_model/src/model/signaturepad_data_format.dart';
 export 'package:flutter_survey_js_model/src/model/skiptrigger.dart';
+export 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 export 'package:flutter_survey_js_model/src/model/survey.dart';
 export 'package:flutter_survey_js_model/src/model/survey_background_image_attachment.dart';
 export 'package:flutter_survey_js_model/src/model/survey_background_image_fit.dart';
@@ -116,7 +117,6 @@ export 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.
 export 'package:flutter_survey_js_model/src/model/survey_locale.dart';
 export 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 export 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
-export 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 export 'package:flutter_survey_js_model/src/model/survey_matrix_drag_handle_area.dart';
 export 'package:flutter_survey_js_model/src/model/survey_mode.dart';
 export 'package:flutter_survey_js_model/src/model/survey_progress_bar_type.dart';

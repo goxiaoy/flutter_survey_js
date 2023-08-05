@@ -8,35 +8,35 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:one_of/one_of.dart';
 
-part 'survey_logo_width.g.dart';
+part 'string_or_num.g.dart';
 
-/// SurveyLogoWidth
+/// StringOrNum
 @BuiltValue()
-abstract class SurveyLogoWidth implements Built<SurveyLogoWidth, SurveyLogoWidthBuilder> {
+abstract class StringOrNum implements Built<StringOrNum, StringOrNumBuilder> {
   /// One Of [String], [num]
   OneOf get oneOf;
 
-  SurveyLogoWidth._();
+  StringOrNum._();
 
-  factory SurveyLogoWidth([void updates(SurveyLogoWidthBuilder b)]) = _$SurveyLogoWidth;
+  factory StringOrNum([void updates(StringOrNumBuilder b)]) = _$StringOrNum;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SurveyLogoWidthBuilder b) => b;
+  static void _defaults(StringOrNumBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<SurveyLogoWidth> get serializer => _$SurveyLogoWidthSerializer();
+  static Serializer<StringOrNum> get serializer => _$StringOrNumSerializer();
 }
 
-class _$SurveyLogoWidthSerializer implements PrimitiveSerializer<SurveyLogoWidth> {
+class _$StringOrNumSerializer implements PrimitiveSerializer<StringOrNum> {
   @override
-  final Iterable<Type> types = const [SurveyLogoWidth, _$SurveyLogoWidth];
+  final Iterable<Type> types = const [StringOrNum, _$StringOrNum];
 
   @override
-  final String wireName = r'SurveyLogoWidth';
+  final String wireName = r'StringOrNum';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    SurveyLogoWidth object, {
+    StringOrNum object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
   }
@@ -44,7 +44,7 @@ class _$SurveyLogoWidthSerializer implements PrimitiveSerializer<SurveyLogoWidth
   @override
   Object serialize(
     Serializers serializers,
-    SurveyLogoWidth object, {
+    StringOrNum object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     final oneOf = object.oneOf;
@@ -52,12 +52,12 @@ class _$SurveyLogoWidthSerializer implements PrimitiveSerializer<SurveyLogoWidth
   }
 
   @override
-  SurveyLogoWidth deserialize(
+  StringOrNum deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = SurveyLogoWidthBuilder();
+    final result = StringOrNumBuilder();
     Object? oneOfDataSrc;
     final targetType = const FullType(OneOf, [FullType(String), FullType(num), ]);
     oneOfDataSrc = serialized;

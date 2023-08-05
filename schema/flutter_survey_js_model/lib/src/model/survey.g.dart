@@ -16,9 +16,9 @@ class _$Survey extends Survey {
   @override
   final SurveyTitle? logo;
   @override
-  final SurveyLogoWidth? logoWidth;
+  final StringOrNum? logoWidth;
   @override
-  final SurveyLogoWidth? logoHeight;
+  final StringOrNum? logoHeight;
   @override
   final SurveyLogoFit? logoFit;
   @override
@@ -148,7 +148,7 @@ class _$Survey extends Survey {
   @override
   final SurveyWidthMode? widthMode;
   @override
-  final SurveyLogoWidth? width;
+  final StringOrNum? width;
   @override
   final SurveyTitle? backgroundImage;
   @override
@@ -518,16 +518,15 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   SurveyTitleBuilder get logo => _$this._logo ??= new SurveyTitleBuilder();
   set logo(SurveyTitleBuilder? logo) => _$this._logo = logo;
 
-  SurveyLogoWidthBuilder? _logoWidth;
-  SurveyLogoWidthBuilder get logoWidth =>
-      _$this._logoWidth ??= new SurveyLogoWidthBuilder();
-  set logoWidth(SurveyLogoWidthBuilder? logoWidth) =>
-      _$this._logoWidth = logoWidth;
+  StringOrNumBuilder? _logoWidth;
+  StringOrNumBuilder get logoWidth =>
+      _$this._logoWidth ??= new StringOrNumBuilder();
+  set logoWidth(StringOrNumBuilder? logoWidth) => _$this._logoWidth = logoWidth;
 
-  SurveyLogoWidthBuilder? _logoHeight;
-  SurveyLogoWidthBuilder get logoHeight =>
-      _$this._logoHeight ??= new SurveyLogoWidthBuilder();
-  set logoHeight(SurveyLogoWidthBuilder? logoHeight) =>
+  StringOrNumBuilder? _logoHeight;
+  StringOrNumBuilder get logoHeight =>
+      _$this._logoHeight ??= new StringOrNumBuilder();
+  set logoHeight(StringOrNumBuilder? logoHeight) =>
       _$this._logoHeight = logoHeight;
 
   SurveyLogoFit? _logoFit;
@@ -871,10 +870,9 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   SurveyWidthMode? get widthMode => _$this._widthMode;
   set widthMode(SurveyWidthMode? widthMode) => _$this._widthMode = widthMode;
 
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(SurveyLogoWidthBuilder? width) => _$this._width = width;
+  StringOrNumBuilder? _width;
+  StringOrNumBuilder get width => _$this._width ??= new StringOrNumBuilder();
+  set width(StringOrNumBuilder? width) => _$this._width = width;
 
   SurveyTitleBuilder? _backgroundImage;
   SurveyTitleBuilder get backgroundImage =>

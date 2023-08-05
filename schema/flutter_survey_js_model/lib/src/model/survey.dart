@@ -15,6 +15,7 @@ import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.d
 import 'package:flutter_survey_js_model/src/model/survey_show_preview_before_complete.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/calculatedvalue.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/survey_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_triggers_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_title_location.dart';
@@ -27,7 +28,6 @@ import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
 import 'package:flutter_survey_js_model/src/model/urlconditionitem.dart';
 import 'package:flutter_survey_js_model/src/model/htmlconditionitem.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/survey_background_image_attachment.dart';
 import 'package:flutter_survey_js_model/src/model/survey_check_errors_mode.dart';
@@ -136,10 +136,10 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   SurveyTitle? get logo;
 
   @BuiltValueField(wireName: r'logoWidth')
-  SurveyLogoWidth? get logoWidth;
+  StringOrNum? get logoWidth;
 
   @BuiltValueField(wireName: r'logoHeight')
-  SurveyLogoWidth? get logoHeight;
+  StringOrNum? get logoHeight;
 
   @BuiltValueField(wireName: r'logoFit')
   SurveyLogoFit? get logoFit;
@@ -354,7 +354,7 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   // enum widthModeEnum {  auto,  static,  responsive,  };
 
   @BuiltValueField(wireName: r'width')
-  SurveyLogoWidth? get width;
+  StringOrNum? get width;
 
   @BuiltValueField(wireName: r'backgroundImage')
   SurveyTitle? get backgroundImage;
@@ -428,14 +428,14 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'logoWidth';
       yield serializers.serialize(
         object.logoWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.logoHeight != null) {
       yield r'logoHeight';
       yield serializers.serialize(
         object.logoHeight,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.logoFit != null) {
@@ -890,7 +890,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.backgroundImage != null) {
@@ -982,15 +982,15 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'logoWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.logoWidth.replace(valueDes);
           break;
         case r'logoHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.logoHeight.replace(valueDes);
           break;
         case r'logoFit':
@@ -1444,8 +1444,8 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'backgroundImage':

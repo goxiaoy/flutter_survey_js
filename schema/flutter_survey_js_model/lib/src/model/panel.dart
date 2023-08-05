@@ -3,9 +3,9 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/panel_indent.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/panel_inner_indent.dart';
 import 'package:flutter_survey_js_model/src/model/panel_show_question_numbers.dart';
 import 'package:flutter_survey_js_model/src/model/panel_state.dart';
@@ -59,7 +59,7 @@ abstract class Panel implements Panelbase, Built<Panel, PanelBuilder> {
   // enum indentEnum {  0,  1,  2,  3,  };
 
   @BuiltValueField(wireName: r'minWidth')
-  SurveyLogoWidth? get minWidth;
+  StringOrNum? get minWidth;
 
   @BuiltValueField(wireName: r'innerIndent')
   PanelInnerIndent? get innerIndent;
@@ -82,7 +82,7 @@ abstract class Panel implements Panelbase, Built<Panel, PanelBuilder> {
   String? get questionStartIndex;
 
   @BuiltValueField(wireName: r'width')
-  SurveyLogoWidth? get width;
+  StringOrNum? get width;
 
   @BuiltValueField(wireName: r'state')
   PanelState? get state;
@@ -95,7 +95,7 @@ abstract class Panel implements Panelbase, Built<Panel, PanelBuilder> {
   bool? get allowAdaptiveActions;
 
   @BuiltValueField(wireName: r'maxWidth')
-  SurveyLogoWidth? get maxWidth;
+  StringOrNum? get maxWidth;
 
   Panel._();
 
@@ -208,7 +208,7 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.isRequired != null) {
@@ -243,7 +243,7 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.readOnly != null) {
@@ -278,7 +278,7 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.name != null) {
@@ -419,8 +419,8 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'isRequired':
@@ -454,8 +454,8 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
@@ -489,8 +489,8 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'name':

@@ -72,8 +72,8 @@ abstract class BooleanBuilder implements QuestionBuilder {
   JsonObject? get correctAnswer;
   set correctAnswer(covariant JsonObject? correctAnswer);
 
-  SurveyLogoWidthBuilder get maxWidth;
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth);
+  StringOrNumBuilder get maxWidth;
+  set maxWidth(covariant StringOrNumBuilder? maxWidth);
 
   bool? get showCommentArea;
   set showCommentArea(covariant bool? showCommentArea);
@@ -99,8 +99,8 @@ abstract class BooleanBuilder implements QuestionBuilder {
   String? get renderAs;
   set renderAs(covariant String? renderAs);
 
-  SurveyLogoWidthBuilder get minWidth;
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth);
+  StringOrNumBuilder get minWidth;
+  set minWidth(covariant StringOrNumBuilder? minWidth);
 
   bool? get readOnly;
   set readOnly(covariant bool? readOnly);
@@ -114,8 +114,8 @@ abstract class BooleanBuilder implements QuestionBuilder {
   String? get visibleIf;
   set visibleIf(covariant String? visibleIf);
 
-  SurveyLogoWidthBuilder get width;
-  set width(covariant SurveyLogoWidthBuilder? width);
+  StringOrNumBuilder get width;
+  set width(covariant StringOrNumBuilder? width);
 
   String? get page;
   set page(covariant String? page);
@@ -169,7 +169,7 @@ class _$$Boolean extends $Boolean {
   @override
   final JsonObject? correctAnswer;
   @override
-  final SurveyLogoWidth? maxWidth;
+  final StringOrNum? maxWidth;
   @override
   final bool? showCommentArea;
   @override
@@ -187,7 +187,7 @@ class _$$Boolean extends $Boolean {
   @override
   final String? renderAs;
   @override
-  final SurveyLogoWidth? minWidth;
+  final StringOrNum? minWidth;
   @override
   final bool? readOnly;
   @override
@@ -197,7 +197,7 @@ class _$$Boolean extends $Boolean {
   @override
   final String? visibleIf;
   @override
-  final SurveyLogoWidth? width;
+  final StringOrNum? width;
   @override
   final String? page;
   @override
@@ -498,10 +498,10 @@ class $BooleanBuilder
   set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
-  SurveyLogoWidthBuilder? _maxWidth;
-  SurveyLogoWidthBuilder get maxWidth =>
-      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+  StringOrNumBuilder? _maxWidth;
+  StringOrNumBuilder get maxWidth =>
+      _$this._maxWidth ??= new StringOrNumBuilder();
+  set maxWidth(covariant StringOrNumBuilder? maxWidth) =>
       _$this._maxWidth = maxWidth;
 
   bool? _showCommentArea;
@@ -541,10 +541,10 @@ class $BooleanBuilder
   String? get renderAs => _$this._renderAs;
   set renderAs(covariant String? renderAs) => _$this._renderAs = renderAs;
 
-  SurveyLogoWidthBuilder? _minWidth;
-  SurveyLogoWidthBuilder get minWidth =>
-      _$this._minWidth ??= new SurveyLogoWidthBuilder();
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+  StringOrNumBuilder? _minWidth;
+  StringOrNumBuilder get minWidth =>
+      _$this._minWidth ??= new StringOrNumBuilder();
+  set minWidth(covariant StringOrNumBuilder? minWidth) =>
       _$this._minWidth = minWidth;
 
   bool? _readOnly;
@@ -566,10 +566,9 @@ class $BooleanBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
+  StringOrNumBuilder? _width;
+  StringOrNumBuilder get width => _$this._width ??= new StringOrNumBuilder();
+  set width(covariant StringOrNumBuilder? width) => _$this._width = width;
 
   String? _page;
   String? get page => _$this._page;

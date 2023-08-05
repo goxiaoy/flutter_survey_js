@@ -10,17 +10,17 @@ class _$Signaturepad extends Signaturepad {
   @override
   final String? backgroundColor;
   @override
-  final SurveyLogoWidth? signatureWidth;
+  final StringOrNum? signatureWidth;
   @override
   final SignaturepadDataFormat? dataFormat;
   @override
   final String? penColor;
   @override
-  final SurveyLogoWidth? signatureHeight;
+  final StringOrNum? signatureHeight;
   @override
   final bool? allowClear;
   @override
-  final SurveyLogoWidth? height;
+  final StringOrNum? height;
   @override
   final bool? useDisplayValuesInDynamicTexts;
   @override
@@ -52,7 +52,7 @@ class _$Signaturepad extends Signaturepad {
   @override
   final JsonObject? correctAnswer;
   @override
-  final SurveyLogoWidth? maxWidth;
+  final StringOrNum? maxWidth;
   @override
   final bool? showCommentArea;
   @override
@@ -70,7 +70,7 @@ class _$Signaturepad extends Signaturepad {
   @override
   final String? renderAs;
   @override
-  final SurveyLogoWidth? minWidth;
+  final StringOrNum? minWidth;
   @override
   final bool? readOnly;
   @override
@@ -80,7 +80,7 @@ class _$Signaturepad extends Signaturepad {
   @override
   final String? visibleIf;
   @override
-  final SurveyLogoWidth? width;
+  final StringOrNum? width;
   @override
   final String? page;
   @override
@@ -292,10 +292,10 @@ class SignaturepadBuilder
   set backgroundColor(covariant String? backgroundColor) =>
       _$this._backgroundColor = backgroundColor;
 
-  SurveyLogoWidthBuilder? _signatureWidth;
-  SurveyLogoWidthBuilder get signatureWidth =>
-      _$this._signatureWidth ??= new SurveyLogoWidthBuilder();
-  set signatureWidth(covariant SurveyLogoWidthBuilder? signatureWidth) =>
+  StringOrNumBuilder? _signatureWidth;
+  StringOrNumBuilder get signatureWidth =>
+      _$this._signatureWidth ??= new StringOrNumBuilder();
+  set signatureWidth(covariant StringOrNumBuilder? signatureWidth) =>
       _$this._signatureWidth = signatureWidth;
 
   SignaturepadDataFormat? _dataFormat;
@@ -307,21 +307,19 @@ class SignaturepadBuilder
   String? get penColor => _$this._penColor;
   set penColor(covariant String? penColor) => _$this._penColor = penColor;
 
-  SurveyLogoWidthBuilder? _signatureHeight;
-  SurveyLogoWidthBuilder get signatureHeight =>
-      _$this._signatureHeight ??= new SurveyLogoWidthBuilder();
-  set signatureHeight(covariant SurveyLogoWidthBuilder? signatureHeight) =>
+  StringOrNumBuilder? _signatureHeight;
+  StringOrNumBuilder get signatureHeight =>
+      _$this._signatureHeight ??= new StringOrNumBuilder();
+  set signatureHeight(covariant StringOrNumBuilder? signatureHeight) =>
       _$this._signatureHeight = signatureHeight;
 
   bool? _allowClear;
   bool? get allowClear => _$this._allowClear;
   set allowClear(covariant bool? allowClear) => _$this._allowClear = allowClear;
 
-  SurveyLogoWidthBuilder? _height;
-  SurveyLogoWidthBuilder get height =>
-      _$this._height ??= new SurveyLogoWidthBuilder();
-  set height(covariant SurveyLogoWidthBuilder? height) =>
-      _$this._height = height;
+  StringOrNumBuilder? _height;
+  StringOrNumBuilder get height => _$this._height ??= new StringOrNumBuilder();
+  set height(covariant StringOrNumBuilder? height) => _$this._height = height;
 
   bool? _useDisplayValuesInDynamicTexts;
   bool? get useDisplayValuesInDynamicTexts =>
@@ -400,10 +398,10 @@ class SignaturepadBuilder
   set correctAnswer(covariant JsonObject? correctAnswer) =>
       _$this._correctAnswer = correctAnswer;
 
-  SurveyLogoWidthBuilder? _maxWidth;
-  SurveyLogoWidthBuilder get maxWidth =>
-      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+  StringOrNumBuilder? _maxWidth;
+  StringOrNumBuilder get maxWidth =>
+      _$this._maxWidth ??= new StringOrNumBuilder();
+  set maxWidth(covariant StringOrNumBuilder? maxWidth) =>
       _$this._maxWidth = maxWidth;
 
   bool? _showCommentArea;
@@ -443,10 +441,10 @@ class SignaturepadBuilder
   String? get renderAs => _$this._renderAs;
   set renderAs(covariant String? renderAs) => _$this._renderAs = renderAs;
 
-  SurveyLogoWidthBuilder? _minWidth;
-  SurveyLogoWidthBuilder get minWidth =>
-      _$this._minWidth ??= new SurveyLogoWidthBuilder();
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+  StringOrNumBuilder? _minWidth;
+  StringOrNumBuilder get minWidth =>
+      _$this._minWidth ??= new StringOrNumBuilder();
+  set minWidth(covariant StringOrNumBuilder? minWidth) =>
       _$this._minWidth = minWidth;
 
   bool? _readOnly;
@@ -468,10 +466,9 @@ class SignaturepadBuilder
   String? get visibleIf => _$this._visibleIf;
   set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
+  StringOrNumBuilder? _width;
+  StringOrNumBuilder get width => _$this._width ??= new StringOrNumBuilder();
+  set width(covariant StringOrNumBuilder? width) => _$this._width = width;
 
   String? _page;
   String? get page => _$this._page;

@@ -11,9 +11,9 @@ import 'package:flutter_survey_js_model/src/model/image_content_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/nonvalue.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
-import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/image_image_fit.dart';
+import 'package:flutter_survey_js_model/src/model/string_or_num.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -66,7 +66,7 @@ part 'image.g.dart';
 @BuiltValue()
 abstract class Image implements Nonvalue, Built<Image, ImageBuilder> {
   @BuiltValueField(wireName: r'imageWidth')
-  SurveyLogoWidth? get imageWidth;
+  StringOrNum? get imageWidth;
 
   @BuiltValueField(wireName: r'imageLink')
   SurveyTitle? get imageLink;
@@ -83,7 +83,7 @@ abstract class Image implements Nonvalue, Built<Image, ImageBuilder> {
   // enum contentModeEnum {  auto,  image,  video,  youtube,  };
 
   @BuiltValueField(wireName: r'imageHeight')
-  SurveyLogoWidth? get imageHeight;
+  StringOrNum? get imageHeight;
 
   Image._();
 
@@ -229,7 +229,7 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.showCommentArea != null) {
@@ -243,7 +243,7 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
       yield r'imageWidth';
       yield serializers.serialize(
         object.imageWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.enableIf != null) {
@@ -306,7 +306,7 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.readOnly != null) {
@@ -320,7 +320,7 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
       yield r'imageHeight';
       yield serializers.serialize(
         object.imageHeight,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.titleLocation != null) {
@@ -367,7 +367,7 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
       yield r'width';
       yield serializers.serialize(
         object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
+        specifiedType: const FullType(StringOrNum),
       );
     }
     if (object.page != null) {
@@ -524,8 +524,8 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.maxWidth.replace(valueDes);
           break;
         case r'showCommentArea':
@@ -538,8 +538,8 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
         case r'imageWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.imageWidth.replace(valueDes);
           break;
         case r'enableIf':
@@ -601,8 +601,8 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.minWidth.replace(valueDes);
           break;
         case r'readOnly':
@@ -615,8 +615,8 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
         case r'imageHeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.imageHeight.replace(valueDes);
           break;
         case r'titleLocation':
@@ -664,8 +664,8 @@ class _$ImageSerializer implements PrimitiveSerializer<Image> {
         case r'width':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
+            specifiedType: const FullType(StringOrNum),
+          ) as StringOrNum;
           result.width.replace(valueDes);
           break;
         case r'page':

@@ -351,9 +351,12 @@ const fix = (target) =>
 
     if (
       key.toLowerCase().endsWith("width") ||
-      key.toLowerCase().endsWith("height")
+      key.toLowerCase().endsWith("height") ||
+      key === "min" ||
+      key === "max"
     ) {
       object[key] = {
+        title: "StringOrNum",
         oneOf: [{ type: "string" }, { type: "number" }],
       };
     }
