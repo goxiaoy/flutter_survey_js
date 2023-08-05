@@ -7,25 +7,25 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'text_text_update_mode.g.dart';
+part 'text_update_mode.g.dart';
 
-class TextTextUpdateMode extends EnumClass {
+class TextUpdateMode extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'default')
-  static const TextTextUpdateMode default_ = _$default_;
+  static const TextUpdateMode default_ = _$default_;
   @BuiltValueEnumConst(wireName: r'onBlur')
-  static const TextTextUpdateMode onBlur = _$onBlur;
+  static const TextUpdateMode onBlur = _$onBlur;
   @BuiltValueEnumConst(wireName: r'onTyping')
-  static const TextTextUpdateMode onTyping = _$onTyping;
+  static const TextUpdateMode onTyping = _$onTyping;
   @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
-  static const TextTextUpdateMode unknownDefaultOpenApi = _$unknownDefaultOpenApi;
+  static const TextUpdateMode unknownDefaultOpenApi = _$unknownDefaultOpenApi;
 
-  static Serializer<TextTextUpdateMode> get serializer => _$textTextUpdateModeSerializer;
+  static Serializer<TextUpdateMode> get serializer => _$textUpdateModeSerializer;
 
-  const TextTextUpdateMode._(String name): super(name);
+  const TextUpdateMode._(String name): super(name);
 
-  static BuiltSet<TextTextUpdateMode> get values => _$values;
-  static TextTextUpdateMode valueOf(String name) => _$valueOf(name);
+  static BuiltSet<TextUpdateMode> get values => _$values;
+  static TextUpdateMode valueOf(String name) => _$valueOf(name);
 }
 
 /// Optionally, enum_class can generate a mixin to go with your enum for use
@@ -34,5 +34,5 @@ class TextTextUpdateMode extends EnumClass {
 /// corresponding Angular template.
 ///
 /// Trigger mixin generation by writing a line like this one next to your enum.
-abstract class TextTextUpdateModeMixin = Object with _$TextTextUpdateModeMixin;
+abstract class TextUpdateModeMixin = Object with _$TextUpdateModeMixin;
 

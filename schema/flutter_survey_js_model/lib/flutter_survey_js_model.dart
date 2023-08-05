@@ -5,7 +5,9 @@
 export 'package:flutter_survey_js_model/src/serializers.dart';
 export 'package:flutter_survey_js_model/src/model/date.dart';
 
+
 export 'package:flutter_survey_js_model/src/model/answercountvalidator.dart';
+export 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 export 'package:flutter_survey_js_model/src/model/boolean.dart';
 export 'package:flutter_survey_js_model/src/model/buttongroup.dart';
 export 'package:flutter_survey_js_model/src/model/buttongroupitemvalue.dart';
@@ -15,11 +17,9 @@ export 'package:flutter_survey_js_model/src/model/checkboxbase.dart';
 export 'package:flutter_survey_js_model/src/model/checkboxbase_col_count.dart';
 export 'package:flutter_survey_js_model/src/model/choices_by_url.dart';
 export 'package:flutter_survey_js_model/src/model/comment.dart';
-export 'package:flutter_survey_js_model/src/model/comment_text_update_mode.dart';
 export 'package:flutter_survey_js_model/src/model/completetrigger.dart';
 export 'package:flutter_survey_js_model/src/model/copyvaluetrigger.dart';
 export 'package:flutter_survey_js_model/src/model/dropdown.dart';
-export 'package:flutter_survey_js_model/src/model/dropdown_autocomplete.dart';
 export 'package:flutter_survey_js_model/src/model/elementbase.dart';
 export 'package:flutter_survey_js_model/src/model/emailvalidator.dart';
 export 'package:flutter_survey_js_model/src/model/empty.dart';
@@ -133,7 +133,6 @@ export 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.d
 export 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_any_of.dart';
 export 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 export 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
-export 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
 export 'package:flutter_survey_js_model/src/model/survey_title.dart';
 export 'package:flutter_survey_js_model/src/model/survey_toc_location.dart';
 export 'package:flutter_survey_js_model/src/model/survey_triggers_inner.dart';
@@ -142,9 +141,8 @@ export 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 export 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
 export 'package:flutter_survey_js_model/src/model/tagbox.dart';
 export 'package:flutter_survey_js_model/src/model/text.dart';
-export 'package:flutter_survey_js_model/src/model/text_autocomplete.dart';
 export 'package:flutter_survey_js_model/src/model/text_input_type.dart';
-export 'package:flutter_survey_js_model/src/model/text_text_update_mode.dart';
+export 'package:flutter_survey_js_model/src/model/text_update_mode.dart';
 export 'package:flutter_survey_js_model/src/model/textbase.dart';
 export 'package:flutter_survey_js_model/src/model/textvalidator.dart';
 export 'package:flutter_survey_js_model/src/model/trigger.dart';

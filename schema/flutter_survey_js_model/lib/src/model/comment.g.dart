@@ -21,8 +21,8 @@ abstract class CommentBuilder implements TextbaseBuilder {
   SurveyTitleBuilder get placeholder;
   set placeholder(covariant SurveyTitleBuilder? placeholder);
 
-  CommentTextUpdateMode? get textUpdateMode;
-  set textUpdateMode(covariant CommentTextUpdateMode? textUpdateMode);
+  TextUpdateMode? get textUpdateMode;
+  set textUpdateMode(covariant TextUpdateMode? textUpdateMode);
 
   num? get rows;
   set rows(covariant num? rows);
@@ -146,7 +146,7 @@ class _$$Comment extends $Comment {
   @override
   final SurveyTitle? placeholder;
   @override
-  final CommentTextUpdateMode? textUpdateMode;
+  final TextUpdateMode? textUpdateMode;
   @override
   final num? rows;
   @override
@@ -443,9 +443,9 @@ class $CommentBuilder
   set placeholder(covariant SurveyTitleBuilder? placeholder) =>
       _$this._placeholder = placeholder;
 
-  CommentTextUpdateMode? _textUpdateMode;
-  CommentTextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
-  set textUpdateMode(covariant CommentTextUpdateMode? textUpdateMode) =>
+  TextUpdateMode? _textUpdateMode;
+  TextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
+  set textUpdateMode(covariant TextUpdateMode? textUpdateMode) =>
       _$this._textUpdateMode = textUpdateMode;
 
   num? _rows;

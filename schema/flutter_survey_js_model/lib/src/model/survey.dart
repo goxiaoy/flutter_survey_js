@@ -6,13 +6,13 @@
 import 'package:flutter_survey_js_model/src/model/survey_progress_bar_type.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_progress_bar.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_description_location.dart';
+import 'package:flutter_survey_js_model/src/model/text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_order.dart';
 import 'package:flutter_survey_js_model/src/model/page.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_on_page_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_navigation_buttons.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_preview_before_complete.dart';
-import 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/calculatedvalue.dart';
 import 'package:flutter_survey_js_model/src/model/survey_mode.dart';
@@ -282,8 +282,8 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   // enum checkErrorsModeEnum {  onNextPage,  onValueChanged,  onValueChanging,  onComplete,  };
 
   @BuiltValueField(wireName: r'textUpdateMode')
-  SurveyTextUpdateMode? get textUpdateMode;
-  // enum textUpdateModeEnum {  onBlur,  onTyping,  };
+  TextUpdateMode? get textUpdateMode;
+  // enum textUpdateModeEnum {  default,  onBlur,  onTyping,  };
 
   @BuiltValueField(wireName: r'autoGrowComment')
   bool? get autoGrowComment;
@@ -736,7 +736,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'textUpdateMode';
       yield serializers.serialize(
         object.textUpdateMode,
-        specifiedType: const FullType(SurveyTextUpdateMode),
+        specifiedType: const FullType(TextUpdateMode),
       );
     }
     if (object.autoGrowComment != null) {
@@ -1290,8 +1290,8 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'textUpdateMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SurveyTextUpdateMode),
-          ) as SurveyTextUpdateMode;
+            specifiedType: const FullType(TextUpdateMode),
+          ) as TextUpdateMode;
           result.textUpdateMode = valueDes;
           break;
         case r'autoGrowComment':

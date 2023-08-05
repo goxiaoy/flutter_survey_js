@@ -358,7 +358,7 @@
             "$ref": "#/components/schemas/surveyCheckErrorsMode"
           },
           "textUpdateMode": {
-            "$ref": "#/components/schemas/surveyTextUpdateMode"
+            "$ref": "#/components/schemas/textUpdateMode"
           },
           "autoGrowComment": {
             "type": "boolean"
@@ -2040,7 +2040,7 @@
                 "type": "number"
               },
               "autocomplete": {
-                "$ref": "#/components/schemas/dropdownAutocomplete"
+                "$ref": "#/components/schemas/autocomplete"
               },
               "searchEnabled": {
                 "type": "boolean"
@@ -2087,10 +2087,10 @@
                 "type": "number"
               },
               "textUpdateMode": {
-                "$ref": "#/components/schemas/textTextUpdateMode"
+                "$ref": "#/components/schemas/textUpdateMode"
               },
               "autocomplete": {
-                "$ref": "#/components/schemas/textAutocomplete"
+                "$ref": "#/components/schemas/autocomplete"
               },
               "min": {
                 "type": "string"
@@ -2182,7 +2182,7 @@
                 ]
               },
               "textUpdateMode": {
-                "$ref": "#/components/schemas/commentTextUpdateMode"
+                "$ref": "#/components/schemas/textUpdateMode"
               },
               "autoGrow": {
                 "type": "boolean"
@@ -3385,9 +3385,10 @@
           "onComplete"
         ]
       },
-      "surveyTextUpdateMode": {
+      "textUpdateMode": {
         "type": "string",
         "enum": [
+          "default",
           "onBlur",
           "onTyping"
         ]
@@ -4035,7 +4036,7 @@
           "fill"
         ]
       },
-      "dropdownAutocomplete": {
+      "autocomplete": {
         "type": "string",
         "enum": [
           "",
@@ -4382,353 +4383,6 @@
           "time",
           "url",
           "week"
-        ]
-      },
-      "textTextUpdateMode": {
-        "type": "string",
-        "enum": [
-          "default",
-          "onBlur",
-          "onTyping"
-        ]
-      },
-      "textAutocomplete": {
-        "type": "string",
-        "enum": [
-          "",
-          "name",
-          "honorific-prefix",
-          "given-name",
-          "additional-name",
-          "family-name",
-          "honorific-suffix",
-          "nickname",
-          "organization-title",
-          "username",
-          "new-password",
-          "current-password",
-          "organization",
-          "street-address",
-          "address-line1",
-          "address-line2",
-          "address-line3",
-          "address-level4",
-          "address-level3",
-          "address-level2",
-          "address-level1",
-          "country",
-          "country-name",
-          "postal-code",
-          "cc-name",
-          "cc-given-name",
-          "cc-additional-name",
-          "cc-family-name",
-          "cc-number",
-          "cc-exp",
-          "cc-exp-month",
-          "cc-exp-year",
-          "cc-csc",
-          "cc-type",
-          "transaction-currency",
-          "transaction-amount",
-          "language",
-          "bday",
-          "bday-day",
-          "bday-month",
-          "bday-year",
-          "sex",
-          "url",
-          "photo",
-          "tel",
-          "tel-country-code",
-          "tel-national",
-          "tel-area-code",
-          "tel-local",
-          "tel-local-prefix",
-          "tel-local-suffix",
-          "tel-extension",
-          "email",
-          "impp"
-        ],
-        "x-enum-values": [
-          {
-            "numericValue": "",
-            "identifier": "",
-            "description": ""
-          },
-          {
-            "numericValue": "name",
-            "identifier": "namee",
-            "description": "namee"
-          },
-          {
-            "numericValue": "honorific-prefix",
-            "identifier": "honorific-prefix",
-            "description": "honorific-prefix"
-          },
-          {
-            "numericValue": "given-name",
-            "identifier": "given-name",
-            "description": "given-name"
-          },
-          {
-            "numericValue": "additional-name",
-            "identifier": "additional-name",
-            "description": "additional-name"
-          },
-          {
-            "numericValue": "family-name",
-            "identifier": "family-name",
-            "description": "family-name"
-          },
-          {
-            "numericValue": "honorific-suffix",
-            "identifier": "honorific-suffix",
-            "description": "honorific-suffix"
-          },
-          {
-            "numericValue": "nickname",
-            "identifier": "nickname",
-            "description": "nickname"
-          },
-          {
-            "numericValue": "organization-title",
-            "identifier": "organization-title",
-            "description": "organization-title"
-          },
-          {
-            "numericValue": "username",
-            "identifier": "username",
-            "description": "username"
-          },
-          {
-            "numericValue": "new-password",
-            "identifier": "new-password",
-            "description": "new-password"
-          },
-          {
-            "numericValue": "current-password",
-            "identifier": "current-password",
-            "description": "current-password"
-          },
-          {
-            "numericValue": "organization",
-            "identifier": "organization",
-            "description": "organization"
-          },
-          {
-            "numericValue": "street-address",
-            "identifier": "street-address",
-            "description": "street-address"
-          },
-          {
-            "numericValue": "address-line1",
-            "identifier": "address-line1",
-            "description": "address-line1"
-          },
-          {
-            "numericValue": "address-line2",
-            "identifier": "address-line2",
-            "description": "address-line2"
-          },
-          {
-            "numericValue": "address-line3",
-            "identifier": "address-line3",
-            "description": "address-line3"
-          },
-          {
-            "numericValue": "address-level4",
-            "identifier": "address-level4",
-            "description": "address-level4"
-          },
-          {
-            "numericValue": "address-level3",
-            "identifier": "address-level3",
-            "description": "address-level3"
-          },
-          {
-            "numericValue": "address-level2",
-            "identifier": "address-level2",
-            "description": "address-level2"
-          },
-          {
-            "numericValue": "address-level1",
-            "identifier": "address-level1",
-            "description": "address-level1"
-          },
-          {
-            "numericValue": "country",
-            "identifier": "country",
-            "description": "country"
-          },
-          {
-            "numericValue": "country-name",
-            "identifier": "country-name",
-            "description": "country-name"
-          },
-          {
-            "numericValue": "postal-code",
-            "identifier": "postal-code",
-            "description": "postal-code"
-          },
-          {
-            "numericValue": "cc-name",
-            "identifier": "cc-name",
-            "description": "cc-name"
-          },
-          {
-            "numericValue": "cc-given-name",
-            "identifier": "cc-given-name",
-            "description": "cc-given-name"
-          },
-          {
-            "numericValue": "cc-additional-name",
-            "identifier": "cc-additional-name",
-            "description": "cc-additional-name"
-          },
-          {
-            "numericValue": "cc-family-name",
-            "identifier": "cc-family-name",
-            "description": "cc-family-name"
-          },
-          {
-            "numericValue": "cc-number",
-            "identifier": "cc-number",
-            "description": "cc-number"
-          },
-          {
-            "numericValue": "cc-exp",
-            "identifier": "cc-exp",
-            "description": "cc-exp"
-          },
-          {
-            "numericValue": "cc-exp-month",
-            "identifier": "cc-exp-month",
-            "description": "cc-exp-month"
-          },
-          {
-            "numericValue": "cc-exp-year",
-            "identifier": "cc-exp-year",
-            "description": "cc-exp-year"
-          },
-          {
-            "numericValue": "cc-csc",
-            "identifier": "cc-csc",
-            "description": "cc-csc"
-          },
-          {
-            "numericValue": "cc-type",
-            "identifier": "cc-type",
-            "description": "cc-type"
-          },
-          {
-            "numericValue": "transaction-currency",
-            "identifier": "transaction-currency",
-            "description": "transaction-currency"
-          },
-          {
-            "numericValue": "transaction-amount",
-            "identifier": "transaction-amount",
-            "description": "transaction-amount"
-          },
-          {
-            "numericValue": "language",
-            "identifier": "language",
-            "description": "language"
-          },
-          {
-            "numericValue": "bday",
-            "identifier": "bday",
-            "description": "bday"
-          },
-          {
-            "numericValue": "bday-day",
-            "identifier": "bday-day",
-            "description": "bday-day"
-          },
-          {
-            "numericValue": "bday-month",
-            "identifier": "bday-month",
-            "description": "bday-month"
-          },
-          {
-            "numericValue": "bday-year",
-            "identifier": "bday-year",
-            "description": "bday-year"
-          },
-          {
-            "numericValue": "sex",
-            "identifier": "sex",
-            "description": "sex"
-          },
-          {
-            "numericValue": "url",
-            "identifier": "url",
-            "description": "url"
-          },
-          {
-            "numericValue": "photo",
-            "identifier": "photo",
-            "description": "photo"
-          },
-          {
-            "numericValue": "tel",
-            "identifier": "tel",
-            "description": "tel"
-          },
-          {
-            "numericValue": "tel-country-code",
-            "identifier": "tel-country-code",
-            "description": "tel-country-code"
-          },
-          {
-            "numericValue": "tel-national",
-            "identifier": "tel-national",
-            "description": "tel-national"
-          },
-          {
-            "numericValue": "tel-area-code",
-            "identifier": "tel-area-code",
-            "description": "tel-area-code"
-          },
-          {
-            "numericValue": "tel-local",
-            "identifier": "tel-local",
-            "description": "tel-local"
-          },
-          {
-            "numericValue": "tel-local-prefix",
-            "identifier": "tel-local-prefix",
-            "description": "tel-local-prefix"
-          },
-          {
-            "numericValue": "tel-local-suffix",
-            "identifier": "tel-local-suffix",
-            "description": "tel-local-suffix"
-          },
-          {
-            "numericValue": "tel-extension",
-            "identifier": "tel-extension",
-            "description": "tel-extension"
-          },
-          {
-            "numericValue": "email",
-            "identifier": "email",
-            "description": "email"
-          },
-          {
-            "numericValue": "impp",
-            "identifier": "impp",
-            "description": "impp"
-          }
-        ]
-      },
-      "commentTextUpdateMode": {
-        "type": "string",
-        "enum": [
-          "default",
-          "onBlur",
-          "onTyping"
         ]
       },
       "multipletextColCount": {

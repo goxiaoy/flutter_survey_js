@@ -4,10 +4,10 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
-import 'package:flutter_survey_js_model/src/model/comment_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
@@ -79,7 +79,7 @@ abstract class Comment implements Textbase {
   SurveyTitle? get placeholder;
 
   @BuiltValueField(wireName: r'textUpdateMode')
-  CommentTextUpdateMode? get textUpdateMode;
+  TextUpdateMode? get textUpdateMode;
   // enum textUpdateModeEnum {  default,  onBlur,  onTyping,  };
 
   @BuiltValueField(wireName: r'rows')
@@ -221,7 +221,7 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
       yield r'textUpdateMode';
       yield serializers.serialize(
         object.textUpdateMode,
-        specifiedType: const FullType(CommentTextUpdateMode),
+        specifiedType: const FullType(TextUpdateMode),
       );
     }
     if (object.state != null) {
@@ -569,8 +569,8 @@ class _$$CommentSerializer implements PrimitiveSerializer<$Comment> {
         case r'textUpdateMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CommentTextUpdateMode),
-          ) as CommentTextUpdateMode;
+            specifiedType: const FullType(TextUpdateMode),
+          ) as TextUpdateMode;
           result.textUpdateMode = valueDes;
           break;
         case r'state':

@@ -15,8 +15,8 @@ abstract class DropdownBuilder implements SelectbaseBuilder {
   String? get inputFieldComponent;
   set inputFieldComponent(covariant String? inputFieldComponent);
 
-  DropdownAutocomplete? get autocomplete;
-  set autocomplete(covariant DropdownAutocomplete? autocomplete);
+  Autocomplete? get autocomplete;
+  set autocomplete(covariant Autocomplete? autocomplete);
 
   String? get itemComponent;
   set itemComponent(covariant String? itemComponent);
@@ -201,7 +201,7 @@ class _$$Dropdown extends $Dropdown {
   @override
   final String? inputFieldComponent;
   @override
-  final DropdownAutocomplete? autocomplete;
+  final Autocomplete? autocomplete;
   @override
   final String? itemComponent;
   @override
@@ -606,9 +606,9 @@ class $DropdownBuilder
   set inputFieldComponent(covariant String? inputFieldComponent) =>
       _$this._inputFieldComponent = inputFieldComponent;
 
-  DropdownAutocomplete? _autocomplete;
-  DropdownAutocomplete? get autocomplete => _$this._autocomplete;
-  set autocomplete(covariant DropdownAutocomplete? autocomplete) =>
+  Autocomplete? _autocomplete;
+  Autocomplete? get autocomplete => _$this._autocomplete;
+  set autocomplete(covariant Autocomplete? autocomplete) =>
       _$this._autocomplete = autocomplete;
 
   String? _itemComponent;

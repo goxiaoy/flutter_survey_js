@@ -4,14 +4,14 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
-import 'package:flutter_survey_js_model/src/model/text_text_update_mode.dart';
+import 'package:flutter_survey_js_model/src/model/text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/text_input_type.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
+import 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
-import 'package:flutter_survey_js_model/src/model/text_autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
@@ -78,7 +78,7 @@ abstract class Text implements Textbase {
   String? get minValueExpression;
 
   @BuiltValueField(wireName: r'autocomplete')
-  TextAutocomplete? get autocomplete;
+  Autocomplete? get autocomplete;
   // enum autocompleteEnum {  ,  name,  honorific-prefix,  given-name,  additional-name,  family-name,  honorific-suffix,  nickname,  organization-title,  username,  new-password,  current-password,  organization,  street-address,  address-line1,  address-line2,  address-line3,  address-level4,  address-level3,  address-level2,  address-level1,  country,  country-name,  postal-code,  cc-name,  cc-given-name,  cc-additional-name,  cc-family-name,  cc-number,  cc-exp,  cc-exp-month,  cc-exp-year,  cc-csc,  cc-type,  transaction-currency,  transaction-amount,  language,  bday,  bday-day,  bday-month,  bday-year,  sex,  url,  photo,  tel,  tel-country-code,  tel-national,  tel-area-code,  tel-local,  tel-local-prefix,  tel-local-suffix,  tel-extension,  email,  impp,  };
 
   @BuiltValueField(wireName: r'max')
@@ -104,7 +104,7 @@ abstract class Text implements Textbase {
   num? get step;
 
   @BuiltValueField(wireName: r'textUpdateMode')
-  TextTextUpdateMode? get textUpdateMode;
+  TextUpdateMode? get textUpdateMode;
   // enum textUpdateModeEnum {  default,  onBlur,  onTyping,  };
 
   @BuiltValueField(wireName: r'placeholder')
@@ -249,7 +249,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'textUpdateMode';
       yield serializers.serialize(
         object.textUpdateMode,
-        specifiedType: const FullType(TextTextUpdateMode),
+        specifiedType: const FullType(TextUpdateMode),
       );
     }
     if (object.placeholder != null) {
@@ -333,7 +333,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'autocomplete';
       yield serializers.serialize(
         object.autocomplete,
-        specifiedType: const FullType(TextAutocomplete),
+        specifiedType: const FullType(Autocomplete),
       );
     }
     if (object.max != null) {
@@ -639,8 +639,8 @@ class _$$TextSerializer implements PrimitiveSerializer<$Text> {
         case r'textUpdateMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(TextTextUpdateMode),
-          ) as TextTextUpdateMode;
+            specifiedType: const FullType(TextUpdateMode),
+          ) as TextUpdateMode;
           result.textUpdateMode = valueDes;
           break;
         case r'placeholder':
@@ -724,8 +724,8 @@ class _$$TextSerializer implements PrimitiveSerializer<$Text> {
         case r'autocomplete':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(TextAutocomplete),
-          ) as TextAutocomplete;
+            specifiedType: const FullType(Autocomplete),
+          ) as Autocomplete;
           result.autocomplete = valueDes;
           break;
         case r'max':

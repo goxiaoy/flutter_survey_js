@@ -11,7 +11,7 @@ import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of_choi
 import 'package:flutter_survey_js_model/src/model/panel_show_question_numbers.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
-import 'package:flutter_survey_js_model/src/model/text_autocomplete.dart';
+import 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/matrix.dart';
 import 'package:flutter_survey_js_model/src/model/boolean.dart';
 import 'package:flutter_survey_js_model/src/model/rating.dart';
@@ -40,6 +40,7 @@ import 'package:flutter_survey_js_model/src/model/paneldynamic_tab_align.dart';
 import 'package:flutter_survey_js_model/src/model/signaturepad.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/panel_inner_indent.dart';
 import 'package:flutter_survey_js_model/src/model/panel_state.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_col_count.dart';
@@ -71,7 +72,6 @@ import 'package:flutter_survey_js_model/src/model/panelbase_question_title_locat
 import 'package:flutter_survey_js_model/src/model/rating_rate_color_mode.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_layout.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_questions_order.dart';
-import 'package:flutter_survey_js_model/src/model/comment_text_update_mode.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/imagepicker.dart';
 import 'package:flutter_survey_js_model/src/model/checkbox.dart';

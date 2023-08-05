@@ -5,16 +5,17 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/rating_display_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn_cell_type.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
+import 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/comment.dart';
 import 'package:flutter_survey_js_model/src/model/rating_scale_color_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
-import 'package:flutter_survey_js_model/src/model/text_autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/text.dart';
 import 'package:flutter_survey_js_model/src/model/boolean.dart';
 import 'package:flutter_survey_js_model/src/model/rating.dart';
@@ -34,7 +35,6 @@ import 'package:flutter_survey_js_model/src/model/text_input_type.dart';
 import 'package:flutter_survey_js_model/src/model/rating_rate_color_mode.dart';
 import 'package:flutter_survey_js_model/src/model/rating_rate_type.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn_total_type.dart';
-import 'package:flutter_survey_js_model/src/model/comment_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/checkbox.dart';
@@ -517,7 +517,7 @@ class _$MatrixdropdowncolumnSerializer implements PrimitiveSerializer<Matrixdrop
       yield r'textUpdateMode';
       yield serializers.serialize(
         object.textUpdateMode,
-        specifiedType: const FullType(TextTextUpdateMode),
+        specifiedType: const FullType(TextUpdateMode),
       );
     }
     if (object.choicesFromQuestion != null) {
@@ -949,7 +949,7 @@ class _$MatrixdropdowncolumnSerializer implements PrimitiveSerializer<Matrixdrop
       yield r'autocomplete';
       yield serializers.serialize(
         object.autocomplete,
-        specifiedType: const FullType(TextAutocomplete),
+        specifiedType: const FullType(Autocomplete),
       );
     }
     if (object.otherPlaceholder != null) {
@@ -1400,8 +1400,8 @@ class _$MatrixdropdowncolumnSerializer implements PrimitiveSerializer<Matrixdrop
         case r'textUpdateMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(TextTextUpdateMode),
-          ) as TextTextUpdateMode;
+            specifiedType: const FullType(TextUpdateMode),
+          ) as TextUpdateMode;
           result.textUpdateMode = valueDes;
           break;
         case r'choicesFromQuestion':
@@ -1834,8 +1834,8 @@ class _$MatrixdropdowncolumnSerializer implements PrimitiveSerializer<Matrixdrop
         case r'autocomplete':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(TextAutocomplete),
-          ) as TextAutocomplete;
+            specifiedType: const FullType(Autocomplete),
+          ) as Autocomplete;
           result.autocomplete = valueDes;
           break;
         case r'otherPlaceholder':

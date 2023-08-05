@@ -160,7 +160,7 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final SurveyTitle? placeholder;
   @override
-  final CommentTextUpdateMode? textUpdateMode;
+  final TextUpdateMode? textUpdateMode;
   @override
   final num? rows;
   @override
@@ -172,7 +172,7 @@ class _$Matrixdropdowncolumn extends Matrixdropdowncolumn {
   @override
   final String? inputFieldComponent;
   @override
-  final DropdownAutocomplete? autocomplete;
+  final Autocomplete? autocomplete;
   @override
   final num? choicesMin;
   @override
@@ -1194,9 +1194,9 @@ class MatrixdropdowncolumnBuilder
   set placeholder(covariant SurveyTitleBuilder? placeholder) =>
       _$this._placeholder = placeholder;
 
-  CommentTextUpdateMode? _textUpdateMode;
-  CommentTextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
-  set textUpdateMode(covariant CommentTextUpdateMode? textUpdateMode) =>
+  TextUpdateMode? _textUpdateMode;
+  TextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
+  set textUpdateMode(covariant TextUpdateMode? textUpdateMode) =>
       _$this._textUpdateMode = textUpdateMode;
 
   num? _rows;
@@ -1221,9 +1221,9 @@ class MatrixdropdowncolumnBuilder
   set inputFieldComponent(covariant String? inputFieldComponent) =>
       _$this._inputFieldComponent = inputFieldComponent;
 
-  DropdownAutocomplete? _autocomplete;
-  DropdownAutocomplete? get autocomplete => _$this._autocomplete;
-  set autocomplete(covariant DropdownAutocomplete? autocomplete) =>
+  Autocomplete? _autocomplete;
+  Autocomplete? get autocomplete => _$this._autocomplete;
+  set autocomplete(covariant Autocomplete? autocomplete) =>
       _$this._autocomplete = autocomplete;
 
   num? _choicesMin;

@@ -6,12 +6,12 @@
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_from_question_mode.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_order.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
-import 'package:flutter_survey_js_model/src/model/dropdown_autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/choices_by_url.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
+import 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase.dart';
@@ -96,7 +96,7 @@ abstract class Dropdown implements Selectbase {
   String? get inputFieldComponent;
 
   @BuiltValueField(wireName: r'autocomplete')
-  DropdownAutocomplete? get autocomplete;
+  Autocomplete? get autocomplete;
   // enum autocompleteEnum {  ,  name,  honorific-prefix,  given-name,  additional-name,  family-name,  honorific-suffix,  nickname,  organization-title,  username,  new-password,  current-password,  organization,  street-address,  address-line1,  address-line2,  address-line3,  address-level4,  address-level3,  address-level2,  address-level1,  country,  country-name,  postal-code,  cc-name,  cc-given-name,  cc-additional-name,  cc-family-name,  cc-number,  cc-exp,  cc-exp-month,  cc-exp-year,  cc-csc,  cc-type,  transaction-currency,  transaction-amount,  language,  bday,  bday-day,  bday-month,  bday-year,  sex,  url,  photo,  tel,  tel-country-code,  tel-national,  tel-area-code,  tel-local,  tel-local-prefix,  tel-local-suffix,  tel-extension,  email,  impp,  };
 
   @BuiltValueField(wireName: r'itemComponent')
@@ -468,7 +468,7 @@ class _$DropdownSerializer implements PrimitiveSerializer<Dropdown> {
       yield r'autocomplete';
       yield serializers.serialize(
         object.autocomplete,
-        specifiedType: const FullType(DropdownAutocomplete),
+        specifiedType: const FullType(Autocomplete),
       );
     }
     if (object.separateSpecialChoices != null) {
@@ -952,8 +952,8 @@ class _$$DropdownSerializer implements PrimitiveSerializer<$Dropdown> {
         case r'autocomplete':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DropdownAutocomplete),
-          ) as DropdownAutocomplete;
+            specifiedType: const FullType(Autocomplete),
+          ) as Autocomplete;
           result.autocomplete = valueDes;
           break;
         case r'separateSpecialChoices':

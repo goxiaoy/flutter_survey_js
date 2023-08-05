@@ -12,8 +12,8 @@ abstract class TextBuilder implements TextbaseBuilder {
   String? get minValueExpression;
   set minValueExpression(covariant String? minValueExpression);
 
-  TextAutocomplete? get autocomplete;
-  set autocomplete(covariant TextAutocomplete? autocomplete);
+  Autocomplete? get autocomplete;
+  set autocomplete(covariant Autocomplete? autocomplete);
 
   String? get max;
   set max(covariant String? max);
@@ -36,8 +36,8 @@ abstract class TextBuilder implements TextbaseBuilder {
   num? get step;
   set step(covariant num? step);
 
-  TextTextUpdateMode? get textUpdateMode;
-  set textUpdateMode(covariant TextTextUpdateMode? textUpdateMode);
+  TextUpdateMode? get textUpdateMode;
+  set textUpdateMode(covariant TextUpdateMode? textUpdateMode);
 
   SurveyTitleBuilder get placeholder;
   set placeholder(covariant SurveyTitleBuilder? placeholder);
@@ -158,7 +158,7 @@ class _$$Text extends $Text {
   @override
   final String? minValueExpression;
   @override
-  final TextAutocomplete? autocomplete;
+  final Autocomplete? autocomplete;
   @override
   final String? max;
   @override
@@ -174,7 +174,7 @@ class _$$Text extends $Text {
   @override
   final num? step;
   @override
-  final TextTextUpdateMode? textUpdateMode;
+  final TextUpdateMode? textUpdateMode;
   @override
   final SurveyTitle? placeholder;
   @override
@@ -481,9 +481,9 @@ class $TextBuilder implements Builder<$Text, $TextBuilder>, TextBuilder {
   set minValueExpression(covariant String? minValueExpression) =>
       _$this._minValueExpression = minValueExpression;
 
-  TextAutocomplete? _autocomplete;
-  TextAutocomplete? get autocomplete => _$this._autocomplete;
-  set autocomplete(covariant TextAutocomplete? autocomplete) =>
+  Autocomplete? _autocomplete;
+  Autocomplete? get autocomplete => _$this._autocomplete;
+  set autocomplete(covariant Autocomplete? autocomplete) =>
       _$this._autocomplete = autocomplete;
 
   String? _max;
@@ -519,9 +519,9 @@ class $TextBuilder implements Builder<$Text, $TextBuilder>, TextBuilder {
   num? get step => _$this._step;
   set step(covariant num? step) => _$this._step = step;
 
-  TextTextUpdateMode? _textUpdateMode;
-  TextTextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
-  set textUpdateMode(covariant TextTextUpdateMode? textUpdateMode) =>
+  TextUpdateMode? _textUpdateMode;
+  TextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
+  set textUpdateMode(covariant TextUpdateMode? textUpdateMode) =>
       _$this._textUpdateMode = textUpdateMode;
 
   SurveyTitleBuilder? _placeholder;

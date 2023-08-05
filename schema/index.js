@@ -247,6 +247,9 @@ const getEnumName = (accessPath) => {
       if (a === "") {
         return b;
       }
+      if (b == "textUpdateMode" || b == "autocomplete") {
+        return b;
+      }
       return a + b.charAt(0).toUpperCase() + b.slice(1);
     }, "");
 };
@@ -389,6 +392,11 @@ const fix = (target) =>
     }
   });
 fix(openapi);
+
+// openapi["components"]["schemas"]["textUpdateMode"] = {
+//   type: "string",
+//   enum: ["default", "onBlur", "onTyping"],
+// };
 openapi["components"]["schemas"]["trigger"]["properties"]["type"] = {
   type: "string",
 };

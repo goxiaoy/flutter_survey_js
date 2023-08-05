@@ -15,6 +15,7 @@ import 'package:flutter_survey_js_model/src/date_serializer.dart';
 import 'package:flutter_survey_js_model/src/model/date.dart';
 
 import 'package:flutter_survey_js_model/src/model/answercountvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/boolean.dart';
 import 'package:flutter_survey_js_model/src/model/buttongroup.dart';
 import 'package:flutter_survey_js_model/src/model/buttongroupitemvalue.dart';
@@ -24,11 +25,9 @@ import 'package:flutter_survey_js_model/src/model/checkboxbase.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase_col_count.dart';
 import 'package:flutter_survey_js_model/src/model/choices_by_url.dart';
 import 'package:flutter_survey_js_model/src/model/comment.dart';
-import 'package:flutter_survey_js_model/src/model/comment_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/completetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/copyvaluetrigger.dart';
 import 'package:flutter_survey_js_model/src/model/dropdown.dart';
-import 'package:flutter_survey_js_model/src/model/dropdown_autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/elementbase.dart';
 import 'package:flutter_survey_js_model/src/model/emailvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/empty.dart';
@@ -142,7 +141,6 @@ import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers.d
 import 'package:flutter_survey_js_model/src/model/survey_show_question_numbers_any_of.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel_mode.dart';
-import 'package:flutter_survey_js_model/src/model/survey_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/survey_toc_location.dart';
 import 'package:flutter_survey_js_model/src/model/survey_triggers_inner.dart';
@@ -151,9 +149,8 @@ import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/tagbox.dart';
 import 'package:flutter_survey_js_model/src/model/text.dart';
-import 'package:flutter_survey_js_model/src/model/text_autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/text_input_type.dart';
-import 'package:flutter_survey_js_model/src/model/text_text_update_mode.dart';
+import 'package:flutter_survey_js_model/src/model/text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/textbase.dart';
 import 'package:flutter_survey_js_model/src/model/textvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/trigger.dart';
@@ -164,6 +161,7 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   Answercountvalidator,
+  Autocomplete,
   Boolean,$Boolean,
   Buttongroup,
   Buttongroupitemvalue,
@@ -173,11 +171,9 @@ part 'serializers.g.dart';
   CheckboxbaseColCount,
   ChoicesByUrl,
   Comment,$Comment,
-  CommentTextUpdateMode,
   Completetrigger,
   Copyvaluetrigger,
   Dropdown,$Dropdown,
-  DropdownAutocomplete,
   Elementbase,$Elementbase,
   Emailvalidator,
   Empty,
@@ -291,7 +287,6 @@ part 'serializers.g.dart';
   SurveyShowQuestionNumbersAnyOf,
   SurveyShowTimerPanel,
   SurveyShowTimerPanelMode,
-  SurveyTextUpdateMode,
   SurveyTitle,
   SurveyTocLocation,
   SurveyTriggersInner,
@@ -300,9 +295,8 @@ part 'serializers.g.dart';
   Surveyvalidator,$Surveyvalidator,
   Tagbox,$Tagbox,
   Text,$Text,
-  TextAutocomplete,
   TextInputType,
-  TextTextUpdateMode,
+  TextUpdateMode,
   Textbase,$Textbase,
   Textvalidator,
   Trigger,$Trigger,

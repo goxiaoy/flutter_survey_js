@@ -1,8 +1,8 @@
 .gitignore
-analysis_options.yaml
 lib/flutter_survey_js_model.dart
 lib/src/date_serializer.dart
 lib/src/model/answercountvalidator.dart
+lib/src/model/autocomplete.dart
 lib/src/model/boolean.dart
 lib/src/model/buttongroup.dart
 lib/src/model/buttongroupitemvalue.dart
@@ -12,12 +12,10 @@ lib/src/model/checkboxbase.dart
 lib/src/model/checkboxbase_col_count.dart
 lib/src/model/choices_by_url.dart
 lib/src/model/comment.dart
-lib/src/model/comment_text_update_mode.dart
 lib/src/model/completetrigger.dart
 lib/src/model/copyvaluetrigger.dart
 lib/src/model/date.dart
 lib/src/model/dropdown.dart
-lib/src/model/dropdown_autocomplete.dart
 lib/src/model/elementbase.dart
 lib/src/model/emailvalidator.dart
 lib/src/model/empty.dart
@@ -131,7 +129,6 @@ lib/src/model/survey_show_question_numbers.dart
 lib/src/model/survey_show_question_numbers_any_of.dart
 lib/src/model/survey_show_timer_panel.dart
 lib/src/model/survey_show_timer_panel_mode.dart
-lib/src/model/survey_text_update_mode.dart
 lib/src/model/survey_title.dart
 lib/src/model/survey_toc_location.dart
 lib/src/model/survey_triggers_inner.dart
@@ -140,13 +137,11 @@ lib/src/model/surveytrigger.dart
 lib/src/model/surveyvalidator.dart
 lib/src/model/tagbox.dart
 lib/src/model/text.dart
-lib/src/model/text_autocomplete.dart
 lib/src/model/text_input_type.dart
-lib/src/model/text_text_update_mode.dart
+lib/src/model/text_update_mode.dart
 lib/src/model/textbase.dart
 lib/src/model/textvalidator.dart
 lib/src/model/trigger.dart
 lib/src/model/urlconditionitem.dart
 lib/src/model/visibletrigger.dart
 lib/src/serializers.dart
-pubspec.yaml

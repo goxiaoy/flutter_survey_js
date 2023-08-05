@@ -104,7 +104,7 @@ class _$Survey extends Survey {
   @override
   final SurveyCheckErrorsMode? checkErrorsMode;
   @override
-  final SurveyTextUpdateMode? textUpdateMode;
+  final TextUpdateMode? textUpdateMode;
   @override
   final bool? autoGrowComment;
   @override
@@ -754,9 +754,9 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set checkErrorsMode(SurveyCheckErrorsMode? checkErrorsMode) =>
       _$this._checkErrorsMode = checkErrorsMode;
 
-  SurveyTextUpdateMode? _textUpdateMode;
-  SurveyTextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
-  set textUpdateMode(SurveyTextUpdateMode? textUpdateMode) =>
+  TextUpdateMode? _textUpdateMode;
+  TextUpdateMode? get textUpdateMode => _$this._textUpdateMode;
+  set textUpdateMode(TextUpdateMode? textUpdateMode) =>
       _$this._textUpdateMode = textUpdateMode;
 
   bool? _autoGrowComment;
