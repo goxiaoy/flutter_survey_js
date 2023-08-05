@@ -1,6 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart';
+import 'package:built_value/src/string_serializer.dart';
 
 class SurveySerializer implements PrimitiveSerializer<Survey> {
   @override
@@ -35,5 +36,17 @@ class SurveySerializer implements PrimitiveSerializer<Survey> {
       {FullType specifiedType = FullType.unspecified}) {
     return (Survey.serializer as PrimitiveSerializer<Survey>)
         .serialize(serializers, object, specifiedType: specifiedType);
+  }
+}
+
+class ConvertStringSerializer extends StringSerializer {
+  @override
+  String deserialize(Serializers serializers, Object? serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is String) {
+      return serialized as String;
+    } else {
+      return serialized?.toString() ?? "";
+    }
   }
 }

@@ -8,6 +8,7 @@ import 'flutter_survey_js_model.dart';
 
 Serializers surveySerializers = (serializers.toBuilder()
       ..add(SurveyAnyOfSerializer())
+      ..add(ConvertStringSerializer())
       ..add(SurveySerializer())
       ..addPlugin(StandardJsonPlugin()))
     .build();
