@@ -6,24 +6,47 @@ part of 'matrixdropdownbase.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract class MatrixdropdownbaseBuilder
-    implements MatrixbaseBuilder, MatrixdropdownbaseAllOfBuilder {
+abstract class MatrixdropdownbaseBuilder implements MatrixbaseBuilder {
   void replace(covariant Matrixdropdownbase other);
   void update(void Function(MatrixdropdownbaseBuilder) updates);
-  bool? get showCommentArea;
-  set showCommentArea(covariant bool? showCommentArea);
+  MatrixdropdownbaseCellType? get cellType;
+  set cellType(covariant MatrixdropdownbaseCellType? cellType);
 
-  String? get columnsVisibleIf;
-  set columnsVisibleIf(covariant String? columnsVisibleIf);
+  ListBuilder<Matrixdropdowncolumn> get columns;
+  set columns(covariant ListBuilder<Matrixdropdowncolumn>? columns);
+
+  bool? get horizontalScroll;
+  set horizontalScroll(covariant bool? horizontalScroll);
+
+  SurveyTitleBuilder get keyDuplicationError;
+  set keyDuplicationError(covariant SurveyTitleBuilder? keyDuplicationError);
+
+  MatrixdropdownbaseDetailPanelMode? get detailPanelMode;
+  set detailPanelMode(
+      covariant MatrixdropdownbaseDetailPanelMode? detailPanelMode);
+
+  SurveyTitleBuilder get placeholder;
+  set placeholder(covariant SurveyTitleBuilder? placeholder);
+
+  bool? get allowAdaptiveActions;
+  set allowAdaptiveActions(covariant bool? allowAdaptiveActions);
+
+  MatrixdropdownbaseColumnLayout? get columnLayout;
+  set columnLayout(covariant MatrixdropdownbaseColumnLayout? columnLayout);
+
+  String? get detailElements;
+  set detailElements(covariant String? detailElements);
+
+  ListBuilder<MatrixdropdownbaseAllOfChoicesInner> get choices;
+  set choices(
+      covariant ListBuilder<MatrixdropdownbaseAllOfChoicesInner>? choices);
+
+  MatrixdropdownbaseColumnColCount? get columnColCount;
+  set columnColCount(
+      covariant MatrixdropdownbaseColumnColCount? columnColCount);
 
   String? get rowsVisibleIf;
   set rowsVisibleIf(covariant String? rowsVisibleIf);
-
-  SurveyLogoWidthBuilder get columnMinWidth;
-  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth);
-
-  bool? get showHeader;
-  set showHeader(covariant bool? showHeader);
 
   MatrixbaseVerticalAlign? get verticalAlign;
   set verticalAlign(covariant MatrixbaseVerticalAlign? verticalAlign);
@@ -31,88 +54,27 @@ abstract class MatrixdropdownbaseBuilder
   bool? get alternateRows;
   set alternateRows(covariant bool? alternateRows);
 
-  String? get type;
-  set type(covariant String? type);
+  bool? get showHeader;
+  set showHeader(covariant bool? showHeader);
 
-  String? get name;
-  set name(covariant String? name);
+  SurveyLogoWidthBuilder get columnMinWidth;
+  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth);
 
-  QuestionState? get state;
-  set state(covariant QuestionState? state);
-
-  bool? get visible;
-  set visible(covariant bool? visible);
+  String? get columnsVisibleIf;
+  set columnsVisibleIf(covariant String? columnsVisibleIf);
 
   bool? get useDisplayValuesInDynamicTexts;
   set useDisplayValuesInDynamicTexts(
       covariant bool? useDisplayValuesInDynamicTexts);
 
-  String? get visibleIf;
-  set visibleIf(covariant String? visibleIf);
-
-  SurveyLogoWidthBuilder get width;
-  set width(covariant SurveyLogoWidthBuilder? width);
-
-  SurveyLogoWidthBuilder get minWidth;
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth);
-
-  SurveyLogoWidthBuilder get maxWidth;
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth);
-
-  bool? get startWithNewLine;
-  set startWithNewLine(covariant bool? startWithNewLine);
-
   QuestionIndent? get indent;
   set indent(covariant QuestionIndent? indent);
-
-  String? get page;
-  set page(covariant String? page);
-
-  String? get title;
-  set title(covariant String? title);
-
-  QuestionTitleLocation? get titleLocation;
-  set titleLocation(covariant QuestionTitleLocation? titleLocation);
-
-  String? get description;
-  set description(covariant String? description);
-
-  QuestionDescriptionLocation? get descriptionLocation;
-  set descriptionLocation(
-      covariant QuestionDescriptionLocation? descriptionLocation);
-
-  bool? get hideNumber;
-  set hideNumber(covariant bool? hideNumber);
 
   String? get valueName;
   set valueName(covariant String? valueName);
 
-  String? get enableIf;
-  set enableIf(covariant String? enableIf);
-
   JsonObject? get defaultValue;
   set defaultValue(covariant JsonObject? defaultValue);
-
-  String? get defaultValueExpression;
-  set defaultValueExpression(covariant String? defaultValueExpression);
-
-  JsonObject? get correctAnswer;
-  set correctAnswer(covariant JsonObject? correctAnswer);
-
-  QuestionClearIfInvisible? get clearIfInvisible;
-  set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible);
-
-  bool? get isRequired;
-  set isRequired(covariant bool? isRequired);
-
-  String? get requiredIf;
-  set requiredIf(covariant String? requiredIf);
-
-  String? get requiredErrorText;
-  set requiredErrorText(covariant String? requiredErrorText);
-
-  String? get readOnly;
-  set readOnly(covariant String? readOnly);
 
   ListBuilder<QuestionAllOfValidatorsInner> get validators;
   set validators(
@@ -121,208 +83,246 @@ abstract class MatrixdropdownbaseBuilder
   String? get bindings;
   set bindings(covariant String? bindings);
 
+  SurveyTitleBuilder get description;
+  set description(covariant SurveyTitleBuilder? description);
+
+  SurveyTitleBuilder get title;
+  set title(covariant SurveyTitleBuilder? title);
+
+  SurveyTitleBuilder get commentText;
+  set commentText(covariant SurveyTitleBuilder? commentText);
+
+  QuestionClearIfInvisible? get clearIfInvisible;
+  set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible);
+
+  bool? get startWithNewLine;
+  set startWithNewLine(covariant bool? startWithNewLine);
+
+  QuestionDescriptionLocation? get descriptionLocation;
+  set descriptionLocation(
+      covariant QuestionDescriptionLocation? descriptionLocation);
+
+  QuestionState? get state;
+  set state(covariant QuestionState? state);
+
+  bool? get hideNumber;
+  set hideNumber(covariant bool? hideNumber);
+
+  JsonObject? get correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer);
+
+  SurveyLogoWidthBuilder get maxWidth;
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth);
+
+  bool? get showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea);
+
+  String? get enableIf;
+  set enableIf(covariant String? enableIf);
+
+  bool? get isRequired;
+  set isRequired(covariant bool? isRequired);
+
+  bool? get visible;
+  set visible(covariant bool? visible);
+
+  SurveyTitleBuilder get commentPlaceholder;
+  set commentPlaceholder(covariant SurveyTitleBuilder? commentPlaceholder);
+
+  String? get defaultValueExpression;
+  set defaultValueExpression(covariant String? defaultValueExpression);
+
+  String? get requiredIf;
+  set requiredIf(covariant String? requiredIf);
+
   String? get renderAs;
   set renderAs(covariant String? renderAs);
 
-  String? get commentText;
-  set commentText(covariant String? commentText);
+  SurveyLogoWidthBuilder get minWidth;
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth);
 
-  String? get commentPlaceholder;
-  set commentPlaceholder(covariant String? commentPlaceholder);
+  bool? get readOnly;
+  set readOnly(covariant bool? readOnly);
 
-  ListBuilder<Matrixdropdowncolumn> get columns;
-  set columns(covariant ListBuilder<Matrixdropdowncolumn>? columns);
+  QuestionTitleLocation? get titleLocation;
+  set titleLocation(covariant QuestionTitleLocation? titleLocation);
 
-  MatrixdropdownbaseColumnLayout? get columnLayout;
-  set columnLayout(covariant MatrixdropdownbaseColumnLayout? columnLayout);
+  SurveyTitleBuilder get requiredErrorText;
+  set requiredErrorText(covariant SurveyTitleBuilder? requiredErrorText);
 
-  String? get detailElements;
-  set detailElements(covariant String? detailElements);
+  String? get visibleIf;
+  set visibleIf(covariant String? visibleIf);
 
-  MatrixdropdownbaseDetailPanelMode? get detailPanelMode;
-  set detailPanelMode(
-      covariant MatrixdropdownbaseDetailPanelMode? detailPanelMode);
+  SurveyLogoWidthBuilder get width;
+  set width(covariant SurveyLogoWidthBuilder? width);
 
-  bool? get horizontalScroll;
-  set horizontalScroll(covariant bool? horizontalScroll);
+  String? get page;
+  set page(covariant String? page);
 
-  ListBuilder<SelectbaseAllOfChoicesInner> get choices;
-  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices);
+  String? get type;
+  set type(covariant String? type);
 
-  String? get placeholder;
-  set placeholder(covariant String? placeholder);
-
-  String? get keyDuplicationError;
-  set keyDuplicationError(covariant String? keyDuplicationError);
-
-  MatrixdropdownbaseCellType? get cellType;
-  set cellType(covariant MatrixdropdownbaseCellType? cellType);
-
-  MatrixdropdownbaseColumnColCount? get columnColCount;
-  set columnColCount(
-      covariant MatrixdropdownbaseColumnColCount? columnColCount);
-
-  bool? get allowAdaptiveActions;
-  set allowAdaptiveActions(covariant bool? allowAdaptiveActions);
+  String? get name;
+  set name(covariant String? name);
 }
 
 class _$$Matrixdropdownbase extends $Matrixdropdownbase {
   @override
-  final bool? showCommentArea;
-  @override
-  final String? columnsVisibleIf;
-  @override
-  final String? rowsVisibleIf;
-  @override
-  final SurveyLogoWidth? columnMinWidth;
-  @override
-  final bool? showHeader;
-  @override
-  final MatrixbaseVerticalAlign? verticalAlign;
-  @override
-  final bool? alternateRows;
-  @override
-  final String? type;
-  @override
-  final String? name;
-  @override
-  final QuestionState? state;
-  @override
-  final bool? visible;
-  @override
-  final bool? useDisplayValuesInDynamicTexts;
-  @override
-  final String? visibleIf;
-  @override
-  final SurveyLogoWidth? width;
-  @override
-  final SurveyLogoWidth? minWidth;
-  @override
-  final SurveyLogoWidth? maxWidth;
-  @override
-  final bool? startWithNewLine;
-  @override
-  final QuestionIndent? indent;
-  @override
-  final String? page;
-  @override
-  final String? title;
-  @override
-  final QuestionTitleLocation? titleLocation;
-  @override
-  final String? description;
-  @override
-  final QuestionDescriptionLocation? descriptionLocation;
-  @override
-  final bool? hideNumber;
-  @override
-  final String? valueName;
-  @override
-  final String? enableIf;
-  @override
-  final JsonObject? defaultValue;
-  @override
-  final String? defaultValueExpression;
-  @override
-  final JsonObject? correctAnswer;
-  @override
-  final QuestionClearIfInvisible? clearIfInvisible;
-  @override
-  final bool? isRequired;
-  @override
-  final String? requiredIf;
-  @override
-  final String? requiredErrorText;
-  @override
-  final String? readOnly;
-  @override
-  final BuiltList<QuestionAllOfValidatorsInner>? validators;
-  @override
-  final String? bindings;
-  @override
-  final String? renderAs;
-  @override
-  final String? commentText;
-  @override
-  final String? commentPlaceholder;
+  final MatrixdropdownbaseCellType? cellType;
   @override
   final BuiltList<Matrixdropdowncolumn>? columns;
+  @override
+  final bool? horizontalScroll;
+  @override
+  final SurveyTitle? keyDuplicationError;
+  @override
+  final MatrixdropdownbaseDetailPanelMode? detailPanelMode;
+  @override
+  final SurveyTitle? placeholder;
+  @override
+  final bool? allowAdaptiveActions;
   @override
   final MatrixdropdownbaseColumnLayout? columnLayout;
   @override
   final String? detailElements;
   @override
-  final MatrixdropdownbaseDetailPanelMode? detailPanelMode;
-  @override
-  final bool? horizontalScroll;
-  @override
-  final BuiltList<SelectbaseAllOfChoicesInner>? choices;
-  @override
-  final String? placeholder;
-  @override
-  final String? keyDuplicationError;
-  @override
-  final MatrixdropdownbaseCellType? cellType;
+  final BuiltList<MatrixdropdownbaseAllOfChoicesInner>? choices;
   @override
   final MatrixdropdownbaseColumnColCount? columnColCount;
   @override
-  final bool? allowAdaptiveActions;
+  final String? rowsVisibleIf;
+  @override
+  final MatrixbaseVerticalAlign? verticalAlign;
+  @override
+  final bool? alternateRows;
+  @override
+  final bool? showHeader;
+  @override
+  final SurveyLogoWidth? columnMinWidth;
+  @override
+  final String? columnsVisibleIf;
+  @override
+  final bool? useDisplayValuesInDynamicTexts;
+  @override
+  final QuestionIndent? indent;
+  @override
+  final String? valueName;
+  @override
+  final JsonObject? defaultValue;
+  @override
+  final BuiltList<QuestionAllOfValidatorsInner>? validators;
+  @override
+  final String? bindings;
+  @override
+  final SurveyTitle? description;
+  @override
+  final SurveyTitle? title;
+  @override
+  final SurveyTitle? commentText;
+  @override
+  final QuestionClearIfInvisible? clearIfInvisible;
+  @override
+  final bool? startWithNewLine;
+  @override
+  final QuestionDescriptionLocation? descriptionLocation;
+  @override
+  final QuestionState? state;
+  @override
+  final bool? hideNumber;
+  @override
+  final JsonObject? correctAnswer;
+  @override
+  final SurveyLogoWidth? maxWidth;
+  @override
+  final bool? showCommentArea;
+  @override
+  final String? enableIf;
+  @override
+  final bool? isRequired;
+  @override
+  final bool? visible;
+  @override
+  final SurveyTitle? commentPlaceholder;
+  @override
+  final String? defaultValueExpression;
+  @override
+  final String? requiredIf;
+  @override
+  final String? renderAs;
+  @override
+  final SurveyLogoWidth? minWidth;
+  @override
+  final bool? readOnly;
+  @override
+  final QuestionTitleLocation? titleLocation;
+  @override
+  final SurveyTitle? requiredErrorText;
+  @override
+  final String? visibleIf;
+  @override
+  final SurveyLogoWidth? width;
+  @override
+  final String? page;
+  @override
+  final String? type;
+  @override
+  final String? name;
 
   factory _$$Matrixdropdownbase(
           [void Function($MatrixdropdownbaseBuilder)? updates]) =>
       (new $MatrixdropdownbaseBuilder()..update(updates))._build();
 
   _$$Matrixdropdownbase._(
-      {this.showCommentArea,
-      this.columnsVisibleIf,
-      this.rowsVisibleIf,
-      this.columnMinWidth,
-      this.showHeader,
-      this.verticalAlign,
-      this.alternateRows,
-      this.type,
-      this.name,
-      this.state,
-      this.visible,
-      this.useDisplayValuesInDynamicTexts,
-      this.visibleIf,
-      this.width,
-      this.minWidth,
-      this.maxWidth,
-      this.startWithNewLine,
-      this.indent,
-      this.page,
-      this.title,
-      this.titleLocation,
-      this.description,
-      this.descriptionLocation,
-      this.hideNumber,
-      this.valueName,
-      this.enableIf,
-      this.defaultValue,
-      this.defaultValueExpression,
-      this.correctAnswer,
-      this.clearIfInvisible,
-      this.isRequired,
-      this.requiredIf,
-      this.requiredErrorText,
-      this.readOnly,
-      this.validators,
-      this.bindings,
-      this.renderAs,
-      this.commentText,
-      this.commentPlaceholder,
+      {this.cellType,
       this.columns,
+      this.horizontalScroll,
+      this.keyDuplicationError,
+      this.detailPanelMode,
+      this.placeholder,
+      this.allowAdaptiveActions,
       this.columnLayout,
       this.detailElements,
-      this.detailPanelMode,
-      this.horizontalScroll,
       this.choices,
-      this.placeholder,
-      this.keyDuplicationError,
-      this.cellType,
       this.columnColCount,
-      this.allowAdaptiveActions})
+      this.rowsVisibleIf,
+      this.verticalAlign,
+      this.alternateRows,
+      this.showHeader,
+      this.columnMinWidth,
+      this.columnsVisibleIf,
+      this.useDisplayValuesInDynamicTexts,
+      this.indent,
+      this.valueName,
+      this.defaultValue,
+      this.validators,
+      this.bindings,
+      this.description,
+      this.title,
+      this.commentText,
+      this.clearIfInvisible,
+      this.startWithNewLine,
+      this.descriptionLocation,
+      this.state,
+      this.hideNumber,
+      this.correctAnswer,
+      this.maxWidth,
+      this.showCommentArea,
+      this.enableIf,
+      this.isRequired,
+      this.visible,
+      this.commentPlaceholder,
+      this.defaultValueExpression,
+      this.requiredIf,
+      this.renderAs,
+      this.minWidth,
+      this.readOnly,
+      this.titleLocation,
+      this.requiredErrorText,
+      this.visibleIf,
+      this.width,
+      this.page,
+      this.type,
+      this.name})
       : super._();
 
   @override
@@ -338,112 +338,112 @@ class _$$Matrixdropdownbase extends $Matrixdropdownbase {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is $Matrixdropdownbase &&
-        showCommentArea == other.showCommentArea &&
-        columnsVisibleIf == other.columnsVisibleIf &&
-        rowsVisibleIf == other.rowsVisibleIf &&
-        columnMinWidth == other.columnMinWidth &&
-        showHeader == other.showHeader &&
-        verticalAlign == other.verticalAlign &&
-        alternateRows == other.alternateRows &&
-        type == other.type &&
-        name == other.name &&
-        state == other.state &&
-        visible == other.visible &&
-        useDisplayValuesInDynamicTexts ==
-            other.useDisplayValuesInDynamicTexts &&
-        visibleIf == other.visibleIf &&
-        width == other.width &&
-        minWidth == other.minWidth &&
-        maxWidth == other.maxWidth &&
-        startWithNewLine == other.startWithNewLine &&
-        indent == other.indent &&
-        page == other.page &&
-        title == other.title &&
-        titleLocation == other.titleLocation &&
-        description == other.description &&
-        descriptionLocation == other.descriptionLocation &&
-        hideNumber == other.hideNumber &&
-        valueName == other.valueName &&
-        enableIf == other.enableIf &&
-        defaultValue == other.defaultValue &&
-        defaultValueExpression == other.defaultValueExpression &&
-        correctAnswer == other.correctAnswer &&
-        clearIfInvisible == other.clearIfInvisible &&
-        isRequired == other.isRequired &&
-        requiredIf == other.requiredIf &&
-        requiredErrorText == other.requiredErrorText &&
-        readOnly == other.readOnly &&
-        validators == other.validators &&
-        bindings == other.bindings &&
-        renderAs == other.renderAs &&
-        commentText == other.commentText &&
-        commentPlaceholder == other.commentPlaceholder &&
+        cellType == other.cellType &&
         columns == other.columns &&
+        horizontalScroll == other.horizontalScroll &&
+        keyDuplicationError == other.keyDuplicationError &&
+        detailPanelMode == other.detailPanelMode &&
+        placeholder == other.placeholder &&
+        allowAdaptiveActions == other.allowAdaptiveActions &&
         columnLayout == other.columnLayout &&
         detailElements == other.detailElements &&
-        detailPanelMode == other.detailPanelMode &&
-        horizontalScroll == other.horizontalScroll &&
         choices == other.choices &&
-        placeholder == other.placeholder &&
-        keyDuplicationError == other.keyDuplicationError &&
-        cellType == other.cellType &&
         columnColCount == other.columnColCount &&
-        allowAdaptiveActions == other.allowAdaptiveActions;
+        rowsVisibleIf == other.rowsVisibleIf &&
+        verticalAlign == other.verticalAlign &&
+        alternateRows == other.alternateRows &&
+        showHeader == other.showHeader &&
+        columnMinWidth == other.columnMinWidth &&
+        columnsVisibleIf == other.columnsVisibleIf &&
+        useDisplayValuesInDynamicTexts ==
+            other.useDisplayValuesInDynamicTexts &&
+        indent == other.indent &&
+        valueName == other.valueName &&
+        defaultValue == other.defaultValue &&
+        validators == other.validators &&
+        bindings == other.bindings &&
+        description == other.description &&
+        title == other.title &&
+        commentText == other.commentText &&
+        clearIfInvisible == other.clearIfInvisible &&
+        startWithNewLine == other.startWithNewLine &&
+        descriptionLocation == other.descriptionLocation &&
+        state == other.state &&
+        hideNumber == other.hideNumber &&
+        correctAnswer == other.correctAnswer &&
+        maxWidth == other.maxWidth &&
+        showCommentArea == other.showCommentArea &&
+        enableIf == other.enableIf &&
+        isRequired == other.isRequired &&
+        visible == other.visible &&
+        commentPlaceholder == other.commentPlaceholder &&
+        defaultValueExpression == other.defaultValueExpression &&
+        requiredIf == other.requiredIf &&
+        renderAs == other.renderAs &&
+        minWidth == other.minWidth &&
+        readOnly == other.readOnly &&
+        titleLocation == other.titleLocation &&
+        requiredErrorText == other.requiredErrorText &&
+        visibleIf == other.visibleIf &&
+        width == other.width &&
+        page == other.page &&
+        type == other.type &&
+        name == other.name;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, showCommentArea.hashCode);
-    _$hash = $jc(_$hash, columnsVisibleIf.hashCode);
-    _$hash = $jc(_$hash, rowsVisibleIf.hashCode);
-    _$hash = $jc(_$hash, columnMinWidth.hashCode);
-    _$hash = $jc(_$hash, showHeader.hashCode);
-    _$hash = $jc(_$hash, verticalAlign.hashCode);
-    _$hash = $jc(_$hash, alternateRows.hashCode);
-    _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, state.hashCode);
-    _$hash = $jc(_$hash, visible.hashCode);
-    _$hash = $jc(_$hash, useDisplayValuesInDynamicTexts.hashCode);
-    _$hash = $jc(_$hash, visibleIf.hashCode);
-    _$hash = $jc(_$hash, width.hashCode);
-    _$hash = $jc(_$hash, minWidth.hashCode);
-    _$hash = $jc(_$hash, maxWidth.hashCode);
-    _$hash = $jc(_$hash, startWithNewLine.hashCode);
-    _$hash = $jc(_$hash, indent.hashCode);
-    _$hash = $jc(_$hash, page.hashCode);
-    _$hash = $jc(_$hash, title.hashCode);
-    _$hash = $jc(_$hash, titleLocation.hashCode);
-    _$hash = $jc(_$hash, description.hashCode);
-    _$hash = $jc(_$hash, descriptionLocation.hashCode);
-    _$hash = $jc(_$hash, hideNumber.hashCode);
-    _$hash = $jc(_$hash, valueName.hashCode);
-    _$hash = $jc(_$hash, enableIf.hashCode);
-    _$hash = $jc(_$hash, defaultValue.hashCode);
-    _$hash = $jc(_$hash, defaultValueExpression.hashCode);
-    _$hash = $jc(_$hash, correctAnswer.hashCode);
-    _$hash = $jc(_$hash, clearIfInvisible.hashCode);
-    _$hash = $jc(_$hash, isRequired.hashCode);
-    _$hash = $jc(_$hash, requiredIf.hashCode);
-    _$hash = $jc(_$hash, requiredErrorText.hashCode);
-    _$hash = $jc(_$hash, readOnly.hashCode);
-    _$hash = $jc(_$hash, validators.hashCode);
-    _$hash = $jc(_$hash, bindings.hashCode);
-    _$hash = $jc(_$hash, renderAs.hashCode);
-    _$hash = $jc(_$hash, commentText.hashCode);
-    _$hash = $jc(_$hash, commentPlaceholder.hashCode);
+    _$hash = $jc(_$hash, cellType.hashCode);
     _$hash = $jc(_$hash, columns.hashCode);
+    _$hash = $jc(_$hash, horizontalScroll.hashCode);
+    _$hash = $jc(_$hash, keyDuplicationError.hashCode);
+    _$hash = $jc(_$hash, detailPanelMode.hashCode);
+    _$hash = $jc(_$hash, placeholder.hashCode);
+    _$hash = $jc(_$hash, allowAdaptiveActions.hashCode);
     _$hash = $jc(_$hash, columnLayout.hashCode);
     _$hash = $jc(_$hash, detailElements.hashCode);
-    _$hash = $jc(_$hash, detailPanelMode.hashCode);
-    _$hash = $jc(_$hash, horizontalScroll.hashCode);
     _$hash = $jc(_$hash, choices.hashCode);
-    _$hash = $jc(_$hash, placeholder.hashCode);
-    _$hash = $jc(_$hash, keyDuplicationError.hashCode);
-    _$hash = $jc(_$hash, cellType.hashCode);
     _$hash = $jc(_$hash, columnColCount.hashCode);
-    _$hash = $jc(_$hash, allowAdaptiveActions.hashCode);
+    _$hash = $jc(_$hash, rowsVisibleIf.hashCode);
+    _$hash = $jc(_$hash, verticalAlign.hashCode);
+    _$hash = $jc(_$hash, alternateRows.hashCode);
+    _$hash = $jc(_$hash, showHeader.hashCode);
+    _$hash = $jc(_$hash, columnMinWidth.hashCode);
+    _$hash = $jc(_$hash, columnsVisibleIf.hashCode);
+    _$hash = $jc(_$hash, useDisplayValuesInDynamicTexts.hashCode);
+    _$hash = $jc(_$hash, indent.hashCode);
+    _$hash = $jc(_$hash, valueName.hashCode);
+    _$hash = $jc(_$hash, defaultValue.hashCode);
+    _$hash = $jc(_$hash, validators.hashCode);
+    _$hash = $jc(_$hash, bindings.hashCode);
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, commentText.hashCode);
+    _$hash = $jc(_$hash, clearIfInvisible.hashCode);
+    _$hash = $jc(_$hash, startWithNewLine.hashCode);
+    _$hash = $jc(_$hash, descriptionLocation.hashCode);
+    _$hash = $jc(_$hash, state.hashCode);
+    _$hash = $jc(_$hash, hideNumber.hashCode);
+    _$hash = $jc(_$hash, correctAnswer.hashCode);
+    _$hash = $jc(_$hash, maxWidth.hashCode);
+    _$hash = $jc(_$hash, showCommentArea.hashCode);
+    _$hash = $jc(_$hash, enableIf.hashCode);
+    _$hash = $jc(_$hash, isRequired.hashCode);
+    _$hash = $jc(_$hash, visible.hashCode);
+    _$hash = $jc(_$hash, commentPlaceholder.hashCode);
+    _$hash = $jc(_$hash, defaultValueExpression.hashCode);
+    _$hash = $jc(_$hash, requiredIf.hashCode);
+    _$hash = $jc(_$hash, renderAs.hashCode);
+    _$hash = $jc(_$hash, minWidth.hashCode);
+    _$hash = $jc(_$hash, readOnly.hashCode);
+    _$hash = $jc(_$hash, titleLocation.hashCode);
+    _$hash = $jc(_$hash, requiredErrorText.hashCode);
+    _$hash = $jc(_$hash, visibleIf.hashCode);
+    _$hash = $jc(_$hash, width.hashCode);
+    _$hash = $jc(_$hash, page.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -451,57 +451,57 @@ class _$$Matrixdropdownbase extends $Matrixdropdownbase {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'$Matrixdropdownbase')
-          ..add('showCommentArea', showCommentArea)
-          ..add('columnsVisibleIf', columnsVisibleIf)
-          ..add('rowsVisibleIf', rowsVisibleIf)
-          ..add('columnMinWidth', columnMinWidth)
-          ..add('showHeader', showHeader)
-          ..add('verticalAlign', verticalAlign)
-          ..add('alternateRows', alternateRows)
-          ..add('type', type)
-          ..add('name', name)
-          ..add('state', state)
-          ..add('visible', visible)
-          ..add(
-              'useDisplayValuesInDynamicTexts', useDisplayValuesInDynamicTexts)
-          ..add('visibleIf', visibleIf)
-          ..add('width', width)
-          ..add('minWidth', minWidth)
-          ..add('maxWidth', maxWidth)
-          ..add('startWithNewLine', startWithNewLine)
-          ..add('indent', indent)
-          ..add('page', page)
-          ..add('title', title)
-          ..add('titleLocation', titleLocation)
-          ..add('description', description)
-          ..add('descriptionLocation', descriptionLocation)
-          ..add('hideNumber', hideNumber)
-          ..add('valueName', valueName)
-          ..add('enableIf', enableIf)
-          ..add('defaultValue', defaultValue)
-          ..add('defaultValueExpression', defaultValueExpression)
-          ..add('correctAnswer', correctAnswer)
-          ..add('clearIfInvisible', clearIfInvisible)
-          ..add('isRequired', isRequired)
-          ..add('requiredIf', requiredIf)
-          ..add('requiredErrorText', requiredErrorText)
-          ..add('readOnly', readOnly)
-          ..add('validators', validators)
-          ..add('bindings', bindings)
-          ..add('renderAs', renderAs)
-          ..add('commentText', commentText)
-          ..add('commentPlaceholder', commentPlaceholder)
+          ..add('cellType', cellType)
           ..add('columns', columns)
+          ..add('horizontalScroll', horizontalScroll)
+          ..add('keyDuplicationError', keyDuplicationError)
+          ..add('detailPanelMode', detailPanelMode)
+          ..add('placeholder', placeholder)
+          ..add('allowAdaptiveActions', allowAdaptiveActions)
           ..add('columnLayout', columnLayout)
           ..add('detailElements', detailElements)
-          ..add('detailPanelMode', detailPanelMode)
-          ..add('horizontalScroll', horizontalScroll)
           ..add('choices', choices)
-          ..add('placeholder', placeholder)
-          ..add('keyDuplicationError', keyDuplicationError)
-          ..add('cellType', cellType)
           ..add('columnColCount', columnColCount)
-          ..add('allowAdaptiveActions', allowAdaptiveActions))
+          ..add('rowsVisibleIf', rowsVisibleIf)
+          ..add('verticalAlign', verticalAlign)
+          ..add('alternateRows', alternateRows)
+          ..add('showHeader', showHeader)
+          ..add('columnMinWidth', columnMinWidth)
+          ..add('columnsVisibleIf', columnsVisibleIf)
+          ..add(
+              'useDisplayValuesInDynamicTexts', useDisplayValuesInDynamicTexts)
+          ..add('indent', indent)
+          ..add('valueName', valueName)
+          ..add('defaultValue', defaultValue)
+          ..add('validators', validators)
+          ..add('bindings', bindings)
+          ..add('description', description)
+          ..add('title', title)
+          ..add('commentText', commentText)
+          ..add('clearIfInvisible', clearIfInvisible)
+          ..add('startWithNewLine', startWithNewLine)
+          ..add('descriptionLocation', descriptionLocation)
+          ..add('state', state)
+          ..add('hideNumber', hideNumber)
+          ..add('correctAnswer', correctAnswer)
+          ..add('maxWidth', maxWidth)
+          ..add('showCommentArea', showCommentArea)
+          ..add('enableIf', enableIf)
+          ..add('isRequired', isRequired)
+          ..add('visible', visible)
+          ..add('commentPlaceholder', commentPlaceholder)
+          ..add('defaultValueExpression', defaultValueExpression)
+          ..add('requiredIf', requiredIf)
+          ..add('renderAs', renderAs)
+          ..add('minWidth', minWidth)
+          ..add('readOnly', readOnly)
+          ..add('titleLocation', titleLocation)
+          ..add('requiredErrorText', requiredErrorText)
+          ..add('visibleIf', visibleIf)
+          ..add('width', width)
+          ..add('page', page)
+          ..add('type', type)
+          ..add('name', name))
         .toString();
   }
 }
@@ -512,30 +512,76 @@ class $MatrixdropdownbaseBuilder
         MatrixdropdownbaseBuilder {
   _$$Matrixdropdownbase? _$v;
 
-  bool? _showCommentArea;
-  bool? get showCommentArea => _$this._showCommentArea;
-  set showCommentArea(covariant bool? showCommentArea) =>
-      _$this._showCommentArea = showCommentArea;
+  MatrixdropdownbaseCellType? _cellType;
+  MatrixdropdownbaseCellType? get cellType => _$this._cellType;
+  set cellType(covariant MatrixdropdownbaseCellType? cellType) =>
+      _$this._cellType = cellType;
 
-  String? _columnsVisibleIf;
-  String? get columnsVisibleIf => _$this._columnsVisibleIf;
-  set columnsVisibleIf(covariant String? columnsVisibleIf) =>
-      _$this._columnsVisibleIf = columnsVisibleIf;
+  ListBuilder<Matrixdropdowncolumn>? _columns;
+  ListBuilder<Matrixdropdowncolumn> get columns =>
+      _$this._columns ??= new ListBuilder<Matrixdropdowncolumn>();
+  set columns(covariant ListBuilder<Matrixdropdowncolumn>? columns) =>
+      _$this._columns = columns;
+
+  bool? _horizontalScroll;
+  bool? get horizontalScroll => _$this._horizontalScroll;
+  set horizontalScroll(covariant bool? horizontalScroll) =>
+      _$this._horizontalScroll = horizontalScroll;
+
+  SurveyTitleBuilder? _keyDuplicationError;
+  SurveyTitleBuilder get keyDuplicationError =>
+      _$this._keyDuplicationError ??= new SurveyTitleBuilder();
+  set keyDuplicationError(covariant SurveyTitleBuilder? keyDuplicationError) =>
+      _$this._keyDuplicationError = keyDuplicationError;
+
+  MatrixdropdownbaseDetailPanelMode? _detailPanelMode;
+  MatrixdropdownbaseDetailPanelMode? get detailPanelMode =>
+      _$this._detailPanelMode;
+  set detailPanelMode(
+          covariant MatrixdropdownbaseDetailPanelMode? detailPanelMode) =>
+      _$this._detailPanelMode = detailPanelMode;
+
+  SurveyTitleBuilder? _placeholder;
+  SurveyTitleBuilder get placeholder =>
+      _$this._placeholder ??= new SurveyTitleBuilder();
+  set placeholder(covariant SurveyTitleBuilder? placeholder) =>
+      _$this._placeholder = placeholder;
+
+  bool? _allowAdaptiveActions;
+  bool? get allowAdaptiveActions => _$this._allowAdaptiveActions;
+  set allowAdaptiveActions(covariant bool? allowAdaptiveActions) =>
+      _$this._allowAdaptiveActions = allowAdaptiveActions;
+
+  MatrixdropdownbaseColumnLayout? _columnLayout;
+  MatrixdropdownbaseColumnLayout? get columnLayout => _$this._columnLayout;
+  set columnLayout(covariant MatrixdropdownbaseColumnLayout? columnLayout) =>
+      _$this._columnLayout = columnLayout;
+
+  String? _detailElements;
+  String? get detailElements => _$this._detailElements;
+  set detailElements(covariant String? detailElements) =>
+      _$this._detailElements = detailElements;
+
+  ListBuilder<MatrixdropdownbaseAllOfChoicesInner>? _choices;
+  ListBuilder<MatrixdropdownbaseAllOfChoicesInner> get choices =>
+      _$this._choices ??=
+          new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>();
+  set choices(
+          covariant ListBuilder<MatrixdropdownbaseAllOfChoicesInner>?
+              choices) =>
+      _$this._choices = choices;
+
+  MatrixdropdownbaseColumnColCount? _columnColCount;
+  MatrixdropdownbaseColumnColCount? get columnColCount =>
+      _$this._columnColCount;
+  set columnColCount(
+          covariant MatrixdropdownbaseColumnColCount? columnColCount) =>
+      _$this._columnColCount = columnColCount;
 
   String? _rowsVisibleIf;
   String? get rowsVisibleIf => _$this._rowsVisibleIf;
   set rowsVisibleIf(covariant String? rowsVisibleIf) =>
       _$this._rowsVisibleIf = rowsVisibleIf;
-
-  SurveyLogoWidthBuilder? _columnMinWidth;
-  SurveyLogoWidthBuilder get columnMinWidth =>
-      _$this._columnMinWidth ??= new SurveyLogoWidthBuilder();
-  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth) =>
-      _$this._columnMinWidth = columnMinWidth;
-
-  bool? _showHeader;
-  bool? get showHeader => _$this._showHeader;
-  set showHeader(covariant bool? showHeader) => _$this._showHeader = showHeader;
 
   MatrixbaseVerticalAlign? _verticalAlign;
   MatrixbaseVerticalAlign? get verticalAlign => _$this._verticalAlign;
@@ -547,21 +593,20 @@ class $MatrixdropdownbaseBuilder
   set alternateRows(covariant bool? alternateRows) =>
       _$this._alternateRows = alternateRows;
 
-  String? _type;
-  String? get type => _$this._type;
-  set type(covariant String? type) => _$this._type = type;
+  bool? _showHeader;
+  bool? get showHeader => _$this._showHeader;
+  set showHeader(covariant bool? showHeader) => _$this._showHeader = showHeader;
 
-  String? _name;
-  String? get name => _$this._name;
-  set name(covariant String? name) => _$this._name = name;
+  SurveyLogoWidthBuilder? _columnMinWidth;
+  SurveyLogoWidthBuilder get columnMinWidth =>
+      _$this._columnMinWidth ??= new SurveyLogoWidthBuilder();
+  set columnMinWidth(covariant SurveyLogoWidthBuilder? columnMinWidth) =>
+      _$this._columnMinWidth = columnMinWidth;
 
-  QuestionState? _state;
-  QuestionState? get state => _$this._state;
-  set state(covariant QuestionState? state) => _$this._state = state;
-
-  bool? _visible;
-  bool? get visible => _$this._visible;
-  set visible(covariant bool? visible) => _$this._visible = visible;
+  String? _columnsVisibleIf;
+  String? get columnsVisibleIf => _$this._columnsVisibleIf;
+  set columnsVisibleIf(covariant String? columnsVisibleIf) =>
+      _$this._columnsVisibleIf = columnsVisibleIf;
 
   bool? _useDisplayValuesInDynamicTexts;
   bool? get useDisplayValuesInDynamicTexts =>
@@ -570,110 +615,18 @@ class $MatrixdropdownbaseBuilder
           covariant bool? useDisplayValuesInDynamicTexts) =>
       _$this._useDisplayValuesInDynamicTexts = useDisplayValuesInDynamicTexts;
 
-  String? _visibleIf;
-  String? get visibleIf => _$this._visibleIf;
-  set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
-
-  SurveyLogoWidthBuilder? _width;
-  SurveyLogoWidthBuilder get width =>
-      _$this._width ??= new SurveyLogoWidthBuilder();
-  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
-
-  SurveyLogoWidthBuilder? _minWidth;
-  SurveyLogoWidthBuilder get minWidth =>
-      _$this._minWidth ??= new SurveyLogoWidthBuilder();
-  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
-      _$this._minWidth = minWidth;
-
-  SurveyLogoWidthBuilder? _maxWidth;
-  SurveyLogoWidthBuilder get maxWidth =>
-      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
-  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
-      _$this._maxWidth = maxWidth;
-
-  bool? _startWithNewLine;
-  bool? get startWithNewLine => _$this._startWithNewLine;
-  set startWithNewLine(covariant bool? startWithNewLine) =>
-      _$this._startWithNewLine = startWithNewLine;
-
   QuestionIndent? _indent;
   QuestionIndent? get indent => _$this._indent;
   set indent(covariant QuestionIndent? indent) => _$this._indent = indent;
-
-  String? _page;
-  String? get page => _$this._page;
-  set page(covariant String? page) => _$this._page = page;
-
-  String? _title;
-  String? get title => _$this._title;
-  set title(covariant String? title) => _$this._title = title;
-
-  QuestionTitleLocation? _titleLocation;
-  QuestionTitleLocation? get titleLocation => _$this._titleLocation;
-  set titleLocation(covariant QuestionTitleLocation? titleLocation) =>
-      _$this._titleLocation = titleLocation;
-
-  String? _description;
-  String? get description => _$this._description;
-  set description(covariant String? description) =>
-      _$this._description = description;
-
-  QuestionDescriptionLocation? _descriptionLocation;
-  QuestionDescriptionLocation? get descriptionLocation =>
-      _$this._descriptionLocation;
-  set descriptionLocation(
-          covariant QuestionDescriptionLocation? descriptionLocation) =>
-      _$this._descriptionLocation = descriptionLocation;
-
-  bool? _hideNumber;
-  bool? get hideNumber => _$this._hideNumber;
-  set hideNumber(covariant bool? hideNumber) => _$this._hideNumber = hideNumber;
 
   String? _valueName;
   String? get valueName => _$this._valueName;
   set valueName(covariant String? valueName) => _$this._valueName = valueName;
 
-  String? _enableIf;
-  String? get enableIf => _$this._enableIf;
-  set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
-
   JsonObject? _defaultValue;
   JsonObject? get defaultValue => _$this._defaultValue;
   set defaultValue(covariant JsonObject? defaultValue) =>
       _$this._defaultValue = defaultValue;
-
-  String? _defaultValueExpression;
-  String? get defaultValueExpression => _$this._defaultValueExpression;
-  set defaultValueExpression(covariant String? defaultValueExpression) =>
-      _$this._defaultValueExpression = defaultValueExpression;
-
-  JsonObject? _correctAnswer;
-  JsonObject? get correctAnswer => _$this._correctAnswer;
-  set correctAnswer(covariant JsonObject? correctAnswer) =>
-      _$this._correctAnswer = correctAnswer;
-
-  QuestionClearIfInvisible? _clearIfInvisible;
-  QuestionClearIfInvisible? get clearIfInvisible => _$this._clearIfInvisible;
-  set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible) =>
-      _$this._clearIfInvisible = clearIfInvisible;
-
-  bool? _isRequired;
-  bool? get isRequired => _$this._isRequired;
-  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
-
-  String? _requiredIf;
-  String? get requiredIf => _$this._requiredIf;
-  set requiredIf(covariant String? requiredIf) =>
-      _$this._requiredIf = requiredIf;
-
-  String? _requiredErrorText;
-  String? get requiredErrorText => _$this._requiredErrorText;
-  set requiredErrorText(covariant String? requiredErrorText) =>
-      _$this._requiredErrorText = requiredErrorText;
-
-  String? _readOnly;
-  String? get readOnly => _$this._readOnly;
-  set readOnly(covariant String? readOnly) => _$this._readOnly = readOnly;
 
   ListBuilder<QuestionAllOfValidatorsInner>? _validators;
   ListBuilder<QuestionAllOfValidatorsInner> get validators =>
@@ -686,80 +639,136 @@ class $MatrixdropdownbaseBuilder
   String? get bindings => _$this._bindings;
   set bindings(covariant String? bindings) => _$this._bindings = bindings;
 
+  SurveyTitleBuilder? _description;
+  SurveyTitleBuilder get description =>
+      _$this._description ??= new SurveyTitleBuilder();
+  set description(covariant SurveyTitleBuilder? description) =>
+      _$this._description = description;
+
+  SurveyTitleBuilder? _title;
+  SurveyTitleBuilder get title => _$this._title ??= new SurveyTitleBuilder();
+  set title(covariant SurveyTitleBuilder? title) => _$this._title = title;
+
+  SurveyTitleBuilder? _commentText;
+  SurveyTitleBuilder get commentText =>
+      _$this._commentText ??= new SurveyTitleBuilder();
+  set commentText(covariant SurveyTitleBuilder? commentText) =>
+      _$this._commentText = commentText;
+
+  QuestionClearIfInvisible? _clearIfInvisible;
+  QuestionClearIfInvisible? get clearIfInvisible => _$this._clearIfInvisible;
+  set clearIfInvisible(covariant QuestionClearIfInvisible? clearIfInvisible) =>
+      _$this._clearIfInvisible = clearIfInvisible;
+
+  bool? _startWithNewLine;
+  bool? get startWithNewLine => _$this._startWithNewLine;
+  set startWithNewLine(covariant bool? startWithNewLine) =>
+      _$this._startWithNewLine = startWithNewLine;
+
+  QuestionDescriptionLocation? _descriptionLocation;
+  QuestionDescriptionLocation? get descriptionLocation =>
+      _$this._descriptionLocation;
+  set descriptionLocation(
+          covariant QuestionDescriptionLocation? descriptionLocation) =>
+      _$this._descriptionLocation = descriptionLocation;
+
+  QuestionState? _state;
+  QuestionState? get state => _$this._state;
+  set state(covariant QuestionState? state) => _$this._state = state;
+
+  bool? _hideNumber;
+  bool? get hideNumber => _$this._hideNumber;
+  set hideNumber(covariant bool? hideNumber) => _$this._hideNumber = hideNumber;
+
+  JsonObject? _correctAnswer;
+  JsonObject? get correctAnswer => _$this._correctAnswer;
+  set correctAnswer(covariant JsonObject? correctAnswer) =>
+      _$this._correctAnswer = correctAnswer;
+
+  SurveyLogoWidthBuilder? _maxWidth;
+  SurveyLogoWidthBuilder get maxWidth =>
+      _$this._maxWidth ??= new SurveyLogoWidthBuilder();
+  set maxWidth(covariant SurveyLogoWidthBuilder? maxWidth) =>
+      _$this._maxWidth = maxWidth;
+
+  bool? _showCommentArea;
+  bool? get showCommentArea => _$this._showCommentArea;
+  set showCommentArea(covariant bool? showCommentArea) =>
+      _$this._showCommentArea = showCommentArea;
+
+  String? _enableIf;
+  String? get enableIf => _$this._enableIf;
+  set enableIf(covariant String? enableIf) => _$this._enableIf = enableIf;
+
+  bool? _isRequired;
+  bool? get isRequired => _$this._isRequired;
+  set isRequired(covariant bool? isRequired) => _$this._isRequired = isRequired;
+
+  bool? _visible;
+  bool? get visible => _$this._visible;
+  set visible(covariant bool? visible) => _$this._visible = visible;
+
+  SurveyTitleBuilder? _commentPlaceholder;
+  SurveyTitleBuilder get commentPlaceholder =>
+      _$this._commentPlaceholder ??= new SurveyTitleBuilder();
+  set commentPlaceholder(covariant SurveyTitleBuilder? commentPlaceholder) =>
+      _$this._commentPlaceholder = commentPlaceholder;
+
+  String? _defaultValueExpression;
+  String? get defaultValueExpression => _$this._defaultValueExpression;
+  set defaultValueExpression(covariant String? defaultValueExpression) =>
+      _$this._defaultValueExpression = defaultValueExpression;
+
+  String? _requiredIf;
+  String? get requiredIf => _$this._requiredIf;
+  set requiredIf(covariant String? requiredIf) =>
+      _$this._requiredIf = requiredIf;
+
   String? _renderAs;
   String? get renderAs => _$this._renderAs;
   set renderAs(covariant String? renderAs) => _$this._renderAs = renderAs;
 
-  String? _commentText;
-  String? get commentText => _$this._commentText;
-  set commentText(covariant String? commentText) =>
-      _$this._commentText = commentText;
+  SurveyLogoWidthBuilder? _minWidth;
+  SurveyLogoWidthBuilder get minWidth =>
+      _$this._minWidth ??= new SurveyLogoWidthBuilder();
+  set minWidth(covariant SurveyLogoWidthBuilder? minWidth) =>
+      _$this._minWidth = minWidth;
 
-  String? _commentPlaceholder;
-  String? get commentPlaceholder => _$this._commentPlaceholder;
-  set commentPlaceholder(covariant String? commentPlaceholder) =>
-      _$this._commentPlaceholder = commentPlaceholder;
+  bool? _readOnly;
+  bool? get readOnly => _$this._readOnly;
+  set readOnly(covariant bool? readOnly) => _$this._readOnly = readOnly;
 
-  ListBuilder<Matrixdropdowncolumn>? _columns;
-  ListBuilder<Matrixdropdowncolumn> get columns =>
-      _$this._columns ??= new ListBuilder<Matrixdropdowncolumn>();
-  set columns(covariant ListBuilder<Matrixdropdowncolumn>? columns) =>
-      _$this._columns = columns;
+  QuestionTitleLocation? _titleLocation;
+  QuestionTitleLocation? get titleLocation => _$this._titleLocation;
+  set titleLocation(covariant QuestionTitleLocation? titleLocation) =>
+      _$this._titleLocation = titleLocation;
 
-  MatrixdropdownbaseColumnLayout? _columnLayout;
-  MatrixdropdownbaseColumnLayout? get columnLayout => _$this._columnLayout;
-  set columnLayout(covariant MatrixdropdownbaseColumnLayout? columnLayout) =>
-      _$this._columnLayout = columnLayout;
+  SurveyTitleBuilder? _requiredErrorText;
+  SurveyTitleBuilder get requiredErrorText =>
+      _$this._requiredErrorText ??= new SurveyTitleBuilder();
+  set requiredErrorText(covariant SurveyTitleBuilder? requiredErrorText) =>
+      _$this._requiredErrorText = requiredErrorText;
 
-  String? _detailElements;
-  String? get detailElements => _$this._detailElements;
-  set detailElements(covariant String? detailElements) =>
-      _$this._detailElements = detailElements;
+  String? _visibleIf;
+  String? get visibleIf => _$this._visibleIf;
+  set visibleIf(covariant String? visibleIf) => _$this._visibleIf = visibleIf;
 
-  MatrixdropdownbaseDetailPanelMode? _detailPanelMode;
-  MatrixdropdownbaseDetailPanelMode? get detailPanelMode =>
-      _$this._detailPanelMode;
-  set detailPanelMode(
-          covariant MatrixdropdownbaseDetailPanelMode? detailPanelMode) =>
-      _$this._detailPanelMode = detailPanelMode;
+  SurveyLogoWidthBuilder? _width;
+  SurveyLogoWidthBuilder get width =>
+      _$this._width ??= new SurveyLogoWidthBuilder();
+  set width(covariant SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  bool? _horizontalScroll;
-  bool? get horizontalScroll => _$this._horizontalScroll;
-  set horizontalScroll(covariant bool? horizontalScroll) =>
-      _$this._horizontalScroll = horizontalScroll;
+  String? _page;
+  String? get page => _$this._page;
+  set page(covariant String? page) => _$this._page = page;
 
-  ListBuilder<SelectbaseAllOfChoicesInner>? _choices;
-  ListBuilder<SelectbaseAllOfChoicesInner> get choices =>
-      _$this._choices ??= new ListBuilder<SelectbaseAllOfChoicesInner>();
-  set choices(covariant ListBuilder<SelectbaseAllOfChoicesInner>? choices) =>
-      _$this._choices = choices;
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
 
-  String? _placeholder;
-  String? get placeholder => _$this._placeholder;
-  set placeholder(covariant String? placeholder) =>
-      _$this._placeholder = placeholder;
-
-  String? _keyDuplicationError;
-  String? get keyDuplicationError => _$this._keyDuplicationError;
-  set keyDuplicationError(covariant String? keyDuplicationError) =>
-      _$this._keyDuplicationError = keyDuplicationError;
-
-  MatrixdropdownbaseCellType? _cellType;
-  MatrixdropdownbaseCellType? get cellType => _$this._cellType;
-  set cellType(covariant MatrixdropdownbaseCellType? cellType) =>
-      _$this._cellType = cellType;
-
-  MatrixdropdownbaseColumnColCount? _columnColCount;
-  MatrixdropdownbaseColumnColCount? get columnColCount =>
-      _$this._columnColCount;
-  set columnColCount(
-          covariant MatrixdropdownbaseColumnColCount? columnColCount) =>
-      _$this._columnColCount = columnColCount;
-
-  bool? _allowAdaptiveActions;
-  bool? get allowAdaptiveActions => _$this._allowAdaptiveActions;
-  set allowAdaptiveActions(covariant bool? allowAdaptiveActions) =>
-      _$this._allowAdaptiveActions = allowAdaptiveActions;
+  String? _name;
+  String? get name => _$this._name;
+  set name(covariant String? name) => _$this._name = name;
 
   $MatrixdropdownbaseBuilder() {
     $Matrixdropdownbase._defaults(this);
@@ -768,56 +777,56 @@ class $MatrixdropdownbaseBuilder
   $MatrixdropdownbaseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _showCommentArea = $v.showCommentArea;
-      _columnsVisibleIf = $v.columnsVisibleIf;
-      _rowsVisibleIf = $v.rowsVisibleIf;
-      _columnMinWidth = $v.columnMinWidth?.toBuilder();
-      _showHeader = $v.showHeader;
-      _verticalAlign = $v.verticalAlign;
-      _alternateRows = $v.alternateRows;
-      _type = $v.type;
-      _name = $v.name;
-      _state = $v.state;
-      _visible = $v.visible;
-      _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
-      _visibleIf = $v.visibleIf;
-      _width = $v.width?.toBuilder();
-      _minWidth = $v.minWidth?.toBuilder();
-      _maxWidth = $v.maxWidth?.toBuilder();
-      _startWithNewLine = $v.startWithNewLine;
-      _indent = $v.indent;
-      _page = $v.page;
-      _title = $v.title;
-      _titleLocation = $v.titleLocation;
-      _description = $v.description;
-      _descriptionLocation = $v.descriptionLocation;
-      _hideNumber = $v.hideNumber;
-      _valueName = $v.valueName;
-      _enableIf = $v.enableIf;
-      _defaultValue = $v.defaultValue;
-      _defaultValueExpression = $v.defaultValueExpression;
-      _correctAnswer = $v.correctAnswer;
-      _clearIfInvisible = $v.clearIfInvisible;
-      _isRequired = $v.isRequired;
-      _requiredIf = $v.requiredIf;
-      _requiredErrorText = $v.requiredErrorText;
-      _readOnly = $v.readOnly;
-      _validators = $v.validators?.toBuilder();
-      _bindings = $v.bindings;
-      _renderAs = $v.renderAs;
-      _commentText = $v.commentText;
-      _commentPlaceholder = $v.commentPlaceholder;
+      _cellType = $v.cellType;
       _columns = $v.columns?.toBuilder();
+      _horizontalScroll = $v.horizontalScroll;
+      _keyDuplicationError = $v.keyDuplicationError?.toBuilder();
+      _detailPanelMode = $v.detailPanelMode;
+      _placeholder = $v.placeholder?.toBuilder();
+      _allowAdaptiveActions = $v.allowAdaptiveActions;
       _columnLayout = $v.columnLayout;
       _detailElements = $v.detailElements;
-      _detailPanelMode = $v.detailPanelMode;
-      _horizontalScroll = $v.horizontalScroll;
       _choices = $v.choices?.toBuilder();
-      _placeholder = $v.placeholder;
-      _keyDuplicationError = $v.keyDuplicationError;
-      _cellType = $v.cellType;
       _columnColCount = $v.columnColCount;
-      _allowAdaptiveActions = $v.allowAdaptiveActions;
+      _rowsVisibleIf = $v.rowsVisibleIf;
+      _verticalAlign = $v.verticalAlign;
+      _alternateRows = $v.alternateRows;
+      _showHeader = $v.showHeader;
+      _columnMinWidth = $v.columnMinWidth?.toBuilder();
+      _columnsVisibleIf = $v.columnsVisibleIf;
+      _useDisplayValuesInDynamicTexts = $v.useDisplayValuesInDynamicTexts;
+      _indent = $v.indent;
+      _valueName = $v.valueName;
+      _defaultValue = $v.defaultValue;
+      _validators = $v.validators?.toBuilder();
+      _bindings = $v.bindings;
+      _description = $v.description?.toBuilder();
+      _title = $v.title?.toBuilder();
+      _commentText = $v.commentText?.toBuilder();
+      _clearIfInvisible = $v.clearIfInvisible;
+      _startWithNewLine = $v.startWithNewLine;
+      _descriptionLocation = $v.descriptionLocation;
+      _state = $v.state;
+      _hideNumber = $v.hideNumber;
+      _correctAnswer = $v.correctAnswer;
+      _maxWidth = $v.maxWidth?.toBuilder();
+      _showCommentArea = $v.showCommentArea;
+      _enableIf = $v.enableIf;
+      _isRequired = $v.isRequired;
+      _visible = $v.visible;
+      _commentPlaceholder = $v.commentPlaceholder?.toBuilder();
+      _defaultValueExpression = $v.defaultValueExpression;
+      _requiredIf = $v.requiredIf;
+      _renderAs = $v.renderAs;
+      _minWidth = $v.minWidth?.toBuilder();
+      _readOnly = $v.readOnly;
+      _titleLocation = $v.titleLocation;
+      _requiredErrorText = $v.requiredErrorText?.toBuilder();
+      _visibleIf = $v.visibleIf;
+      _width = $v.width?.toBuilder();
+      _page = $v.page;
+      _type = $v.type;
+      _name = $v.name;
       _$v = null;
     }
     return this;
@@ -842,77 +851,98 @@ class $MatrixdropdownbaseBuilder
     try {
       _$result = _$v ??
           new _$$Matrixdropdownbase._(
-              showCommentArea: showCommentArea,
-              columnsVisibleIf: columnsVisibleIf,
-              rowsVisibleIf: rowsVisibleIf,
-              columnMinWidth: _columnMinWidth?.build(),
-              showHeader: showHeader,
-              verticalAlign: verticalAlign,
-              alternateRows: alternateRows,
-              type: type,
-              name: name,
-              state: state,
-              visible: visible,
-              useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
-              visibleIf: visibleIf,
-              width: _width?.build(),
-              minWidth: _minWidth?.build(),
-              maxWidth: _maxWidth?.build(),
-              startWithNewLine: startWithNewLine,
-              indent: indent,
-              page: page,
-              title: title,
-              titleLocation: titleLocation,
-              description: description,
-              descriptionLocation: descriptionLocation,
-              hideNumber: hideNumber,
-              valueName: valueName,
-              enableIf: enableIf,
-              defaultValue: defaultValue,
-              defaultValueExpression: defaultValueExpression,
-              correctAnswer: correctAnswer,
-              clearIfInvisible: clearIfInvisible,
-              isRequired: isRequired,
-              requiredIf: requiredIf,
-              requiredErrorText: requiredErrorText,
-              readOnly: readOnly,
-              validators: _validators?.build(),
-              bindings: bindings,
-              renderAs: renderAs,
-              commentText: commentText,
-              commentPlaceholder: commentPlaceholder,
+              cellType: cellType,
               columns: _columns?.build(),
+              horizontalScroll: horizontalScroll,
+              keyDuplicationError: _keyDuplicationError?.build(),
+              detailPanelMode: detailPanelMode,
+              placeholder: _placeholder?.build(),
+              allowAdaptiveActions: allowAdaptiveActions,
               columnLayout: columnLayout,
               detailElements: detailElements,
-              detailPanelMode: detailPanelMode,
-              horizontalScroll: horizontalScroll,
               choices: _choices?.build(),
-              placeholder: placeholder,
-              keyDuplicationError: keyDuplicationError,
-              cellType: cellType,
               columnColCount: columnColCount,
-              allowAdaptiveActions: allowAdaptiveActions);
+              rowsVisibleIf: rowsVisibleIf,
+              verticalAlign: verticalAlign,
+              alternateRows: alternateRows,
+              showHeader: showHeader,
+              columnMinWidth: _columnMinWidth?.build(),
+              columnsVisibleIf: columnsVisibleIf,
+              useDisplayValuesInDynamicTexts: useDisplayValuesInDynamicTexts,
+              indent: indent,
+              valueName: valueName,
+              defaultValue: defaultValue,
+              validators: _validators?.build(),
+              bindings: bindings,
+              description: _description?.build(),
+              title: _title?.build(),
+              commentText: _commentText?.build(),
+              clearIfInvisible: clearIfInvisible,
+              startWithNewLine: startWithNewLine,
+              descriptionLocation: descriptionLocation,
+              state: state,
+              hideNumber: hideNumber,
+              correctAnswer: correctAnswer,
+              maxWidth: _maxWidth?.build(),
+              showCommentArea: showCommentArea,
+              enableIf: enableIf,
+              isRequired: isRequired,
+              visible: visible,
+              commentPlaceholder: _commentPlaceholder?.build(),
+              defaultValueExpression: defaultValueExpression,
+              requiredIf: requiredIf,
+              renderAs: renderAs,
+              minWidth: _minWidth?.build(),
+              readOnly: readOnly,
+              titleLocation: titleLocation,
+              requiredErrorText: _requiredErrorText?.build(),
+              visibleIf: visibleIf,
+              width: _width?.build(),
+              page: page,
+              type: type,
+              name: name);
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'columns';
+        _columns?.build();
+
+        _$failedField = 'keyDuplicationError';
+        _keyDuplicationError?.build();
+
+        _$failedField = 'placeholder';
+        _placeholder?.build();
+
+        _$failedField = 'choices';
+        _choices?.build();
+
         _$failedField = 'columnMinWidth';
         _columnMinWidth?.build();
-
-        _$failedField = 'width';
-        _width?.build();
-        _$failedField = 'minWidth';
-        _minWidth?.build();
-        _$failedField = 'maxWidth';
-        _maxWidth?.build();
 
         _$failedField = 'validators';
         _validators?.build();
 
-        _$failedField = 'columns';
-        _columns?.build();
+        _$failedField = 'description';
+        _description?.build();
+        _$failedField = 'title';
+        _title?.build();
+        _$failedField = 'commentText';
+        _commentText?.build();
 
-        _$failedField = 'choices';
-        _choices?.build();
+        _$failedField = 'maxWidth';
+        _maxWidth?.build();
+
+        _$failedField = 'commentPlaceholder';
+        _commentPlaceholder?.build();
+
+        _$failedField = 'minWidth';
+        _minWidth?.build();
+
+        _$failedField = 'requiredErrorText';
+        _requiredErrorText?.build();
+
+        _$failedField = 'width';
+        _width?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'$Matrixdropdownbase', _$failedField, e.toString());

@@ -5,7 +5,6 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/rating_display_mode.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
-import 'package:flutter_survey_js_model/src/model/rating_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/rating_auto_generate.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdown_all_of_rows_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
@@ -19,6 +18,7 @@ import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -74,14 +74,51 @@ part 'rating.g.dart';
 /// * [maxRateDescription] 
 /// * [displayRateDescriptionsAsExtremeItems] 
 /// * [displayMode] 
-@BuiltValue()
-abstract class Rating implements Question, RatingAllOf, Built<Rating, RatingBuilder> {
-  Rating._();
+@BuiltValue(instantiable: false)
+abstract class Rating implements Question {
+  @BuiltValueField(wireName: r'displayRateDescriptionsAsExtremeItems')
+  bool? get displayRateDescriptionsAsExtremeItems;
 
-  factory Rating([void updates(RatingBuilder b)]) = _$Rating;
+  @BuiltValueField(wireName: r'rateColorMode')
+  RatingRateColorMode? get rateColorMode;
+  // enum rateColorModeEnum {  default,  scale,  };
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(RatingBuilder b) => b;
+  @BuiltValueField(wireName: r'rateStep')
+  num? get rateStep;
+
+  @BuiltValueField(wireName: r'rateValues')
+  BuiltList<MatrixdropdownAllOfRowsInner>? get rateValues;
+
+  @BuiltValueField(wireName: r'rateMin')
+  num? get rateMin;
+
+  @BuiltValueField(wireName: r'displayMode')
+  RatingDisplayMode? get displayMode;
+  // enum displayModeEnum {  auto,  buttons,  dropdown,  };
+
+  @BuiltValueField(wireName: r'scaleColorMode')
+  RatingScaleColorMode? get scaleColorMode;
+  // enum scaleColorModeEnum {  monochrome,  colored,  };
+
+  @BuiltValueField(wireName: r'autoGenerate')
+  RatingAutoGenerate? get autoGenerate;
+  // enum autoGenerateEnum {  true,  false,  };
+
+  @BuiltValueField(wireName: r'rateType')
+  RatingRateType? get rateType;
+  // enum rateTypeEnum {  labels,  stars,  smileys,  };
+
+  @BuiltValueField(wireName: r'rateCount')
+  num? get rateCount;
+
+  @BuiltValueField(wireName: r'minRateDescription')
+  SurveyTitle? get minRateDescription;
+
+  @BuiltValueField(wireName: r'maxRateDescription')
+  SurveyTitle? get maxRateDescription;
+
+  @BuiltValueField(wireName: r'rateMax')
+  num? get rateMax;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Rating> get serializer => _$RatingSerializer();
@@ -89,7 +126,7 @@ abstract class Rating implements Question, RatingAllOf, Built<Rating, RatingBuil
 
 class _$RatingSerializer implements PrimitiveSerializer<Rating> {
   @override
-  final Iterable<Type> types = const [Rating, _$Rating];
+  final Iterable<Type> types = const [Rating];
 
   @override
   final String wireName = r'Rating';
@@ -152,7 +189,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.rateMin != null) {
@@ -162,25 +199,23 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         specifiedType: const FullType(num),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.autoGenerate != null) {
@@ -222,7 +257,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'minRateDescription';
       yield serializers.serialize(
         object.minRateDescription,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.descriptionLocation != null) {
@@ -253,18 +288,18 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
-    if (object.showCommentArea != null) {
-      yield r'showCommentArea';
-      yield serializers.serialize(
-        object.showCommentArea,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.showCommentArea != null) {
+      yield r'showCommentArea';
+      yield serializers.serialize(
+        object.showCommentArea,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.enableIf != null) {
@@ -299,7 +334,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -348,7 +383,7 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.displayMode != null) {
@@ -376,23 +411,21 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.maxRateDescription != null) {
       yield r'maxRateDescription';
       yield serializers.serialize(
         object.maxRateDescription,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -430,6 +463,46 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  Rating deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($Rating)) as $Rating;
+  }
+}
+
+/// a concrete implementation of [Rating], since [Rating] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $Rating implements Rating, Built<$Rating, $RatingBuilder> {
+  $Rating._();
+
+  factory $Rating([void Function($RatingBuilder)? updates]) = _$$Rating;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($RatingBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$Rating> get serializer => _$$RatingSerializer();
+}
+
+class _$$RatingSerializer implements PrimitiveSerializer<$Rating> {
+  @override
+  final Iterable<Type> types = const [$Rating, _$$Rating];
+
+  @override
+  final String wireName = r'$Rating';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $Rating object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(Rating))!;
   }
 
   void _deserializeProperties(
@@ -497,9 +570,9 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'rateMin':
           final valueDes = serializers.deserialize(
@@ -518,16 +591,16 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'autoGenerate':
           final valueDes = serializers.deserialize(
@@ -567,9 +640,9 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'minRateDescription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minRateDescription = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.minRateDescription.replace(valueDes);
           break;
         case r'descriptionLocation':
           final valueDes = serializers.deserialize(
@@ -600,19 +673,19 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
-        case r'showCommentArea':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.showCommentArea = valueDes;
-          break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.maxWidth.replace(valueDes);
+          break;
+        case r'showCommentArea':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.showCommentArea = valueDes;
           break;
         case r'enableIf':
           final valueDes = serializers.deserialize(
@@ -645,9 +718,9 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -694,8 +767,8 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'displayMode':
@@ -722,16 +795,16 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'maxRateDescription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxRateDescription = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.maxRateDescription.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -777,12 +850,12 @@ class _$RatingSerializer implements PrimitiveSerializer<Rating> {
   }
 
   @override
-  Rating deserialize(
+  $Rating deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = RatingBuilder();
+    final result = $RatingBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

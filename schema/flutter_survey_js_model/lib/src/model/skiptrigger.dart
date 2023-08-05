@@ -4,7 +4,6 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
-import 'package:flutter_survey_js_model/src/model/skiptrigger_all_of.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -20,7 +19,10 @@ part 'skiptrigger.g.dart';
 /// * [name] 
 /// * [gotoName] 
 @BuiltValue()
-abstract class Skiptrigger implements SkiptriggerAllOf, Surveytrigger, Built<Skiptrigger, SkiptriggerBuilder> {
+abstract class Skiptrigger implements Surveytrigger, Built<Skiptrigger, SkiptriggerBuilder> {
+  @BuiltValueField(wireName: r'gotoName')
+  String get gotoName;
+
   Skiptrigger._();
 
   factory Skiptrigger([void updates(SkiptriggerBuilder b)]) = _$Skiptrigger;
@@ -44,6 +46,13 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
     Skiptrigger object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.operator_ != null) {
       yield r'operator';
       yield serializers.serialize(
@@ -55,13 +64,6 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
       yield r'expression';
       yield serializers.serialize(
         object.expression,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
         specifiedType: const FullType(String),
       );
     }
@@ -79,13 +81,11 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.gotoName != null) {
-      yield r'gotoName';
-      yield serializers.serialize(
-        object.gotoName,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'gotoName';
+    yield serializers.serialize(
+      object.gotoName,
+      specifiedType: const FullType(String),
+    );
   }
 
   @override
@@ -109,6 +109,13 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
         case r'operator':
           final valueDes = serializers.deserialize(
             value,
@@ -122,13 +129,6 @@ class _$SkiptriggerSerializer implements PrimitiveSerializer<Skiptrigger> {
             specifiedType: const FullType(String),
           ) as String;
           result.expression = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

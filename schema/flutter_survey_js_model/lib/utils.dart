@@ -21,7 +21,8 @@ Object? surveyToJson(Survey? survey) {
   return surveySerializers.serializeWith(SurveySerializer(), survey);
 }
 
-extension SelectbaseAllOfChoicesInnerExtension on SelectbaseAllOfChoicesInner {
+extension MatrixdropdownbaseAllOfChoicesInnerExtension
+    on MatrixdropdownbaseAllOfChoicesInner {
   Itemvalue castToItemvalue() {
     if (this.anyOf.isType(Itemvalue)) {
       return this.anyOf.values[this.anyOf.types.indexOf(Itemvalue)]

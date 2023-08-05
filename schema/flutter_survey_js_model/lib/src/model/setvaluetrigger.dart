@@ -4,7 +4,6 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
-import 'package:flutter_survey_js_model/src/model/setvaluetrigger_all_of.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -22,7 +21,16 @@ part 'setvaluetrigger.g.dart';
 /// * [setValue] 
 /// * [isVariable] 
 @BuiltValue()
-abstract class Setvaluetrigger implements SetvaluetriggerAllOf, Surveytrigger, Built<Setvaluetrigger, SetvaluetriggerBuilder> {
+abstract class Setvaluetrigger implements Surveytrigger, Built<Setvaluetrigger, SetvaluetriggerBuilder> {
+  @BuiltValueField(wireName: r'setToName')
+  String get setToName;
+
+  @BuiltValueField(wireName: r'setValue')
+  String? get setValue;
+
+  @BuiltValueField(wireName: r'isVariable')
+  bool? get isVariable;
+
   Setvaluetrigger._();
 
   factory Setvaluetrigger([void updates(SetvaluetriggerBuilder b)]) = _$Setvaluetrigger;
@@ -60,13 +68,11 @@ class _$SetvaluetriggerSerializer implements PrimitiveSerializer<Setvaluetrigger
         specifiedType: const FullType(String),
       );
     }
-    if (object.setToName != null) {
-      yield r'setToName';
-      yield serializers.serialize(
-        object.setToName,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'setToName';
+    yield serializers.serialize(
+      object.setToName,
+      specifiedType: const FullType(String),
+    );
     if (object.setValue != null) {
       yield r'setValue';
       yield serializers.serialize(

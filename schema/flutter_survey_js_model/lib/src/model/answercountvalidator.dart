@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/answercountvalidator_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -18,7 +18,13 @@ part 'answercountvalidator.g.dart';
 /// * [minCount] 
 /// * [maxCount] 
 @BuiltValue()
-abstract class Answercountvalidator implements AnswercountvalidatorAllOf, Surveyvalidator, Built<Answercountvalidator, AnswercountvalidatorBuilder> {
+abstract class Answercountvalidator implements Surveyvalidator, Built<Answercountvalidator, AnswercountvalidatorBuilder> {
+  @BuiltValueField(wireName: r'minCount')
+  num? get minCount;
+
+  @BuiltValueField(wireName: r'maxCount')
+  num? get maxCount;
+
   Answercountvalidator._();
 
   factory Answercountvalidator([void updates(AnswercountvalidatorBuilder b)]) = _$Answercountvalidator;
@@ -53,7 +59,7 @@ class _$AnswercountvalidatorSerializer implements PrimitiveSerializer<Answercoun
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.type != null) {
@@ -103,9 +109,9 @@ class _$AnswercountvalidatorSerializer implements PrimitiveSerializer<Answercoun
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(

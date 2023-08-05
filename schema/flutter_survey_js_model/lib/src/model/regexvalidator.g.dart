@@ -10,7 +10,7 @@ class _$Regexvalidator extends Regexvalidator {
   @override
   final String? regex;
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? type;
 
@@ -59,7 +59,6 @@ class _$Regexvalidator extends Regexvalidator {
 class RegexvalidatorBuilder
     implements
         Builder<Regexvalidator, RegexvalidatorBuilder>,
-        RegexvalidatorAllOfBuilder,
         SurveyvalidatorBuilder {
   _$Regexvalidator? _$v;
 
@@ -67,9 +66,9 @@ class RegexvalidatorBuilder
   String? get regex => _$this._regex;
   set regex(covariant String? regex) => _$this._regex = regex;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _type;
   String? get type => _$this._type;
@@ -83,7 +82,7 @@ class RegexvalidatorBuilder
     final $v = _$v;
     if ($v != null) {
       _regex = $v.regex;
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _type = $v.type;
       _$v = null;
     }
@@ -91,7 +90,6 @@ class RegexvalidatorBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Regexvalidator other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Regexvalidator;
@@ -106,8 +104,22 @@ class RegexvalidatorBuilder
   Regexvalidator build() => _build();
 
   _$Regexvalidator _build() {
-    final _$result =
-        _$v ?? new _$Regexvalidator._(regex: regex, text: text, type: type);
+    _$Regexvalidator _$result;
+    try {
+      _$result = _$v ??
+          new _$Regexvalidator._(
+              regex: regex, text: _text?.build(), type: type);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Regexvalidator', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

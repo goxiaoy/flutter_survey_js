@@ -10,11 +10,11 @@ class _$Survey extends Survey {
   @override
   final SurveyLocale? locale;
   @override
-  final String? title;
+  final SurveyTitle? title;
   @override
-  final String? description;
+  final SurveyTitle? description;
   @override
-  final String? logo;
+  final SurveyTitle? logo;
   @override
   final SurveyLogoWidth? logoWidth;
   @override
@@ -28,13 +28,13 @@ class _$Survey extends Survey {
   @override
   final bool? focusOnFirstError;
   @override
-  final String? completedHtml;
+  final SurveyTitle? completedHtml;
   @override
-  final String? completedBeforeHtml;
+  final SurveyTitle? completedBeforeHtml;
   @override
   final BuiltList<Htmlconditionitem>? completedHtmlOnCondition;
   @override
-  final String? loadingHtml;
+  final SurveyTitle? loadingHtml;
   @override
   final BuiltList<Page>? pages;
   @override
@@ -70,6 +70,8 @@ class _$Survey extends Survey {
   @override
   final SurveyQuestionsOrder? questionsOrder;
   @override
+  final SurveyMatrixDragHandleArea? matrixDragHandleArea;
+  @override
   final bool? showPageNumbers;
   @override
   final SurveyShowQuestionNumbers? showQuestionNumbers;
@@ -84,7 +86,7 @@ class _$Survey extends Survey {
   @override
   final SurveyProgressBarType? progressBarType;
   @override
-  final String? showTOC;
+  final bool? showTOC;
   @override
   final SurveyTocLocation? tocLocation;
   @override
@@ -106,17 +108,19 @@ class _$Survey extends Survey {
   @override
   final bool? autoGrowComment;
   @override
-  final String? startSurveyText;
+  final bool? allowResizeComment;
   @override
-  final String? pagePrevText;
+  final SurveyTitle? startSurveyText;
   @override
-  final String? pageNextText;
+  final SurveyTitle? pagePrevText;
   @override
-  final String? completeText;
+  final SurveyTitle? pageNextText;
   @override
-  final String? previewText;
+  final SurveyTitle? completeText;
   @override
-  final String? editText;
+  final SurveyTitle? previewText;
+  @override
+  final SurveyTitle? editText;
   @override
   final String? requiredText;
   @override
@@ -124,7 +128,7 @@ class _$Survey extends Survey {
   @override
   final String? questionTitlePattern;
   @override
-  final String? questionTitleTemplate;
+  final SurveyTitle? questionTitleTemplate;
   @override
   final bool? firstPageIsStarted;
   @override
@@ -146,9 +150,11 @@ class _$Survey extends Survey {
   @override
   final SurveyLogoWidth? width;
   @override
-  final String? backgroundImage;
+  final SurveyTitle? backgroundImage;
   @override
   final SurveyBackgroundImageFit? backgroundImageFit;
+  @override
+  final SurveyBackgroundImageAttachment? backgroundImageAttachment;
   @override
   final num? backgroundOpacity;
   @override
@@ -189,6 +195,7 @@ class _$Survey extends Survey {
       this.navigateToUrl,
       this.navigateToUrlOnCondition,
       this.questionsOrder,
+      this.matrixDragHandleArea,
       this.showPageNumbers,
       this.showQuestionNumbers,
       this.questionTitleLocation,
@@ -207,6 +214,7 @@ class _$Survey extends Survey {
       this.checkErrorsMode,
       this.textUpdateMode,
       this.autoGrowComment,
+      this.allowResizeComment,
       this.startSurveyText,
       this.pagePrevText,
       this.pageNextText,
@@ -229,6 +237,7 @@ class _$Survey extends Survey {
       this.width,
       this.backgroundImage,
       this.backgroundImageFit,
+      this.backgroundImageAttachment,
       this.backgroundOpacity,
       this.showBrandInfo})
       : super._();
@@ -275,6 +284,7 @@ class _$Survey extends Survey {
         navigateToUrl == other.navigateToUrl &&
         navigateToUrlOnCondition == other.navigateToUrlOnCondition &&
         questionsOrder == other.questionsOrder &&
+        matrixDragHandleArea == other.matrixDragHandleArea &&
         showPageNumbers == other.showPageNumbers &&
         showQuestionNumbers == other.showQuestionNumbers &&
         questionTitleLocation == other.questionTitleLocation &&
@@ -293,6 +303,7 @@ class _$Survey extends Survey {
         checkErrorsMode == other.checkErrorsMode &&
         textUpdateMode == other.textUpdateMode &&
         autoGrowComment == other.autoGrowComment &&
+        allowResizeComment == other.allowResizeComment &&
         startSurveyText == other.startSurveyText &&
         pagePrevText == other.pagePrevText &&
         pageNextText == other.pageNextText &&
@@ -315,6 +326,7 @@ class _$Survey extends Survey {
         width == other.width &&
         backgroundImage == other.backgroundImage &&
         backgroundImageFit == other.backgroundImageFit &&
+        backgroundImageAttachment == other.backgroundImageAttachment &&
         backgroundOpacity == other.backgroundOpacity &&
         showBrandInfo == other.showBrandInfo;
   }
@@ -353,6 +365,7 @@ class _$Survey extends Survey {
     _$hash = $jc(_$hash, navigateToUrl.hashCode);
     _$hash = $jc(_$hash, navigateToUrlOnCondition.hashCode);
     _$hash = $jc(_$hash, questionsOrder.hashCode);
+    _$hash = $jc(_$hash, matrixDragHandleArea.hashCode);
     _$hash = $jc(_$hash, showPageNumbers.hashCode);
     _$hash = $jc(_$hash, showQuestionNumbers.hashCode);
     _$hash = $jc(_$hash, questionTitleLocation.hashCode);
@@ -371,6 +384,7 @@ class _$Survey extends Survey {
     _$hash = $jc(_$hash, checkErrorsMode.hashCode);
     _$hash = $jc(_$hash, textUpdateMode.hashCode);
     _$hash = $jc(_$hash, autoGrowComment.hashCode);
+    _$hash = $jc(_$hash, allowResizeComment.hashCode);
     _$hash = $jc(_$hash, startSurveyText.hashCode);
     _$hash = $jc(_$hash, pagePrevText.hashCode);
     _$hash = $jc(_$hash, pageNextText.hashCode);
@@ -393,6 +407,7 @@ class _$Survey extends Survey {
     _$hash = $jc(_$hash, width.hashCode);
     _$hash = $jc(_$hash, backgroundImage.hashCode);
     _$hash = $jc(_$hash, backgroundImageFit.hashCode);
+    _$hash = $jc(_$hash, backgroundImageAttachment.hashCode);
     _$hash = $jc(_$hash, backgroundOpacity.hashCode);
     _$hash = $jc(_$hash, showBrandInfo.hashCode);
     _$hash = $jf(_$hash);
@@ -433,6 +448,7 @@ class _$Survey extends Survey {
           ..add('navigateToUrl', navigateToUrl)
           ..add('navigateToUrlOnCondition', navigateToUrlOnCondition)
           ..add('questionsOrder', questionsOrder)
+          ..add('matrixDragHandleArea', matrixDragHandleArea)
           ..add('showPageNumbers', showPageNumbers)
           ..add('showQuestionNumbers', showQuestionNumbers)
           ..add('questionTitleLocation', questionTitleLocation)
@@ -451,6 +467,7 @@ class _$Survey extends Survey {
           ..add('checkErrorsMode', checkErrorsMode)
           ..add('textUpdateMode', textUpdateMode)
           ..add('autoGrowComment', autoGrowComment)
+          ..add('allowResizeComment', allowResizeComment)
           ..add('startSurveyText', startSurveyText)
           ..add('pagePrevText', pagePrevText)
           ..add('pageNextText', pageNextText)
@@ -473,6 +490,7 @@ class _$Survey extends Survey {
           ..add('width', width)
           ..add('backgroundImage', backgroundImage)
           ..add('backgroundImageFit', backgroundImageFit)
+          ..add('backgroundImageAttachment', backgroundImageAttachment)
           ..add('backgroundOpacity', backgroundOpacity)
           ..add('showBrandInfo', showBrandInfo))
         .toString();
@@ -486,17 +504,19 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   SurveyLocale? get locale => _$this._locale;
   set locale(SurveyLocale? locale) => _$this._locale = locale;
 
-  String? _title;
-  String? get title => _$this._title;
-  set title(String? title) => _$this._title = title;
+  SurveyTitleBuilder? _title;
+  SurveyTitleBuilder get title => _$this._title ??= new SurveyTitleBuilder();
+  set title(SurveyTitleBuilder? title) => _$this._title = title;
 
-  String? _description;
-  String? get description => _$this._description;
-  set description(String? description) => _$this._description = description;
+  SurveyTitleBuilder? _description;
+  SurveyTitleBuilder get description =>
+      _$this._description ??= new SurveyTitleBuilder();
+  set description(SurveyTitleBuilder? description) =>
+      _$this._description = description;
 
-  String? _logo;
-  String? get logo => _$this._logo;
-  set logo(String? logo) => _$this._logo = logo;
+  SurveyTitleBuilder? _logo;
+  SurveyTitleBuilder get logo => _$this._logo ??= new SurveyTitleBuilder();
+  set logo(SurveyTitleBuilder? logo) => _$this._logo = logo;
 
   SurveyLogoWidthBuilder? _logoWidth;
   SurveyLogoWidthBuilder get logoWidth =>
@@ -529,14 +549,16 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set focusOnFirstError(bool? focusOnFirstError) =>
       _$this._focusOnFirstError = focusOnFirstError;
 
-  String? _completedHtml;
-  String? get completedHtml => _$this._completedHtml;
-  set completedHtml(String? completedHtml) =>
+  SurveyTitleBuilder? _completedHtml;
+  SurveyTitleBuilder get completedHtml =>
+      _$this._completedHtml ??= new SurveyTitleBuilder();
+  set completedHtml(SurveyTitleBuilder? completedHtml) =>
       _$this._completedHtml = completedHtml;
 
-  String? _completedBeforeHtml;
-  String? get completedBeforeHtml => _$this._completedBeforeHtml;
-  set completedBeforeHtml(String? completedBeforeHtml) =>
+  SurveyTitleBuilder? _completedBeforeHtml;
+  SurveyTitleBuilder get completedBeforeHtml =>
+      _$this._completedBeforeHtml ??= new SurveyTitleBuilder();
+  set completedBeforeHtml(SurveyTitleBuilder? completedBeforeHtml) =>
       _$this._completedBeforeHtml = completedBeforeHtml;
 
   ListBuilder<Htmlconditionitem>? _completedHtmlOnCondition;
@@ -546,9 +568,11 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
           ListBuilder<Htmlconditionitem>? completedHtmlOnCondition) =>
       _$this._completedHtmlOnCondition = completedHtmlOnCondition;
 
-  String? _loadingHtml;
-  String? get loadingHtml => _$this._loadingHtml;
-  set loadingHtml(String? loadingHtml) => _$this._loadingHtml = loadingHtml;
+  SurveyTitleBuilder? _loadingHtml;
+  SurveyTitleBuilder get loadingHtml =>
+      _$this._loadingHtml ??= new SurveyTitleBuilder();
+  set loadingHtml(SurveyTitleBuilder? loadingHtml) =>
+      _$this._loadingHtml = loadingHtml;
 
   ListBuilder<Page>? _pages;
   ListBuilder<Page> get pages => _$this._pages ??= new ListBuilder<Page>();
@@ -637,6 +661,12 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set questionsOrder(SurveyQuestionsOrder? questionsOrder) =>
       _$this._questionsOrder = questionsOrder;
 
+  SurveyMatrixDragHandleArea? _matrixDragHandleArea;
+  SurveyMatrixDragHandleArea? get matrixDragHandleArea =>
+      _$this._matrixDragHandleArea;
+  set matrixDragHandleArea(SurveyMatrixDragHandleArea? matrixDragHandleArea) =>
+      _$this._matrixDragHandleArea = matrixDragHandleArea;
+
   bool? _showPageNumbers;
   bool? get showPageNumbers => _$this._showPageNumbers;
   set showPageNumbers(bool? showPageNumbers) =>
@@ -680,9 +710,9 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set progressBarType(SurveyProgressBarType? progressBarType) =>
       _$this._progressBarType = progressBarType;
 
-  String? _showTOC;
-  String? get showTOC => _$this._showTOC;
-  set showTOC(String? showTOC) => _$this._showTOC = showTOC;
+  bool? _showTOC;
+  bool? get showTOC => _$this._showTOC;
+  set showTOC(bool? showTOC) => _$this._showTOC = showTOC;
 
   SurveyTocLocation? _tocLocation;
   SurveyTocLocation? get tocLocation => _$this._tocLocation;
@@ -734,30 +764,45 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set autoGrowComment(bool? autoGrowComment) =>
       _$this._autoGrowComment = autoGrowComment;
 
-  String? _startSurveyText;
-  String? get startSurveyText => _$this._startSurveyText;
-  set startSurveyText(String? startSurveyText) =>
+  bool? _allowResizeComment;
+  bool? get allowResizeComment => _$this._allowResizeComment;
+  set allowResizeComment(bool? allowResizeComment) =>
+      _$this._allowResizeComment = allowResizeComment;
+
+  SurveyTitleBuilder? _startSurveyText;
+  SurveyTitleBuilder get startSurveyText =>
+      _$this._startSurveyText ??= new SurveyTitleBuilder();
+  set startSurveyText(SurveyTitleBuilder? startSurveyText) =>
       _$this._startSurveyText = startSurveyText;
 
-  String? _pagePrevText;
-  String? get pagePrevText => _$this._pagePrevText;
-  set pagePrevText(String? pagePrevText) => _$this._pagePrevText = pagePrevText;
+  SurveyTitleBuilder? _pagePrevText;
+  SurveyTitleBuilder get pagePrevText =>
+      _$this._pagePrevText ??= new SurveyTitleBuilder();
+  set pagePrevText(SurveyTitleBuilder? pagePrevText) =>
+      _$this._pagePrevText = pagePrevText;
 
-  String? _pageNextText;
-  String? get pageNextText => _$this._pageNextText;
-  set pageNextText(String? pageNextText) => _$this._pageNextText = pageNextText;
+  SurveyTitleBuilder? _pageNextText;
+  SurveyTitleBuilder get pageNextText =>
+      _$this._pageNextText ??= new SurveyTitleBuilder();
+  set pageNextText(SurveyTitleBuilder? pageNextText) =>
+      _$this._pageNextText = pageNextText;
 
-  String? _completeText;
-  String? get completeText => _$this._completeText;
-  set completeText(String? completeText) => _$this._completeText = completeText;
+  SurveyTitleBuilder? _completeText;
+  SurveyTitleBuilder get completeText =>
+      _$this._completeText ??= new SurveyTitleBuilder();
+  set completeText(SurveyTitleBuilder? completeText) =>
+      _$this._completeText = completeText;
 
-  String? _previewText;
-  String? get previewText => _$this._previewText;
-  set previewText(String? previewText) => _$this._previewText = previewText;
+  SurveyTitleBuilder? _previewText;
+  SurveyTitleBuilder get previewText =>
+      _$this._previewText ??= new SurveyTitleBuilder();
+  set previewText(SurveyTitleBuilder? previewText) =>
+      _$this._previewText = previewText;
 
-  String? _editText;
-  String? get editText => _$this._editText;
-  set editText(String? editText) => _$this._editText = editText;
+  SurveyTitleBuilder? _editText;
+  SurveyTitleBuilder get editText =>
+      _$this._editText ??= new SurveyTitleBuilder();
+  set editText(SurveyTitleBuilder? editText) => _$this._editText = editText;
 
   String? _requiredText;
   String? get requiredText => _$this._requiredText;
@@ -773,9 +818,10 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
   set questionTitlePattern(String? questionTitlePattern) =>
       _$this._questionTitlePattern = questionTitlePattern;
 
-  String? _questionTitleTemplate;
-  String? get questionTitleTemplate => _$this._questionTitleTemplate;
-  set questionTitleTemplate(String? questionTitleTemplate) =>
+  SurveyTitleBuilder? _questionTitleTemplate;
+  SurveyTitleBuilder get questionTitleTemplate =>
+      _$this._questionTitleTemplate ??= new SurveyTitleBuilder();
+  set questionTitleTemplate(SurveyTitleBuilder? questionTitleTemplate) =>
       _$this._questionTitleTemplate = questionTitleTemplate;
 
   bool? _firstPageIsStarted;
@@ -830,9 +876,10 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _$this._width ??= new SurveyLogoWidthBuilder();
   set width(SurveyLogoWidthBuilder? width) => _$this._width = width;
 
-  String? _backgroundImage;
-  String? get backgroundImage => _$this._backgroundImage;
-  set backgroundImage(String? backgroundImage) =>
+  SurveyTitleBuilder? _backgroundImage;
+  SurveyTitleBuilder get backgroundImage =>
+      _$this._backgroundImage ??= new SurveyTitleBuilder();
+  set backgroundImage(SurveyTitleBuilder? backgroundImage) =>
       _$this._backgroundImage = backgroundImage;
 
   SurveyBackgroundImageFit? _backgroundImageFit;
@@ -840,6 +887,13 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _$this._backgroundImageFit;
   set backgroundImageFit(SurveyBackgroundImageFit? backgroundImageFit) =>
       _$this._backgroundImageFit = backgroundImageFit;
+
+  SurveyBackgroundImageAttachment? _backgroundImageAttachment;
+  SurveyBackgroundImageAttachment? get backgroundImageAttachment =>
+      _$this._backgroundImageAttachment;
+  set backgroundImageAttachment(
+          SurveyBackgroundImageAttachment? backgroundImageAttachment) =>
+      _$this._backgroundImageAttachment = backgroundImageAttachment;
 
   num? _backgroundOpacity;
   num? get backgroundOpacity => _$this._backgroundOpacity;
@@ -859,19 +913,19 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
     final $v = _$v;
     if ($v != null) {
       _locale = $v.locale;
-      _title = $v.title;
-      _description = $v.description;
-      _logo = $v.logo;
+      _title = $v.title?.toBuilder();
+      _description = $v.description?.toBuilder();
+      _logo = $v.logo?.toBuilder();
       _logoWidth = $v.logoWidth?.toBuilder();
       _logoHeight = $v.logoHeight?.toBuilder();
       _logoFit = $v.logoFit;
       _logoPosition = $v.logoPosition;
       _focusFirstQuestionAutomatic = $v.focusFirstQuestionAutomatic;
       _focusOnFirstError = $v.focusOnFirstError;
-      _completedHtml = $v.completedHtml;
-      _completedBeforeHtml = $v.completedBeforeHtml;
+      _completedHtml = $v.completedHtml?.toBuilder();
+      _completedBeforeHtml = $v.completedBeforeHtml?.toBuilder();
       _completedHtmlOnCondition = $v.completedHtmlOnCondition?.toBuilder();
-      _loadingHtml = $v.loadingHtml;
+      _loadingHtml = $v.loadingHtml?.toBuilder();
       _pages = $v.pages?.toBuilder();
       _questions = $v.questions?.toBuilder();
       _triggers = $v.triggers?.toBuilder();
@@ -889,6 +943,7 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _navigateToUrl = $v.navigateToUrl;
       _navigateToUrlOnCondition = $v.navigateToUrlOnCondition?.toBuilder();
       _questionsOrder = $v.questionsOrder;
+      _matrixDragHandleArea = $v.matrixDragHandleArea;
       _showPageNumbers = $v.showPageNumbers;
       _showQuestionNumbers = $v.showQuestionNumbers?.toBuilder();
       _questionTitleLocation = $v.questionTitleLocation;
@@ -907,16 +962,17 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _checkErrorsMode = $v.checkErrorsMode;
       _textUpdateMode = $v.textUpdateMode;
       _autoGrowComment = $v.autoGrowComment;
-      _startSurveyText = $v.startSurveyText;
-      _pagePrevText = $v.pagePrevText;
-      _pageNextText = $v.pageNextText;
-      _completeText = $v.completeText;
-      _previewText = $v.previewText;
-      _editText = $v.editText;
+      _allowResizeComment = $v.allowResizeComment;
+      _startSurveyText = $v.startSurveyText?.toBuilder();
+      _pagePrevText = $v.pagePrevText?.toBuilder();
+      _pageNextText = $v.pageNextText?.toBuilder();
+      _completeText = $v.completeText?.toBuilder();
+      _previewText = $v.previewText?.toBuilder();
+      _editText = $v.editText?.toBuilder();
       _requiredText = $v.requiredText;
       _questionStartIndex = $v.questionStartIndex;
       _questionTitlePattern = $v.questionTitlePattern;
-      _questionTitleTemplate = $v.questionTitleTemplate;
+      _questionTitleTemplate = $v.questionTitleTemplate?.toBuilder();
       _firstPageIsStarted = $v.firstPageIsStarted;
       _isSinglePage = $v.isSinglePage;
       _questionsOnPageMode = $v.questionsOnPageMode;
@@ -927,8 +983,9 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _showTimerPanelMode = $v.showTimerPanelMode;
       _widthMode = $v.widthMode;
       _width = $v.width?.toBuilder();
-      _backgroundImage = $v.backgroundImage;
+      _backgroundImage = $v.backgroundImage?.toBuilder();
       _backgroundImageFit = $v.backgroundImageFit;
+      _backgroundImageAttachment = $v.backgroundImageAttachment;
       _backgroundOpacity = $v.backgroundOpacity;
       _showBrandInfo = $v.showBrandInfo;
       _$v = null;
@@ -956,19 +1013,19 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
       _$result = _$v ??
           new _$Survey._(
               locale: locale,
-              title: title,
-              description: description,
-              logo: logo,
+              title: _title?.build(),
+              description: _description?.build(),
+              logo: _logo?.build(),
               logoWidth: _logoWidth?.build(),
               logoHeight: _logoHeight?.build(),
               logoFit: logoFit,
               logoPosition: logoPosition,
               focusFirstQuestionAutomatic: focusFirstQuestionAutomatic,
               focusOnFirstError: focusOnFirstError,
-              completedHtml: completedHtml,
-              completedBeforeHtml: completedBeforeHtml,
+              completedHtml: _completedHtml?.build(),
+              completedBeforeHtml: _completedBeforeHtml?.build(),
               completedHtmlOnCondition: _completedHtmlOnCondition?.build(),
-              loadingHtml: loadingHtml,
+              loadingHtml: _loadingHtml?.build(),
               pages: _pages?.build(),
               questions: _questions?.build(),
               triggers: _triggers?.build(),
@@ -986,6 +1043,7 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
               navigateToUrl: navigateToUrl,
               navigateToUrlOnCondition: _navigateToUrlOnCondition?.build(),
               questionsOrder: questionsOrder,
+              matrixDragHandleArea: matrixDragHandleArea,
               showPageNumbers: showPageNumbers,
               showQuestionNumbers: _showQuestionNumbers?.build(),
               questionTitleLocation: questionTitleLocation,
@@ -1004,16 +1062,17 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
               checkErrorsMode: checkErrorsMode,
               textUpdateMode: textUpdateMode,
               autoGrowComment: autoGrowComment,
-              startSurveyText: startSurveyText,
-              pagePrevText: pagePrevText,
-              pageNextText: pageNextText,
-              completeText: completeText,
-              previewText: previewText,
-              editText: editText,
+              allowResizeComment: allowResizeComment,
+              startSurveyText: _startSurveyText?.build(),
+              pagePrevText: _pagePrevText?.build(),
+              pageNextText: _pageNextText?.build(),
+              completeText: _completeText?.build(),
+              previewText: _previewText?.build(),
+              editText: _editText?.build(),
               requiredText: requiredText,
               questionStartIndex: questionStartIndex,
               questionTitlePattern: questionTitlePattern,
-              questionTitleTemplate: questionTitleTemplate,
+              questionTitleTemplate: _questionTitleTemplate?.build(),
               firstPageIsStarted: firstPageIsStarted,
               isSinglePage: isSinglePage,
               questionsOnPageMode: questionsOnPageMode,
@@ -1024,21 +1083,33 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
               showTimerPanelMode: showTimerPanelMode,
               widthMode: widthMode,
               width: _width?.build(),
-              backgroundImage: backgroundImage,
+              backgroundImage: _backgroundImage?.build(),
               backgroundImageFit: backgroundImageFit,
+              backgroundImageAttachment: backgroundImageAttachment,
               backgroundOpacity: backgroundOpacity,
               showBrandInfo: showBrandInfo);
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'title';
+        _title?.build();
+        _$failedField = 'description';
+        _description?.build();
+        _$failedField = 'logo';
+        _logo?.build();
         _$failedField = 'logoWidth';
         _logoWidth?.build();
         _$failedField = 'logoHeight';
         _logoHeight?.build();
 
+        _$failedField = 'completedHtml';
+        _completedHtml?.build();
+        _$failedField = 'completedBeforeHtml';
+        _completedBeforeHtml?.build();
         _$failedField = 'completedHtmlOnCondition';
         _completedHtmlOnCondition?.build();
-
+        _$failedField = 'loadingHtml';
+        _loadingHtml?.build();
         _$failedField = 'pages';
         _pages?.build();
         _$failedField = 'questions';
@@ -1054,8 +1125,26 @@ class SurveyBuilder implements Builder<Survey, SurveyBuilder> {
         _$failedField = 'showQuestionNumbers';
         _showQuestionNumbers?.build();
 
+        _$failedField = 'startSurveyText';
+        _startSurveyText?.build();
+        _$failedField = 'pagePrevText';
+        _pagePrevText?.build();
+        _$failedField = 'pageNextText';
+        _pageNextText?.build();
+        _$failedField = 'completeText';
+        _completeText?.build();
+        _$failedField = 'previewText';
+        _previewText?.build();
+        _$failedField = 'editText';
+        _editText?.build();
+
+        _$failedField = 'questionTitleTemplate';
+        _questionTitleTemplate?.build();
+
         _$failedField = 'width';
         _width?.build();
+        _$failedField = 'backgroundImage';
+        _backgroundImage?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Survey', _$failedField, e.toString());

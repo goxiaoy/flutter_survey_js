@@ -7,9 +7,9 @@ part of 'signaturepad_data_format.dart';
 // **************************************************************************
 
 const SignaturepadDataFormat
-    _$doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket =
+    _$pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket =
     const SignaturepadDataFormat._(
-        'doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket');
+        'pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket');
 const SignaturepadDataFormat
     _$imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket =
     const SignaturepadDataFormat._(
@@ -23,8 +23,8 @@ const SignaturepadDataFormat _$unknownDefaultOpenApi =
 
 SignaturepadDataFormat _$valueOf(String name) {
   switch (name) {
-    case 'doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket':
-      return _$doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket;
+    case 'pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket':
+      return _$pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket;
     case 'imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket':
       return _$imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket;
     case 'imageSlashSvgPlusXmlDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteSVGDoubleQuoteRightCurlyBracket':
@@ -38,7 +38,7 @@ SignaturepadDataFormat _$valueOf(String name) {
 
 final BuiltSet<SignaturepadDataFormat> _$values =
     new BuiltSet<SignaturepadDataFormat>(const <SignaturepadDataFormat>[
-  _$doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket,
+  _$pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket,
   _$imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket,
   _$imageSlashSvgPlusXmlDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteSVGDoubleQuoteRightCurlyBracket,
   _$unknownDefaultOpenApi,
@@ -47,8 +47,8 @@ final BuiltSet<SignaturepadDataFormat> _$values =
 class _$SignaturepadDataFormatMeta {
   const _$SignaturepadDataFormatMeta();
   SignaturepadDataFormat
-      get doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket =>
-          _$doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket;
+      get pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket =>
+          _$pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket;
   SignaturepadDataFormat
       get imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket =>
           _$imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket;
@@ -72,8 +72,8 @@ Serializer<SignaturepadDataFormat> _$signaturepadDataFormatSerializer =
 class _$SignaturepadDataFormatSerializer
     implements PrimitiveSerializer<SignaturepadDataFormat> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket':
-        '{\"value\":\"\",\"text\":\"PNG\"}',
+    'pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket':
+        '{\"value\":\"png\",\"text\":\"PNG\"}',
     'imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket':
         '{\"value\":\"image/jpeg\",\"text\":\"JPEG\"}',
     'imageSlashSvgPlusXmlDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteSVGDoubleQuoteRightCurlyBracket':
@@ -81,8 +81,8 @@ class _$SignaturepadDataFormatSerializer
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    '{\"value\":\"\",\"text\":\"PNG\"}':
-        'doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket',
+    '{\"value\":\"png\",\"text\":\"PNG\"}':
+        'pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket',
     '{\"value\":\"image/jpeg\",\"text\":\"JPEG\"}':
         'imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket',
     '{\"value\":\"image/svg+xml\",\"text\":\"SVG\"}':

@@ -9,10 +9,10 @@ import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
-import 'package:flutter_survey_js_model/src/model/boolean_all_of.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -60,14 +60,22 @@ part 'boolean.g.dart';
 /// * [labelFalse] 
 /// * [valueTrue] 
 /// * [valueFalse] 
-@BuiltValue()
-abstract class Boolean implements BooleanAllOf, Question, Built<Boolean, BooleanBuilder> {
-  Boolean._();
+@BuiltValue(instantiable: false)
+abstract class Boolean implements Question {
+  @BuiltValueField(wireName: r'valueTrue')
+  String? get valueTrue;
 
-  factory Boolean([void updates(BooleanBuilder b)]) = _$Boolean;
+  @BuiltValueField(wireName: r'valueFalse')
+  String? get valueFalse;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(BooleanBuilder b) => b;
+  @BuiltValueField(wireName: r'labelTrue')
+  SurveyTitle? get labelTrue;
+
+  @BuiltValueField(wireName: r'labelFalse')
+  SurveyTitle? get labelFalse;
+
+  @BuiltValueField(wireName: r'label')
+  SurveyTitle? get label;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Boolean> get serializer => _$BooleanSerializer();
@@ -75,7 +83,7 @@ abstract class Boolean implements BooleanAllOf, Question, Built<Boolean, Boolean
 
 class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
   @override
-  final Iterable<Type> types = const [Boolean, _$Boolean];
+  final Iterable<Type> types = const [Boolean];
 
   @override
   final String wireName = r'Boolean';
@@ -138,35 +146,33 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.labelFalse != null) {
       yield r'labelFalse';
       yield serializers.serialize(
         object.labelFalse,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -257,14 +263,14 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.labelTrue != null) {
       yield r'labelTrue';
       yield serializers.serialize(
         object.labelTrue,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -299,14 +305,14 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.label != null) {
       yield r'label';
       yield serializers.serialize(
         object.label,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.titleLocation != null) {
@@ -320,16 +326,14 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -360,6 +364,46 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  Boolean deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($Boolean)) as $Boolean;
+  }
+}
+
+/// a concrete implementation of [Boolean], since [Boolean] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $Boolean implements Boolean, Built<$Boolean, $BooleanBuilder> {
+  $Boolean._();
+
+  factory $Boolean([void Function($BooleanBuilder)? updates]) = _$$Boolean;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($BooleanBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$Boolean> get serializer => _$$BooleanSerializer();
+}
+
+class _$$BooleanSerializer implements PrimitiveSerializer<$Boolean> {
+  @override
+  final Iterable<Type> types = const [$Boolean, _$$Boolean];
+
+  @override
+  final String wireName = r'$Boolean';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $Boolean object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(Boolean))!;
   }
 
   void _deserializeProperties(
@@ -427,16 +471,16 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'labelFalse':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.labelFalse = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.labelFalse.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
@@ -448,16 +492,16 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -547,16 +591,16 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'labelTrue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.labelTrue = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.labelTrue.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -589,16 +633,16 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'label':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.label = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.label.replace(valueDes);
           break;
         case r'titleLocation':
           final valueDes = serializers.deserialize(
@@ -610,9 +654,9 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -651,12 +695,12 @@ class _$BooleanSerializer implements PrimitiveSerializer<Boolean> {
   }
 
   @override
-  Boolean deserialize(
+  $Boolean deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = BooleanBuilder();
+    final result = $BooleanBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

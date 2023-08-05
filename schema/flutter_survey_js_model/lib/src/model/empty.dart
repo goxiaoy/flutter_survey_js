@@ -9,6 +9,7 @@ import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
@@ -125,28 +126,26 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -230,7 +229,7 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -265,7 +264,7 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.titleLocation != null) {
@@ -279,16 +278,14 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -379,9 +376,9 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
@@ -393,16 +390,16 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -485,9 +482,9 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -520,8 +517,8 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'titleLocation':
@@ -534,9 +531,9 @@ class _$EmptySerializer implements PrimitiveSerializer<Empty> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(

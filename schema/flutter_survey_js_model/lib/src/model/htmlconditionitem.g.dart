@@ -8,15 +8,15 @@ part of 'htmlconditionitem.dart';
 
 class _$Htmlconditionitem extends Htmlconditionitem {
   @override
-  final String? expression;
+  final SurveyTitle? html;
   @override
-  final String? html;
+  final String? expression;
 
   factory _$Htmlconditionitem(
           [void Function(HtmlconditionitemBuilder)? updates]) =>
       (new HtmlconditionitemBuilder()..update(updates))._build();
 
-  _$Htmlconditionitem._({this.expression, this.html}) : super._();
+  _$Htmlconditionitem._({this.html, this.expression}) : super._();
 
   @override
   Htmlconditionitem rebuild(void Function(HtmlconditionitemBuilder) updates) =>
@@ -30,15 +30,15 @@ class _$Htmlconditionitem extends Htmlconditionitem {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Htmlconditionitem &&
-        expression == other.expression &&
-        html == other.html;
+        html == other.html &&
+        expression == other.expression;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, expression.hashCode);
     _$hash = $jc(_$hash, html.hashCode);
+    _$hash = $jc(_$hash, expression.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -46,8 +46,8 @@ class _$Htmlconditionitem extends Htmlconditionitem {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Htmlconditionitem')
-          ..add('expression', expression)
-          ..add('html', html))
+          ..add('html', html)
+          ..add('expression', expression))
         .toString();
   }
 }
@@ -55,18 +55,17 @@ class _$Htmlconditionitem extends Htmlconditionitem {
 class HtmlconditionitemBuilder
     implements
         Builder<Htmlconditionitem, HtmlconditionitemBuilder>,
-        ExpressionitemBuilder,
-        HtmlconditionitemAllOfBuilder {
+        ExpressionitemBuilder {
   _$Htmlconditionitem? _$v;
+
+  SurveyTitleBuilder? _html;
+  SurveyTitleBuilder get html => _$this._html ??= new SurveyTitleBuilder();
+  set html(covariant SurveyTitleBuilder? html) => _$this._html = html;
 
   String? _expression;
   String? get expression => _$this._expression;
   set expression(covariant String? expression) =>
       _$this._expression = expression;
-
-  String? _html;
-  String? get html => _$this._html;
-  set html(covariant String? html) => _$this._html = html;
 
   HtmlconditionitemBuilder() {
     Htmlconditionitem._defaults(this);
@@ -75,15 +74,14 @@ class HtmlconditionitemBuilder
   HtmlconditionitemBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _html = $v.html?.toBuilder();
       _expression = $v.expression;
-      _html = $v.html;
       _$v = null;
     }
     return this;
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Htmlconditionitem other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Htmlconditionitem;
@@ -98,8 +96,22 @@ class HtmlconditionitemBuilder
   Htmlconditionitem build() => _build();
 
   _$Htmlconditionitem _build() {
-    final _$result =
-        _$v ?? new _$Htmlconditionitem._(expression: expression, html: html);
+    _$Htmlconditionitem _$result;
+    try {
+      _$result = _$v ??
+          new _$Htmlconditionitem._(
+              html: _html?.build(), expression: expression);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'html';
+        _html?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Htmlconditionitem', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -11,10 +11,10 @@ part 'rating_auto_generate.g.dart';
 
 class RatingAutoGenerate extends EnumClass {
 
-  @BuiltValueEnumConst(wireName: r'{\"value\":true,\"text\":\"Generate\"}')
-  static const RatingAutoGenerate trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket = _$trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket;
-  @BuiltValueEnumConst(wireName: r'{\"value\":false,\"text\":\"Enter manually\"}')
-  static const RatingAutoGenerate falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket = _$falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket;
+  @BuiltValueEnumConst(wireName: r'true')
+  static const RatingAutoGenerate true_ = _$true_;
+  @BuiltValueEnumConst(wireName: r'false')
+  static const RatingAutoGenerate false_ = _$false_;
   @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
   static const RatingAutoGenerate unknownDefaultOpenApi = _$unknownDefaultOpenApi;
 

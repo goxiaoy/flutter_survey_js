@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -50,7 +51,7 @@ class _$EmailvalidatorSerializer implements PrimitiveSerializer<Emailvalidator> 
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
   }
@@ -86,9 +87,9 @@ class _$EmailvalidatorSerializer implements PrimitiveSerializer<Emailvalidator> 
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         default:
           unhandled.add(key);

@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/expressionvalidator_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,7 +17,10 @@ part 'expressionvalidator.g.dart';
 /// * [type] 
 /// * [expression] 
 @BuiltValue()
-abstract class Expressionvalidator implements ExpressionvalidatorAllOf, Surveyvalidator, Built<Expressionvalidator, ExpressionvalidatorBuilder> {
+abstract class Expressionvalidator implements Surveyvalidator, Built<Expressionvalidator, ExpressionvalidatorBuilder> {
+  @BuiltValueField(wireName: r'expression')
+  String? get expression;
+
   Expressionvalidator._();
 
   factory Expressionvalidator([void updates(ExpressionvalidatorBuilder b)]) = _$Expressionvalidator;
@@ -41,6 +44,13 @@ class _$ExpressionvalidatorSerializer implements PrimitiveSerializer<Expressionv
     Expressionvalidator object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.expression != null) {
       yield r'expression';
       yield serializers.serialize(
@@ -52,14 +62,7 @@ class _$ExpressionvalidatorSerializer implements PrimitiveSerializer<Expressionv
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
   }
@@ -85,6 +88,13 @@ class _$ExpressionvalidatorSerializer implements PrimitiveSerializer<Expressionv
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
+          break;
         case r'expression':
           final valueDes = serializers.deserialize(
             value,
@@ -95,16 +105,9 @@ class _$ExpressionvalidatorSerializer implements PrimitiveSerializer<Expressionv
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
-          break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.type = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         default:
           unhandled.add(key);

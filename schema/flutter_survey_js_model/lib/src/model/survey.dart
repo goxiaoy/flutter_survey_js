@@ -21,6 +21,7 @@ import 'package:flutter_survey_js_model/src/model/survey_question_title_location
 import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/survey_background_image_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_question_error_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_matrix_drag_handle_area.dart';
 import 'package:flutter_survey_js_model/src/model/survey_show_timer_panel.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_fit.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_position.dart';
@@ -28,10 +29,12 @@ import 'package:flutter_survey_js_model/src/model/urlconditionitem.dart';
 import 'package:flutter_survey_js_model/src/model/htmlconditionitem.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/survey_background_image_attachment.dart';
 import 'package:flutter_survey_js_model/src/model/survey_check_errors_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_clear_invisible_values.dart';
 import 'package:flutter_survey_js_model/src/model/survey_locale.dart';
 import 'package:flutter_survey_js_model/src/model/survey_toc_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/survey_width_mode.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -72,6 +75,7 @@ part 'survey.g.dart';
 /// * [navigateToUrl] 
 /// * [navigateToUrlOnCondition] 
 /// * [questionsOrder] 
+/// * [matrixDragHandleArea] 
 /// * [showPageNumbers] 
 /// * [showQuestionNumbers] 
 /// * [questionTitleLocation] 
@@ -90,6 +94,7 @@ part 'survey.g.dart';
 /// * [checkErrorsMode] 
 /// * [textUpdateMode] 
 /// * [autoGrowComment] 
+/// * [allowResizeComment] 
 /// * [startSurveyText] 
 /// * [pagePrevText] 
 /// * [pageNextText] 
@@ -112,6 +117,7 @@ part 'survey.g.dart';
 /// * [width] 
 /// * [backgroundImage] 
 /// * [backgroundImageFit] 
+/// * [backgroundImageAttachment] 
 /// * [backgroundOpacity] 
 /// * [showBrandInfo] 
 @BuiltValue()
@@ -121,13 +127,13 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   // enum localeEnum {  ,  };
 
   @BuiltValueField(wireName: r'title')
-  String? get title;
+  SurveyTitle? get title;
 
   @BuiltValueField(wireName: r'description')
-  String? get description;
+  SurveyTitle? get description;
 
   @BuiltValueField(wireName: r'logo')
-  String? get logo;
+  SurveyTitle? get logo;
 
   @BuiltValueField(wireName: r'logoWidth')
   SurveyLogoWidth? get logoWidth;
@@ -150,16 +156,16 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   bool? get focusOnFirstError;
 
   @BuiltValueField(wireName: r'completedHtml')
-  String? get completedHtml;
+  SurveyTitle? get completedHtml;
 
   @BuiltValueField(wireName: r'completedBeforeHtml')
-  String? get completedBeforeHtml;
+  SurveyTitle? get completedBeforeHtml;
 
   @BuiltValueField(wireName: r'completedHtmlOnCondition')
   BuiltList<Htmlconditionitem>? get completedHtmlOnCondition;
 
   @BuiltValueField(wireName: r'loadingHtml')
-  String? get loadingHtml;
+  SurveyTitle? get loadingHtml;
 
   @BuiltValueField(wireName: r'pages')
   BuiltList<Page>? get pages;
@@ -214,6 +220,10 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   SurveyQuestionsOrder? get questionsOrder;
   // enum questionsOrderEnum {  initial,  random,  };
 
+  @BuiltValueField(wireName: r'matrixDragHandleArea')
+  SurveyMatrixDragHandleArea? get matrixDragHandleArea;
+  // enum matrixDragHandleAreaEnum {  entireItem,  icon,  };
+
   @BuiltValueField(wireName: r'showPageNumbers')
   bool? get showPageNumbers;
 
@@ -241,7 +251,7 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   // enum progressBarTypeEnum {  pages,  questions,  requiredQuestions,  correctQuestions,  buttons,  };
 
   @BuiltValueField(wireName: r'showTOC')
-  String? get showTOC;
+  bool? get showTOC;
 
   @BuiltValueField(wireName: r'tocLocation')
   SurveyTocLocation? get tocLocation;
@@ -278,23 +288,26 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   @BuiltValueField(wireName: r'autoGrowComment')
   bool? get autoGrowComment;
 
+  @BuiltValueField(wireName: r'allowResizeComment')
+  bool? get allowResizeComment;
+
   @BuiltValueField(wireName: r'startSurveyText')
-  String? get startSurveyText;
+  SurveyTitle? get startSurveyText;
 
   @BuiltValueField(wireName: r'pagePrevText')
-  String? get pagePrevText;
+  SurveyTitle? get pagePrevText;
 
   @BuiltValueField(wireName: r'pageNextText')
-  String? get pageNextText;
+  SurveyTitle? get pageNextText;
 
   @BuiltValueField(wireName: r'completeText')
-  String? get completeText;
+  SurveyTitle? get completeText;
 
   @BuiltValueField(wireName: r'previewText')
-  String? get previewText;
+  SurveyTitle? get previewText;
 
   @BuiltValueField(wireName: r'editText')
-  String? get editText;
+  SurveyTitle? get editText;
 
   @BuiltValueField(wireName: r'requiredText')
   String? get requiredText;
@@ -306,7 +319,7 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   String? get questionTitlePattern;
 
   @BuiltValueField(wireName: r'questionTitleTemplate')
-  String? get questionTitleTemplate;
+  SurveyTitle? get questionTitleTemplate;
 
   @BuiltValueField(wireName: r'firstPageIsStarted')
   bool? get firstPageIsStarted;
@@ -344,11 +357,15 @@ abstract class Survey implements Built<Survey, SurveyBuilder> {
   SurveyLogoWidth? get width;
 
   @BuiltValueField(wireName: r'backgroundImage')
-  String? get backgroundImage;
+  SurveyTitle? get backgroundImage;
 
   @BuiltValueField(wireName: r'backgroundImageFit')
   SurveyBackgroundImageFit? get backgroundImageFit;
   // enum backgroundImageFitEnum {  auto,  contain,  cover,  };
+
+  @BuiltValueField(wireName: r'backgroundImageAttachment')
+  SurveyBackgroundImageAttachment? get backgroundImageAttachment;
+  // enum backgroundImageAttachmentEnum {  scroll,  fixed,  };
 
   @BuiltValueField(wireName: r'backgroundOpacity')
   num? get backgroundOpacity;
@@ -390,21 +407,21 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.description != null) {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.logo != null) {
       yield r'logo';
       yield serializers.serialize(
         object.logo,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.logoWidth != null) {
@@ -453,14 +470,14 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'completedHtml';
       yield serializers.serialize(
         object.completedHtml,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.completedBeforeHtml != null) {
       yield r'completedBeforeHtml';
       yield serializers.serialize(
         object.completedBeforeHtml,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.completedHtmlOnCondition != null) {
@@ -474,7 +491,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'loadingHtml';
       yield serializers.serialize(
         object.loadingHtml,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.pages != null) {
@@ -596,6 +613,13 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         specifiedType: const FullType(SurveyQuestionsOrder),
       );
     }
+    if (object.matrixDragHandleArea != null) {
+      yield r'matrixDragHandleArea';
+      yield serializers.serialize(
+        object.matrixDragHandleArea,
+        specifiedType: const FullType(SurveyMatrixDragHandleArea),
+      );
+    }
     if (object.showPageNumbers != null) {
       yield r'showPageNumbers';
       yield serializers.serialize(
@@ -649,7 +673,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'showTOC';
       yield serializers.serialize(
         object.showTOC,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.tocLocation != null) {
@@ -722,46 +746,53 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         specifiedType: const FullType(bool),
       );
     }
+    if (object.allowResizeComment != null) {
+      yield r'allowResizeComment';
+      yield serializers.serialize(
+        object.allowResizeComment,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.startSurveyText != null) {
       yield r'startSurveyText';
       yield serializers.serialize(
         object.startSurveyText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.pagePrevText != null) {
       yield r'pagePrevText';
       yield serializers.serialize(
         object.pagePrevText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.pageNextText != null) {
       yield r'pageNextText';
       yield serializers.serialize(
         object.pageNextText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.completeText != null) {
       yield r'completeText';
       yield serializers.serialize(
         object.completeText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.previewText != null) {
       yield r'previewText';
       yield serializers.serialize(
         object.previewText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.editText != null) {
       yield r'editText';
       yield serializers.serialize(
         object.editText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.requiredText != null) {
@@ -789,7 +820,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'questionTitleTemplate';
       yield serializers.serialize(
         object.questionTitleTemplate,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.firstPageIsStarted != null) {
@@ -866,7 +897,7 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield r'backgroundImage';
       yield serializers.serialize(
         object.backgroundImage,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.backgroundImageFit != null) {
@@ -874,6 +905,13 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
       yield serializers.serialize(
         object.backgroundImageFit,
         specifiedType: const FullType(SurveyBackgroundImageFit),
+      );
+    }
+    if (object.backgroundImageAttachment != null) {
+      yield r'backgroundImageAttachment';
+      yield serializers.serialize(
+        object.backgroundImageAttachment,
+        specifiedType: const FullType(SurveyBackgroundImageAttachment),
       );
     }
     if (object.backgroundOpacity != null) {
@@ -923,23 +961,23 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'logo':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.logo = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.logo.replace(valueDes);
           break;
         case r'logoWidth':
           final valueDes = serializers.deserialize(
@@ -986,16 +1024,16 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'completedHtml':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.completedHtml = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.completedHtml.replace(valueDes);
           break;
         case r'completedBeforeHtml':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.completedBeforeHtml = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.completedBeforeHtml.replace(valueDes);
           break;
         case r'completedHtmlOnCondition':
           final valueDes = serializers.deserialize(
@@ -1007,9 +1045,9 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'loadingHtml':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.loadingHtml = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.loadingHtml.replace(valueDes);
           break;
         case r'pages':
           final valueDes = serializers.deserialize(
@@ -1130,6 +1168,13 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
           ) as SurveyQuestionsOrder;
           result.questionsOrder = valueDes;
           break;
+        case r'matrixDragHandleArea':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyMatrixDragHandleArea),
+          ) as SurveyMatrixDragHandleArea;
+          result.matrixDragHandleArea = valueDes;
+          break;
         case r'showPageNumbers':
           final valueDes = serializers.deserialize(
             value,
@@ -1182,8 +1227,8 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'showTOC':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.showTOC = valueDes;
           break;
         case r'tocLocation':
@@ -1256,47 +1301,54 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
           ) as bool;
           result.autoGrowComment = valueDes;
           break;
+        case r'allowResizeComment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.allowResizeComment = valueDes;
+          break;
         case r'startSurveyText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.startSurveyText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.startSurveyText.replace(valueDes);
           break;
         case r'pagePrevText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.pagePrevText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.pagePrevText.replace(valueDes);
           break;
         case r'pageNextText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.pageNextText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.pageNextText.replace(valueDes);
           break;
         case r'completeText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.completeText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.completeText.replace(valueDes);
           break;
         case r'previewText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.previewText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.previewText.replace(valueDes);
           break;
         case r'editText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.editText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.editText.replace(valueDes);
           break;
         case r'requiredText':
           final valueDes = serializers.deserialize(
@@ -1322,9 +1374,9 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'questionTitleTemplate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.questionTitleTemplate = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.questionTitleTemplate.replace(valueDes);
           break;
         case r'firstPageIsStarted':
           final valueDes = serializers.deserialize(
@@ -1399,9 +1451,9 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
         case r'backgroundImage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.backgroundImage = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.backgroundImage.replace(valueDes);
           break;
         case r'backgroundImageFit':
           final valueDes = serializers.deserialize(
@@ -1409,6 +1461,13 @@ class _$SurveySerializer implements PrimitiveSerializer<Survey> {
             specifiedType: const FullType(SurveyBackgroundImageFit),
           ) as SurveyBackgroundImageFit;
           result.backgroundImageFit = valueDes;
+          break;
+        case r'backgroundImageAttachment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyBackgroundImageAttachment),
+          ) as SurveyBackgroundImageAttachment;
+          result.backgroundImageAttachment = valueDes;
           break;
         case r'backgroundOpacity':
           final valueDes = serializers.deserialize(

@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/regexvalidator_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,7 +17,10 @@ part 'regexvalidator.g.dart';
 /// * [type] 
 /// * [regex] 
 @BuiltValue()
-abstract class Regexvalidator implements RegexvalidatorAllOf, Surveyvalidator, Built<Regexvalidator, RegexvalidatorBuilder> {
+abstract class Regexvalidator implements Surveyvalidator, Built<Regexvalidator, RegexvalidatorBuilder> {
+  @BuiltValueField(wireName: r'regex')
+  String? get regex;
+
   Regexvalidator._();
 
   factory Regexvalidator([void updates(RegexvalidatorBuilder b)]) = _$Regexvalidator;
@@ -41,6 +44,13 @@ class _$RegexvalidatorSerializer implements PrimitiveSerializer<Regexvalidator> 
     Regexvalidator object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.regex != null) {
       yield r'regex';
       yield serializers.serialize(
@@ -52,14 +62,7 @@ class _$RegexvalidatorSerializer implements PrimitiveSerializer<Regexvalidator> 
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
   }
@@ -85,6 +88,13 @@ class _$RegexvalidatorSerializer implements PrimitiveSerializer<Regexvalidator> 
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
+          break;
         case r'regex':
           final valueDes = serializers.deserialize(
             value,
@@ -95,16 +105,9 @@ class _$RegexvalidatorSerializer implements PrimitiveSerializer<Regexvalidator> 
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
-          break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.type = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         default:
           unhandled.add(key);

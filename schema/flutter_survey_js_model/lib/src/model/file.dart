@@ -9,7 +9,7 @@ import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
-import 'package:flutter_survey_js_model/src/model/file_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
@@ -65,8 +65,42 @@ part 'file.g.dart';
 /// * [waitForUpload] 
 /// * [maxSize] 
 /// * [needConfirmRemoveFile] 
+/// * [allowCameraAccess] 
 @BuiltValue()
-abstract class File implements FileAllOf, Question, Built<File, FileBuilder> {
+abstract class File implements Question, Built<File, FileBuilder> {
+  @BuiltValueField(wireName: r'showPreview')
+  bool? get showPreview;
+
+  @BuiltValueField(wireName: r'imageWidth')
+  SurveyLogoWidth? get imageWidth;
+
+  @BuiltValueField(wireName: r'waitForUpload')
+  bool? get waitForUpload;
+
+  @BuiltValueField(wireName: r'allowMultiple')
+  bool? get allowMultiple;
+
+  @BuiltValueField(wireName: r'allowImagesPreview')
+  bool? get allowImagesPreview;
+
+  @BuiltValueField(wireName: r'allowCameraAccess')
+  bool? get allowCameraAccess;
+
+  @BuiltValueField(wireName: r'storeDataAsText')
+  bool? get storeDataAsText;
+
+  @BuiltValueField(wireName: r'needConfirmRemoveFile')
+  bool? get needConfirmRemoveFile;
+
+  @BuiltValueField(wireName: r'maxSize')
+  num? get maxSize;
+
+  @BuiltValueField(wireName: r'acceptedTypes')
+  String? get acceptedTypes;
+
+  @BuiltValueField(wireName: r'imageHeight')
+  SurveyLogoWidth? get imageHeight;
+
   File._();
 
   factory File([void updates(FileBuilder b)]) = _$File;
@@ -136,7 +170,7 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.maxSize != null) {
@@ -146,25 +180,23 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(num),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -181,11 +213,11 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.descriptionLocation != null) {
-      yield r'descriptionLocation';
+    if (object.allowCameraAccess != null) {
+      yield r'allowCameraAccess';
       yield serializers.serialize(
-        object.descriptionLocation,
-        specifiedType: const FullType(QuestionDescriptionLocation),
+        object.allowCameraAccess,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.storeDataAsText != null) {
@@ -193,6 +225,13 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
       yield serializers.serialize(
         object.storeDataAsText,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.descriptionLocation != null) {
+      yield r'descriptionLocation';
+      yield serializers.serialize(
+        object.descriptionLocation,
+        specifiedType: const FullType(QuestionDescriptionLocation),
       );
     }
     if (object.state != null) {
@@ -209,18 +248,18 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.correctAnswer != null) {
-      yield r'correctAnswer';
-      yield serializers.serialize(
-        object.correctAnswer,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
     if (object.acceptedTypes != null) {
       yield r'acceptedTypes';
       yield serializers.serialize(
         object.acceptedTypes,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.correctAnswer != null) {
+      yield r'correctAnswer';
+      yield serializers.serialize(
+        object.correctAnswer,
+        specifiedType: const FullType.nullable(JsonObject),
       );
     }
     if (object.maxWidth != null) {
@@ -251,6 +290,13 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(SurveyLogoWidth),
       );
     }
+    if (object.waitForUpload != null) {
+      yield r'waitForUpload';
+      yield serializers.serialize(
+        object.waitForUpload,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.enableIf != null) {
       yield r'enableIf';
       yield serializers.serialize(
@@ -265,13 +311,6 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.waitForUpload != null) {
-      yield r'waitForUpload';
-      yield serializers.serialize(
-        object.waitForUpload,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.visible != null) {
       yield r'visible';
       yield serializers.serialize(
@@ -283,7 +322,7 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -293,18 +332,18 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.requiredIf != null) {
-      yield r'requiredIf';
-      yield serializers.serialize(
-        object.requiredIf,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.needConfirmRemoveFile != null) {
       yield r'needConfirmRemoveFile';
       yield serializers.serialize(
         object.needConfirmRemoveFile,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.requiredIf != null) {
+      yield r'requiredIf';
+      yield serializers.serialize(
+        object.requiredIf,
+        specifiedType: const FullType(String),
       );
     }
     if (object.renderAs != null) {
@@ -325,7 +364,7 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.imageHeight != null) {
@@ -342,18 +381,18 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(QuestionTitleLocation),
       );
     }
-    if (object.requiredErrorText != null) {
-      yield r'requiredErrorText';
-      yield serializers.serialize(
-        object.requiredErrorText,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.allowMultiple != null) {
       yield r'allowMultiple';
       yield serializers.serialize(
         object.allowMultiple,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.requiredErrorText != null) {
+      yield r'requiredErrorText';
+      yield serializers.serialize(
+        object.requiredErrorText,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.allowImagesPreview != null) {
@@ -363,13 +402,11 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -460,9 +497,9 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'maxSize':
           final valueDes = serializers.deserialize(
@@ -481,16 +518,16 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -506,12 +543,12 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
           ) as bool;
           result.startWithNewLine = valueDes;
           break;
-        case r'descriptionLocation':
+        case r'allowCameraAccess':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(QuestionDescriptionLocation),
-          ) as QuestionDescriptionLocation;
-          result.descriptionLocation = valueDes;
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.allowCameraAccess = valueDes;
           break;
         case r'storeDataAsText':
           final valueDes = serializers.deserialize(
@@ -519,6 +556,13 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.storeDataAsText = valueDes;
+          break;
+        case r'descriptionLocation':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(QuestionDescriptionLocation),
+          ) as QuestionDescriptionLocation;
+          result.descriptionLocation = valueDes;
           break;
         case r'state':
           final valueDes = serializers.deserialize(
@@ -534,6 +578,13 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
           ) as bool;
           result.hideNumber = valueDes;
           break;
+        case r'acceptedTypes':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.acceptedTypes = valueDes;
+          break;
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
             value,
@@ -541,13 +592,6 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
-          break;
-        case r'acceptedTypes':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.acceptedTypes = valueDes;
           break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
@@ -577,6 +621,13 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
           ) as SurveyLogoWidth;
           result.imageWidth.replace(valueDes);
           break;
+        case r'waitForUpload':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.waitForUpload = valueDes;
+          break;
         case r'enableIf':
           final valueDes = serializers.deserialize(
             value,
@@ -591,13 +642,6 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
           ) as bool;
           result.isRequired = valueDes;
           break;
-        case r'waitForUpload':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.waitForUpload = valueDes;
-          break;
         case r'visible':
           final valueDes = serializers.deserialize(
             value,
@@ -608,9 +652,9 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -619,19 +663,19 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
           ) as String;
           result.defaultValueExpression = valueDes;
           break;
-        case r'requiredIf':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredIf = valueDes;
-          break;
         case r'needConfirmRemoveFile':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.needConfirmRemoveFile = valueDes;
+          break;
+        case r'requiredIf':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.requiredIf = valueDes;
           break;
         case r'renderAs':
           final valueDes = serializers.deserialize(
@@ -650,8 +694,8 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'imageHeight':
@@ -668,19 +712,19 @@ class _$FileSerializer implements PrimitiveSerializer<File> {
           ) as QuestionTitleLocation;
           result.titleLocation = valueDes;
           break;
-        case r'requiredErrorText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
-          break;
         case r'allowMultiple':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.allowMultiple = valueDes;
+          break;
+        case r'requiredErrorText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'allowImagesPreview':
           final valueDes = serializers.deserialize(

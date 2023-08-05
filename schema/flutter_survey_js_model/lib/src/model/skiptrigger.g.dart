@@ -8,7 +8,7 @@ part of 'skiptrigger.dart';
 
 class _$Skiptrigger extends Skiptrigger {
   @override
-  final String? gotoName;
+  final String gotoName;
   @override
   final String? name;
   @override
@@ -24,13 +24,15 @@ class _$Skiptrigger extends Skiptrigger {
       (new SkiptriggerBuilder()..update(updates))._build();
 
   _$Skiptrigger._(
-      {this.gotoName,
+      {required this.gotoName,
       this.name,
       this.operator_,
       this.value,
       this.expression,
       this.type})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(gotoName, r'Skiptrigger', 'gotoName');
+  }
 
   @override
   Skiptrigger rebuild(void Function(SkiptriggerBuilder) updates) =>
@@ -78,10 +80,7 @@ class _$Skiptrigger extends Skiptrigger {
 }
 
 class SkiptriggerBuilder
-    implements
-        Builder<Skiptrigger, SkiptriggerBuilder>,
-        SkiptriggerAllOfBuilder,
-        SurveytriggerBuilder {
+    implements Builder<Skiptrigger, SkiptriggerBuilder>, SurveytriggerBuilder {
   _$Skiptrigger? _$v;
 
   String? _gotoName;
@@ -128,7 +127,6 @@ class SkiptriggerBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Skiptrigger other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Skiptrigger;
@@ -145,7 +143,8 @@ class SkiptriggerBuilder
   _$Skiptrigger _build() {
     final _$result = _$v ??
         new _$Skiptrigger._(
-            gotoName: gotoName,
+            gotoName: BuiltValueNullFieldError.checkNotNull(
+                gotoName, r'Skiptrigger', 'gotoName'),
             name: name,
             operator_: operator_,
             value: value,

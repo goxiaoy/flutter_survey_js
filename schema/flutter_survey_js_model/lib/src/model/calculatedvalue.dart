@@ -17,7 +17,7 @@ part 'calculatedvalue.g.dart';
 @BuiltValue()
 abstract class Calculatedvalue implements Built<Calculatedvalue, CalculatedvalueBuilder> {
   @BuiltValueField(wireName: r'name')
-  String? get name;
+  String get name;
 
   @BuiltValueField(wireName: r'expression')
   String? get expression;
@@ -48,13 +48,11 @@ class _$CalculatedvalueSerializer implements PrimitiveSerializer<Calculatedvalue
     Calculatedvalue object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.expression != null) {
       yield r'expression';
       yield serializers.serialize(

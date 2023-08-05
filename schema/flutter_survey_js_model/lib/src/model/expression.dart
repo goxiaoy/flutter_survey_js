@@ -13,8 +13,8 @@ import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter_survey_js_model/src/model/expression_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/expression_currency.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -64,14 +64,34 @@ part 'expression.g.dart';
 /// * [maximumFractionDigits] 
 /// * [minimumFractionDigits] 
 /// * [useGrouping] 
-@BuiltValue()
-abstract class Expression implements ExpressionAllOf, Question, Built<Expression, ExpressionBuilder> {
-  Expression._();
+/// * [precision] 
+@BuiltValue(instantiable: false)
+abstract class Expression implements Question {
+  @BuiltValueField(wireName: r'displayStyle')
+  ExpressionDisplayStyle? get displayStyle;
+  // enum displayStyleEnum {  none,  decimal,  currency,  percent,  date,  };
 
-  factory Expression([void updates(ExpressionBuilder b)]) = _$Expression;
+  @BuiltValueField(wireName: r'maximumFractionDigits')
+  num? get maximumFractionDigits;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ExpressionBuilder b) => b;
+  @BuiltValueField(wireName: r'expression')
+  String? get expression;
+
+  @BuiltValueField(wireName: r'minimumFractionDigits')
+  num? get minimumFractionDigits;
+
+  @BuiltValueField(wireName: r'useGrouping')
+  bool? get useGrouping;
+
+  @BuiltValueField(wireName: r'precision')
+  num? get precision;
+
+  @BuiltValueField(wireName: r'format')
+  SurveyTitle? get format;
+
+  @BuiltValueField(wireName: r'currency')
+  ExpressionCurrency? get currency;
+  // enum currencyEnum {  AED,  AFN,  ALL,  AMD,  ANG,  AOA,  ARS,  AUD,  AWG,  AZN,  BAM,  BBD,  BDT,  BGN,  BHD,  BIF,  BMD,  BND,  BOB,  BOV,  BRL,  BSD,  BTN,  BWP,  BYN,  BZD,  CAD,  CDF,  CHE,  CHF,  CHW,  CLF,  CLP,  CNY,  COP,  COU,  CRC,  CUC,  CUP,  CVE,  CZK,  DJF,  DKK,  DOP,  DZD,  EGP,  ERN,  ETB,  EUR,  FJD,  FKP,  GBP,  GEL,  GHS,  GIP,  GMD,  GNF,  GTQ,  GYD,  HKD,  HNL,  HRK,  HTG,  HUF,  IDR,  ILS,  INR,  IQD,  IRR,  ISK,  JMD,  JOD,  JPY,  KES,  KGS,  KHR,  KMF,  KPW,  KRW,  KWD,  KYD,  KZT,  LAK,  LBP,  LKR,  LRD,  LSL,  LYD,  MAD,  MDL,  MGA,  MKD,  MMK,  MNT,  MOP,  MRO,  MUR,  MVR,  MWK,  MXN,  MXV,  MYR,  MZN,  NAD,  NGN,  NIO,  NOK,  NPR,  NZD,  OMR,  PAB,  PEN,  PGK,  PHP,  PKR,  PLN,  PYG,  QAR,  RON,  RSD,  RUB,  RWF,  SAR,  SBD,  SCR,  SDG,  SEK,  SGD,  SHP,  SLL,  SOS,  SRD,  SSP,  STD,  SVC,  SYP,  SZL,  THB,  TJS,  TMT,  TND,  TOP,  TRY,  TTD,  TWD,  TZS,  UAH,  UGX,  USD,  USN,  UYI,  UYU,  UZS,  VEF,  VND,  VUV,  WST,  XAF,  XAG,  XAU,  XBA,  XBB,  XBC,  XBD,  XCD,  XDR,  XOF,  XPD,  XPF,  XPT,  XSU,  XTS,  XUA,  XXX,  YER,  ZAR,  ZMW,  ZWL,  };
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Expression> get serializer => _$ExpressionSerializer();
@@ -79,7 +99,7 @@ abstract class Expression implements ExpressionAllOf, Question, Built<Expression
 
 class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
   @override
-  final Iterable<Type> types = const [Expression, _$Expression];
+  final Iterable<Type> types = const [Expression];
 
   @override
   final String wireName = r'Expression';
@@ -124,6 +144,13 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
         specifiedType: const FullType(BuiltList, [FullType(QuestionAllOfValidatorsInner)]),
       );
     }
+    if (object.precision != null) {
+      yield r'precision';
+      yield serializers.serialize(
+        object.precision,
+        specifiedType: const FullType(num),
+      );
+    }
     if (object.bindings != null) {
       yield r'bindings';
       yield serializers.serialize(
@@ -135,28 +162,26 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -268,7 +293,7 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -289,7 +314,7 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
       yield r'format';
       yield serializers.serialize(
         object.format,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.requiredIf != null) {
@@ -306,18 +331,18 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.readOnly != null) {
-      yield r'readOnly';
-      yield serializers.serialize(
-        object.readOnly,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.minWidth != null) {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.readOnly != null) {
+      yield r'readOnly';
+      yield serializers.serialize(
+        object.readOnly,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.titleLocation != null) {
@@ -338,16 +363,14 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -378,6 +401,46 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  Expression deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($Expression)) as $Expression;
+  }
+}
+
+/// a concrete implementation of [Expression], since [Expression] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $Expression implements Expression, Built<$Expression, $ExpressionBuilder> {
+  $Expression._();
+
+  factory $Expression([void Function($ExpressionBuilder)? updates]) = _$$Expression;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($ExpressionBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$Expression> get serializer => _$$ExpressionSerializer();
+}
+
+class _$$ExpressionSerializer implements PrimitiveSerializer<$Expression> {
+  @override
+  final Iterable<Type> types = const [$Expression, _$$Expression];
+
+  @override
+  final String wireName = r'$Expression';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $Expression object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(Expression))!;
   }
 
   void _deserializeProperties(
@@ -428,6 +491,13 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
           ) as BuiltList<QuestionAllOfValidatorsInner>;
           result.validators.replace(valueDes);
           break;
+        case r'precision':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.precision = valueDes;
+          break;
         case r'bindings':
           final valueDes = serializers.deserialize(
             value,
@@ -438,9 +508,9 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
@@ -452,16 +522,16 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -572,9 +642,9 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -593,9 +663,9 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
         case r'format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.format = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.format.replace(valueDes);
           break;
         case r'requiredIf':
           final valueDes = serializers.deserialize(
@@ -611,19 +681,19 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
           ) as String;
           result.renderAs = valueDes;
           break;
-        case r'readOnly':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.readOnly = valueDes;
-          break;
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.minWidth.replace(valueDes);
+          break;
+        case r'readOnly':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.readOnly = valueDes;
           break;
         case r'titleLocation':
           final valueDes = serializers.deserialize(
@@ -642,9 +712,9 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -683,12 +753,12 @@ class _$ExpressionSerializer implements PrimitiveSerializer<Expression> {
   }
 
   @override
-  Expression deserialize(
+  $Expression deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = ExpressionBuilder();
+    final result = $ExpressionBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

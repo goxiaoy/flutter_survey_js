@@ -8,7 +8,7 @@ part of 'calculatedvalue.dart';
 
 class _$Calculatedvalue extends Calculatedvalue {
   @override
-  final String? name;
+  final String name;
   @override
   final String? expression;
   @override
@@ -17,8 +17,11 @@ class _$Calculatedvalue extends Calculatedvalue {
   factory _$Calculatedvalue([void Function(CalculatedvalueBuilder)? updates]) =>
       (new CalculatedvalueBuilder()..update(updates))._build();
 
-  _$Calculatedvalue._({this.name, this.expression, this.includeIntoResult})
-      : super._();
+  _$Calculatedvalue._(
+      {required this.name, this.expression, this.includeIntoResult})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'Calculatedvalue', 'name');
+  }
 
   @override
   Calculatedvalue rebuild(void Function(CalculatedvalueBuilder) updates) =>
@@ -106,7 +109,8 @@ class CalculatedvalueBuilder
   _$Calculatedvalue _build() {
     final _$result = _$v ??
         new _$Calculatedvalue._(
-            name: name,
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'Calculatedvalue', 'name'),
             expression: expression,
             includeIntoResult: includeIntoResult);
     replace(_$result);

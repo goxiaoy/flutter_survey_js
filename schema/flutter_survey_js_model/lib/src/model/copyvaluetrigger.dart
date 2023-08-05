@@ -4,7 +4,6 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
-import 'package:flutter_survey_js_model/src/model/copyvaluetrigger_all_of.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -20,8 +19,18 @@ part 'copyvaluetrigger.g.dart';
 /// * [name] 
 /// * [fromName] 
 /// * [setToName] 
+/// * [copyDisplayValue] 
 @BuiltValue()
-abstract class Copyvaluetrigger implements CopyvaluetriggerAllOf, Surveytrigger, Built<Copyvaluetrigger, CopyvaluetriggerBuilder> {
+abstract class Copyvaluetrigger implements Surveytrigger, Built<Copyvaluetrigger, CopyvaluetriggerBuilder> {
+  @BuiltValueField(wireName: r'setToName')
+  String get setToName;
+
+  @BuiltValueField(wireName: r'fromName')
+  String get fromName;
+
+  @BuiltValueField(wireName: r'copyDisplayValue')
+  bool? get copyDisplayValue;
+
   Copyvaluetrigger._();
 
   factory Copyvaluetrigger([void updates(CopyvaluetriggerBuilder b)]) = _$Copyvaluetrigger;
@@ -59,13 +68,16 @@ class _$CopyvaluetriggerSerializer implements PrimitiveSerializer<Copyvaluetrigg
         specifiedType: const FullType(String),
       );
     }
-    if (object.setToName != null) {
-      yield r'setToName';
-      yield serializers.serialize(
-        object.setToName,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'setToName';
+    yield serializers.serialize(
+      object.setToName,
+      specifiedType: const FullType(String),
+    );
+    yield r'fromName';
+    yield serializers.serialize(
+      object.fromName,
+      specifiedType: const FullType(String),
+    );
     if (object.name != null) {
       yield r'name';
       yield serializers.serialize(
@@ -73,11 +85,11 @@ class _$CopyvaluetriggerSerializer implements PrimitiveSerializer<Copyvaluetrigg
         specifiedType: const FullType(String),
       );
     }
-    if (object.fromName != null) {
-      yield r'fromName';
+    if (object.copyDisplayValue != null) {
+      yield r'copyDisplayValue';
       yield serializers.serialize(
-        object.fromName,
-        specifiedType: const FullType(String),
+        object.copyDisplayValue,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.type != null) {
@@ -138,6 +150,13 @@ class _$CopyvaluetriggerSerializer implements PrimitiveSerializer<Copyvaluetrigg
           ) as String;
           result.setToName = valueDes;
           break;
+        case r'fromName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.fromName = valueDes;
+          break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
@@ -145,12 +164,12 @@ class _$CopyvaluetriggerSerializer implements PrimitiveSerializer<Copyvaluetrigg
           ) as String;
           result.name = valueDes;
           break;
-        case r'fromName':
+        case r'copyDisplayValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.fromName = valueDes;
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.copyDisplayValue = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

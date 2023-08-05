@@ -7,81 +7,41 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add($AnswercountvalidatorAllOf.serializer)
-      ..add($BooleanAllOf.serializer)
-      ..add($ButtongroupAllOf.serializer)
-      ..add($ButtongroupitemvalueAllOf.serializer)
+      ..add($Boolean.serializer)
       ..add($Checkbox.serializer)
-      ..add($CheckboxAllOf.serializer)
       ..add($Checkboxbase.serializer)
-      ..add($CheckboxbaseAllOf.serializer)
-      ..add($CommentAllOf.serializer)
-      ..add($CopyvaluetriggerAllOf.serializer)
-      ..add($DropdownAllOf.serializer)
+      ..add($Comment.serializer)
+      ..add($Dropdown.serializer)
       ..add($Elementbase.serializer)
-      ..add($ExpressionAllOf.serializer)
+      ..add($Expression.serializer)
       ..add($Expressionitem.serializer)
-      ..add($ExpressionvalidatorAllOf.serializer)
-      ..add($FileAllOf.serializer)
-      ..add($HtmlconditionitemAllOf.serializer)
-      ..add($ImageAllOf.serializer)
-      ..add($ImageitemvalueAllOf.serializer)
-      ..add($ImagepickerAllOf.serializer)
       ..add($Itemvalue.serializer)
-      ..add($MatrixAllOf.serializer)
       ..add($Matrixbase.serializer)
-      ..add($MatrixbaseAllOf.serializer)
-      ..add($MatrixdropdownAllOf.serializer)
       ..add($Matrixdropdownbase.serializer)
-      ..add($MatrixdropdownbaseAllOf.serializer)
-      ..add($MatrixdynamicAllOf.serializer)
-      ..add($MultipletextAllOf.serializer)
       ..add($Nonvalue.serializer)
-      ..add($NonvalueAllOf.serializer)
-      ..add($NumericvalidatorAllOf.serializer)
-      ..add($PageAllOf.serializer)
-      ..add($PanelAllOf.serializer)
       ..add($Panelbase.serializer)
-      ..add($PanelbaseAllOf.serializer)
-      ..add($PaneldynamicAllOf.serializer)
       ..add($Question.serializer)
-      ..add($QuestionAllOf.serializer)
-      ..add($RadiogroupAllOf.serializer)
-      ..add($RankingAllOf.serializer)
-      ..add($RatingAllOf.serializer)
-      ..add($RegexvalidatorAllOf.serializer)
-      ..add($RunexpressiontriggerAllOf.serializer)
+      ..add($Radiogroup.serializer)
+      ..add($Rating.serializer)
       ..add($Selectbase.serializer)
-      ..add($SelectbaseAllOf.serializer)
-      ..add($SetvaluetriggerAllOf.serializer)
-      ..add($SignaturepadAllOf.serializer)
-      ..add($SkiptriggerAllOf.serializer)
       ..add($Surveytrigger.serializer)
-      ..add($SurveytriggerAllOf.serializer)
       ..add($Surveyvalidator.serializer)
-      ..add($TagboxAllOf.serializer)
-      ..add($TextAllOf.serializer)
+      ..add($Tagbox.serializer)
+      ..add($Text.serializer)
       ..add($Textbase.serializer)
-      ..add($TextvalidatorAllOf.serializer)
       ..add($Trigger.serializer)
-      ..add($UrlconditionitemAllOf.serializer)
-      ..add($VisibletriggerAllOf.serializer)
       ..add(Answercountvalidator.serializer)
-      ..add(Boolean.serializer)
       ..add(Buttongroup.serializer)
       ..add(Buttongroupitemvalue.serializer)
       ..add(Calculatedvalue.serializer)
       ..add(CheckboxbaseColCount.serializer)
-      ..add(ChoicesRestful.serializer)
-      ..add(Comment.serializer)
+      ..add(ChoicesByUrl.serializer)
       ..add(CommentTextUpdateMode.serializer)
       ..add(Completetrigger.serializer)
       ..add(Copyvaluetrigger.serializer)
-      ..add(Dropdown.serializer)
       ..add(DropdownAutocomplete.serializer)
       ..add(Emailvalidator.serializer)
       ..add(Empty.serializer)
-      ..add(Expression.serializer)
       ..add(ExpressionCurrency.serializer)
       ..add(ExpressionDisplayStyle.serializer)
       ..add(Expressionvalidator.serializer)
@@ -93,14 +53,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ImageImageFit.serializer)
       ..add(Imageitemvalue.serializer)
       ..add(Imagepicker.serializer)
-      ..add(ImagepickerColCount.serializer)
       ..add(ImagepickerContentMode.serializer)
       ..add(ImagepickerImageFit.serializer)
+      ..add(Locstring.serializer)
       ..add(Matrix.serializer)
       ..add(MatrixRowsOrder.serializer)
       ..add(MatrixbaseVerticalAlign.serializer)
       ..add(Matrixdropdown.serializer)
       ..add(MatrixdropdownAllOfRowsInner.serializer)
+      ..add(MatrixdropdownbaseAllOfChoicesInner.serializer)
       ..add(MatrixdropdownbaseCellType.serializer)
       ..add(MatrixdropdownbaseColumnColCount.serializer)
       ..add(MatrixdropdownbaseColumnLayout.serializer)
@@ -140,9 +101,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(QuestionIndent.serializer)
       ..add(QuestionState.serializer)
       ..add(QuestionTitleLocation.serializer)
-      ..add(Radiogroup.serializer)
       ..add(Ranking.serializer)
-      ..add(Rating.serializer)
       ..add(RatingAutoGenerate.serializer)
       ..add(RatingDisplayMode.serializer)
       ..add(RatingRateColorMode.serializer)
@@ -150,7 +109,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(RatingScaleColorMode.serializer)
       ..add(Regexvalidator.serializer)
       ..add(Runexpressiontrigger.serializer)
-      ..add(SelectbaseAllOfChoicesInner.serializer)
       ..add(SelectbaseChoicesFromQuestionMode.serializer)
       ..add(SelectbaseChoicesOrder.serializer)
       ..add(SelectbaseStoreOthersAsComment.serializer)
@@ -159,6 +117,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SignaturepadDataFormat.serializer)
       ..add(Skiptrigger.serializer)
       ..add(Survey.serializer)
+      ..add(SurveyBackgroundImageAttachment.serializer)
       ..add(SurveyBackgroundImageFit.serializer)
       ..add(SurveyCheckErrorsMode.serializer)
       ..add(SurveyClearInvisibleValues.serializer)
@@ -166,6 +125,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SurveyLogoFit.serializer)
       ..add(SurveyLogoPosition.serializer)
       ..add(SurveyLogoWidth.serializer)
+      ..add(SurveyMatrixDragHandleArea.serializer)
       ..add(SurveyMode.serializer)
       ..add(SurveyProgressBarType.serializer)
       ..add(SurveyQuestionDescriptionLocation.serializer)
@@ -182,11 +142,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SurveyShowTimerPanel.serializer)
       ..add(SurveyShowTimerPanelMode.serializer)
       ..add(SurveyTextUpdateMode.serializer)
+      ..add(SurveyTitle.serializer)
       ..add(SurveyTocLocation.serializer)
       ..add(SurveyTriggersInner.serializer)
       ..add(SurveyWidthMode.serializer)
-      ..add(Tagbox.serializer)
-      ..add(Text.serializer)
       ..add(TextAutocomplete.serializer)
       ..add(TextInputType.serializer)
       ..add(TextTextUpdateMode.serializer)
@@ -223,20 +182,20 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
-          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
           () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
-          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
+              BuiltList, const [const FullType(Matrixdropdowncolumn)]),
+          () => new ListBuilder<Matrixdropdowncolumn>())
       ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
-          () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
@@ -250,28 +209,105 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(Matrixdropdowncolumn)]),
           () => new ListBuilder<Matrixdropdowncolumn>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(Matrixdropdowncolumn)]),
           () => new ListBuilder<Matrixdropdowncolumn>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
+      ..addBuilderFactory(
           const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
+              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
+          () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Multipletextitem)]),
           () => new ListBuilder<Multipletextitem>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Multipletextitem)]),
-          () => new ListBuilder<Multipletextitem>())
-      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
@@ -336,149 +372,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
       ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
+          const FullType(BuiltList,
+              const [const FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          () => new ListBuilder<MatrixdropdownbaseAllOfChoicesInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(MatrixdropdownAllOfRowsInner)]),
           () => new ListBuilder<MatrixdropdownAllOfRowsInner>())
       ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(Matrixdropdowncolumn)]),
-          () => new ListBuilder<Matrixdropdowncolumn>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(Matrixdropdowncolumn)]),
-          () => new ListBuilder<Matrixdropdowncolumn>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SelectbaseAllOfChoicesInner)]),
-          () => new ListBuilder<SelectbaseAllOfChoicesInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
-          () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SurveyQuestionsInner)]),
-          () => new ListBuilder<SurveyQuestionsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SurveyQuestionsInner)]),
@@ -487,14 +390,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(QuestionAllOfValidatorsInner)]),
           () => new ListBuilder<QuestionAllOfValidatorsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SurveyQuestionsInner)]),
-          () => new ListBuilder<SurveyQuestionsInner>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(SurveyQuestionsInner)]),
-          () => new ListBuilder<SurveyQuestionsInner>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SurveyQuestionsInner)]),

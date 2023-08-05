@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
-import 'package:flutter_survey_js_model/src/model/imageitemvalue_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -20,7 +20,10 @@ part 'imageitemvalue.g.dart';
 /// * [enableIf] 
 /// * [imageLink] 
 @BuiltValue()
-abstract class Imageitemvalue implements ImageitemvalueAllOf, Itemvalue, Built<Imageitemvalue, ImageitemvalueBuilder> {
+abstract class Imageitemvalue implements Itemvalue, Built<Imageitemvalue, ImageitemvalueBuilder> {
+  @BuiltValueField(wireName: r'imageLink')
+  String? get imageLink;
+
   Imageitemvalue._();
 
   factory Imageitemvalue([void updates(ImageitemvalueBuilder b)]) = _$Imageitemvalue;
@@ -51,13 +54,6 @@ class _$ImageitemvalueSerializer implements PrimitiveSerializer<Imageitemvalue> 
         specifiedType: const FullType(String),
       );
     }
-    if (object.enableIf != null) {
-      yield r'enableIf';
-      yield serializers.serialize(
-        object.enableIf,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.imageLink != null) {
       yield r'imageLink';
       yield serializers.serialize(
@@ -65,20 +61,25 @@ class _$ImageitemvalueSerializer implements PrimitiveSerializer<Imageitemvalue> 
         specifiedType: const FullType(String),
       );
     }
+    if (object.enableIf != null) {
+      yield r'enableIf';
+      yield serializers.serialize(
+        object.enableIf,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.text != null) {
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.value != null) {
-      yield r'value';
-      yield serializers.serialize(
-        object.value,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
+    yield r'value';
+    yield object.value == null ? null : serializers.serialize(
+      object.value,
+      specifiedType: const FullType.nullable(JsonObject),
+    );
   }
 
   @override
@@ -109,13 +110,6 @@ class _$ImageitemvalueSerializer implements PrimitiveSerializer<Imageitemvalue> 
           ) as String;
           result.visibleIf = valueDes;
           break;
-        case r'enableIf':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.enableIf = valueDes;
-          break;
         case r'imageLink':
           final valueDes = serializers.deserialize(
             value,
@@ -123,12 +117,19 @@ class _$ImageitemvalueSerializer implements PrimitiveSerializer<Imageitemvalue> 
           ) as String;
           result.imageLink = valueDes;
           break;
-        case r'text':
+        case r'enableIf':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.text = valueDes;
+          result.enableIf = valueDes;
+          break;
+        case r'text':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         case r'value':
           final valueDes = serializers.deserialize(

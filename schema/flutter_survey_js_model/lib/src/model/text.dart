@@ -14,7 +14,7 @@ import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/text_autocomplete.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter_survey_js_model/src/model/text_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/textbase.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -72,14 +72,52 @@ part 'text.g.dart';
 /// * [maxLength] 
 /// * [placeholder] 
 /// * [dataList] 
-@BuiltValue()
-abstract class Text implements TextAllOf, Textbase, Built<Text, TextBuilder> {
-  Text._();
+@BuiltValue(instantiable: false)
+abstract class Text implements Textbase {
+  @BuiltValueField(wireName: r'minValueExpression')
+  String? get minValueExpression;
 
-  factory Text([void updates(TextBuilder b)]) = _$Text;
+  @BuiltValueField(wireName: r'autocomplete')
+  TextAutocomplete? get autocomplete;
+  // enum autocompleteEnum {  ,  name,  honorific-prefix,  given-name,  additional-name,  family-name,  honorific-suffix,  nickname,  organization-title,  username,  new-password,  current-password,  organization,  street-address,  address-line1,  address-line2,  address-line3,  address-level4,  address-level3,  address-level2,  address-level1,  country,  country-name,  postal-code,  cc-name,  cc-given-name,  cc-additional-name,  cc-family-name,  cc-number,  cc-exp,  cc-exp-month,  cc-exp-year,  cc-csc,  cc-type,  transaction-currency,  transaction-amount,  language,  bday,  bday-day,  bday-month,  bday-year,  sex,  url,  photo,  tel,  tel-country-code,  tel-national,  tel-area-code,  tel-local,  tel-local-prefix,  tel-local-suffix,  tel-extension,  email,  impp,  };
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(TextBuilder b) => b;
+  @BuiltValueField(wireName: r'max')
+  String? get max;
+
+  @BuiltValueField(wireName: r'min')
+  String? get min;
+
+  @BuiltValueField(wireName: r'size')
+  num? get size;
+
+  @BuiltValueField(wireName: r'minErrorText')
+  SurveyTitle? get minErrorText;
+
+  @BuiltValueField(wireName: r'dataList')
+  SurveyTitle? get dataList;
+
+  @BuiltValueField(wireName: r'inputType')
+  TextInputType? get inputType;
+  // enum inputTypeEnum {  color,  date,  datetime-local,  email,  month,  number,  password,  range,  tel,  text,  time,  url,  week,  };
+
+  @BuiltValueField(wireName: r'step')
+  num? get step;
+
+  @BuiltValueField(wireName: r'textUpdateMode')
+  TextTextUpdateMode? get textUpdateMode;
+  // enum textUpdateModeEnum {  default,  onBlur,  onTyping,  };
+
+  @BuiltValueField(wireName: r'placeholder')
+  SurveyTitle? get placeholder;
+
+  @BuiltValueField(wireName: r'maxValueExpression')
+  String? get maxValueExpression;
+
+  @BuiltValueField(wireName: r'maxLength')
+  num? get maxLength;
+
+  @BuiltValueField(wireName: r'maxErrorText')
+  SurveyTitle? get maxErrorText;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Text> get serializer => _$TextSerializer();
@@ -87,7 +125,7 @@ abstract class Text implements TextAllOf, Textbase, Built<Text, TextBuilder> {
 
 class _$TextSerializer implements PrimitiveSerializer<Text> {
   @override
-  final Iterable<Type> types = const [Text, _$Text];
+  final Iterable<Type> types = const [Text];
 
   @override
   final String wireName = r'Text';
@@ -150,28 +188,26 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -209,6 +245,20 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         specifiedType: const FullType(TextInputType),
       );
     }
+    if (object.textUpdateMode != null) {
+      yield r'textUpdateMode';
+      yield serializers.serialize(
+        object.textUpdateMode,
+        specifiedType: const FullType(TextTextUpdateMode),
+      );
+    }
+    if (object.placeholder != null) {
+      yield r'placeholder';
+      yield serializers.serialize(
+        object.placeholder,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
     if (object.state != null) {
       yield r'state';
       yield serializers.serialize(
@@ -223,25 +273,18 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.textUpdateMode != null) {
-      yield r'textUpdateMode';
-      yield serializers.serialize(
-        object.textUpdateMode,
-        specifiedType: const FullType(TextTextUpdateMode),
-      );
-    }
-    if (object.placeholder != null) {
-      yield r'placeholder';
-      yield serializers.serialize(
-        object.placeholder,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.correctAnswer != null) {
       yield r'correctAnswer';
       yield serializers.serialize(
         object.correctAnswer,
         specifiedType: const FullType.nullable(JsonObject),
+      );
+    }
+    if (object.maxErrorText != null) {
+      yield r'maxErrorText';
+      yield serializers.serialize(
+        object.maxErrorText,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.maxWidth != null) {
@@ -256,13 +299,6 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield serializers.serialize(
         object.showCommentArea,
         specifiedType: const FullType(bool),
-      );
-    }
-    if (object.maxErrorText != null) {
-      yield r'maxErrorText';
-      yield serializers.serialize(
-        object.maxErrorText,
-        specifiedType: const FullType(String),
       );
     }
     if (object.enableIf != null) {
@@ -290,14 +326,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.defaultValueExpression != null) {
-      yield r'defaultValueExpression';
-      yield serializers.serialize(
-        object.defaultValueExpression,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.autocomplete != null) {
@@ -311,6 +340,13 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'max';
       yield serializers.serialize(
         object.max,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.defaultValueExpression != null) {
+      yield r'defaultValueExpression';
+      yield serializers.serialize(
+        object.defaultValueExpression,
         specifiedType: const FullType(String),
       );
     }
@@ -339,7 +375,7 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.titleLocation != null) {
@@ -349,13 +385,6 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         specifiedType: const FullType(QuestionTitleLocation),
       );
     }
-    if (object.requiredErrorText != null) {
-      yield r'requiredErrorText';
-      yield serializers.serialize(
-        object.requiredErrorText,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.size != null) {
       yield r'size';
       yield serializers.serialize(
@@ -363,27 +392,32 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         specifiedType: const FullType(num),
       );
     }
+    if (object.requiredErrorText != null) {
+      yield r'requiredErrorText';
+      yield serializers.serialize(
+        object.requiredErrorText,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
     if (object.minErrorText != null) {
       yield r'minErrorText';
       yield serializers.serialize(
         object.minErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.dataList != null) {
       yield r'dataList';
       yield serializers.serialize(
         object.dataList,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -435,6 +469,46 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  Text deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($Text)) as $Text;
+  }
+}
+
+/// a concrete implementation of [Text], since [Text] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $Text implements Text, Built<$Text, $TextBuilder> {
+  $Text._();
+
+  factory $Text([void Function($TextBuilder)? updates]) = _$$Text;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($TextBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$Text> get serializer => _$$TextSerializer();
+}
+
+class _$$TextSerializer implements PrimitiveSerializer<$Text> {
+  @override
+  final Iterable<Type> types = const [$Text, _$$Text];
+
+  @override
+  final String wireName = r'$Text';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $Text object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(Text))!;
   }
 
   void _deserializeProperties(
@@ -502,9 +576,9 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
@@ -516,16 +590,16 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -562,6 +636,20 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
           ) as TextInputType;
           result.inputType = valueDes;
           break;
+        case r'textUpdateMode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(TextTextUpdateMode),
+          ) as TextTextUpdateMode;
+          result.textUpdateMode = valueDes;
+          break;
+        case r'placeholder':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.placeholder.replace(valueDes);
+          break;
         case r'state':
           final valueDes = serializers.deserialize(
             value,
@@ -576,20 +664,6 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
           ) as bool;
           result.hideNumber = valueDes;
           break;
-        case r'textUpdateMode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(TextTextUpdateMode),
-          ) as TextTextUpdateMode;
-          result.textUpdateMode = valueDes;
-          break;
-        case r'placeholder':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.placeholder = valueDes;
-          break;
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
             value,
@@ -597,6 +671,13 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
           ) as JsonObject?;
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
+          break;
+        case r'maxErrorText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.maxErrorText.replace(valueDes);
           break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
@@ -611,13 +692,6 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.showCommentArea = valueDes;
-          break;
-        case r'maxErrorText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.maxErrorText = valueDes;
           break;
         case r'enableIf':
           final valueDes = serializers.deserialize(
@@ -643,16 +717,9 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
-          break;
-        case r'defaultValueExpression':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.defaultValueExpression = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'autocomplete':
           final valueDes = serializers.deserialize(
@@ -667,6 +734,13 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
             specifiedType: const FullType(String),
           ) as String;
           result.max = valueDes;
+          break;
+        case r'defaultValueExpression':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.defaultValueExpression = valueDes;
           break;
         case r'requiredIf':
           final valueDes = serializers.deserialize(
@@ -692,8 +766,8 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'titleLocation':
@@ -703,13 +777,6 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
           ) as QuestionTitleLocation;
           result.titleLocation = valueDes;
           break;
-        case r'requiredErrorText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
-          break;
         case r'size':
           final valueDes = serializers.deserialize(
             value,
@@ -717,18 +784,25 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
           ) as num;
           result.size = valueDes;
           break;
+        case r'requiredErrorText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
+          break;
         case r'minErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.minErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.minErrorText.replace(valueDes);
           break;
         case r'dataList':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
           result.dataList.replace(valueDes);
           break;
         case r'name':
@@ -789,12 +863,12 @@ class _$TextSerializer implements PrimitiveSerializer<Text> {
   }
 
   @override
-  Text deserialize(
+  $Text deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = TextBuilder();
+    final result = $TextBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

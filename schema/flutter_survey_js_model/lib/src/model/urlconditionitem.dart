@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/urlconditionitem_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/expressionitem.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -16,7 +16,10 @@ part 'urlconditionitem.g.dart';
 /// * [expression] 
 /// * [url] 
 @BuiltValue()
-abstract class Urlconditionitem implements Expressionitem, UrlconditionitemAllOf, Built<Urlconditionitem, UrlconditionitemBuilder> {
+abstract class Urlconditionitem implements Expressionitem, Built<Urlconditionitem, UrlconditionitemBuilder> {
+  @BuiltValueField(wireName: r'url')
+  SurveyTitle? get url;
+
   Urlconditionitem._();
 
   factory Urlconditionitem([void updates(UrlconditionitemBuilder b)]) = _$Urlconditionitem;
@@ -44,7 +47,7 @@ class _$UrlconditionitemSerializer implements PrimitiveSerializer<Urlconditionit
       yield r'url';
       yield serializers.serialize(
         object.url,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.expression != null) {
@@ -80,9 +83,9 @@ class _$UrlconditionitemSerializer implements PrimitiveSerializer<Urlconditionit
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.url = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.url.replace(valueDes);
           break;
         case r'expression':
           final valueDes = serializers.deserialize(

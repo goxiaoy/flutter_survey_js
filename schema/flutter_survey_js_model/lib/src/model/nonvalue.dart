@@ -5,11 +5,11 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
-import 'package:flutter_survey_js_model/src/model/nonvalue_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
@@ -56,7 +56,7 @@ part 'nonvalue.g.dart';
 /// * [commentText] 
 /// * [commentPlaceholder] 
 @BuiltValue(instantiable: false)
-abstract class Nonvalue implements NonvalueAllOf, Question {
+abstract class Nonvalue implements Question {
   @BuiltValueSerializer(custom: true)
   static Serializer<Nonvalue> get serializer => _$NonvalueSerializer();
 }
@@ -80,18 +80,18 @@ class _$NonvalueSerializer implements PrimitiveSerializer<Nonvalue> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.valueName != null) {
-      yield r'valueName';
-      yield serializers.serialize(
-        object.valueName,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.indent != null) {
       yield r'indent';
       yield serializers.serialize(
         object.indent,
         specifiedType: const FullType(QuestionIndent),
+      );
+    }
+    if (object.valueName != null) {
+      yield r'valueName';
+      yield serializers.serialize(
+        object.valueName,
+        specifiedType: const FullType(String),
       );
     }
     if (object.defaultValue != null) {
@@ -119,28 +119,26 @@ class _$NonvalueSerializer implements PrimitiveSerializer<Nonvalue> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -185,18 +183,18 @@ class _$NonvalueSerializer implements PrimitiveSerializer<Nonvalue> {
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
-    if (object.showCommentArea != null) {
-      yield r'showCommentArea';
-      yield serializers.serialize(
-        object.showCommentArea,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.showCommentArea != null) {
+      yield r'showCommentArea';
+      yield serializers.serialize(
+        object.showCommentArea,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.enableIf != null) {
@@ -224,7 +222,7 @@ class _$NonvalueSerializer implements PrimitiveSerializer<Nonvalue> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -248,18 +246,18 @@ class _$NonvalueSerializer implements PrimitiveSerializer<Nonvalue> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.readOnly != null) {
-      yield r'readOnly';
-      yield serializers.serialize(
-        object.readOnly,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.minWidth != null) {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.readOnly != null) {
+      yield r'readOnly';
+      yield serializers.serialize(
+        object.readOnly,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.titleLocation != null) {
@@ -273,16 +271,14 @@ class _$NonvalueSerializer implements PrimitiveSerializer<Nonvalue> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -374,19 +370,19 @@ class _$$NonvalueSerializer implements PrimitiveSerializer<$Nonvalue> {
           ) as bool;
           result.useDisplayValuesInDynamicTexts = valueDes;
           break;
-        case r'valueName':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.valueName = valueDes;
-          break;
         case r'indent':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(QuestionIndent),
           ) as QuestionIndent;
           result.indent = valueDes;
+          break;
+        case r'valueName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.valueName = valueDes;
           break;
         case r'defaultValue':
           final valueDes = serializers.deserialize(
@@ -413,16 +409,9 @@ class _$$NonvalueSerializer implements PrimitiveSerializer<$Nonvalue> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
-          break;
-        case r'title':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
@@ -431,12 +420,19 @@ class _$$NonvalueSerializer implements PrimitiveSerializer<$Nonvalue> {
           ) as String;
           result.type = valueDes;
           break;
+        case r'title':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
+          break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -481,19 +477,19 @@ class _$$NonvalueSerializer implements PrimitiveSerializer<$Nonvalue> {
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
-        case r'showCommentArea':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.showCommentArea = valueDes;
-          break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.maxWidth.replace(valueDes);
+          break;
+        case r'showCommentArea':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.showCommentArea = valueDes;
           break;
         case r'enableIf':
           final valueDes = serializers.deserialize(
@@ -519,9 +515,9 @@ class _$$NonvalueSerializer implements PrimitiveSerializer<$Nonvalue> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -544,19 +540,19 @@ class _$$NonvalueSerializer implements PrimitiveSerializer<$Nonvalue> {
           ) as String;
           result.renderAs = valueDes;
           break;
-        case r'readOnly':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.readOnly = valueDes;
-          break;
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.minWidth.replace(valueDes);
+          break;
+        case r'readOnly':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.readOnly = valueDes;
           break;
         case r'titleLocation':
           final valueDes = serializers.deserialize(
@@ -568,9 +564,9 @@ class _$$NonvalueSerializer implements PrimitiveSerializer<$Nonvalue> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(

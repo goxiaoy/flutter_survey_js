@@ -8,15 +8,15 @@ part of 'urlconditionitem.dart';
 
 class _$Urlconditionitem extends Urlconditionitem {
   @override
-  final String? expression;
+  final SurveyTitle? url;
   @override
-  final String? url;
+  final String? expression;
 
   factory _$Urlconditionitem(
           [void Function(UrlconditionitemBuilder)? updates]) =>
       (new UrlconditionitemBuilder()..update(updates))._build();
 
-  _$Urlconditionitem._({this.expression, this.url}) : super._();
+  _$Urlconditionitem._({this.url, this.expression}) : super._();
 
   @override
   Urlconditionitem rebuild(void Function(UrlconditionitemBuilder) updates) =>
@@ -30,15 +30,15 @@ class _$Urlconditionitem extends Urlconditionitem {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Urlconditionitem &&
-        expression == other.expression &&
-        url == other.url;
+        url == other.url &&
+        expression == other.expression;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, expression.hashCode);
     _$hash = $jc(_$hash, url.hashCode);
+    _$hash = $jc(_$hash, expression.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -46,8 +46,8 @@ class _$Urlconditionitem extends Urlconditionitem {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Urlconditionitem')
-          ..add('expression', expression)
-          ..add('url', url))
+          ..add('url', url)
+          ..add('expression', expression))
         .toString();
   }
 }
@@ -55,18 +55,17 @@ class _$Urlconditionitem extends Urlconditionitem {
 class UrlconditionitemBuilder
     implements
         Builder<Urlconditionitem, UrlconditionitemBuilder>,
-        ExpressionitemBuilder,
-        UrlconditionitemAllOfBuilder {
+        ExpressionitemBuilder {
   _$Urlconditionitem? _$v;
+
+  SurveyTitleBuilder? _url;
+  SurveyTitleBuilder get url => _$this._url ??= new SurveyTitleBuilder();
+  set url(covariant SurveyTitleBuilder? url) => _$this._url = url;
 
   String? _expression;
   String? get expression => _$this._expression;
   set expression(covariant String? expression) =>
       _$this._expression = expression;
-
-  String? _url;
-  String? get url => _$this._url;
-  set url(covariant String? url) => _$this._url = url;
 
   UrlconditionitemBuilder() {
     Urlconditionitem._defaults(this);
@@ -75,15 +74,14 @@ class UrlconditionitemBuilder
   UrlconditionitemBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _url = $v.url?.toBuilder();
       _expression = $v.expression;
-      _url = $v.url;
       _$v = null;
     }
     return this;
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Urlconditionitem other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Urlconditionitem;
@@ -98,8 +96,21 @@ class UrlconditionitemBuilder
   Urlconditionitem build() => _build();
 
   _$Urlconditionitem _build() {
-    final _$result =
-        _$v ?? new _$Urlconditionitem._(expression: expression, url: url);
+    _$Urlconditionitem _$result;
+    try {
+      _$result = _$v ??
+          new _$Urlconditionitem._(url: _url?.build(), expression: expression);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'url';
+        _url?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Urlconditionitem', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

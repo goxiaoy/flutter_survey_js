@@ -6,17 +6,17 @@
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_from_question_mode.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_order.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of_choices_inner.dart';
+import 'package:flutter_survey_js_model/src/model/choices_by_url.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
-import 'package:flutter_survey_js_model/src/model/tagbox_all_of.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/checkbox.dart';
-import 'package:flutter_survey_js_model/src/model/choices_restful.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/checkboxbase_col_count.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
@@ -79,6 +79,7 @@ part 'tagbox.g.dart';
 /// * [colCount] 
 /// * [showSelectAllItem] 
 /// * [maxSelectedChoices] 
+/// * [minSelectedChoices] 
 /// * [selectAllText] 
 /// * [valuePropertyName] 
 /// * [itemComponent] 
@@ -89,14 +90,28 @@ part 'tagbox.g.dart';
 /// * [choicesLazyLoadPageSize] 
 /// * [hideSelectedItems] 
 /// * [closeOnSelect] 
-@BuiltValue()
-abstract class Tagbox implements Checkbox, TagboxAllOf, Built<Tagbox, TagboxBuilder> {
-  Tagbox._();
+@BuiltValue(instantiable: false)
+abstract class Tagbox implements Checkbox {
+  @BuiltValueField(wireName: r'closeOnSelect')
+  bool? get closeOnSelect;
 
-  factory Tagbox([void updates(TagboxBuilder b)]) = _$Tagbox;
+  @BuiltValueField(wireName: r'hideSelectedItems')
+  bool? get hideSelectedItems;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(TagboxBuilder b) => b;
+  @BuiltValueField(wireName: r'choicesLazyLoadEnabled')
+  bool? get choicesLazyLoadEnabled;
+
+  @BuiltValueField(wireName: r'placeholder')
+  SurveyTitle? get placeholder;
+
+  @BuiltValueField(wireName: r'allowClear')
+  bool? get allowClear;
+
+  @BuiltValueField(wireName: r'choicesLazyLoadPageSize')
+  num? get choicesLazyLoadPageSize;
+
+  @BuiltValueField(wireName: r'searchEnabled')
+  bool? get searchEnabled;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Tagbox> get serializer => _$TagboxSerializer();
@@ -104,7 +119,7 @@ abstract class Tagbox implements Checkbox, TagboxAllOf, Built<Tagbox, TagboxBuil
 
 class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
   @override
-  final Iterable<Type> types = const [Tagbox, _$Tagbox];
+  final Iterable<Type> types = const [Tagbox];
 
   @override
   final String wireName = r'Tagbox';
@@ -121,18 +136,18 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.noneText != null) {
-      yield r'noneText';
-      yield serializers.serialize(
-        object.noneText,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.useDisplayValuesInDynamicTexts != null) {
       yield r'useDisplayValuesInDynamicTexts';
       yield serializers.serialize(
         object.useDisplayValuesInDynamicTexts,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.noneText != null) {
+      yield r'noneText';
+      yield serializers.serialize(
+        object.noneText,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.hideSelectedItems != null) {
@@ -163,25 +178,23 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.type != null) {
-      yield r'type';
+    if (object.minSelectedChoices != null) {
+      yield r'minSelectedChoices';
       yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
+        object.minSelectedChoices,
+        specifiedType: const FullType(num),
       );
     }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.choicesFromQuestionMode != null) {
       yield r'choicesFromQuestionMode';
       yield serializers.serialize(
         object.choicesFromQuestionMode,
         specifiedType: const FullType(SelectbaseChoicesFromQuestionMode),
-      );
-    }
-    if (object.selectAllText != null) {
-      yield r'selectAllText';
-      yield serializers.serialize(
-        object.selectAllText,
-        specifiedType: const FullType(String),
       );
     }
     if (object.storeOthersAsComment != null) {
@@ -191,6 +204,13 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(bool),
       );
     }
+    if (object.selectAllText != null) {
+      yield r'selectAllText';
+      yield serializers.serialize(
+        object.selectAllText,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
     if (object.startWithNewLine != null) {
       yield r'startWithNewLine';
       yield serializers.serialize(
@@ -198,17 +218,17 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.itemComponent != null) {
-      yield r'itemComponent';
-      yield serializers.serialize(
-        object.itemComponent,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.choicesEnableIf != null) {
       yield r'choicesEnableIf';
       yield serializers.serialize(
         object.choicesEnableIf,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.itemComponent != null) {
+      yield r'itemComponent';
+      yield serializers.serialize(
+        object.itemComponent,
         specifiedType: const FullType(String),
       );
     }
@@ -219,20 +239,6 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(QuestionState),
       );
     }
-    if (object.showSelectAllItem != null) {
-      yield r'showSelectAllItem';
-      yield serializers.serialize(
-        object.showSelectAllItem,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.otherErrorText != null) {
-      yield r'otherErrorText';
-      yield serializers.serialize(
-        object.otherErrorText,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.correctAnswer != null) {
       yield r'correctAnswer';
       yield serializers.serialize(
@@ -240,10 +246,17 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
-    if (object.showCommentArea != null) {
-      yield r'showCommentArea';
+    if (object.otherErrorText != null) {
+      yield r'otherErrorText';
       yield serializers.serialize(
-        object.showCommentArea,
+        object.otherErrorText,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
+    if (object.showSelectAllItem != null) {
+      yield r'showSelectAllItem';
+      yield serializers.serialize(
+        object.showSelectAllItem,
         specifiedType: const FullType(bool),
       );
     }
@@ -252,6 +265,13 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield serializers.serialize(
         object.maxWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.showCommentArea != null) {
+      yield r'showCommentArea';
+      yield serializers.serialize(
+        object.showCommentArea,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.isRequired != null) {
@@ -279,7 +299,7 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.titleLocation != null) {
@@ -289,6 +309,13 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(QuestionTitleLocation),
       );
     }
+    if (object.requiredErrorText != null) {
+      yield r'requiredErrorText';
+      yield serializers.serialize(
+        object.requiredErrorText,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
     if (object.choicesVisibleIf != null) {
       yield r'choicesVisibleIf';
       yield serializers.serialize(
@@ -296,20 +323,11 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.requiredErrorText != null) {
-      yield r'requiredErrorText';
-      yield serializers.serialize(
-        object.requiredErrorText,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -328,7 +346,7 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'choices';
       yield serializers.serialize(
         object.choices,
-        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownbaseAllOfChoicesInner)]),
       );
     }
     if (object.showNoneItem != null) {
@@ -342,7 +360,7 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'choicesByUrl';
       yield serializers.serialize(
         object.choicesByUrl,
-        specifiedType: const FullType(ChoicesRestful),
+        specifiedType: const FullType(ChoicesByUrl),
       );
     }
     if (object.closeOnSelect != null) {
@@ -380,13 +398,6 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(SelectbaseChoicesOrder),
       );
     }
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.choicesLazyLoadEnabled != null) {
       yield r'choicesLazyLoadEnabled';
       yield serializers.serialize(
@@ -394,18 +405,18 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(bool),
       );
     }
+    if (object.description != null) {
+      yield r'description';
+      yield serializers.serialize(
+        object.description,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.commentText != null) {
-      yield r'commentText';
-      yield serializers.serialize(
-        object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.choicesLazyLoadPageSize != null) {
@@ -413,6 +424,13 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield serializers.serialize(
         object.choicesLazyLoadPageSize,
         specifiedType: const FullType(num),
+      );
+    }
+    if (object.commentText != null) {
+      yield r'commentText';
+      yield serializers.serialize(
+        object.commentText,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -433,7 +451,14 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'otherText';
       yield serializers.serialize(
         object.otherText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
+    if (object.placeholder != null) {
+      yield r'placeholder';
+      yield serializers.serialize(
+        object.placeholder,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.hideNumber != null) {
@@ -441,13 +466,6 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield serializers.serialize(
         object.hideNumber,
         specifiedType: const FullType(bool),
-      );
-    }
-    if (object.placeholder != null) {
-      yield r'placeholder';
-      yield serializers.serialize(
-        object.placeholder,
-        specifiedType: const FullType(String),
       );
     }
     if (object.choicesFromQuestion != null) {
@@ -464,17 +482,17 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.valuePropertyName != null) {
-      yield r'valuePropertyName';
-      yield serializers.serialize(
-        object.valuePropertyName,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.commentPlaceholder != null) {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
+    if (object.valuePropertyName != null) {
+      yield r'valuePropertyName';
+      yield serializers.serialize(
+        object.valuePropertyName,
         specifiedType: const FullType(String),
       );
     }
@@ -489,7 +507,7 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
       yield r'otherPlaceholder';
       yield serializers.serialize(
         object.otherPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.requiredIf != null) {
@@ -559,6 +577,46 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
+  @override
+  Tagbox deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($Tagbox)) as $Tagbox;
+  }
+}
+
+/// a concrete implementation of [Tagbox], since [Tagbox] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $Tagbox implements Tagbox, Built<$Tagbox, $TagboxBuilder> {
+  $Tagbox._();
+
+  factory $Tagbox([void Function($TagboxBuilder)? updates]) = _$$Tagbox;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($TagboxBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$Tagbox> get serializer => _$$TagboxSerializer();
+}
+
+class _$$TagboxSerializer implements PrimitiveSerializer<$Tagbox> {
+  @override
+  final Iterable<Type> types = const [$Tagbox, _$$Tagbox];
+
+  @override
+  final String wireName = r'$Tagbox';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $Tagbox object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(Tagbox))!;
+  }
+
   void _deserializeProperties(
     Serializers serializers,
     Object serialized, {
@@ -578,19 +636,19 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as bool;
           result.showOtherItem = valueDes;
           break;
-        case r'noneText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.noneText = valueDes;
-          break;
         case r'useDisplayValuesInDynamicTexts':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.useDisplayValuesInDynamicTexts = valueDes;
+          break;
+        case r'noneText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.noneText.replace(valueDes);
           break;
         case r'hideSelectedItems':
           final valueDes = serializers.deserialize(
@@ -621,6 +679,13 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as String;
           result.bindings = valueDes;
           break;
+        case r'minSelectedChoices':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
+          result.minSelectedChoices = valueDes;
+          break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
@@ -635,19 +700,19 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as SelectbaseChoicesFromQuestionMode;
           result.choicesFromQuestionMode = valueDes;
           break;
-        case r'selectAllText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.selectAllText = valueDes;
-          break;
         case r'storeOthersAsComment':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.storeOthersAsComment = valueDes;
+          break;
+        case r'selectAllText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.selectAllText.replace(valueDes);
           break;
         case r'startWithNewLine':
           final valueDes = serializers.deserialize(
@@ -656,13 +721,6 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as bool;
           result.startWithNewLine = valueDes;
           break;
-        case r'itemComponent':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.itemComponent = valueDes;
-          break;
         case r'choicesEnableIf':
           final valueDes = serializers.deserialize(
             value,
@@ -670,26 +728,19 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as String;
           result.choicesEnableIf = valueDes;
           break;
+        case r'itemComponent':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.itemComponent = valueDes;
+          break;
         case r'state':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(QuestionState),
           ) as QuestionState;
           result.state = valueDes;
-          break;
-        case r'showSelectAllItem':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.showSelectAllItem = valueDes;
-          break;
-        case r'otherErrorText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.otherErrorText = valueDes;
           break;
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
@@ -699,12 +750,19 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
-        case r'showCommentArea':
+        case r'otherErrorText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.otherErrorText.replace(valueDes);
+          break;
+        case r'showSelectAllItem':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
-          result.showCommentArea = valueDes;
+          result.showSelectAllItem = valueDes;
           break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
@@ -712,6 +770,13 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.maxWidth.replace(valueDes);
+          break;
+        case r'showCommentArea':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.showCommentArea = valueDes;
           break;
         case r'isRequired':
           final valueDes = serializers.deserialize(
@@ -737,8 +802,8 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'titleLocation':
@@ -748,19 +813,19 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as QuestionTitleLocation;
           result.titleLocation = valueDes;
           break;
+        case r'requiredErrorText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
+          break;
         case r'choicesVisibleIf':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.choicesVisibleIf = valueDes;
-          break;
-        case r'requiredErrorText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -786,8 +851,8 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'choices':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
-          ) as BuiltList<SelectbaseAllOfChoicesInner>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          ) as BuiltList<MatrixdropdownbaseAllOfChoicesInner>;
           result.choices.replace(valueDes);
           break;
         case r'showNoneItem':
@@ -800,8 +865,8 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'choicesByUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChoicesRestful),
-          ) as ChoicesRestful;
+            specifiedType: const FullType(ChoicesByUrl),
+          ) as ChoicesByUrl;
           result.choicesByUrl.replace(valueDes);
           break;
         case r'closeOnSelect':
@@ -839,13 +904,6 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as SelectbaseChoicesOrder;
           result.choicesOrder = valueDes;
           break;
-        case r'description':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
-          break;
         case r'choicesLazyLoadEnabled':
           final valueDes = serializers.deserialize(
             value,
@@ -853,19 +911,19 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as bool;
           result.choicesLazyLoadEnabled = valueDes;
           break;
+        case r'description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
+          break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
-          break;
-        case r'commentText':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'choicesLazyLoadPageSize':
           final valueDes = serializers.deserialize(
@@ -873,6 +931,13 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
             specifiedType: const FullType(num),
           ) as num;
           result.choicesLazyLoadPageSize = valueDes;
+          break;
+        case r'commentText':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -891,9 +956,16 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'otherText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.otherText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.otherText.replace(valueDes);
+          break;
+        case r'placeholder':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.placeholder.replace(valueDes);
           break;
         case r'hideNumber':
           final valueDes = serializers.deserialize(
@@ -901,13 +973,6 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.hideNumber = valueDes;
-          break;
-        case r'placeholder':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.placeholder = valueDes;
           break;
         case r'choicesFromQuestion':
           final valueDes = serializers.deserialize(
@@ -923,19 +988,19 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
           ) as String;
           result.enableIf = valueDes;
           break;
+        case r'commentPlaceholder':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
+          break;
         case r'valuePropertyName':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.valuePropertyName = valueDes;
-          break;
-        case r'commentPlaceholder':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
           break;
         case r'separateSpecialChoices':
           final valueDes = serializers.deserialize(
@@ -947,9 +1012,9 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
         case r'otherPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.otherPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.otherPlaceholder.replace(valueDes);
           break;
         case r'requiredIf':
           final valueDes = serializers.deserialize(
@@ -1016,12 +1081,12 @@ class _$TagboxSerializer implements PrimitiveSerializer<Tagbox> {
   }
 
   @override
-  Tagbox deserialize(
+  $Tagbox deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = TagboxBuilder();
+    final result = $TagboxBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

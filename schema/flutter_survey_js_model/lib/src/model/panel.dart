@@ -6,11 +6,11 @@
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:flutter_survey_js_model/src/model/panel_indent.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter_survey_js_model/src/model/panel_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/panel_inner_indent.dart';
 import 'package:flutter_survey_js_model/src/model/panel_show_question_numbers.dart';
 import 'package:flutter_survey_js_model/src/model/panel_state.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_questions_order.dart';
@@ -50,7 +50,53 @@ part 'panel.g.dart';
 /// * [questionStartIndex] 
 /// * [allowAdaptiveActions] 
 @BuiltValue()
-abstract class Panel implements PanelAllOf, Panelbase, Built<Panel, PanelBuilder> {
+abstract class Panel implements Panelbase, Built<Panel, PanelBuilder> {
+  @BuiltValueField(wireName: r'isRequired')
+  bool? get isRequired;
+
+  @BuiltValueField(wireName: r'indent')
+  PanelIndent? get indent;
+  // enum indentEnum {  0,  1,  2,  3,  };
+
+  @BuiltValueField(wireName: r'minWidth')
+  SurveyLogoWidth? get minWidth;
+
+  @BuiltValueField(wireName: r'innerIndent')
+  PanelInnerIndent? get innerIndent;
+  // enum innerIndentEnum {  0,  1,  2,  3,  };
+
+  @BuiltValueField(wireName: r'showQuestionNumbers')
+  PanelShowQuestionNumbers? get showQuestionNumbers;
+  // enum showQuestionNumbersEnum {  default,  onpanel,  off,  };
+
+  @BuiltValueField(wireName: r'requiredErrorText')
+  SurveyTitle? get requiredErrorText;
+
+  @BuiltValueField(wireName: r'startWithNewLine')
+  bool? get startWithNewLine;
+
+  @BuiltValueField(wireName: r'showNumber')
+  bool? get showNumber;
+
+  @BuiltValueField(wireName: r'questionStartIndex')
+  String? get questionStartIndex;
+
+  @BuiltValueField(wireName: r'width')
+  SurveyLogoWidth? get width;
+
+  @BuiltValueField(wireName: r'state')
+  PanelState? get state;
+  // enum stateEnum {  default,  collapsed,  expanded,  };
+
+  @BuiltValueField(wireName: r'page')
+  String? get page;
+
+  @BuiltValueField(wireName: r'allowAdaptiveActions')
+  bool? get allowAdaptiveActions;
+
+  @BuiltValueField(wireName: r'maxWidth')
+  SurveyLogoWidth? get maxWidth;
+
   Panel._();
 
   factory Panel([void updates(PanelBuilder b)]) = _$Panel;
@@ -92,14 +138,7 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.title != null) {
-      yield r'title';
-      yield serializers.serialize(
-        object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.type != null) {
@@ -107,6 +146,13 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield serializers.serialize(
         object.type,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.title != null) {
+      yield r'title';
+      yield serializers.serialize(
+        object.title,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.innerIndent != null) {
@@ -165,18 +211,18 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         specifiedType: const FullType(SurveyLogoWidth),
       );
     }
-    if (object.enableIf != null) {
-      yield r'enableIf';
-      yield serializers.serialize(
-        object.enableIf,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.isRequired != null) {
       yield r'isRequired';
       yield serializers.serialize(
         object.isRequired,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.enableIf != null) {
+      yield r'enableIf';
+      yield serializers.serialize(
+        object.enableIf,
+        specifiedType: const FullType(String),
       );
     }
     if (object.visible != null) {
@@ -193,18 +239,18 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.readOnly != null) {
-      yield r'readOnly';
-      yield serializers.serialize(
-        object.readOnly,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.minWidth != null) {
       yield r'minWidth';
       yield serializers.serialize(
         object.minWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.readOnly != null) {
+      yield r'readOnly';
+      yield serializers.serialize(
+        object.readOnly,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.showQuestionNumbers != null) {
@@ -218,7 +264,7 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.elements != null) {
@@ -226,6 +272,13 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield serializers.serialize(
         object.elements,
         specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
+      );
+    }
+    if (object.width != null) {
+      yield r'width';
+      yield serializers.serialize(
+        object.width,
+        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.name != null) {
@@ -240,13 +293,6 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
       yield serializers.serialize(
         object.visibleIf,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.width != null) {
-      yield r'width';
-      yield serializers.serialize(
-        object.width,
-        specifiedType: const FullType(SurveyLogoWidth),
       );
     }
     if (object.page != null) {
@@ -303,16 +349,9 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
-          break;
-        case r'title':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
@@ -320,6 +359,13 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
             specifiedType: const FullType(String),
           ) as String;
           result.type = valueDes;
+          break;
+        case r'title':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'innerIndent':
           final valueDes = serializers.deserialize(
@@ -377,19 +423,19 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
           ) as SurveyLogoWidth;
           result.maxWidth.replace(valueDes);
           break;
-        case r'enableIf':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.enableIf = valueDes;
-          break;
         case r'isRequired':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.isRequired = valueDes;
+          break;
+        case r'enableIf':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.enableIf = valueDes;
           break;
         case r'visible':
           final valueDes = serializers.deserialize(
@@ -405,19 +451,19 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
           ) as String;
           result.requiredIf = valueDes;
           break;
-        case r'readOnly':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.readOnly = valueDes;
-          break;
         case r'minWidth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.minWidth.replace(valueDes);
+          break;
+        case r'readOnly':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.readOnly = valueDes;
           break;
         case r'showQuestionNumbers':
           final valueDes = serializers.deserialize(
@@ -429,9 +475,9 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'elements':
           final valueDes = serializers.deserialize(
@@ -439,6 +485,13 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
             specifiedType: const FullType(BuiltList, [FullType(SurveyQuestionsInner)]),
           ) as BuiltList<SurveyQuestionsInner>;
           result.elements.replace(valueDes);
+          break;
+        case r'width':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyLogoWidth),
+          ) as SurveyLogoWidth;
+          result.width.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -453,13 +506,6 @@ class _$PanelSerializer implements PrimitiveSerializer<Panel> {
             specifiedType: const FullType(String),
           ) as String;
           result.visibleIf = valueDes;
-          break;
-        case r'width':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(SurveyLogoWidth),
-          ) as SurveyLogoWidth;
-          result.width.replace(valueDes);
           break;
         case r'page':
           final valueDes = serializers.deserialize(

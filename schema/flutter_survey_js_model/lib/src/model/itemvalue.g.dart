@@ -12,8 +12,8 @@ abstract class ItemvalueBuilder {
   JsonObject? get value;
   set value(JsonObject? value);
 
-  String? get text;
-  set text(String? text);
+  SurveyTitleBuilder get text;
+  set text(SurveyTitleBuilder? text);
 
   String? get visibleIf;
   set visibleIf(String? visibleIf);
@@ -26,7 +26,7 @@ class _$$Itemvalue extends $Itemvalue {
   @override
   final JsonObject? value;
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? visibleIf;
   @override
@@ -85,9 +85,9 @@ class $ItemvalueBuilder
   JsonObject? get value => _$this._value;
   set value(covariant JsonObject? value) => _$this._value = value;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _visibleIf;
   String? get visibleIf => _$this._visibleIf;
@@ -105,7 +105,7 @@ class $ItemvalueBuilder
     final $v = _$v;
     if ($v != null) {
       _value = $v.value;
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _visibleIf = $v.visibleIf;
       _enableIf = $v.enableIf;
       _$v = null;
@@ -128,9 +128,25 @@ class $ItemvalueBuilder
   $Itemvalue build() => _build();
 
   _$$Itemvalue _build() {
-    final _$result = _$v ??
-        new _$$Itemvalue._(
-            value: value, text: text, visibleIf: visibleIf, enableIf: enableIf);
+    _$$Itemvalue _$result;
+    try {
+      _$result = _$v ??
+          new _$$Itemvalue._(
+              value: value,
+              text: _text?.build(),
+              visibleIf: visibleIf,
+              enableIf: enableIf);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$Itemvalue', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

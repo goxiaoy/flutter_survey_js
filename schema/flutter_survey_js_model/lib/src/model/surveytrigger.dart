@@ -3,7 +3,6 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/surveytrigger_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/trigger.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -19,7 +18,10 @@ part 'surveytrigger.g.dart';
 /// * [type] 
 /// * [name] 
 @BuiltValue(instantiable: false)
-abstract class Surveytrigger implements SurveytriggerAllOf, Trigger {
+abstract class Surveytrigger implements Trigger {
+  @BuiltValueField(wireName: r'name')
+  String? get name;
+
   @BuiltValueSerializer(custom: true)
   static Serializer<Surveytrigger> get serializer => _$SurveytriggerSerializer();
 }

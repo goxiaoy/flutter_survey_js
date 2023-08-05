@@ -4,8 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter_survey_js_model/src/model/page_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase_question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/panelbase.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
 import 'package:flutter_survey_js_model/src/model/page_navigation_buttons_visibility.dart';
@@ -36,7 +36,20 @@ part 'page.g.dart';
 /// * [navigationTitle] 
 /// * [navigationDescription] 
 @BuiltValue()
-abstract class Page implements PageAllOf, Panelbase, Built<Page, PageBuilder> {
+abstract class Page implements Panelbase, Built<Page, PageBuilder> {
+  @BuiltValueField(wireName: r'navigationButtonsVisibility')
+  PageNavigationButtonsVisibility? get navigationButtonsVisibility;
+  // enum navigationButtonsVisibilityEnum {  inherit,  show,  hide,  };
+
+  @BuiltValueField(wireName: r'navigationTitle')
+  SurveyTitle? get navigationTitle;
+
+  @BuiltValueField(wireName: r'navigationDescription')
+  SurveyTitle? get navigationDescription;
+
+  @BuiltValueField(wireName: r'maxTimeToFinish')
+  num? get maxTimeToFinish;
+
   Page._();
 
   factory Page([void updates(PageBuilder b)]) = _$Page;
@@ -85,14 +98,14 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
       yield r'navigationTitle';
       yield serializers.serialize(
         object.navigationTitle,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.navigationDescription != null) {
       yield r'navigationDescription';
       yield serializers.serialize(
         object.navigationDescription,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.requiredIf != null) {
@@ -113,7 +126,7 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.readOnly != null) {
@@ -123,18 +136,18 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.title != null) {
-      yield r'title';
-      yield serializers.serialize(
-        object.title,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.type != null) {
       yield r'type';
       yield serializers.serialize(
         object.type,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.title != null) {
+      yield r'title';
+      yield serializers.serialize(
+        object.title,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.questionsOrder != null) {
@@ -165,18 +178,18 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.questionTitleLocation != null) {
-      yield r'questionTitleLocation';
-      yield serializers.serialize(
-        object.questionTitleLocation,
-        specifiedType: const FullType(PanelbaseQuestionTitleLocation),
-      );
-    }
     if (object.maxTimeToFinish != null) {
       yield r'maxTimeToFinish';
       yield serializers.serialize(
         object.maxTimeToFinish,
         specifiedType: const FullType(num),
+      );
+    }
+    if (object.questionTitleLocation != null) {
+      yield r'questionTitleLocation';
+      yield serializers.serialize(
+        object.questionTitleLocation,
+        specifiedType: const FullType(PanelbaseQuestionTitleLocation),
       );
     }
   }
@@ -226,16 +239,16 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
         case r'navigationTitle':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.navigationTitle = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.navigationTitle.replace(valueDes);
           break;
         case r'navigationDescription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.navigationDescription = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.navigationDescription.replace(valueDes);
           break;
         case r'requiredIf':
           final valueDes = serializers.deserialize(
@@ -254,9 +267,9 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'readOnly':
           final valueDes = serializers.deserialize(
@@ -265,19 +278,19 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
           ) as bool;
           result.readOnly = valueDes;
           break;
-        case r'title':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
-          break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.type = valueDes;
+          break;
+        case r'title':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'questionsOrder':
           final valueDes = serializers.deserialize(
@@ -307,19 +320,19 @@ class _$PageSerializer implements PrimitiveSerializer<Page> {
           ) as String;
           result.visibleIf = valueDes;
           break;
-        case r'questionTitleLocation':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PanelbaseQuestionTitleLocation),
-          ) as PanelbaseQuestionTitleLocation;
-          result.questionTitleLocation = valueDes;
-          break;
         case r'maxTimeToFinish':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(num),
           ) as num;
           result.maxTimeToFinish = valueDes;
+          break;
+        case r'questionTitleLocation':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PanelbaseQuestionTitleLocation),
+          ) as PanelbaseQuestionTitleLocation;
+          result.questionTitleLocation = valueDes;
           break;
         default:
           unhandled.add(key);

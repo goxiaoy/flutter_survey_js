@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -22,7 +23,7 @@ abstract class Itemvalue  {
   JsonObject? get value;
 
   @BuiltValueField(wireName: r'text')
-  String? get text;
+  SurveyTitle? get text;
 
   @BuiltValueField(wireName: r'visibleIf')
   String? get visibleIf;
@@ -46,18 +47,16 @@ class _$ItemvalueSerializer implements PrimitiveSerializer<Itemvalue> {
     Itemvalue object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.value != null) {
-      yield r'value';
-      yield serializers.serialize(
-        object.value,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
+    yield r'value';
+    yield object.value == null ? null : serializers.serialize(
+      object.value,
+      specifiedType: const FullType.nullable(JsonObject),
+    );
     if (object.text != null) {
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.visibleIf != null) {
@@ -148,9 +147,9 @@ class _$$ItemvalueSerializer implements PrimitiveSerializer<$Itemvalue> {
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         case r'visibleIf':
           final valueDes = serializers.deserialize(

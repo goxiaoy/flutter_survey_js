@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/numericvalidator_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -18,7 +18,13 @@ part 'numericvalidator.g.dart';
 /// * [minValue] 
 /// * [maxValue] 
 @BuiltValue()
-abstract class Numericvalidator implements NumericvalidatorAllOf, Surveyvalidator, Built<Numericvalidator, NumericvalidatorBuilder> {
+abstract class Numericvalidator implements Surveyvalidator, Built<Numericvalidator, NumericvalidatorBuilder> {
+  @BuiltValueField(wireName: r'minValue')
+  num? get minValue;
+
+  @BuiltValueField(wireName: r'maxValue')
+  num? get maxValue;
+
   Numericvalidator._();
 
   factory Numericvalidator([void updates(NumericvalidatorBuilder b)]) = _$Numericvalidator;
@@ -53,7 +59,7 @@ class _$NumericvalidatorSerializer implements PrimitiveSerializer<Numericvalidat
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.type != null) {
@@ -103,9 +109,9 @@ class _$NumericvalidatorSerializer implements PrimitiveSerializer<Numericvalidat
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(

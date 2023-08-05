@@ -8,6 +8,10 @@ part of 'visibletrigger.dart';
 
 class _$Visibletrigger extends Visibletrigger {
   @override
+  final String? pages;
+  @override
+  final BuiltList<String>? questions;
+  @override
   final String? name;
   @override
   final String? operator_;
@@ -17,22 +21,18 @@ class _$Visibletrigger extends Visibletrigger {
   final String? expression;
   @override
   final String? type;
-  @override
-  final String? pages;
-  @override
-  final BuiltList<String>? questions;
 
   factory _$Visibletrigger([void Function(VisibletriggerBuilder)? updates]) =>
       (new VisibletriggerBuilder()..update(updates))._build();
 
   _$Visibletrigger._(
-      {this.name,
+      {this.pages,
+      this.questions,
+      this.name,
       this.operator_,
       this.value,
       this.expression,
-      this.type,
-      this.pages,
-      this.questions})
+      this.type})
       : super._();
 
   @override
@@ -47,25 +47,25 @@ class _$Visibletrigger extends Visibletrigger {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Visibletrigger &&
+        pages == other.pages &&
+        questions == other.questions &&
         name == other.name &&
         operator_ == other.operator_ &&
         value == other.value &&
         expression == other.expression &&
-        type == other.type &&
-        pages == other.pages &&
-        questions == other.questions;
+        type == other.type;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, pages.hashCode);
+    _$hash = $jc(_$hash, questions.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, operator_.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jc(_$hash, expression.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, pages.hashCode);
-    _$hash = $jc(_$hash, questions.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -73,13 +73,13 @@ class _$Visibletrigger extends Visibletrigger {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Visibletrigger')
+          ..add('pages', pages)
+          ..add('questions', questions)
           ..add('name', name)
           ..add('operator_', operator_)
           ..add('value', value)
           ..add('expression', expression)
-          ..add('type', type)
-          ..add('pages', pages)
-          ..add('questions', questions))
+          ..add('type', type))
         .toString();
   }
 }
@@ -87,9 +87,18 @@ class _$Visibletrigger extends Visibletrigger {
 class VisibletriggerBuilder
     implements
         Builder<Visibletrigger, VisibletriggerBuilder>,
-        SurveytriggerBuilder,
-        VisibletriggerAllOfBuilder {
+        SurveytriggerBuilder {
   _$Visibletrigger? _$v;
+
+  String? _pages;
+  String? get pages => _$this._pages;
+  set pages(covariant String? pages) => _$this._pages = pages;
+
+  ListBuilder<String>? _questions;
+  ListBuilder<String> get questions =>
+      _$this._questions ??= new ListBuilder<String>();
+  set questions(covariant ListBuilder<String>? questions) =>
+      _$this._questions = questions;
 
   String? _name;
   String? get name => _$this._name;
@@ -112,16 +121,6 @@ class VisibletriggerBuilder
   String? get type => _$this._type;
   set type(covariant String? type) => _$this._type = type;
 
-  String? _pages;
-  String? get pages => _$this._pages;
-  set pages(covariant String? pages) => _$this._pages = pages;
-
-  ListBuilder<String>? _questions;
-  ListBuilder<String> get questions =>
-      _$this._questions ??= new ListBuilder<String>();
-  set questions(covariant ListBuilder<String>? questions) =>
-      _$this._questions = questions;
-
   VisibletriggerBuilder() {
     Visibletrigger._defaults(this);
   }
@@ -129,20 +128,19 @@ class VisibletriggerBuilder
   VisibletriggerBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _pages = $v.pages;
+      _questions = $v.questions?.toBuilder();
       _name = $v.name;
       _operator_ = $v.operator_;
       _value = $v.value;
       _expression = $v.expression;
       _type = $v.type;
-      _pages = $v.pages;
-      _questions = $v.questions?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Visibletrigger other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Visibletrigger;
@@ -161,13 +159,13 @@ class VisibletriggerBuilder
     try {
       _$result = _$v ??
           new _$Visibletrigger._(
+              pages: pages,
+              questions: _questions?.build(),
               name: name,
               operator_: operator_,
               value: value,
               expression: expression,
-              type: type,
-              pages: pages,
-              questions: _questions?.build());
+              type: type);
     } catch (_) {
       late String _$failedField;
       try {

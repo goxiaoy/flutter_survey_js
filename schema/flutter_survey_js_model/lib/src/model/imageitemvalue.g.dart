@@ -12,7 +12,7 @@ class _$Imageitemvalue extends Imageitemvalue {
   @override
   final JsonObject? value;
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? visibleIf;
   @override
@@ -71,7 +71,6 @@ class _$Imageitemvalue extends Imageitemvalue {
 class ImageitemvalueBuilder
     implements
         Builder<Imageitemvalue, ImageitemvalueBuilder>,
-        ImageitemvalueAllOfBuilder,
         ItemvalueBuilder {
   _$Imageitemvalue? _$v;
 
@@ -83,9 +82,9 @@ class ImageitemvalueBuilder
   JsonObject? get value => _$this._value;
   set value(covariant JsonObject? value) => _$this._value = value;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _visibleIf;
   String? get visibleIf => _$this._visibleIf;
@@ -104,7 +103,7 @@ class ImageitemvalueBuilder
     if ($v != null) {
       _imageLink = $v.imageLink;
       _value = $v.value;
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _visibleIf = $v.visibleIf;
       _enableIf = $v.enableIf;
       _$v = null;
@@ -113,7 +112,6 @@ class ImageitemvalueBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Imageitemvalue other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Imageitemvalue;
@@ -128,13 +126,26 @@ class ImageitemvalueBuilder
   Imageitemvalue build() => _build();
 
   _$Imageitemvalue _build() {
-    final _$result = _$v ??
-        new _$Imageitemvalue._(
-            imageLink: imageLink,
-            value: value,
-            text: text,
-            visibleIf: visibleIf,
-            enableIf: enableIf);
+    _$Imageitemvalue _$result;
+    try {
+      _$result = _$v ??
+          new _$Imageitemvalue._(
+              imageLink: imageLink,
+              value: value,
+              text: _text?.build(),
+              visibleIf: visibleIf,
+              enableIf: enableIf);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Imageitemvalue', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

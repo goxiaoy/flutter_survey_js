@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';

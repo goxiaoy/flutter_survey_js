@@ -12,7 +12,7 @@ class _$Numericvalidator extends Numericvalidator {
   @override
   final num? maxValue;
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? type;
 
@@ -66,7 +66,6 @@ class _$Numericvalidator extends Numericvalidator {
 class NumericvalidatorBuilder
     implements
         Builder<Numericvalidator, NumericvalidatorBuilder>,
-        NumericvalidatorAllOfBuilder,
         SurveyvalidatorBuilder {
   _$Numericvalidator? _$v;
 
@@ -78,9 +77,9 @@ class NumericvalidatorBuilder
   num? get maxValue => _$this._maxValue;
   set maxValue(covariant num? maxValue) => _$this._maxValue = maxValue;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _type;
   String? get type => _$this._type;
@@ -95,7 +94,7 @@ class NumericvalidatorBuilder
     if ($v != null) {
       _minValue = $v.minValue;
       _maxValue = $v.maxValue;
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _type = $v.type;
       _$v = null;
     }
@@ -103,7 +102,6 @@ class NumericvalidatorBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Numericvalidator other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Numericvalidator;
@@ -118,9 +116,25 @@ class NumericvalidatorBuilder
   Numericvalidator build() => _build();
 
   _$Numericvalidator _build() {
-    final _$result = _$v ??
-        new _$Numericvalidator._(
-            minValue: minValue, maxValue: maxValue, text: text, type: type);
+    _$Numericvalidator _$result;
+    try {
+      _$result = _$v ??
+          new _$Numericvalidator._(
+              minValue: minValue,
+              maxValue: maxValue,
+              text: _text?.build(),
+              type: type);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Numericvalidator', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

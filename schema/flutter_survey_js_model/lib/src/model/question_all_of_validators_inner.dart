@@ -9,6 +9,7 @@ import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/textvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/answercountvalidator.dart';
 import 'package:flutter_survey_js_model/src/model/regexvalidator.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/emailvalidator.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';

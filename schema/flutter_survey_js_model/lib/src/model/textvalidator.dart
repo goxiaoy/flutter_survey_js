@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/surveyvalidator.dart';
-import 'package:flutter_survey_js_model/src/model/textvalidator_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,7 +19,16 @@ part 'textvalidator.g.dart';
 /// * [maxLength] 
 /// * [allowDigits] 
 @BuiltValue()
-abstract class Textvalidator implements Surveyvalidator, TextvalidatorAllOf, Built<Textvalidator, TextvalidatorBuilder> {
+abstract class Textvalidator implements Surveyvalidator, Built<Textvalidator, TextvalidatorBuilder> {
+  @BuiltValueField(wireName: r'allowDigits')
+  bool? get allowDigits;
+
+  @BuiltValueField(wireName: r'minLength')
+  num? get minLength;
+
+  @BuiltValueField(wireName: r'maxLength')
+  num? get maxLength;
+
   Textvalidator._();
 
   factory Textvalidator([void updates(TextvalidatorBuilder b)]) = _$Textvalidator;
@@ -47,7 +56,7 @@ class _$TextvalidatorSerializer implements PrimitiveSerializer<Textvalidator> {
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.allowDigits != null) {
@@ -104,9 +113,9 @@ class _$TextvalidatorSerializer implements PrimitiveSerializer<Textvalidator> {
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         case r'allowDigits':
           final valueDes = serializers.deserialize(

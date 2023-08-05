@@ -6,6 +6,7 @@
 import 'package:flutter_survey_js_model/src/model/matrixdynamic_add_row_location.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_cell_type.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_col_count.dart';
 import 'package:flutter_survey_js_model/src/model/matrixbase_vertical_align.dart';
@@ -15,12 +16,11 @@ import 'package:flutter_survey_js_model/src/model/question_description_location.
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_column_layout.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
-import 'package:flutter_survey_js_model/src/model/matrixdynamic_all_of.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_detail_panel_mode.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdowncolumn.dart';
 import 'package:flutter_survey_js_model/src/model/matrixdropdownbase.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -98,7 +98,59 @@ part 'matrixdynamic.g.dart';
 /// * [detailPanelShowOnAdding] 
 /// * [allowRowsDragAndDrop] 
 @BuiltValue()
-abstract class Matrixdynamic implements Matrixdropdownbase, MatrixdynamicAllOf, Built<Matrixdynamic, MatrixdynamicBuilder> {
+abstract class Matrixdynamic implements Matrixdropdownbase, Built<Matrixdynamic, MatrixdynamicBuilder> {
+  @BuiltValueField(wireName: r'addRowLocation')
+  MatrixdynamicAddRowLocation? get addRowLocation;
+  // enum addRowLocationEnum {  default,  top,  bottom,  topBottom,  };
+
+  @BuiltValueField(wireName: r'hideColumnsIfEmpty')
+  bool? get hideColumnsIfEmpty;
+
+  @BuiltValueField(wireName: r'defaultValueFromLastRow')
+  bool? get defaultValueFromLastRow;
+
+  @BuiltValueField(wireName: r'addRowText')
+  SurveyTitle? get addRowText;
+
+  @BuiltValueField(wireName: r'removeRowText')
+  SurveyTitle? get removeRowText;
+
+  @BuiltValueField(wireName: r'maxRowCount')
+  num? get maxRowCount;
+
+  @BuiltValueField(wireName: r'keyName')
+  String? get keyName;
+
+  @BuiltValueField(wireName: r'confirmDelete')
+  bool? get confirmDelete;
+
+  @BuiltValueField(wireName: r'emptyRowsText')
+  SurveyTitle? get emptyRowsText;
+
+  @BuiltValueField(wireName: r'allowAddRows')
+  bool? get allowAddRows;
+
+  @BuiltValueField(wireName: r'allowRowsDragAndDrop')
+  bool? get allowRowsDragAndDrop;
+
+  @BuiltValueField(wireName: r'defaultRowValue')
+  String? get defaultRowValue;
+
+  @BuiltValueField(wireName: r'confirmDeleteText')
+  SurveyTitle? get confirmDeleteText;
+
+  @BuiltValueField(wireName: r'minRowCount')
+  num? get minRowCount;
+
+  @BuiltValueField(wireName: r'detailPanelShowOnAdding')
+  bool? get detailPanelShowOnAdding;
+
+  @BuiltValueField(wireName: r'allowRemoveRows')
+  bool? get allowRemoveRows;
+
+  @BuiltValueField(wireName: r'rowCount')
+  num? get rowCount;
+
   Matrixdynamic._();
 
   factory Matrixdynamic([void updates(MatrixdynamicBuilder b)]) = _$Matrixdynamic;
@@ -150,13 +202,11 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.columnLayout != null) {
       yield r'columnLayout';
       yield serializers.serialize(
@@ -168,7 +218,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'emptyRowsText';
       yield serializers.serialize(
         object.emptyRowsText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.startWithNewLine != null) {
@@ -182,7 +232,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'confirmDeleteText';
       yield serializers.serialize(
         object.confirmDeleteText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.horizontalScroll != null) {
@@ -203,7 +253,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'keyDuplicationError';
       yield serializers.serialize(
         object.keyDuplicationError,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.columnMinWidth != null) {
@@ -241,13 +291,6 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
-    if (object.showCommentArea != null) {
-      yield r'showCommentArea';
-      yield serializers.serialize(
-        object.showCommentArea,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
@@ -255,11 +298,11 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         specifiedType: const FullType(SurveyLogoWidth),
       );
     }
-    if (object.verticalAlign != null) {
-      yield r'verticalAlign';
+    if (object.showCommentArea != null) {
+      yield r'showCommentArea';
       yield serializers.serialize(
-        object.verticalAlign,
-        specifiedType: const FullType(MatrixbaseVerticalAlign),
+        object.showCommentArea,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.isRequired != null) {
@@ -267,6 +310,13 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield serializers.serialize(
         object.isRequired,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.verticalAlign != null) {
+      yield r'verticalAlign';
+      yield serializers.serialize(
+        object.verticalAlign,
+        specifiedType: const FullType(MatrixbaseVerticalAlign),
       );
     }
     if (object.hideColumnsIfEmpty != null) {
@@ -301,7 +351,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'addRowText';
       yield serializers.serialize(
         object.addRowText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -315,7 +365,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.titleLocation != null) {
@@ -336,16 +386,14 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -385,7 +433,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'choices';
       yield serializers.serialize(
         object.choices,
-        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownbaseAllOfChoicesInner)]),
       );
     }
     if (object.indent != null) {
@@ -413,7 +461,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.detailPanelMode != null) {
@@ -427,14 +475,14 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.columnColCount != null) {
@@ -455,7 +503,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'allowRowsDragAndDrop';
       yield serializers.serialize(
         object.allowRowsDragAndDrop,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.descriptionLocation != null) {
@@ -483,7 +531,7 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'placeholder';
       yield serializers.serialize(
         object.placeholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.rowsVisibleIf != null) {
@@ -511,14 +559,14 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.removeRowText != null) {
       yield r'removeRowText';
       yield serializers.serialize(
         object.removeRowText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.showHeader != null) {
@@ -660,9 +708,9 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'emptyRowsText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.emptyRowsText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.emptyRowsText.replace(valueDes);
           break;
         case r'startWithNewLine':
           final valueDes = serializers.deserialize(
@@ -674,9 +722,9 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'confirmDeleteText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.confirmDeleteText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.confirmDeleteText.replace(valueDes);
           break;
         case r'horizontalScroll':
           final valueDes = serializers.deserialize(
@@ -695,9 +743,9 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'keyDuplicationError':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.keyDuplicationError = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.keyDuplicationError.replace(valueDes);
           break;
         case r'columnMinWidth':
           final valueDes = serializers.deserialize(
@@ -735,13 +783,6 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
-        case r'showCommentArea':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.showCommentArea = valueDes;
-          break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
@@ -749,12 +790,12 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
           ) as SurveyLogoWidth;
           result.maxWidth.replace(valueDes);
           break;
-        case r'verticalAlign':
+        case r'showCommentArea':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MatrixbaseVerticalAlign),
-          ) as MatrixbaseVerticalAlign;
-          result.verticalAlign = valueDes;
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.showCommentArea = valueDes;
           break;
         case r'isRequired':
           final valueDes = serializers.deserialize(
@@ -762,6 +803,13 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.isRequired = valueDes;
+          break;
+        case r'verticalAlign':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(MatrixbaseVerticalAlign),
+          ) as MatrixbaseVerticalAlign;
+          result.verticalAlign = valueDes;
           break;
         case r'hideColumnsIfEmpty':
           final valueDes = serializers.deserialize(
@@ -794,9 +842,9 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'addRowText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.addRowText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.addRowText.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -808,8 +856,8 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'titleLocation':
@@ -829,9 +877,9 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -878,8 +926,8 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'choices':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
-          ) as BuiltList<SelectbaseAllOfChoicesInner>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          ) as BuiltList<MatrixdropdownbaseAllOfChoicesInner>;
           result.choices.replace(valueDes);
           break;
         case r'indent':
@@ -906,9 +954,9 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'detailPanelMode':
           final valueDes = serializers.deserialize(
@@ -920,16 +968,16 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'columnColCount':
           final valueDes = serializers.deserialize(
@@ -948,8 +996,8 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'allowRowsDragAndDrop':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.allowRowsDragAndDrop = valueDes;
           break;
         case r'descriptionLocation':
@@ -976,9 +1024,9 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'placeholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.placeholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.placeholder.replace(valueDes);
           break;
         case r'rowsVisibleIf':
           final valueDes = serializers.deserialize(
@@ -1004,16 +1052,16 @@ class _$MatrixdynamicSerializer implements PrimitiveSerializer<Matrixdynamic> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'removeRowText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.removeRowText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.removeRowText.replace(valueDes);
           break;
         case r'showHeader':
           final valueDes = serializers.deserialize(

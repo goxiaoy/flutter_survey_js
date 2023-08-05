@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -16,7 +17,7 @@ part 'surveyvalidator.g.dart';
 @BuiltValue(instantiable: false)
 abstract class Surveyvalidator  {
   @BuiltValueField(wireName: r'text')
-  String? get text;
+  SurveyTitle? get text;
 
   @BuiltValueField(wireName: r'type')
   String? get type;
@@ -41,7 +42,7 @@ class _$SurveyvalidatorSerializer implements PrimitiveSerializer<Surveyvalidator
       yield r'text';
       yield serializers.serialize(
         object.text,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.type != null) {
@@ -117,9 +118,9 @@ class _$$SurveyvalidatorSerializer implements PrimitiveSerializer<$Surveyvalidat
         case r'text':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(

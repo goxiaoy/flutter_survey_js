@@ -8,21 +8,21 @@ part of 'textvalidator.dart';
 
 class _$Textvalidator extends Textvalidator {
   @override
-  final String? text;
-  @override
-  final String? type;
+  final bool? allowDigits;
   @override
   final num? minLength;
   @override
   final num? maxLength;
   @override
-  final bool? allowDigits;
+  final SurveyTitle? text;
+  @override
+  final String? type;
 
   factory _$Textvalidator([void Function(TextvalidatorBuilder)? updates]) =>
       (new TextvalidatorBuilder()..update(updates))._build();
 
   _$Textvalidator._(
-      {this.text, this.type, this.minLength, this.maxLength, this.allowDigits})
+      {this.allowDigits, this.minLength, this.maxLength, this.text, this.type})
       : super._();
 
   @override
@@ -36,21 +36,21 @@ class _$Textvalidator extends Textvalidator {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Textvalidator &&
-        text == other.text &&
-        type == other.type &&
+        allowDigits == other.allowDigits &&
         minLength == other.minLength &&
         maxLength == other.maxLength &&
-        allowDigits == other.allowDigits;
+        text == other.text &&
+        type == other.type;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, text.hashCode);
-    _$hash = $jc(_$hash, type.hashCode);
+    _$hash = $jc(_$hash, allowDigits.hashCode);
     _$hash = $jc(_$hash, minLength.hashCode);
     _$hash = $jc(_$hash, maxLength.hashCode);
-    _$hash = $jc(_$hash, allowDigits.hashCode);
+    _$hash = $jc(_$hash, text.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -58,11 +58,11 @@ class _$Textvalidator extends Textvalidator {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Textvalidator')
-          ..add('text', text)
-          ..add('type', type)
+          ..add('allowDigits', allowDigits)
           ..add('minLength', minLength)
           ..add('maxLength', maxLength)
-          ..add('allowDigits', allowDigits))
+          ..add('text', text)
+          ..add('type', type))
         .toString();
   }
 }
@@ -70,17 +70,13 @@ class _$Textvalidator extends Textvalidator {
 class TextvalidatorBuilder
     implements
         Builder<Textvalidator, TextvalidatorBuilder>,
-        SurveyvalidatorBuilder,
-        TextvalidatorAllOfBuilder {
+        SurveyvalidatorBuilder {
   _$Textvalidator? _$v;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
-
-  String? _type;
-  String? get type => _$this._type;
-  set type(covariant String? type) => _$this._type = type;
+  bool? _allowDigits;
+  bool? get allowDigits => _$this._allowDigits;
+  set allowDigits(covariant bool? allowDigits) =>
+      _$this._allowDigits = allowDigits;
 
   num? _minLength;
   num? get minLength => _$this._minLength;
@@ -90,10 +86,13 @@ class TextvalidatorBuilder
   num? get maxLength => _$this._maxLength;
   set maxLength(covariant num? maxLength) => _$this._maxLength = maxLength;
 
-  bool? _allowDigits;
-  bool? get allowDigits => _$this._allowDigits;
-  set allowDigits(covariant bool? allowDigits) =>
-      _$this._allowDigits = allowDigits;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
+
+  String? _type;
+  String? get type => _$this._type;
+  set type(covariant String? type) => _$this._type = type;
 
   TextvalidatorBuilder() {
     Textvalidator._defaults(this);
@@ -102,18 +101,17 @@ class TextvalidatorBuilder
   TextvalidatorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _text = $v.text;
-      _type = $v.type;
+      _allowDigits = $v.allowDigits;
       _minLength = $v.minLength;
       _maxLength = $v.maxLength;
-      _allowDigits = $v.allowDigits;
+      _text = $v.text?.toBuilder();
+      _type = $v.type;
       _$v = null;
     }
     return this;
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Textvalidator other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Textvalidator;
@@ -128,13 +126,26 @@ class TextvalidatorBuilder
   Textvalidator build() => _build();
 
   _$Textvalidator _build() {
-    final _$result = _$v ??
-        new _$Textvalidator._(
-            text: text,
-            type: type,
-            minLength: minLength,
-            maxLength: maxLength,
-            allowDigits: allowDigits);
+    _$Textvalidator _$result;
+    try {
+      _$result = _$v ??
+          new _$Textvalidator._(
+              allowDigits: allowDigits,
+              minLength: minLength,
+              maxLength: maxLength,
+              text: _text?.build(),
+              type: type);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Textvalidator', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

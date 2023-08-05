@@ -89,7 +89,6 @@ class _$Runexpressiontrigger extends Runexpressiontrigger {
 class RunexpressiontriggerBuilder
     implements
         Builder<Runexpressiontrigger, RunexpressiontriggerBuilder>,
-        RunexpressiontriggerAllOfBuilder,
         SurveytriggerBuilder {
   _$Runexpressiontrigger? _$v;
 
@@ -143,7 +142,6 @@ class RunexpressiontriggerBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Runexpressiontrigger other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Runexpressiontrigger;

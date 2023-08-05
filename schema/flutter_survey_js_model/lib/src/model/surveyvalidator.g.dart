@@ -9,8 +9,8 @@ part of 'surveyvalidator.dart';
 abstract class SurveyvalidatorBuilder {
   void replace(Surveyvalidator other);
   void update(void Function(SurveyvalidatorBuilder) updates);
-  String? get text;
-  set text(String? text);
+  SurveyTitleBuilder get text;
+  set text(SurveyTitleBuilder? text);
 
   String? get type;
   set type(String? type);
@@ -18,7 +18,7 @@ abstract class SurveyvalidatorBuilder {
 
 class _$$Surveyvalidator extends $Surveyvalidator {
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? type;
 
@@ -68,9 +68,9 @@ class $SurveyvalidatorBuilder
         SurveyvalidatorBuilder {
   _$$Surveyvalidator? _$v;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _type;
   String? get type => _$this._type;
@@ -83,7 +83,7 @@ class $SurveyvalidatorBuilder
   $SurveyvalidatorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _type = $v.type;
       _$v = null;
     }
@@ -105,7 +105,21 @@ class $SurveyvalidatorBuilder
   $Surveyvalidator build() => _build();
 
   _$$Surveyvalidator _build() {
-    final _$result = _$v ?? new _$$Surveyvalidator._(text: text, type: type);
+    _$$Surveyvalidator _$result;
+    try {
+      _$result =
+          _$v ?? new _$$Surveyvalidator._(text: _text?.build(), type: type);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'$Surveyvalidator', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

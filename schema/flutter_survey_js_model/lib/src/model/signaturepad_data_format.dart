@@ -11,8 +11,8 @@ part 'signaturepad_data_format.g.dart';
 
 class SignaturepadDataFormat extends EnumClass {
 
-  @BuiltValueEnumConst(wireName: r'{\"value\":\"\",\"text\":\"PNG\"}')
-  static const SignaturepadDataFormat doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket = _$doubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket;
+  @BuiltValueEnumConst(wireName: r'{\"value\":\"png\",\"text\":\"PNG\"}')
+  static const SignaturepadDataFormat pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket = _$pngDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuotePNGDoubleQuoteRightCurlyBracket;
   @BuiltValueEnumConst(wireName: r'{\"value\":\"image/jpeg\",\"text\":\"JPEG\"}')
   static const SignaturepadDataFormat imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket = _$imageSlashJpegDoubleQuoteCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteJPEGDoubleQuoteRightCurlyBracket;
   @BuiltValueEnumConst(wireName: r'{\"value\":\"image/svg+xml\",\"text\":\"SVG\"}')

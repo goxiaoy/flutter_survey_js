@@ -8,7 +8,7 @@ part of 'emailvalidator.dart';
 
 class _$Emailvalidator extends Emailvalidator {
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? type;
 
@@ -55,9 +55,9 @@ class EmailvalidatorBuilder
         SurveyvalidatorBuilder {
   _$Emailvalidator? _$v;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _type;
   String? get type => _$this._type;
@@ -70,7 +70,7 @@ class EmailvalidatorBuilder
   EmailvalidatorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _type = $v.type;
       _$v = null;
     }
@@ -92,7 +92,21 @@ class EmailvalidatorBuilder
   Emailvalidator build() => _build();
 
   _$Emailvalidator _build() {
-    final _$result = _$v ?? new _$Emailvalidator._(text: text, type: type);
+    _$Emailvalidator _$result;
+    try {
+      _$result =
+          _$v ?? new _$Emailvalidator._(text: _text?.build(), type: type);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Emailvalidator', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/htmlconditionitem_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/expressionitem.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -16,7 +16,10 @@ part 'htmlconditionitem.g.dart';
 /// * [expression] 
 /// * [html] 
 @BuiltValue()
-abstract class Htmlconditionitem implements Expressionitem, HtmlconditionitemAllOf, Built<Htmlconditionitem, HtmlconditionitemBuilder> {
+abstract class Htmlconditionitem implements Expressionitem, Built<Htmlconditionitem, HtmlconditionitemBuilder> {
+  @BuiltValueField(wireName: r'html')
+  SurveyTitle? get html;
+
   Htmlconditionitem._();
 
   factory Htmlconditionitem([void updates(HtmlconditionitemBuilder b)]) = _$Htmlconditionitem;
@@ -44,7 +47,7 @@ class _$HtmlconditionitemSerializer implements PrimitiveSerializer<Htmlcondition
       yield r'html';
       yield serializers.serialize(
         object.html,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.expression != null) {
@@ -80,9 +83,9 @@ class _$HtmlconditionitemSerializer implements PrimitiveSerializer<Htmlcondition
         case r'html':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.html = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.html.replace(valueDes);
           break;
         case r'expression':
           final valueDes = serializers.deserialize(

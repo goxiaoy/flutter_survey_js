@@ -5,7 +5,6 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
-import 'package:flutter_survey_js_model/src/model/visibletrigger_all_of.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -22,7 +21,13 @@ part 'visibletrigger.g.dart';
 /// * [pages] 
 /// * [questions] 
 @BuiltValue()
-abstract class Visibletrigger implements Surveytrigger, VisibletriggerAllOf, Built<Visibletrigger, VisibletriggerBuilder> {
+abstract class Visibletrigger implements Surveytrigger, Built<Visibletrigger, VisibletriggerBuilder> {
+  @BuiltValueField(wireName: r'pages')
+  String? get pages;
+
+  @BuiltValueField(wireName: r'questions')
+  BuiltList<String>? get questions;
+
   Visibletrigger._();
 
   factory Visibletrigger([void updates(VisibletriggerBuilder b)]) = _$Visibletrigger;
@@ -53,13 +58,6 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
         specifiedType: const FullType(String),
       );
     }
-    if (object.expression != null) {
-      yield r'expression';
-      yield serializers.serialize(
-        object.expression,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.pages != null) {
       yield r'pages';
       yield serializers.serialize(
@@ -67,10 +65,10 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
         specifiedType: const FullType(String),
       );
     }
-    if (object.name != null) {
-      yield r'name';
+    if (object.expression != null) {
+      yield r'expression';
       yield serializers.serialize(
-        object.name,
+        object.expression,
         specifiedType: const FullType(String),
       );
     }
@@ -79,6 +77,13 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
       yield serializers.serialize(
         object.questions,
         specifiedType: const FullType(BuiltList, [FullType(String)]),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
       );
     }
     if (object.type != null) {
@@ -125,13 +130,6 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
           ) as String;
           result.operator_ = valueDes;
           break;
-        case r'expression':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.expression = valueDes;
-          break;
         case r'pages':
           final valueDes = serializers.deserialize(
             value,
@@ -139,12 +137,12 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
           ) as String;
           result.pages = valueDes;
           break;
-        case r'name':
+        case r'expression':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
-          result.name = valueDes;
+          result.expression = valueDes;
           break;
         case r'questions':
           final valueDes = serializers.deserialize(
@@ -152,6 +150,13 @@ class _$VisibletriggerSerializer implements PrimitiveSerializer<Visibletrigger> 
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.questions.replace(valueDes);
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(

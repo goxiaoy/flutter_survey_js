@@ -5,6 +5,7 @@
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/multipletextitem_input_type.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -26,20 +27,20 @@ part 'multipletextitem.g.dart';
 @BuiltValue()
 abstract class Multipletextitem implements Built<Multipletextitem, MultipletextitemBuilder> {
   @BuiltValueField(wireName: r'name')
-  String? get name;
+  String get name;
 
   @BuiltValueField(wireName: r'isRequired')
   bool? get isRequired;
 
   @BuiltValueField(wireName: r'placeholder')
-  String? get placeholder;
+  SurveyTitle? get placeholder;
 
   @BuiltValueField(wireName: r'inputType')
   MultipletextitemInputType? get inputType;
   // enum inputTypeEnum {  color,  date,  datetime-local,  email,  month,  number,  password,  range,  tel,  text,  time,  url,  week,  };
 
   @BuiltValueField(wireName: r'title')
-  String? get title;
+  SurveyTitle? get title;
 
   @BuiltValueField(wireName: r'maxLength')
   num? get maxLength;
@@ -48,7 +49,7 @@ abstract class Multipletextitem implements Built<Multipletextitem, Multipletexti
   num? get size;
 
   @BuiltValueField(wireName: r'requiredErrorText')
-  String? get requiredErrorText;
+  SurveyTitle? get requiredErrorText;
 
   @BuiltValueField(wireName: r'validators')
   BuiltList<QuestionAllOfValidatorsInner>? get validators;
@@ -76,13 +77,11 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
     Multipletextitem object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.isRequired != null) {
       yield r'isRequired';
       yield serializers.serialize(
@@ -94,7 +93,7 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
       yield r'placeholder';
       yield serializers.serialize(
         object.placeholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.inputType != null) {
@@ -108,7 +107,7 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.maxLength != null) {
@@ -129,7 +128,7 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.validators != null) {
@@ -179,9 +178,9 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
         case r'placeholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.placeholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.placeholder.replace(valueDes);
           break;
         case r'inputType':
           final valueDes = serializers.deserialize(
@@ -193,9 +192,9 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'maxLength':
           final valueDes = serializers.deserialize(
@@ -214,9 +213,9 @@ class _$MultipletextitemSerializer implements PrimitiveSerializer<Multipletextit
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'validators':
           final valueDes = serializers.deserialize(

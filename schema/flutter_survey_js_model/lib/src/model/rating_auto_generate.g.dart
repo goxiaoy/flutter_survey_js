@@ -6,23 +6,17 @@ part of 'rating_auto_generate.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const RatingAutoGenerate
-    _$trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket =
-    const RatingAutoGenerate._(
-        'trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket');
-const RatingAutoGenerate
-    _$falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket =
-    const RatingAutoGenerate._(
-        'falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket');
+const RatingAutoGenerate _$true_ = const RatingAutoGenerate._('true_');
+const RatingAutoGenerate _$false_ = const RatingAutoGenerate._('false_');
 const RatingAutoGenerate _$unknownDefaultOpenApi =
     const RatingAutoGenerate._('unknownDefaultOpenApi');
 
 RatingAutoGenerate _$valueOf(String name) {
   switch (name) {
-    case 'trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket':
-      return _$trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket;
-    case 'falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket':
-      return _$falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket;
+    case 'true_':
+      return _$true_;
+    case 'false_':
+      return _$false_;
     case 'unknownDefaultOpenApi':
       return _$unknownDefaultOpenApi;
     default:
@@ -32,19 +26,15 @@ RatingAutoGenerate _$valueOf(String name) {
 
 final BuiltSet<RatingAutoGenerate> _$values =
     new BuiltSet<RatingAutoGenerate>(const <RatingAutoGenerate>[
-  _$trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket,
-  _$falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket,
+  _$true_,
+  _$false_,
   _$unknownDefaultOpenApi,
 ]);
 
 class _$RatingAutoGenerateMeta {
   const _$RatingAutoGenerateMeta();
-  RatingAutoGenerate
-      get trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket =>
-          _$trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket;
-  RatingAutoGenerate
-      get falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket =>
-          _$falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket;
+  RatingAutoGenerate get true_ => _$true_;
+  RatingAutoGenerate get false_ => _$false_;
   RatingAutoGenerate get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   RatingAutoGenerate valueOf(String name) => _$valueOf(name);
   BuiltSet<RatingAutoGenerate> get values => _$values;
@@ -62,17 +52,13 @@ Serializer<RatingAutoGenerate> _$ratingAutoGenerateSerializer =
 class _$RatingAutoGenerateSerializer
     implements PrimitiveSerializer<RatingAutoGenerate> {
   static const Map<String, Object> _toWire = const <String, Object>{
-    'trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket':
-        '{\"value\":true,\"text\":\"Generate\"}',
-    'falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket':
-        '{\"value\":false,\"text\":\"Enter manually\"}',
+    'true_': 'true',
+    'false_': 'false',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
-    '{\"value\":true,\"text\":\"Generate\"}':
-        'trueCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteGenerateDoubleQuoteRightCurlyBracket',
-    '{\"value\":false,\"text\":\"Enter manually\"}':
-        'falseCommaDoubleQuoteTextDoubleQuoteColonDoubleQuoteEnterManuallyDoubleQuoteRightCurlyBracket',
+    'true': 'true_',
+    'false': 'false_',
     'unknown_default_open_api': 'unknownDefaultOpenApi',
   };
 

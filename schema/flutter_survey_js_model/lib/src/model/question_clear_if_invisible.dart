@@ -19,6 +19,8 @@ class QuestionClearIfInvisible extends EnumClass {
   static const QuestionClearIfInvisible onComplete = _$onComplete;
   @BuiltValueEnumConst(wireName: r'onHidden')
   static const QuestionClearIfInvisible onHidden = _$onHidden;
+  @BuiltValueEnumConst(wireName: r'onHiddenContainer')
+  static const QuestionClearIfInvisible onHiddenContainer = _$onHiddenContainer;
   @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
   static const QuestionClearIfInvisible unknownDefaultOpenApi = _$unknownDefaultOpenApi;
 

@@ -8,7 +8,7 @@ part of 'setvaluetrigger.dart';
 
 class _$Setvaluetrigger extends Setvaluetrigger {
   @override
-  final String? setToName;
+  final String setToName;
   @override
   final String? setValue;
   @override
@@ -28,7 +28,7 @@ class _$Setvaluetrigger extends Setvaluetrigger {
       (new SetvaluetriggerBuilder()..update(updates))._build();
 
   _$Setvaluetrigger._(
-      {this.setToName,
+      {required this.setToName,
       this.setValue,
       this.isVariable,
       this.name,
@@ -36,7 +36,10 @@ class _$Setvaluetrigger extends Setvaluetrigger {
       this.value,
       this.expression,
       this.type})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        setToName, r'Setvaluetrigger', 'setToName');
+  }
 
   @override
   Setvaluetrigger rebuild(void Function(SetvaluetriggerBuilder) updates) =>
@@ -93,7 +96,6 @@ class _$Setvaluetrigger extends Setvaluetrigger {
 class SetvaluetriggerBuilder
     implements
         Builder<Setvaluetrigger, SetvaluetriggerBuilder>,
-        SetvaluetriggerAllOfBuilder,
         SurveytriggerBuilder {
   _$Setvaluetrigger? _$v;
 
@@ -151,7 +153,6 @@ class SetvaluetriggerBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Setvaluetrigger other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Setvaluetrigger;
@@ -168,7 +169,8 @@ class SetvaluetriggerBuilder
   _$Setvaluetrigger _build() {
     final _$result = _$v ??
         new _$Setvaluetrigger._(
-            setToName: setToName,
+            setToName: BuiltValueNullFieldError.checkNotNull(
+                setToName, r'Setvaluetrigger', 'setToName'),
             setValue: setValue,
             isVariable: isVariable,
             name: name,

@@ -8,9 +8,11 @@ part of 'copyvaluetrigger.dart';
 
 class _$Copyvaluetrigger extends Copyvaluetrigger {
   @override
-  final String? fromName;
+  final String setToName;
   @override
-  final String? setToName;
+  final String fromName;
+  @override
+  final bool? copyDisplayValue;
   @override
   final String? name;
   @override
@@ -27,14 +29,20 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
       (new CopyvaluetriggerBuilder()..update(updates))._build();
 
   _$Copyvaluetrigger._(
-      {this.fromName,
-      this.setToName,
+      {required this.setToName,
+      required this.fromName,
+      this.copyDisplayValue,
       this.name,
       this.operator_,
       this.value,
       this.expression,
       this.type})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        setToName, r'Copyvaluetrigger', 'setToName');
+    BuiltValueNullFieldError.checkNotNull(
+        fromName, r'Copyvaluetrigger', 'fromName');
+  }
 
   @override
   Copyvaluetrigger rebuild(void Function(CopyvaluetriggerBuilder) updates) =>
@@ -48,8 +56,9 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Copyvaluetrigger &&
-        fromName == other.fromName &&
         setToName == other.setToName &&
+        fromName == other.fromName &&
+        copyDisplayValue == other.copyDisplayValue &&
         name == other.name &&
         operator_ == other.operator_ &&
         value == other.value &&
@@ -60,8 +69,9 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, fromName.hashCode);
     _$hash = $jc(_$hash, setToName.hashCode);
+    _$hash = $jc(_$hash, fromName.hashCode);
+    _$hash = $jc(_$hash, copyDisplayValue.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, operator_.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
@@ -74,8 +84,9 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Copyvaluetrigger')
-          ..add('fromName', fromName)
           ..add('setToName', setToName)
+          ..add('fromName', fromName)
+          ..add('copyDisplayValue', copyDisplayValue)
           ..add('name', name)
           ..add('operator_', operator_)
           ..add('value', value)
@@ -88,17 +99,21 @@ class _$Copyvaluetrigger extends Copyvaluetrigger {
 class CopyvaluetriggerBuilder
     implements
         Builder<Copyvaluetrigger, CopyvaluetriggerBuilder>,
-        CopyvaluetriggerAllOfBuilder,
         SurveytriggerBuilder {
   _$Copyvaluetrigger? _$v;
+
+  String? _setToName;
+  String? get setToName => _$this._setToName;
+  set setToName(covariant String? setToName) => _$this._setToName = setToName;
 
   String? _fromName;
   String? get fromName => _$this._fromName;
   set fromName(covariant String? fromName) => _$this._fromName = fromName;
 
-  String? _setToName;
-  String? get setToName => _$this._setToName;
-  set setToName(covariant String? setToName) => _$this._setToName = setToName;
+  bool? _copyDisplayValue;
+  bool? get copyDisplayValue => _$this._copyDisplayValue;
+  set copyDisplayValue(covariant bool? copyDisplayValue) =>
+      _$this._copyDisplayValue = copyDisplayValue;
 
   String? _name;
   String? get name => _$this._name;
@@ -128,8 +143,9 @@ class CopyvaluetriggerBuilder
   CopyvaluetriggerBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _fromName = $v.fromName;
       _setToName = $v.setToName;
+      _fromName = $v.fromName;
+      _copyDisplayValue = $v.copyDisplayValue;
       _name = $v.name;
       _operator_ = $v.operator_;
       _value = $v.value;
@@ -141,7 +157,6 @@ class CopyvaluetriggerBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Copyvaluetrigger other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Copyvaluetrigger;
@@ -158,8 +173,11 @@ class CopyvaluetriggerBuilder
   _$Copyvaluetrigger _build() {
     final _$result = _$v ??
         new _$Copyvaluetrigger._(
-            fromName: fromName,
-            setToName: setToName,
+            setToName: BuiltValueNullFieldError.checkNotNull(
+                setToName, r'Copyvaluetrigger', 'setToName'),
+            fromName: BuiltValueNullFieldError.checkNotNull(
+                fromName, r'Copyvaluetrigger', 'fromName'),
+            copyDisplayValue: copyDisplayValue,
             name: name,
             operator_: operator_,
             value: value,

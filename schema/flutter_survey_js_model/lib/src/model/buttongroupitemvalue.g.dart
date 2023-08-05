@@ -8,15 +8,15 @@ part of 'buttongroupitemvalue.dart';
 
 class _$Buttongroupitemvalue extends Buttongroupitemvalue {
   @override
-  final bool? showCaption;
-  @override
   final String? iconName;
   @override
   final num? iconSize;
   @override
+  final bool? showCaption;
+  @override
   final JsonObject? value;
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? visibleIf;
   @override
@@ -27,9 +27,9 @@ class _$Buttongroupitemvalue extends Buttongroupitemvalue {
       (new ButtongroupitemvalueBuilder()..update(updates))._build();
 
   _$Buttongroupitemvalue._(
-      {this.showCaption,
-      this.iconName,
+      {this.iconName,
       this.iconSize,
+      this.showCaption,
       this.value,
       this.text,
       this.visibleIf,
@@ -49,9 +49,9 @@ class _$Buttongroupitemvalue extends Buttongroupitemvalue {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Buttongroupitemvalue &&
-        showCaption == other.showCaption &&
         iconName == other.iconName &&
         iconSize == other.iconSize &&
+        showCaption == other.showCaption &&
         value == other.value &&
         text == other.text &&
         visibleIf == other.visibleIf &&
@@ -61,9 +61,9 @@ class _$Buttongroupitemvalue extends Buttongroupitemvalue {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, showCaption.hashCode);
     _$hash = $jc(_$hash, iconName.hashCode);
     _$hash = $jc(_$hash, iconSize.hashCode);
+    _$hash = $jc(_$hash, showCaption.hashCode);
     _$hash = $jc(_$hash, value.hashCode);
     _$hash = $jc(_$hash, text.hashCode);
     _$hash = $jc(_$hash, visibleIf.hashCode);
@@ -75,9 +75,9 @@ class _$Buttongroupitemvalue extends Buttongroupitemvalue {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Buttongroupitemvalue')
-          ..add('showCaption', showCaption)
           ..add('iconName', iconName)
           ..add('iconSize', iconSize)
+          ..add('showCaption', showCaption)
           ..add('value', value)
           ..add('text', text)
           ..add('visibleIf', visibleIf)
@@ -89,14 +89,8 @@ class _$Buttongroupitemvalue extends Buttongroupitemvalue {
 class ButtongroupitemvalueBuilder
     implements
         Builder<Buttongroupitemvalue, ButtongroupitemvalueBuilder>,
-        ButtongroupitemvalueAllOfBuilder,
         ItemvalueBuilder {
   _$Buttongroupitemvalue? _$v;
-
-  bool? _showCaption;
-  bool? get showCaption => _$this._showCaption;
-  set showCaption(covariant bool? showCaption) =>
-      _$this._showCaption = showCaption;
 
   String? _iconName;
   String? get iconName => _$this._iconName;
@@ -106,13 +100,18 @@ class ButtongroupitemvalueBuilder
   num? get iconSize => _$this._iconSize;
   set iconSize(covariant num? iconSize) => _$this._iconSize = iconSize;
 
+  bool? _showCaption;
+  bool? get showCaption => _$this._showCaption;
+  set showCaption(covariant bool? showCaption) =>
+      _$this._showCaption = showCaption;
+
   JsonObject? _value;
   JsonObject? get value => _$this._value;
   set value(covariant JsonObject? value) => _$this._value = value;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _visibleIf;
   String? get visibleIf => _$this._visibleIf;
@@ -129,11 +128,11 @@ class ButtongroupitemvalueBuilder
   ButtongroupitemvalueBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _showCaption = $v.showCaption;
       _iconName = $v.iconName;
       _iconSize = $v.iconSize;
+      _showCaption = $v.showCaption;
       _value = $v.value;
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _visibleIf = $v.visibleIf;
       _enableIf = $v.enableIf;
       _$v = null;
@@ -142,7 +141,6 @@ class ButtongroupitemvalueBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Buttongroupitemvalue other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Buttongroupitemvalue;
@@ -157,15 +155,28 @@ class ButtongroupitemvalueBuilder
   Buttongroupitemvalue build() => _build();
 
   _$Buttongroupitemvalue _build() {
-    final _$result = _$v ??
-        new _$Buttongroupitemvalue._(
-            showCaption: showCaption,
-            iconName: iconName,
-            iconSize: iconSize,
-            value: value,
-            text: text,
-            visibleIf: visibleIf,
-            enableIf: enableIf);
+    _$Buttongroupitemvalue _$result;
+    try {
+      _$result = _$v ??
+          new _$Buttongroupitemvalue._(
+              iconName: iconName,
+              iconSize: iconSize,
+              showCaption: showCaption,
+              value: value,
+              text: _text?.build(),
+              visibleIf: visibleIf,
+              enableIf: enableIf);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Buttongroupitemvalue', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

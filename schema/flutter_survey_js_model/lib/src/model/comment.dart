@@ -6,10 +6,10 @@
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/comment_text_update_mode.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
-import 'package:flutter_survey_js_model/src/model/comment_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/textbase.dart';
@@ -62,15 +62,34 @@ part 'comment.g.dart';
 /// * [placeholder] 
 /// * [textUpdateMode] 
 /// * [autoGrow] 
+/// * [allowResize] 
 /// * [acceptCarriageReturn] 
-@BuiltValue()
-abstract class Comment implements CommentAllOf, Textbase, Built<Comment, CommentBuilder> {
-  Comment._();
+@BuiltValue(instantiable: false)
+abstract class Comment implements Textbase {
+  @BuiltValueField(wireName: r'allowResize')
+  bool? get allowResize;
 
-  factory Comment([void updates(CommentBuilder b)]) = _$Comment;
+  @BuiltValueField(wireName: r'autoGrow')
+  bool? get autoGrow;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CommentBuilder b) => b;
+  @BuiltValueField(wireName: r'acceptCarriageReturn')
+  bool? get acceptCarriageReturn;
+
+  @BuiltValueField(wireName: r'placeholder')
+  SurveyTitle? get placeholder;
+
+  @BuiltValueField(wireName: r'textUpdateMode')
+  CommentTextUpdateMode? get textUpdateMode;
+  // enum textUpdateModeEnum {  default,  onBlur,  onTyping,  };
+
+  @BuiltValueField(wireName: r'rows')
+  num? get rows;
+
+  @BuiltValueField(wireName: r'cols')
+  num? get cols;
+
+  @BuiltValueField(wireName: r'maxLength')
+  num? get maxLength;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Comment> get serializer => _$CommentSerializer();
@@ -78,7 +97,7 @@ abstract class Comment implements CommentAllOf, Textbase, Built<Comment, Comment
 
 class _$CommentSerializer implements PrimitiveSerializer<Comment> {
   @override
-  final Iterable<Type> types = const [Comment, _$Comment];
+  final Iterable<Type> types = const [Comment];
 
   @override
   final String wireName = r'Comment';
@@ -88,6 +107,13 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
     Comment object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.allowResize != null) {
+      yield r'allowResize';
+      yield serializers.serialize(
+        object.allowResize,
+        specifiedType: const FullType(bool),
+      );
+    }
     if (object.useDisplayValuesInDynamicTexts != null) {
       yield r'useDisplayValuesInDynamicTexts';
       yield serializers.serialize(
@@ -134,28 +160,26 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -186,6 +210,20 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
         specifiedType: const FullType(bool),
       );
     }
+    if (object.placeholder != null) {
+      yield r'placeholder';
+      yield serializers.serialize(
+        object.placeholder,
+        specifiedType: const FullType(SurveyTitle),
+      );
+    }
+    if (object.textUpdateMode != null) {
+      yield r'textUpdateMode';
+      yield serializers.serialize(
+        object.textUpdateMode,
+        specifiedType: const FullType(CommentTextUpdateMode),
+      );
+    }
     if (object.state != null) {
       yield r'state';
       yield serializers.serialize(
@@ -198,20 +236,6 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
       yield serializers.serialize(
         object.hideNumber,
         specifiedType: const FullType(bool),
-      );
-    }
-    if (object.placeholder != null) {
-      yield r'placeholder';
-      yield serializers.serialize(
-        object.placeholder,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.textUpdateMode != null) {
-      yield r'textUpdateMode';
-      yield serializers.serialize(
-        object.textUpdateMode,
-        specifiedType: const FullType(CommentTextUpdateMode),
       );
     }
     if (object.correctAnswer != null) {
@@ -267,7 +291,7 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.defaultValueExpression != null) {
@@ -302,7 +326,7 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.rows != null) {
@@ -323,16 +347,14 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -379,6 +401,46 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
+  @override
+  Comment deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($Comment)) as $Comment;
+  }
+}
+
+/// a concrete implementation of [Comment], since [Comment] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $Comment implements Comment, Built<$Comment, $CommentBuilder> {
+  $Comment._();
+
+  factory $Comment([void Function($CommentBuilder)? updates]) = _$$Comment;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($CommentBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$Comment> get serializer => _$$CommentSerializer();
+}
+
+class _$$CommentSerializer implements PrimitiveSerializer<$Comment> {
+  @override
+  final Iterable<Type> types = const [$Comment, _$$Comment];
+
+  @override
+  final String wireName = r'$Comment';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $Comment object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(Comment))!;
+  }
+
   void _deserializeProperties(
     Serializers serializers,
     Object serialized, {
@@ -391,6 +453,13 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'allowResize':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.allowResize = valueDes;
+          break;
         case r'useDisplayValuesInDynamicTexts':
           final valueDes = serializers.deserialize(
             value,
@@ -437,9 +506,9 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
@@ -451,16 +520,16 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -490,6 +559,20 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
           ) as bool;
           result.autoGrow = valueDes;
           break;
+        case r'placeholder':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.placeholder.replace(valueDes);
+          break;
+        case r'textUpdateMode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CommentTextUpdateMode),
+          ) as CommentTextUpdateMode;
+          result.textUpdateMode = valueDes;
+          break;
         case r'state':
           final valueDes = serializers.deserialize(
             value,
@@ -503,20 +586,6 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.hideNumber = valueDes;
-          break;
-        case r'placeholder':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.placeholder = valueDes;
-          break;
-        case r'textUpdateMode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(CommentTextUpdateMode),
-          ) as CommentTextUpdateMode;
-          result.textUpdateMode = valueDes;
           break;
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
@@ -571,9 +640,9 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'defaultValueExpression':
           final valueDes = serializers.deserialize(
@@ -606,8 +675,8 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'rows':
@@ -627,9 +696,9 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -682,12 +751,12 @@ class _$CommentSerializer implements PrimitiveSerializer<Comment> {
   }
 
   @override
-  Comment deserialize(
+  $Comment deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = CommentBuilder();
+    final result = $CommentBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

@@ -14,6 +14,8 @@ const QuestionClearIfInvisible _$onComplete =
     const QuestionClearIfInvisible._('onComplete');
 const QuestionClearIfInvisible _$onHidden =
     const QuestionClearIfInvisible._('onHidden');
+const QuestionClearIfInvisible _$onHiddenContainer =
+    const QuestionClearIfInvisible._('onHiddenContainer');
 const QuestionClearIfInvisible _$unknownDefaultOpenApi =
     const QuestionClearIfInvisible._('unknownDefaultOpenApi');
 
@@ -27,6 +29,8 @@ QuestionClearIfInvisible _$valueOf(String name) {
       return _$onComplete;
     case 'onHidden':
       return _$onHidden;
+    case 'onHiddenContainer':
+      return _$onHiddenContainer;
     case 'unknownDefaultOpenApi':
       return _$unknownDefaultOpenApi;
     default:
@@ -40,6 +44,7 @@ final BuiltSet<QuestionClearIfInvisible> _$values =
   _$none,
   _$onComplete,
   _$onHidden,
+  _$onHiddenContainer,
   _$unknownDefaultOpenApi,
 ]);
 
@@ -49,6 +54,7 @@ class _$QuestionClearIfInvisibleMeta {
   QuestionClearIfInvisible get none => _$none;
   QuestionClearIfInvisible get onComplete => _$onComplete;
   QuestionClearIfInvisible get onHidden => _$onHidden;
+  QuestionClearIfInvisible get onHiddenContainer => _$onHiddenContainer;
   QuestionClearIfInvisible get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   QuestionClearIfInvisible valueOf(String name) => _$valueOf(name);
   BuiltSet<QuestionClearIfInvisible> get values => _$values;
@@ -70,6 +76,7 @@ class _$QuestionClearIfInvisibleSerializer
     'none': 'none',
     'onComplete': 'onComplete',
     'onHidden': 'onHidden',
+    'onHiddenContainer': 'onHiddenContainer',
     'unknownDefaultOpenApi': 'unknown_default_open_api',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
@@ -77,6 +84,7 @@ class _$QuestionClearIfInvisibleSerializer
     'none': 'none',
     'onComplete': 'onComplete',
     'onHidden': 'onHidden',
+    'onHiddenContainer': 'onHiddenContainer',
     'unknown_default_open_api': 'unknownDefaultOpenApi',
   };
 

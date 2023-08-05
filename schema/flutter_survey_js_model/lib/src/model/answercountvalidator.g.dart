@@ -12,7 +12,7 @@ class _$Answercountvalidator extends Answercountvalidator {
   @override
   final num? maxCount;
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? type;
 
@@ -67,7 +67,6 @@ class _$Answercountvalidator extends Answercountvalidator {
 class AnswercountvalidatorBuilder
     implements
         Builder<Answercountvalidator, AnswercountvalidatorBuilder>,
-        AnswercountvalidatorAllOfBuilder,
         SurveyvalidatorBuilder {
   _$Answercountvalidator? _$v;
 
@@ -79,9 +78,9 @@ class AnswercountvalidatorBuilder
   num? get maxCount => _$this._maxCount;
   set maxCount(covariant num? maxCount) => _$this._maxCount = maxCount;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _type;
   String? get type => _$this._type;
@@ -96,7 +95,7 @@ class AnswercountvalidatorBuilder
     if ($v != null) {
       _minCount = $v.minCount;
       _maxCount = $v.maxCount;
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _type = $v.type;
       _$v = null;
     }
@@ -104,7 +103,6 @@ class AnswercountvalidatorBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Answercountvalidator other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Answercountvalidator;
@@ -119,9 +117,25 @@ class AnswercountvalidatorBuilder
   Answercountvalidator build() => _build();
 
   _$Answercountvalidator _build() {
-    final _$result = _$v ??
-        new _$Answercountvalidator._(
-            minCount: minCount, maxCount: maxCount, text: text, type: type);
+    _$Answercountvalidator _$result;
+    try {
+      _$result = _$v ??
+          new _$Answercountvalidator._(
+              minCount: minCount,
+              maxCount: maxCount,
+              text: _text?.build(),
+              type: type);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Answercountvalidator', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

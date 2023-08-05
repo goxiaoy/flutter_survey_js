@@ -10,7 +10,7 @@ class _$Expressionvalidator extends Expressionvalidator {
   @override
   final String? expression;
   @override
-  final String? text;
+  final SurveyTitle? text;
   @override
   final String? type;
 
@@ -61,7 +61,6 @@ class _$Expressionvalidator extends Expressionvalidator {
 class ExpressionvalidatorBuilder
     implements
         Builder<Expressionvalidator, ExpressionvalidatorBuilder>,
-        ExpressionvalidatorAllOfBuilder,
         SurveyvalidatorBuilder {
   _$Expressionvalidator? _$v;
 
@@ -70,9 +69,9 @@ class ExpressionvalidatorBuilder
   set expression(covariant String? expression) =>
       _$this._expression = expression;
 
-  String? _text;
-  String? get text => _$this._text;
-  set text(covariant String? text) => _$this._text = text;
+  SurveyTitleBuilder? _text;
+  SurveyTitleBuilder get text => _$this._text ??= new SurveyTitleBuilder();
+  set text(covariant SurveyTitleBuilder? text) => _$this._text = text;
 
   String? _type;
   String? get type => _$this._type;
@@ -86,7 +85,7 @@ class ExpressionvalidatorBuilder
     final $v = _$v;
     if ($v != null) {
       _expression = $v.expression;
-      _text = $v.text;
+      _text = $v.text?.toBuilder();
       _type = $v.type;
       _$v = null;
     }
@@ -94,7 +93,6 @@ class ExpressionvalidatorBuilder
   }
 
   @override
-// ignore: override_on_non_overriding_method
   void replace(covariant Expressionvalidator other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Expressionvalidator;
@@ -109,9 +107,22 @@ class ExpressionvalidatorBuilder
   Expressionvalidator build() => _build();
 
   _$Expressionvalidator _build() {
-    final _$result = _$v ??
-        new _$Expressionvalidator._(
-            expression: expression, text: text, type: type);
+    _$Expressionvalidator _$result;
+    try {
+      _$result = _$v ??
+          new _$Expressionvalidator._(
+              expression: expression, text: _text?.build(), type: type);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'text';
+        _text?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Expressionvalidator', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

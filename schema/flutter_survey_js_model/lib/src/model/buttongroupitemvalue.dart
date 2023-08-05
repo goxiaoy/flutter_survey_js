@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:flutter_survey_js_model/src/model/itemvalue.dart';
-import 'package:flutter_survey_js_model/src/model/buttongroupitemvalue_all_of.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -22,7 +22,16 @@ part 'buttongroupitemvalue.g.dart';
 /// * [iconName] 
 /// * [iconSize] 
 @BuiltValue()
-abstract class Buttongroupitemvalue implements ButtongroupitemvalueAllOf, Itemvalue, Built<Buttongroupitemvalue, ButtongroupitemvalueBuilder> {
+abstract class Buttongroupitemvalue implements Itemvalue, Built<Buttongroupitemvalue, ButtongroupitemvalueBuilder> {
+  @BuiltValueField(wireName: r'iconName')
+  String? get iconName;
+
+  @BuiltValueField(wireName: r'iconSize')
+  num? get iconSize;
+
+  @BuiltValueField(wireName: r'showCaption')
+  bool? get showCaption;
+
   Buttongroupitemvalue._();
 
   factory Buttongroupitemvalue([void updates(ButtongroupitemvalueBuilder b)]) = _$Buttongroupitemvalue;
@@ -74,13 +83,6 @@ class _$ButtongroupitemvalueSerializer implements PrimitiveSerializer<Buttongrou
         specifiedType: const FullType(num),
       );
     }
-    if (object.text != null) {
-      yield r'text';
-      yield serializers.serialize(
-        object.text,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.showCaption != null) {
       yield r'showCaption';
       yield serializers.serialize(
@@ -88,13 +90,18 @@ class _$ButtongroupitemvalueSerializer implements PrimitiveSerializer<Buttongrou
         specifiedType: const FullType(bool),
       );
     }
-    if (object.value != null) {
-      yield r'value';
+    if (object.text != null) {
+      yield r'text';
       yield serializers.serialize(
-        object.value,
-        specifiedType: const FullType.nullable(JsonObject),
+        object.text,
+        specifiedType: const FullType(SurveyTitle),
       );
     }
+    yield r'value';
+    yield object.value == null ? null : serializers.serialize(
+      object.value,
+      specifiedType: const FullType.nullable(JsonObject),
+    );
   }
 
   @override
@@ -146,19 +153,19 @@ class _$ButtongroupitemvalueSerializer implements PrimitiveSerializer<Buttongrou
           ) as num;
           result.iconSize = valueDes;
           break;
-        case r'text':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
-          break;
         case r'showCaption':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.showCaption = valueDes;
+          break;
+        case r'text':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.text.replace(valueDes);
           break;
         case r'value':
           final valueDes = serializers.deserialize(

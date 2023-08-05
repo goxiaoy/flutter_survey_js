@@ -3,10 +3,11 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/selectbase_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_from_question_mode.dart';
 import 'package:flutter_survey_js_model/src/model/selectbase_choices_order.dart';
 import 'package:flutter_survey_js_model/src/model/question_title_location.dart';
+import 'package:flutter_survey_js_model/src/model/matrixdropdownbase_all_of_choices_inner.dart';
+import 'package:flutter_survey_js_model/src/model/choices_by_url.dart';
 import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
@@ -15,8 +16,7 @@ import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter_survey_js_model/src/model/selectbase_all_of_choices_inner.dart';
-import 'package:flutter_survey_js_model/src/model/choices_restful.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -76,7 +76,57 @@ part 'selectbase.g.dart';
 /// * [otherErrorText] 
 /// * [storeOthersAsComment] 
 @BuiltValue(instantiable: false)
-abstract class Selectbase implements Question, SelectbaseAllOf {
+abstract class Selectbase implements Question {
+  @BuiltValueField(wireName: r'choicesByUrl')
+  ChoicesByUrl? get choicesByUrl;
+
+  @BuiltValueField(wireName: r'showOtherItem')
+  bool? get showOtherItem;
+
+  @BuiltValueField(wireName: r'noneText')
+  SurveyTitle? get noneText;
+
+  @BuiltValueField(wireName: r'choicesOrder')
+  SelectbaseChoicesOrder? get choicesOrder;
+  // enum choicesOrderEnum {  none,  asc,  desc,  random,  };
+
+  @BuiltValueField(wireName: r'separateSpecialChoices')
+  bool? get separateSpecialChoices;
+
+  @BuiltValueField(wireName: r'otherPlaceholder')
+  SurveyTitle? get otherPlaceholder;
+
+  @BuiltValueField(wireName: r'choicesFromQuestionMode')
+  SelectbaseChoicesFromQuestionMode? get choicesFromQuestionMode;
+  // enum choicesFromQuestionModeEnum {  all,  selected,  unselected,  };
+
+  @BuiltValueField(wireName: r'storeOthersAsComment')
+  bool? get storeOthersAsComment;
+
+  @BuiltValueField(wireName: r'choicesVisibleIf')
+  String? get choicesVisibleIf;
+
+  @BuiltValueField(wireName: r'choicesEnableIf')
+  String? get choicesEnableIf;
+
+  @BuiltValueField(wireName: r'otherText')
+  SurveyTitle? get otherText;
+
+  @BuiltValueField(wireName: r'choices')
+  BuiltList<MatrixdropdownbaseAllOfChoicesInner>? get choices;
+
+  @BuiltValueField(wireName: r'showNoneItem')
+  bool? get showNoneItem;
+
+  @BuiltValueField(wireName: r'otherErrorText')
+  SurveyTitle? get otherErrorText;
+
+  @BuiltValueField(wireName: r'choicesFromQuestion')
+  String? get choicesFromQuestion;
+
+  @BuiltValueField(wireName: r'hideIfChoicesEmpty')
+  bool? get hideIfChoicesEmpty;
+
   @BuiltValueSerializer(custom: true)
   static Serializer<Selectbase> get serializer => _$SelectbaseSerializer();
 }
@@ -104,7 +154,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'noneText';
       yield serializers.serialize(
         object.noneText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.useDisplayValuesInDynamicTexts != null) {
@@ -135,13 +185,11 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.choicesFromQuestionMode != null) {
       yield r'choicesFromQuestionMode';
       yield serializers.serialize(
@@ -181,7 +229,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'otherErrorText';
       yield serializers.serialize(
         object.otherErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.correctAnswer != null) {
@@ -191,18 +239,18 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
-    if (object.showCommentArea != null) {
-      yield r'showCommentArea';
-      yield serializers.serialize(
-        object.showCommentArea,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.showCommentArea != null) {
+      yield r'showCommentArea';
+      yield serializers.serialize(
+        object.showCommentArea,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.isRequired != null) {
@@ -230,7 +278,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.titleLocation != null) {
@@ -251,16 +299,14 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -279,7 +325,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'choices';
       yield serializers.serialize(
         object.choices,
-        specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
+        specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownbaseAllOfChoicesInner)]),
       );
     }
     if (object.showNoneItem != null) {
@@ -293,7 +339,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'choicesByUrl';
       yield serializers.serialize(
         object.choicesByUrl,
-        specifiedType: const FullType(ChoicesRestful),
+        specifiedType: const FullType(ChoicesByUrl),
       );
     }
     if (object.indent != null) {
@@ -321,21 +367,21 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.clearIfInvisible != null) {
@@ -356,7 +402,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'otherText';
       yield serializers.serialize(
         object.otherText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.hideNumber != null) {
@@ -384,7 +430,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.separateSpecialChoices != null) {
@@ -398,7 +444,7 @@ class _$SelectbaseSerializer implements PrimitiveSerializer<Selectbase> {
       yield r'otherPlaceholder';
       yield serializers.serialize(
         object.otherPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.requiredIf != null) {
@@ -509,9 +555,9 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'noneText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.noneText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.noneText.replace(valueDes);
           break;
         case r'useDisplayValuesInDynamicTexts':
           final valueDes = serializers.deserialize(
@@ -587,9 +633,9 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'otherErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.otherErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.otherErrorText.replace(valueDes);
           break;
         case r'correctAnswer':
           final valueDes = serializers.deserialize(
@@ -599,19 +645,19 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
-        case r'showCommentArea':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.showCommentArea = valueDes;
-          break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.maxWidth.replace(valueDes);
+          break;
+        case r'showCommentArea':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.showCommentArea = valueDes;
           break;
         case r'isRequired':
           final valueDes = serializers.deserialize(
@@ -637,8 +683,8 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'titleLocation':
@@ -658,9 +704,9 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -686,8 +732,8 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'choices':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(SelectbaseAllOfChoicesInner)]),
-          ) as BuiltList<SelectbaseAllOfChoicesInner>;
+            specifiedType: const FullType(BuiltList, [FullType(MatrixdropdownbaseAllOfChoicesInner)]),
+          ) as BuiltList<MatrixdropdownbaseAllOfChoicesInner>;
           result.choices.replace(valueDes);
           break;
         case r'showNoneItem':
@@ -700,8 +746,8 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'choicesByUrl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ChoicesRestful),
-          ) as ChoicesRestful;
+            specifiedType: const FullType(ChoicesByUrl),
+          ) as ChoicesByUrl;
           result.choicesByUrl.replace(valueDes);
           break;
         case r'indent':
@@ -728,23 +774,23 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'clearIfInvisible':
           final valueDes = serializers.deserialize(
@@ -763,9 +809,9 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'otherText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.otherText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.otherText.replace(valueDes);
           break;
         case r'hideNumber':
           final valueDes = serializers.deserialize(
@@ -791,9 +837,9 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'separateSpecialChoices':
           final valueDes = serializers.deserialize(
@@ -805,9 +851,9 @@ class _$$SelectbaseSerializer implements PrimitiveSerializer<$Selectbase> {
         case r'otherPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.otherPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.otherPlaceholder.replace(valueDes);
           break;
         case r'requiredIf':
           final valueDes = serializers.deserialize(

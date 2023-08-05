@@ -10,13 +10,13 @@ import 'package:flutter_survey_js_model/src/model/question_state.dart';
 import 'package:flutter_survey_js_model/src/model/question_all_of_validators_inner.dart';
 import 'package:flutter_survey_js_model/src/model/question_clear_if_invisible.dart';
 import 'package:flutter_survey_js_model/src/model/question_description_location.dart';
-import 'package:flutter_survey_js_model/src/model/paneldynamic_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/question_indent.dart';
 import 'package:flutter_survey_js_model/src/model/question.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panels_state.dart';
 import 'package:flutter_survey_js_model/src/model/survey_logo_width.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_panel_remove_button_location.dart';
+import 'package:flutter_survey_js_model/src/model/survey_title.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_show_question_numbers.dart';
 import 'package:flutter_survey_js_model/src/model/paneldynamic_tab_align.dart';
 import 'package:flutter_survey_js_model/src/model/survey_questions_inner.dart';
@@ -89,9 +89,101 @@ part 'paneldynamic.g.dart';
 /// * [renderMode] 
 /// * [tabAlign] 
 /// * [templateTitleLocation] 
+/// * [templateVisibleIf] 
 /// * [panelRemoveButtonLocation] 
 @BuiltValue()
-abstract class Paneldynamic implements PaneldynamicAllOf, Question, Built<Paneldynamic, PaneldynamicBuilder> {
+abstract class Paneldynamic implements Question, Built<Paneldynamic, PaneldynamicBuilder> {
+  @BuiltValueField(wireName: r'panelPrevText')
+  SurveyTitle? get panelPrevText;
+
+  @BuiltValueField(wireName: r'panelRemoveButtonLocation')
+  PaneldynamicPanelRemoveButtonLocation? get panelRemoveButtonLocation;
+  // enum panelRemoveButtonLocationEnum {  bottom,  right,  };
+
+  @BuiltValueField(wireName: r'allowAddPanel')
+  bool? get allowAddPanel;
+
+  @BuiltValueField(wireName: r'defaultValueFromLastPanel')
+  bool? get defaultValueFromLastPanel;
+
+  @BuiltValueField(wireName: r'panelRemoveText')
+  SurveyTitle? get panelRemoveText;
+
+  @BuiltValueField(wireName: r'noEntriesText')
+  SurveyTitle? get noEntriesText;
+
+  @BuiltValueField(wireName: r'allowRemovePanel')
+  bool? get allowRemovePanel;
+
+  @BuiltValueField(wireName: r'minPanelCount')
+  num? get minPanelCount;
+
+  @BuiltValueField(wireName: r'showRangeInProgress')
+  bool? get showRangeInProgress;
+
+  @BuiltValueField(wireName: r'defaultPanelValue')
+  String? get defaultPanelValue;
+
+  @BuiltValueField(wireName: r'confirmDeleteText')
+  SurveyTitle? get confirmDeleteText;
+
+  @BuiltValueField(wireName: r'keyDuplicationError')
+  SurveyTitle? get keyDuplicationError;
+
+  @BuiltValueField(wireName: r'templateTitleLocation')
+  PaneldynamicTemplateTitleLocation? get templateTitleLocation;
+  // enum templateTitleLocationEnum {  default,  top,  bottom,  left,  };
+
+  @BuiltValueField(wireName: r'maxPanelCount')
+  num? get maxPanelCount;
+
+  @BuiltValueField(wireName: r'templateTitle')
+  SurveyTitle? get templateTitle;
+
+  @BuiltValueField(wireName: r'templateVisibleIf')
+  String? get templateVisibleIf;
+
+  @BuiltValueField(wireName: r'panelsState')
+  PaneldynamicPanelsState? get panelsState;
+  // enum panelsStateEnum {  default,  collapsed,  expanded,  firstExpanded,  };
+
+  @BuiltValueField(wireName: r'panelNextText')
+  SurveyTitle? get panelNextText;
+
+  @BuiltValueField(wireName: r'panelAddText')
+  SurveyTitle? get panelAddText;
+
+  @BuiltValueField(wireName: r'keyName')
+  String? get keyName;
+
+  @BuiltValueField(wireName: r'templateTabTitle')
+  SurveyTitle? get templateTabTitle;
+
+  @BuiltValueField(wireName: r'confirmDelete')
+  bool? get confirmDelete;
+
+  @BuiltValueField(wireName: r'renderMode')
+  PaneldynamicRenderMode? get renderMode;
+  // enum renderModeEnum {  list,  progressTop,  progressBottom,  progressTopBottom,  tab,  };
+
+  @BuiltValueField(wireName: r'showQuestionNumbers')
+  PaneldynamicShowQuestionNumbers? get showQuestionNumbers;
+  // enum showQuestionNumbersEnum {  off,  onPanel,  onSurvey,  };
+
+  @BuiltValueField(wireName: r'tabAlign')
+  PaneldynamicTabAlign? get tabAlign;
+  // enum tabAlignEnum {  center,  left,  right,  };
+
+  @BuiltValueField(wireName: r'templateElements')
+  BuiltList<SurveyQuestionsInner>? get templateElements;
+
+  @BuiltValueField(wireName: r'templateDescription')
+  SurveyTitle? get templateDescription;
+
+  @BuiltValueField(wireName: r'panelCount')
+  PaneldynamicPanelCount? get panelCount;
+  // enum panelCountEnum {  0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  };
+
   Paneldynamic._();
 
   factory Paneldynamic([void updates(PaneldynamicBuilder b)]) = _$Paneldynamic;
@@ -119,7 +211,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'panelPrevText';
       yield serializers.serialize(
         object.panelPrevText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.useDisplayValuesInDynamicTexts != null) {
@@ -150,13 +242,11 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'type';
+    yield serializers.serialize(
+      object.type,
+      specifiedType: const FullType(String),
+    );
     if (object.allowRemovePanel != null) {
       yield r'allowRemovePanel';
       yield serializers.serialize(
@@ -182,14 +272,14 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'confirmDeleteText';
       yield serializers.serialize(
         object.confirmDeleteText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.keyDuplicationError != null) {
       yield r'keyDuplicationError';
       yield serializers.serialize(
         object.keyDuplicationError,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.maxPanelCount != null) {
@@ -213,18 +303,18 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         specifiedType: const FullType.nullable(JsonObject),
       );
     }
-    if (object.showCommentArea != null) {
-      yield r'showCommentArea';
-      yield serializers.serialize(
-        object.showCommentArea,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.maxWidth != null) {
       yield r'maxWidth';
       yield serializers.serialize(
         object.maxWidth,
         specifiedType: const FullType(SurveyLogoWidth),
+      );
+    }
+    if (object.showCommentArea != null) {
+      yield r'showCommentArea';
+      yield serializers.serialize(
+        object.showCommentArea,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.isRequired != null) {
@@ -259,14 +349,14 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'readOnly';
       yield serializers.serialize(
         object.readOnly,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(bool),
       );
     }
     if (object.templateTabTitle != null) {
       yield r'templateTabTitle';
       yield serializers.serialize(
         object.templateTabTitle,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.titleLocation != null) {
@@ -280,7 +370,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'requiredErrorText';
       yield serializers.serialize(
         object.requiredErrorText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.tabAlign != null) {
@@ -301,16 +391,14 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'templateDescription';
       yield serializers.serialize(
         object.templateDescription,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     if (object.visibleIf != null) {
       yield r'visibleIf';
       yield serializers.serialize(
@@ -371,35 +459,35 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'panelRemoveText';
       yield serializers.serialize(
         object.panelRemoveText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.description != null) {
       yield r'description';
       yield serializers.serialize(
         object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.title != null) {
       yield r'title';
       yield serializers.serialize(
         object.title,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.commentText != null) {
       yield r'commentText';
       yield serializers.serialize(
         object.commentText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.noEntriesText != null) {
       yield r'noEntriesText';
       yield serializers.serialize(
         object.noEntriesText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.minPanelCount != null) {
@@ -441,7 +529,7 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'templateTitle';
       yield serializers.serialize(
         object.templateTitle,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.hideNumber != null) {
@@ -449,6 +537,13 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield serializers.serialize(
         object.hideNumber,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.templateVisibleIf != null) {
+      yield r'templateVisibleIf';
+      yield serializers.serialize(
+        object.templateVisibleIf,
+        specifiedType: const FullType(String),
       );
     }
     if (object.enableIf != null) {
@@ -462,21 +557,21 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
       yield r'commentPlaceholder';
       yield serializers.serialize(
         object.commentPlaceholder,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.panelNextText != null) {
       yield r'panelNextText';
       yield serializers.serialize(
         object.panelNextText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.panelAddText != null) {
       yield r'panelAddText';
       yield serializers.serialize(
         object.panelAddText,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(SurveyTitle),
       );
     }
     if (object.keyName != null) {
@@ -561,9 +656,9 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'panelPrevText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.panelPrevText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.panelPrevText.replace(valueDes);
           break;
         case r'useDisplayValuesInDynamicTexts':
           final valueDes = serializers.deserialize(
@@ -625,16 +720,16 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'confirmDeleteText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.confirmDeleteText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.confirmDeleteText.replace(valueDes);
           break;
         case r'keyDuplicationError':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.keyDuplicationError = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.keyDuplicationError.replace(valueDes);
           break;
         case r'maxPanelCount':
           final valueDes = serializers.deserialize(
@@ -658,19 +753,19 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
           if (valueDes == null) continue;
           result.correctAnswer = valueDes;
           break;
-        case r'showCommentArea':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.showCommentArea = valueDes;
-          break;
         case r'maxWidth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(SurveyLogoWidth),
           ) as SurveyLogoWidth;
           result.maxWidth.replace(valueDes);
+          break;
+        case r'showCommentArea':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.showCommentArea = valueDes;
           break;
         case r'isRequired':
           final valueDes = serializers.deserialize(
@@ -703,16 +798,16 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'readOnly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.readOnly = valueDes;
           break;
         case r'templateTabTitle':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.templateTabTitle = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.templateTabTitle.replace(valueDes);
           break;
         case r'titleLocation':
           final valueDes = serializers.deserialize(
@@ -724,9 +819,9 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'requiredErrorText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.requiredErrorText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.requiredErrorText.replace(valueDes);
           break;
         case r'tabAlign':
           final valueDes = serializers.deserialize(
@@ -745,9 +840,9 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'templateDescription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.templateDescription = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.templateDescription.replace(valueDes);
           break;
         case r'name':
           final valueDes = serializers.deserialize(
@@ -815,37 +910,37 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'panelRemoveText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.panelRemoveText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.panelRemoveText.replace(valueDes);
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.description.replace(valueDes);
           break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.title = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.title.replace(valueDes);
           break;
         case r'commentText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentText.replace(valueDes);
           break;
         case r'noEntriesText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.noEntriesText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.noEntriesText.replace(valueDes);
           break;
         case r'minPanelCount':
           final valueDes = serializers.deserialize(
@@ -885,9 +980,9 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'templateTitle':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.templateTitle = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.templateTitle.replace(valueDes);
           break;
         case r'hideNumber':
           final valueDes = serializers.deserialize(
@@ -895,6 +990,13 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.hideNumber = valueDes;
+          break;
+        case r'templateVisibleIf':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.templateVisibleIf = valueDes;
           break;
         case r'enableIf':
           final valueDes = serializers.deserialize(
@@ -906,23 +1008,23 @@ class _$PaneldynamicSerializer implements PrimitiveSerializer<Paneldynamic> {
         case r'commentPlaceholder':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.commentPlaceholder = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.commentPlaceholder.replace(valueDes);
           break;
         case r'panelNextText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.panelNextText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.panelNextText.replace(valueDes);
           break;
         case r'panelAddText':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.panelAddText = valueDes;
+            specifiedType: const FullType(SurveyTitle),
+          ) as SurveyTitle;
+          result.panelAddText.replace(valueDes);
           break;
         case r'keyName':
           final valueDes = serializers.deserialize(

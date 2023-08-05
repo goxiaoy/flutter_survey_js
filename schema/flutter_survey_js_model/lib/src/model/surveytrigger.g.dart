@@ -6,8 +6,7 @@ part of 'surveytrigger.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract class SurveytriggerBuilder
-    implements SurveytriggerAllOfBuilder, TriggerBuilder {
+abstract class SurveytriggerBuilder implements TriggerBuilder {
   void replace(covariant Surveytrigger other);
   void update(void Function(SurveytriggerBuilder) updates);
   String? get name;

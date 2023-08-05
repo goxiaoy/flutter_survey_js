@@ -8,21 +8,21 @@ part of 'multipletextitem.dart';
 
 class _$Multipletextitem extends Multipletextitem {
   @override
-  final String? name;
+  final String name;
   @override
   final bool? isRequired;
   @override
-  final String? placeholder;
+  final SurveyTitle? placeholder;
   @override
   final MultipletextitemInputType? inputType;
   @override
-  final String? title;
+  final SurveyTitle? title;
   @override
   final num? maxLength;
   @override
   final num? size;
   @override
-  final String? requiredErrorText;
+  final SurveyTitle? requiredErrorText;
   @override
   final BuiltList<QuestionAllOfValidatorsInner>? validators;
 
@@ -31,7 +31,7 @@ class _$Multipletextitem extends Multipletextitem {
       (new MultipletextitemBuilder()..update(updates))._build();
 
   _$Multipletextitem._(
-      {this.name,
+      {required this.name,
       this.isRequired,
       this.placeholder,
       this.inputType,
@@ -40,7 +40,9 @@ class _$Multipletextitem extends Multipletextitem {
       this.size,
       this.requiredErrorText,
       this.validators})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'Multipletextitem', 'name');
+  }
 
   @override
   Multipletextitem rebuild(void Function(MultipletextitemBuilder) updates) =>
@@ -109,18 +111,20 @@ class MultipletextitemBuilder
   bool? get isRequired => _$this._isRequired;
   set isRequired(bool? isRequired) => _$this._isRequired = isRequired;
 
-  String? _placeholder;
-  String? get placeholder => _$this._placeholder;
-  set placeholder(String? placeholder) => _$this._placeholder = placeholder;
+  SurveyTitleBuilder? _placeholder;
+  SurveyTitleBuilder get placeholder =>
+      _$this._placeholder ??= new SurveyTitleBuilder();
+  set placeholder(SurveyTitleBuilder? placeholder) =>
+      _$this._placeholder = placeholder;
 
   MultipletextitemInputType? _inputType;
   MultipletextitemInputType? get inputType => _$this._inputType;
   set inputType(MultipletextitemInputType? inputType) =>
       _$this._inputType = inputType;
 
-  String? _title;
-  String? get title => _$this._title;
-  set title(String? title) => _$this._title = title;
+  SurveyTitleBuilder? _title;
+  SurveyTitleBuilder get title => _$this._title ??= new SurveyTitleBuilder();
+  set title(SurveyTitleBuilder? title) => _$this._title = title;
 
   num? _maxLength;
   num? get maxLength => _$this._maxLength;
@@ -130,9 +134,10 @@ class MultipletextitemBuilder
   num? get size => _$this._size;
   set size(num? size) => _$this._size = size;
 
-  String? _requiredErrorText;
-  String? get requiredErrorText => _$this._requiredErrorText;
-  set requiredErrorText(String? requiredErrorText) =>
+  SurveyTitleBuilder? _requiredErrorText;
+  SurveyTitleBuilder get requiredErrorText =>
+      _$this._requiredErrorText ??= new SurveyTitleBuilder();
+  set requiredErrorText(SurveyTitleBuilder? requiredErrorText) =>
       _$this._requiredErrorText = requiredErrorText;
 
   ListBuilder<QuestionAllOfValidatorsInner>? _validators;
@@ -150,12 +155,12 @@ class MultipletextitemBuilder
     if ($v != null) {
       _name = $v.name;
       _isRequired = $v.isRequired;
-      _placeholder = $v.placeholder;
+      _placeholder = $v.placeholder?.toBuilder();
       _inputType = $v.inputType;
-      _title = $v.title;
+      _title = $v.title?.toBuilder();
       _maxLength = $v.maxLength;
       _size = $v.size;
-      _requiredErrorText = $v.requiredErrorText;
+      _requiredErrorText = $v.requiredErrorText?.toBuilder();
       _validators = $v.validators?.toBuilder();
       _$v = null;
     }
@@ -181,18 +186,27 @@ class MultipletextitemBuilder
     try {
       _$result = _$v ??
           new _$Multipletextitem._(
-              name: name,
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'Multipletextitem', 'name'),
               isRequired: isRequired,
-              placeholder: placeholder,
+              placeholder: _placeholder?.build(),
               inputType: inputType,
-              title: title,
+              title: _title?.build(),
               maxLength: maxLength,
               size: size,
-              requiredErrorText: requiredErrorText,
+              requiredErrorText: _requiredErrorText?.build(),
               validators: _validators?.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'placeholder';
+        _placeholder?.build();
+
+        _$failedField = 'title';
+        _title?.build();
+
+        _$failedField = 'requiredErrorText';
+        _requiredErrorText?.build();
         _$failedField = 'validators';
         _validators?.build();
       } catch (e) {

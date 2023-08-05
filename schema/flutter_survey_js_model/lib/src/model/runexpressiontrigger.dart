@@ -3,7 +3,6 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:flutter_survey_js_model/src/model/runexpressiontrigger_all_of.dart';
 import 'package:flutter_survey_js_model/src/model/surveytrigger.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -21,7 +20,13 @@ part 'runexpressiontrigger.g.dart';
 /// * [setToName] 
 /// * [runExpression] 
 @BuiltValue()
-abstract class Runexpressiontrigger implements RunexpressiontriggerAllOf, Surveytrigger, Built<Runexpressiontrigger, RunexpressiontriggerBuilder> {
+abstract class Runexpressiontrigger implements Surveytrigger, Built<Runexpressiontrigger, RunexpressiontriggerBuilder> {
+  @BuiltValueField(wireName: r'setToName')
+  String? get setToName;
+
+  @BuiltValueField(wireName: r'runExpression')
+  String? get runExpression;
+
   Runexpressiontrigger._();
 
   factory Runexpressiontrigger([void updates(RunexpressiontriggerBuilder b)]) = _$Runexpressiontrigger;
@@ -66,17 +71,17 @@ class _$RunexpressiontriggerSerializer implements PrimitiveSerializer<Runexpress
         specifiedType: const FullType(String),
       );
     }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.runExpression != null) {
       yield r'runExpression';
       yield serializers.serialize(
         object.runExpression,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
         specifiedType: const FullType(String),
       );
     }
@@ -138,19 +143,19 @@ class _$RunexpressiontriggerSerializer implements PrimitiveSerializer<Runexpress
           ) as String;
           result.setToName = valueDes;
           break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
         case r'runExpression':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.runExpression = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
