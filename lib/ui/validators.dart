@@ -30,7 +30,7 @@ class MultipleTextNonEmptyValidator extends Validator<dynamic> {
 
     bool hasError = true;
 
-    for (final value in control.value.values) {
+    for (final value in (control.value as Map<String, Object?>).values) {
       if (value != null && value.toString().trim().isNotEmpty) {
         hasError = false;
       }
@@ -44,7 +44,7 @@ class MultipleTextNonEmptyValidator extends Validator<dynamic> {
 
 List<ValidatorFunction> questionToValidators(s.Question question) {
   final res = <ValidatorFunction>[];
-  final validators = question.validators?.map((p) => p.realValidator).toList();
+
   if (question.isRequired == true) {
     if (question is s.Multipletext) {
       res.add(MultipleTextNonEmptyValidator.get);
@@ -52,6 +52,16 @@ List<ValidatorFunction> questionToValidators(s.Question question) {
       res.add(NonEmptyValidator.get);
     }
   }
+  if (question is s.Text) {
+    if (question.min?.oneOf.value.tryCastToNum() != null) {
+      res.add(Validators.min(question.min!.oneOf.value.tryCastToNum()));
+    }
+    if (question.max?.oneOf.value.tryCastToNum() != null) {
+      res.add(Validators.max(question.max!.oneOf.value.tryCastToNum()));
+    }
+  }
+
+  final validators = question.validators?.map((p) => p.realValidator).toList();
   if (validators != null) {
     for (var value in validators) {
       if (value is s.Numericvalidator) {

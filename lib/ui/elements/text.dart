@@ -7,6 +7,7 @@ import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:flutter_survey_js/utils.dart';
+
 Widget textBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   final e = element as s.Text;
@@ -22,6 +23,8 @@ Widget textBuilder(BuildContext context, s.Elementbase element,
       formControlName: element.name!,
       type: ReactiveDatePickerFieldType.date,
       decoration: InputDecoration(hintText: hintText),
+      firstDate: e.min.tryCastToDateTime(),
+      lastDate: e.max.tryCastToDateTime(),
     );
   }
   if (e.inputType == s.TextInputType.color) {
