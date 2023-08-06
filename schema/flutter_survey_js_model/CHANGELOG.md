@@ -1,3 +1,7 @@
+## 0.0.2-dev.8
+
+ - string to locstring. fix text min&max
+
 ## 0.0.2-dev.7
 
  - Bump "flutter_survey_js_model" to `0.0.2-dev.7`

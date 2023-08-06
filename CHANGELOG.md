@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-06
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`flutter_survey_js` - `v0.0.2-dev.8`](#flutter_survey_js---v002-dev8)
+ - [`flutter_survey_js_model` - `v0.0.2-dev.8`](#flutter_survey_js_model---v002-dev8)
+
+---
+
+#### `flutter_survey_js` - `v0.0.2-dev.8`
+
+ - string to locstring. fix text min&max
+
+#### `flutter_survey_js_model` - `v0.0.2-dev.8`
+
+ - string to locstring. fix text min&max
+
+## 0.0.2-dev.8
+
+ - string to locstring. fix text min&max
+
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## 2023-07-27
 
 ### Changes
