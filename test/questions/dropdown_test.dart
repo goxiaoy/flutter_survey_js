@@ -116,7 +116,7 @@ void main() {
             ),
           ),
         );
-        await tester.pump();
+        await tester.pumpAndSettle();
         await tester.idle();
         final placeholderText =
             (await appLocalizationDelegate.load(locale)).placeholder;
@@ -161,13 +161,13 @@ void main() {
         ),
       ),
     );
-
+    await tester.pumpAndSettle();
     await tester.tap(find.byType(ReactiveDropdownField));
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.idle();
 
     await tester.tap(find.text(otherText).last);
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.idle();
 
     expect(find.byType(ReactiveTextField), findsOneWidget);
@@ -209,7 +209,7 @@ void main() {
         ),
       ),
     );
-
+    await tester.pumpAndSettle();
     await tester.tap(find.byType(ReactiveDropdownField));
     await tester.pump();
     await tester.idle();
@@ -255,7 +255,7 @@ void main() {
         ),
       ),
     );
-
+    await tester.pumpAndSettle();
     await tester.tap(find.byType(ReactiveDropdownField));
     await tester.pump();
     await tester.idle();
@@ -302,7 +302,7 @@ void main() {
       ),
     );
 
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.idle();
 
     final DropdownButton dropdownButton =

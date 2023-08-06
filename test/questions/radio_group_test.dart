@@ -74,7 +74,7 @@ void main() {
         ),
       ),
     );
-
+    await tester.pumpAndSettle();
     await tester.tap(find.text(otherText).last);
     await tester.pump();
     await tester.idle();
@@ -118,7 +118,7 @@ void main() {
         ),
       ),
     );
-
+    await tester.pumpAndSettle();
     await tester.tap(find.text(otherText).last);
     await tester.pump();
     await tester.idle();
@@ -161,7 +161,7 @@ void main() {
         ),
       ),
     );
-
+    await tester.pumpAndSettle();
     expect(find.text(noneText), findsWidgets);
   });
 
@@ -204,7 +204,7 @@ void main() {
       ),
     );
 
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.idle();
 
     final buttons =
@@ -334,7 +334,7 @@ void main() {
           ),
         ),
       );
-
+      await tester.pumpAndSettle();
       await tester.tap(find.text(otherText).last);
       await tester.pump();
       await tester.idle();
