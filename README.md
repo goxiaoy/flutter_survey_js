@@ -16,7 +16,7 @@ Supported widgets:
 - [ ] tagbox
 - [x] ranking
 - [x] radiogroup
-- [ ] imagepicker
+- [x] imagepicker
 - [ ] buttongroup
 - [x] dropdown
 - [x] matrixdropdown
@@ -101,7 +101,16 @@ Install
 ```shell
 dart pub global activate melos
 ```
-
-```bootstrap
+Bootstrap
+```shell
 dart pub global run melos bs
 ```
+
+## Test
+
+### Before you run test
+
+- Windows: `dart pub global run melos run build_windows`
+- Linux: `dart pub global run melos run build_linux`
+###
+`dart pub global run melos run test`
