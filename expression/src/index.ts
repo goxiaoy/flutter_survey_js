@@ -1,29 +1,34 @@
 import { ExpressionExecutor, IExpresionExecutor } from "./conditions";
 import { HashTable } from "./helpers";
 
-const executorCache: Record<string, IExpresionExecutor> = {};
-
-export function runConditon(
-  expression: string,
-  values: HashTable<any>,
-  properties: HashTable<any> | null = null
-): boolean {
-  return runExpression(expression, values, properties) == true;
-}
-
-export function runExpression(
-  expression: string,
-  values: HashTable<any>,
-  properties: HashTable<any> | null = null
-): any {
-  return findOrCreateExecutor(expression).run(values, properties);
-}
-
-function findOrCreateExecutor(expression: string) {
-  if (executorCache[expression] == null) {
-    executorCache[expression] =
-      ExpressionExecutor.createExpressionExecutor(expression);
+class Runner {
+  executorCache: Record<string, IExpresionExecutor> = {};
+  constructor() {}
+  runCondition(
+    expression: string,
+    values: HashTable<any>,
+    properties: HashTable<any> | null = null
+  ): boolean {
+    return this.runExpression(expression, values, properties) == true;
   }
-  return executorCache[expression];
+
+  runExpression(
+    expression: string,
+    values: HashTable<any>,
+    properties: HashTable<any> | null = null
+  ): any {
+    return this.findOrCreateExecutor(expression).run(values, properties);
+  }
+
+  findOrCreateExecutor(expression: string) {
+    if (this.executorCache[expression] == null) {
+      this.executorCache[expression] =
+        ExpressionExecutor.createExpressionExecutor(expression);
+    }
+    return this.executorCache[expression];
+  }
 }
-export { ConditionRunner, ExpressionRunner } from "./conditions";
+
+const r = new Runner();
+
+export default r;

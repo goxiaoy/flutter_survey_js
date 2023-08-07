@@ -24,7 +24,7 @@ jobs:
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
           dart pub global activate melos 3.1.1
       - name: Bootstrap melos
-        run: melos bs
+        run: melos bs --verbose
       - name: Setup test
         run: melos run build_linux --no-select
       - name: Run tests

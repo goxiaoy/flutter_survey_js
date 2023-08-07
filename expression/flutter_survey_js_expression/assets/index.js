@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.surveyjs = {}));
-})(this, (function (exports) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.surveyjs = factory());
+})(this, (function () { 'use strict';
 
     /******************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -5147,7 +5147,7 @@
         ExpressionRunnerBase.prototype.doOnComplete = function (res) { };
         return ExpressionRunnerBase;
     }());
-    var ConditionRunner =  (function (_super) {
+    ((function (_super) {
         __extends(ConditionRunner, _super);
         function ConditionRunner() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -5161,8 +5161,8 @@
                 this.onRunComplete(res == true);
         };
         return ConditionRunner;
-    }(ExpressionRunnerBase));
-    var ExpressionRunner =  (function (_super) {
+    })(ExpressionRunnerBase));
+    ((function (_super) {
         __extends(ExpressionRunner, _super);
         function ExpressionRunner() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -5176,28 +5176,31 @@
                 this.onRunComplete(res);
         };
         return ExpressionRunner;
-    }(ExpressionRunnerBase));
+    })(ExpressionRunnerBase));
 
-    var executorCache = {};
-    function runConditon(expression, values, properties) {
-        if (properties === void 0) { properties = null; }
-        return runExpression(expression, values, properties) == true;
-    }
-    function runExpression(expression, values, properties) {
-        if (properties === void 0) { properties = null; }
-        return findOrCreateExecutor(expression).run(values, properties);
-    }
-    function findOrCreateExecutor(expression) {
-        if (executorCache[expression] == null) {
-            executorCache[expression] =
-                ExpressionExecutor.createExpressionExecutor(expression);
+    var Runner =  (function () {
+        function Runner() {
+            this.executorCache = {};
         }
-        return executorCache[expression];
-    }
+        Runner.prototype.runCondition = function (expression, values, properties) {
+            if (properties === void 0) { properties = null; }
+            return this.runExpression(expression, values, properties) == true;
+        };
+        Runner.prototype.runExpression = function (expression, values, properties) {
+            if (properties === void 0) { properties = null; }
+            return this.findOrCreateExecutor(expression).run(values, properties);
+        };
+        Runner.prototype.findOrCreateExecutor = function (expression) {
+            if (this.executorCache[expression] == null) {
+                this.executorCache[expression] =
+                    ExpressionExecutor.createExpressionExecutor(expression);
+            }
+            return this.executorCache[expression];
+        };
+        return Runner;
+    }());
+    var r = new Runner();
 
-    exports.ConditionRunner = ConditionRunner;
-    exports.ExpressionRunner = ExpressionRunner;
-    exports.runConditon = runConditon;
-    exports.runExpression = runExpression;
+    return r;
 
 }));

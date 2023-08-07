@@ -11,7 +11,9 @@ import 'package:json_editor/json_editor.dart';
 
 import 'answer.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await s.getRunner().init();
   runApp(
     DevicePreview(
       enabled: true,

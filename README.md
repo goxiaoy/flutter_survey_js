@@ -47,6 +47,21 @@ Supported validator:
 
 ## Getting Started
 
+### For Web
+add following script into `web/index.html`
+```html
+<html>
+  ...
+  <body>
+    <!-- Add this line -->
+    <script src="assets/packages/flutter_survey_js_expression/assets/index.js"></script>
+
+    <script src="main.dart.js" type="application/javascript"></script>
+  </body>
+</html>
+
+```
+
 ```dart
 import 'package:flutter_survey_js/survey.dart' as s;
 ...

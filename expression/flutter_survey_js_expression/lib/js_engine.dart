@@ -9,7 +9,8 @@ Future<JavascriptRuntime> initJsEngine() async {
   if (a.isError) {
     throw Exception(a.rawResult);
   }
-  final expressionJs = await rootBundle.loadString("assets/index.js");
+  final expressionJs = await rootBundle
+      .loadString("packages/flutter_survey_js_expression/assets/index.js");
   a = jsRuntime.evaluate(expressionJs);
   if (a.isError) {
     throw Exception(a.rawResult);

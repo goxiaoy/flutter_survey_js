@@ -11,7 +11,7 @@ class OtherRunner implements Runner {
   bool? runCondition(String expression, Map<String, Object?> value,
       {Map<String, Object?>? properties}) {
     final exp =
-        """global.surveyjs.runConditon("$expression",${json.encode(value)})""";
+        """global.surveyjs.runCondition("$expression",${json.encode(value)})""";
     final jsResult = jsRuntime.evaluate(exp);
     if (jsResult.isError) {
       throw Exception(jsResult.rawResult);
