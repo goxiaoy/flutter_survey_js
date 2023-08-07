@@ -17,12 +17,7 @@ jobs:
         with:
           flutter-version: "3.10.6"
           channel: "stable"
-      - name: Activate melos
-        run: |
-          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
-          dart pub global activate melos 3.1.1
-      - name: Bootstrap melos
-        run: melos bs --verbose
+      - uses: bluefireteam/melos-action@v1
       - run: |
           cd example
           flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
