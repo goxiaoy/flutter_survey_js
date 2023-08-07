@@ -17,7 +17,7 @@ Object? tryGetValue(String name, Object? value) {
 // [value] default value passed down by parent
 FormGroup elementsToFormGroup(
     BuildContext context, List<s.Elementbase> elements,
-    {Map<s.Elementbase, Object>? controlsMap,
+    {Map<s.Elementbase, Object?>? controlsMap,
     List<ValidatorFunction> validators = const [],
     List<AsyncValidatorFunction> asyncValidators = const [],
     Object? value}) {
@@ -28,9 +28,12 @@ FormGroup elementsToFormGroup(
     if (element.name != null && element is! s.Panel) {
       final obj = toFormObject(context, element,
           controlsMap: controlsMap, value: tryGetValue(element.name!, value));
-      controls[element.name!] = obj;
-      if (controlsMap != null) {
-        controlsMap[element] = obj;
+      if (obj != null) {
+        //Empty got no control
+        controls[element.name!] = obj;
+        if (controlsMap != null) {
+          controlsMap[element] = obj;
+        }
       }
     } else {
       //patch parent
@@ -59,8 +62,8 @@ Object? getDefaultValue(s.Elementbase element, Object? value) {
 
 // toFormObject convert question json element to FromControl
 // [value] default value passed down by parent
-Object toFormObject(BuildContext context, s.Elementbase element,
-    {Map<s.Elementbase, Object>? controlsMap, Object? value}) {
+Object? toFormObject(BuildContext context, s.Elementbase element,
+    {Map<s.Elementbase, Object?>? controlsMap, Object? value}) {
   final obj =
       ((SurveyConfiguration.of(context)?.factory) ?? SurveyElementFactory())
           .resolveFormControl(context, element, value: value);

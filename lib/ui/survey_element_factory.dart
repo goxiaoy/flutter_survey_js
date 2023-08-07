@@ -114,7 +114,8 @@ class SurveyElementFactory {
     register<s.Multipletext>(multipleTextBuilder,
         control: multipleTextControlBuilder);
     register<s.Html>((context, element, {ElementConfiguration? configuration}) {
-      return HtmlWidget((element as s.Html).html?.getLocalizedText(context) ?? '');
+      return HtmlWidget(
+          (element as s.Html).html?.getLocalizedText(context) ?? '');
     });
     register<s.Signaturepad>((context, element,
             {ElementConfiguration? configuration}) {
@@ -138,7 +139,8 @@ class SurveyElementFactory {
                     value.tryCastToString()));
     register<s.Image>((context, element,
         {ElementConfiguration? configuration}) {
-      return urlToImage((element as s.Image).imageLink?.getLocalizedText(context))
+      return urlToImage(
+              (element as s.Image).imageLink?.getLocalizedText(context))
           .wrapQuestionTitle(context, element, configuration: configuration);
     });
     register<s.Imagepicker>(imagePickerBuilder);
@@ -169,6 +171,11 @@ class SurveyElementFactory {
                     ? [NonEmptyValidator.get, ...validators]
                     : validators,
                 value: value));
+
+    register<s.Empty>(
+        (context, element, {ElementConfiguration? configuration}) =>
+            const SizedBox(),
+        control: (context, element, {validators = const [], value}) => null);
   }
 
   void register<T>(SurveyElementBuilder builder,
@@ -201,18 +208,18 @@ class SurveyElementFactory {
 
   // resolveFormControl resolve formControl from element
   // [value] default value passed down from parent. default value will be resolved by self default value then from parent
-  Object resolveFormControl(BuildContext context, s.Elementbase element,
+  Object? resolveFormControl(BuildContext context, s.Elementbase element,
       {Object? value}) {
     final validators = <ValidatorFunction>[];
     if (element is s.Question) {
       validators.addAll(questionToValidators(element));
     }
-    final c = _formControlMap[element.type];
-    //find from facotry or fallback to FormControl<Object>
-    final res =
-        c?.call(context, element, validators: validators, value: value) ??
-            FormControl<Object>(
-                validators: validators, value: getDefaultValue(element, value));
-    return res;
+    if (_formControlMap.containsKey(element.type)) {
+      final c = _formControlMap[element.type];
+      return c?.call(context, element, validators: validators, value: value);
+    }
+    //fallback to FormControl<Object>
+    return FormControl<Object>(
+        validators: validators, value: getDefaultValue(element, value));
   }
 }

@@ -28,7 +28,7 @@ Supported widgets:
 - [x] multipletext
 - [x] html
 - [x] image
-- [ ] empty
+- [x] empty
 - [ ] file
 - [x] rating
 - [x] boolean
