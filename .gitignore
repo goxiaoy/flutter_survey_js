@@ -75,3 +75,6 @@ build/
 
 pubspec_overrides.yaml
 pubspec.lock
+
+node_modules/
+dist/

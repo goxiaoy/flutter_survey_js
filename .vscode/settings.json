@@ -1,0 +1,8 @@
+{
+  "terminal.integrated.env.windows": {
+    "PATH": "${env:Path};${workspaceFolder}\\example\\build\\windows\\runner\\Debug"
+  },
+  "terminal.integrated.env.linux": {
+    "LIBQUICKJSC_TEST_PATH": "${workspaceFolder}/example/build/linux/debug/bundle/lib/libquickjs_c_bridge_plugin.so"
+  }
+}

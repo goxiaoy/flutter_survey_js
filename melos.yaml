@@ -1,13 +1,10 @@
 name: flutter_survey_js
 repository: https://github.com/Goxiaoy/flutter_survey_js
 packages:
+  - expression/flutter_survey_js_expression
   - schema/*
-  - schema/*/*
   - example/
   - .
-command:
-  bootstrap:
-    usePubspecOverrides: true
 
 scripts:
   build:
@@ -28,3 +25,11 @@ scripts:
     exec: dart pub upgrade --major-versions
   fix:
     exec: dart fix --apply
+  build_windows:
+    exec: flutter build windows --debug
+    packageFilters:
+      scope: "*example*"
+  build_linux:
+    exec: flutter build linux --debug
+    packageFilters:
+      scope: "*example*"

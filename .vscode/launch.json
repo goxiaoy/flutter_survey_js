@@ -1,0 +1,15 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "flutter_survey_js",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--verbose"],
+      "program": "example/lib/main.dart"
+    }
+  ]
+}
