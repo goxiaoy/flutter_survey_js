@@ -6,18 +6,25 @@ class Runner {
   constructor() {}
   runCondition(
     expression: string,
-    values: HashTable<any>,
-    properties: HashTable<any> | null = null
+    values: string,
+    properties: string | null = null
   ): boolean {
     return this.runExpression(expression, values, properties) == true;
   }
 
   runExpression(
     expression: string,
-    values: HashTable<any>,
-    properties: HashTable<any> | null = null
+    values: string,
+    properties: string | null = null
   ): any {
-    return this.findOrCreateExecutor(expression).run(values, properties);
+    const ret = this.findOrCreateExecutor(expression).run(
+      JSON.parse(values),
+      properties == null ? null : JSON.parse(properties)
+    );
+    console.log(
+      `runExpression: ${expression} values:${values} properties:${properties} result:${ret}`
+    );
+    return ret;
   }
 
   findOrCreateExecutor(expression: string) {

@@ -22,7 +22,7 @@ Supported widgets:
 - [x] matrixdropdown
 - [x] matrixdynamic
 - [x] matrix
-- [ ] expression
+- [x] expression
 - [x] text
 - [x] comment
 - [x] multipletext
@@ -47,7 +47,25 @@ Supported validator:
 
 ## Getting Started
 
-### For Web
+```
+flutter pub add flutter_survey_js
+```
+
+Modify your main function
+
+```dart
+import 'package:flutter_survey_js/survey.dart' as s;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await s.getRunner().init();
+  runApp(
+    ...
+  );
+}
+```
+
+**Web**:
+
 add following script into `web/index.html`
 ```html
 <html>
@@ -61,6 +79,9 @@ add following script into `web/index.html`
 </html>
 
 ```
+
+
+**usage**:
 
 ```dart
 import 'package:flutter_survey_js/survey.dart' as s;

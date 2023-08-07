@@ -19,6 +19,10 @@ scripts:
     packageFilters:
       dirExists:
         - test
+  test_web:
+    exec: flutter test --platform chrome
+    packageFilters:
+      scope: "flutter_survey_js_expression"
   outdated:
     exec: dart pub outdated
   upgrade:

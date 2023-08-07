@@ -10,7 +10,7 @@ import 'package:async/async.dart';
 Widget multipleTextBuilder(BuildContext context, s.Elementbase element,
     {ElementConfiguration? configuration}) {
   final e = element as s.Multipletext;
-  final texts = (e.items?.toList() ?? []).map(toText).toList();
+  final texts = e.items.toList().map(toText).toList();
 
   return ReactiveNestedForm(
       formControlName: e.name,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/elements/boolean.dart';
 import 'package:flutter_survey_js/ui/elements/comment.dart';
+import 'package:flutter_survey_js/ui/elements/expression.dart';
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/elements/panel.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
@@ -176,6 +177,7 @@ class SurveyElementFactory {
         (context, element, {ElementConfiguration? configuration}) =>
             const SizedBox(),
         control: (context, element, {validators = const [], value}) => null);
+    register<s.Expression>(expressionBuilder);
   }
 
   void register<T>(SurveyElementBuilder builder,

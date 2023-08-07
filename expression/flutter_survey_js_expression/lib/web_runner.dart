@@ -2,6 +2,7 @@
 library surveyjs;
 
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -11,26 +12,28 @@ import 'dart:html';
 import 'dart:js';
 
 @JS('runCondition')
-external bool? jsrunCondition(String expression, Map<String, Object?> value,
-    Map<String, Object?>? properties);
+external bool? jsrunCondition(
+    String expression, String value, String? properties);
 @JS('runExpression')
-external dynamic jsRunExpression(String expression, Map<String, Object?> value,
-    Map<String, Object?>? properties);
+external Object? jsRunExpression(
+    String expression, String value, String? properties);
 
 /// Injects a `script` with a `src` dynamically into the head of the current
 /// document.
-Future<void> _injectSrcScript(String src, String windowVar) async {
+@visibleForTesting
+Future<void> injectSrcScript(String src, String windowVar) async {
   ScriptElement script = ScriptElement();
   script.type = 'text/javascript';
+  // script.crossOrigin = 'anonymous';
   // script.text = '''
   //     window.ff_trigger_$windowVar = async (callback) => {
   //       callback(await import("$src"));
   //     };
   //   ''';
   script.src = src;
+
   assert(document.head != null);
   document.head!.append(script);
-
   // Completer completer = Completer();
 
   // context.callMethod('ff_trigger_$windowVar', [
@@ -46,9 +49,18 @@ Future<void> _injectSrcScript(String src, String windowVar) async {
 
 Future<void> loadJs() async {
   if (context['surveyjs'] != null) {
+    //loaded
     return;
   }
-  return _injectSrcScript(
+  //https://github.com/flutter/flutter/issues/126713#issuecomment-1548025818
+  // Fix Require.js issues with Flutter overrides
+  try {
+    context.callMethod('fixRequireJs', []);
+  } catch (e) {
+    //
+  }
+
+  return injectSrcScript(
     "assets/packages/flutter_survey_js_expression/assets/index.js",
     'surveyjs',
   );
@@ -69,13 +81,15 @@ class WebRunner implements Runner {
   @override
   bool? runCondition(String expression, Map<String, Object?> value,
       {Map<String, Object?>? properties}) {
-    return jsrunCondition(expression, value, properties);
+    return jsrunCondition(expression, jsonEncode(value),
+        properties == null ? null : jsonEncode(properties));
   }
 
   @override
-  runExpression(String expression, Map<String, Object?> value,
+  Object? runExpression(String expression, Map<String, Object?> value,
       {Map<String, Object?>? properties}) {
-    return jsRunExpression(expression, value, properties);
+    return jsRunExpression(expression, jsonEncode(value),
+        properties == null ? null : jsonEncode(properties));
   }
 }
 

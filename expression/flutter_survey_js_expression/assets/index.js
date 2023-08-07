@@ -5188,7 +5188,9 @@
         };
         Runner.prototype.runExpression = function (expression, values, properties) {
             if (properties === void 0) { properties = null; }
-            return this.findOrCreateExecutor(expression).run(values, properties);
+            var ret = this.findOrCreateExecutor(expression).run(JSON.parse(values), properties == null ? null : JSON.parse(properties));
+            console.log("runExpression: ".concat(expression, " values:").concat(values, " properties:").concat(properties, " result:").concat(ret));
+            return ret;
         };
         Runner.prototype.findOrCreateExecutor = function (expression) {
             if (this.executorCache[expression] == null) {
