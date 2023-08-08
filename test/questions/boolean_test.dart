@@ -20,7 +20,7 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = surveyFromJson(json);
+    surveyFromJson(json);
   });
 
   testWidgets('displays title if present in json', (WidgetTester tester) async {

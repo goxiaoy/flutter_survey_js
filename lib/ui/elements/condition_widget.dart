@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_survey_js/data/condition/condition_runner.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
-import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ConditionWidget extends StatelessWidget {
@@ -9,7 +7,7 @@ class ConditionWidget extends StatelessWidget {
   final String? visibleIf;
   final String? enableIf;
   final String? requiredIf;
-  final s.Elementbase? element;
+  final String name;
 
   const ConditionWidget(
       {Key? key,
@@ -17,26 +15,26 @@ class ConditionWidget extends StatelessWidget {
       this.visibleIf,
       this.enableIf,
       this.requiredIf,
-      this.element})
-      : assert(requiredIf == null || (element != null)),
-        assert(enableIf == null || (element != null)),
-        super(key: key);
+      required this.name})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final survey = SurveyProvider.of(context);
-    //TODO visibleIf
+    final survey = s.SurveyProvider.of(context);
+
     return StreamBuilder(
       stream: survey.formGroup.valueChanges,
       builder: (BuildContext context,
           AsyncSnapshot<Map<String, Object?>?> snapshot) {
         Widget w = child;
+        final collection = ReactiveForm.of(context)! as FormControlCollection;
+        final c = collection.control(name);
         if (enableIf != null) {
           w = Builder(
             builder: (context) {
-              final r = ConditionRunner(enableIf).run(values: snapshot.data);
-              final c = ReactiveForm.of(context)!;
-              if (r) {
+              final r =
+                  s.getRunner().runCondition(enableIf!, snapshot.data ?? {});
+              if (r == true) {
                 c.markAsEnabled();
               } else {
                 c.markAsDisabled();
@@ -45,13 +43,12 @@ class ConditionWidget extends StatelessWidget {
             },
           );
         }
-        if (requiredIf != null && element is s.Question) {
+        if (requiredIf != null) {
           w = Builder(
             builder: (context) {
-              final f = ReactiveForm.of(context)! as FormGroup;
-              final c = f.control(element!.name!);
-              final r = ConditionRunner(requiredIf).run(values: snapshot.data);
-              if (r) {
+              final r =
+                  s.getRunner().runCondition(requiredIf!, snapshot.data ?? {});
+              if (r == true) {
                 final v = [...c.validators, Validators.required];
                 c.setValidators(v.toList());
               } else {
@@ -68,7 +65,9 @@ class ConditionWidget extends StatelessWidget {
         }
         if (visibleIf != null) {
           w = Visibility(
-            visible: ConditionRunner(visibleIf).run(values: snapshot.data),
+            visible:
+                s.getRunner().runCondition(visibleIf!, snapshot.data ?? {}) ==
+                    true,
             child: w,
           );
         }

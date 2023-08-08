@@ -17,12 +17,14 @@ void main() async {
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => MyApp(), // Wrap your app
+      builder: (context) => const MyApp(), // Wrap your app
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
       // Add the locale here
       builder: DevicePreview.appBuilder,
       // Add the builder here
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -50,17 +52,17 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      supportedLocales: [
-        const Locale('en', ''), // English, no country code
-        const Locale('zh', ''), // Spanish, no country code
+      supportedLocales: const [
+        Locale('en', ''), // English, no country code
+        Locale('zh', ''), // Spanish, no country code
       ],
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -70,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String survey = "";
 
   late Future<List<String?>> loader;
-  Map<TestJsonType, String> _surveyMap = {};
+  final Map<TestJsonType, String> _surveyMap = {};
 
   TestJsonType? selected;
 
@@ -102,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Survey json test'),
+          title: const Text('Survey json test'),
           actions: [
             ElevatedButton(
               onPressed: () {
@@ -114,19 +116,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           )),
                 );
               },
-              child: Text("Next Step"),
+              child: const Text("Next Step"),
             )
           ],
         ),
         body: SafeArea(
             child: FutureBuilder(
-          future: this.loader,
+          future: loader,
           builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             if (!snapshot.hasData) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
             return Column(children: [
-              Text("Choose or edit survey"),
+              const Text("Choose or edit survey"),
               DropdownButton<TestJsonType>(
                 value: selected,
                 icon: const Icon(Icons.arrow_downward),

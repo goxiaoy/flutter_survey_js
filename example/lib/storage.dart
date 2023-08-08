@@ -18,7 +18,7 @@ Future clearSurvey() async {
 
 Future<String?> getSurvey() async {
   final prefs = await _getStorage();
-  return await prefs.getString(_surveyKey);
+  return prefs.getString(_surveyKey);
 }
 
 Future storeAnswer(String answer) async {
@@ -33,5 +33,5 @@ Future clearAnswer() async {
 
 Future<String?> getAnswer() async {
   final prefs = await _getStorage();
-  return await prefs.getString(_answerKey);
+  return prefs.getString(_answerKey);
 }

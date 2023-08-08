@@ -5,7 +5,7 @@ import 'package:flutter_survey_js/survey.dart' hide Text;
 import 'package:flutter_survey_js/ui/reactive/reactive_group_button.dart';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:group_button/group_button.dart';
+
 import 'package:reactive_forms/reactive_forms.dart';
 
 void main() {

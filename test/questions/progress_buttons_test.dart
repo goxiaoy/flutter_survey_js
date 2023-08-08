@@ -28,6 +28,6 @@ void main() {
     "progressBarType": "buttons"
   };
   test("Serialize Deserialize Survey", () {
-    final s = surveyFromJson(json);
+    surveyFromJson(json);
   });
 }

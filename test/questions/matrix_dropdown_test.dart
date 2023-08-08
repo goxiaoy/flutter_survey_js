@@ -50,6 +50,6 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = surveyFromJson(json);
+    surveyFromJson(json);
   });
 }

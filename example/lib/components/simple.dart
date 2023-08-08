@@ -9,17 +9,17 @@ class Simple extends StatelessWidget {
   final s.Survey? survey;
   final Map<String, Object?>? answer;
 
-  Simple({Key? key, this.survey, this.answer}) : super(key: key);
+  const Simple({Key? key, this.survey, this.answer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Survey test'),
+          title: const Text('Survey test'),
         ),
         body: SafeArea(
             child: survey == null
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
                 : s.SurveyWidget(
@@ -34,15 +34,14 @@ class Simple extends StatelessWidget {
                       showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {
-                          return Container(
+                          return SizedBox(
                             height: 400,
                             child: Center(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Expanded(
-                                      child: Container(
-                                          child: JsonEditor.object(object: v))),
+                                      child: JsonEditor.object(object: v)),
                                   ElevatedButton(
                                     child: const Text('Close'),
                                     onPressed: () => Navigator.pop(context),

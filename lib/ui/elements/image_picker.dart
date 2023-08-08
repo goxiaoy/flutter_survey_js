@@ -60,7 +60,7 @@ class ImagePickerElement extends StatelessWidget {
                 ),
                 Flexible(
                   child: Container(
-                      padding: EdgeInsets.only(top: 2),
+                      padding: const EdgeInsets.only(top: 2),
                       child: Text(item.text?.getLocalizedText(context) ?? item.value?.toString() ?? "")),
                 ),
               ],

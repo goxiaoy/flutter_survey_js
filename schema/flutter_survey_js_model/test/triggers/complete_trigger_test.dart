@@ -93,7 +93,7 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = surveyFromJson(json);
+    surveyFromJson(json);
     final serialized = surveyToJson(s);
     expect(surveyFromJson(serialized), s);
   });

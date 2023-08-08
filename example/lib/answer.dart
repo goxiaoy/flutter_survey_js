@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:example/storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
+import 'package:flutter_survey_js/survey.dart' as s;
 import 'package:json_editor/json_editor.dart';
 
 import 'components/custom_layout.dart';
@@ -38,17 +38,17 @@ class AnswerPageState extends State<AnswerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Input your answer'),
+        title: const Text('Input your answer'),
       ),
       body: SafeArea(
         child: FutureBuilder(
           future: loader,
           builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
             return Column(children: [
-              Text("Choose layout to continue"),
+              const Text("Choose layout to continue"),
               Wrap(
                 direction: Axis.horizontal,
                 children: [
@@ -63,7 +63,7 @@ class AnswerPageState extends State<AnswerPage> {
                                 )),
                       )
                     },
-                    child: Text(
+                    child: const Text(
                       'Simple',
                     ),
                   ),
@@ -78,7 +78,7 @@ class AnswerPageState extends State<AnswerPage> {
                                 )),
                       )
                     },
-                    child: Text(
+                    child: const Text(
                       'Customize',
                     ),
                   ),

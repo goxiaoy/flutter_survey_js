@@ -53,7 +53,7 @@ class MatrixElement extends StatelessWidget {
                 TableCell(
                     verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       child: Text(row.castToItemvalue().text ?.getLocalizedText(context) ?? ""),
                     )),
                 ...(matrix.columns?.toList() ?? []).map((column) {

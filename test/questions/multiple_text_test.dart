@@ -26,7 +26,7 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    final s = surveyFromJson(json);
+    surveyFromJson(json);
   });
   testWidgets('displays placeholders', (WidgetTester tester) async {
     const placeholder1 = 'Write text1 answer here...';
