@@ -31,7 +31,7 @@ jobs:
 
       - name: "Set environmental variables"
         run: |
-          echo "LIBQUICKJSC_TEST_PATH=${GITHUB_WORKSPACE}/packages/flutter_survey_js/example/build/linux/x64/debug/bundle/lib/libflutter_js_plugin.so" >> $GITHUB_ENV
+          echo "LIBQUICKJSC_TEST_PATH=${GITHUB_WORKSPACE}/packages/flutter_survey_js/example/build/linux/x64/debug/plugins/flutter_js/bundle/lib/libquickjs_c_bridge_plugin.so" >> $GITHUB_ENV
       - name: Run tests
         run: melos run test --no-select
       - run: |
