@@ -35,7 +35,7 @@ jobs:
       - name: Run tests
         run: melos run test --no-select
       - run: |
-          cd example
+          cd packages/flutter_survey_js/example
           flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
 
 #      - name: "Run Analyze"
