@@ -1,4 +1,3 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
 import 'package:flutter_survey_js/ui/survey_page_widget.dart';
@@ -108,8 +107,11 @@ class SurveyLayoutState extends State<SurveyLayout> {
   Widget build(BuildContext context) {
     final surveyWidgetState = SurveyWidgetState.of(context);
     final currentPage = surveyWidgetState.currentPage;
-    final pages = _reCalculatePages(
+    final pages = reCalculatePages(
         surveyWidgetState.widget.showQuestionsInOnePage, survey);
+
+    final latestUnfinished =
+        SurveyProvider.of(context).elementsState.getLatestUnfinishedQuestion();
     return Column(
       children: [
         widget.surveyTitleBuilder != null
@@ -124,7 +126,10 @@ class SurveyLayoutState extends State<SurveyLayout> {
                   context, pageCount, currentPage),
 
               Expanded(
-                child: buildPages(pages),
+                child: buildPages(pages,
+                    intialPageIndex: latestUnfinished?.pageIndex,
+                    intialQuestionIndexInPage:
+                        latestUnfinished?.indexInPage ?? 0),
               ),
               // Next and Previous buttons.
               Row(
@@ -142,26 +147,8 @@ class SurveyLayoutState extends State<SurveyLayout> {
     );
   }
 
-  List<s.Page> _reCalculatePages(bool showQuestionsInOnePage, s.Survey survey) {
-    var pages = <s.Page>[];
-
-    if (!showQuestionsInOnePage) {
-      pages = survey.pages?.toList() ?? [];
-    } else {
-      final pageBuilder = s.Page().toBuilder();
-      pageBuilder.elements = ListBuilder<s.SurveyQuestionsInner>(
-          (survey.pages?.toList() ?? <s.Page>[])
-              .map<List<s.SurveyQuestionsInner>>((e) =>
-                  e.elementsOrQuestions?.toList() ?? <s.SurveyQuestionsInner>[])
-              .fold<List<s.SurveyQuestionsInner>>(<s.SurveyQuestionsInner>[],
-                  (previousValue, element) => previousValue..addAll(element)));
-
-      pages = [pageBuilder.build()];
-    }
-    return pages;
-  }
-
-  Widget buildPages(List<s.Page> pages) {
+  Widget buildPages(List<s.Page> pages,
+      {int? intialPageIndex, int intialQuestionIndexInPage = 0}) {
     Widget itemBuilder(BuildContext context, int index) {
       final currentPage = pages[index];
       //build elements
@@ -169,6 +156,8 @@ class SurveyLayoutState extends State<SurveyLayout> {
           ? widget.pageBuilder!(context, currentPage)
           : SurveyPageWidget(
               page: currentPage,
+              initIndex:
+                  (intialPageIndex == index) ? intialQuestionIndexInPage : 0,
               key: ObjectKey(index),
             );
     }

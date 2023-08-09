@@ -23,6 +23,7 @@ FormGroup elementsToFormGroup(
     Object? value}) {
   final Map<String, Object> controls = <String, Object>{};
   final newValidators = [...validators];
+
   for (var element in elements) {
     //the behavior of panel seems different from previous version --2023/04/26 Goxiaoy
     if (element.name != null && element is! s.Panel) {
@@ -39,8 +40,13 @@ FormGroup elementsToFormGroup(
       //patch parent
       final obj = toFormObject(context, element,
           controlsMap: controlsMap, value: value);
-      if (obj is FormGroup) {
-        controls.addAll(obj.controls);
+      if (obj != null) {
+        if (obj is FormGroup) {
+          controls.addAll(obj.controls);
+        }
+        if (controlsMap != null) {
+          controlsMap[element] = obj;
+        }
       }
     }
     if (element is s.Selectbase) {

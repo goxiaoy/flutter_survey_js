@@ -21,6 +21,31 @@ extension SurveyTitleWidgetExtesion on s.SurveyTitle {
   }
 }
 
+class ExpressionHelper {
+  static Map<String, Object?> getInitalProperty(s.Survey survey) {
+    final surveyJson = s.surveyToJson(survey);
+    return {"survey": surveyJson};
+  }
+}
+
+List<s.Page> reCalculatePages(bool showQuestionsInOnePage, s.Survey survey) {
+  var pages = <s.Page>[];
+
+  if (!showQuestionsInOnePage) {
+    pages = survey.pages?.toList() ?? [];
+  } else {
+    final pageBuilder = s.Page().toBuilder();
+    pageBuilder.elements = ListBuilder<s.SurveyQuestionsInner>(
+        (survey.pages?.toList() ?? <s.Page>[])
+            .map<List<s.SurveyQuestionsInner>>((e) =>
+                e.elementsOrQuestions?.toList() ?? <s.SurveyQuestionsInner>[])
+            .fold<List<s.SurveyQuestionsInner>>(<s.SurveyQuestionsInner>[],
+                (previousValue, element) => previousValue..addAll(element)));
+
+    pages = [pageBuilder.build()];
+  }
+  return pages;
+}
 
 Map<String, Object?> removeEmptyField(Map<String, Object?> raw) {
   final Map<String, Object?> ret = {};

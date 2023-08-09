@@ -43,7 +43,7 @@ class SurveyWidget extends StatefulWidget {
 class SurveyWidgetState extends State<SurveyWidget> {
   final Logger logger = Logger('SurveyWidgetState');
   late FormGroup formGroup;
-  late Map<s.Elementbase, Object> _controlsMap;
+  late Map<s.Elementbase, Object?> _controlsMap;
 
   late int pageCount;
 
@@ -55,6 +55,8 @@ class SurveyWidgetState extends State<SurveyWidget> {
   int initialPage = 0;
 
   int get currentPage => _currentPage;
+
+  final elementsState = ElementsState({});
 
   @override
   void initState() {
@@ -76,19 +78,6 @@ class SurveyWidgetState extends State<SurveyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO recalculate page count and visible
-    //TODO calculate status
-    Map<s.Elementbase, ElementStatus> status = {};
-    int index = 0;
-    for (final kv in _controlsMap.entries) {
-      var visible = true;
-      status[kv.key] = ElementStatus(indexAll: index);
-      if (visible && kv.key is! Nonvalue) {
-        index++;
-      }
-    }
-    final elementsState = ElementsState(status);
-
     return SurveyConfiguration.copyAncestor(
         context: context,
         child: ReactiveForm(
@@ -97,6 +86,18 @@ class SurveyWidgetState extends State<SurveyWidget> {
             stream: formGroup.valueChanges,
             builder: (BuildContext context,
                 AsyncSnapshot<Map<String, Object?>?> snapshot) {
+              //TODO recalculate page count and visible
+              //TODO calculate status
+
+              // int index = 0;
+              // for (final kv in _controlsMap.entries) {
+              //   var visible = true;
+              //   status[kv.key] = ElementStatus(indexAll: index);
+              //   if (visible && kv.key is! Nonvalue) {
+              //     index++;
+              //   }
+              // }
+
               return SurveyProvider(
                 survey: widget.survey,
                 formGroup: formGroup,
@@ -123,17 +124,15 @@ class SurveyWidgetState extends State<SurveyWidget> {
     formGroup = elementsToFormGroup(context, widget.survey.getElements(),
         controlsMap: _controlsMap);
 
-    if (widget.answer != null) {
-      formGroup.patchValue(widget.answer);
-    }
+    _setAnswer(widget.answer);
 
     _listener = formGroup.valueChanges.listen((event) {
       widget.onChange?.call(event == null ? null : removeEmptyField(event));
     });
-
-    pageCount = widget.survey.getPageCount();
     if (widget.showQuestionsInOnePage) {
       pageCount = 1;
+    } else {
+      pageCount = widget.survey.getPageCount();
     }
   }
 
@@ -159,9 +158,44 @@ class SurveyWidgetState extends State<SurveyWidget> {
   void didUpdateWidget(covariant SurveyWidget oldWidget) {
     if (oldWidget.survey != widget.survey) {
       rebuildForm();
+    } else if (oldWidget.answer != widget.answer) {
+      _setAnswer(widget.answer);
     }
     super.didUpdateWidget(oldWidget);
   }
+
+  void _setAnswer(Map<String, Object?>? answer) {
+    if (widget.answer != null) {
+      formGroup.patchValue(widget.answer);
+    }
+  }
+
+  // void _updateElementStateIndex() {
+  //   final pages =
+  //       reCalculatePages(widget.showQuestionsInOnePage, widget.survey);
+  //   var indexAll = 0;
+  //   var hasFindLatest = false;
+  //   for (var pageIndex = 0; pageIndex < pages.length; pageIndex++) {
+  //     final page = pages[pageIndex];
+  //     var visibleIndexInPage = 0;
+  //     for (var elementIndex = 0;
+  //         elementIndex < page.elementsOrQuestions!.length;
+  //         elementIndex++) {
+  //       final element = page.elementsOrQuestions![elementIndex].realElement;
+  //       final currentStatus = elementsState.get(element);
+  //       final isVisible = currentStatus?.isVisible?? true;
+  //         final isLatestUnfinishedQuestion = hasFindLatest?false:;
+  //       final newStatus =  ElementStatus(isVisible :isVisible,
+
+  //     isEnabled: currentStatus?.isEnabled??true,
+  //     isRequired:currentStatus?.isRequired??false,
+  //     indexAll:indexAll,
+  //     pageIndex:pageIndex,
+  //     indexInPage:visibleIndexInPage,
+  //     this.isLatestUnfinishedQuestion = false)
+  //     }
+  //   }
+  // }
 
   // nextPageOrSubmit return true if submit or return false for next page
   bool nextPageOrSubmit() {

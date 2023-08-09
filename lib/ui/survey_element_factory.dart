@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_js/survey.dart';
 import 'package:flutter_survey_js/ui/elements/boolean.dart';
 import 'package:flutter_survey_js/ui/elements/comment.dart';
+import 'package:flutter_survey_js/ui/elements/condition_widget.dart';
 import 'package:flutter_survey_js/ui/elements/expression.dart';
 import 'package:flutter_survey_js/ui/elements/matrix_dropdown.dart';
 import 'package:flutter_survey_js/ui/elements/panel.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_signature_string.dart';
-import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:flutter_survey_js/utils.dart';
 
 import 'elements/checkbox.dart';
 import 'elements/dropdown.dart';
@@ -205,7 +205,25 @@ class SurveyElementFactory {
         res = unsupported;
       }
     }
-    return res(context, element, configuration: configuration);
+    var w = res(context, element, configuration: configuration);
+    // if (element is s.Question) {
+    //   w = ConditionWidget(
+    //     name: element.name!,
+    //     visibleIf: element.visibleIf,
+    //     requiredIf: element.requiredIf,
+    //     enableIf: element.enableIf,
+    //     child: w,
+    //   );
+    // } else if (element is s.Panelbase) {
+    //   w = ConditionWidget(
+    //     name: element.name!,
+    //     visibleIf: element.visibleIf,
+    //     requiredIf: element.requiredIf,
+    //     enableIf: element.enableIf,
+    //     child: w,
+    //   );
+    // }
+    return w;
   }
 
   // resolveFormControl resolve formControl from element
