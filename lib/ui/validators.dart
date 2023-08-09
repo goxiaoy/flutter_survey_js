@@ -1,3 +1,4 @@
+import 'package:flutter_survey_js/survey.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -6,51 +7,29 @@ class NonEmptyValidator extends Validator<dynamic> {
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
     final error = <String, dynamic>{ValidationMessage.required: true};
-
-    if (control.value == null) {
+    final v = control.value;
+    if (v == null) {
       return error;
-    } else if (control.value is String) {
-      return (control.value as String).trim().isEmpty ? error : null;
-    } else if (control.value is List) {
-      return (control.value as List).isEmpty ? error : null;
-    } else if (control.value is Map) {
-      return (control.value as Map).isEmpty ? error : null;
+    } else if (v is String) {
+      return v.trim().isEmpty ? error : null;
+    } else if (v is List) {
+      return v.isEmpty ? error : null;
+    } else if (v is Map<String, Object?>) {
+      return removeEmptyField(v).isEmpty ? error : null;
+    } else if (v is Map) {
+      return v.isEmpty ? error : null;
     }
-
     return null;
   }
 
   static ValidatorFunction get get => NonEmptyValidator().validate;
 }
 
-class MultipleTextNonEmptyValidator extends Validator<dynamic> {
-  @override
-  Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
-    final error = <String, dynamic>{ValidationMessage.required: true};
-
-    bool hasError = true;
-
-    for (final value in (control.value as Map<String, Object?>).values) {
-      if (value != null && value.toString().trim().isNotEmpty) {
-        hasError = false;
-      }
-    }
-
-    return hasError ? error : null;
-  }
-
-  static ValidatorFunction get get => MultipleTextNonEmptyValidator().validate;
-}
-
 List<ValidatorFunction> questionToValidators(s.Question question) {
   final res = <ValidatorFunction>[];
 
   if (question.isRequired == true) {
-    if (question is s.Multipletext) {
-      res.add(MultipleTextNonEmptyValidator.get);
-    } else {
-      res.add(NonEmptyValidator.get);
-    }
+    res.add(NonEmptyValidator.get);
   }
   if (question is s.Text) {
     if (question.min?.oneOf.value.tryCastToNum() != null) {
@@ -109,10 +88,7 @@ List<ValidatorFunction> questionToValidators(s.Question question) {
       if (value is s.Emailvalidator) {
         res.add(Validators.email);
       }
-      if (value is s.Expressionvalidator) {
-       
-       
-      }
+      if (value is s.Expressionvalidator) {}
     }
   }
   return res;

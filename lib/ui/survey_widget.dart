@@ -114,7 +114,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
   }
 
   void rebuildForm() {
-    logger.info("Rebuild form");
+    logger.fine("Rebuild form");
     _listener?.cancel();
     //clear
     _controlsMap = {};
@@ -128,8 +128,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
 
     _listener = formGroup.valueChanges.listen((event) {
-      logger.fine('Value changed $event');
-      widget.onChange?.call(event);
+      widget.onChange?.call(event == null ? null : removeEmptyField(event));
     });
 
     pageCount = widget.survey.getPageCount();
