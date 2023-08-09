@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' hide Text;
+import 'package:flutter_survey_js/flutter_survey_js.dart' hide Text;
 import 'package:flutter_survey_js/ui/elements/selectbase.dart';
 import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_wrap_form_array.dart';
@@ -148,7 +148,8 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
             // showSelectAllItem
             if (widget.element.showSelectAllItem ?? false) {
               String? text =
-                  widget.element.selectAllText?.getLocalizedText(context) ?? S.of(context).selectAllText;
+                  widget.element.selectAllText?.getLocalizedText(context) ??
+                      S.of(context).selectAllText;
               list.add(CheckboxListTile(
                 value: CheckBoxElement.allChecked(choices, formArray.controls),
                 title: Text(text),
@@ -172,7 +173,9 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
               list.add(CheckboxListTile(
                 value: formArray.controls
                     .any((c) => c.value == element.value?.value),
-                title: Text(element.text?.getLocalizedText(context) ?? element.value?.toString() ?? ''),
+                title: Text(element.text?.getLocalizedText(context) ??
+                    element.value?.toString() ??
+                    ''),
                 onChanged: (v) {
                   if (v == true) {
                     CheckBoxElement.excludeFrom(formArray, noneValue);
@@ -195,7 +198,8 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
             // showNoneItem
             if (otherController.showNone) {
               String? text =
-                  widget.element.noneText?.getLocalizedText(context) ?? S.of(context).noneItemText;
+                  widget.element.noneText?.getLocalizedText(context) ??
+                      S.of(context).noneItemText;
               list.add(CheckboxListTile(
                 value: formArray.controls.any((c) => c.value == noneValue),
                 title: Text(text),

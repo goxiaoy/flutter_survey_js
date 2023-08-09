@@ -54,7 +54,7 @@ flutter pub add flutter_survey_js
 Modify your main function
 
 ```dart
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await s.getRunner().init();
@@ -84,7 +84,7 @@ add following script into `web/index.html`
 **usage**:
 
 ```dart
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 ...
 const survey = {
   "questions": [

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/survey.dart' hide Text;
+import 'package:flutter_survey_js/flutter_survey_js.dart' hide Text;
 import 'package:flutter_survey_js/ui/reactive/reactive_group_button.dart';
 
 import 'package:flutter_test/flutter_test.dart';

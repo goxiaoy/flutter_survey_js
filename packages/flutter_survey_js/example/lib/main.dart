@@ -6,7 +6,7 @@ import 'package:example/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 import 'package:json_editor/json_editor.dart';
 
 import 'answer.dart';

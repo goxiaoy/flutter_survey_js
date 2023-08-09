@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/flutter_survey_js.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -74,6 +74,11 @@ class SurveyWidgetState extends State<SurveyWidget> {
     setState(() {
       _currentPage = p;
     });
+  }
+
+  void rerunExpression() {
+    final variables = formGroup.value;
+    final properties = ExpressionHelper.getInitalProperty(widget.survey);
   }
 
   @override

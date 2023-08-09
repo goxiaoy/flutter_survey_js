@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:example/storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 import 'package:json_editor/json_editor.dart';
 
 class Simple extends StatelessWidget {
@@ -25,7 +25,7 @@ class Simple extends StatelessWidget {
                 : s.SurveyWidget(
                     survey: survey!,
                     answer: answer,
-                    onChange: (v)async {
+                    onChange: (v) async {
                       print(v);
                       storeAnswer(jsonEncode(v));
                     },
@@ -40,8 +40,7 @@ class Simple extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Expanded(
-                                      child: JsonEditor.object(object: v)),
+                                  Expanded(child: JsonEditor.object(object: v)),
                                   ElevatedButton(
                                     child: const Text('Close'),
                                     onPressed: () => Navigator.pop(context),

@@ -1,4 +1,4 @@
-import 'package:flutter_survey_js/survey.dart';
+import 'package:flutter_survey_js/flutter_survey_js.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 

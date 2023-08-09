@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' hide Text, TextInputType;
+import 'package:flutter_survey_js/flutter_survey_js.dart'
+    hide Text, TextInputType;
 
 import 'package:intl/intl.dart' hide TextDirection;
 import 'package:reactive_forms/reactive_forms.dart';

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
 import 'package:flutter_survey_js/ui/survey_widget.dart';
 import 'package:json_editor/json_editor.dart';
@@ -21,7 +21,8 @@ class CustomLayoutPage extends StatelessWidget {
     final survey = this.survey;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Survey Customize:${survey?.title?.getLocalizedText(context) ?? ''}'),
+        title: Text(
+            'Survey Customize:${survey?.title?.getLocalizedText(context) ?? ''}'),
       ),
       body: SafeArea(
         child: survey == null
@@ -48,8 +49,7 @@ class CustomLayoutPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Expanded(
-                                  child: JsonEditor.object(object: v)),
+                              Expanded(child: JsonEditor.object(object: v)),
                               ElevatedButton(
                                 child: const Text('Close'),
                                 onPressed: () => Navigator.pop(context),
@@ -102,6 +102,7 @@ class CustomLayoutState extends State<CustomLayout> {
     separatorBuilder(BuildContext context, int index) {
       return SurveyConfiguration.of(context)!.separatorBuilder.call(context);
     }
+
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,

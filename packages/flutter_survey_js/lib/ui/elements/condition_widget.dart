@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ConditionWidget extends StatelessWidget {
