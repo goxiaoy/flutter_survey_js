@@ -19,24 +19,19 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-      - name: Activate melos
-        run: |
-          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
-          dart pub global activate melos 3.1.1
-      - name: Melos
-        run: dart pub global run melos list
-      - name: Bootstrap melos
-        run: dart pub global run melos bs --verbose
+      - uses: bluefireteam/melos-action@dd3c344d731938d2ab2567a261f54a19a68b5f6a
+        with:
+          melos-version: "3.1.1"
       - name: Setup test
-        run: dart pub global run melos run build_linux --no-select
+        run: melos run build_linux --no-select
       - name: Run tests
-        run: dart pub global run melos run test --no-select
+        run: melos run test --no-select
       - run: |
           cd example
           flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
 
 #      - name: "Run Analyze"
-#        run: dart pub global run melos run analyze
+#        run: melos run analyze
 
 #      - name: "Pub Check"
 #        run: |
