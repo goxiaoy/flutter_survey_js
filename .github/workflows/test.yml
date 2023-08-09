@@ -30,7 +30,7 @@ jobs:
         run: melos run build_linux --no-select
 
       - name: test 0
-        run: ls ${GITHUB_WORKSPACE}/packages/flutter_survey_js/example
+        run: ls ${GITHUB_WORKSPACE}/packages/flutter_survey_js/example/build
       - name: test 1
         run: ls ${GITHUB_WORKSPACE}/packages/flutter_survey_js/example/build/linux/debug
 
