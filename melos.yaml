@@ -3,8 +3,7 @@ repository: https://github.com/Goxiaoy/flutter_survey_js
 packages:
   - expression/flutter_survey_js_expression
   - schema/*
-  - example/
-  - .
+  - packages/**
 
 command:
   bootstrap:
