@@ -7,9 +7,6 @@ on:
     branches:
       - main
 
-env:
-  LIBQUICKJSC_TEST_PATH: ${GITHUB_WORKSPACE}/packages/flutter_survey_js/example/build/linux/debug/bundle/lib/libquickjs_c_bridge_plugin.so
-
 jobs:
   build:
     name: Test & build
@@ -31,6 +28,10 @@ jobs:
           flutter doctor
       - name: Setup test
         run: melos run build_linux --no-select
+
+      - name: "Set environmental variables"
+        run: |
+          echo "LIBQUICKJSC_TEST_PATH=${GITHUB_WORKSPACE}/packages/flutter_survey_js/example/build/linux/debug/bundle/lib/libquickjs_c_bridge_plugin.so" >> $GITHUB_ENV
       - name: Run tests
         run: melos run test --no-select
       - run: |
