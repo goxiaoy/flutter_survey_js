@@ -162,16 +162,16 @@ class _ReactiveTextFieldState
 
     final reactiveSignature = widget as ReactiveSignatureString;
     _signatureController = SignatureController(
-      points: reactiveSignature.points,
-      penStrokeWidth: reactiveSignature.penStrokeWidth,
-      penColor: reactiveSignature.penColor,
-      exportBackgroundColor: reactiveSignature.exportBackgroundColor,
-    );
-
-    _signatureController.addListener(() async {
-      control.focus();
-      didChange(await _signatureController.toPngBytes());
-    });
+        points: reactiveSignature.points,
+        penStrokeWidth: reactiveSignature.penStrokeWidth,
+        penColor: reactiveSignature.penColor,
+        exportBackgroundColor: reactiveSignature.exportBackgroundColor,
+        onDrawStart: () {
+          control.focus();
+        },
+        onDrawEnd: () async {
+          didChange(await _signatureController.toPngBytes());
+        });
   }
 
   @override
