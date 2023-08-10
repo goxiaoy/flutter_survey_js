@@ -44,3 +44,5 @@ scripts:
     exec: flutter build linux --debug
     packageFilters:
       scope: "*example*"
+  clean:
+    exec: flutter clean
