@@ -33,7 +33,7 @@ class QuestionTitle extends StatelessWidget {
       List<Widget> listTitle = <Widget>[];
       listTitle.add(Builder(builder: (context) {
         final survey = SurveyProvider.of(context);
-        final status = survey.elementsState.get(q);
+        final status = survey.rootNode.findByElement(rawElement: q);
         if (status != null) {
           if ((survey.survey.showQuestionNumbers?.isOn ?? true) &&
               status.indexAll != null) {

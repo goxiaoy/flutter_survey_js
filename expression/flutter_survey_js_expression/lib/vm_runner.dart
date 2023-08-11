@@ -40,7 +40,6 @@ class VMRunner implements Runner {
       {Map<String, Object?>? properties}) {
     final exp =
         '''surveyjs.runCondition("$expression","${escape(json.encode(value))}")''';
-    print(exp);
     final jsResult = jsRuntime!.evaluate(exp);
     if (jsResult.isError) {
       throw Exception(jsResult.rawResult);
@@ -53,7 +52,6 @@ class VMRunner implements Runner {
       {Map<String, Object?>? properties}) {
     final exp =
         '''surveyjs.runExpression("$expression","${escape(json.encode(value))}")''';
-    print(exp);
     final jsResult = jsRuntime!.evaluate(exp);
     if (jsResult.isError) {
       throw Exception(jsResult.rawResult);

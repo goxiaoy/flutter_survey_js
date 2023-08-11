@@ -4,8 +4,8 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:flutter_survey_js/utils.dart';
 
-Widget booleanBuilder(BuildContext context, s.Elementbase element, {ElementConfiguration? configuration}) {
-  //TODO ReactiveSwitch is not safe
+Widget booleanBuilder(BuildContext context, s.Elementbase element,
+    {ElementConfiguration? configuration}) {
   s.Boolean booleanElement = element as s.Boolean;
   String? labelFalse = booleanElement.labelFalse?.getLocalizedText(context);
   String? labelTrue = booleanElement.labelTrue?.getLocalizedText(context);

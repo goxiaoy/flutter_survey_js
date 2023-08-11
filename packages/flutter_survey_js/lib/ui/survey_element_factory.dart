@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/flutter_survey_js.dart';
+import 'package:flutter_survey_js/ui/element_node.dart';
 import 'package:flutter_survey_js/ui/elements/boolean.dart';
 import 'package:flutter_survey_js/ui/elements/comment.dart';
 import 'package:flutter_survey_js/ui/elements/condition_widget.dart';
@@ -19,7 +20,6 @@ import 'elements/dropdown.dart';
 import 'elements/image.dart';
 import 'elements/image_picker.dart';
 import 'elements/matrix.dart';
-import 'elements/matrix_dropdown_base.dart';
 import 'elements/matrix_dynamic.dart';
 import 'elements/multiple_text.dart';
 import 'elements/panel_dynamic.dart';
@@ -27,7 +27,6 @@ import 'elements/radio_group.dart';
 import 'elements/ranking.dart';
 import 'elements/rating.dart';
 import 'elements/text.dart';
-import 'form_control.dart';
 
 class SurveyElementFactory {
   final logger = Logger('SurveyElementFactory');
@@ -52,32 +51,8 @@ class SurveyElementFactory {
                       e.value.toString(), getDefaultValue(element, value)))))),
           validators);
     });
-    register<s.Matrixdropdown>(matrixDropdownBuilder,
-        control: (context, elementBase, {validators = const [], value}) {
-      final element = elementBase as s.Matrixdropdown;
-      //Matrixdropdown returns single object
-      return surveyfb.group(
-          Map.fromEntries((element.rows?.map((p) => p.castToItemvalue()) ?? [])
-              .map((e) => MapEntry(
-                  e.value.toString(),
-                  elementsToFormGroup(
-                      context,
-                      (element.columns?.toList() ?? [])
-                          .map((column) =>
-                              matrixDropdownColumnToQuestion(element, column))
-                          .toList(),
-                      value: tryGetValue(e.value.toString(),
-                          getDefaultValue(element, value)))))),
-          validators);
-    });
-    register<s.Matrixdynamic>(matrixDynamicBuilder,
-        control: (context, element, {validators = const [], value}) =>
-            //Matrixdynamic returns array of object
-            surveyfb.array(
-                (element as s.Matrixdynamic).defaultValue.tryCastToListObj() ??
-                    value.tryCastToList() ??
-                    [],
-                validators));
+    register<s.Matrixdropdown>(matrixDropdownBuilder);
+    register<s.Matrixdynamic>(matrixDynamicBuilder);
     register<s.Checkbox>(checkBoxBuilder,
         control: (context, element, {validators = const [], value}) =>
             //Checkbox returns array of object or array of single value( string, boolean etc.)
@@ -112,8 +87,7 @@ class SurveyElementFactory {
     register<s.Comment>(commentBuilder);
 
     register<s.Text>(textBuilder, control: textControlBuilder);
-    register<s.Multipletext>(multipleTextBuilder,
-        control: multipleTextControlBuilder);
+    register<s.Multipletext>(multipleTextBuilder);
     register<s.Html>((context, element, {ElementConfiguration? configuration}) {
       return HtmlWidget(
           (element as s.Html).html?.getLocalizedText(context) ?? '');
@@ -151,27 +125,8 @@ class SurveyElementFactory {
             FormControl<Object>(
                 validators: validators,
                 value: (element as s.Dropdown).defaultValue?.value ?? value));
-    register<s.Paneldynamic>(panelDynamicBuilder,
-        control: (context, element, {validators = const [], value}) =>
-            surveyfb.array(
-                (element as s.Paneldynamic).defaultValue.tryCastToListObj() ??
-                    value.tryCastToList() ??
-                    [],
-                validators));
-    register<s.Panel>(panelBuilder,
-        control: (context, element, {validators = const [], value}) =>
-            elementsToFormGroup(
-                context,
-                (element as s.Panel)
-                        .elementsOrQuestions
-                        ?.map((p) => p.realElement)
-                        .toList() ??
-                    [],
-                //panel does not implement Question. so we need to set required explicitly
-                validators: element.isRequired == true
-                    ? [NonEmptyValidator.get, ...validators]
-                    : validators,
-                value: value));
+    register<s.Paneldynamic>(panelDynamicBuilder);
+    register<s.Panel>(panelBuilder);
 
     register<s.Empty>(
         (context, element, {ElementConfiguration? configuration}) =>
@@ -206,34 +161,21 @@ class SurveyElementFactory {
       }
     }
     var w = res(context, element, configuration: configuration);
-    // if (element is s.Question) {
-    //   w = ConditionWidget(
-    //     name: element.name!,
-    //     visibleIf: element.visibleIf,
-    //     requiredIf: element.requiredIf,
-    //     enableIf: element.enableIf,
-    //     child: w,
-    //   );
-    // } else if (element is s.Panelbase) {
-    //   w = ConditionWidget(
-    //     name: element.name!,
-    //     visibleIf: element.visibleIf,
-    //     requiredIf: element.requiredIf,
-    //     enableIf: element.enableIf,
-    //     child: w,
-    //   );
-    // }
-    return w;
+    final node =
+        SurveyWidgetState.
+        of(context).rootNode.findByElement(element: element);
+    return ConditionWidget(
+      node: node!,
+      child: w,
+    );
   }
 
   // resolveFormControl resolve formControl from element
   // [value] default value passed down from parent. default value will be resolved by self default value then from parent
-  Object? resolveFormControl(BuildContext context, s.Elementbase element,
-      {Object? value}) {
-    final validators = <ValidatorFunction>[];
-    if (element is s.Question) {
-      validators.addAll(questionToValidators(element));
-    }
+  AbstractControl? resolveFormControl(
+      BuildContext context, s.Elementbase element,
+      {Object? value,List<ValidatorFunction> validators = const []}) {
+
     if (_formControlMap.containsKey(element.type)) {
       final c = _formControlMap[element.type];
       return c?.call(context, element, validators: validators, value: value);

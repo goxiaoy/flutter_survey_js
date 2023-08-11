@@ -4,19 +4,19 @@ import 'package:flutter_survey_js/ui/form_control.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_wrap_form_array.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-typedef ReactiveNestedGroupArrayBuilder = Widget Function(
+typedef NestedGroupArrayNodeBuilder = Widget Function(
     BuildContext context, FormGroup form, Widget? child);
 
-class ReactiveNestedGroupArray<T> extends StatelessWidget {
+class NestedGroupArrayNode<T> extends StatelessWidget {
   final String? formArrayName;
   final FormArray<T>? formArray;
   final Widget? child;
-  final ReactiveNestedGroupArrayBuilder builder;
+  final NestedGroupArrayNodeBuilder builder;
   final FormGroup Function({Object? value}) createNew;
   final int minLength;
   final int? maxLength;
 
-  const ReactiveNestedGroupArray({
+  const NestedGroupArrayNode({
     Key? key,
     InputDecoration decoration = const InputDecoration(),
     this.formArrayName,

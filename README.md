@@ -57,7 +57,7 @@ Modify your main function
 import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await s.getRunner().init();
+  await s.initSurvey();
   runApp(
     ...
   );

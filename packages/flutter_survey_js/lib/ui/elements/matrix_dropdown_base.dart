@@ -1,3 +1,5 @@
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/serializer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js_model/utils.dart';
@@ -32,8 +34,16 @@ s.Question matrixDropdownColumnToQuestion(
     s.Matrixdropdownbase dropdown, s.Matrixdropdowncolumn column) {
   final encoded = s.surveySerializers
       .serializeWith(s.Matrixdropdowncolumn.serializer, column);
-  (encoded as Map<String, Object?>)["type"] =
-      column.cellType?.toString() ?? "dropdown";
+  final json = encoded as Map<String, Object?>;
+  json["type"] = column.cellType?.toString() ?? "dropdown";
+  if (!json.containsKey('choices')) {
+    json['choices'] = s.surveySerializers.serialize(dropdown.choices,
+        specifiedType: const FullType(
+          BuiltList,
+          [FullType(s.MatrixdropdownbaseAllOfChoicesInner)],
+        ));
+  }
+
   s.Question? res = s.surveySerializers
       .deserializeWith<s.SurveyQuestionsInner>(
           s.SurveyQuestionsInner.serializer, encoded)

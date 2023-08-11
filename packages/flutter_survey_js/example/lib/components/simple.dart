@@ -26,11 +26,12 @@ class Simple extends StatelessWidget {
                     survey: survey!,
                     answer: answer,
                     onChange: (v) async {
+                      print("============survey answer=========");
                       print(v);
+                      print("============survey answer=========");
                       storeAnswer(jsonEncode(v));
                     },
                     onSubmit: (v) {
-                      print(v);
                       showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {

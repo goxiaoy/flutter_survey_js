@@ -67,7 +67,7 @@ void main() {
         ),
       ),
     );
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.idle();
 
     expect(find.text(placeholder1), findsOneWidget);

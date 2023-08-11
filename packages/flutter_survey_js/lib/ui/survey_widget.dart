@@ -7,8 +7,7 @@ import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:logging/logging.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import 'elements_state.dart';
-import 'form_control.dart';
+import 'element_node.dart';
 
 Widget defaultBuilder(BuildContext context) {
   return const SurveyLayout();
@@ -20,7 +19,7 @@ class SurveyWidget extends StatefulWidget {
   final FutureOr<void> Function(dynamic data)? onSubmit;
   final FutureOr<void> Function(dynamic data)? onErrors;
   final ValueSetter<Map<String, Object?>?>? onChange;
-  final bool showQuestionsInOnePage;
+
   final SurveyController? controller;
   final WidgetBuilder? builder;
 
@@ -33,7 +32,6 @@ class SurveyWidget extends StatefulWidget {
     this.onChange,
     this.controller,
     this.builder,
-    this.showQuestionsInOnePage = false,
   }) : super(key: key);
 
   @override
@@ -42,8 +40,6 @@ class SurveyWidget extends StatefulWidget {
 
 class SurveyWidgetState extends State<SurveyWidget> {
   final Logger logger = Logger('SurveyWidgetState');
-  late FormGroup formGroup;
-  late Map<s.Elementbase, Object?> _controlsMap;
 
   late int pageCount;
 
@@ -56,7 +52,9 @@ class SurveyWidgetState extends State<SurveyWidget> {
 
   int get currentPage => _currentPage;
 
-  final elementsState = ElementsState({});
+  late ElementNode rootNode;
+
+  FormGroup get formGroup => rootNode.control as FormGroup;
 
   @override
   void initState() {
@@ -76,11 +74,6 @@ class SurveyWidgetState extends State<SurveyWidget> {
     });
   }
 
-  void rerunExpression() {
-    final variables = formGroup.value;
-    final properties = ExpressionHelper.getInitalProperty(widget.survey);
-  }
-
   @override
   Widget build(BuildContext context) {
     return SurveyConfiguration.copyAncestor(
@@ -91,25 +84,12 @@ class SurveyWidgetState extends State<SurveyWidget> {
             stream: formGroup.valueChanges,
             builder: (BuildContext context,
                 AsyncSnapshot<Map<String, Object?>?> snapshot) {
-              //TODO recalculate page count and visible
-              //TODO calculate status
-
-              // int index = 0;
-              // for (final kv in _controlsMap.entries) {
-              //   var visible = true;
-              //   status[kv.key] = ElementStatus(indexAll: index);
-              //   if (visible && kv.key is! Nonvalue) {
-              //     index++;
-              //   }
-              // }
-
               return SurveyProvider(
                 survey: widget.survey,
                 formGroup: formGroup,
-                elementsState: elementsState,
+                rootNode: rootNode,
                 currentPage: currentPage,
                 initialPage: initialPage,
-                showQuestionsInOnePage: widget.showQuestionsInOnePage,
                 child: Builder(
                     builder: (context) =>
                         (widget.builder ?? defaultBuilder)(context)),
@@ -119,31 +99,36 @@ class SurveyWidgetState extends State<SurveyWidget> {
         ));
   }
 
+  void rerunExpression(Map<String, Object?> values) {
+    final properties = ExpressionHelper.getInitalProperty(widget.survey);
+    rootNode.runExpression(values, properties);
+  }
+
   void rebuildForm() {
     logger.fine("Rebuild form");
     _listener?.cancel();
     //clear
-    _controlsMap = {};
     _currentPage = 0;
+    rootNode = ElementNode(
+        element: null,
+        rawElement: null,
+        survey: widget.survey,
+        isRootSurvey: true);
 
-    formGroup = elementsToFormGroup(context, widget.survey.getElements(),
-        controlsMap: _controlsMap);
-
-    _setAnswer(widget.answer);
+    constructElementNode(context, rootNode);
 
     _listener = formGroup.valueChanges.listen((event) {
+      rerunExpression(event ?? {});
       widget.onChange?.call(event == null ? null : removeEmptyField(event));
     });
-    if (widget.showQuestionsInOnePage) {
-      pageCount = 1;
-    } else {
-      pageCount = widget.survey.getPageCount();
-    }
+    _setAnswer(widget.answer);
+
+    pageCount = widget.survey.getPageCount();
   }
 
   bool submit() {
     if (formGroup.valid) {
-      widget.onSubmit?.call(formGroup.value);
+      widget.onSubmit?.call(removeEmptyField(formGroup.value));
       return true;
     } else {
       widget.onErrors?.call(formGroup.errors);
@@ -175,33 +160,6 @@ class SurveyWidgetState extends State<SurveyWidget> {
     }
   }
 
-  // void _updateElementStateIndex() {
-  //   final pages =
-  //       reCalculatePages(widget.showQuestionsInOnePage, widget.survey);
-  //   var indexAll = 0;
-  //   var hasFindLatest = false;
-  //   for (var pageIndex = 0; pageIndex < pages.length; pageIndex++) {
-  //     final page = pages[pageIndex];
-  //     var visibleIndexInPage = 0;
-  //     for (var elementIndex = 0;
-  //         elementIndex < page.elementsOrQuestions!.length;
-  //         elementIndex++) {
-  //       final element = page.elementsOrQuestions![elementIndex].realElement;
-  //       final currentStatus = elementsState.get(element);
-  //       final isVisible = currentStatus?.isVisible?? true;
-  //         final isLatestUnfinishedQuestion = hasFindLatest?false:;
-  //       final newStatus =  ElementStatus(isVisible :isVisible,
-
-  //     isEnabled: currentStatus?.isEnabled??true,
-  //     isRequired:currentStatus?.isRequired??false,
-  //     indexAll:indexAll,
-  //     pageIndex:pageIndex,
-  //     indexInPage:visibleIndexInPage,
-  //     this.isLatestUnfinishedQuestion = false)
-  //     }
-  //   }
-  // }
-
   // nextPageOrSubmit return true if submit or return false for next page
   bool nextPageOrSubmit() {
     final bool finished = _currentPage >= pageCount - 1;
@@ -217,20 +175,20 @@ class SurveyWidgetState extends State<SurveyWidget> {
 class SurveyProvider extends InheritedWidget {
   final s.Survey survey;
   final FormGroup formGroup;
-  final ElementsState elementsState;
+
   final int currentPage;
   final int initialPage;
-  final bool showQuestionsInOnePage;
+
+  final ElementNode rootNode;
 
   const SurveyProvider({
     Key? key,
-    required this.elementsState,
     required Widget child,
     required this.survey,
     required this.formGroup,
+    required this.rootNode,
     required this.currentPage,
     required this.initialPage,
-    this.showQuestionsInOnePage = false,
   }) : super(key: key, child: child);
 
   static SurveyProvider of(BuildContext context) {
@@ -239,16 +197,6 @@ class SurveyProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant SurveyProvider oldWidget) => true;
-}
-
-extension SurveyFormExtension on s.Survey {
-  List<s.Elementbase> getElements() {
-    return pages!.fold<List<s.Elementbase>>(
-        [],
-        (previousValue, element) => previousValue
-          ..addAll(
-              element.elementsOrQuestions?.map((p) => p.realElement) ?? []));
-  }
 }
 
 // SurveyController use to control SurveyWidget behavior

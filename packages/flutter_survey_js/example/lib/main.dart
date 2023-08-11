@@ -13,7 +13,7 @@ import 'answer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await s.getRunner().init();
+  await s.initSurvey();
   runApp(
     DevicePreview(
       enabled: true,
@@ -65,10 +65,10 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   String survey = "";
 
   late Future<List<String?>> loader;

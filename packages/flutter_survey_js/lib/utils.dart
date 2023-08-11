@@ -1,6 +1,9 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
+
+Future<bool> initSurvey() {
+  return s.getRunner().init();
+}
 
 Color colorFromHex(String hexColor) {
   hexColor = hexColor.toUpperCase().replaceAll('#', '');
@@ -28,22 +31,10 @@ class ExpressionHelper {
   }
 }
 
-List<s.Page> reCalculatePages(bool showQuestionsInOnePage, s.Survey survey) {
+List<s.Page> reCalculatePages(s.Survey survey) {
   var pages = <s.Page>[];
+  pages = survey.pages?.toList() ?? [];
 
-  if (!showQuestionsInOnePage) {
-    pages = survey.pages?.toList() ?? [];
-  } else {
-    final pageBuilder = s.Page().toBuilder();
-    pageBuilder.elements = ListBuilder<s.SurveyQuestionsInner>(
-        (survey.pages?.toList() ?? <s.Page>[])
-            .map<List<s.SurveyQuestionsInner>>((e) =>
-                e.elementsOrQuestions?.toList() ?? <s.SurveyQuestionsInner>[])
-            .fold<List<s.SurveyQuestionsInner>>(<s.SurveyQuestionsInner>[],
-                (previousValue, element) => previousValue..addAll(element)));
-
-    pages = [pageBuilder.build()];
-  }
   return pages;
 }
 

@@ -22,22 +22,20 @@ class ExpressionWidget extends StatelessWidget {
   const ExpressionWidget({Key? key, required this.element}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final survey = SurveyProvider.of(context);
-    final controlCollection = ReactiveForm.of(context) as FormControlCollection;
-    final control = controlCollection.control(element.name!);
+    final node =
+        SurveyProvider.of(context).rootNode.findByElement(element: element)!;
+
     final effectiveDecoration = const InputDecoration()
         .applyDefaults(Theme.of(context).inputDecorationTheme);
     final decoration = effectiveDecoration.copyWith(
-        errorText: getErrorTextFromFormControl(context, control));
+        errorText: getErrorTextFromFormControl(context, node.control!));
 
-    final expRes =
-        getRunner().runExpression(element.expression!, survey.formGroup.value);
-    if (expRes != control.value) {
-      Future.microtask(() => {control.value = expRes});
+    if (node.expressionValue != node.control!.value) {
+      node.control!.value = node.expressionValue;
     }
     return InputDecorator(
       decoration: decoration,
-      child: Text(expRes?.toString() ?? ""),
+      child: Text(node.expressionValue?.toString() ?? ""),
     );
   }
 }

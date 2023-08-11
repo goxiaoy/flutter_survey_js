@@ -1,3 +1,4 @@
+import 'package:built_value/json_object.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/ui/elements/selectbase.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
@@ -55,8 +56,24 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
     });
   }
 
-  List<s.Itemvalue> get choices =>
-      widget.dropdown.choices?.map((p0) => p0.castToItemvalue()).toList() ?? [];
+  List<s.Itemvalue> get choices {
+    if (widget.dropdown.choicesMin != null &&
+        widget.dropdown.choicesMax != null) {
+      return List.generate(
+          widget.dropdown.choicesMax!.toInt() -
+              widget.dropdown.choicesMin!.toInt() +
+              1, (index) {
+        final v = widget.dropdown.choicesMin!.toInt() + index;
+        final b = s.$ItemvalueBuilder()..value = JsonObject(v);
+        return b.build();
+      });
+    } else {
+      return widget.dropdown.choices
+              ?.map((p0) => p0.castToItemvalue())
+              .toList() ??
+          [];
+    }
+  }
 
   bool isOtherValue(Object? value) {
     if (widget.dropdown.showNoneItem ?? false) {
@@ -91,7 +108,8 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
         DropdownMenuItem(
             value: noneValue,
             child: Text(
-              e.noneText?.getLocalizedText(context) ?? S.of(context).noneItemText,
+              e.noneText?.getLocalizedText(context) ??
+                  S.of(context).noneItemText,
               style: Theme.of(context).textTheme.bodyMedium,
             )),
       if (widget.dropdown.showOtherItem == true)
@@ -100,7 +118,8 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
                 ? otherValue
                 : selectbaseController.otherValue,
             child: Text(
-              e.otherText?.getLocalizedText(context) ?? S.of(context).otherItemText,
+              e.otherText?.getLocalizedText(context) ??
+                  S.of(context).otherItemText,
               style: Theme.of(context).textTheme.bodyMedium,
             )),
     ];
@@ -115,7 +134,8 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
       },
       child: ReactiveDropdownField<dynamic>(
           formControlName: e.name!,
-          hint: Text(e.placeholder?.getLocalizedText(context) ?? S.of(context).placeholder),
+          hint: Text(e.placeholder?.getLocalizedText(context) ??
+              S.of(context).placeholder),
           onChanged: (control) {
             if (widget.dropdown.showOtherItem ?? false) {
               if (selectbaseController.storeOtherAsComment) {

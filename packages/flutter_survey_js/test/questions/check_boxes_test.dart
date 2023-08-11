@@ -160,7 +160,7 @@ void main() {
 
     // re-check the "Other" option
     await tester.tap(find.text("Other"));
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.idle();
     expect(find.byType(ReactiveTextField), findsOneWidget);
     expect(find.text("UNN Thomas Prince"), findsNothing);

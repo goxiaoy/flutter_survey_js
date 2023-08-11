@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
 import 'package:flutter_survey_js/utils.dart';
+
 const otherValue = "other";
 const noneValue = "none";
 
@@ -49,7 +49,8 @@ class SelectbaseWidgetState extends State<SelectbaseWidget> {
                         },
                         decoration: InputDecoration(
                             border: const OutlineInputBorder(),
-                            hintText: element.otherPlaceholder?.getLocalizedText(context)),
+                            hintText: element.otherPlaceholder
+                                ?.getLocalizedText(context)),
                       )
                     : TextField(
                         controller: widget.controller._otherTextController,
@@ -57,7 +58,8 @@ class SelectbaseWidgetState extends State<SelectbaseWidget> {
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                             border: const OutlineInputBorder(),
-                            hintText: element.otherPlaceholder?.getLocalizedText(context)),
+                            hintText: element.otherPlaceholder
+                                ?.getLocalizedText(context)),
                         onChanged: (v) {
                           widget.otherValueChanged?.call(v);
                         }),
@@ -70,7 +72,8 @@ class SelectbaseWidgetState extends State<SelectbaseWidget> {
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                       border: const OutlineInputBorder(),
-                      hintText: element.commentPlaceholder?.getLocalizedText(context)),
+                      hintText: element.commentPlaceholder
+                          ?.getLocalizedText(context)),
                 ),
             ]);
           },
@@ -100,44 +103,17 @@ class SelectbaseController extends ChangeNotifier {
 
   String get otherValue => storeOtherAsComment ? "" : _otherTextController.text;
 
-  void _resetControl() {
-    if (storeOtherAsComment) {
-      //showCommentArea == false
-      if (showOther) {
-        _ensureCommentControl();
-      } else {
-        _removeCommentControl();
-      }
-    } else {
-      //showCommentArea == true
-      _ensureCommentControl();
-    }
-  }
-
-  void _ensureCommentControl() {
-    final name = getCommentName();
-    if (!_fg.contains(name)) {
-      _fg.addAll({
-        getCommentName(): fb.control<String>(
-            "", [if (element.isRequired ?? false) NonEmptyValidator.get])
-      });
-    }
-  }
-
-  void _removeCommentControl() {
-    final name = getCommentName();
-    if (_fg.contains(name)) {
-      _fg.removeControl(getCommentName());
-    }
-  }
-
   void setShowOther(bool value) {
     _showOther = value;
     if (!value) {
       _otherTextController.text = "";
     }
-    _resetControl();
-
+    if (storeOtherAsComment) {
+      if (!showOther) {
+        final name = getCommentName();
+        _fg.control(name).value = "";
+      }
+    }
     notifyListeners();
   }
 
@@ -149,7 +125,6 @@ class SelectbaseController extends ChangeNotifier {
       //store in self
       _otherTextController.text = value;
     } else {
-      _ensureCommentControl();
       final name = getCommentName();
       _fg.control(name).value = value;
     }
@@ -165,10 +140,12 @@ class SelectbaseController extends ChangeNotifier {
   }
 
   String getOtherLocaledText(BuildContext context) {
-    return element.otherText?.getLocalizedText(context) ?? S.of(context).otherItemText;
+    return element.otherText?.getLocalizedText(context) ??
+        S.of(context).otherItemText;
   }
 
   String getCommentLocaledText(BuildContext context) {
-    return element.commentText?.getLocalizedText(context) ?? S.of(context).otherItemText;
+    return element.commentText?.getLocalizedText(context) ??
+        S.of(context).otherItemText;
   }
 }

@@ -107,11 +107,11 @@ class SurveyLayoutState extends State<SurveyLayout> {
   Widget build(BuildContext context) {
     final surveyWidgetState = SurveyWidgetState.of(context);
     final currentPage = surveyWidgetState.currentPage;
-    final pages = reCalculatePages(
-        surveyWidgetState.widget.showQuestionsInOnePage, survey);
+    final pages = reCalculatePages(survey);
 
-    final latestUnfinished =
-        SurveyProvider.of(context).elementsState.getLatestUnfinishedQuestion();
+    final latestUnfinished = SurveyProvider.of(context)
+        .rootNode
+        .findByCondition((node) => node.isLatestUnfinishedQuestion == true);
     return Column(
       children: [
         widget.surveyTitleBuilder != null

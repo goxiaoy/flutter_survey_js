@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 import 'package:flutter_survey_js/ui/custom_scroll_behavior.dart';
 import 'package:flutter_survey_js/ui/reactive/reactive_nested_form.dart';
 import 'package:flutter_survey_js/ui/survey_configuration.dart';
-import 'package:flutter_survey_js/ui/validators.dart';
-import 'package:flutter_survey_js_model/flutter_survey_js_model.dart' as s;
+import 'package:flutter_survey_js/ui/survey_widget.dart';
+
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:flutter_survey_js/utils.dart';
+
 import 'matrix_dropdown_base.dart';
 
 Widget matrixDropdownBuilder(BuildContext context, s.Elementbase element,
@@ -27,6 +28,8 @@ class MatrixDropdownElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final node =
+        SurveyWidgetState.of(context).rootNode.findByElement(element: matrix)!;
     return ReactiveNestedForm(
       formControlName: formControlName,
       child: LayoutBuilder(
@@ -45,7 +48,7 @@ class MatrixDropdownElement extends StatelessWidget {
                     child: MatrixDropdownTitle(e),
                   )))
             ]));
-        (matrix.rows?.toList() ?? []).asMap().forEach((i, row) {
+        node.children.toList().asMap().forEach((i, rowNode) {
           list.add(TableRow(
               decoration: i % 2 != 0
                   ? const BoxDecoration(
@@ -59,42 +62,37 @@ class MatrixDropdownElement extends StatelessWidget {
                     verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Container(
                       padding: const EdgeInsets.all(5),
-                      child: Text(row.castToItemvalue().text ?.getLocalizedText(context) ?? ""),
+                      child: Text((rowNode.rawElement as s.Itemvalue)
+                              .text
+                              ?.getLocalizedText(context) ??
+                          ""),
                     )),
-                ...(matrix.columns?.toList() ?? []).map((column) {
-                  final q = matrixDropdownColumnToQuestion(matrix, column);
-                  final v = questionToValidators(q);
-
+                ...rowNode.children.where((e) => e.element!=null).map((columnNode) {
                   return TableCell(
                       verticalAlignment: TableCellVerticalAlignment.middle,
                       child: ReactiveNestedForm(
-                        formControlName:
-                            row.castToItemvalue().value!.toString(),
+                        formGroup: rowNode.control as FormGroup,
                         child: Builder(
                           builder: (context) {
-                            final fg = ReactiveForm.of(context) as FormGroup;
-                            final c = fg.control(column.name!);
-                            //TODO runner
-                            // //concat validators
-                            // final newV = HashSet<ValidatorFunction>.of(
-                            //     [...c.validators, ...v]).toList();
-                            c.setValidators(v);
                             return SurveyConfiguration.of(context)!
                                 .factory
                                 .resolve(
-                                    context, q,
+                                    context, columnNode.element!,
                                     configuration: const ElementConfiguration(
                                         hasTitle: false));
                           },
                         ),
                       ));
-                }).toList()
+                })
               ]));
         });
 
         final screenWidth = MediaQuery.of(context).size.width;
         final colLength = (matrix.columns?.toList() ?? []).length;
-        final colFixedWidth = (screenWidth-27) / ((colLength > 3) ? 3 : colLength+1); // Max 3 columns in the screen
+        final colFixedWidth = (screenWidth - 27) /
+            ((colLength > 3)
+                ? 3
+                : colLength + 1); // Max 3 columns in the screen
         return ScrollConfiguration(
             behavior: CustomScrollBehavior(),
             child: Scrollbar(
@@ -103,7 +101,8 @@ class MatrixDropdownElement extends StatelessWidget {
                     controller: scrollController,
                     scrollDirection: Axis.horizontal,
                     child: Table(
-                      defaultColumnWidth: FixedColumnWidth(colFixedWidth), //const IntrinsicColumnWidth(),
+                      defaultColumnWidth: FixedColumnWidth(
+                          colFixedWidth), //const IntrinsicColumnWidth(),
                       border: TableBorder.all(
                         width: 1.0,
                         color: Colors.grey,

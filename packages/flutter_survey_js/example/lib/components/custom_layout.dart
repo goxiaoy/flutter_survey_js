@@ -30,7 +30,6 @@ class CustomLayoutPage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : s.SurveyWidget(
-                showQuestionsInOnePage: true,
                 survey: survey,
                 answer: answer,
                 onChange: (v) {
@@ -133,9 +132,7 @@ class CustomLayoutState extends State<CustomLayout> {
 
   List<s.Elementbase> _consolidateQuestions(s.Survey survey) {
     return (survey.pages?.toList() ?? [])
-        .map<List<s.Elementbase>>((e) =>
-            e.elementsOrQuestions?.map((p) => p.realElement).toList() ??
-            <s.Elementbase>[])
+        .map<List<s.Elementbase>>((e) => e.getElements())
         .fold(<s.Elementbase>[],
             (previousValue, element) => previousValue..addAll(element));
   }
