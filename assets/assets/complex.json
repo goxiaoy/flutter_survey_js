@@ -142,7 +142,7 @@
     },
     {
       "type": "image",
-      "name": "banner",
+      "name": "banner1",
       "contentMode": "video",
       "imageHeight": "300px",
       "imageWidth": "450px",
@@ -799,7 +799,7 @@
         },
         {
           "type": "comment",
-          "name": "suggestions",
+          "name": "suggestions1",
           "title": "What would make you more satisfied with the Product?"
         }
       ]
