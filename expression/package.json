@@ -1,0 +1,24 @@
+{
+  "name": "flutter_survey_js_expression",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pnpm rollup -c rollup.config.mjs && cp dist/index.js flutter_survey_js_expression/assets/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/qunit": "2.0.31",
+    "qunit": "2.14.0",
+    "rollup": "^3.27.2",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-dts": "^5.3.1",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "tslib": "^2.6.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

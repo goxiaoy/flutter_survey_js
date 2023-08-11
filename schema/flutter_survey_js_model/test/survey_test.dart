@@ -1381,7 +1381,8 @@ void main() {
       expect(secondQuestion.name, element2Name);
       expect(secondQuestion.type, element2Type);
       expect(secondQuestion.title?.getTextFromLocale(), element2Title);
-      expect(secondQuestion.placeholder?.getTextFromLocale(), element2Placeholder);
+      expect(
+          secondQuestion.placeholder?.getTextFromLocale(), element2Placeholder);
       expect(secondQuestion.isRequired, element2IsRequired);
     });
   });

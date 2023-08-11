@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "lib": ["DOM", "ES5", "ES6", "ES2015.Promise"],
+    "sourceMap": false,
+    "noImplicitAny": true,
+    "importHelpers": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "outDir": "dist/",
+    "paths": {
+      "survey-core": ["./src/entries/core.ts"]
+    }
+  },
+  "exclude": ["src/entries/**/*.ts"],
+  "include": ["src/**/*.ts"]
+}

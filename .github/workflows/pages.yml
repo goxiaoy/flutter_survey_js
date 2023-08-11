@@ -15,18 +15,16 @@ jobs:
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: "3.10.6"
           channel: "stable"
-      - name: Activate melos
-        run: |
-          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
-          dart pub global activate melos 3.1.0
-      - name: Bootstrap melos
-        run: melos bs
+      - uses: bluefireteam/melos-action@dd3c344d731938d2ab2567a261f54a19a68b5f6a
+        with:
+          melos-version: "3.1.1"
       - run: |
-          cd example
+          cd packages/flutter_survey_js/example
           flutter build web --release --dart-define=FLUTTER_WEB_USE_SKIA=true
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./example/build/web
+          publish_dir: ./packages/flutter_survey_js/example/build/web

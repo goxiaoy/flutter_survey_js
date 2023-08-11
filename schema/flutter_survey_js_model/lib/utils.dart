@@ -75,6 +75,16 @@ extension PanelbaseExtension on Panelbase {
   BuiltList<SurveyQuestionsInner>? get elementsOrQuestions {
     return this.elements ?? this.questions;
   }
+
+  List<Elementbase> getElements() {
+    return elementsOrQuestions?.map((p) => p.realElement).toList() ?? [];
+  }
+}
+
+extension PaneldynamicExtension on Paneldynamic {
+  List<Elementbase> getElements() {
+    return templateElements?.map((p) => p.realElement).toList() ?? [];
+  }
 }
 
 extension SurveyQuestionsInnerExtension on SurveyQuestionsInner {

@@ -16,19 +16,19 @@ Supported widgets:
 - [ ] tagbox
 - [x] ranking
 - [x] radiogroup
-- [ ] imagepicker
+- [x] imagepicker
 - [ ] buttongroup
 - [x] dropdown
 - [x] matrixdropdown
 - [x] matrixdynamic
 - [x] matrix
-- [ ] expression
+- [x] expression
 - [x] text
 - [x] comment
 - [x] multipletext
 - [x] html
 - [x] image
-- [ ] empty
+- [x] empty
 - [ ] file
 - [x] rating
 - [x] boolean
@@ -47,8 +47,44 @@ Supported validator:
 
 ## Getting Started
 
+```
+flutter pub add flutter_survey_js
+```
+
+Modify your main function
+
 ```dart
-import 'package:flutter_survey_js/survey.dart' as s;
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await s.initSurvey();
+  runApp(
+    ...
+  );
+}
+```
+
+**Web**:
+
+add following script into `web/index.html`
+```html
+<html>
+  ...
+  <body>
+    <!-- Add this line -->
+    <script src="assets/packages/flutter_survey_js_expression/assets/index.js"></script>
+
+    <script src="main.dart.js" type="application/javascript"></script>
+  </body>
+</html>
+
+```
+
+
+**usage**:
+
+```dart
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 ...
 const survey = {
   "questions": [
@@ -101,7 +137,16 @@ Install
 ```shell
 dart pub global activate melos
 ```
-
-```bootstrap
+Bootstrap
+```shell
 dart pub global run melos bs
 ```
+
+## Test
+
+### Before you run test
+
+- Windows: `dart pub global run melos run build_windows`
+- Linux: `dart pub global run melos run build_linux`
+###
+`dart pub global run melos run test`
