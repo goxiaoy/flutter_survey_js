@@ -1,3 +1,7 @@
+## 0.0.2-dev.9
+
+ - **FEAT**: use new elementnode. close [#30](https://github.com/Goxiaoy/flutter_survey_js/issues/30), close [#90](https://github.com/Goxiaoy/flutter_survey_js/issues/90). ([57173933](https://github.com/Goxiaoy/flutter_survey_js/commit/571739335035a080b3624008f9ebf575d6980626))
+
 ## 0.0.2-dev.8
 
  - string to locstring. fix text min&max

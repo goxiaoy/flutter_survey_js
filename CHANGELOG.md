@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-11
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`flutter_survey_js` - `v0.0.2-dev.9`](#flutter_survey_js---v002-dev9)
+
+Packages with other changes:
+
+ - [`flutter_survey_js_expression` - `v0.0.2-dev.9`](#flutter_survey_js_expression---v002-dev9)
+ - [`flutter_survey_js_model` - `v0.0.2-dev.9`](#flutter_survey_js_model---v002-dev9)
+
+---
+
+#### `flutter_survey_js` - `v0.0.2-dev.9`
+
+ - **FIX**: SignaturePad trigger events too fast. ([abc29c11](https://github.com/Goxiaoy/flutter_survey_js/commit/abc29c11a9eb373d4b1b0b79d340faaf96bbb8ed))
+ - **FEAT**: use new elementnode. close [#30](https://github.com/Goxiaoy/flutter_survey_js/issues/30), close [#90](https://github.com/Goxiaoy/flutter_survey_js/issues/90). ([57173933](https://github.com/Goxiaoy/flutter_survey_js/commit/571739335035a080b3624008f9ebf575d6980626))
+ - **BREAKING** **REFACTOR**: rename survey.dart  to flutter_survey_js.dart. ([dc538957](https://github.com/Goxiaoy/flutter_survey_js/commit/dc538957b43ea7dfc8a94240fab8722a5903d0bb))
+
+#### `flutter_survey_js_expression` - `v0.0.2-dev.9`
+
+ - **FEAT**: use new elementnode. close [#30](https://github.com/Goxiaoy/flutter_survey_js/issues/30), close [#90](https://github.com/Goxiaoy/flutter_survey_js/issues/90). ([57173933](https://github.com/Goxiaoy/flutter_survey_js/commit/571739335035a080b3624008f9ebf575d6980626))
+ - **FEAT**: impl expression widget. ([3b6eb9a8](https://github.com/Goxiaoy/flutter_survey_js/commit/3b6eb9a8274a16876dfcdac3ad6e4254f20b97ee))
+ - **FEAT**: impl web runner. ([5681a10f](https://github.com/Goxiaoy/flutter_survey_js/commit/5681a10fdc446eea2862b0d67338ac2e8e39d1b3))
+ - **FEAT**: add expression pkg. ([c8755376](https://github.com/Goxiaoy/flutter_survey_js/commit/c8755376fc08ad74ac2f437f90b7b46f17401c8f))
+
+#### `flutter_survey_js_model` - `v0.0.2-dev.9`
+
+ - **FEAT**: use new elementnode. close [#30](https://github.com/Goxiaoy/flutter_survey_js/issues/30), close [#90](https://github.com/Goxiaoy/flutter_survey_js/issues/90). ([57173933](https://github.com/Goxiaoy/flutter_survey_js/commit/571739335035a080b3624008f9ebf575d6980626))
+
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## 2023-08-06
 
 ### Changes
