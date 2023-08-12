@@ -33,20 +33,34 @@ class QuestionTitle extends StatelessWidget {
       List<Widget> listTitle = <Widget>[];
       listTitle.add(Builder(builder: (context) {
         final survey = SurveyProvider.of(context);
-        final status = survey.rootNode.findByElement(rawElement: q);
+        final status = survey.rootNode.findByElement(element: q);
         if (status != null) {
-          if ((survey.survey.showQuestionNumbers?.isOn ?? true) &&
-              status.indexAll != null) {
-            return Text(
-              '${status.indexAll! + 1}. ',
-              style: titleTextStyle(),
-            );
-          } else if ((survey.survey.showQuestionNumbers?.isOnPage ?? false) &&
-              status.indexInPage != null) {
-            return Text(
-              '${status.indexInPage! + 1}. ',
-              style: titleTextStyle(),
-            );
+          if ((survey.survey.showQuestionNumbers?.isOn ?? true)) {
+            if (status.isInsideDynamic == true && status.panelIndex != null) {
+              return Text(
+                '${status.panelIndex! + 1}. ',
+                style: titleTextStyle(),
+              );
+            }
+            if (status.indexAll != null) {
+              return Text(
+                '${status.indexAll! + 1}. ',
+                style: titleTextStyle(),
+              );
+            }
+          } else if ((survey.survey.showQuestionNumbers?.isOnPage ?? false)) {
+            if (status.isInsideDynamic == true && status.panelIndex != null) {
+              return Text(
+                '${status.panelIndex! + 1}. ',
+                style: titleTextStyle(),
+              );
+            }
+            if (status.indexInPage != null) {
+              return Text(
+                '${status.indexInPage! + 1}. ',
+                style: titleTextStyle(),
+              );
+            }
           }
         }
 

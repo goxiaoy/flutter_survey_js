@@ -11,6 +11,36 @@ import 'package:collection/collection.dart';
 
 import 'elements/multiple_text.dart';
 
+class IndexParams {
+  int preIndexInPageOfAll;
+  int preIndexInPage;
+
+  int prePanelIndex;
+  int prePanelIndexOfAll;
+
+  int preIndexOfAll;
+  int pageIndex;
+
+  IndexParams({
+    required this.preIndexInPageOfAll,
+    required this.preIndexInPage,
+    required this.preIndexOfAll,
+    required this.prePanelIndex,
+    required this.prePanelIndexOfAll,
+    required this.pageIndex,
+  });
+
+  factory IndexParams.root() {
+    return IndexParams(
+        preIndexInPageOfAll: 0,
+        preIndexInPage: 0,
+        preIndexOfAll: 0,
+        prePanelIndex: 0,
+        prePanelIndexOfAll: 0,
+        pageIndex: 0);
+  }
+}
+
 class ElementNode {
   ElementNode(
       {required this.element,
@@ -46,15 +76,19 @@ class ElementNode {
   //element index
   int? indexAll;
 
-  int? pageIndex;
+  //not including invisible panel items
+  int? panelIndex;
 
-  int? pageIndexOfAll;
+  int? panelIndexOfAll;
 
   int? indexInPage;
 
-  int? panelIndex;
+  int pageIndex = 0;
 
-  int? questionCountInThisPage;
+  bool? isInsideDynamic;
+
+  // index in dynamic panel
+  int? dynamicPanelIndex;
 
   Object? defaultValue;
 
@@ -100,6 +134,54 @@ class ElementNode {
     }
     for (final v in children) {
       v.setEnabled(enabled);
+    }
+  }
+
+  void calIndexAfterExpression(IndexParams params,
+      {bool insideDynamic = false}) {
+    if (element == null && !isRootSurvey) {
+      for (final c in children) {
+        c.calIndexAfterExpression(params, insideDynamic: true);
+      }
+      return;
+    }
+    if (element is s.Matrixdynamic || element is s.Paneldynamic) {
+      params.prePanelIndex = 0;
+      params.prePanelIndexOfAll = 0;
+
+      for (final c in children) {
+        c.calIndexAfterExpression(params, insideDynamic: true);
+      }
+    } else if (element is s.Question) {
+      isInsideDynamic = insideDynamic;
+      pageIndex = params.pageIndex;
+      if (insideDynamic) {
+        panelIndexOfAll = params.prePanelIndexOfAll;
+        params.prePanelIndexOfAll++;
+        if (visibleIf ?? true) {
+          panelIndex = params.prePanelIndex;
+          params.prePanelIndex++;
+        }
+      } else {
+        if (visibleIf ?? true) {
+          indexInPage = params.preIndexInPage;
+          params.preIndexInPage++;
+          indexAll = params.preIndexOfAll;
+          params.preIndexOfAll++;
+        }
+      }
+    } else if (element is s.Page) {
+      params.preIndexInPage = 0;
+      params.preIndexInPageOfAll = 0;
+
+      for (final c in children) {
+        c.calIndexAfterExpression(params);
+      }
+      params.pageIndex++;
+    } else {
+      for (final c in children) {
+        c.calIndexAfterExpression(params);
+      }
     }
   }
 
@@ -236,63 +318,25 @@ class ElementNode {
     //run children
     {
       bool hasRunChildren = false;
-      if (isRootSurvey) {
-        var pageIndex = 0;
-        for (var i = 0; i < children.length; i++) {
-          children[i].runExpression(newValues, newProperties);
-          children[i].pageIndexOfAll = i;
-          if (children[i].visibleIf != false) {
-            children[i].pageIndex = pageIndex;
-            pageIndex++;
-          }
-        }
-        hasRunChildren = true;
-      }
-      if (element is s.Page) {
-        var indexInPage = 0;
-        for (var i = 0; i < children.length; i++) {
-          children[i].runExpression(newValues, newProperties);
-          if (children[i].visibleIf != false && children[i] is! s.Nonvalue) {
-            children[i].indexInPage = indexInPage;
-            indexInPage++;
-          }
-        }
-        questionCountInThisPage = indexInPage;
-        hasRunChildren = true;
-      }
-
       if (element is s.Paneldynamic) {
         for (var panelIndex = 0; panelIndex < children.length; panelIndex++) {
           newValues[QuestionPanelDynamicVar.itemVariableName] =
               children[panelIndex].value;
           newValues[QuestionPanelDynamicVar.indexVariableName] = panelIndex;
-          children[panelIndex].panelIndex = panelIndex;
+          children[panelIndex].dynamicPanelIndex = panelIndex;
           children[panelIndex].runExpression(newValues, newProperties);
         }
         hasRunChildren = true;
       }
+      //TODO matrixdynamic?
       if (!hasRunChildren) {
         for (var c in children) {
           c.runExpression(newValues, newProperties);
         }
       }
 
-      if (element is s.Page) {
-        var visibleQuestionCountBeforeThisPage = 0;
-        if (pageIndex != 0) {
-          //not the first page of visible
-          visibleQuestionCountBeforeThisPage = parent!.children
-              .sublist(0, pageIndexOfAll)
-              .map((e) => e.questionCountInThisPage ?? 0)
-              .toList()
-              .sum;
-        }
-        for (var i = 0; i < children.length; i++) {
-          if (children[i].indexInPage != null) {
-            children[i].indexAll =
-                children[i].indexInPage! + visibleQuestionCountBeforeThisPage;
-          }
-        }
+      if (isRootSurvey) {
+        calIndexAfterExpression(IndexParams.root());
       }
     }
   }
@@ -491,7 +535,7 @@ void constructElementNode(BuildContext context, ElementNode node,
             rawElement: questions[panelIndex],
             survey: node.survey);
         node.addChild(questionNode);
-        questionNode.panelIndex = panelIndex;
+        questionNode.dynamicPanelIndex = panelIndex;
         constructElementNode(context, questionNode,
             asyncValidators: asyncValidators,
             validators: validators,

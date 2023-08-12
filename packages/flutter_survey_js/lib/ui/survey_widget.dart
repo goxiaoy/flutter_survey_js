@@ -100,8 +100,8 @@ class SurveyWidgetState extends State<SurveyWidget> {
   }
 
   void rerunExpression(Map<String, Object?> values) {
-    final properties = ExpressionHelper.getInitalProperty(widget.survey);
-    rootNode.runExpression(values, properties);
+    // final properties = ExpressionHelper.getInitalProperty(widget.survey);
+    rootNode.runExpression(values, {});
   }
 
   void rebuildForm() {
@@ -122,7 +122,7 @@ class SurveyWidgetState extends State<SurveyWidget> {
       widget.onChange?.call(event == null ? null : removeEmptyField(event));
     });
     _setAnswer(widget.answer);
-
+    rerunExpression(removeEmptyField(formGroup.value));
     pageCount = widget.survey.getPageCount();
   }
 
