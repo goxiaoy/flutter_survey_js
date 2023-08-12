@@ -148,11 +148,16 @@ class ElementNode {
     if (element is s.Matrixdynamic || element is s.Paneldynamic) {
       params.prePanelIndex = 0;
       params.prePanelIndexOfAll = 0;
-
+      if (visibleIf ?? true) {
+        indexInPage = params.preIndexInPage;
+        params.preIndexInPage++;
+        indexAll = params.preIndexOfAll;
+        params.preIndexOfAll++;
+      }
       for (final c in children) {
         c.calIndexAfterExpression(params, insideDynamic: true);
       }
-    } else if (element is s.Question) {
+    } else if (element is s.Question && element is! Nonvalue) {
       isInsideDynamic = insideDynamic;
       pageIndex = params.pageIndex;
       if (insideDynamic) {
