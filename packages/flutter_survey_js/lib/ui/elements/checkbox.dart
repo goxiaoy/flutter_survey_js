@@ -68,9 +68,14 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
       if (otherController.storeOtherAsComment) {
         otherController
             .setShowOther(formArray.controls.any((c) => c.value == otherValue));
-      }
-      if (otherValueControl != null) {
-        otherController.setOtherValue(otherValueControl.value.toString());
+        if (otherValueControl != null &&
+            otherValueControl.value.toString() != otherValue) {
+          otherController.setOtherValue(otherValueControl.value.toString());
+        }
+      } else {
+        if (otherValueControl != null) {
+          otherController.setOtherValue(otherValueControl.value.toString());
+        }
       }
     });
   }

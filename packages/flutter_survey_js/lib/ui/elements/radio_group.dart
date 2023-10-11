@@ -64,9 +64,13 @@ class _RadioGroupWidgetState extends State<_RadioGroupWidget> {
 
       if (isOtherValue(value)) {
         //current value outside of choices
-        selectbaseController.setOtherValue(value?.toString() ?? "");
         if (selectbaseController.storeOtherAsComment) {
           control.value = otherValue;
+          if (value?.toString() != otherValue) {
+            selectbaseController.setOtherValue(value?.toString() ?? "");
+          }
+        } else {
+          selectbaseController.setOtherValue(value?.toString() ?? "");
         }
       }
     });
@@ -81,21 +85,25 @@ class _RadioGroupWidgetState extends State<_RadioGroupWidget> {
           .map(
             (e) => ReactiveGroupButtonItem(
               value: e.value?.value,
-              title: e.text?.getLocalizedText(context) ?? e.value?.toString() ?? '',
+              title: e.text?.getLocalizedText(context) ??
+                  e.value?.toString() ??
+                  '',
             ),
           )
           .toList(growable: false),
       if (widget.element.showNoneItem == true)
         ReactiveGroupButtonItem(
           value: noneValue,
-          title: e.noneText?.getLocalizedText(context) ?? S.of(context).noneItemText,
+          title: e.noneText?.getLocalizedText(context) ??
+              S.of(context).noneItemText,
         ),
       if (widget.element.showOtherItem == true)
         ReactiveGroupButtonItem(
           value: selectbaseController.storeOtherAsComment
               ? otherValue
               : selectbaseController.otherValue,
-          title: e.otherText?.getLocalizedText(context) ?? S.of(context).otherItemText,
+          title: e.otherText?.getLocalizedText(context) ??
+              S.of(context).otherItemText,
         )
     ];
     return SelectbaseWidget(

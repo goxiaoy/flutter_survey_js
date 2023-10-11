@@ -48,9 +48,13 @@ class _DropdownWidgetState extends State<_DropdownWidget> {
 
       if (isOtherValue(value)) {
         //current value outside of choices
-        selectbaseController.setOtherValue(value?.toString() ?? "");
         if (selectbaseController.storeOtherAsComment) {
           control.value = otherValue;
+          if (value?.toString() != otherValue) {
+            selectbaseController.setOtherValue(value?.toString() ?? "");
+          }
+        } else {
+          selectbaseController.setOtherValue(value?.toString() ?? "");
         }
       }
     });
