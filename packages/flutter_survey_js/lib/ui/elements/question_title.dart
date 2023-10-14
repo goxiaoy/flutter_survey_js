@@ -75,18 +75,17 @@ class QuestionTitle extends StatelessWidget {
       }
 
       listTitle.add(Expanded(
-          child: Container(
-        padding: EdgeInsets.only(top: 10),
         child: Text(
           q.title?.getLocalizedText(context) ?? q.name ?? "",
           style: titleTextStyle(),
         ),
-      )));
+      ));
 
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: 10),
           Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
