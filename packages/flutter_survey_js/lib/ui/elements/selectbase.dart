@@ -105,12 +105,17 @@ class SelectbaseController extends ChangeNotifier {
 
   void setShowOther(bool value) {
     _showOther = value;
+    final name = getCommentName();
+    if (_showOther) {
+      _fg.control(name).markAsEnabled();
+    } else {
+      _fg.control(name).markAsDisabled();
+    }
     if (!value) {
       _otherTextController.text = "";
     }
     if (storeOtherAsComment) {
       if (!showOther) {
-        final name = getCommentName();
         _fg.control(name).value = "";
       }
     }

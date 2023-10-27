@@ -7,8 +7,6 @@ import 'package:flutter_survey_js/ui/survey_element_factory.dart';
 import 'package:flutter_survey_js/ui/validators.dart';
 import 'package:flutter_survey_js_model/flutter_survey_js_model.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:collection/collection.dart';
-
 import 'elements/multiple_text.dart';
 
 class IndexParams {
@@ -605,8 +603,7 @@ void constructElementNode(BuildContext context, ElementNode node,
       //always add comment control for selectbase, so that the answer patch will work
       node.parent!.addChild(commentNode);
       (node.parent!.control as FormGroup).addAll({
-        commentName: fb.control<String>(
-            "", [if (nodeElement.isRequired ?? false) NonEmptyValidator.get])
+        commentName: fb.control<String>("", [NonEmptyValidator.get])
       });
     }
 
