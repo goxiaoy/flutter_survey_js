@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_survey_js/flutter_survey_js.dart' as s;
 import 'package:flutter_survey_js/generated/l10n.dart';
-import 'package:flutter_survey_js/flutter_survey_js.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -35,7 +35,7 @@ void main() {
     ]
   };
   test("Serialize Deserialize Survey", () {
-    surveyFromJson(json);
+    s.surveyFromJson(json);
   });
 
   const extended = {
@@ -73,7 +73,7 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
         ],
         home: Material(
-          child: SurveyWidget(survey: surveyFromJson(extended)!),
+          child: s.SurveyWidget(survey: s.surveyFromJson(extended)!),
         ),
       ),
     );
@@ -99,7 +99,7 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
         ],
         home: Material(
-          child: SurveyWidget(survey: surveyFromJson(extended)!),
+          child: s.SurveyWidget(survey: s.surveyFromJson(extended)!),
         ),
       ),
     );
@@ -135,8 +135,8 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
         ],
         home: Material(
-          child: SurveyWidget(
-            survey: surveyFromJson(extended)!,
+          child: s.SurveyWidget(
+            survey: s.surveyFromJson(extended)!,
             answer: const {
               "warships": ["UNN Thomas Prince"]
             },
@@ -177,8 +177,8 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
         ],
         home: Material(
-          child: SurveyWidget(
-            survey: surveyFromJson(extended)!,
+          child: s.SurveyWidget(
+            survey: s.surveyFromJson(extended)!,
             answer: const {
               "warships": ["UNN Thomas Prince"]
             },
@@ -210,7 +210,7 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
         ],
         home: Material(
-          child: SurveyWidget(survey: surveyFromJson(extended)!),
+          child: s.SurveyWidget(survey: s.surveyFromJson(extended)!),
         ),
       ),
     );
@@ -246,7 +246,7 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
         ],
         home: Material(
-          child: SurveyWidget(survey: surveyFromJson(extended)!),
+          child: s.SurveyWidget(survey: s.surveyFromJson(extended)!),
         ),
       ),
     );
@@ -265,5 +265,91 @@ void main() {
     await tester.pump();
     await tester.idle();
     expect(find.text("required"), findsOneWidget);
+  });
+
+  testWidgets(
+      "CheckboxListTile for 'other' option is initially checked when there is a comment and SurveyWidget is build using builder",
+      (WidgetTester tester) async {
+    IndexedWidgetBuilder itemBuilder(List<s.Elementbase> elements) {
+      return (context, index) {
+        if (index < elements.length && index >= 0) {
+          return s.SurveyConfiguration.of(context)!
+              .factory
+              .resolve(context, elements[index]);
+        } else {
+          return Container(
+            width: double.infinity,
+          );
+        }
+      };
+    }
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: const [
+          appLocalizationDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: Material(
+          child: s.SurveyWidget(
+            survey: s.surveyFromJson(extended)!,
+            answer: const {
+              "warships": ["other"],
+              "warships-Comment": "UNN Thomas Prince"
+            },
+            builder: (context) {
+              final List<s.Elementbase> elements =
+                  (s.SurveyProvider.of(context).survey.pages?.toList() ?? [])
+                      .map<List<s.Elementbase>>((e) => e.getElements())
+                      .fold(
+                          <s.Elementbase>[],
+                          (previousValue, element) =>
+                              previousValue..addAll(element));
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: ListView.separated(
+                        itemBuilder: itemBuilder(elements),
+                        separatorBuilder: (context, index) {
+                          return const Divider();
+                        },
+                        itemCount: elements.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                      ),
+                    ),
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: TextButton(
+                        onPressed: () =>
+                            s.SurveyWidgetState.of(context).submit(),
+                        child: const Text(
+                          'Submit',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+    await tester.idle();
+
+    expect(
+        tester
+            .widget<CheckboxListTile>(
+                find.byKey(const Key('other-checkbox-list-tile')))
+            .value,
+        true);
   });
 }
