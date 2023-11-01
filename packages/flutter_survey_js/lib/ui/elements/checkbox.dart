@@ -77,7 +77,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
           otherController.setOtherValue(otherValueControl.value.toString());
         }
       }
-    });
+    }).then((value) => setState(() {}));
   }
 
   AbstractControl<Object?>? findPossibleOtherValueControl(
@@ -224,6 +224,7 @@ class _CheckBoxElementState extends State<CheckBoxElement> {
             if (widget.element.showOtherItem ?? false) {
               String? text = otherController.getOtherLocaledText(context);
               list.add(CheckboxListTile(
+                key: const Key('other-checkbox-list-tile'),
                 value: otherController.showOther,
                 title: Text(text),
                 onChanged: (v) {
