@@ -1,0 +1,11 @@
+{
+  "nextPage": "Næste side",
+  "previousPage": "Forrige side",
+  "submitSurvey": "Send",
+  "add": "Tilføj",
+  "remove": "Fjern",
+  "placeholder": "Vælg...",
+  "otherItemText": "Andet (beskriv)",
+  "noneItemText": "Ingen",
+  "selectAllText": "Vælg alle"
+}

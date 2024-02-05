@@ -1,0 +1,11 @@
+{
+  "nextPage": "Nästa sida",
+  "previousPage": "Föregående sida",
+  "submitSurvey": "Skicka",
+  "add": "Lägg till",
+  "remove": "Ta bort",
+  "placeholder": "Välj...",
+  "otherItemText": "Övrig (beskriv)",
+  "noneItemText": "Ingen",
+  "selectAllText": "Välj alla"
+}
