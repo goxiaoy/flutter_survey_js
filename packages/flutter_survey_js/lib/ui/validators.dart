@@ -21,15 +21,13 @@ class NonEmptyValidator extends Validator<dynamic> {
     }
     return null;
   }
-
-  static ValidatorFunction get get => NonEmptyValidator().validate;
 }
 
-List<ValidatorFunction> questionToValidators(s.Question question) {
-  final res = <ValidatorFunction>[];
+List<Validator> questionToValidators(s.Question question) {
+  final res = <Validator>[];
 
   if (question.isRequired == true) {
-    res.add(NonEmptyValidator.get);
+    res.add(NonEmptyValidator());
   }
   if (question is s.Text) {
     if (question.min?.oneOf.value.tryCastToNum() != null) {
@@ -44,7 +42,7 @@ List<ValidatorFunction> questionToValidators(s.Question question) {
   if (validators != null) {
     for (var value in validators) {
       if (value is s.Numericvalidator) {
-        res.add(Validators.number);
+        res.add(Validators.number());
         if (value.maxValue != null) {
           res.add(Validators.max(value.maxValue));
         }
@@ -60,7 +58,7 @@ List<ValidatorFunction> questionToValidators(s.Question question) {
           res.add(Validators.minLength(value.minLength!.toInt()));
         }
         if (value.allowDigits != null) {
-          res.add((control) {
+          res.add(Validators.delegate((control) {
             if (control.value is String) {
               if (!value.allowDigits! &&
                   (control.value as String).contains('.')) {
@@ -68,7 +66,7 @@ List<ValidatorFunction> questionToValidators(s.Question question) {
               }
             }
             return null;
-          });
+          }));
         }
       }
 

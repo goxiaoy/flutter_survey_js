@@ -173,7 +173,7 @@ class SurveyElementFactory {
   // [value] default value passed down from parent. default value will be resolved by self default value then from parent
   AbstractControl? resolveFormControl(
       BuildContext context, s.Elementbase element,
-      {Object? value,List<ValidatorFunction> validators = const []}) {
+      {Object? value,List<Validator> validators = const []}) {
 
     if (_formControlMap.containsKey(element.type)) {
       final c = _formControlMap[element.type];

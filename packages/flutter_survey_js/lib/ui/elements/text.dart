@@ -113,7 +113,7 @@ AbstractControl textControlBuilder(BuildContext context, s.Elementbase element,
   }
   if (e.inputType == s.TextInputType.number) {
     return FormControl<num>(
-        validators: [...validators, NullableNumberValidator().validate],
+        validators: [...validators, NullableNumberValidator()],
         value: e.defaultValue.tryCastToNum() ?? value.tryCastToNum());
   }
   return FormControl<String>(

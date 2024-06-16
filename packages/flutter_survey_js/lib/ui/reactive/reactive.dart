@@ -33,8 +33,8 @@ class NullableNumberValidator extends Validator<dynamic> {
 class SurveyFormBuilder {
   FormGroup group(
     Map<String, Object> controls, [
-    List<ValidatorFunction> validators = const [],
-    List<AsyncValidatorFunction> asyncValidators = const [],
+    List<Validator> validators = const [],
+    List<AsyncValidator> asyncValidators = const [],
   ]) {
     final map = controls
         .map<String, AbstractControl<Object?>>((String key, Object value) {
@@ -52,9 +52,9 @@ class SurveyFormBuilder {
         return MapEntry(key, FormControl<TimeOfDay>(value: value));
       } else if (value is AbstractControl<Object?>) {
         return MapEntry(key, value);
-      } else if (value is ValidatorFunction) {
+      } else if (value is Validator) {
         return MapEntry(key, FormControl(validators: [value]));
-      } else if (value is List<ValidatorFunction>) {
+      } else if (value is List<Validator>) {
         return MapEntry(key, FormControl(validators: value));
       } else if (value is List<Object?>) {
         if (value.isEmpty) {
@@ -64,19 +64,18 @@ class SurveyFormBuilder {
           final validators = List.of(value.skip(1));
 
           if (validators.isNotEmpty &&
-              validators.any((validator) => validator is! ValidatorFunction)) {
+              validators.any((validator) => validator is! Validator)) {
             throw FormBuilderInvalidInitializationException(
                 'Invalid validators initialization');
           }
 
-          if (defaultValue is ValidatorFunction) {
+          if (defaultValue is Validator) {
             throw FormBuilderInvalidInitializationException(
                 'Expected first value in array to be default value of the control and not a validator.');
           }
 
-          final effectiveValidators = validators
-              .map<ValidatorFunction>((v) => v! as ValidatorFunction)
-              .toList();
+          final effectiveValidators =
+              validators.map<Validator>((v) => v! as Validator).toList();
           final control = _control(defaultValue, effectiveValidators);
           return MapEntry(key, control as AbstractControl<Object>);
         }
@@ -92,8 +91,7 @@ class SurveyFormBuilder {
     );
   }
 
-  FormControl<dynamic> _control(
-      dynamic value, List<ValidatorFunction> validators) {
+  FormControl<dynamic> _control(dynamic value, List<Validator> validators) {
     if (value is AbstractControl) {
       throw FormBuilderInvalidInitializationException(
           'Default value of control must not be an AbstractControl.');
@@ -118,8 +116,8 @@ class SurveyFormBuilder {
 
   FormArray<T> array<T>(
     List<Object> value, [
-    List<ValidatorFunction> validators = const [],
-    List<AsyncValidatorFunction> asyncValidators = const [],
+    List<Validator> validators = const [],
+    List<AsyncValidator> asyncValidators = const [],
   ]) {
     return AlwaysUpdateFormArray<T>(
       value.map<AbstractControl<T>>((v) {

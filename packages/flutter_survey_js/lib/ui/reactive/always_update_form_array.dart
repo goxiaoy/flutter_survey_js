@@ -3,8 +3,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 class AlwaysUpdateFormArray<T> extends FormArray<T> {
   AlwaysUpdateFormArray(
     List<AbstractControl<T>> controls, {
-    List<ValidatorFunction> validators = const [],
-    List<AsyncValidatorFunction> asyncValidators = const [],
+    List<Validator> validators = const [],
+    List<AsyncValidator> asyncValidators = const [],
     int asyncValidatorsDebounceTime = 250,
     bool disabled = false,
   }) : super(controls,

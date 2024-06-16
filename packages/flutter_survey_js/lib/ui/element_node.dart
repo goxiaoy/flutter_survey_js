@@ -373,8 +373,8 @@ class ElementNode {
   }
 
   void dynamicArrayAddNew(BuildContext context,
-      {List<ValidatorFunction> validators = const [],
-      List<AsyncValidatorFunction> asyncValidators = const [],
+      {List<Validator> validators = const [],
+      List<AsyncValidator> asyncValidators = const [],
       Object? value}) {
     assert(control is FormArray);
     final formArray = control as FormArray;
@@ -471,8 +471,8 @@ class QuestionPanelDynamicVar {
 
 // constructElementNode set node.control
 void constructElementNode(BuildContext context, ElementNode node,
-    {List<ValidatorFunction> validators = const [],
-    List<AsyncValidatorFunction> asyncValidators = const [],
+    {List<Validator> validators = const [],
+    List<AsyncValidator> asyncValidators = const [],
     Object? value}) {
   if (node.isRootSurvey) {
     final survey = node.survey;
@@ -603,7 +603,7 @@ void constructElementNode(BuildContext context, ElementNode node,
       //always add comment control for selectbase, so that the answer patch will work
       node.parent!.addChild(commentNode);
       (node.parent!.control as FormGroup).addAll({
-        commentName: fb.control<String>("", [NonEmptyValidator.get])
+        commentName: fb.control<String>("", [NonEmptyValidator()])
       });
     }
 
@@ -626,7 +626,7 @@ void constructElementNode(BuildContext context, ElementNode node,
 // toFormObject convert question json element to FromControl
 // [value] default value passed down by parent
 AbstractControl? toFormObject(BuildContext context, s.Elementbase element,
-    {Object? value, List<ValidatorFunction> validators = const []}) {
+    {Object? value, List<Validator> validators = const []}) {
   final obj =
       ((SurveyConfiguration.of(context)?.factory) ?? SurveyElementFactory())
           .resolveFormControl(context, element,

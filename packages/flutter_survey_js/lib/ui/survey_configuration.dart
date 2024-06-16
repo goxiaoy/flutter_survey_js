@@ -10,7 +10,7 @@ typedef SurveyElementBuilder = Widget Function(
     {ElementConfiguration? configuration});
 typedef SurveyFormControlBuilder = AbstractControl? Function(
     BuildContext context, s.Elementbase element,
-    {List<ValidatorFunction> validators, Object? value});
+    {List<Validator> validators, Object? value});
 
 typedef SurveyTitleWidgetBuilder = Widget Function(
     BuildContext context, s.Elementbase element, Widget child);
