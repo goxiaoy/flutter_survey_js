@@ -22,6 +22,7 @@ class SurveyWidget extends StatefulWidget {
 
   final SurveyController? controller;
   final WidgetBuilder? builder;
+  final bool removingEmptyFields;
 
   const SurveyWidget({
     Key? key,
@@ -32,6 +33,7 @@ class SurveyWidget extends StatefulWidget {
     this.onChange,
     this.controller,
     this.builder,
+    this.removingEmptyFields = true,
   }) : super(key: key);
 
   @override
@@ -128,7 +130,9 @@ class SurveyWidgetState extends State<SurveyWidget> {
 
   bool submit() {
     if (formGroup.valid) {
-      widget.onSubmit?.call(removeEmptyField(formGroup.value));
+      widget.onSubmit?.call(widget.removingEmptyFields
+          ? removeEmptyField(formGroup.value)
+          : formGroup.value);
       return true;
     } else {
       widget.onErrors?.call(formGroup.errors);

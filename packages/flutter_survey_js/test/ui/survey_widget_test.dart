@@ -40,4 +40,85 @@ main() {
       });
     });
   });
+
+  group('removingEmptyFields', () {
+    testWidgets('removes empty fields from survey response when true',
+        (widgetTester) async {
+      Map<String, dynamic>? surveyResponse;
+      final controller = SurveyController();
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(
+              survey: surveyFromJson({
+                "logoPosition": "right",
+                "pages": [
+                  {
+                    "name": "page1",
+                    "elements": [
+                      {
+                        "type": "checkbox",
+                        "name": "question1",
+                        "choices": ["Item 1", "Item 2", "Item 3"]
+                      }
+                    ]
+                  }
+                ]
+              })!,
+              removingEmptyFields: true,
+              controller: controller,
+              onSubmit: (response) => surveyResponse = response,
+            ),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+      controller.submit();
+      expect(surveyResponse?.isEmpty, isTrue);
+    });
+
+    testWidgets('does not remove empty fields from survey response when false',
+        (widgetTester) async {
+      Map<String, dynamic>? surveyResponse;
+      final controller = SurveyController();
+      await widgetTester.pumpWidget(
+        MaterialApp(
+          localizationsDelegates: const [
+            MultiAppLocalizationsDelegate(),
+          ],
+          home: Material(
+            child: SurveyWidget(
+              survey: surveyFromJson({
+                "logoPosition": "right",
+                "pages": [
+                  {
+                    "name": "page1",
+                    "elements": [
+                      {
+                        "type": "checkbox",
+                        "name": "question1",
+                        "choices": ["Item 1", "Item 2", "Item 3"]
+                      }
+                    ]
+                  }
+                ]
+              })!,
+              removingEmptyFields: false,
+              controller: controller,
+              onSubmit: (response) => surveyResponse = response,
+            ),
+          ),
+        ),
+      );
+      await widgetTester.pump();
+      await widgetTester.idle();
+      controller.submit();
+      expect(surveyResponse?.isEmpty, isFalse);
+      expect(surveyResponse?['question1'], []);
+    });
+  });
 }
